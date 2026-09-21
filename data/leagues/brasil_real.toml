@@ -1,0 +1,27 @@
+# Serie A do Brasil com clubes e jogadores REAIS (pack gerado pelo importador).
+# Mesmo motor, mesmas constantes: muda so a fonte do conteudo.
+id     = "bra_a_real"
+nome   = "Serie A"
+pais   = "BRA"
+tier   = 1
+clubes = 20
+
+pack        = "brasil_serie_a"
+pack_offset = 0
+
+[estilo]
+gols_base = 1.22
+mando     = 0.36
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 0, descem = 4 }
+
+[alvos]
+gols_por_jogo             = [2.35, 2.65]
+empate_pct                = [24.5, 30.0]
+vitoria_casa_pct          = [44.0, 50.0]
+vitoria_fora_pct          = [23.5, 29.0]
+pontos_do_campeao         = [70.0, 82.0]
+pontos_do_lanterna        = [22.0, 33.0]
+melhor_elenco_campeao_pct = [25.0, 45.0]

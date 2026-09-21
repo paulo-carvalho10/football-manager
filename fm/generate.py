@@ -15,7 +15,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from fm.model import Club, League, Player, World
+from fm.model import Club, League, Player, World, grupo_posicao
 from fm.names import CLUB_PATTERNS, CLUB_ROOTS, FIRST_NAMES, NICKNAMES, SURNAMES
 from fm.pack import PackClub, load_pack
 from fm.rng import Streams
@@ -28,7 +28,7 @@ SQUAD_QUOTA = {"GK": 3, "DF": 8, "MF": 8, "FW": 5}
 # Ordem das posicoes no elenco ordenado por overall. Os 11 primeiros formam um 4-4-2 valido,
 # entao o melhor onze contem de fato os melhores jogadores.
 SQUAD_SHAPE = (
-    "GK", "DF", "DF", "MF", "DF", "MF", "FW", "MF", "DF", "MF", "FW",   # titulares
+    "GK", "DF", "DF", "MF", "DF", "FW", "FW", "MF", "DF", "MF", "FW",   # titulares (4-3-3)
     "GK", "DF", "MF", "FW", "DF", "MF", "FW", "DF", "MF", "GK", "MF", "DF", "FW",
 )
 
@@ -125,6 +125,8 @@ def _random_name(rng, country: str) -> str:
 
 def _make_player(pid, rng, country, season_year, overall, position, age, club_id,
                  name: str | None = None) -> Player:
+    detalhe = position
+    position = grupo_posicao(position) or "MF"
     name = name or _random_name(rng, country)
     if age <= 22:
         potential = int(min(95, overall + rng.integers(6, 22)))
@@ -135,7 +137,8 @@ def _make_player(pid, rng, country, season_year, overall, position, age, club_id
     value = _market_value(overall, potential, age)
     return Player(
         id=pid, name=str(name), nationality=country, birth_year=season_year - age,
-        position=position, foot="E" if rng.random() < 0.22 else "D",
+        position=position, position_detail=detalhe,
+        foot="E" if rng.random() < 0.22 else "D",
         height_cm=int(rng.normal(190 if position == "GK" else 180, 6)),
         overall=overall, potential=potential,
         morale=int(rng.integers(60, 85)), form=int(rng.integers(55, 85)),
@@ -143,6 +146,17 @@ def _make_player(pid, rng, country, season_year, overall, position, age, club_id
         contract_until=season_year + int(rng.integers(1, 5)),
         market_value=value, **_attributes(rng, overall, position),
     )
+
+
+def curve_delta(i: int) -> float:
+    """Delta de overall do slot i na curva do elenco, extrapolando alem de 24 jogadores.
+
+    Elenco importado de fonte real tem 27 a 40 nomes, nao 24: o pack manda, a curva
+    estende.
+    """
+    if i < len(SQUAD_CURVE):
+        return float(SQUAD_CURVE[i])
+    return float(SQUAD_CURVE[-1]) - (i - len(SQUAD_CURVE) + 1) * 1.5
 
 
 def _filler_positions(pack_players) -> list[str]:
@@ -161,27 +175,48 @@ def _filler_positions(pack_players) -> list[str]:
 
 
 def _build_squad(world, club, pack_club, strength, rng, next_id, country, season_year):
-    """Monta o elenco: primeiro a escalacao nominal do pack, depois o que falta gerado."""
+    """Monta o elenco: primeiro a escalacao nominal do pack, depois o que falta gerado.
+
+    No pack so `nome` e obrigatorio. O que vier vazio o gerador resolve: posicao pela quota
+    da formacao, overall pela curva (na ORDEM do pack, por isso o importador grava ordenado
+    por qualidade) e idade pela forma padrao do elenco.
+    """
     nominais = list(pack_club.jogadores) if pack_club else []
-    for j in nominais:
+    xi_offset = SQUAD_CURVE[:11].mean()
+
+    # posicoes: o que o pack nao disser sai da quota que ainda falta
+    sem_pos = [j for j in nominais if j.pos is None]
+    reserva_pos = _filler_positions([j for j in nominais if j.pos is not None])
+    for j, pos in zip(sem_pos, reserva_pos, strict=False):
+        j.pos = pos
+    usados = {id(j) for j in sem_pos[:len(reserva_pos)]}
+    reserva_pos = reserva_pos[len(usados):]
+
+    for i, j in enumerate(nominais):
         pid = next_id[0]
         next_id[0] += 1
-        jogador = _make_player(pid, rng, country, season_year, j.ovr, j.pos, j.idade,
-                               club.id, name=j.nome)
+        ovr = j.ovr if j.ovr is not None else int(np.clip(
+            round(strength + curve_delta(i) - xi_offset + rng.normal(0, 1.2)), 35, 95))
+        idade = j.age_in(season_year) or AGE_SHAPE[min(i, len(AGE_SHAPE) - 1)]
+        jogador = _make_player(pid, rng, country, season_year, ovr,
+                               j.pos or "MF", int(idade), club.id, name=j.nome)
         if j.pot is not None:
-            jogador.potential = max(int(j.pot), j.ovr)
+            jogador.potential = max(int(j.pot), ovr)
+        if j.valor is not None:
+            jogador.market_value = int(j.valor)
+            jogador.wage = int(j.valor / 110)
         world.players[pid] = jogador
         club.player_ids.append(pid)
 
-    xi_offset = SQUAD_CURVE[:11].mean()
-    for k, pos in enumerate(_filler_positions(nominais)):
-        slot = min(len(nominais) + k, len(SQUAD_CURVE) - 1)
+    for k, pos in enumerate(reserva_pos):
+        slot = len(nominais) + k
         ovr = int(np.clip(
-            round(strength + SQUAD_CURVE[slot] - xi_offset + rng.normal(0, 1.2)), 35, 95))
+            round(strength + curve_delta(slot) - xi_offset + rng.normal(0, 1.2)), 35, 95))
         pid = next_id[0]
         next_id[0] += 1
-        world.players[pid] = _make_player(pid, rng, country, season_year, ovr, pos,
-                                          AGE_SHAPE[slot], club.id)
+        world.players[pid] = _make_player(
+            pid, rng, country, season_year, ovr, pos,
+            AGE_SHAPE[min(slot, len(AGE_SHAPE) - 1)], club.id)
         club.player_ids.append(pid)
 
 

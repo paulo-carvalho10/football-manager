@@ -140,6 +140,85 @@ ser achatada.
 | Serie B | 68,5 | 35,3 | 26,8% | 2,37 | 11,4% | 14,1% |
 | La Liga | 79,2 | 30,4 | 24,7% | 2,61 | 14,5% | 41,7% |
 
+
+## Base real: Serie A do Brasil
+
+    python -m fm.cli temporada   --liga brasil_real
+    python -m fm.cli diagnostico --pack brasil_serie_a
+    python -m fm.cli calibrar    --liga brasil_real --usar-perfil-da-liga
+
+20 clubes, 669 jogadores reais. Nada disso e digitado a mao: `fm/importer/` baixa 41
+paginas (1 da liga + 20 elencos + 20 de desempenho), cacheia tudo em `data/cache/` e gera
+`data/packs/brasil_serie_a.toml`.
+
+Fontes: Transfermarkt (clube, posicao, idade, valor de mercado, jogos e minutos) e CBF
+(`Codigo_Clube`, composicao oficial da divisao).
+
+O importador tem tres etapas separadas de proposito -- **baixar**, **extrair**, **montar**.
+So a primeira usa rede. Assim da para reajustar uma constante de conversao e rodar de novo
+sobre o cache sem baixar nada. Regra de arquitetura, guardada por
+`test_motor_nao_depende_do_importador`: **o jogo nao baixa pagina**. `fm/` depende so de
+numpy; beautifulsoup e lxml vivem em `fm/importer/`.
+
+## De valor de mercado a overall
+
+Nao existe fonte aberta de overall. Existe de valor de mercado -- e overall da para
+derivar, de forma explicavel, em `fm/ratings.py`:
+
+```
+1. valor_qualidade = valor / ( K_POS[posicao] x A(idade)^W )
+2. z   = padroniza ln(valor_qualidade) DENTRO do elenco, limitado a +-2,4
+3. POT = forca_clube + 5,0 x z
+4. OVR = POT - teto_crescimento(idade) x (1 - 0,8 x min(1, partidas/20))
+5. desloca tudo para a media do melhor onze cair no forca_clube
+```
+
+O principio: **o valor da a hierarquia, o forca do clube da o nivel.** Valor diz bem quem e
+melhor que quem e diz mal "isto e um 82", porque o Brasileirao e globalmente mais barato
+que a Europa. O forca vem do valor TOTAL do elenco, com dois parametros por liga ajustados
+contra os `[alvos]`.
+
+Tres coisas que so apareceram medindo:
+
+**O premio de posicao nao e enfeite.** O mercado paga por goleiro cerca de metade do que
+paga por um meia de qualidade equivalente. Sem `K_POS`, o goleiro titular sai 5 pontos
+abaixo do resto do onze; com ele, a diferenca media na liga real e **+0,5**.
+
+**Dividir pelo multiplicador de idade inteiro estoura a escala.** O mercado desconta
+veterano por dois motivos -- pouca carreira restante (nao e falta de qualidade hoje) e
+declinio real (e). Devolvendo tudo, um jogador de 33 anos valendo 10 milhoes virava OVR 94.
+Dai `W = 0,5` e um teto de 2x.
+
+**O desconto de imaturidade estava forte demais.** Com peso 0,6, o jogador mais valioso da
+Serie A (21 anos, 38 milhoes, temporada inteira jogada) ficava no BANCO do proprio clube.
+Quem ja e titular entregou qualidade; com 0,8, os dez mais caros da liga sao todos
+titulares.
+
+## Diagnosticos: o que separa constante ajustada de constante bonita
+
+`python -m fm.cli diagnostico` mede cinco coisas sobre a base real:
+
+| diagnostico | medido | faixa |
+|---|---|---|
+| goleiro titular vs titulares de linha | +0,5 | -1,5 a 1,5 |
+| dos 10 mais caros, quantos sao titulares | 10 | 9 a 10 |
+| idade media dos titulares | 28,1 | 26,5 a 29,5 |
+| idade media dos 50 melhores overalls | 27,9 | 26 a 30 |
+| desvio-padrao de overall da liga | 10,5 | 8 a 13 |
+
+**Um diagnostico ruim custou caro e vale registrar.** A primeira versao olhava a media de
+overall por faixa de idade e acusava o modelo de favorecer veterano, porque a media subia
+ate os 30-32 anos. Era **composicao de elenco**: clube dispensa veterano ruim e segura
+garoto ruim, entao sobram 75 jogadores de 18-20 anos (quase todos da base, sem valor) e so
+37 acima de 36. A media por idade mede quem o clube guarda, nao quem o modelo valoriza. O
+diagnostico honesto e a idade de QUEM JOGA.
+
+## O dado real tambem corrigiu o motor
+
+A formacao padrao era 4-4-2. Os elencos reais tem cerca de **9 atacantes e pontas por
+clube** contra 2 vagas -- e o jogador mais caro da liga ficava fora do onze. Era a formacao
+errada, nao o calculo. O padrao agora e 4-3-3.
+
 ## Mata-mata
 
 Competicao e uma lista de fases (`round_robin`, `knockout`, `groups`) descrita em arquivo.

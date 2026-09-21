@@ -23,13 +23,17 @@ def test_pack_inexistente_da_erro_util():
         load_pack("pack_que_nao_existe")
 
 
-def test_pack_nao_verificado_esta_declarado_como_tal():
-    """Honestidade de dado: forca e composicao sao estimativa ate alguem conferir."""
+def test_todo_pack_declara_procedencia():
+    """Honestidade de dado: nenhum pack pode existir sem dizer de onde veio.
+
+    Nao se exige uma frase especifica -- exige-se que `fonte` esteja preenchida com algo
+    util. Pack sem procedencia declarada e dado orfao: ninguem sabe se da para confiar.
+    """
     for nome in available_packs():
         pack = load_pack(nome)
         assert isinstance(pack.verificado, bool)
-        if not pack.verificado:
-            assert "NAO conferida" in pack.fonte or "ficticios" in pack.fonte
+        assert pack.fonte and pack.fonte != "(sem fonte declarada)", f"{nome} sem fonte"
+        assert len(pack.fonte) >= 20, f"{nome}: fonte vaga demais ({pack.fonte!r})"
 
 
 def test_motor_roda_sem_pack():

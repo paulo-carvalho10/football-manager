@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import sys
 import time
 
 import numpy as np
@@ -155,7 +156,36 @@ def cmd_elenco(args):
     print("> = titular")
 
 
+def cmd_diagnostico(args):
+    """Roda os diagnosticos da conversao valor -> overall sobre um pack importado."""
+    from fm.diagnostics import diagnosticar
+    from fm.pack import load_pack
+
+    pack = load_pack(args.pack)
+    jogadores = []
+    for c in pack.clubes:
+        ordenados = sorted(c.jogadores, key=lambda j: -(j.ovr or 0))
+        titulares = {id(j) for j in ordenados[:11]}
+        for j in c.jogadores:
+            jogadores.append({
+                "nome": j.nome, "ovr": j.ovr or 0, "posicao": j.pos, "idade": j.idade,
+                "valor": j.valor, "titular": id(j) in titulares})
+    print()
+    print(f"DIAGNOSTICO DA CONVERSAO  --  pack {args.pack}, {len(jogadores)} jogadores")
+    print()
+    for d in diagnosticar(jogadores):
+        print(f"{'ok ' if d.ok else 'XX '} {d.nome:24s} {d.valor:8.2f}   "
+              f"[{d.baixo}, {d.alto}]")
+        if not d.ok:
+            print(f"      -> {d.explicacao}")
+
+
 def main(argv=None):
+    # console do Windows abre em cp1252 e engasga com acento -- e um jogo em portugues
+    for fluxo in (sys.stdout, sys.stderr):
+        if hasattr(fluxo, "reconfigure"):
+            fluxo.reconfigure(encoding="utf-8", errors="replace")
+
     ap = argparse.ArgumentParser(prog="fm", description="Motor de futebol -- carreira local")
     # --seed vale para todos os subcomandos, antes ou depois do nome do comando
     common = argparse.ArgumentParser(add_help=False)
@@ -183,6 +213,11 @@ def main(argv=None):
     p.add_argument("--edicoes", type=int, default=20000)
     p.add_argument("--maos", type=int, default=2)
     p.set_defaults(func=cmd_copa)
+
+    p = sub.add_parser("diagnostico", parents=[common],
+                       help="valida a conversao valor -> overall de um pack")
+    p.add_argument("--pack", default="brasil_serie_a")
+    p.set_defaults(func=cmd_diagnostico)
 
     p = sub.add_parser("elenco", parents=[common], help="mostra o elenco de um clube")
     p.add_argument("--liga", default="brasil")

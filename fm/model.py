@@ -10,8 +10,28 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 POSITIONS = ("GK", "DF", "MF", "FW")
+
+# Posicao detalhada (como vem das fontes) -> grupo usado pela formacao. O detalhe e
+# guardado porque vale para tatica e para o premio de valor por posicao; o motor de
+# escalacao so precisa dos quatro grupos.
+POSICAO_DETALHE = {
+    "GK": "GK",
+    "CB": "DF", "FB": "DF", "DF": "DF",
+    "DM": "MF", "MF": "MF", "AM": "MF",
+    "WG": "FW", "FW": "FW",
+}
+
+
+def grupo_posicao(pos: str | None) -> str | None:
+    return POSICAO_DETALHE.get(pos) if pos else None
 MAX_FATIGUE_PENALTY = 8.0   # espelha fm.match.MAX_FATIGUE_PENALTY
 FORMATION_442 = {"GK": 1, "DF": 4, "MF": 4, "FW": 2}
+FORMATION_433 = {"GK": 1, "DF": 4, "MF": 3, "FW": 3}
+
+# Padrao 4-3-3, nao 4-4-2: os elencos reais importados tem cerca de 9 atacantes/pontas e 9
+# meias por clube. Com duas vagas de ataque, o jogador mais caro da liga ficava no banco --
+# era a FORMACAO errada, nao o calculo de overall.
+FORMATION_DEFAULT = FORMATION_433
 
 
 @dataclass(slots=True)
@@ -20,7 +40,8 @@ class Player:
     name: str
     nationality: str
     birth_year: int
-    position: str
+    position: str            # grupo: GK/DF/MF/FW
+    position_detail: str     # como veio da fonte: GK/CB/FB/DM/MF/AM/WG/FW
     foot: str
     height_cm: int
     # atributos 0-100
@@ -97,7 +118,7 @@ class World:
 
     def best_xi(self, club_id: int, formation: dict[str, int] | None = None) -> list[Player]:
         """Onze titular: melhor jogador disponivel respeitando as vagas da formacao."""
-        formation = formation or FORMATION_442
+        formation = formation or FORMATION_DEFAULT
         # ordena pelo overall EFETIVO: jogador desgastado perde a vaga para o reserva
         # inteiro, e a rotacao passa a ser decisao de verdade.
         pool = sorted(self.squad(club_id), key=lambda p: -p.effective_overall)
