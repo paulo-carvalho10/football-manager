@@ -1,20 +1,40 @@
 # Brasil -- Serie A.
-# O carater da liga esta em [forca] e [estilo]. O motor nao sabe que pais e' este.
+# O carater da liga vem dos DADOS (forca dos clubes no pack) + dois numeros de estilo.
+# O motor nao sabe que pais e este.
 id     = "bra_a"
 nome   = "Serie A"
 pais   = "BRA"
 tier   = 1
 clubes = 20
 
-[estilo]
-gols_base = 1.19   # o Brasileirao e' mais travado que as ligas inglesas
-mando     = 0.36   # distancias continentais: quem viaja 3.000 km chega pior
+# Clubes vem do pack: nomes reais. Apagando estas duas linhas, o gerador volta a criar
+# clubes ficticios a partir do perfil em [forca] -- o motor roda identico nos dois casos.
+pack        = "brasil"
+pack_offset = 0     # 0 = primeira divisao; 20 = segunda, e assim por diante
 
+[estilo]
+gols_base = 1.22    # o Brasileirao e mais travado que as ligas inglesas
+mando     = 0.36    # distancias continentais: quem voa 3.000 km chega pior
+
+# Usado apenas quando NAO ha pack (mundo ficticio).
 [forca]
-perfil = "linear"  # liga achatada: muitos clubes equivalentes
+perfil = "linear"
 topo   = 77
 base   = 59
 
 [formato]
 fases  = [ { tipo = "round_robin", voltas = 2 } ]
 acesso = { sobem = 0, descem = 4 }
+
+# Alvos de calibracao PROPRIOS desta liga. O Brasileirao e mais travado, tem mando mais
+# forte (logo menos vitoria fora), mais empate e e mais aberto que a media europeia.
+# MESMA RESSALVA DE SEMPRE: faixas escritas de memoria, nao conferidas. Re-derivar com as
+# tabelas reais antes de tratar como verdade.
+[alvos]
+gols_por_jogo             = [2.35, 2.65]
+empate_pct                = [24.5, 30.0]
+vitoria_casa_pct          = [44.0, 50.0]
+vitoria_fora_pct          = [23.5, 29.0]
+pontos_do_campeao         = [70.0, 82.0]
+pontos_do_lanterna        = [22.0, 33.0]
+melhor_elenco_campeao_pct = [25.0, 45.0]

@@ -1,0 +1,135 @@
+# Pack de clubes do Brasil.
+#
+# ATENCAO -- LEIA ANTES DE USAR:
+# 1) Composicao e forca aqui sao ESTIMATIVA editorial escrita de memoria, nao dado
+#    conferido. A composicao da Serie A muda todo ano (acessos e rebaixamentos) e os
+#    valores de forca sao opiniao. Confira na fonte e troque; e por isso que isto e um
+#    arquivo de dados e nao codigo.
+# 2) Sao 40 clubes de proposito -- Serie A e Serie B juntas. A liga pega os N mais fortes,
+#    entao errar a composicao de um ano nao quebra nada.
+# 3) Nome de clube e marca de terceiro. O motor nao depende deste arquivo para rodar
+#    (test_motor_roda_sem_pack): trocar por pack proprio e apagar um arquivo.
+
+fonte = "estimativa editorial, escrita de memoria -- NAO conferida"
+verificado = false
+
+[[clubes]]
+nome = "Flamengo"
+forca = 82
+[[clubes]]
+nome = "Palmeiras"
+forca = 81
+[[clubes]]
+nome = "Botafogo"
+forca = 77
+[[clubes]]
+nome = "Cruzeiro"
+forca = 78
+[[clubes]]
+nome = "Sao Paulo"
+forca = 76
+[[clubes]]
+nome = "Atletico Mineiro"
+forca = 75
+[[clubes]]
+nome = "Fluminense"
+forca = 74
+[[clubes]]
+nome = "Internacional"
+forca = 74
+[[clubes]]
+nome = "Corinthians"
+forca = 73
+[[clubes]]
+nome = "Gremio"
+forca = 72
+[[clubes]]
+nome = "Bahia"
+forca = 72
+[[clubes]]
+nome = "Vasco da Gama"
+forca = 70
+[[clubes]]
+nome = "Red Bull Bragantino"
+forca = 70
+[[clubes]]
+nome = "Santos"
+forca = 69
+[[clubes]]
+nome = "Fortaleza"
+forca = 68
+[[clubes]]
+nome = "Athletico Paranaense"
+forca = 67
+[[clubes]]
+nome = "Mirassol"
+forca = 66
+[[clubes]]
+nome = "Ceara"
+forca = 65
+[[clubes]]
+nome = "Vitoria"
+forca = 65
+[[clubes]]
+nome = "Coritiba"
+forca = 64
+[[clubes]]
+nome = "Goias"
+forca = 63
+[[clubes]]
+nome = "Juventude"
+forca = 62
+[[clubes]]
+nome = "Sport"
+forca = 62
+[[clubes]]
+nome = "Cuiaba"
+forca = 62
+[[clubes]]
+nome = "America Mineiro"
+forca = 61
+[[clubes]]
+nome = "Atletico Goianiense"
+forca = 61
+[[clubes]]
+nome = "Criciuma"
+forca = 61
+[[clubes]]
+nome = "Chapecoense"
+forca = 60
+[[clubes]]
+nome = "Avai"
+forca = 60
+[[clubes]]
+nome = "Novorizontino"
+forca = 59
+[[clubes]]
+nome = "Operario Ferroviario"
+forca = 59
+[[clubes]]
+nome = "Paysandu"
+forca = 58
+[[clubes]]
+nome = "Remo"
+forca = 58
+[[clubes]]
+nome = "CRB"
+forca = 58
+[[clubes]]
+nome = "Amazonas"
+forca = 57
+[[clubes]]
+nome = "Vila Nova"
+forca = 57
+[[clubes]]
+nome = "Botafogo-SP"
+forca = 56
+[[clubes]]
+nome = "Volta Redonda"
+forca = 55
+[[clubes]]
+nome = "Ferroviaria"
+forca = 55
+[[clubes]]
+nome = "Athletic"
+forca = 54

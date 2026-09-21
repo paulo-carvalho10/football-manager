@@ -9,7 +9,7 @@ import numpy as np
 
 from fm.calibration import report
 from fm.competition import knockout_tie
-from fm.config import available, load_league, mentality_of, style_of
+from fm.config import available, load_league, mentality_of, style_of, targets_of
 from fm.generate import build_world, strength_profile
 from fm.match import Mentality
 from fm.season import play_league_season
@@ -61,6 +61,7 @@ def cmd_calibrar(args):
     if args.liga:
         cfg = load_league(args.liga)
         kw["style"] = style_of(cfg)
+        kw["targets"] = targets_of(cfg)
         if args.usar_perfil_da_liga:
             kw["ratings"] = strength_profile(cfg, int(cfg["clubes"]))
             alvo = f"perfil de {args.liga}"

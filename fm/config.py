@@ -38,3 +38,8 @@ def mentality_of(cfg: dict, fase: dict | None = None) -> Mentality:
     return Mentality(goals_mult=float(src.get("gols_mult", 1.0)),
                      compression=float(src.get("compressao", 0.0)),
                      home_mult=float(src.get("mando_mult", 1.0)))
+
+
+def targets_of(cfg: dict) -> dict[str, tuple[float, float]]:
+    """Alvos de calibracao proprios da liga, do bloco [alvos]. Ausentes caem na referencia."""
+    return {k: (float(v[0]), float(v[1])) for k, v in cfg.get("alvos", {}).items()}

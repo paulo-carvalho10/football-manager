@@ -110,6 +110,23 @@ def measure(
     }
 
 
-def report(**kwargs) -> list[Metric]:
+def resolve_targets(overrides: dict[str, tuple[float, float]] | None = None):
+    """Alvos da liga de referencia, com sobrescrita por liga.
+
+    Aplicar os alvos da referencia a uma liga de estilo diferente e erro: o Brasileirao tem
+    mando maior (menos vitoria fora) e liga mais aberta (campeao com menos pontos) por
+    motivos reais. Cada liga declara os seus em [alvos], e o que ela nao declarar cai na
+    referencia.
+    """
+    alvos = dict(TARGETS)
+    for k, v in (overrides or {}).items():
+        if k not in TARGETS:
+            raise ValueError(f"alvo desconhecido {k!r}; validos: {sorted(TARGETS)}")
+        alvos[k] = (float(v[0]), float(v[1]))
+    return alvos
+
+
+def report(targets: dict[str, tuple[float, float]] | None = None, **kwargs) -> list[Metric]:
+    alvos = resolve_targets(targets)
     values = measure(**kwargs)
-    return [Metric(k, values[k], *TARGETS[k]) for k in TARGETS]
+    return [Metric(k, values[k], *alvos[k]) for k in alvos]

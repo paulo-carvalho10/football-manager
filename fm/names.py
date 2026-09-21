@@ -89,3 +89,17 @@ REAL_CLUBS_BLOCKLIST = {
     "zaragoza", "sporting gijon", "racing santander", "malaga", "eibar", "leganes",
     "valladolid", "huesca", "tenerife", "oviedo", "albacete", "burgos", "cartagena",
 }
+
+# No Brasil uma boa parte dos atletas e conhecida por um nome so. Sem isso, todo elenco
+# gerado fica com cara de lista telefonica.
+NICKNAMES = {
+    "BRA": [
+        "Alemao", "Baiano", "Betinho", "Bolinha", "Cacau", "Caju", "Cebolinha", "Ceara",
+        "Dede", "Didi", "Dodo", "Edinho", "Fabinho", "Gabi", "Gerson", "Giba", "Grafite",
+        "Guga", "Jadson", "Jean", "Juninho", "Kaka", "Kleber", "Leo", "Lico", "Lulinha",
+        "Mancha", "Marquinhos", "Matheuzinho", "Nenem", "Neto", "Nino", "Paulinho",
+        "Pedrinho", "Pepe", "Piriquito", "Rafinha", "Reinaldo", "Renatinho", "Rominho",
+        "Ronaldinho", "Sandrinho", "Serginho", "Souza", "Tati", "Tiquinho", "Vitinho",
+        "Wendel", "Zeca", "Zezinho",
+    ],
+}

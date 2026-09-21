@@ -1,0 +1,44 @@
+# TEMPLATE do formato de escalacao nominal. Os nomes aqui sao ficticios de proposito --
+# este arquivo existe para documentar e testar o formato, nao para ser jogado.
+#
+# Para usar nomes reais de jogador: copie este formato para o pack do pais e preencha.
+# O que faltar para fechar 24 jogadores (quota GK 3 / DF 8 / MF 8 / FW 5) e gerado
+# automaticamente em volta da `forca` do clube.
+
+fonte = "template de formato -- nomes ficticios"
+verificado = false
+
+[[clubes]]
+nome  = "Clube Modelo"
+forca = 78
+cores = ["#1b4d3e", "#f2f2f2"]
+
+  [[clubes.jogadores]]
+  nome = "Goleiro Modelo"
+  pos = "GK"
+  idade = 29
+  ovr = 81
+
+  [[clubes.jogadores]]
+  nome = "Zagueiro Modelo"
+  pos = "DF"
+  idade = 27
+  ovr = 80
+
+  [[clubes.jogadores]]
+  nome = "Meia Modelo"
+  pos = "MF"
+  idade = 22
+  ovr = 76
+  pot = 89
+
+  [[clubes.jogadores]]
+  nome = "Atacante Modelo"
+  pos = "FW"
+  idade = 25
+  ovr = 79
+  pot = 83
+
+[[clubes]]
+nome  = "Outro Clube Modelo"
+forca = 70

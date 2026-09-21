@@ -1,0 +1,32 @@
+# Serie B: mesma pirâmide, outra fatia do pack. Nenhuma linha de codigo novo.
+id     = "bra_b"
+nome   = "Serie B"
+pais   = "BRA"
+tier   = 2
+clubes = 20
+
+pack        = "brasil"
+pack_offset = 20     # pega do 21o clube mais forte para baixo
+
+[estilo]
+gols_base = 1.16     # divisao de baixo: jogo mais truncado
+mando     = 0.38     # e viagem pior ainda
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 4, descem = 4 }
+
+# Alvos de segunda divisao. A Serie B e mais truncada, mais empatada e MUITO mais aberta
+# que a Serie A: com elencos quase equivalentes em 38 jogos, o melhor time do papel e
+# campeao poucas vezes. Mesma ressalva: escritos de memoria, re-derivar com dado real.
+[alvos]
+gols_por_jogo             = [2.20, 2.50]
+empate_pct                = [25.0, 32.0]
+vitoria_casa_pct          = [43.0, 50.0]
+vitoria_fora_pct          = [21.5, 29.0]
+margem_3_ou_mais_pct      = [9.0, 14.0]
+margem_4_ou_mais_pct      = [2.5, 5.0]
+cinco_ou_mais_gols_pct    = [7.0, 11.5]
+pontos_do_campeao         = [62.0, 72.0]
+pontos_do_lanterna        = [24.0, 37.0]
+melhor_elenco_campeao_pct = [8.0, 28.0]

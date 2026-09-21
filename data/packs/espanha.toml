@@ -1,0 +1,127 @@
+# Pack de clubes da Espanha. Mesmas ressalvas do pack do Brasil: estimativa editorial
+# escrita de memoria, NAO conferida, e composicao muda todo ano. 40 clubes (Primera +
+# Segunda) para a liga escolher os N mais fortes.
+
+fonte = "estimativa editorial, escrita de memoria -- NAO conferida"
+verificado = false
+
+[[clubes]]
+nome = "Real Madrid"
+forca = 88
+[[clubes]]
+nome = "Barcelona"
+forca = 87
+[[clubes]]
+nome = "Atletico Madrid"
+forca = 83
+[[clubes]]
+nome = "Athletic Club"
+forca = 78
+[[clubes]]
+nome = "Villarreal"
+forca = 77
+[[clubes]]
+nome = "Real Sociedad"
+forca = 76
+[[clubes]]
+nome = "Real Betis"
+forca = 75
+[[clubes]]
+nome = "Sevilla"
+forca = 73
+[[clubes]]
+nome = "Valencia"
+forca = 72
+[[clubes]]
+nome = "Girona"
+forca = 71
+[[clubes]]
+nome = "Celta de Vigo"
+forca = 70
+[[clubes]]
+nome = "Osasuna"
+forca = 69
+[[clubes]]
+nome = "Rayo Vallecano"
+forca = 69
+[[clubes]]
+nome = "Mallorca"
+forca = 68
+[[clubes]]
+nome = "Getafe"
+forca = 67
+[[clubes]]
+nome = "Alaves"
+forca = 66
+[[clubes]]
+nome = "Espanyol"
+forca = 65
+[[clubes]]
+nome = "Las Palmas"
+forca = 64
+[[clubes]]
+nome = "Elche"
+forca = 63
+[[clubes]]
+nome = "Leganes"
+forca = 62
+[[clubes]]
+nome = "Granada"
+forca = 61
+[[clubes]]
+nome = "Almeria"
+forca = 61
+[[clubes]]
+nome = "Levante"
+forca = 61
+[[clubes]]
+nome = "Cadiz"
+forca = 60
+[[clubes]]
+nome = "Racing Santander"
+forca = 61
+[[clubes]]
+nome = "Deportivo La Coruna"
+forca = 60
+[[clubes]]
+nome = "Real Oviedo"
+forca = 60
+[[clubes]]
+nome = "Real Valladolid"
+forca = 60
+[[clubes]]
+nome = "Sporting Gijon"
+forca = 59
+[[clubes]]
+nome = "Eibar"
+forca = 59
+[[clubes]]
+nome = "Real Zaragoza"
+forca = 58
+[[clubes]]
+nome = "Malaga"
+forca = 58
+[[clubes]]
+nome = "Huesca"
+forca = 58
+[[clubes]]
+nome = "Burgos"
+forca = 58
+[[clubes]]
+nome = "Albacete"
+forca = 57
+[[clubes]]
+nome = "Mirandes"
+forca = 57
+[[clubes]]
+nome = "Castellon"
+forca = 57
+[[clubes]]
+nome = "Cartagena"
+forca = 56
+[[clubes]]
+nome = "Cordoba"
+forca = 56
+[[clubes]]
+nome = "Tenerife"
+forca = 56

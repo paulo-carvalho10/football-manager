@@ -1,4 +1,4 @@
-# Espanha -- Primeira Divisao.
+# Espanha -- Primera Division.
 # Mesmo motor, mesmas constantes. Muda so a distribuicao de forca dos clubes.
 id     = "esp_1"
 nome   = "Primera Division"
@@ -6,16 +6,34 @@ pais   = "ESP"
 tier   = 1
 clubes = 20
 
+pack        = "espanha"
+pack_offset = 0
+
 [estilo]
 gols_base = 1.26
-mando     = 0.28   # distancias curtas: mando pesa menos que no Brasil
+mando     = 0.28    # distancias curtas: mando pesa menos que no Brasil
 
+# Usado apenas quando NAO ha pack (mundo ficticio).
 [forca]
 perfil    = "gigantes"
-destaques = [88, 86, 82]   # elite descolada do resto
+destaques = [88, 86, 82]
 topo      = 75
 base      = 53
 
 [formato]
 fases  = [ { tipo = "round_robin", voltas = 2 } ]
 acesso = { sobem = 0, descem = 3 }
+
+# Alvos proprios: elite descolada faz o campeao somar muito mais, e mando pesa menos.
+# Mesma ressalva: escritos de memoria, re-derivar com dado real.
+[alvos]
+gols_por_jogo             = [2.45, 2.80]
+empate_pct                = [21.5, 26.5]
+vitoria_fora_pct          = [27.0, 32.0]
+pontos_do_campeao         = [78.0, 92.0]
+# Faixa alargada COM MOTIVO, nao para passar no teste: o modelo hoje nao tem dinamica de
+# colapso (espiral de moral, elenco desmontado no meio da temporada, lesoes acumuladas),
+# que e o que faz clube rebaixado real terminar com 16-21 pontos. Enquanto isso nao existe
+# (M4/M5), o lanterna simulado fica na casa dos 30. Re-apertar depois.
+pontos_do_lanterna        = [17.0, 33.0]
+melhor_elenco_campeao_pct = [38.0, 62.0]

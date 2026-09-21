@@ -16,10 +16,14 @@ from __future__ import annotations
 import numpy as np
 
 from fm.model import Club, League, Player, World
-from fm.names import CLUB_PATTERNS, CLUB_ROOTS, FIRST_NAMES, SURNAMES
+from fm.names import CLUB_PATTERNS, CLUB_ROOTS, FIRST_NAMES, NICKNAMES, SURNAMES
+from fm.pack import PackClub, load_pack
 from fm.rng import Streams
 
 SQUAD_SIZE = 24
+
+# Quota de posicoes do elenco. Escalacao vinda de pack preenche parte dela; o resto e gerado.
+SQUAD_QUOTA = {"GK": 3, "DF": 8, "MF": 8, "FW": 5}
 
 # Ordem das posicoes no elenco ordenado por overall. Os 11 primeiros formam um 4-4-2 valido,
 # entao o melhor onze contem de fato os melhores jogadores.
@@ -47,8 +51,25 @@ COLORS = [
 ]
 
 
+def league_clubs(cfg: dict) -> list[PackClub] | None:
+    """Clubes do pack, quando a liga usa um. None = geracao procedural ficticia.
+
+    `pack_offset` fatia por forca: 0 = primeira divisao, 20 = segunda, e assim por diante.
+    """
+    if "pack" not in cfg:
+        return None
+    pack = load_pack(cfg["pack"])
+    n, start = int(cfg["clubes"]), int(cfg.get("pack_offset", 0))
+    return pack.slice(start, n) if start else pack.top(n)
+
+
 def strength_profile(cfg: dict, n: int) -> list[float]:
-    """Traduz o perfil de forca do arquivo da liga numa lista de overalls de clube."""
+    """Overalls dos clubes da liga: do pack, se houver, senao do perfil declarado."""
+    clubes = league_clubs(cfg)
+    if clubes is not None:
+        return [c.forca for c in clubes]
+    if "forca" not in cfg:
+        raise ValueError(f"liga {cfg.get('id')!r} nao declara pack nem perfil de forca")
     f = cfg["forca"]
     perfil = f.get("perfil", "linear")
     if perfil == "linear":
@@ -94,8 +115,17 @@ def _market_value(overall: int, potential: int, age: int) -> int:
     return int(base * curve)
 
 
-def _make_player(pid, rng, country, season_year, overall, position, age, club_id) -> Player:
-    name = f"{rng.choice(FIRST_NAMES[country])} {rng.choice(SURNAMES[country])}"
+def _random_name(rng, country: str) -> str:
+    """Nome de jogador. No Brasil, parte dos atletas e conhecido por um nome so."""
+    apelidos = NICKNAMES.get(country)
+    if apelidos and rng.random() < 0.35:
+        return str(rng.choice(apelidos))
+    return f"{rng.choice(FIRST_NAMES[country])} {rng.choice(SURNAMES[country])}"
+
+
+def _make_player(pid, rng, country, season_year, overall, position, age, club_id,
+                 name: str | None = None) -> Player:
+    name = name or _random_name(rng, country)
     if age <= 22:
         potential = int(min(95, overall + rng.integers(6, 22)))
     elif age <= 26:
@@ -115,39 +145,80 @@ def _make_player(pid, rng, country, season_year, overall, position, age, club_id
     )
 
 
+def _filler_positions(pack_players) -> list[str]:
+    """Posicoes que faltam para fechar a quota do elenco, na ordem da forma padrao."""
+    falta = dict(SQUAD_QUOTA)
+    for j in pack_players:
+        falta[j.pos] = falta.get(j.pos, 0) - 1
+    ordem: list[str] = []
+    for pos in SQUAD_SHAPE:
+        if falta.get(pos, 0) > 0:
+            falta[pos] -= 1
+            ordem.append(pos)
+    for pos, qtd in falta.items():          # pack desbalanceado: completa o que sobrou
+        ordem.extend([pos] * max(0, qtd))
+    return ordem
+
+
+def _build_squad(world, club, pack_club, strength, rng, next_id, country, season_year):
+    """Monta o elenco: primeiro a escalacao nominal do pack, depois o que falta gerado."""
+    nominais = list(pack_club.jogadores) if pack_club else []
+    for j in nominais:
+        pid = next_id[0]
+        next_id[0] += 1
+        jogador = _make_player(pid, rng, country, season_year, j.ovr, j.pos, j.idade,
+                               club.id, name=j.nome)
+        if j.pot is not None:
+            jogador.potential = max(int(j.pot), j.ovr)
+        world.players[pid] = jogador
+        club.player_ids.append(pid)
+
+    xi_offset = SQUAD_CURVE[:11].mean()
+    for k, pos in enumerate(_filler_positions(nominais)):
+        slot = min(len(nominais) + k, len(SQUAD_CURVE) - 1)
+        ovr = int(np.clip(
+            round(strength + SQUAD_CURVE[slot] - xi_offset + rng.normal(0, 1.2)), 35, 95))
+        pid = next_id[0]
+        next_id[0] += 1
+        world.players[pid] = _make_player(pid, rng, country, season_year, ovr, pos,
+                                          AGE_SHAPE[slot], club.id)
+        club.player_ids.append(pid)
+
+
 def generate_league(world: World, cfg: dict, streams: Streams, *, next_id: list[int]) -> League:
-    """Cria a liga, seus clubes e seus elencos dentro de `world`."""
+    """Cria a liga, seus clubes e seus elencos dentro de `world`.
+
+    Com `pack` no arquivo da liga, nome/forca/cores vem do pack. Sem pack, tudo e ficticio
+    e gerado -- e o motor continua funcionando identico, que e a propriedade que importa.
+    """
     country = cfg["pais"]
     n = int(cfg["clubes"])
     rng = streams.get("generate", cfg["id"])
 
+    do_pack = league_clubs(cfg)
     roots = list(CLUB_ROOTS[country])
     rng.shuffle(roots)
     patterns = CLUB_PATTERNS[country]
 
-    league = League(id=cfg["id"], name=cfg["nome"], country=country, tier=int(cfg.get("tier", 1)))
-    xi_offset = SQUAD_CURVE[:11].mean()
+    league = League(id=cfg["id"], name=cfg["nome"], country=country,
+                    tier=int(cfg.get("tier", 1)))
 
     for i, strength in enumerate(strength_profile(cfg, n)):
         club_id = next_id[0]
         next_id[0] += 1
-        prim, sec = COLORS[i % len(COLORS)]
+        pack_club = do_pack[i] if do_pack else None
+        nome = pack_club.nome if pack_club else patterns[i % len(patterns)].format(
+            r=roots[i % len(roots)])
+        cores = pack_club.cores if (pack_club and pack_club.cores) else COLORS[i % len(COLORS)]
         reputation = int(np.clip(round((strength - 45) * 2.6), 5, 99))
         club = Club(
-            id=club_id, name=patterns[i % len(patterns)].format(r=roots[i % len(roots)]),
-            country=country, league_id=league.id, reputation=reputation,
-            designed_strength=float(strength), color_primary=prim, color_secondary=sec,
+            id=club_id, name=nome, country=country, league_id=league.id,
+            reputation=reputation, designed_strength=float(strength),
+            color_primary=cores[0], color_secondary=cores[1],
             balance=int(reputation ** 2 * 12_000),
         )
-        for slot in range(SQUAD_SIZE):
-            ovr = int(np.clip(
-                round(strength + SQUAD_CURVE[slot] - xi_offset + rng.normal(0, 1.2)), 35, 95))
-            pid = next_id[0]
-            next_id[0] += 1
-            world.players[pid] = _make_player(
-                pid, rng, country, world.season_year, ovr,
-                SQUAD_SHAPE[slot], AGE_SHAPE[slot], club_id)
-            club.player_ids.append(pid)
+        _build_squad(world, club, pack_club, strength, rng, next_id, country,
+                     world.season_year)
         world.clubs[club_id] = club
         league.club_ids.append(club_id)
 

@@ -100,6 +100,46 @@ Por-liga, so dois numeros de estilo existem, e ambos tem justificativa:
 - `mando` -- distancias continentais do Brasil: quem voa 3.000 km chega pior (0,36 contra
   0,28 da Espanha).
 
+## Data packs: de onde vem o conteudo
+
+O mundo tem duas fontes possiveis, e o motor e identico nas duas:
+
+| fonte | como | usado quando |
+|---|---|---|
+| **pack** (`data/packs/*.toml`) | `pack = "brasil"` no arquivo da liga | nomes reais de clube |
+| **geracao** | bloco `[forca]` no arquivo da liga | mundo ficticio proprio |
+
+Um pack traz nome, forca e -- opcionalmente -- a escalacao nominal do clube. O que faltar
+para fechar 24 jogadores e gerado em volta da forca declarada, entao um pack pode ser
+preenchido aos poucos. O formato esta em `data/packs/_exemplo_escalacao.toml`.
+
+`pack_offset` fatia o pack por forca, e e assim que a piramide sai sem uma linha de codigo
+novo: `pack_offset = 0` da a Serie A, `pack_offset = 20` da a Serie B do mesmo arquivo.
+`test_divisoes_nao_compartilham_clube` garante que as fatias sao disjuntas.
+
+**Os packs deste repo sao estimativa editorial escrita de memoria, marcada
+`verificado = false`.** Composicao de divisao muda todo ano e os valores de forca sao
+opiniao. `test_pack_nao_verificado_esta_declarado_como_tal` impede que um pack nao
+conferido se passe por dado conferido.
+
+## Alvos por liga
+
+Aplicar os alvos da liga de referencia a toda liga e **erro**. O Brasileirao tem mando mais
+forte (logo menos vitoria fora), mais empate e campeao com menos pontos -- por motivos
+reais, nao por bug. Cada liga declara o que e realista para ela num bloco `[alvos]`; o que
+nao declarar cai na referencia. `test_cada_liga_passa_nos_seus_proprios_alvos` cobra todas.
+
+O caso mais bonito e a Serie B: mesmos parametros de motor, elencos quase equivalentes, e o
+resultado e campeao com 68 pontos e **o melhor elenco do papel sendo campeao em apenas
+14% das temporadas**. A Serie B ser maluca nao foi programado -- e consequencia de a liga
+ser achatada.
+
+| liga | campeao | lanterna | empate% | gols | margem3+ | maior clube e campeao |
+|---|---|---|---|---|---|---|
+| Serie A | 73,5 | 32,6 | 25,6% | 2,52 | 13,3% | 33,8% |
+| Serie B | 68,5 | 35,3 | 26,8% | 2,37 | 11,4% | 14,1% |
+| La Liga | 79,2 | 30,4 | 24,7% | 2,61 | 14,5% | 41,7% |
+
 ## Mata-mata
 
 Competicao e uma lista de fases (`round_robin`, `knockout`, `groups`) descrita em arquivo.
@@ -126,8 +166,10 @@ E por isso que copa e a competicao da esperanca e liga e a competicao do dinheir
    pede um fluxo a `fm.rng.Streams`. Adicionar lesoes amanha nao desloca as partidas de
    hoje. Guardado por `test_fluxos_nomeados_sao_independentes`.
 3. **Regra de competicao vem de arquivo**, nunca de `if` espalhado pelo codigo.
-4. **Nenhum ativo oficial.** Clubes e jogadores gerados; `test_nenhum_clube_gerado_colide_
-   com_clube_real` confere contra uma blocklist de clubes reais.
+4. **Conteudo vem de pack externo, e o motor roda sem nenhum pack.** Clubes e jogadores
+   podem vir de `data/packs/*.toml` (nomes reais) ou ser gerados (mundo ficticio). Trocar
+   um pelo outro e editar uma linha do arquivo da liga. Guardado por
+   `test_motor_roda_sem_pack` -- e o que mantem a porta do licenciamento aberta.
 5. **Avanco rodada por rodada**, nao temporada de uma vez -- e o que vai permitir parar na
    partida do usuario e simula-la em detalhe sem reescrever nada.
 
@@ -139,21 +181,29 @@ E por isso que copa e a competicao da esperanca e liga e a competicao do dinheir
 
 ## Pendencias, em ordem
 
-1. **Re-derivar os alvos com dados reais** das tabelas publicas. Hoje sao a ordem de
-   grandeza, nao dado conferido. Suspeita conhecida: a taxa de empates do Brasileirao real
-   parece ser mais alta (~28%) do que o `gols_base` sozinho produz (~26%).
-2. **Separar ataque e defesa.** Hoje o clube tem um overall unico. Com dois lambdas
+1. **Conferir os packs e re-derivar os alvos com dados reais.** Composicao das divisoes,
+   forca dos clubes e faixas dos alvos sao todos estimativa de memoria hoje
+   (`verificado = false`). Sao dados publicos e pequenos.
+2. **Escalacoes reais.** O formato ja aceita (`[[clubes.jogadores]]`), mas os elencos nao
+   estao preenchidos: jogadores sao gerados a partir de bancos de nomes e apelidos
+   brasileiros e espanhois, nao sao atletas reais. Preencher exige uma fonte de dados --
+   digitada ou importada.
+3. **Dinamica de colapso.** Falta espiral de moral, elenco desmontado no meio da temporada
+   e lesao acumulada -- e o que faz clube rebaixado real terminar com 16-21 pontos. Sem
+   isso, o lanterna simulado fica na casa dos 30 e o alvo esta alargado com essa
+   justificativa escrita no arquivo. Re-apertar depois do M4/M5.
+4. **Separar ataque e defesa.** Hoje o clube tem um overall unico. Com dois lambdas
    independentes (`z_ataque_casa` contra `z_defesa_fora`) aparecem o 4-3 entre dois times
    ofensivos e o 0-0 entre dois defensivos -- variedade de estilo, nao so de forca.
-3. **Motor detalhado por eventos** para a partida do usuario, calibrado contra o rapido
+5. **Motor detalhado por eventos** para a partida do usuario, calibrado contra o rapido
    (se as partidas do usuario tiverem media de gols diferente do resto do mundo, a tabela
    fica torta e o jogador sente).
-4. **Carreira**: multiplas temporadas, piramide de divisoes, acesso e rebaixamento,
+6. **Carreira**: multiplas temporadas, piramide de divisoes, acesso e rebaixamento,
    envelhecimento, evolucao por potencial, regens, save/load.
-5. **Financas com realimentacao.** Sem isso o carater da liga **decai**: depois de 30
+7. **Financas com realimentacao.** Sem isso o carater da liga **decai**: depois de 30
    temporadas toda liga vira o mesmo mingau achatado e a Espanha deixa de ser a Espanha. O
    laco e reputacao -> receita -> folha -> elenco -> titulo -> reputacao. Teste de longo
    prazo a escrever: rodar 30 temporadas e conferir que o gap 1o-10o da Espanha nao caiu
    abaixo de 25.
-6. **Mercado de transferencias** com IA de clube.
-7. Interface. Por ultimo, de proposito.
+8. **Mercado de transferencias** com IA de clube.
+9. Interface. Por ultimo, de proposito.
