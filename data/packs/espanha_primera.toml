@@ -78,28 +78,6 @@ valor_elenco = 1460000000
   id_fonte = "413112"
 
   [[clubes.jogadores]]
-  nome = "Marc Cucurella"
-  pos = "FB"
-  idade = 28
-  ovr = 90
-  pot = 90
-  valor = 60000000
-  partidas = 6
-  minutos = 520
-  id_fonte = "284857"
-
-  [[clubes.jogadores]]
-  nome = "Trent Alexander-Arnold"
-  pos = "FB"
-  idade = 27
-  ovr = 90
-  pot = 90
-  valor = 60000000
-  partidas = 3
-  minutos = 292
-  id_fonte = "314353"
-
-  [[clubes.jogadores]]
   nome = "Ibrahima Konaté"
   pos = "CB"
   idade = 27
@@ -146,27 +124,15 @@ valor_elenco = 1460000000
   id_fonte = "890290"
 
   [[clubes.jogadores]]
-  nome = "Álvaro Carreras"
+  nome = "Marc Cucurella"
   pos = "FB"
-  idade = 23
-  ovr = 87
-  pot = 88
-  valor = 50000000
-  partidas = 2
-  minutos = 204
-  gols = 1
-  id_fonte = "811778"
-
-  [[clubes.jogadores]]
-  nome = "Denzel Dumfries"
-  pos = "FB"
-  idade = 30
+  idade = 28
   ovr = 86
   pot = 86
-  valor = 25000000
+  valor = 60000000
   partidas = 6
-  minutos = 505
-  id_fonte = "321528"
+  minutos = 520
+  id_fonte = "284857"
 
   [[clubes.jogadores]]
   nome = "Bernardo Silva"
@@ -178,6 +144,17 @@ valor_elenco = 1460000000
   partidas = 3
   minutos = 282
   id_fonte = "241641"
+
+  [[clubes.jogadores]]
+  nome = "Trent Alexander-Arnold"
+  pos = "FB"
+  idade = 27
+  ovr = 85
+  pot = 86
+  valor = 60000000
+  partidas = 3
+  minutos = 292
+  id_fonte = "314353"
 
   [[clubes.jogadores]]
   nome = "Brahim Díaz"
@@ -192,6 +169,17 @@ valor_elenco = 1460000000
   id_fonte = "314678"
 
   [[clubes.jogadores]]
+  nome = "Denzel Dumfries"
+  pos = "FB"
+  idade = 30
+  ovr = 84
+  pot = 84
+  valor = 25000000
+  partidas = 6
+  minutos = 505
+  id_fonte = "321528"
+
+  [[clubes.jogadores]]
   nome = "Eduardo Camavinga"
   pos = "MF"
   idade = 23
@@ -202,6 +190,18 @@ valor_elenco = 1460000000
   minutos = 240
   gols = 2
   id_fonte = "640428"
+
+  [[clubes.jogadores]]
+  nome = "Álvaro Carreras"
+  pos = "FB"
+  idade = 23
+  ovr = 84
+  pot = 85
+  valor = 50000000
+  partidas = 2
+  minutos = 204
+  gols = 1
+  id_fonte = "811778"
 
   [[clubes.jogadores]]
   nome = "Éder Militão"
@@ -347,18 +347,6 @@ valor_elenco = 1260000000
   id_fonte = "683840"
 
   [[clubes.jogadores]]
-  nome = "Jules Koundé"
-  pos = "FB"
-  idade = 27
-  ovr = 90
-  pot = 90
-  valor = 60000000
-  partidas = 3
-  minutos = 261
-  gols = 3
-  id_fonte = "411975"
-
-  [[clubes.jogadores]]
   nome = "Rodri"
   pos = "DM"
   idade = 30
@@ -476,17 +464,6 @@ valor_elenco = 1260000000
   id_fonte = "962110"
 
   [[clubes.jogadores]]
-  nome = "Alejandro Balde"
-  pos = "FB"
-  idade = 22
-  ovr = 87
-  pot = 89
-  valor = 50000000
-  partidas = 1
-  minutos = 12
-  id_fonte = "636688"
-
-  [[clubes.jogadores]]
   nome = "Gerard Martín"
   pos = "CB"
   idade = 24
@@ -510,6 +487,29 @@ valor_elenco = 1260000000
   id_fonte = "363205"
 
   [[clubes.jogadores]]
+  nome = "Jules Koundé"
+  pos = "FB"
+  idade = 27
+  ovr = 85
+  pot = 86
+  valor = 60000000
+  partidas = 3
+  minutos = 261
+  gols = 3
+  id_fonte = "411975"
+
+  [[clubes.jogadores]]
+  nome = "Alejandro Balde"
+  pos = "FB"
+  idade = 22
+  ovr = 84
+  pot = 85
+  valor = 50000000
+  partidas = 1
+  minutos = 12
+  id_fonte = "636688"
+
+  [[clubes.jogadores]]
   nome = "Andreas Christensen"
   pos = "CB"
   idade = 30
@@ -520,18 +520,6 @@ valor_elenco = 1260000000
   minutos = 492
   gols = 1
   id_fonte = "196948"
-
-  [[clubes.jogadores]]
-  nome = "João Cancelo"
-  pos = "FB"
-  idade = 32
-  ovr = 84
-  pot = 84
-  valor = 8000000
-  partidas = 3
-  minutos = 296
-  gols = 1
-  id_fonte = "182712"
 
   [[clubes.jogadores]]
   nome = "Karim Adeyemi"
@@ -555,6 +543,18 @@ valor_elenco = 1260000000
   partidas = 1
   minutos = 90
   id_fonte = "205927"
+
+  [[clubes.jogadores]]
+  nome = "João Cancelo"
+  pos = "FB"
+  idade = 32
+  ovr = 83
+  pot = 83
+  valor = 8000000
+  partidas = 3
+  minutos = 296
+  gols = 1
+  id_fonte = "182712"
 
   [[clubes.jogadores]]
   nome = "Gavi"
@@ -721,25 +721,13 @@ valor_elenco = 679700000
   nome = "Alejandro Grimaldo"
   pos = "FB"
   idade = 31
-  ovr = 84
-  pot = 84
+  ovr = 83
+  pot = 83
   valor = 20000000
   partidas = 6
   minutos = 566
   gols = 2
   id_fonte = "193082"
-
-  [[clubes.jogadores]]
-  nome = "Marcos Llorente"
-  pos = "FB"
-  idade = 31
-  ovr = 84
-  pot = 84
-  valor = 20000000
-  partidas = 6
-  minutos = 555
-  gols = 1
-  id_fonte = "282411"
 
   [[clubes.jogadores]]
   nome = "Marc Pubill"
@@ -752,6 +740,18 @@ valor_elenco = 679700000
   minutos = 493
   gols = 1
   id_fonte = "844637"
+
+  [[clubes.jogadores]]
+  nome = "Marcos Llorente"
+  pos = "FB"
+  idade = 31
+  ovr = 83
+  pot = 83
+  valor = 20000000
+  partidas = 6
+  minutos = 555
+  gols = 1
+  id_fonte = "282411"
 
   [[clubes.jogadores]]
   nome = "Pablo Barrios"

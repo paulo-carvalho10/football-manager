@@ -190,7 +190,12 @@ def cmd_importar(args):
     from pathlib import Path
 
     from fm.calibration import report
-    from fm.importer.build import BETAS_PADRAO, escrever_pack, montar_mundo
+    from fm.importer.build import (
+        BETAS_PADRAO,
+        aplicar_ajustes,
+        escrever_pack,
+        montar_mundo,
+    )
     from fm.importer.transfermarkt import COMPETICOES
 
     alvos = sorted(COMPETICOES) if args.competicao == "todas" else [args.competicao]
@@ -206,6 +211,8 @@ def cmd_importar(args):
     for comp in alvos:
         montados = mundo[comp]
         saida, liga = SAIDA_PADRAO[comp]
+        for linha in aplicar_ajustes(saida, montados):
+            print(f"    ajuste manual: {linha}")
         forcas = [c.forca for c in montados]
         n_jog = sum(len(c.jogadores) for c in montados)
         print()

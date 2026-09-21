@@ -214,6 +214,21 @@ Serie A (21 anos, 38 milhoes, temporada inteira jogada) ficava no BANCO do propr
 Quem ja e titular entregou qualidade; com 0,8, os dez mais caros da liga sao todos
 titulares.
 
+## Ajustes manuais e teto por posicao
+
+Duas valvulas de escape, porque a conta automatica nao sabe tudo.
+
+**`data/ajustes/<pack>.toml`** corrige jogador a jogador. O pack e GERADO, entao editar o
+.toml dele a mao some na proxima importacao -- o que esta nos ajustes sobrevive. Cada linha
+leva `motivo` e `data`, porque cada uma e uma opiniao contra o dado. E ajuste que nao casa
+com ninguem **levanta erro**: nome digitado errado tem de doer na hora, nao virar silencio.
+
+**`TETO_POR_POSICAO`** limita o topo de uma posicao. A normalizacao e dentro do elenco,
+entao num clube onde todo mundo e caro (Real Madrid, 1,46 bilhao) ate o lateral reserva
+sobe: Cucurella, Alexander-Arnold e Koundé saiam todos com 90. Com teto de 87 para lateral
+eles vao para 86, 85 e 85, e o resto da escala nao se mexe (Mbappé segue 95). Nao e corte
+seco -- acima do limiar o excedente e comprimido, para a ordem entre eles sobreviver.
+
 ## Diagnosticos: o que separa constante ajustada de constante bonita
 
 `python -m fm.cli diagnostico` mede cinco coisas sobre cada base real. As quatro ligas

@@ -186,7 +186,7 @@ valor_elenco = 209480000
   pos = "FW"
   idade = 21
   ovr = 78
-  pot = 83
+  pot = 88
   valor = 38000000
   partidas = 20
   minutos = 1812
@@ -688,7 +688,7 @@ valor_elenco = 168400000
   pos = "FW"
   idade = 24
   ovr = 80
-  pot = 81
+  pot = 85
   valor = 25000000
   partidas = 35
   minutos = 3185
@@ -1019,6 +1019,18 @@ id_fonte = "20001"
 valor_elenco = 149800000
 
   [[clubes.jogadores]]
+  nome = "Breno Bidon"
+  pos = "MF"
+  idade = 21
+  ovr = 80
+  pot = 87
+  valor = 22000000
+  partidas = 38
+  minutos = 3384
+  gols = 4
+  id_fonte = "1029227"
+
+  [[clubes.jogadores]]
   nome = "Hugo Souza"
   pos = "GK"
   idade = 27
@@ -1052,18 +1064,6 @@ valor_elenco = 149800000
   minutos = 3289
   gols = 3
   id_fonte = "565009"
-
-  [[clubes.jogadores]]
-  nome = "Breno Bidon"
-  pos = "MF"
-  idade = 21
-  ovr = 77
-  pot = 80
-  valor = 22000000
-  partidas = 38
-  minutos = 3384
-  gols = 4
-  id_fonte = "1029227"
 
   [[clubes.jogadores]]
   nome = "Matheus Bidu"
@@ -2967,6 +2967,18 @@ id_fonte = "20008"
 valor_elenco = 105100000
 
   [[clubes.jogadores]]
+  nome = "Neymar"
+  pos = "AM"
+  idade = 34
+  ovr = 83
+  pot = 83
+  valor = 8000000
+  partidas = 22
+  minutos = 1940
+  gols = 8
+  id_fonte = "68290"
+
+  [[clubes.jogadores]]
   nome = "Gabriel Brazão"
   pos = "GK"
   idade = 25
@@ -2976,18 +2988,6 @@ valor_elenco = 105100000
   partidas = 50
   minutos = 4500
   id_fonte = "371247"
-
-  [[clubes.jogadores]]
-  nome = "Neymar"
-  pos = "AM"
-  idade = 34
-  ovr = 75
-  pot = 75
-  valor = 8000000
-  partidas = 22
-  minutos = 1940
-  gols = 8
-  id_fonte = "68290"
 
   [[clubes.jogadores]]
   nome = "Everton"

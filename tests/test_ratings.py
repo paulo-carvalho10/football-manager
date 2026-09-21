@@ -174,3 +174,55 @@ def test_motor_nao_depende_do_importador():
             if termo in texto:
                 proibidos.append(f"{path.name}: {termo}")
     assert not proibidos, f"dependencia de rede no motor: {proibidos}"
+
+
+def test_teto_por_posicao_comprime_sem_perder_ordem():
+    """Normalizar DENTRO do elenco inflava lateral de clube rico: num elenco onde todo
+    mundo e caro, ate o lateral reserva subia a 90. O teto comprime em vez de cortar."""
+    from fm.ratings import MARGEM_TETO, TETO_POR_POSICAO, aplicar_teto
+    teto = TETO_POR_POSICAO["FB"]
+    assert aplicar_teto(75.0, "FB") == 75.0                 # abaixo do limiar, intacto
+    assert aplicar_teto(75.0, "CB") == 75.0                 # posicao sem teto, intacto
+    assert aplicar_teto(120.0, "FB") <= teto                # nunca passa
+    baixo = aplicar_teto(teto - MARGEM_TETO + 1, "FB")
+    alto = aplicar_teto(teto - MARGEM_TETO + 4, "FB")
+    assert baixo < alto <= teto                             # ordem preservada
+
+
+def test_nenhum_lateral_passa_do_teto_nos_packs():
+    for nome_pack in ("brasil_serie_a", "espanha_primera", "espanha_segunda",
+                      "brasil_serie_b"):
+        for c in load_pack(nome_pack).clubes:
+            for j in c.jogadores:
+                if j.pos == "FB":
+                    assert j.ovr <= 87, f"{j.nome} ({nome_pack}) passou do teto: {j.ovr}"
+
+
+def test_ajuste_manual_sobrevive_no_pack():
+    """O pack e gerado; ajuste feito nele a mao sumiria. O de data/ajustes/ fica."""
+    from fm.importer.ajustes import carregar
+    ajustes = {a["nome"]: a for a in carregar("brasil_serie_a")}
+    assert ajustes, "nenhum ajuste carregado"
+    por_nome = {j.nome: j for c in load_pack("brasil_serie_a").clubes for j in c.jogadores}
+    for nome, a in ajustes.items():
+        assert nome in por_nome, f"ajuste de {nome} nao achou o jogador"
+        for campo in ("ovr", "pot"):
+            if campo in a:
+                assert getattr(por_nome[nome], campo) == a[campo], \
+                    f"{nome}.{campo} nao foi aplicado"
+        assert a.get("motivo"), f"ajuste de {nome} sem motivo declarado"
+
+
+def test_ajuste_sem_alvo_levanta_erro():
+    """Nome digitado errado tem de doer na hora, nao virar silencio."""
+    from types import SimpleNamespace
+
+    import fm.importer.ajustes as mod
+    from fm.importer.ajustes import aplicar
+    original = mod.carregar
+    mod.carregar = lambda _: [{"nome": "Jogador Que Nao Existe", "ovr": 99}]
+    try:
+        with pytest.raises(ValueError, match="sem alvo"):
+            aplicar("qualquer", [SimpleNamespace(nome="Clube", jogadores=[])])
+    finally:
+        mod.carregar = original

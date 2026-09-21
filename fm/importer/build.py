@@ -161,3 +161,9 @@ def montar_mundo(betas: dict[str, float] | None = None) -> dict[str, list[ClubeM
                     bruto, forca, k_pos=K_POS_POR_LIGA.get(comp))))
         mundo[comp] = montados
     return mundo
+
+
+def aplicar_ajustes(pack: str, montados) -> list[str]:
+    """Ajustes manuais do arquivo data/ajustes/<pack>.toml, aplicados apos a conversao."""
+    from fm.importer.ajustes import aplicar
+    return aplicar(pack, montados)

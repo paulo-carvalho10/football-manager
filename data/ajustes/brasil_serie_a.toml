@@ -1,0 +1,37 @@
+# Ajustes manuais, aplicados DEPOIS da conversao automatica de fm/ratings.py.
+#
+# Por que este arquivo existe: o pack e GERADO, entao editar o .toml do pack a mao some na
+# proxima importacao. O que estiver aqui sobrevive. Um ajuste que nao casar com nenhum
+# jogador e ERRO, nao aviso -- senao um nome digitado errado vira silencio.
+#
+# Ajustar overall a mao e legitimo: o valor de mercado nao sabe tudo. Mas cada linha e uma
+# opiniao contra o dado, entao cada uma leva motivo e data.
+
+[[jogadores]]
+nome   = "Neymar"
+clube  = "Santos"
+ovr    = 83
+motivo = "avaliacao do Paulo: o mercado cota em 8 mi aos 34 anos, mas em campo ele rende mais que isso"
+data   = "2026-09-21"
+
+[[jogadores]]
+nome   = "Kaio Jorge"
+clube  = "Cruzeiro"
+pot    = 85
+motivo = "potencial: 24 anos, 25 mi, artilheiro consolidado -- a conta dava 81, teto baixo para a idade"
+data   = "2026-09-21"
+
+[[jogadores]]
+nome   = "Vitor Roque"
+clube  = "Palmeiras"
+pot    = 88
+motivo = "potencial: o jogador mais valioso da Serie A com 21 anos merece teto mais alto"
+data   = "2026-09-21"
+
+[[jogadores]]
+nome   = "Breno Bidon"
+clube  = "Corinthians"
+ovr    = 80
+pot    = 87
+motivo = "Paulo: ja e pelo menos 80 hoje; a conta dava 77 por causa do desconto de imaturidade"
+data   = "2026-09-21"

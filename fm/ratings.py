@@ -67,6 +67,23 @@ REALIZACAO_PESO = 0.8     # quanto jogar reduz o desconto de imaturidade
 # caros da liga sao todos titulares.
 OVR_MIN, OVR_MAX = 40, 95
 
+# Teto por posicao. A normalizacao e DENTRO do elenco, entao num clube onde todo mundo e
+# caro (Real Madrid, 1,46 bi) ate o lateral reserva sobe: Cucurella, Alexander-Arnold e
+# Koundé saiam todos com 90, alto demais para a posicao. Nao e corte seco -- acima do
+# limiar o valor e comprimido, para nao perder a ordem entre eles.
+TETO_POR_POSICAO = {"FB": 87.0}
+COMPRESSAO_TETO = 0.45      # quanto do excedente sobra acima do limiar
+MARGEM_TETO = 5.0           # o limiar fica este tanto abaixo do teto
+
+
+def aplicar_teto(valor: float, posicao: str | None) -> float:
+    """Comprime suavemente o que passa do teto da posicao, preservando a ordem."""
+    teto = TETO_POR_POSICAO.get(posicao or "")
+    if teto is None or valor <= teto - MARGEM_TETO:
+        return valor
+    limiar = teto - MARGEM_TETO
+    return min(teto, limiar + (valor - limiar) * COMPRESSAO_TETO)
+
 # Quando o valor nao existe (jogador sem cotacao), usa-se este piso para nao zerar o log.
 VALOR_PISO = 25_000
 
@@ -150,8 +167,13 @@ def converter_elenco(
             xi.append(int(k))
     alpha = forca_clube - (ovr_prov[xi].mean() if xi else ovr_prov.mean())
 
-    ovr = np.clip(np.round(ovr_prov + alpha), OVR_MIN, OVR_MAX).astype(int)
-    pot = np.clip(np.round(pot_prov + alpha), ovr, OVR_MAX).astype(int)
+    posicoes = [j.get("posicao") for j in jogadores]
+    ovr_teto = np.array([aplicar_teto(v, p) for v, p in zip(ovr_prov + alpha, posicoes,
+                                                            strict=True)])
+    pot_teto = np.array([aplicar_teto(v, p) for v, p in zip(pot_prov + alpha, posicoes,
+                                                            strict=True)])
+    ovr = np.clip(np.round(ovr_teto), OVR_MIN, OVR_MAX).astype(int)
+    pot = np.clip(np.round(pot_teto), ovr, OVR_MAX).astype(int)
     saida = []
     for i, j in enumerate(jogadores):
         novo = dict(j)
