@@ -25,3 +25,8 @@ vitoria_fora_pct          = [23.5, 29.0]
 pontos_do_campeao         = [70.0, 82.0]
 pontos_do_lanterna        = [22.0, 33.0]
 melhor_elenco_campeao_pct = [25.0, 45.0]
+
+# O nivel desta liga em relacao as outras NAO esta aqui: ele e derivado em
+# fm.ratings.forca_mundial a partir do valor medio de elenco de todas as competicoes
+# importadas juntas, com o melhor clube do mundo ancorado em 90. O beta desta liga (o
+# spread interno) esta em fm.importer.build.BETAS_PADRAO.

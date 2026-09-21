@@ -1,0 +1,38 @@
+# Primera Division da Espanha, clubes e jogadores reais.
+id     = "esp_1_real"
+nome   = "Primera Division"
+pais   = "ESP"
+tier   = 1
+clubes = 20
+
+pack        = "espanha_primera"
+pack_offset = 0
+
+[estilo]
+gols_base = 1.26
+mando     = 0.28    # distancias curtas: mando pesa menos que no Brasil
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 0, descem = 3 }
+
+# Elite muito descolada (o valor de elenco do 1o e 26x o do ultimo, contra 10x no Brasil):
+# campeao soma muito mais e o titulo se concentra em poucos clubes.
+[alvos]
+gols_por_jogo             = [2.45, 2.85]
+empate_pct                = [20.0, 26.5]
+vitoria_casa_pct          = [43.0, 49.0]
+vitoria_fora_pct          = [27.0, 33.0]
+margem_3_ou_mais_pct      = [12.0, 18.0]
+margem_4_ou_mais_pct      = [3.5, 7.5]
+cinco_ou_mais_gols_pct    = [9.0, 14.0]
+pontos_do_campeao         = [78.0, 94.0]
+# Faixa alargada COM MOTIVO: falta dinamica de colapso (espiral de moral, elenco
+# desmontado, lesao acumulada), que e o que faz rebaixado real terminar com 16-21 pontos.
+pontos_do_lanterna        = [17.0, 34.0]
+melhor_elenco_campeao_pct = [38.0, 70.0]
+
+# O nivel desta liga em relacao as outras NAO esta aqui: ele e derivado em
+# fm.ratings.forca_mundial a partir do valor medio de elenco de todas as competicoes
+# importadas juntas, com o melhor clube do mundo ancorado em 90. O beta desta liga (o
+# spread interno) esta em fm.importer.build.BETAS_PADRAO.

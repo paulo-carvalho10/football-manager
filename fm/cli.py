@@ -15,6 +15,22 @@ from fm.generate import build_world, strength_profile
 from fm.match import Mentality
 from fm.season import play_league_season
 
+CABECALHO_PACK = """# {wettbewerb} -- GERADO por fm.importer. Nao editar a mao: rode o importador.
+#
+# Fonte: Transfermarkt (clube, posicao, idade, valor de mercado, jogos, minutos).
+# ovr e pot sao DERIVADOS por fm/ratings.py a partir desses campos. Sao estimativa, nao
+# rating oficial de ninguem, e a conta esta documentada no modulo.
+#
+# forca do clube = nivel_da_liga + {beta} * z(ln(valor de elenco) dentro da liga).
+# O NIVEL da liga sai do valor medio de elenco na escala global de todas as competicoes
+# importadas, com o melhor clube do mundo ancorado em 90 -- fazer z so por liga apagava a
+# diferenca entre divisoes e o lanterna da Serie B saia mais forte que o da Serie A.
+# O BETA e proprio desta liga e foi ajustado contra os [alvos] do arquivo dela.
+verificado = false
+fonte = "Transfermarkt {wettbewerb} (valores de mercado); ovr/pot derivados por fm.ratings"
+"""
+
+
 LEGEND = "* campeao | v rebaixado | onze = overall do titular | desen. = forca desenhada"
 
 
@@ -156,24 +172,75 @@ def cmd_elenco(args):
     print("> = titular")
 
 
+# nome do pack e liga que valida, por competicao
+SAIDA_PADRAO = {
+    "bra_a": ("brasil_serie_a", "brasil_real"),
+    "bra_b": ("brasil_serie_b", "brasil_b_real"),
+    "esp_1": ("espanha_primera", "espanha_real"),
+    "esp_2": ("espanha_segunda", "espanha_b_real"),
+}
+
+
+def cmd_importar(args):
+    """Baixa, deriva overall e escreve os packs. Etapas 1 + 2 + 3.
+
+    Monta SEMPRE o mundo inteiro, mesmo para gravar um pack so: o nivel de uma liga em
+    relacao as outras sai do valor de elenco de todas juntas. Rede so na primeira vez.
+    """
+    from pathlib import Path
+
+    from fm.calibration import report
+    from fm.importer.build import BETAS_PADRAO, escrever_pack, montar_mundo
+    from fm.importer.transfermarkt import COMPETICOES
+
+    alvos = sorted(COMPETICOES) if args.competicao == "todas" else [args.competicao]
+    for c in alvos:
+        if c not in COMPETICOES:
+            raise SystemExit(f"competicao desconhecida; use 'todas' ou {sorted(COMPETICOES)}")
+
+    print()
+    print("IMPORTANDO " + ", ".join(alvos))
+    print("rede so na primeira vez; depois tudo vem de data/cache/")
+    mundo = montar_mundo()
+
+    for comp in alvos:
+        montados = mundo[comp]
+        saida, liga = SAIDA_PADRAO[comp]
+        forcas = [c.forca for c in montados]
+        n_jog = sum(len(c.jogadores) for c in montados)
+        print()
+        print(f"  {comp}: {len(montados)} clubes, {n_jog} jogadores, "
+              f"forcas {max(forcas):.1f}..{min(forcas):.1f}")
+
+        cfg = load_league(liga)
+        ms = report(targets=targets_of(cfg), ratings=forcas, style=style_of(cfg),
+                    seasons=args.temporadas, seed=2026)
+        fora = [f"{m.name}={m.value:.2f} [{m.low}, {m.high}]" for m in ms if not m.ok]
+        print(f"    portao de {liga}: "
+              + ("todos os alvos ok" if not fora else f"FORA DA FAIXA {fora}"))
+
+        destino = Path("data/packs") / f"{saida}.toml"
+        escrever_pack(montados, destino, CABECALHO_PACK.format(
+            wettbewerb=COMPETICOES[comp][1], beta=BETAS_PADRAO[comp]))
+        print(f"    escrito {destino} ({destino.stat().st_size / 1024:.0f} KB)")
+
+
 def cmd_diagnostico(args):
     """Roda os diagnosticos da conversao valor -> overall sobre um pack importado."""
     from fm.diagnostics import diagnosticar
     from fm.pack import load_pack
 
     pack = load_pack(args.pack)
-    jogadores = []
-    for c in pack.clubes:
-        ordenados = sorted(c.jogadores, key=lambda j: -(j.ovr or 0))
-        titulares = {id(j) for j in ordenados[:11]}
-        for j in c.jogadores:
-            jogadores.append({
-                "nome": j.nome, "ovr": j.ovr or 0, "posicao": j.pos, "idade": j.idade,
-                "valor": j.valor, "titular": id(j) in titulares})
+    clubes = [{"nome": c.nome,
+               "jogadores": [{"nome": j.nome, "ovr": j.ovr or 0, "posicao": j.pos,
+                              "idade": j.idade, "valor": j.valor} for j in c.jogadores]}
+              for c in pack.clubes]
+    n = sum(len(c["jogadores"]) for c in clubes)
     print()
-    print(f"DIAGNOSTICO DA CONVERSAO  --  pack {args.pack}, {len(jogadores)} jogadores")
+    print(f"DIAGNOSTICO DA CONVERSAO  --  pack {args.pack}, "
+          f"{len(clubes)} clubes, {n} jogadores")
     print()
-    for d in diagnosticar(jogadores):
+    for d in diagnosticar(clubes):
         print(f"{'ok ' if d.ok else 'XX '} {d.nome:24s} {d.valor:8.2f}   "
               f"[{d.baixo}, {d.alto}]")
         if not d.ok:
@@ -213,6 +280,13 @@ def main(argv=None):
     p.add_argument("--edicoes", type=int, default=20000)
     p.add_argument("--maos", type=int, default=2)
     p.set_defaults(func=cmd_copa)
+
+    p = sub.add_parser("importar", parents=[common],
+                       help="baixa uma competicao e gera o pack com ovr derivado")
+    p.add_argument("--competicao", default="todas",
+                   help="todas, bra_a, bra_b, esp_1 ou esp_2")
+    p.add_argument("--temporadas", type=int, default=1500)
+    p.set_defaults(func=cmd_importar)
 
     p = sub.add_parser("diagnostico", parents=[common],
                        help="valida a conversao valor -> overall de um pack")

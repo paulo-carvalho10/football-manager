@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from fm.diagnostics import diagnosticar
 from fm.pack import load_pack
 from fm.ratings import (
@@ -138,18 +140,29 @@ def test_beta_e_positivo_e_a_hierarquia_segue_o_valor():
     assert caros[0]["ovr"] >= caros[-1]["ovr"]
 
 
-def test_diagnosticos_passam_no_pack_real():
-    """Integracao: a base importada de verdade tem de sobreviver aos cinco diagnosticos."""
-    pack = load_pack("brasil_serie_a")
-    jogadores = []
-    for c in pack.clubes:
-        titulares = {id(j) for j in sorted(c.jogadores, key=lambda x: -(x.ovr or 0))[:11]}
-        jogadores += [{"nome": j.nome, "ovr": j.ovr or 0, "posicao": j.pos,
-                       "idade": j.idade, "valor": j.valor, "titular": id(j) in titulares}
-                      for j in c.jogadores]
+@pytest.mark.parametrize("nome_pack", ["brasil_serie_a", "brasil_serie_b",
+                                       "espanha_primera", "espanha_segunda"])
+def test_diagnosticos_passam_nos_packs_reais(nome_pack):
+    """Integracao: cada base importada de verdade sobrevive aos cinco diagnosticos."""
+    pack = load_pack(nome_pack)
+    clubes = [{"nome": c.nome,
+               "jogadores": [{"nome": j.nome, "ovr": j.ovr or 0, "posicao": j.pos,
+                              "idade": j.idade, "valor": j.valor} for j in c.jogadores]}
+              for c in pack.clubes]
     fora = [f"{d.nome}={d.valor:.2f} fora de [{d.baixo}, {d.alto}]"
-            for d in diagnosticar(jogadores) if not d.ok]
-    assert not fora, "; ".join(fora)
+            for d in diagnosticar(clubes) if not d.ok]
+    assert not fora, f"{nome_pack}: " + "; ".join(fora)
+
+
+def test_piramide_primeira_divisao_e_mais_forte_que_segunda():
+    """Normalizar cada liga por si apagava o nivel: o lanterna da Serie B saia mais forte
+    que o da Serie A. O nivel entre divisoes vem do valor de elenco na escala global."""
+    for primeira, segunda in (("brasil_serie_a", "brasil_serie_b"),
+                              ("espanha_primera", "espanha_segunda")):
+        fa = [c.forca for c in load_pack(primeira).clubes]
+        fb = [c.forca for c in load_pack(segunda).clubes]
+        assert min(fa) > min(fb), f"{primeira} vs {segunda}: piramide invertida"
+        assert max(fa) > max(fb)
 
 
 def test_motor_nao_depende_do_importador():

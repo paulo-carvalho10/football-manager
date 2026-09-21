@@ -1,0 +1,40 @@
+# Serie B do Brasil, clubes e jogadores reais.
+id     = "bra_b_real"
+nome   = "Serie B"
+pais   = "BRA"
+tier   = 2
+clubes = 20
+
+pack        = "brasil_serie_b"
+pack_offset = 0
+
+[estilo]
+gols_base = 1.16    # divisao de baixo: jogo mais truncado
+mando     = 0.38    # e viagem pior ainda
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 4, descem = 4 }
+
+# Serie B e mais travada e mais empatada que a Serie A. MAS NAO e mais aberta, ao contrario
+# do que eu tinha suposto: em 2026 o lider de valor de elenco (Fortaleza, recem-rebaixado)
+# vale 1.34x o segundo, enquanto na Serie A o lider vale 1.03x o segundo. A Serie B deste
+# ano tem favorito claro; a Serie A nao tem. O alvo original ([8, 28] para "melhor elenco e
+# campeao") vinha de folclore e foi corrigido pelo dado.
+# O resto continua escrito de memoria -- re-derivar com as tabelas reais.
+[alvos]
+gols_por_jogo             = [2.20, 2.50]
+empate_pct                = [25.0, 32.0]
+vitoria_casa_pct          = [43.0, 50.0]
+vitoria_fora_pct          = [21.5, 29.0]
+margem_3_ou_mais_pct      = [9.0, 14.0]
+margem_4_ou_mais_pct      = [2.5, 5.0]
+cinco_ou_mais_gols_pct    = [7.0, 11.5]
+pontos_do_campeao         = [62.0, 80.0]
+pontos_do_lanterna        = [24.0, 37.0]
+melhor_elenco_campeao_pct = [15.0, 55.0]
+
+# O nivel desta liga em relacao as outras NAO esta aqui: ele e derivado em
+# fm.ratings.forca_mundial a partir do valor medio de elenco de todas as competicoes
+# importadas juntas, com o melhor clube do mundo ancorado em 90. O beta desta liga (o
+# spread interno) esta em fm.importer.build.BETAS_PADRAO.

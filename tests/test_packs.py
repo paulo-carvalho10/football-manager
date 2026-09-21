@@ -93,7 +93,7 @@ def test_cada_liga_passa_nos_seus_proprios_alvos():
         fases = cfg.get("formato", {}).get("fases", [{"tipo": "round_robin"}])
         if fases[0].get("tipo") != "round_robin":
             continue
-        metrics = report(targets=targets_of(cfg), ratings=strength_profile(cfg, 20),
+        metrics = report(targets=targets_of(cfg), ratings=strength_profile(cfg, int(cfg["clubes"])),
                          style=style_of(cfg), seasons=400, seed=2026)
         fora = [f"{m.name}={m.value:.2f} fora de [{m.low}, {m.high}]"
                 for m in metrics if not m.ok]

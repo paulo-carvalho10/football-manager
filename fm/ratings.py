@@ -32,6 +32,14 @@ K_POS = {"FW": 1.35, "WG": 1.30, "AM": 1.18, "MF": 1.05, "DM": 0.95,
          "FB": 0.90, "CB": 0.85, "GK": 0.65}
 K_POS_PADRAO = 1.00
 
+# O premio de posicao e propriedade do MERCADO, e mercados diferem. Medido: com o K de
+# goleiro do Brasil (0.65), os goleiros da Segunda espanhola saiam 2,3 pontos ACIMA dos
+# titulares de linha -- naquele mercado o desconto de goleiro e menor. Cada liga pode
+# sobrescrever o que o diagnostico cobrar.
+K_POS_POR_LIGA: dict[str, dict[str, float]] = {
+    "esp_2": {**K_POS, "GK": 0.82},
+}
+
 
 # Multiplicador de valor para qualidade CONSTANTE. Referencia: 27 anos = 1.00.
 IDADE_MULT = {17: 1.45, 18: 1.45, 19: 1.42, 20: 1.40, 21: 1.36, 22: 1.30, 23: 1.24,
@@ -46,7 +54,12 @@ W = 0.5           # amolece a correcao de idade
 CORR_MAX = 2.0    # a idade nunca infla o valor-qualidade mais que isto
 BETA = 5.0        # pontos de overall por desvio-padrao de log-valor no elenco
 CLAMP = 2.4       # limite em desvios: impede que um fora-de-serie vire 99
-REALIZACAO_JOGOS = 20     # partidas para considerar o jogador "ja entregue"
+REALIZACAO_JOGOS = 20     # partidas para considerar o jogador "ja entregue" (fallback)
+# CUIDADO com limiar absoluto: as ligas nao estao no mesmo ponto da temporada. Em setembro
+# de 2026 o Brasileirao ja tinha 30 a 45 jogos e La Liga tinha 5 rodadas -- com limiar fixo
+# de 20 jogos, TODA a Espanha era tratada como "ainda nao entregou" e os craques novos (o
+# mais caro da liga, 19 anos, 671 minutos) caiam para o banco do proprio clube. A conversao
+# usa `minutos_referencia`, que e calculado por liga, quando ele e informado.
 REALIZACAO_PESO = 0.8     # quanto jogar reduz o desconto de imaturidade
 # 0.8 e nao 0.6 por medicao: com 0.6, o jogador mais valioso da Serie A (21 anos, 38 mi,
 # temporada inteira jogada) ficava no BANCO do proprio clube. Quem ja joga como titular
@@ -74,15 +87,30 @@ def teto_crescimento(idade: int | None) -> float:
     return float(TETO_CRESCIMENTO.get(int(idade), 0))
 
 
-def valor_qualidade(valor: int | None, posicao: str | None, idade: int | None) -> float:
+def valor_qualidade(valor: int | None, posicao: str | None, idade: int | None,
+                    k_pos: dict[str, float] | None = None) -> float:
     """Valor equivalente em QUALIDADE: tira o premio de posicao e parte do efeito idade."""
     v = max(int(valor or VALOR_PISO), VALOR_PISO)
-    k = K_POS.get(posicao or "", K_POS_PADRAO)
+    k = (k_pos or K_POS).get(posicao or "", K_POS_PADRAO)
     return v / (k * correcao_idade(idade))
+
+
+def minutos_referencia(jogadores: list[dict], percentil: float = 85.0) -> float:
+    """Quanto e "uma temporada inteira" NESTA liga, neste momento.
+
+    Percentil alto dos minutos de quem jogou. Assim a mesma conta vale para uma liga na
+    5a rodada e para outra na 35a.
+    """
+    mins = [j.get("minutos") or 0 for j in jogadores if (j.get("minutos") or 0) > 0]
+    if not mins:
+        return 0.0
+    return max(float(np.percentile(mins, percentil)), 90.0)
 
 
 def converter_elenco(
     jogadores: list[dict], forca_clube: float, formacao=None,
+    referencia_minutos: float | None = None,
+    k_pos: dict[str, float] | None = None,
 ) -> list[dict]:
     """Recebe dicts com posicao/idade/valor/partidas e devolve os mesmos com ovr e pot.
 
@@ -93,13 +121,20 @@ def converter_elenco(
         return []
     if formacao is None:
         formacao = tuple(FORMATION_DEFAULT[g] for g in ("GK", "DF", "MF", "FW"))
-    q = np.log([valor_qualidade(j.get("valor"), j.get("posicao"), j.get("idade"))
+    q = np.log([valor_qualidade(j.get("valor"), j.get("posicao"), j.get("idade"), k_pos)
                 for j in jogadores])
     desvio = q.std() or 1.0
     z = np.clip((q - q.mean()) / desvio, -CLAMP, CLAMP)
     pot_prov = forca_clube + BETA * z
-    realizacao = np.array([min(1.0, (j.get("partidas") or 0) / REALIZACAO_JOGOS)
-                           for j in jogadores])
+    if any("realizacao" in j for j in jogadores):
+        # o importador ja calculou (pode combinar duas temporadas)
+        realizacao = np.array([float(j.get("realizacao") or 0.0) for j in jogadores])
+    elif referencia_minutos:
+        realizacao = np.array([min(1.0, (j.get("minutos") or 0) / referencia_minutos)
+                               for j in jogadores])
+    else:
+        realizacao = np.array([min(1.0, (j.get("partidas") or 0) / REALIZACAO_JOGOS)
+                               for j in jogadores])
     gap = np.array([teto_crescimento(j.get("idade")) for j in jogadores]) * (
         1.0 - REALIZACAO_PESO * realizacao)
     ovr_prov = pot_prov - gap
@@ -139,3 +174,47 @@ def forca_dos_clubes(
     v = np.log([max(valores_elenco[i], 1) for i in ids])
     z = (v - v.mean()) / (v.std() or 1.0)
     return {i: float(media_liga + beta_clube * zi) for i, zi in zip(ids, z, strict=True)}
+
+
+BETA_GLOBAL = 7.0      # escala usada para posicionar uma liga em relacao as outras
+TOPO_DO_MUNDO = 90.0   # o melhor clube do mundo importado vale isto
+
+
+def forca_mundial(
+    valores_por_liga: dict[str, dict[str, int]],
+    betas: dict[str, float],
+    *, beta_global: float = BETA_GLOBAL, topo: float = TOPO_DO_MUNDO,
+) -> dict[str, dict[str, float]]:
+    """Valor de elenco -> forca, para VARIAS ligas de uma vez.
+
+    Duas escalas, e e por isso que esta funcao existe:
+
+    - ENTRE ligas, o nivel sai do valor medio de elenco na escala global. Normalizar cada
+      liga por si so apaga a diferenca de nivel: fazendo z por liga, o lanterna da Serie B
+      (3,3 mi) saia MAIS FORTE que o lanterna da Serie A (20 mi), o que quebra a piramide.
+    - DENTRO da liga, o spread usa o beta proprio dela, ajustado contra os [alvos] daquela
+      liga. Um beta global unico achata a Serie A: a diferenca de dinheiro dentro dela e
+      pequena perto da diferenca entre paises, e a disputa de titulo fica aleatoria demais.
+
+    No fim tudo e deslocado para que o melhor clube do mundo caia em `topo`. A escala de
+    overall e limitada (40 a 95), entao ela precisa de uma ancora no topo -- senao o Real
+    Madrid, com elenco de 1,46 bilhao, estoura o teto e leva os jogadores junto.
+    """
+    ln = {liga: np.log(np.array(list(v.values()), dtype=float))
+          for liga, v in valores_por_liga.items()}
+    todos = np.concatenate(list(ln.values()))
+    mu, sd = todos.mean(), todos.std() or 1.0
+
+    def calcular(desloc: float) -> dict[str, np.ndarray]:
+        out = {}
+        for liga, v in ln.items():
+            nivel = beta_global * (v.mean() - mu) / sd + desloc
+            out[liga] = nivel + betas[liga] * (v - v.mean()) / (v.std() or 1.0)
+        return out
+
+    desloc = 0.0
+    for _ in range(60):     # converge o deslocamento que poe o topo do mundo no alvo
+        desloc += (topo - max(x.max() for x in calcular(desloc).values())) * 0.6
+    resultado = calcular(desloc)
+    return {liga: dict(zip(valores_por_liga[liga], resultado[liga], strict=True))
+            for liga in valores_por_liga}

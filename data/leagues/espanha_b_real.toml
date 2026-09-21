@@ -1,0 +1,43 @@
+# Segunda Division da Espanha. 22 clubes, 42 rodadas -- os alvos de pontuacao mudam por
+# causa disso, nao por causa do motor.
+id     = "esp_2_real"
+nome   = "Segunda Division"
+pais   = "ESP"
+tier   = 2
+clubes = 22
+
+pack        = "espanha_segunda"
+pack_offset = 0
+
+[estilo]
+gols_base = 1.13    # a Segunda e a liga mais travada das quatro
+mando     = 0.30
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 3, descem = 4 }
+
+# E a liga MAIS IGUAL das quatro: o valor de elenco do 1o e so 6,5x o do ultimo (contra
+# 26x na Primera). Isso prevê muitos empates e titulo muito disputado -- e a previsao sai
+# do dado, nao de regra escrita no motor.
+[alvos]
+gols_por_jogo             = [2.15, 2.50]
+# Liga de poucos gols tem MAIS 0-0 que a media europeia; o alvo da liga de referencia
+# ([6.5, 9.5]) nao vale aqui.
+zero_a_zero_pct           = [8.5, 13.5]
+empate_pct                = [26.0, 34.0]
+vitoria_casa_pct          = [41.0, 48.0]
+vitoria_fora_pct          = [22.0, 30.0]
+margem_3_ou_mais_pct      = [7.5, 13.0]
+margem_4_ou_mais_pct      = [2.0, 4.5]
+cinco_ou_mais_gols_pct    = [5.5, 10.0]
+pontos_do_campeao         = [74.0, 90.0]
+pontos_do_lanterna        = [28.0, 42.0]
+# Mesma licao da Serie B: "segunda divisao e maluca" e folclore. Faixa larga porque eu
+# realmente nao sei o numero desta liga.
+melhor_elenco_campeao_pct = [15.0, 50.0]
+
+# O nivel desta liga em relacao as outras NAO esta aqui: ele e derivado em
+# fm.ratings.forca_mundial a partir do valor medio de elenco de todas as competicoes
+# importadas juntas, com o melhor clube do mundo ancorado em 90. O beta desta liga (o
+# spread interno) esta em fm.importer.build.BETAS_PADRAO.

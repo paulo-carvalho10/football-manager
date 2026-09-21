@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from fm.importer import transfermarkt as tm
-from fm.ratings import converter_elenco, forca_dos_clubes
+from fm.ratings import converter_elenco
 
 # verein_id do Transfermarkt -> nome do clube no pack (nome popular da CBF).
 # Mapeamento explicito de proposito: 20 linhas auditaveis valem mais que uma heuristica
@@ -42,41 +42,27 @@ class ClubeMontado:
     jogadores: list[dict]
 
 
-def baixar_tudo() -> tuple[list[tm.TMClube], dict[str, list[tm.TMJogador]],
-                           dict[str, dict[str, dict[str, int]]]]:
-    """Etapa 1+2: 41 paginas (1 liga + 20 elencos + 20 desempenhos), tudo cacheado."""
-    clubes = tm.extrair_clubes(tm.baixar_liga())
+def baixar_tudo(competicao: str = "bra_a") -> tuple[
+        list[tm.TMClube], dict[str, list[tm.TMJogador]],
+        dict[str, dict[str, dict[str, int]]]]:
+    """Etapa 1+2: 1 pagina de liga + 2 por clube. Tudo cacheado em disco."""
+    clubes = tm.extrair_clubes(tm.baixar_competicao(competicao))
     elencos = {c.verein_id: tm.extrair_elenco(tm.baixar_elenco(c.verein_id)) for c in clubes}
     stats = {c.verein_id: tm.extrair_estatisticas(tm.baixar_estatisticas(c.verein_id))
              for c in clubes}
     return clubes, elencos, stats
 
 
-def montar(media_liga: float, beta_clube: float) -> list[ClubeMontado]:
-    clubes, elencos, stats = baixar_tudo()
-    forcas = forca_dos_clubes({c.verein_id: c.valor_elenco for c in clubes},
-                              media_liga=media_liga, beta_clube=beta_clube)
-    montados: list[ClubeMontado] = []
-    for c in clubes:
-        nome = NOME_PACK.get(c.verein_id, c.nome)
-        bruto = []
-        for j in elencos[c.verein_id]:
-            st = stats[c.verein_id].get(j.spieler_id, {})
-            minutos = st.get("minutos", 0)
-            bruto.append({
-                "nome": j.nome, "posicao": j.posicao, "idade": j.idade, "valor": j.valor,
-                # o desconto de imaturidade usa partidas; minuto/90 e mais honesto que
-                # "apareceu na sumula", entao converte-se minutos em jogos equivalentes
-                "partidas": round(minutos / MINUTOS_POR_JOGO) if minutos else st.get("jogos", 0),
-                "gols": st.get("gols", 0), "minutos": minutos,
-                "id_fonte": j.spieler_id, "contrato_ate": j.contrato_ate,
-                "nacionalidade": j.nacionalidade,
-            })
-        montados.append(ClubeMontado(
-            nome=nome, forca=forcas[c.verein_id], valor_elenco=c.valor_elenco,
-            id_cbf=ID_CBF.get(nome), id_tm=c.verein_id,
-            jogadores=converter_elenco(bruto, forcas[c.verein_id])))
-    return montados
+def baixar_passado(competicao: str, clubes) -> dict[str, dict[str, dict[str, int]]]:
+    """Desempenho da temporada ANTERIOR, quando a liga tem uma configurada.
+
+    Liga europeia em setembro tem 5 rodadas: nao da para saber quem e titular por isso.
+    """
+    temporada = tm.TEMPORADA_STATS.get(competicao)
+    if not temporada:
+        return {}
+    return {c.verein_id: tm.extrair_estatisticas(
+        tm.baixar_estatisticas(c.verein_id, temporada)) for c in clubes}
 
 
 def _esc(txt: str) -> str:
@@ -118,3 +104,60 @@ def escrever_pack(montados: list[ClubeMontado], destino, cabecalho: str) -> int:
         L.append("")
     destino.write_text("\n".join(L) + "\n", encoding="utf-8")
     return n_jogadores
+
+
+BETAS_PADRAO = {"bra_a": 7.0, "bra_b": 4.0, "esp_1": 7.0, "esp_2": 5.0}
+
+
+def montar_mundo(betas: dict[str, float] | None = None) -> dict[str, list[ClubeMontado]]:
+    """Monta varias competicoes juntas, para que o nivel ENTRE ligas saia do dado.
+
+    Montar uma liga isolada obriga a chutar o nivel dela; montando todas de uma vez, o
+    valor de elenco posiciona cada divisao em relacao as outras e a piramide fecha sozinha.
+    """
+    from fm.ratings import K_POS_POR_LIGA, forca_mundial, minutos_referencia
+
+    betas = betas or BETAS_PADRAO
+    baixado = {comp: baixar_tudo(comp) for comp in betas}
+    valores = {comp: {c.verein_id: c.valor_elenco for c in clubes}
+               for comp, (clubes, _, _) in baixado.items()}
+    forcas = forca_mundial(valores, betas)
+
+    mundo: dict[str, list[ClubeMontado]] = {}
+    for comp, (clubes, elencos, stats) in baixado.items():
+        # cada liga esta num ponto diferente da temporada: a referencia de minutos e dela
+        passado = baixar_passado(comp, clubes)
+        ref = minutos_referencia([{"minutos": s.get("minutos", 0)}
+                                  for d in stats.values() for s in d.values()])
+        ref_passado = minutos_referencia([{"minutos": s.get("minutos", 0)}
+                                          for d in passado.values() for s in d.values()])
+        montados = []
+        for c in clubes:
+            nome = NOME_PACK.get(c.verein_id) or tm.limpar_nome(c.nome)
+            bruto = []
+            for j in elencos[c.verein_id]:
+                st = stats[c.verein_id].get(j.spieler_id, {})
+                ant = passado.get(c.verein_id, {}).get(j.spieler_id, {})
+                minutos, min_ant = st.get("minutos", 0), ant.get("minutos", 0)
+                # Quanto o jogador ja "entregou", normalizado pela temporada de CADA
+                # fonte. Pega-se o maior: o veterano pontua pela temporada passada e o
+                # reforco recem-chegado pontua pela atual.
+                realizacao = max(
+                    min(1.0, minutos / ref) if ref else 0.0,
+                    min(1.0, min_ant / ref_passado) if ref_passado else 0.0)
+                bruto.append({
+                    "nome": j.nome, "posicao": j.posicao, "idade": j.idade,
+                    "valor": j.valor, "gols": st.get("gols", 0) or ant.get("gols", 0),
+                    "minutos": minutos or min_ant, "realizacao": realizacao,
+                    "partidas": (round((minutos or min_ant) / MINUTOS_POR_JOGO)
+                                 or st.get("jogos", 0) or ant.get("jogos", 0)),
+                    "id_fonte": j.spieler_id,
+                })
+            forca = forcas[comp][c.verein_id]
+            montados.append(ClubeMontado(
+                nome=nome, forca=forca, valor_elenco=c.valor_elenco,
+                id_cbf=ID_CBF.get(nome), id_tm=c.verein_id,
+                jogadores=converter_elenco(
+                    bruto, forca, k_pos=K_POS_POR_LIGA.get(comp))))
+        mundo[comp] = montados
+    return mundo

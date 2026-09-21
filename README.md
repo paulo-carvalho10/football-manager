@@ -141,24 +141,44 @@ ser achatada.
 | La Liga | 79,2 | 30,4 | 24,7% | 2,61 | 14,5% | 41,7% |
 
 
-## Base real: Serie A do Brasil
+## Base real: quatro divisoes, 2.404 jogadores
 
-    python -m fm.cli temporada   --liga brasil_real
-    python -m fm.cli diagnostico --pack brasil_serie_a
-    python -m fm.cli calibrar    --liga brasil_real --usar-perfil-da-liga
+    python -m fm.cli importar --competicao todas
+    python -m fm.cli temporada   --liga espanha_real
+    python -m fm.cli diagnostico --pack espanha_segunda
 
-20 clubes, 669 jogadores reais. Nada disso e digitado a mao: `fm/importer/` baixa 41
-paginas (1 da liga + 20 elencos + 20 de desempenho), cacheia tudo em `data/cache/` e gera
-`data/packs/brasil_serie_a.toml`.
+| liga | clubes | jogadores | forcas |
+|---|---|---|---|
+| Serie A (BRA) | 20 | 669 | 79,7 a 54,4 |
+| Serie B (BRA) | 20 | 651 | 67,4 a 49,7 |
+| Primera Division (ESP) | 20 | 513 | 90,0 a 64,9 |
+| Segunda Division (ESP) | 22 | 571 | 73,2 a 55,5 |
 
-Fontes: Transfermarkt (clube, posicao, idade, valor de mercado, jogos e minutos) e CBF
-(`Codigo_Clube`, composicao oficial da divisao).
+Nada disso e digitado a mao: `fm/importer/` baixa 1 pagina por liga mais 2 ou 3 por clube,
+cacheia em `data/cache/` e gera os packs. Fontes: Transfermarkt (clube, posicao, idade,
+valor de mercado, jogos, minutos) e CBF (`Codigo_Clube`, composicao oficial da Serie A).
 
-O importador tem tres etapas separadas de proposito -- **baixar**, **extrair**, **montar**.
-So a primeira usa rede. Assim da para reajustar uma constante de conversao e rodar de novo
-sobre o cache sem baixar nada. Regra de arquitetura, guardada por
-`test_motor_nao_depende_do_importador`: **o jogo nao baixa pagina**. `fm/` depende so de
-numpy; beautifulsoup e lxml vivem em `fm/importer/`.
+Tres etapas separadas de proposito -- **baixar**, **extrair**, **montar**. So a primeira usa
+rede, entao da para reajustar uma constante de conversao e rodar de novo sobre o cache.
+Regra de arquitetura, guardada por `test_motor_nao_depende_do_importador`: **o jogo nao
+baixa pagina**. `fm/` depende so de numpy; beautifulsoup e lxml vivem em `fm/importer/`.
+
+## Duas escalas, e por que as duas precisam existir
+
+O nivel de uma liga sai do valor MEDIO de elenco na escala global de todas as competicoes
+importadas; o spread DENTRO dela sai de um beta proprio, ajustado contra os `[alvos]`
+daquela liga. Depois tudo desloca para o melhor clube do mundo cair em 90.
+
+Isso nao e capricho -- e o resultado de duas tentativas que falharam:
+
+- **z por liga isolada** acerta o spread mas apaga o nivel: o lanterna da Serie B (3,3
+  milhoes de elenco) saia MAIS FORTE que o lanterna da Serie A (20 milhoes). Piramide
+  invertida. Guardado por `test_piramide_primeira_divisao_e_mais_forte_que_segunda`.
+- **z global unico** acerta o nivel mas achata a Serie A: a diferenca de dinheiro dentro
+  dela e pequena perto da diferenca entre paises, e a disputa de titulo virava sorteio.
+
+A ancora no topo existe porque a escala de overall e limitada (40 a 95): sem ela o Real
+Madrid, com 1,46 bilhao de elenco, estoura o teto e leva os jogadores junto.
 
 ## De valor de mercado a overall
 
@@ -196,22 +216,51 @@ titulares.
 
 ## Diagnosticos: o que separa constante ajustada de constante bonita
 
-`python -m fm.cli diagnostico` mede cinco coisas sobre a base real:
+`python -m fm.cli diagnostico` mede cinco coisas sobre cada base real. As quatro ligas
+passam nas cinco.
 
-| diagnostico | medido | faixa |
-|---|---|---|
-| goleiro titular vs titulares de linha | +0,5 | -1,5 a 1,5 |
-| dos 10 mais caros, quantos sao titulares | 10 | 9 a 10 |
-| idade media dos titulares | 28,1 | 26,5 a 29,5 |
-| idade media dos 50 melhores overalls | 27,9 | 26 a 30 |
-| desvio-padrao de overall da liga | 10,5 | 8 a 13 |
+| diagnostico | BRA A | BRA B | ESP 1 | ESP 2 | faixa |
+|---|---|---|---|---|---|
+| goleiro titular vs titulares de linha | -0,4 | -0,7 | +0,8 | +1,0 | -1,5 a 1,5 |
+| mais caro em idade de pico e titular | 100% | 100% | 100% | 95% | 80 a 100% |
+| idade media dos titulares | 28,5 | 29,6 | 27,1 | 27,3 | 26,5 a 30,5 |
+| idade media dos 50 melhores overalls | 27,9 | 28,9 | 26,6 | 28,8 | 26 a 30 |
+| desvio-padrao de overall | 10,5 | 7,6 | 9,9 | 8,4 | 7 a 13 |
 
-**Um diagnostico ruim custou caro e vale registrar.** A primeira versao olhava a media de
-overall por faixa de idade e acusava o modelo de favorecer veterano, porque a media subia
-ate os 30-32 anos. Era **composicao de elenco**: clube dispensa veterano ruim e segura
-garoto ruim, entao sobram 75 jogadores de 18-20 anos (quase todos da base, sem valor) e so
-37 acima de 36. A media por idade mede quem o clube guarda, nao quem o modelo valoriza. O
-diagnostico honesto e a idade de QUEM JOGA.
+**Tres diagnosticos ruins custaram caro e ficaram registrados no modulo**, porque errar o
+diagnostico e pior que errar o modelo -- leva a "consertar" o que estava certo:
+
+1. **Media de overall por faixa de idade** acusava vies pro-veterano porque subia ate os
+   30-32 anos. Era composicao de elenco: clube dispensa veterano ruim e segura garoto ruim,
+   entao sobram 75 jogadores de 18-20 anos e so 37 acima de 36. O que vale e a idade de
+   QUEM JOGA.
+2. **"Os dez mais caros da liga devem ser titulares"** punia concentracao: 9 dos 10 mais
+   caros de La Liga sao do Real Madrid e do Barcelona, e nenhum clube escala 11 craques.
+   Virou por clube.
+3. **Nao filtrar idade** punia emprestimo de garoto caro. Em Segunda o mais caro do clube e
+   quase sempre um prospecto de clube grande -- um caso real tinha 22 anos, 5 milhoes de
+   euros e **28 minutos jogados**. Ele nao ser titular esta certo. Virou "o mais caro entre
+   os de 24 a 31 anos".
+
+## O premio de posicao e propriedade do mercado, nao constante universal
+
+Com o K de goleiro ajustado no Brasil (0,65), os goleiros da Segunda espanhola saiam **2,3
+pontos acima** dos titulares de linha: naquele mercado o desconto de goleiro e menor. Por
+isso `K_POS_POR_LIGA` existe. Segunda usa 0,82 e o diagnostico cai para +1,0.
+
+## Ligas nao estao no mesmo ponto da temporada
+
+O erro mais sutil de todos. Em setembro de 2026 o Brasileirao (ano civil) tinha 30 a 45
+jogos disputados e as ligas europeias (agosto a maio) tinham cinco rodadas. Com um limiar
+fixo de 20 jogos para "ja entregou", **a Espanha inteira era tratada como promessa**: o
+jogador mais caro de La Liga (19 anos, 220 milhoes, 671 minutos) ia para o banco do proprio
+clube.
+
+Duas correcoes: a referencia de "temporada inteira" passou a ser um percentil alto dos
+minutos DAQUELA liga (2.408 minutos no Brasil, 549 na Espanha em curso), e para a Europa
+baixa-se tambem a temporada ANTERIOR, ja completa. A realizacao de cada jogador e o maior
+dos dois valores normalizados -- assim o veterano pontua pela temporada passada e o
+reforco recem-chegado pontua pela atual.
 
 ## O dado real tambem corrigiu o motor
 

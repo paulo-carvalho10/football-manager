@@ -16,6 +16,53 @@ from fm.importer.http import get
 
 BASE = "https://www.transfermarkt.com.br"
 
+# Competicoes suportadas: slug da URL + codigo do site + pais no modelo.
+COMPETICOES = {
+    "bra_a": ("campeonato-brasileiro-serie-a", "BRA1", "BRA"),
+    "bra_b": ("campeonato-brasileiro-serie-b", "BRA2", "BRA"),
+    "esp_1": ("laliga", "ES1", "ESP"),
+    "esp_2": ("laliga2", "ES2", "ESP"),
+}
+
+# Temporada de onde tirar minutos jogados. As ligas nao estao no mesmo ponto do calendario:
+# em setembro de 2026 o Brasileirao (ano civil) ja tinha 30 a 45 jogos, e as europeias
+# (agosto a maio) tinham 5 rodadas. Cinco rodadas nao dizem nada sobre quem e titular,
+# entao para a Europa usa-se a temporada ANTERIOR, ja completa.
+TEMPORADA_STATS = {"esp_1": "2025", "esp_2": "2025"}
+
+# Siglas de tipo de clube que nao fazem parte do nome. "Real" NAO entra: Real Madrid,
+# Real Betis e Real Sociedad sao nomes de verdade.
+SIGLAS = {
+    "CR", "SE", "SC", "EC", "FC", "CF", "UD", "CD", "RC", "RCD", "SD", "CA", "FR",
+    "AD", "AC", "AS", "SS", "CS", "FBPA", "SAF", "B", "II",
+}
+
+# Nomes que a limpeza automatica erraria.
+NOME_ESPECIAL = {
+    "RB Bragantino": "Red Bull Bragantino",
+    "Clube do Remo": "Remo",
+    "Atlético de Madrid": "Atlético Madrid",
+    "Athletic Bilbao": "Athletic Club",
+    "Real Betis Balompié": "Real Betis",
+    "RC Celta de Vigo": "Celta de Vigo",
+    "Deportivo Alavés": "Alavés",
+    "Deportivo de La Coruña": "Deportivo La Coruña",
+}
+
+
+def limpar_nome(nome: str) -> str:
+    """Tira as siglas de tipo de clube das pontas: 'SE Palmeiras' -> 'Palmeiras'."""
+    nome = nome.replace(" ", " ").replace("&nbsp;", " ").strip()
+    if nome in NOME_ESPECIAL:
+        return NOME_ESPECIAL[nome]
+    partes = nome.split()
+    while len(partes) > 1 and partes[0].upper().strip(".") in SIGLAS:
+        partes.pop(0)
+    while len(partes) > 1 and partes[-1].upper().strip(".") in SIGLAS:
+        partes.pop()
+    limpo = " ".join(partes)
+    return NOME_ESPECIAL.get(limpo, limpo)
+
 # Rotulos de posicao do site -> grupos de premio de valor (ver fm/ratings.py).
 POSICAO_MAP = {
     "goleiro": "GK",
@@ -81,6 +128,11 @@ def parse_valor(texto: str) -> int | None:
 def baixar_liga(slug: str = "campeonato-brasileiro-serie-a", wettbewerb: str = "BRA1") -> str:
     url = f"{BASE}/{slug}/startseite/wettbewerb/{wettbewerb}"
     return get(url, f"tm/liga_{wettbewerb}.html", delay=1.5)
+
+
+def baixar_competicao(chave: str) -> str:
+    slug, wettbewerb, _ = COMPETICOES[chave]
+    return baixar_liga(slug, wettbewerb)
 
 
 def extrair_clubes(html: str) -> list[TMClube]:
@@ -158,14 +210,22 @@ def extrair_elenco(html: str) -> list[TMJogador]:
     return jogadores
 
 
-def baixar_estatisticas(verein_id: str) -> str:
-    """Pagina de dados de desempenho da temporada. Join por spieler_id: sem casar nomes."""
+def baixar_estatisticas(verein_id: str, temporada: str | None = None) -> str:
+    """Desempenho da temporada. Join por spieler_id: sem casar nomes entre fontes."""
+    if temporada:
+        url = f"{BASE}/clube/leistungsdaten/verein/{verein_id}/plus/1/saison_id/{temporada}"
+        return get(url, f"tm/stats_{verein_id}_{temporada}.html", delay=1.5)
     url = f"{BASE}/clube/leistungsdaten/verein/{verein_id}"
     return get(url, f"tm/stats_{verein_id}.html", delay=1.5)
 
 
 def extrair_estatisticas(html: str) -> dict[str, dict[str, int]]:
-    """{spieler_id: {jogos, gols, minutos}}. Colunas: ..., No Plantel, Jogos, Gols, Minutos."""
+    """{spieler_id: {jogos, gols, minutos}}.
+
+    A visao simples tem 8 colunas e a detalhada (plus/1, usada para temporada passada) tem
+    15. Jogos e gols ficam nos indices 5 e 6 nas duas, e minutos e sempre a ULTIMA coluna
+    -- por isso cels[-1], e nao um indice fixo.
+    """
     sopa = BeautifulSoup(html, "lxml")
     tabela = sopa.select_one("table.items")
     if tabela is None:
@@ -184,5 +244,6 @@ def extrair_estatisticas(html: str) -> dict[str, dict[str, int]]:
         if len(cels) < 8:
             continue
         sid = re.search(r"/profil/spieler/(\d+)", a["href"]).group(1)
-        saida[sid] = {"jogos": num(cels[5]), "gols": num(cels[6]), "minutos": num(cels[7])}
+        saida[sid] = {"jogos": num(cels[5]), "gols": num(cels[6]),
+                      "minutos": num(cels[-1])}
     return saida
