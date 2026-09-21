@@ -14,6 +14,7 @@ Formato:
     [[clubes]]
     nome  = "Clube Exemplo"
     forca = 76                                  # overall do onze titular
+    id_fonte = "20016"                          # opcional: id na fonte (CBF, API, ...)
     apelido = "CEX"                             # opcional
     cores = ["#c8102e", "#ffffff"]              # opcional
     # Escalacao nominal e OPCIONAL. O que faltar para 24 jogadores e gerado.
@@ -51,6 +52,7 @@ class PackClub:
     forca: float
     apelido: str | None = None
     cores: tuple[str, str] | None = None
+    id_fonte: str | None = None   # id do clube na fonte do pack (ex.: Codigo_Clube da CBF)
     jogadores: list[PackPlayer] = field(default_factory=list)
 
 
@@ -98,7 +100,8 @@ def load_pack(name: str) -> Pack:
         cores = c.get("cores")
         clubes.append(PackClub(
             nome=c["nome"], forca=float(c["forca"]), apelido=c.get("apelido"),
-            cores=(cores[0], cores[1]) if cores else None, jogadores=jogadores))
+            cores=(cores[0], cores[1]) if cores else None,
+            id_fonte=c.get("id_fonte"), jogadores=jogadores))
 
     if not clubes:
         raise ValueError(f"pack {name!r} nao tem clubes")
