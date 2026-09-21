@@ -1,0 +1,20 @@
+# Brasil -- Serie A.
+# O carater da liga esta em [forca] e [estilo]. O motor nao sabe que pais e' este.
+id     = "bra_a"
+nome   = "Serie A"
+pais   = "BRA"
+tier   = 1
+clubes = 20
+
+[estilo]
+gols_base = 1.19   # o Brasileirao e' mais travado que as ligas inglesas
+mando     = 0.36   # distancias continentais: quem viaja 3.000 km chega pior
+
+[forca]
+perfil = "linear"  # liga achatada: muitos clubes equivalentes
+topo   = 77
+base   = 59
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 0, descem = 4 }

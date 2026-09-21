@@ -1,0 +1,23 @@
+# Copa nacional: mata-mata puro sobre os clubes da liga.
+# A mentalidade de copa e' o "todo jogo vale a vida": jogo travado e gap comprimido.
+id     = "bra_copa"
+nome   = "Copa Nacional"
+pais   = "BRA"
+tier   = 1
+clubes = 16
+
+[estilo]
+gols_base = 1.19
+mando     = 0.36
+
+[forca]
+perfil = "linear"
+topo   = 77
+base   = 57
+
+[formato]
+fases = [ { tipo = "knockout", maos = 2, penaltis = true } ]
+
+[mentalidade]
+gols_mult  = 0.90   # -10% de gols: ninguem se expoe
+compressao = 0.20   # o pequeno se fecha e encurta a diferenca

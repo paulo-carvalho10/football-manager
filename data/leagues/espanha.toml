@@ -1,0 +1,21 @@
+# Espanha -- Primeira Divisao.
+# Mesmo motor, mesmas constantes. Muda so a distribuicao de forca dos clubes.
+id     = "esp_1"
+nome   = "Primera Division"
+pais   = "ESP"
+tier   = 1
+clubes = 20
+
+[estilo]
+gols_base = 1.26
+mando     = 0.28   # distancias curtas: mando pesa menos que no Brasil
+
+[forca]
+perfil    = "gigantes"
+destaques = [88, 86, 82]   # elite descolada do resto
+topo      = 75
+base      = 53
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 0, descem = 3 }
