@@ -27,9 +27,14 @@ class Diagnostico:
     baixo: float
     alto: float
     explicacao: str
+    informativo: bool = False   # medido e impresso, mas nao reprova: problema conhecido
 
     @property
     def ok(self) -> bool:
+        return self.informativo or self.baixo <= self.valor <= self.alto
+
+    @property
+    def dentro_da_faixa(self) -> bool:
         return self.baixo <= self.valor <= self.alto
 
 
@@ -82,6 +87,17 @@ def diagnosticar(clubes: list[dict]) -> list[Diagnostico]:
 
     return [
         Diagnostico(
+            "inflacao_por_riqueza_do_clube", _inflacao(clubes), -0.40, 0.40,
+            "Correlacao entre a riqueza do clube e o residuo do jogador contra a linha "
+            "valor->overall. Positivo = clube rico entrega overall acima do que o valor "
+            "do jogador justifica. PROBLEMA CONHECIDO, ainda nao corrigido: a inclinacao "
+            "ENTRE clubes (a forca, tirada do valor de elenco) e mais ingreme que a "
+            "inclinacao DENTRO do clube, e um unico ajuste linear sobra residuo. Vale "
+            "cerca de 2 a 3 pontos de overall nos extremos. Consertar exige reajustar "
+            "beta e beta_global juntos contra os dois portoes, nao e um parametro solto. "
+            "O teto por posicao trata o sintoma onde ele mais aparece (lateral), nao a "
+            "causa.", informativo=True),
+        Diagnostico(
             "goleiro_vs_linha", float(np.mean(gk) - np.mean(linha)) if gk and linha else 0.0,
             -1.5, 1.5,
             "O mercado paga bem menos por goleiro. Se a correcao de posicao estiver errada, "
@@ -112,3 +128,35 @@ def diagnosticar(clubes: list[dict]) -> list[Diagnostico]:
             "mesma divisao. Faixa comeca em 7 e nao em 8 porque segunda divisao e "
             "genuinamente mais achatada -- o dinheiro nela e mais parecido entre clubes."),
     ]
+
+
+def _inflacao(clubes: list[dict]) -> float:
+    """Correlacao entre riqueza do clube e o residuo dos seus jogadores.
+
+    Ajusta ovr sobre ln(valor) POR POSICAO usando a liga inteira, depois pergunta se o
+    residuo medio de cada clube acompanha a riqueza dele.
+    """
+    pontos = [(c, j) for c in clubes for j in c["jogadores"]
+              if (j.get("valor") or 0) > 0 and j.get("posicao")]
+    riqueza = {c["nome"]: sum(j.get("valor") or 0 for j in c["jogadores"]) for c in clubes}
+    por_pos: dict[str, list] = {}
+    for _, j in pontos:
+        por_pos.setdefault(j["posicao"], []).append(j)
+    coef = {}
+    for pos, js in por_pos.items():
+        if len(js) >= 12:
+            coef[pos] = np.polyfit(np.log([j["valor"] for j in js]),
+                                   [j["ovr"] for j in js], 1)
+    residuos: dict[str, list[float]] = {}
+    for c, j in pontos:
+        if j["posicao"] in coef:
+            a, b = coef[j["posicao"]]
+            residuos.setdefault(c["nome"], []).append(
+                j["ovr"] - (a * np.log(j["valor"]) + b))
+    if len(residuos) < 6:
+        return 0.0
+    v = np.log([max(riqueza[n], 1) for n in residuos])
+    r = np.array([np.mean(x) for x in residuos.values()])
+    if v.std() == 0 or r.std() == 0:
+        return 0.0
+    return float(np.corrcoef(v, r)[0, 1])

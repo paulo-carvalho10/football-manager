@@ -108,6 +108,10 @@ def escrever_pack(montados: list[ClubeMontado], destino, cabecalho: str) -> int:
 
 BETAS_PADRAO = {"bra_a": 7.0, "bra_b": 4.0, "esp_1": 7.0, "esp_2": 5.0}
 
+# Quem a importacao deixou de fora, por competicao. A CLI imprime -- descarte silencioso
+# de pessoa real e pior que erro.
+DESCARTADOS: dict[str, list[str]] = {}
+
 
 def montar_mundo(betas: dict[str, float] | None = None) -> dict[str, list[ClubeMontado]]:
     """Monta varias competicoes juntas, para que o nivel ENTRE ligas saia do dado.
@@ -132,10 +136,16 @@ def montar_mundo(betas: dict[str, float] | None = None) -> dict[str, list[ClubeM
         ref_passado = minutos_referencia([{"minutos": s.get("minutos", 0)}
                                           for d in passado.values() for s in d.values()])
         montados = []
+        descartados: list[str] = []
         for c in clubes:
             nome = NOME_PACK.get(c.verein_id) or tm.limpar_nome(c.nome)
             bruto = []
             for j in elencos[c.verein_id]:
+                if not j.posicao:
+                    # Posicao e informacao essencial e nao se chuta: chutar seria inventar
+                    # dado sobre uma pessoa real. Sem ela, o jogador nao entra.
+                    descartados.append(f"{j.nome} ({c.nome}): sem posicao na fonte")
+                    continue
                 st = stats[c.verein_id].get(j.spieler_id, {})
                 ant = passado.get(c.verein_id, {}).get(j.spieler_id, {})
                 minutos, min_ant = st.get("minutos", 0), ant.get("minutos", 0)
@@ -160,6 +170,8 @@ def montar_mundo(betas: dict[str, float] | None = None) -> dict[str, list[ClubeM
                 jogadores=converter_elenco(
                     bruto, forca, k_pos=K_POS_POR_LIGA.get(comp))))
         mundo[comp] = montados
+        if descartados:
+            DESCARTADOS[comp] = descartados
     return mundo
 
 

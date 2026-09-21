@@ -192,6 +192,7 @@ def cmd_importar(args):
     from fm.calibration import report
     from fm.importer.build import (
         BETAS_PADRAO,
+        DESCARTADOS,
         aplicar_ajustes,
         escrever_pack,
         montar_mundo,
@@ -213,6 +214,8 @@ def cmd_importar(args):
         saida, liga = SAIDA_PADRAO[comp]
         for linha in aplicar_ajustes(saida, montados):
             print(f"    ajuste manual: {linha}")
+        for linha in DESCARTADOS.get(comp, []):
+            print(f"    descartado: {linha}")
         forcas = [c.forca for c in montados]
         n_jog = sum(len(c.jogadores) for c in montados)
         print()
@@ -248,9 +251,12 @@ def cmd_diagnostico(args):
           f"{len(clubes)} clubes, {n} jogadores")
     print()
     for d in diagnosticar(clubes):
-        print(f"{'ok ' if d.ok else 'XX '} {d.nome:24s} {d.valor:8.2f}   "
-              f"[{d.baixo}, {d.alto}]")
-        if not d.ok:
+        if d.informativo:
+            marca = "ok " if d.dentro_da_faixa else "!! "
+        else:
+            marca = "ok " if d.ok else "XX "
+        print(f"{marca} {d.nome:30s} {d.valor:8.2f}   [{d.baixo}, {d.alto}]")
+        if not d.dentro_da_faixa:
             print(f"      -> {d.explicacao}")
 
 

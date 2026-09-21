@@ -66,6 +66,18 @@ valor_elenco = 209480000
   id_fonte = "844797"
 
   [[clubes.jogadores]]
+  nome = "Vitor Roque"
+  pos = "FW"
+  idade = 21
+  ovr = 81
+  pot = 88
+  valor = 38000000
+  partidas = 20
+  minutos = 1812
+  gols = 9
+  id_fonte = "943837"
+
+  [[clubes.jogadores]]
   nome = "Carlos Miguel"
   pos = "GK"
   idade = 27
@@ -180,18 +192,6 @@ valor_elenco = 209480000
   minutos = 3998
   gols = 5
   id_fonte = "458710"
-
-  [[clubes.jogadores]]
-  nome = "Vitor Roque"
-  pos = "FW"
-  idade = 21
-  ovr = 78
-  pot = 88
-  valor = 38000000
-  partidas = 20
-  minutos = 1812
-  gols = 9
-  id_fonte = "943837"
 
   [[clubes.jogadores]]
   nome = "Bruno Fuchs"
