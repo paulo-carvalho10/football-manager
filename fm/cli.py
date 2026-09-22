@@ -329,20 +329,25 @@ def cmd_jogar(args):
     from fm.carreira import Carreira, saves_disponiveis
     from fm.jogo import jogar
 
+    # a piramide inteira, nao uma divisao solta: sem a de baixo nao ha acesso nem
+    # rebaixamento, e a carreira perde justamente o que a faz carreira
+    ligas = [n.strip() for n in args.liga.split(",") if n.strip()]
+
     if args.carregar:
         c = Carreira.carregar(args.carregar)
-        print(f"carregado: {c.clube.name}, rodada {c.rodada}")
+        print(f"carregado: {c.clube.name}, {c.liga}, temporada {c.temporada}, "
+              f"rodada {c.rodada}")
     else:
         if not args.clube:
-            cfg = load_league(args.liga)
             from fm.generate import build_world
-            mundo, _ = build_world([cfg], seed=args.seed)
-            nomes = sorted(x.name for x in mundo.clubs.values())
-            print(f"escolha um clube de {args.liga} com --clube:")
-            for n in nomes:
-                print(f"   {n}")
+            mundo, _ = build_world([load_league(n) for n in ligas], seed=args.seed)
+            print(f"escolha um clube com --clube (de {', '.join(ligas)}):")
+            for liga in ligas:
+                lid = load_league(liga)["id"]
+                nomes = sorted(mundo.clubs[cid].name for cid in mundo.leagues[lid].club_ids)
+                print(f"  {liga}: {', '.join(nomes)}")
             return
-        c = Carreira.nova(args.liga, args.clube, seed=args.seed)
+        c = Carreira.nova(ligas, args.clube, seed=args.seed)
     if saves_disponiveis():
         print(f"saves existentes: {', '.join(saves_disponiveis())}")
     jogar(c)
@@ -423,8 +428,9 @@ def main(argv=None):
 
     p = sub.add_parser("jogar", parents=[common],
                        help="joga uma carreira: rodada a rodada, escalando o time")
-    p.add_argument("--liga", default="brasil_real")
-    p.add_argument("--clube", default=None, help="sem isto, lista os clubes da liga")
+    p.add_argument("--liga", default="brasil_real,brasil_b_real",
+                   help="divisoes da piramide, separadas por virgula (da 1a para a ultima)")
+    p.add_argument("--clube", default=None, help="sem isto, lista os clubes das ligas")
     p.add_argument("--carregar", default=None, help="nome de um save")
     p.set_defaults(func=cmd_jogar)
 

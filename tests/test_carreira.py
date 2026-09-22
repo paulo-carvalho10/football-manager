@@ -26,10 +26,10 @@ def test_avancar_joga_exatamente_uma_rodada(carreira):
     assert partida is not None, "a partida do usuario tem de vir detalhada"
     assert partida.gols_casa + partida.gols_fora == len(
         [e for e in partida.eventos if e.tipo == "gol"])
-    assert len(carreira.resultados) == jogos_por_rodada
+    assert len(carreira.jogos()) == jogos_por_rodada
     carreira.avancar()
     assert carreira.rodada == 2
-    assert len(carreira.resultados) == 2 * jogos_por_rodada
+    assert len(carreira.jogos()) == 2 * jogos_por_rodada
 
 
 def test_a_escalacao_do_usuario_manda(carreira):
@@ -66,8 +66,8 @@ def test_save_e_replay_identico(tmp_path, carreira):
 
     recarregada = Carreira.carregar("teste_pytest")
     assert recarregada.rodada == carreira.rodada
-    original = [(r.home, r.away, r.goals_home, r.goals_away) for r in carreira.resultados]
-    replay = [(r.home, r.away, r.goals_home, r.goals_away) for r in recarregada.resultados]
+    original = [(r.home, r.away, r.goals_home, r.goals_away) for r in carreira.jogos()]
+    replay = [(r.home, r.away, r.goals_home, r.goals_away) for r in recarregada.jogos()]
     assert original == replay
     assert recarregada.posicao() == carreira.posicao()
     caminho.unlink()

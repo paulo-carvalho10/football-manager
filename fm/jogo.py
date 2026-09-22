@@ -37,7 +37,7 @@ def tela_lobby(c: Carreira) -> None:
     clube = c.clube
     print()
     print(_linha("="))
-    pos = f"{c.posicao()}o lugar" if c.resultados else "temporada nao comecou"
+    pos = f"{c.posicao()}o lugar" if c.jogos() else "temporada nao comecou"
     pts = next((r.points for r in c.tabela() if r.club_id == c.clube_id), 0)
     print(f"  {clube.name.upper():<34s}{c.liga:>20s}  {c.temporada}")
     print(f"  {pos} | {pts} pts | rodada {c.rodada} de {c.total_de_rodadas}"
@@ -69,7 +69,8 @@ def tela_lobby(c: Carreira) -> None:
     if len(elenco) > 24:
         print(f"  ... e mais {len(elenco) - 24} no elenco")
     print(_linha())
-    print("  [1] Escalar   [2] Jogar rodada   [3] Tabela   [4] Elenco completo"
+    acao = "[2] ENCERRAR TEMPORADA" if c.acabou else "[2] Jogar rodada"
+    print(f"  [1] Escalar   {acao}   [3] Tabela   [4] Elenco completo"
           "   [5] Salvar   [0] Sair")
 
 
@@ -275,6 +276,58 @@ def tela_partida(c: Carreira) -> None:
     input("  [enter] volta ao lobby ")
 
 
+# ---------------------------------------------------------------- fim de temporada
+
+def tela_fim_de_temporada(c: Carreira) -> None:
+    """A virada do ano: quem subiu, quem caiu, quem parou e quem chegou.
+
+    E a tela que transforma uma temporada solta em carreira. Depois dela o calendario e
+    outro, o elenco e outro e o clube pode estar noutra divisao.
+    """
+    encerrada = c.temporada
+    tabela = c.tabela()
+    print()
+    print(_linha("="))
+    print(f"  FIM DA TEMPORADA {encerrada}".center(LARGURA))
+    print(_linha("="))
+
+    r = c.virar_o_ano()
+
+    for liga, campeao in r["campeoes"].items():
+        print(f"  CAMPEAO  {liga:<22s} {campeao}")
+    print(_linha())
+    meu = next(i for i, linha in enumerate(tabela, 1) if linha.club_id == c.clube_id)
+    pts = next(linha.points for linha in tabela if linha.club_id == c.clube_id)
+    destino = ("  >>> ACESSO! voce sobe de divisao" if r.get("subi") else
+               "  >>> REBAIXADO. ano que vem e na divisao de baixo" if r.get("cai") else "")
+    print(f"  {c.clube.name.upper()}: {meu}o lugar, {pts} pontos")
+    if destino:
+        print(destino)
+    if r["promovidos"]:
+        print(f"  sobem:  {', '.join(r['promovidos'])}")
+    if r["rebaixados"]:
+        print(f"  descem: {', '.join(r['rebaixados'])}")
+
+    print(_linha())
+    print(f"  NO MUNDO  {r['aposentaram']} penduraram as chuteiras, "
+          f"{r['revelados']} subiram da base")
+    print(f"  NO {c.clube.name.upper()}")
+    if r["aposentadorias_do_clube"]:
+        print("    penduraram as chuteiras: " + ", ".join(r["aposentadorias_do_clube"]))
+    if r["destaques_do_clube"]:
+        print("    evoluiram:")
+        for nome, antes, agora, idade in r["destaques_do_clube"]:
+            print(f"      {nome:24s} {antes} -> {agora}  ({idade} anos)")
+    if r["base_do_clube"]:
+        print("    subiram da base:")
+        for nome, over, pot, idade in r["base_do_clube"]:
+            print(f"      {nome:24s} {over} (pot {pot})  ({idade} anos)")
+    print(_linha("="))
+    print(f"  Temporada {c.temporada} comeca agora. {c.total_de_rodadas} rodadas na "
+          f"{c.liga}.")
+    input("  [enter] ")
+
+
 # ---------------------------------------------------------------- ciclo
 
 def jogar(c: Carreira) -> None:
@@ -289,9 +342,9 @@ def jogar(c: Carreira) -> None:
             tela_escalacao(c)
         elif escolha == "2":
             if c.acabou:
-                print("  !! a temporada acabou")
-                continue
-            tela_partida(c)
+                tela_fim_de_temporada(c)
+            else:
+                tela_partida(c)
         elif escolha == "3":
             tela_tabela(c)
             input("  [enter] ")
