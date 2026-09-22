@@ -20,38 +20,70 @@ ESCUDOS_DIR = Path(__file__).resolve().parent.parent.parent / "data" / "escudos"
 URL_CBF = "https://conteudo.cbf.com.br/clubes/{id}/escudo.jpg"
 LADO = 96          # tudo normalizado no mesmo tamanho: a interface fica limpa
 MARGEM = 2
-CORES_NA_PALETA = 48
+TOLERANCIA_BRANCO = 238
+
+
+def _fundo_transparente(img):
+    """Apaga so o branco LIGADO A BORDA, por preenchimento a partir dos cantos.
+
+    Apagar todo pixel branco, que era o que eu fazia, esburaca o escudo por dentro: o do
+    Santos e majoritariamente branco e sobrava so o contorno. Fundo e o branco conectado
+    a moldura; branco cercado por desenho e parte do escudo.
+    """
+    from collections import deque
+    largura, altura = img.size
+    pix = img.load()
+
+    def e_fundo(x, y):
+        r, g, b, a = pix[x, y]
+        claro = min(r, g, b) > TOLERANCIA_BRANCO
+        return a > 0 and claro
+
+    fila = deque()
+    visto = set()
+    for x in range(largura):
+        for y in (0, altura - 1):
+            if e_fundo(x, y):
+                fila.append((x, y))
+    for y in range(altura):
+        for x in (0, largura - 1):
+            if e_fundo(x, y):
+                fila.append((x, y))
+    while fila:
+        x, y = fila.popleft()
+        if (x, y) in visto or not (0 <= x < largura and 0 <= y < altura):
+            continue
+        visto.add((x, y))
+        if not e_fundo(x, y):
+            continue
+        r, g, b, _ = pix[x, y]
+        pix[x, y] = (r, g, b, 0)
+        fila.extend(((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)))
+    return img
 
 
 def _recortar_e_normalizar(bruto: bytes) -> bytes:
-    """Tira a moldura branca, encaixa num quadrado e devolve PNG com fundo transparente.
+    """Escudo normalizado: fundo transparente, proporcao preservada, tamanho unico.
 
     Os arquivos da CBF vem em tamanhos diferentes e com fundo branco; sem normalizar, a
     interface fica com escudos de alturas diferentes e retangulos brancos sobre o tema
-    escuro do clube.
+    escuro dos clubes de preto.
     """
     from PIL import Image
     img = Image.open(io.BytesIO(bruto)).convert("RGBA")
-    pixels = img.load()
-    largura, altura = img.size
-    for x in range(largura):
-        for y in range(altura):
-            r, g, b, a = pixels[x, y]
-            if r > 243 and g > 243 and b > 243:
-                pixels[x, y] = (r, g, b, 0)
+    img = _fundo_transparente(img)
     caixa = img.getbbox()
     if caixa:
         img = img.crop(caixa)
-    lado = max(img.size)
-    quadro = Image.new("RGBA", (lado, lado), (0, 0, 0, 0))
-    quadro.paste(img, ((lado - img.size[0]) // 2, (lado - img.size[1]) // 2))
-    quadro = quadro.resize((LADO - 2 * MARGEM, LADO - 2 * MARGEM), Image.LANCZOS)
+
+    # cabe dentro do quadro SEM esticar: a proporcao do escudo e preservada
+    util = LADO - 2 * MARGEM
+    escala = min(util / img.size[0], util / img.size[1])
+    novo = (max(1, round(img.size[0] * escala)), max(1, round(img.size[1] * escala)))
+    img = img.resize(novo, Image.LANCZOS)
+
     final = Image.new("RGBA", (LADO, LADO), (0, 0, 0, 0))
-    final.paste(quadro, (MARGEM, MARGEM))
-    # Paleta em vez de cor real: escudo e desenho chapado, nao fotografia. Em 96px nao
-    # ha diferenca visivel, e o peso importa quando os 20 escudos viajam embutidos numa
-    # pagina. FASTOCTREE porque e o unico metodo que o Pillow aceita com transparencia.
-    final = final.quantize(colors=CORES_NA_PALETA, method=Image.FASTOCTREE)
+    final.paste(img, ((LADO - novo[0]) // 2, (LADO - novo[1]) // 2), img)
     saida = io.BytesIO()
     final.save(saida, "PNG", optimize=True)
     return saida.getvalue()
