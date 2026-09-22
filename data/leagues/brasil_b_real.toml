@@ -3,6 +3,7 @@ id     = "bra_b_real"
 nome   = "Serie B"
 pais   = "BRA"
 tier   = 2
+codigo = "BRA2"   # competicao na fonte
 clubes = 20
 
 pack        = "brasil_serie_b"

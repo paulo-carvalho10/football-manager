@@ -236,7 +236,7 @@ def generate_league(world: World, cfg: dict, streams: Streams, *, next_id: list[
     patterns = CLUB_PATTERNS[country]
 
     league = League(id=cfg["id"], name=cfg["nome"], country=country,
-                    tier=int(cfg.get("tier", 1)))
+                    tier=int(cfg.get("tier", 1)), codigo=cfg.get("codigo"))
 
     for i, strength in enumerate(strength_profile(cfg, n)):
         club_id = next_id[0]

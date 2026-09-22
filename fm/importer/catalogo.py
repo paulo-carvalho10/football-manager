@@ -117,13 +117,42 @@ def catalogo_completo() -> list[Competicao]:
 # Paulista (128 clubes) aparece como nivel 1 e a Serie D como nivel 4. Por isso a selecao
 # nao pode ser so por nivel.
 PADRAO_NAO_LIGA = re.compile(
-    r"copa|cup|coupe|beker|kypello|pokal|cupa|kup|taça|taca|supercopa|super cup|"
-    r"sub-?\d|u-?\d\d|youth|juvenil|feminin|women|amateur|amador|reserve|reserva|"
-    r"play-?off|promo|relegation|estadual|regional|interior|"
-    r"paulista|carioca|mineiro|gaúcho|gaucho|baiano|pernambucano|paranaense|catarinense|"
-    r"goiano|cearense|potiguar|sergipano|alagoano|paraibano|piauiense|maranhense|"
-    r"clausura|apertura",
+    r"copa|copinha|cup|coupe|beker|kypello|pokal|cupa|kup|taça|taca|supercopa|"
+    r"super cup|campeón de campeones|campeon de campeones|fase final|play-?off|"
+    r"sub-?\d|u-?\d\d|youth|juvenil|júnior|junior|feminin|women|amateur|amador|"
+    r"reserve|reserva|promo|relegation|estadual|regional|interior|"
+    r"paulista|carioca|mineiro|gaúcho|gaucho|baiano|pernambucano|paranaense|paraense|"
+    r"catarinense|goiano|cearense|potiguar|sergipano|alagoano|paraibano|piauiense|"
+    r"maranhense",
     re.I)
+
+# Preferencia dentro de um par de turnos: Apertura e o turno de abertura, entao fica ele.
+# NAO se exclui Apertura/Clausura por nome -- isso apagava a primeira divisao inteira da
+# Argentina, do Mexico, do Uruguai, da Colombia e do Paraguai, e sobrava so a segunda.
+ORDEM_TURNO = ("apertura", "dimayor i", "primera división apertura")
+PENALIZA_TURNO = ("clausura", "intermedio", "dimayor ii", " ii")
+
+
+def _rank_turno(c: Competicao) -> int:
+    # PENALIZA antes de ORDEM, senao "dimayor ii" casa com "dimayor i" por substring
+    nome = (c.nome or "").lower()
+    if any(t in nome for t in PENALIZA_TURNO):
+        return 2
+    if any(t in nome for t in ORDEM_TURNO):
+        return 0
+    return 1
+
+
+def deduplicar_turnos(comps: list[Competicao]) -> list[Competicao]:
+    """Apertura e Clausura sao a MESMA liga contada duas vezes: mesmos clubes, mesmo valor.
+
+    Importar as duas duplicaria cada clube no mundo. Agrupa por pais + nivel + numero de
+    clubes + valor total e fica com um turno so.
+    """
+    grupos: dict[tuple, list] = {}
+    for c in comps:
+        grupos.setdefault((c.pais, c.nivel, c.clubes, c.valor_total), []).append(c)
+    return [sorted(g, key=_rank_turno)[0] for g in grupos.values()]
 
 
 def e_liga_nacional(c: Competicao) -> bool:

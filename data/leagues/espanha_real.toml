@@ -3,6 +3,7 @@ id     = "esp_1_real"
 nome   = "Primera Division"
 pais   = "ESP"
 tier   = 1
+codigo = "ES1"   # competicao na fonte
 clubes = 20
 
 pack        = "espanha_primera"

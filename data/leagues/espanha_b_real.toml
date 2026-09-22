@@ -4,6 +4,7 @@ id     = "esp_2_real"
 nome   = "Segunda Division"
 pais   = "ESP"
 tier   = 2
+codigo = "ES2"   # competicao na fonte
 clubes = 22
 
 pack        = "espanha_segunda"

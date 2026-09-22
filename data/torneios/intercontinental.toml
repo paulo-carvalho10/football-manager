@@ -1,0 +1,17 @@
+# Intercontinental, no fim do ano: o campeao da Champions contra o da Libertadores.
+# Jogo unico em campo neutro -- por isso o mando e zero.
+id   = "intercontinental"
+nome = "Copa Intercontinental"
+
+qualificados_de = ["champions", "libertadores"]
+
+[estilo]
+gols_base = 1.22
+mando     = 0.0     # campo neutro
+
+[mentalidade]
+gols_mult  = 0.88   # decisao de jogo unico: ninguem se expoe
+compressao = 0.22
+
+[formato]
+fases = [ { tipo = "knockout", maos = 1, penaltis = true } ]

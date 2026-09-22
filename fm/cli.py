@@ -235,6 +235,58 @@ def cmd_importar(args):
         print(f"    escrito {destino} ({destino.stat().st_size / 1024:.0f} KB)")
 
 
+def cmd_torneio(args):
+    """Simula uma competicao continental sobre o mundo montado das ligas disponiveis."""
+
+    from fm.generate import build_world
+    from fm.rng import Streams
+    from fm.torneio import carregar, disponiveis, participantes, simular
+
+    ligas = [load_league(n) for n in available()
+             if (load_league(n).get("formato", {}).get("fases", [{}])[0].get("tipo")
+                 == "round_robin")]
+    world, _ = build_world(ligas, seed=args.seed)
+    streams = Streams(args.seed)
+
+    campeoes: dict[str, int] = {}
+    alvos = disponiveis() if args.torneio == "todos" else [args.torneio]
+    for nome in alvos:
+        t = carregar(nome)
+        if t.qualificados_de:
+            elenco = [campeoes[q] for q in t.qualificados_de if q in campeoes]
+            if len(elenco) < 2:
+                print(f"\n{t.nome}: faltam os campeoes de {t.qualificados_de}")
+                continue
+        else:
+            elenco = participantes(world, t.vagas)
+            codigos = {lg.codigo for lg in world.leagues.values() if lg.codigo}
+            faltando = {lg: n for lg, n in t.vagas.items()
+                        if lg not in codigos and lg not in world.leagues}
+            if faltando:
+                print(f"\n{t.nome}: {sum(faltando.values())} vagas sem liga importada "
+                      f"({', '.join(sorted(faltando))})")
+        if len(elenco) < 2:
+            print(f"{t.nome}: participantes de menos ({len(elenco)})")
+            continue
+
+        print(f"\n{t.nome}  --  {len(elenco)} participantes")
+        for cid in sorted(elenco, key=lambda c: -world.clubs[c].designed_strength)[:8]:
+            c = world.clubs[cid]
+            print(f"   {c.designed_strength:5.1f}  {c.name:24s} ({c.league_id})")
+        if len(elenco) > 8:
+            print(f"   ... e mais {len(elenco) - 8}")
+
+        titulos: dict[int, int] = {}
+        for ed in range(args.edicoes):
+            rng = streams.get("torneio", nome, ed)
+            vencedor = simular(world, t, rng, elenco=list(elenco))[0]
+            titulos[vencedor] = titulos.get(vencedor, 0) + 1
+        campeoes[nome] = max(titulos, key=lambda k: titulos[k])
+        print(f"   titulos em {args.edicoes} edicoes:")
+        for cid, n in sorted(titulos.items(), key=lambda x: -x[1])[:6]:
+            print(f"     {100*n/args.edicoes:5.1f}%  {world.clubs[cid].name}")
+
+
 def cmd_diagnostico(args):
     """Roda os diagnosticos da conversao valor -> overall sobre um pack importado."""
     from fm.diagnostics import diagnosticar
@@ -300,6 +352,13 @@ def main(argv=None):
                    help="todas, bra_a, bra_b, esp_1 ou esp_2")
     p.add_argument("--temporadas", type=int, default=1500)
     p.set_defaults(func=cmd_importar)
+
+    p = sub.add_parser("torneio", parents=[common],
+                       help="simula Champions, Libertadores e Intercontinental")
+    p.add_argument("--torneio", default="todos",
+                   help="todos, champions, libertadores ou intercontinental")
+    p.add_argument("--edicoes", type=int, default=2000)
+    p.set_defaults(func=cmd_torneio)
 
     p = sub.add_parser("diagnostico", parents=[common],
                        help="valida a conversao valor -> overall de um pack")

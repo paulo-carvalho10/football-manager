@@ -4,6 +4,7 @@ id     = "bra_a_real"
 nome   = "Serie A"
 pais   = "BRA"
 tier   = 1
+codigo = "BRA1"   # competicao na fonte
 clubes = 20
 
 pack        = "brasil_serie_a"

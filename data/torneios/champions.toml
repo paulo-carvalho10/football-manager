@@ -1,0 +1,38 @@
+# Liga dos Campeoes. Participantes FIXOS: dado o mundo, o campo e sempre o mesmo.
+# As vagas nao sao lista de nomes digitada a mao -- sao vagas POR LIGA, e hoje vao para os
+# clubes mais fortes de cada uma. Quando existir carreira, basta trocar "mais forte" por
+# "posicao final na tabela" em fm.torneio.participantes e isto vira classificacao de
+# verdade, sem mexer em mais nada.
+id   = "champions"
+nome = "Liga dos Campeoes"
+
+[estilo]
+gols_base = 1.31    # nivel altissimo dos dois lados: jogo mais aberto que liga nacional
+mando     = 0.24    # mando pesa menos: elenco grande viaja bem
+
+[mentalidade]
+gols_mult  = 0.94   # mata-mata continental e mais cauteloso que pontos corridos
+compressao = 0.12   # o azarao se fecha, mas menos que numa copa nacional
+
+[formato]
+fases = [
+  { tipo = "groups",   grupos = 8, voltas = 2, avancam = 2 },
+  { tipo = "knockout", maos = 2, penaltis = true },
+]
+
+# 32 vagas
+[vagas]
+GB1  = 4
+ES1  = 4
+IT1  = 4
+L1   = 4
+FR1  = 3
+PO1  = 2
+NL1  = 2
+BE1  = 2
+TR1  = 2
+GR1  = 1
+UKR1 = 1
+RU1  = 1
+A1   = 1
+C1   = 1

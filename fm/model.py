@@ -103,6 +103,8 @@ class League:
     name: str
     country: str
     tier: int
+    codigo: str | None = None   # codigo da competicao na fonte (ex.: BRA1). E por ele que
+                                # os torneios continentais encontram a liga.
     club_ids: list[int] = field(default_factory=list)
 
 

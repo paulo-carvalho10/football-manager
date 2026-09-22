@@ -130,6 +130,12 @@ def baixar_liga(slug: str = "campeonato-brasileiro-serie-a", wettbewerb: str = "
     return get(url, f"tm/liga_{wettbewerb}.html", delay=1.5)
 
 
+def baixar_por_codigo(codigo: str) -> str:
+    """Pagina da liga por codigo do Transfermarkt, sem precisar do slug do nome."""
+    return get(f"{BASE}/liga/startseite/wettbewerb/{codigo}", f"tm/liga_{codigo}.html",
+               delay=1.5)
+
+
 def baixar_competicao(chave: str) -> str:
     slug, wettbewerb, _ = COMPETICOES[chave]
     return baixar_liga(slug, wettbewerb)

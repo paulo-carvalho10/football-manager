@@ -1,0 +1,29 @@
+# Copa Libertadores. Mesmo desenho da Champions: vagas por liga, campo fixo.
+id   = "libertadores"
+nome = "Copa Libertadores"
+
+[estilo]
+gols_base = 1.16    # sul-americana e mais truncada que a europeia
+mando     = 0.42    # e o mando pesa MUITO mais: altitude, gramado, viagem e caldeirao
+
+[mentalidade]
+gols_mult  = 0.90
+compressao = 0.18
+
+[formato]
+fases = [
+  { tipo = "groups",   grupos = 8, voltas = 2, avancam = 2 },
+  { tipo = "knockout", maos = 2, penaltis = true },
+]
+
+# 32 vagas
+[vagas]
+BRA1 = 8
+ARG1 = 6
+URU1 = 3
+COLP = 3
+CLPD = 3
+EC1N = 3
+PR1A = 3
+BRA2 = 2
+ARG2 = 1
