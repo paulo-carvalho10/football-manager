@@ -104,3 +104,46 @@ def test_copa_do_brasil_roda_de_ponta_a_ponta(mundo):
     campeao = simular(world, t, np.random.default_rng(9), elenco=[], tabelas=tabelas)
     assert len(campeao) == 1
     assert campeao[0] in world.clubs
+
+
+def test_cascata_de_vagas_quando_o_campeao_da_copa_ja_esta_classificado(mundo):
+    """A regra que o Paulo descreveu, e que a CBF confirma.
+
+    Vaga direta: 1o ao 4o do Brasileirao + campeao da Copa do Brasil.
+    Pre-Libertadores: 5o do Brasileirao + vice da Copa.
+
+    Se o campeao da Copa for o 2o colocado, ele ja estava classificado: a 4a vaga direta
+    desce para o 5o e a vaga da pre passa do 5o para o 6o.
+    """
+    from fm.torneio import resolver_classificacao
+    world, tabelas = mundo
+    t = carregar("libertadores")
+    bra = tabelas["BRA1"]
+    liga_bra = world.clubs[bra[0]].league_id
+
+    def do_brasileirao(clubes):
+        return [bra.index(c) + 1 for c in clubes
+                if world.clubs[c].league_id == liga_bra]
+
+    # campeao da Copa fora do G4 (10o): nada cascateia
+    fora = resolver_classificacao(world, t, tabelas,
+                                  {"copa_do_brasil": [bra[9], bra[14]]})
+    assert sorted(do_brasileirao(fora["grupos"])) == [1, 2, 3, 4, 10]
+    assert 5 in do_brasileirao(fora["pre"])
+
+    # campeao da Copa e o 2o colocado: o 5o sobe para direta e a pre vira o 6o
+    dentro = resolver_classificacao(world, t, tabelas,
+                                    {"copa_do_brasil": [bra[1], bra[14]]})
+    assert sorted(do_brasileirao(dentro["grupos"])) == [1, 2, 3, 4, 5]
+    assert 6 in do_brasileirao(dentro["pre"])
+    assert 5 not in do_brasileirao(dentro["pre"])
+
+
+def test_ninguem_se_classifica_duas_vezes(mundo):
+    from fm.torneio import resolver_classificacao
+    world, tabelas = mundo
+    t = carregar("libertadores")
+    r = resolver_classificacao(world, t, tabelas,
+                               {"copa_do_brasil": [tabelas["BRA1"][1], tabelas["BRA1"][3]]})
+    todos = [c for lista in r.values() for c in lista]
+    assert len(todos) == len(set(todos)), "clube ocupando duas vagas"

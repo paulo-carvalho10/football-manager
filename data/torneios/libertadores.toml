@@ -1,52 +1,139 @@
-# Copa Libertadores. Mesmo desenho da Champions: vagas por liga, campo fixo.
+# Copa Libertadores, com pre-Libertadores e CASCATA DE VAGAS.
+#
+# Regra brasileira conferida na fonte (distribuicao para 2027):
+#   diretas para os grupos: 1o ao 4o do Brasileirao + campeao da Copa do Brasil
+#   pre-Libertadores:       5o do Brasileirao + vice da Copa do Brasil
+#
+# A CASCATA sai de graca da ordem das regras: cada uma leva os N primeiros da sua fonte que
+# AINDA NAO se classificaram. Se o campeao da Copa do Brasil for o 2o do Brasileirao, a
+# regra do Brasileirao pula ele e desce -- a 4a vaga direta chega ao 5o e a vaga da pre
+# passa do 5o para o 6o. Exatamente como na vida real.
+#
+# NAO CONFERIDO: a divisao dos outros paises e estimativa. Confira antes de tratar como
+# verdade. So a regra do Brasil veio da fonte.
 id   = "libertadores"
 nome = "Copa Libertadores"
 
 [estilo]
-gols_base = 1.16    # sul-americana e mais truncada que a europeia
-mando     = 0.42    # e o mando pesa MUITO mais: altitude, gramado, viagem e caldeirao
+gols_base = 1.16
+mando     = 0.42   # altitude, gramado, viagem e caldeirao pesam muito mais aqui
 
 [mentalidade]
 gols_mult  = 0.90
 compressao = 0.18
 
-[formato]
-fases = [
-  { tipo = "groups",   grupos = 8, voltas = 2, avancam = 2 },
-  { tipo = "knockout", maos = 2, penaltis = true },
-]
+# --- vagas, em ORDEM DE PRIORIDADE (a ordem e o que produz a cascata)
+[[classificacao]]
+fonte    = "copa_do_brasil"   # ordem da fonte: campeao, vice
+vagas    = 1
+entra_em = "grupos"
 
-# 28 vagas por CLASSIFICACAO das ligas importadas.
-# A Serie B nao da vaga na Libertadores (quem da e a Copa do Brasil, que ainda nao existe
-# aqui); as vagas do Brasil ficam todas na Serie A.
-[vagas]
-BRA1 = 8
-ARG1 = 6
-URU1 = 3
-COLP = 3
-CLPD = 3
-EC1N = 3
-PR1A = 2
+[[classificacao]]
+fonte    = "BRA1"
+vagas    = 4
+entra_em = "grupos"
 
-# 4 vagas FIXAS: Bolivia e Venezuela nao tem liga importada, entao nao ha tabela de onde
-# classificar. Estes clubes entram direto, com forca declarada aqui. E o unico caso em que
-# participante e fixo -- todo o resto sai da classificacao.
+[[classificacao]]
+fonte    = "ARG1"
+vagas    = 5
+entra_em = "grupos"
+
+[[classificacao]]
+fonte    = "URU1"
+vagas    = 2
+entra_em = "grupos"
+[[classificacao]]
+fonte    = "COLP"
+vagas    = 2
+entra_em = "grupos"
+[[classificacao]]
+fonte    = "CLPD"
+vagas    = 2
+entra_em = "grupos"
+[[classificacao]]
+fonte    = "EC1N"
+vagas    = 2
+entra_em = "grupos"
+[[classificacao]]
+fonte    = "PR1A"
+vagas    = 2
+entra_em = "grupos"
+
+# --- pre-Libertadores
+[[classificacao]]
+fonte    = "copa_do_brasil"   # o vice, porque o campeao ja foi levado acima
+vagas    = 1
+entra_em = "pre"
+
+[[classificacao]]
+fonte    = "BRA1"
+vagas    = 1
+entra_em = "pre"
+
+[[classificacao]]
+fonte    = "ARG1"
+vagas    = 2
+entra_em = "pre"
+[[classificacao]]
+fonte    = "URU1"
+vagas    = 2
+entra_em = "pre"
+[[classificacao]]
+fonte    = "COLP"
+vagas    = 2
+entra_em = "pre"
+[[classificacao]]
+fonte    = "CLPD"
+vagas    = 2
+entra_em = "pre"
+[[classificacao]]
+fonte    = "EC1N"
+vagas    = 2
+entra_em = "pre"
+[[classificacao]]
+fonte    = "PR1A"
+vagas    = 2
+entra_em = "pre"
+
+# Bolivia e Venezuela nao tem liga importada: entram fixos.
 [[convidados]]
-nome  = "Bolivar"
-pais  = "BOL"
+nome = "Bolivar"
+pais = "BOL"
 forca = 62
-
+entra_em = "grupos"
 [[convidados]]
-nome  = "The Strongest"
-pais  = "BOL"
+nome = "The Strongest"
+pais = "BOL"
 forca = 60
-
+entra_em = "pre"
 [[convidados]]
-nome  = "Deportivo Tachira"
-pais  = "VEN"
+nome = "Deportivo Tachira"
+pais = "VEN"
 forca = 59
-
+entra_em = "grupos"
 [[convidados]]
-nome  = "Carabobo"
-pais  = "VEN"
+nome = "Carabobo"
+pais = "VEN"
 forca = 58
+entra_em = "pre"
+
+[[formato.fases]]
+nome    = "Pre-Libertadores"
+tipo    = "knockout"
+maos    = 2
+rodadas = 1
+entram  = [ { classificacao = "pre" } ]
+
+[[formato.fases]]
+nome    = "Fase de grupos"
+tipo    = "groups"
+grupos  = 8
+voltas  = 2
+avancam = 2
+entram  = [ { classificacao = "grupos" } ]
+
+[[formato.fases]]
+nome     = "Mata-mata"
+tipo     = "knockout"
+maos     = 2
+penaltis = true

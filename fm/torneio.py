@@ -27,6 +27,7 @@ class Torneio:
     id: str
     nome: str
     vagas: dict[str, int]
+    classificacao_regras: list[dict]
     convidados: list[dict]
     fases: list[dict]
     style: Style
@@ -45,6 +46,7 @@ def carregar(nome: str) -> Torneio:
     m = cfg.get("mentalidade", {})
     return Torneio(
         id=cfg["id"], nome=cfg["nome"], vagas=cfg.get("vagas", {}),
+        classificacao_regras=list(cfg.get("classificacao", [])),
         convidados=list(cfg.get("convidados", [])),
         fases=cfg.get("formato", {}).get("fases", []),
         style=Style(goals_base=float(e.get("gols_base", 1.28)),
@@ -125,13 +127,21 @@ def _grupos_possiveis(n: int, pedido: int) -> int:
     importadas, o campo vem incompleto e travar em "nao divide" nao ajuda ninguem.
     """
     for g in range(min(pedido, n // 2), 0, -1):
-        if n % g == 0 and n // g >= 2:
+        # pontos corridos exige numero PAR de clubes por grupo
+        if n % g == 0 and n // g >= 2 and (n // g) % 2 == 0:
             return g
-    return 1
+    return 0
 
 
 def _fase_grupos(world, clubes, fase, rng, style, mentality):
+    clubes = list(clubes)
     g = _grupos_possiveis(len(clubes), int(fase.get("grupos", 8)))
+    if g == 0 and len(clubes) > 2:
+        # nao ha divisao valida: o mais fraco fica de fora e tenta de novo
+        clubes = sorted(clubes, key=lambda c: -world.clubs[c].designed_strength)[:-1]
+        g = _grupos_possiveis(len(clubes), int(fase.get("grupos", 8)))
+    if g == 0:
+        return clubes
     grupos = group_stage(clubes, g, legs=int(fase.get("voltas", 2)))
     avancam, passa = int(fase.get("avancam", 2)), []
     ratings = {cid: world.team_rating(cid) for cid in clubes}
@@ -150,7 +160,7 @@ def _fase_mata_mata(world, clubes, fase, rng, style, mentality):
     Libertadores entrarem na terceira fase.
     """
     ratings = {cid: world.team_rating(cid) for cid in clubes}
-    vivos = list(clubes)
+    vivos, perdedores = list(clubes), []
     pedido = fase.get("rodadas", "todas")
     restantes = float("inf") if pedido == "todas" else int(pedido)
     visitante = bool(fase.get("visitante_avanca_empate", False))
@@ -171,13 +181,18 @@ def _fase_mata_mata(world, clubes, fase, rng, style, mentality):
         vencedores = knockout_tie(b, a, ratings, rng, style, mentality,
                                   legs=int(fase.get("maos", 2)),
                                   empate_favorece_visitante=visitante)
+        perdedores = [int(x) for x in (np.array(a) + np.array(b) - vencedores)]
         vivos = [int(x) for x in vencedores] + bye
         restantes -= 1
+    if len(vivos) == 1 and perdedores:
+        # o ultimo eliminado e o vice: fontes de classificacao precisam dele
+        vivos = vivos + [perdedores[-1]]
     return vivos
 
 
 def resolver_entradas(world: World, entradas: list[dict],
-                      tabelas: dict[str, list[int]]) -> list[int]:
+                      tabelas: dict[str, list[int]],
+                      classificados: dict[str, list[int]] | None = None) -> list[int]:
     """Clubes que entram NESTA fase, por posicao na tabela da liga de origem.
 
     `{ liga = "BRA1", de = 13, ate = 20 }` = do 13o ao 20o do Brasileirao. E assim que a
@@ -187,6 +202,9 @@ def resolver_entradas(world: World, entradas: list[dict],
     por_codigo = {lg.codigo: lg for lg in world.leagues.values() if lg.codigo}
     saida: list[int] = []
     for e in entradas:
+        if "classificacao" in e:
+            saida += (classificados or {}).get(e["classificacao"], [])
+            continue
         if "convidado" in e:
             saida.append(clube_convidado(world, e["convidado"]))
             continue
@@ -202,13 +220,21 @@ def resolver_entradas(world: World, entradas: list[dict],
 
 def simular(world: World, torneio: Torneio, rng: np.random.Generator,
             elenco: list[int] | None = None,
-            tabelas: dict[str, list[int]] | None = None) -> list[int]:
-    """Roda o torneio e devolve os sobreviventes, do campeao para baixo."""
+            tabelas: dict[str, list[int]] | None = None,
+            copas: dict[str, list[int]] | None = None) -> list[int]:
+    """Roda o torneio e devolve [campeao, vice]."""
     tabelas = tabelas or {}
-    clubes = elenco if elenco is not None else participantes(world, torneio, tabelas)
+    classificados = (resolver_classificacao(world, torneio, tabelas, copas)
+                     if torneio.classificacao_regras or torneio.convidados else {})
+    if elenco is not None:
+        clubes = elenco
+    elif classificados:
+        clubes = []
+    else:
+        clubes = participantes(world, torneio, tabelas)
     for fase in torneio.fases:
         # quem entra so nesta fase se junta a quem sobreviveu da anterior
-        novos = resolver_entradas(world, fase.get("entram", []), tabelas)
+        novos = resolver_entradas(world, fase.get("entram", []), tabelas, classificados)
         clubes = list(clubes) + [c for c in novos if c not in clubes]
         tipo = fase.get("tipo")
         if tipo == "groups":
@@ -231,3 +257,48 @@ def simular(world: World, torneio: Torneio, rng: np.random.Generator,
 
 def disponiveis() -> list[str]:
     return sorted(p.stem for p in TORNEIOS_DIR.glob("*.toml"))
+
+
+def resolver_classificacao(
+    world: World, torneio: Torneio, tabelas: dict[str, list[int]],
+    copas: dict[str, list[int]] | None = None,
+) -> dict[str, list[int]]:
+    """Distribui as vagas por ordem de prioridade, com CASCATA.
+
+    Cada regra pede N vagas de uma fonte ordenada (tabela de liga ou copa) e leva os N
+    primeiros que AINDA NAO se classificaram. A cascata cai fora disso de graca: se o
+    campeao da Copa do Brasil ja e o 2o do Brasileirao, a regra do Brasileirao pula ele e
+    desce -- entao a vaga direta chega ao 5o e a da pre-Libertadores passa do 5o para o 6o.
+    E exatamente o que acontece na vida real.
+    """
+    copas = copas or {}
+    ja: set[int] = set()
+    saida: dict[str, list[int]] = {}
+    for regra in torneio.classificacao_regras:
+        fonte = regra["fonte"]
+        ordem = (copas.get(fonte) or tabelas.get(fonte)
+                 or tabelas.get(_liga_por_codigo(world, fonte)))
+        if not ordem:
+            continue
+        destino = regra.get("entra_em", "grupos")
+        levados = []
+        for cid in ordem:
+            if len(levados) >= int(regra.get("vagas", 1)):
+                break
+            if cid not in ja:
+                ja.add(cid)
+                levados.append(cid)
+        saida.setdefault(destino, []).extend(levados)
+    for dados in torneio.convidados:
+        cid = clube_convidado(world, dados)
+        if cid not in ja:
+            ja.add(cid)
+            saida.setdefault(dados.get("entra_em", "grupos"), []).append(cid)
+    return saida
+
+
+def _liga_por_codigo(world: World, codigo: str) -> str:
+    for lg in world.leagues.values():
+        if lg.codigo == codigo:
+            return lg.id
+    return codigo

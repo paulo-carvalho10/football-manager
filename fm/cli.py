@@ -235,12 +235,30 @@ def cmd_importar(args):
         print(f"    escrito {destino} ({destino.stat().st_size / 1024:.0f} KB)")
 
 
-def cmd_torneio(args):
-    """Simula uma competicao continental sobre o mundo montado das ligas disponiveis."""
+def _ordem_de_dependencia(nomes, carregar):
+    """Copa antes de continental: um torneio que se alimenta de outro roda depois dele."""
+    torneios = {n: carregar(n) for n in nomes}
+    depende = {
+        n: {r["fonte"] for r in t.classificacao_regras if r["fonte"] in torneios}
+        | set(t.qualificados_de) & set(torneios)
+        for n, t in torneios.items()
+    }
+    ordem, pendente = [], dict(depende)
+    while pendente:
+        prontos = sorted(n for n, d in pendente.items() if not (d - set(ordem)))
+        if not prontos:                      # ciclo: resolve na ordem alfabetica
+            prontos = [sorted(pendente)[0]]
+        for n in prontos:
+            ordem.append(n)
+            pendente.pop(n)
+    return ordem
 
+
+def cmd_torneio(args):
+    """Simula as competicoes de copa e continentais sobre o mundo das ligas importadas."""
     from fm.generate import build_world
     from fm.rng import Streams
-    from fm.torneio import carregar, disponiveis, participantes, simular
+    from fm.torneio import carregar, classificacao, disponiveis, simular
 
     ligas = [load_league(n) for n in available()
              if (load_league(n).get("formato", {}).get("fases", [{}])[0].get("tipo")
@@ -249,7 +267,6 @@ def cmd_torneio(args):
     streams = Streams(args.seed)
 
     # As vagas saem da CLASSIFICACAO, entao a temporada de cada liga roda primeiro.
-    from fm.torneio import classificacao
     tabelas: dict[str, list[int]] = {}
     for cfg in ligas:
         liga = world.leagues[cfg["id"]]
@@ -258,52 +275,41 @@ def cmd_torneio(args):
         tabelas[cfg["id"]] = ordem
         if liga.codigo:
             tabelas[liga.codigo] = ordem
-    print(f"temporadas simuladas: {len(ligas)} ligas -> as vagas saem da tabela final")
+    print(f"{len(ligas)} ligas simuladas -- as vagas saem da tabela final")
 
-    campeoes: dict[str, int] = {}
     alvos = disponiveis() if args.torneio == "todos" else [args.torneio]
-    for nome in alvos:
+    copas: dict[str, list[int]] = {}
+    for nome in _ordem_de_dependencia(alvos, carregar):
         t = carregar(nome)
+        elenco = None
         if t.qualificados_de:
-            elenco = [campeoes[q] for q in t.qualificados_de if q in campeoes]
+            elenco = [copas[q][0] for q in t.qualificados_de if q in copas]
             if len(elenco) < 2:
-                print(f"\n{t.nome}: faltam os campeoes de {t.qualificados_de}")
+                print()
+                print(f"{t.nome}: faltam os campeoes de {t.qualificados_de}")
                 continue
-        else:
-            elenco = participantes(world, t, tabelas)
-            if not elenco and t.fases and t.fases[0].get("entram"):
-                elenco = []   # torneio que comeca vazio: todo mundo entra por fase
-            codigos = {lg.codigo for lg in world.leagues.values() if lg.codigo}
-            faltando = {lg: n for lg, n in t.vagas.items()
-                        if lg not in codigos and lg not in world.leagues}
-            if faltando:
-                print(f"\n{t.nome}: {sum(faltando.values())} vagas sem liga importada "
-                      f"({', '.join(sorted(faltando))})")
-        entra_por_fase = any(f.get("entram") for f in t.fases)
-        if len(elenco) < 2 and not entra_por_fase:
-            print(f"{t.nome}: participantes de menos ({len(elenco)})")
-            continue
-
-        rotulo = (f"{len(elenco)} classificados diretos" if elenco
-                  else "campo inteiro entra por fase")
-        print()
-        print(f"{t.nome}  --  {rotulo}")
-        for cid in elenco[:10]:
-            c = world.clubs[cid]
-            pos = ""
-            if c.league_id in tabelas:
-                pos = f"{tabelas[c.league_id].index(cid) + 1}o"
-            print(f"   {c.name:24s} {c.league_id or 'convidado':14s} {pos:>4s}  "
-                  f"forca {c.designed_strength:5.1f}")
-        if len(elenco) > 10:
-            print(f"   ... e mais {len(elenco) - 10}")
 
         titulos: dict[int, int] = {}
+        canonico = None
         for ed in range(args.edicoes):
             rng = streams.get("torneio", nome, ed)
-            vencedor = simular(world, t, rng, elenco=list(elenco), tabelas=tabelas)[0]
-            titulos[vencedor] = titulos.get(vencedor, 0) + 1
-        campeoes[nome] = max(titulos, key=lambda k: titulos[k])
+            fim = simular(world, t, rng,
+                          elenco=list(elenco) if elenco is not None else None,
+                          tabelas=tabelas, copas=copas)
+            if not fim:
+                break
+            titulos[fim[0]] = titulos.get(fim[0], 0) + 1
+            if canonico is None:
+                canonico = fim
+        if canonico is None:
+            print()
+            print(f"{t.nome}: nao rodou (participantes de menos)")
+            continue
+        copas[nome] = canonico
+
+        print()
+        print(f"{t.nome}  --  campeao da temporada: {world.clubs[canonico[0]].name}"
+              + (f", vice: {world.clubs[canonico[1]].name}" if len(canonico) > 1 else ""))
         print(f"   titulos em {args.edicoes} edicoes:")
         for cid, n in sorted(titulos.items(), key=lambda x: -x[1])[:6]:
             print(f"     {100*n/args.edicoes:5.1f}%  {world.clubs[cid].name}")
