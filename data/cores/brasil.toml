@@ -1,0 +1,111 @@
+# Cores dos clubes: primaria e secundaria, em hexadecimal.
+#
+# Ficam FORA do pack porque o pack e gerado pelo importador -- editar as cores la
+# sumiria na proxima importacao. O importador le este arquivo e grava as cores no
+# pack, do mesmo jeito que data/ajustes/ corrige overall.
+#
+# Sao as cores que a interface usa como tema do clube. Pintar o Corinthians de verde
+# porque verde e a cor do jogo e pior que nao pintar nada: verde e a cor do rival.
+
+fonte = "cores conhecidas dos clubes; conferir antes de tratar como oficial"
+verificado = false
+
+[[clubes]]
+nome = "Flamengo"
+primaria = "#E2231A"
+secundaria = "#111111"
+
+[[clubes]]
+nome = "Palmeiras"
+primaria = "#006437"
+secundaria = "#F2F2F2"
+
+[[clubes]]
+nome = "Cruzeiro"
+primaria = "#0B4EA2"
+secundaria = "#F2F2F2"
+
+[[clubes]]
+nome = "Botafogo"
+primaria = "#1A1A1A"
+secundaria = "#F2F2F2"
+
+[[clubes]]
+nome = "Sao Paulo"
+primaria = "#D4232A"
+secundaria = "#111111"
+
+[[clubes]]
+nome = "Atletico Mineiro"
+primaria = "#1A1A1A"
+secundaria = "#F2F2F2"
+
+[[clubes]]
+nome = "Fluminense"
+primaria = "#8B1538"
+secundaria = "#0B6B3A"
+
+[[clubes]]
+nome = "Internacional"
+primaria = "#D8232A"
+secundaria = "#F2F2F2"
+
+[[clubes]]
+nome = "Corinthians"
+primaria = "#1A1A1A"
+secundaria = "#F2F2F2"
+
+[[clubes]]
+nome = "Gremio"
+primaria = "#1A8FC1"
+secundaria = "#111111"
+
+[[clubes]]
+nome = "Bahia"
+primaria = "#0B63B0"
+secundaria = "#D8232A"
+
+[[clubes]]
+nome = "Vasco da Gama"
+primaria = "#1A1A1A"
+secundaria = "#F2F2F2"
+
+[[clubes]]
+nome = "Red Bull Bragantino"
+primaria = "#D8232A"
+secundaria = "#F2F2F2"
+
+[[clubes]]
+nome = "Santos"
+primaria = "#111111"
+secundaria = "#F2F2F2"
+
+[[clubes]]
+nome = "Athletico Paranaense"
+primaria = "#D8232A"
+secundaria = "#111111"
+
+[[clubes]]
+nome = "Mirassol"
+primaria = "#F0C419"
+secundaria = "#0B6B3A"
+
+[[clubes]]
+nome = "Vitoria"
+primaria = "#D8232A"
+secundaria = "#111111"
+
+[[clubes]]
+nome = "Coritiba"
+primaria = "#0B6B3A"
+secundaria = "#F2F2F2"
+
+[[clubes]]
+nome = "Chapecoense"
+primaria = "#0B6B3A"
+secundaria = "#F2F2F2"
+
+[[clubes]]
+nome = "Remo"
+primaria = "#14357F"
+secundaria = "#F2F2F2"

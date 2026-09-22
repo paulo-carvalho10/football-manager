@@ -17,6 +17,7 @@ nome = "Palmeiras"
 forca = 79.7
 id_fonte = "20002"
 valor_elenco = 209480000
+cores = ["#006437", "#F2F2F2"]
 
   [[clubes.jogadores]]
   nome = "Andreas Pereira"
@@ -331,6 +332,7 @@ nome = "Flamengo"
 forca = 79.4
 id_fonte = "20016"
 valor_elenco = 204250000
+cores = ["#E2231A", "#111111"]
 
   [[clubes.jogadores]]
   nome = "Lucas Paquetá"
@@ -648,6 +650,7 @@ nome = "Cruzeiro"
 forca = 77.3
 id_fonte = "59849"
 valor_elenco = 168400000
+cores = ["#0B4EA2", "#F2F2F2"]
 
   [[clubes.jogadores]]
   nome = "Gerson"
@@ -1017,6 +1020,7 @@ nome = "Corinthians"
 forca = 76.1
 id_fonte = "20001"
 valor_elenco = 149800000
+cores = ["#1A1A1A", "#F2F2F2"]
 
   [[clubes.jogadores]]
   nome = "Breno Bidon"
@@ -1412,6 +1416,7 @@ nome = "Vasco da Gama"
 forca = 74.8
 id_fonte = "60646"
 valor_elenco = 133350000
+cores = ["#1A1A1A", "#F2F2F2"]
 
   [[clubes.jogadores]]
   nome = "Léo Jardim"
@@ -1827,6 +1832,7 @@ nome = "Botafogo"
 forca = 73.4
 id_fonte = "60175"
 valor_elenco = 117100000
+cores = ["#1A1A1A", "#F2F2F2"]
 
   [[clubes.jogadores]]
   nome = "Danilo"
@@ -2204,6 +2210,7 @@ nome = "Fluminense"
 forca = 73.0
 id_fonte = "20014"
 valor_elenco = 112630000
+cores = ["#8B1538", "#0B6B3A"]
 
   [[clubes.jogadores]]
   nome = "Hércules"
@@ -2599,6 +2606,7 @@ nome = "Bahia"
 forca = 72.4
 id_fonte = "61377"
 valor_elenco = 106200000
+cores = ["#0B63B0", "#D8232A"]
 
   [[clubes.jogadores]]
   nome = "Luciano Juba"
@@ -2965,6 +2973,7 @@ nome = "Santos"
 forca = 72.3
 id_fonte = "20008"
 valor_elenco = 105100000
+cores = ["#111111", "#F2F2F2"]
 
   [[clubes.jogadores]]
   nome = "Neymar"
@@ -3369,6 +3378,7 @@ nome = "Red Bull Bragantino"
 forca = 71.5
 id_fonte = "20007"
 valor_elenco = 97850000
+cores = ["#D8232A", "#F2F2F2"]
 
   [[clubes.jogadores]]
   nome = "Juninho Capixaba"
@@ -3776,6 +3786,7 @@ nome = "Atletico Mineiro"
 forca = 71.4
 id_fonte = "62194"
 valor_elenco = 96700000
+cores = ["#1A1A1A", "#F2F2F2"]
 
   [[clubes.jogadores]]
   nome = "Renan Lodi"
@@ -4143,6 +4154,7 @@ nome = "Sao Paulo"
 forca = 69.9
 id_fonte = "20005"
 valor_elenco = 84300000
+cores = ["#D4232A", "#111111"]
 
   [[clubes.jogadores]]
   nome = "Marcos Antônio"
@@ -4587,6 +4599,7 @@ nome = "Gremio"
 forca = 69.3
 id_fonte = "20013"
 valor_elenco = 79950000
+cores = ["#1A8FC1", "#111111"]
 
   [[clubes.jogadores]]
   nome = "Carlos Vinícius"
@@ -4978,6 +4991,7 @@ nome = "Internacional"
 forca = 68.7
 id_fonte = "20011"
 valor_elenco = 75500000
+cores = ["#D8232A", "#F2F2F2"]
 
   [[clubes.jogadores]]
   nome = "Alexandro Bernabei"
@@ -5331,6 +5345,7 @@ nome = "Athletico Paranaense"
 forca = 67.7
 id_fonte = "20052"
 valor_elenco = 68980000
+cores = ["#D8232A", "#111111"]
 
   [[clubes.jogadores]]
   nome = "Kevin Viveros"
@@ -5679,6 +5694,7 @@ nome = "Coritiba"
 forca = 63.2
 id_fonte = "61590"
 valor_elenco = 45350000
+cores = ["#0B6B3A", "#F2F2F2"]
 
   [[clubes.jogadores]]
   nome = "Jacy"
@@ -6045,6 +6061,7 @@ nome = "Vitoria"
 forca = 62.7
 id_fonte = "20018"
 valor_elenco = 43480000
+cores = ["#D8232A", "#111111"]
 
   [[clubes.jogadores]]
   nome = "Lucas Arcanjo"
@@ -6455,6 +6472,7 @@ nome = "Mirassol"
 forca = 58.5
 id_fonte = "20385"
 valor_elenco = 29480000
+cores = ["#F0C419", "#0B6B3A"]
 
   [[clubes.jogadores]]
   nome = "Neto Moura"
@@ -6834,6 +6852,7 @@ nome = "Remo"
 forca = 57.0
 id_fonte = "20022"
 valor_elenco = 25630000
+cores = ["#14357F", "#F2F2F2"]
 
   [[clubes.jogadores]]
   nome = "Leonel Picco"
@@ -7210,6 +7229,7 @@ nome = "Chapecoense"
 forca = 54.4
 id_fonte = "20086"
 valor_elenco = 20000000
+cores = ["#0B6B3A", "#F2F2F2"]
 
   [[clubes.jogadores]]
   nome = "Carvalheira"

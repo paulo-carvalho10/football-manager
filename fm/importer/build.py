@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 
 from fm.importer import transfermarkt as tm
 from fm.ratings import converter_elenco
@@ -30,6 +31,24 @@ ID_CBF = {
 }
 
 MINUTOS_POR_JOGO = 90
+CORES_DIR = Path(__file__).resolve().parent.parent.parent / "data" / "cores"
+
+
+def carregar_cores() -> dict[str, tuple[str, str]]:
+    """Cores por nome de clube, de data/cores/*.toml.
+
+    Fora do pack de proposito: o pack e gerado, entao cor editada nele sumiria na proxima
+    importacao.
+    """
+    import tomllib
+    fora: dict[str, tuple[str, str]] = {}
+    if not CORES_DIR.exists():
+        return fora
+    for arq in sorted(CORES_DIR.glob("*.toml")):
+        with arq.open("rb") as fh:
+            for c in tomllib.load(fh).get("clubes", []):
+                fora[c["nome"]] = (c["primaria"], c["secundaria"])
+    return fora
 
 
 @dataclass(slots=True)
@@ -40,6 +59,7 @@ class ClubeMontado:
     id_cbf: str | None
     id_tm: str
     jogadores: list[dict]
+    cores: tuple[str, str] | None = None
 
 
 def baixar_tudo(competicao: str = "bra_a") -> tuple[
@@ -80,6 +100,8 @@ def escrever_pack(montados: list[ClubeMontado], destino, cabecalho: str) -> int:
         if c.id_cbf:
             L.append(f'id_fonte = "{c.id_cbf}"')
         L.append(f"valor_elenco = {c.valor_elenco}")
+        if c.cores:
+            L.append(f'cores = ["{c.cores[0]}", "{c.cores[1]}"]')
         for j in sorted(c.jogadores, key=lambda x: (-x["ovr"], x["nome"])):
             n_jogadores += 1
             L.append("")
@@ -130,6 +152,7 @@ def montar_mundo(betas: dict[str, float] | None = None) -> dict[str, list[ClubeM
     mundo: dict[str, list[ClubeMontado]] = {}
     for comp, (clubes, elencos, stats) in baixado.items():
         # cada liga esta num ponto diferente da temporada: a referencia de minutos e dela
+        cores = carregar_cores()
         passado = baixar_passado(comp, clubes)
         ref = minutos_referencia([{"minutos": s.get("minutos", 0)}
                                   for d in stats.values() for s in d.values()])
@@ -167,6 +190,7 @@ def montar_mundo(betas: dict[str, float] | None = None) -> dict[str, list[ClubeM
             montados.append(ClubeMontado(
                 nome=nome, forca=forca, valor_elenco=c.valor_elenco,
                 id_cbf=ID_CBF.get(nome), id_tm=c.verein_id,
+                cores=cores.get(nome),
                 jogadores=converter_elenco(
                     bruto, forca, k_pos=K_POS_POR_LIGA.get(comp))))
         mundo[comp] = montados
