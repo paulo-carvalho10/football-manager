@@ -70,7 +70,10 @@ def test_rodadas_limita_a_fase(mundo):
     assert len(uma) == 8
     todas = _fase_mata_mata(world, clubes, {"maos": 2}, np.random.default_rng(3), Style(),
                             Mentality.CUP)
-    assert len(todas) == 1
+    # a fase que vai ate o fim devolve [campeao, vice]: fonte de classificacao precisa
+    # do vice (o da Copa do Brasil leva vaga na pre-Libertadores)
+    assert len(todas) == 2
+    assert todas[0] != todas[1]
 
 
 def test_bye_e_sorteado_e_nao_premia_o_mais_forte(mundo):
@@ -101,9 +104,12 @@ def test_visitante_avanca_no_empate():
 def test_copa_do_brasil_roda_de_ponta_a_ponta(mundo):
     world, tabelas = mundo
     t = carregar("copa_do_brasil")
-    campeao = simular(world, t, np.random.default_rng(9), elenco=[], tabelas=tabelas)
-    assert len(campeao) == 1
-    assert campeao[0] in world.clubs
+    fim = simular(world, t, np.random.default_rng(9), elenco=[], tabelas=tabelas)
+    assert len(fim) == 2, "copa tem de devolver campeao e vice"
+    campeao, vice = fim
+    assert campeao in world.clubs
+    assert vice in world.clubs
+    assert campeao != vice
 
 
 def test_cascata_de_vagas_quando_o_campeao_da_copa_ja_esta_classificado(mundo):
