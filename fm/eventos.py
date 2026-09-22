@@ -154,13 +154,28 @@ def simular_partida(
         gc = rng.poisson(float(lc) * mult_casa * peso)
         gf = rng.poisson(float(lf) * mult_fora * peso)
 
+        # Gols e cartoes do bloco sao sorteados JUNTOS e processados em ordem de
+        # minuto. Separados, saiam fora de causalidade: um jogador levava vermelho aos
+        # 51 e marcava aos 58, ja expulso.
+        agenda = []
         for _ in range(int(gc)):
-            _marcar(p, world, rng, casa, p.em_campo_casa, minuto_ini)
+            agenda.append((int(minuto_ini + rng.integers(1, MINUTOS_POR_BLOCO + 1)),
+                           "gol", casa))
         for _ in range(int(gf)):
-            _marcar(p, world, rng, fora, p.em_campo_fora, minuto_ini)
+            agenda.append((int(minuto_ini + rng.integers(1, MINUTOS_POR_BLOCO + 1)),
+                           "gol", fora))
+        for clube_lado in (casa, fora):
+            for _ in range(int(rng.poisson(AMARELOS_POR_TIME / BLOCOS))):
+                agenda.append((int(minuto_ini + rng.integers(1, MINUTOS_POR_BLOCO + 1)),
+                               "cartao", clube_lado))
+        agenda.sort(key=lambda x: x[0])
 
-        _cartoes(p, world, rng, casa, p.em_campo_casa, minuto_ini, amarelados)
-        _cartoes(p, world, rng, fora, p.em_campo_fora, minuto_ini, amarelados)
+        for minuto, tipo, clube_lado in agenda:
+            em_campo = p.em_campo_casa if clube_lado == casa else p.em_campo_fora
+            if tipo == "gol":
+                _marcar(p, world, rng, clube_lado, em_campo, minuto)
+            else:
+                _cartao(p, world, rng, clube_lado, em_campo, minuto, amarelados)
 
         if substituicoes and bloco < BLOCOS - 1:
             for clube, sai, entra in (substituicoes(p, minuto_ini + MINUTOS_POR_BLOCO) or []):
@@ -179,11 +194,10 @@ def simular_partida(
     return p
 
 
-def _marcar(p: Partida, world, rng, clube: int, em_campo: list[int], minuto_ini: int) -> None:
+def _marcar(p: Partida, world, rng, clube: int, em_campo: list[int], minuto: int) -> None:
     autor = _sortear(rng, em_campo, world, PESO_DE_GOL)
     candidatos = [i for i in em_campo if i != autor]
     assist = _sortear(rng, candidatos, world, PESO_DE_ASSISTENCIA) if candidatos else None
-    minuto = int(minuto_ini + rng.integers(1, MINUTOS_POR_BLOCO + 1))
     if clube == p.casa:
         p.gols_casa += 1
     else:
@@ -193,30 +207,19 @@ def _marcar(p: Partida, world, rng, clube: int, em_campo: list[int], minuto_ini:
                             texto=f"GOL! {nome}"))
 
 
-def _cartoes(p: Partida, world, rng, clube: int, em_campo: list[int],
-             minuto_ini: int, amarelados: set[int]) -> None:
-    """Cartoes do bloco, processados EM ORDEM DE MINUTO.
-
-    Sem ordenar antes, dois cartoes do mesmo bloco saiam fora de causalidade: um jogador
-    levava vermelho aos 51 e amarelo aos 58, ja expulso.
-    """
-    quantos = int(rng.poisson(AMARELOS_POR_TIME / BLOCOS))
-    if not quantos:
+def _cartao(p: Partida, world, rng, clube: int, em_campo: list[int],
+            minuto: int, amarelados: set[int]) -> None:
+    quem = _sortear(rng, em_campo, world, PESO_DE_CARTAO)
+    if quem is None:
         return
-    minutos = sorted(int(minuto_ini + rng.integers(1, MINUTOS_POR_BLOCO + 1))
-                     for _ in range(quantos))
-    for minuto in minutos:
-        quem = _sortear(rng, em_campo, world, PESO_DE_CARTAO)
-        if quem is None:
-            return
-        if quem in amarelados or rng.random() < CHANCE_DE_VERMELHO:
-            p.eventos.append(Evento(minuto, "vermelho", clube, jogador=quem,
-                                    texto=f"VERMELHO em {world.players[quem].name}"))
-            em_campo.remove(quem)
-        else:
-            amarelados.add(quem)
-            p.eventos.append(Evento(minuto, "amarelo", clube, jogador=quem,
-                                    texto=f"amarelo em {world.players[quem].name}"))
+    if quem in amarelados or rng.random() < CHANCE_DE_VERMELHO:
+        p.eventos.append(Evento(minuto, "vermelho", clube, jogador=quem,
+                                texto=f"VERMELHO em {world.players[quem].name}"))
+        em_campo.remove(quem)
+    else:
+        amarelados.add(quem)
+        p.eventos.append(Evento(minuto, "amarelo", clube, jogador=quem,
+                                texto=f"amarelo em {world.players[quem].name}"))
 
 
 def _fechar_estatisticas(p: Partida, rng) -> None:
