@@ -27,6 +27,7 @@ class Torneio:
     id: str
     nome: str
     vagas: dict[str, int]
+    convidados: list[dict]
     fases: list[dict]
     style: Style
     mentality: Mentality
@@ -44,6 +45,7 @@ def carregar(nome: str) -> Torneio:
     m = cfg.get("mentalidade", {})
     return Torneio(
         id=cfg["id"], nome=cfg["nome"], vagas=cfg.get("vagas", {}),
+        convidados=list(cfg.get("convidados", [])),
         fases=cfg.get("formato", {}).get("fases", []),
         style=Style(goals_base=float(e.get("gols_base", 1.28)),
                     home_adv=float(e.get("mando", 0.26))),
@@ -53,23 +55,66 @@ def carregar(nome: str) -> Torneio:
         qualificados_de=list(cfg.get("qualificados_de", [])))
 
 
-def participantes(world: World, vagas: dict[str, int]) -> list[int]:
-    """As N vagas de cada liga vao para os N clubes mais fortes dela.
+def classificacao(world: World, liga, style: Style,
+                  rng: np.random.Generator) -> list[int]:
+    """Tabela final da liga, SIMULADA. Devolve os clubes em ordem de classificacao."""
+    from fm.season import play_league_season
+    rep = play_league_season(world, liga.id, style, rng, track_condition=False)
+    return [linha.club_id for linha in rep.table]
 
-    Hoje "mais forte" e a forca desenhada. Com carreira, vira a posicao final na tabela --
-    e so esta funcao muda.
+
+def clube_convidado(world: World, dados: dict) -> int:
+    """Cria no mundo um clube que nao pertence a nenhuma liga importada.
+
+    E para os participantes de paises cuja liga nao foi importada: nao ha tabela de onde
+    classificar, entao eles entram FIXOS, com a forca declarada no arquivo do torneio.
     """
-    # as vagas sao declaradas pelo CODIGO da competicao na fonte (BRA1, ES1...), nao pelo
-    # id interno da liga, porque o codigo e o identificador estavel entre importacoes
+    for c in world.clubs.values():
+        if c.name == dados["nome"]:
+            return c.id
+    from fm.generate import _build_squad
+    from fm.model import Club
+    from fm.pack import PackClub
+    from fm.rng import Streams
+
+    club_id = max(world.clubs, default=0) + 1
+    forca = float(dados["forca"])
+    clube = Club(id=club_id, name=dados["nome"], country=dados.get("pais", "???"),
+                 league_id="", reputation=int(np.clip((forca - 45) * 2.6, 5, 99)),
+                 designed_strength=forca, color_primary="#333333",
+                 color_secondary="#dddddd")
+    proximo = [max(world.players, default=0) + 1]
+    _build_squad(world, clube, PackClub(nome=dados["nome"], forca=forca), forca,
+                 Streams(hash(dados["nome"]) & 0xFFFF).get("convidado"), proximo,
+                 dados.get("pais_jogadores", "BRA"), world.season_year)
+    world.clubs[club_id] = clube
+    return club_id
+
+
+def participantes(world: World, torneio: Torneio,
+                  tabelas: dict[str, list[int]] | None = None) -> list[int]:
+    """Quem disputa o torneio.
+
+    Duas origens, de proposito diferentes:
+
+    - **Liga importada**: as N vagas vao para os N primeiros da CLASSIFICACAO daquela liga.
+      Se ninguem simulou a temporada ainda, cai na forca desenhada como aproximacao, mas o
+      caminho normal e a tabela.
+    - **Liga nao importada**: nao ha tabela de onde classificar, entao o clube entra FIXO,
+      declarado em [[convidados]] com nome e forca.
+    """
+    tabelas = tabelas or {}
     por_codigo = {lg.codigo: lg for lg in world.leagues.values() if lg.codigo}
     escolhidos: list[int] = []
-    for liga_id, n in vagas.items():
+    for liga_id, n in torneio.vagas.items():
         liga = por_codigo.get(liga_id) or world.leagues.get(liga_id)
         if liga is None:
             continue
-        ordenados = sorted(liga.club_ids,
-                           key=lambda cid: -world.clubs[cid].designed_strength)
-        escolhidos += ordenados[:n]
+        ordem = tabelas.get(liga_id) or tabelas.get(liga.id) or sorted(
+            liga.club_ids, key=lambda cid: -world.clubs[cid].designed_strength)
+        escolhidos += ordem[:n]
+    for dados in torneio.convidados:
+        escolhidos.append(clube_convidado(world, dados))
     return escolhidos
 
 
@@ -117,7 +162,7 @@ def _fase_mata_mata(world, clubes, fase, rng, style, mentality):
 def simular(world: World, torneio: Torneio, rng: np.random.Generator,
             elenco: list[int] | None = None) -> list[int]:
     """Roda o torneio e devolve os sobreviventes, do campeao para baixo."""
-    clubes = elenco if elenco is not None else participantes(world, torneio.vagas)
+    clubes = elenco if elenco is not None else participantes(world, torneio)
     for fase in torneio.fases:
         tipo = fase.get("tipo")
         if tipo == "groups":

@@ -16,7 +16,9 @@ fases = [
   { tipo = "knockout", maos = 2, penaltis = true },
 ]
 
-# 32 vagas
+# 28 vagas por CLASSIFICACAO das ligas importadas.
+# A Serie B nao da vaga na Libertadores (quem da e a Copa do Brasil, que ainda nao existe
+# aqui); as vagas do Brasil ficam todas na Serie A.
 [vagas]
 BRA1 = 8
 ARG1 = 6
@@ -24,6 +26,27 @@ URU1 = 3
 COLP = 3
 CLPD = 3
 EC1N = 3
-PR1A = 3
-BRA2 = 2
-ARG2 = 1
+PR1A = 2
+
+# 4 vagas FIXAS: Bolivia e Venezuela nao tem liga importada, entao nao ha tabela de onde
+# classificar. Estes clubes entram direto, com forca declarada aqui. E o unico caso em que
+# participante e fixo -- todo o resto sai da classificacao.
+[[convidados]]
+nome  = "Bolivar"
+pais  = "BOL"
+forca = 62
+
+[[convidados]]
+nome  = "The Strongest"
+pais  = "BOL"
+forca = 60
+
+[[convidados]]
+nome  = "Deportivo Tachira"
+pais  = "VEN"
+forca = 59
+
+[[convidados]]
+nome  = "Carabobo"
+pais  = "VEN"
+forca = 58

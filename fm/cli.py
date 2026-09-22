@@ -248,6 +248,18 @@ def cmd_torneio(args):
     world, _ = build_world(ligas, seed=args.seed)
     streams = Streams(args.seed)
 
+    # As vagas saem da CLASSIFICACAO, entao a temporada de cada liga roda primeiro.
+    from fm.torneio import classificacao
+    tabelas: dict[str, list[int]] = {}
+    for cfg in ligas:
+        liga = world.leagues[cfg["id"]]
+        ordem = classificacao(world, liga, style_of(cfg),
+                              streams.get("liga", cfg["id"], args.seed))
+        tabelas[cfg["id"]] = ordem
+        if liga.codigo:
+            tabelas[liga.codigo] = ordem
+    print(f"temporadas simuladas: {len(ligas)} ligas -> as vagas saem da tabela final")
+
     campeoes: dict[str, int] = {}
     alvos = disponiveis() if args.torneio == "todos" else [args.torneio]
     for nome in alvos:
@@ -258,7 +270,7 @@ def cmd_torneio(args):
                 print(f"\n{t.nome}: faltam os campeoes de {t.qualificados_de}")
                 continue
         else:
-            elenco = participantes(world, t.vagas)
+            elenco = participantes(world, t, tabelas)
             codigos = {lg.codigo for lg in world.leagues.values() if lg.codigo}
             faltando = {lg: n for lg, n in t.vagas.items()
                         if lg not in codigos and lg not in world.leagues}
@@ -270,11 +282,15 @@ def cmd_torneio(args):
             continue
 
         print(f"\n{t.nome}  --  {len(elenco)} participantes")
-        for cid in sorted(elenco, key=lambda c: -world.clubs[c].designed_strength)[:8]:
+        for cid in elenco[:10]:
             c = world.clubs[cid]
-            print(f"   {c.designed_strength:5.1f}  {c.name:24s} ({c.league_id})")
-        if len(elenco) > 8:
-            print(f"   ... e mais {len(elenco) - 8}")
+            pos = ""
+            if c.league_id in tabelas:
+                pos = f"{tabelas[c.league_id].index(cid) + 1}o"
+            print(f"   {c.name:24s} {c.league_id or 'convidado':14s} {pos:>4s}  "
+                  f"forca {c.designed_strength:5.1f}")
+        if len(elenco) > 10:
+            print(f"   ... e mais {len(elenco) - 10}")
 
         titulos: dict[int, int] = {}
         for ed in range(args.edicoes):
