@@ -114,13 +114,24 @@ class World:
     players: dict[int, Player] = field(default_factory=dict)
     clubs: dict[int, Club] = field(default_factory=dict)
     leagues: dict[str, League] = field(default_factory=dict)
+    # Escalacao escolhida pelo usuario, por clube. Quando existe, ela manda: a IA nao
+    # reescolhe o onze do time dele a cada rodada.
+    escalacao_fixa: dict[int, list[int]] = field(default_factory=dict)
+    formacao_fixa: dict[int, dict[str, int]] = field(default_factory=dict)
 
     def squad(self, club_id: int) -> list[Player]:
         return [self.players[p] for p in self.clubs[club_id].player_ids]
 
     def best_xi(self, club_id: int, formation: dict[str, int] | None = None) -> list[Player]:
-        """Onze titular: melhor jogador disponivel respeitando as vagas da formacao."""
-        formation = formation or FORMATION_DEFAULT
+        """Onze titular: melhor jogador disponivel respeitando as vagas da formacao.
+
+        Se o usuario escalou o time dele, a escolha dele manda -- inclusive se ele
+        escalou alguem cansado. E o jogo dele.
+        """
+        escolhidos = self.escalacao_fixa.get(club_id)
+        if escolhidos:
+            return [self.players[pid] for pid in escolhidos if pid in self.players]
+        formation = formation or self.formacao_fixa.get(club_id) or FORMATION_DEFAULT
         # ordena pelo overall EFETIVO: jogador desgastado perde a vaga para o reserva
         # inteiro, e a rotacao passa a ser decisao de verdade.
         pool = sorted(self.squad(club_id), key=lambda p: -p.effective_overall)

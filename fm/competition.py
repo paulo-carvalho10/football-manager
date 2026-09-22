@@ -31,27 +31,44 @@ class Result:
 
 
 def round_robin(club_ids: list[int], legs: int = 2) -> list[Fixture]:
-    """Metodo do circulo. Cada clube enfrenta todos os outros `legs` vezes, mando alternado."""
+    """Metodo do circulo para os confrontos, e mando distribuido em seguida.
+
+    Os CONFRONTOS saem do circulo (cada clube enfrenta todos os outros uma vez por turno).
+    O MANDO nao: decidi-lo pela posicao no circulo dava calendario absurdo -- 19 dos 20
+    clubes jogavam um turno inteiro em casa e o outro inteiro fora. O mando e atribuido
+    depois, por regra gulosa que equilibra o total e evita sequencia longa, que e o que
+    um calendario de verdade faz.
+    """
     ids = list(club_ids)
     if len(ids) % 2:
         raise ValueError("pontos corridos exige numero par de clubes")
     n = len(ids)
-    fixtures: list[Fixture] = []
+
+    rodadas: list[list[tuple[int, int]]] = []
     arr = ids[:]
-    for rnd in range(n - 1):
-        for i in range(n // 2):
-            h, a = arr[i], arr[n - 1 - i]
-            if (rnd + i) % 2:
-                h, a = a, h
-            fixtures.append(Fixture(h, a, rnd + 1))
+    for _ in range(n - 1):
+        rodadas.append([(arr[k], arr[n - 1 - k]) for k in range(n // 2)])
         arr = [arr[0], arr[-1], *arr[1:-1]]     # gira todos menos o primeiro
+
+    em_casa: dict[int, int] = dict.fromkeys(ids, 0)
+    ultimo: dict[int, str] = {}
+    fixtures: list[Fixture] = []
+    for r, pares in enumerate(rodadas, start=1):
+        for a, b in pares:
+            # manda quem tem menos jogos em casa; empatado, quem jogou fora na ultima
+            peso_a = (em_casa[a], ultimo.get(a) == "C")
+            peso_b = (em_casa[b], ultimo.get(b) == "C")
+            casa, fora = (a, b) if peso_a <= peso_b else (b, a)
+            em_casa[casa] += 1
+            ultimo[casa], ultimo[fora] = "C", "F"
+            fixtures.append(Fixture(casa, fora, r))
+
     if legs > 1:
         base = fixtures[:]
         for leg in range(1, legs):
-            offset = leg * (n - 1)
-            for f in base:
-                # returno: inverte o mando
-                fixtures.append(Fixture(f.away, f.home, f.matchday + offset))
+            deslocamento = leg * (n - 1)
+            for f in base:                      # returno: inverte o mando
+                fixtures.append(Fixture(f.away, f.home, f.matchday + deslocamento))
     return fixtures
 
 
@@ -72,13 +89,23 @@ def play_fixtures(
     rng: np.random.Generator,
     style: Style,
     mentality: Mentality = Mentality.NORMAL,
+    taticas: dict[int, tuple[float, float]] | None = None,
 ) -> list[Result]:
-    """Simula um lote de partidas de uma vez -- este e' o caminho rapido."""
+    """Simula um lote de partidas de uma vez -- este e o caminho rapido.
+
+    `taticas` mapeia clube -> (multiplica os proprios gols, multiplica os do adversario).
+    So os clubes com tatica escolhida aparecem ali; o resto joga no padrao.
+    """
     if not fixtures:
         return []
     rh = np.array([ratings[f.home] for f in fixtures], dtype=float)
     ra = np.array([ratings[f.away] for f in fixtures], dtype=float)
-    gh, ga = simulate(rh, ra, rng, style, mentality)
+    t = taticas or {}
+    neutro = (1.0, 1.0)
+    # os gols de cada lado sofrem o proprio ataque E a defesa do adversario
+    mc = np.array([t.get(f.home, neutro)[0] * t.get(f.away, neutro)[1] for f in fixtures])
+    mf = np.array([t.get(f.away, neutro)[0] * t.get(f.home, neutro)[1] for f in fixtures])
+    gh, ga = simulate(rh, ra, rng, style, mentality, mult_casa=mc, mult_fora=mf)
     return [Result(f.home, f.away, int(x), int(y), f.matchday)
             for f, x, y in zip(fixtures, gh, ga, strict=True)]
 

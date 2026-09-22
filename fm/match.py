@@ -114,10 +114,16 @@ def simulate(
     rng: np.random.Generator,
     style: Style | None = None,
     mentality: Mentality = Mentality.NORMAL,
+    mult_casa: np.ndarray | float = 1.0,
+    mult_fora: np.ndarray | float = 1.0,
 ) -> tuple[np.ndarray, np.ndarray]:
-    """Placar final. Caminho rapido: milhares de partidas em milissegundos."""
+    """Placar final. Caminho rapido: milhares de partidas em milissegundos.
+
+    `mult_casa` e `mult_fora` sao os multiplicadores de TATICA: cada lado pode ter os
+    proprios gols esperados alterados pela formacao, marcacao e estilo escolhidos.
+    """
     lh, la = lambdas(rating_home, rating_away, style, mentality)
-    return rng.poisson(lh), rng.poisson(la)
+    return rng.poisson(lh * np.asarray(mult_casa)), rng.poisson(la * np.asarray(mult_fora))
 
 
 def penalty_shootout(

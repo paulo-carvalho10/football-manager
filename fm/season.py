@@ -17,8 +17,13 @@ from fm.match import Mentality, Style, effective_rating
 from fm.model import World
 from fm.table import Row, build_table
 
-CONDITION_COST = 12      # o que um jogo tira de quem joga os 90
-CONDITION_RECOVERY = 9   # o que volta por rodada de descanso
+CONDITION_COST = 12          # o que um jogo tira de quem joga os 90
+CONDITION_RECOVERY = 9       # (mantido: outros modulos ainda usam)
+# Recuperacao PROPORCIONAL ao quanto falta para 100. E o que cria EQUILIBRIO: quem joga
+# toda rodada estabiliza perto de 82%, nao desaba ate o piso. Com recuperacao fixa, um
+# titular perdia 3 por rodada sem parar e terminava a temporada no chao -- o que nunca
+# acontece com jogador de verdade.
+TAXA_DE_RECUPERACAO = 0.65
 
 
 @dataclass(slots=True)
@@ -38,17 +43,14 @@ def _ratings(world: World, club_ids: list[int]) -> dict[int, float]:
 
 
 def _apply_condition(world: World, fixtures: list[Fixture]) -> None:
+    """Todo mundo recupera; quem jogou paga o custo por cima."""
     played = {f.home for f in fixtures} | {f.away for f in fixtures}
     for club_id in world.clubs:
-        squad = world.squad(club_id)
-        if club_id in played:
-            xi = {p.id for p in world.best_xi(club_id)}
-            for p in squad:
-                delta = -CONDITION_COST if p.id in xi else CONDITION_RECOVERY
-                p.condition = int(np.clip(p.condition + delta, 25, 100))
-        else:
-            for p in squad:
-                p.condition = int(min(100, p.condition + CONDITION_RECOVERY))
+        xi = {p.id for p in world.best_xi(club_id)} if club_id in played else set()
+        for p in world.squad(club_id):
+            recupera = TAXA_DE_RECUPERACAO * (100 - p.condition)
+            delta = recupera - (CONDITION_COST if p.id in xi else 0)
+            p.condition = int(np.clip(p.condition + delta, 25, 100))
 
 
 def play_league_season(
