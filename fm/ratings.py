@@ -67,12 +67,29 @@ REALIZACAO_PESO = 0.8     # quanto jogar reduz o desconto de imaturidade
 # caros da liga sao todos titulares.
 OVR_MIN, OVR_MAX = 40, 95
 
-# Quanto um jogador pode ficar ABAIXO da forca do clube. Quem joga muito nao pode despencar:
-# minutos sao evidencia de qualidade independente do preco, e num elenco de Serie B a
-# diferenca entre 300 mil e 500 mil de valor e ruido de mercado, nao informacao. Sem este
-# piso, titular de 900 minutos saia 18 pontos abaixo do proprio clube.
+# Quanto um jogador pode ficar ABAIXO da forca do clube. Minutos sao evidencia de qualidade
+# independente do preco, e num elenco de Serie B a diferenca entre 300 mil e 500 mil e ruido
+# de mercado, nao informacao.
 QUEDA_MAXIMA_RESERVA = 16.0
 QUEDA_MAXIMA_TITULAR = 8.0
+
+# Mas o piso NAO vale igual para todo mundo, e essa foi a licao: aplicado cego a idade ele
+# achatou a liga (desvio de overall caiu de 7,6 para 6,98 na Serie B).
+#
+#   garoto da base com valor baixo esta CERTO -- ele ainda nao e bom, e o potencial e que
+#   carrega a historia dele;
+#   veterano em queda com valor baixo tambem esta certo -- ele ja foi;
+#   o piso existe para o jogador em IDADE DE PICO que joga muito e mesmo assim o mercado
+#   nao precifica. Esse era o unico caso realmente errado.
+PESO_DO_PISO_POR_IDADE = {17: 0.0, 18: 0.0, 19: 0.0, 20: 0.0, 21: 0.15, 22: 0.4, 23: 0.7,
+                          24: 1.0, 25: 1.0, 26: 1.0, 27: 1.0, 28: 1.0, 29: 1.0, 30: 1.0,
+                          31: 0.9, 32: 0.7, 33: 0.45, 34: 0.25, 35: 0.1}
+
+
+def peso_do_piso(idade: int | None) -> float:
+    if idade is None:
+        return 0.6
+    return PESO_DO_PISO_POR_IDADE.get(int(idade), 0.0 if idade < 20 else 0.05)
 
 # Teto por posicao. A normalizacao e DENTRO do elenco, entao num clube onde todo mundo e
 # caro (Real Madrid, 1,46 bi) ate o lateral reserva sobe: Cucurella, Alexander-Arnold e
@@ -184,10 +201,18 @@ def converter_elenco(
                                                             strict=True)])
     pot_teto = np.array([aplicar_teto(v, p) for v, p in zip(pot_prov + alpha, posicoes,
                                                             strict=True)])
-    # piso por minutos: quem joga nao despenca abaixo do proprio clube
-    piso = np.array([
-        forca_clube - (QUEDA_MAXIMA_TITULAR * r + QUEDA_MAXIMA_RESERVA * (1 - r))
-        for r in realizacao])
+    # piso por minutos, pesado pela idade: quem esta no pico e joga nao despenca; garoto
+    # da base e veterano em queda continuam livres para estar la embaixo, porque para eles
+    # o valor baixo e informacao verdadeira
+    piso = []
+    for r, j in zip(realizacao, jogadores, strict=True):
+        peso = peso_do_piso(j.get("idade"))
+        if peso <= 0.01:
+            piso.append(-1e9)
+            continue
+        queda = (QUEDA_MAXIMA_TITULAR * r + QUEDA_MAXIMA_RESERVA * (1 - r)) / peso
+        piso.append(forca_clube - queda)
+    piso = np.array(piso)
     ovr = np.clip(np.round(np.maximum(ovr_teto, piso)), OVR_MIN, OVR_MAX).astype(int)
     pot = np.clip(np.round(pot_teto), ovr, OVR_MAX).astype(int)
     saida = []

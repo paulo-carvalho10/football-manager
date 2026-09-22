@@ -62,7 +62,7 @@ def test_substituir_cansado_melhora_o_fim_do_jogo(mundo):
     banco = [p.id for p in elenco[11:14]]
     antes = {p.id: p.condition for p in elenco}
     for pid in onze:
-        world.players[pid].condition = 45
+        world.players[pid].condition = 30
     for pid in banco:
         world.players[pid].condition = 100
     onze_rival = [p.id for p in world.best_xi(rival)]
@@ -73,7 +73,7 @@ def test_substituir_cansado_melhora_o_fim_do_jogo(mundo):
         saem = sorted(p.em_campo_casa, key=lambda i: world.players[i].overall)[:3]
         return [(meu, s, e) for s, e in zip(saem, banco, strict=False)]
 
-    def saldo(fn, n=2500):
+    def saldo(fn, n=5000):
         rng = np.random.default_rng(7)
         total = 0
         for _ in range(n):
@@ -85,7 +85,10 @@ def test_substituir_cansado_melhora_o_fim_do_jogo(mundo):
     sem, com = saldo(None), saldo(trocar)
     for pid, v in antes.items():
         world.players[pid].condition = v
-    assert com > sem + 0.02, f"substituir nao mudou nada: {sem:.3f} -> {com:.3f}"
+    # Onze EXAUSTO (30%) e banco inteiro: e o cenario em que o mecanismo tem de aparecer
+    # sem ambiguidade. Com o onze so cansado (45%) o ganho fica em torno de 0,03 gol de
+    # saldo -- real, mas no nivel do ruido de uma amostra pequena, e o teste media ruido.
+    assert com > sem + 0.03, f"substituir nao mudou nada: {sem:.3f} -> {com:.3f}"
 
 
 def test_eventos_batem_com_o_placar(mundo):
