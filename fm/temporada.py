@@ -23,6 +23,10 @@ VELOCIDADE_JOVEM = 0.42       # fracao da distancia ate o potencial, por tempora
 QUEDA_POR_ANO = 0.85          # pontos de overall perdidos por ano acima do pico
 QUEDA_ACELERA = 0.22          # e a queda acelera
 
+# O salario segue o valor de mercado, mas devagar: contrato nao se reabre todo ano.
+SALARIO_SOBRE_VALOR = 110         # mesma proporcao do dado importado (~11% do valor ao ano)
+RENEGOCIACAO = 0.55               # fracao do caminho ate o salario justo, por temporada
+
 IDADE_MINIMA_APOSENTAR = 33
 CHANCE_APOSENTADORIA = {33: 0.06, 34: 0.12, 35: 0.22, 36: 0.36, 37: 0.55, 38: 0.75}
 
@@ -32,11 +36,16 @@ IDADE_DA_BASE = (17, 19)
 # craque, e quando os importados se aposentam ninguem repoe o topo: em 20 temporadas o
 # melhor jogador do mundo caia de 84 para 77. A maioria dos garotos vira reserva mediano,
 # mas de vez em quando sai uma joia -- e clube grande produz joia com mais frequencia.
-# O CENTRO desta faixa e o que decide se o mundo se mantem de pe. Ela nao e' estetica:
-# a media dela e o fator pelo qual cada geracao substitui a anterior. Com (0.70, 1.00) a
-# media e 0.85, cada geracao nascia 15% pior que a de antes e o onze medio da Serie A caia
-# de 69.7 para 59.2 em 20 temporadas. Centrada em 0.99, a deriva fica em -0.01/ano.
-POTENCIAL_DA_BASE = (0.88, 1.10)   # fracao da forca do elenco atual, sorteada
+# O CENTRO desta faixa e a constante mais delicada do jogo. Ela nao e' estetica: e o fator
+# pelo qual cada geracao substitui a anterior, e o mundo inteiro pende dela. Medido em 20
+# temporadas, com o mercado ligado: 0.91 -> o onze medio da Serie A cai a 64 (-0.28/ano),
+# 0.95 -> fica em 70 (+0.01/ano), 0.99 -> sobe a 77 (+0.36/ano). Quatro centesimos mudam o
+# sinal. Mexer aqui pede rodar tests/test_temporada.py, que e' exatamente o que ele mede.
+#
+# Ela foi calibrada DUAS vezes: a primeira sem mercado, e o numero nao sobreviveu a ele. Com
+# transferencias o clube vende um RESERVA e a base repoe um garoto calibrado pelo nivel do
+# ONZE -- cada venda injetava qualidade nova no mundo, e o que era neutro virou inflacao.
+POTENCIAL_DA_BASE = (0.84, 1.06)   # fracao do nivel de formacao do clube, sorteada
 CHANCE_DE_JOIA = 0.05              # no clube mais forte do mundo; escala com a forca
 JOIA_MULTIPLICADOR = (1.12, 1.34)
 TETO_DA_BASE = 90                  # a base nao entrega um 92 pronto; o resto e evolucao
@@ -157,9 +166,16 @@ def envelhecer(world: World, rng: np.random.Generator, temporada: int,
                 p.potential = p.overall
                 contagem["cairam"] += 1
 
+    # Valor E salario acompanham o overall. Sem a segunda metade havia uma fuga silenciosa:
+    # o garoto que subia de 57 para 70 continuava no salario de 57 para sempre, a folha
+    # nunca crescia e nenhum clube sentia o custo de ter formado um time bom.
+    saindo = set(aposentados)
     for p in world.players.values():
-        if p.id not in aposentados:
-            p.market_value = _market_value(p.overall, p.potential, temporada - p.birth_year)
+        if p.id in saindo:
+            continue
+        p.market_value = _market_value(p.overall, p.potential, temporada - p.birth_year)
+        justo = p.market_value // SALARIO_SOBRE_VALOR
+        p.wage = int(p.wage + (justo - p.wage) * RENEGOCIACAO)
 
     for pid in aposentados:
         clube = world.players[pid].club_id
@@ -167,6 +183,29 @@ def envelhecer(world: World, rng: np.random.Generator, temporada: int,
             world.clubs[clube].player_ids.remove(pid)
         del world.players[pid]
     return contagem
+
+
+def _nivel_de_formacao(world: World) -> dict[int, float]:
+    """O nivel que a categoria de base de cada clube entrega, lido da REPUTACAO.
+
+    Nao do elenco de hoje, e a diferenca importa. Com o elenco havia um laco: clube forte
+    revelava garoto melhor, que o deixava mais forte, que melhorava a base outra vez -- a
+    primeira divisao inflava 0.24 ponto por temporada, acelerando. Reputacao anda devagar,
+    tem teto e e limitada pela divisao, entao o laco fica amortecido. E e mais parecido com
+    o futebol: a base de um clube e a estrutura e a historia dele, nao a campanha do ano.
+    A reta e ajustada sobre o proprio mundo a cada virada, para nao embutir numeros de um
+    pack especifico -- um mundo espanhol tem outra relacao entre reputacao e forca.
+    """
+    reps, onzes, clubes = [], [], []
+    for c in world.clubs.values():
+        if c.player_ids:
+            reps.append(float(c.reputation))
+            onzes.append(world.team_rating(c.id))
+            clubes.append(c.id)
+    if len(clubes) < 4:
+        return {cid: world.team_rating(cid) for cid in clubes}
+    a, b = np.polyfit(reps, onzes, 1)
+    return {cid: float(a * r + b) for cid, r in zip(clubes, reps, strict=True)}
 
 
 def repor_elencos(world: World, rng: np.random.Generator, temporada: int,
@@ -182,10 +221,7 @@ def repor_elencos(world: World, rng: np.random.Generator, temporada: int,
 
     novos = 0
     proximo = max(world.players, default=0) + 1
-    # A forca que rege a base e a do elenco ATUAL, nao a projetada na criacao do mundo.
-    # Com a projetada, quem decaiu continuaria revelando joia como nos bons tempos e a
-    # hierarquia do mundo nunca mudaria de verdade.
-    forca = {c.id: world.team_rating(c.id) for c in world.clubs.values() if c.player_ids}
+    forca = _nivel_de_formacao(world)
     forca_do_topo = max(forca.values(), default=85.0)
     for clube in world.clubs.values():
         elenco = [world.players[i] for i in clube.player_ids if i in world.players]

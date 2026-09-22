@@ -10,6 +10,7 @@ quando existir interface grafica, ela troca este arquivo e mais nada.
 from __future__ import annotations
 
 from fm.carreira import Carreira
+from fm.financas import folha_anual
 from fm.tatica import ESTILOS, FORMACOES, MARCACOES, Tatica
 
 LARGURA = 78
@@ -40,8 +41,11 @@ def tela_lobby(c: Carreira) -> None:
     pos = f"{c.posicao()}o lugar" if c.jogos() else "temporada nao comecou"
     pts = next((r.points for r in c.tabela() if r.club_id == c.clube_id), 0)
     print(f"  {clube.name.upper():<34s}{c.liga:>20s}  {c.temporada}")
-    print(f"  {pos} | {pts} pts | rodada {c.rodada} de {c.total_de_rodadas}"
-          f" | caixa {_dinheiro(clube.balance)}")
+    folha = folha_anual(c.world, c.clube_id)
+    aperto = "  (NO VERMELHO)" if clube.balance < 0 else ""
+    print(f"  {pos} | {pts} pts | rodada {c.rodada} de {c.total_de_rodadas}")
+    print(f"  caixa {_dinheiro(clube.balance)}{aperto} | folha {_dinheiro(folha)}/ano"
+          f" | reputacao {clube.reputation}")
     print(_linha("="))
 
     jogo = c.proxima_partida()
@@ -307,6 +311,32 @@ def tela_fim_de_temporada(c: Carreira) -> None:
         print(f"  sobem:  {', '.join(r['promovidos'])}")
     if r["rebaixados"]:
         print(f"  descem: {', '.join(r['rebaixados'])}")
+
+    b = r["balanco"]
+    if b is not None:
+        print(_linha())
+        print(f"  CAIXA    receita {_dinheiro(b.receita)} + premiacao "
+              f"{_dinheiro(b.premiacao)}")
+        print(f"           folha {_dinheiro(b.folha)} + operacao {_dinheiro(b.operacao)}")
+        sinal = "sobrou" if b.saldo >= 0 else "faltou"
+        print(f"           {sinal} {_dinheiro(abs(b.saldo))} no ano  ->  "
+              f"{_dinheiro(c.clube.balance)} em caixa")
+        if c.clube.balance < 0:
+            print("           no vermelho: o clube sera obrigado a vender")
+
+    print(_linha())
+    print(f"  MERCADO  {r['transferencias']} transferencias no pais")
+    for t in r["compras_do_clube"]:
+        print(f"    CHEGA  {t.nome:22s} ovr {t.overall}  de "
+              f"{c.world.clubs[t.de].name} por {_dinheiro(t.preco)}")
+    for t in r["vendas_do_clube"]:
+        print(f"    SAI    {t.nome:22s} ovr {t.overall}  para "
+              f"{c.world.clubs[t.para].name} por {_dinheiro(t.preco)}")
+    if r["maiores_transferencias"]:
+        print("    as maiores do pais:")
+        for t in r["maiores_transferencias"][:4]:
+            print(f"      {t.nome:22s} ovr {t.overall}  {c.world.clubs[t.de].name} -> "
+                  f"{c.world.clubs[t.para].name}  {_dinheiro(t.preco)}")
 
     print(_linha())
     print(f"  NO MUNDO  {r['aposentaram']} penduraram as chuteiras, "

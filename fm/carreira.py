@@ -253,6 +253,8 @@ class Carreira:
         envelhecimento vem depois do acesso para que o garoto promovido ja evolua no clube
         novo.
         """
+        from fm.financas import fechar_o_ano
+        from fm.mercado import janela
         from fm.temporada import acesso_e_rebaixamento, envelhecer, repor_elencos
 
         if not self.acabou:
@@ -264,6 +266,10 @@ class Carreira:
         minha_liga = self.liga
         minha_posicao = self.posicao()
 
+        # A ordem e a regra. As contas fecham na divisao em que o ano foi jogado, e so
+        # depois o clube troca de divisao; o mercado vem depois do envelhecimento para
+        # negociar overalls deste ano, e a base entra por ultimo, tapando o que sobrou.
+        balancos = fechar_o_ano(self.world, tabelas, cfgs)
         mudancas = acesso_e_rebaixamento(self.world, self.ligas, tabelas, cfgs)
         rng = self.streams.get("virada", self.temporada)
         # o alvo de elenco e o tamanho ANTES das aposentadorias: cada clube repoe o que
@@ -271,6 +277,7 @@ class Carreira:
         alvos = {c.id: len(c.player_ids) for c in self.world.clubs.values()}
         antes = {p.id: (p.name, p.overall) for p in self.world.squad(self.clube_id)}
         envelhecimento = envelhecer(self.world, rng, self.temporada)
+        transferencias = janela(self.world, rng, self.temporada + 1)
         novos = repor_elencos(self.world, rng, self.temporada + 1, alvos=alvos)
 
         # o que mudou no elenco do usuario -- e isto que a tela de fim de ano mostra
@@ -281,9 +288,12 @@ class Carreira:
              for pid, p in agora.items()
              if pid in antes and p.overall > antes[pid][1]),
             key=lambda d: d[1] - d[2])[:6]
+        # quem chegou comprado nao e da base -- a tela listava Alex Telles, 35 anos,
+        # entre os garotos que subiram
+        comprados = {t.jogador for t in transferencias if t.para == self.clube_id}
         base = sorted(
             ((p.name, p.overall, p.potential, p.age(self.temporada + 1))
-             for pid, p in agora.items() if pid not in antes),
+             for pid, p in agora.items() if pid not in antes and pid not in comprados),
             key=lambda d: -d[2])[:6]
 
         minha = next((m for m in mudancas if m.clube == self.clube_id), None)
@@ -297,6 +307,11 @@ class Carreira:
             "promovidos": [self.world.clubs[m.clube].name for m in mudancas if m.subiu],
             "rebaixados": [self.world.clubs[m.clube].name for m in mudancas if not m.subiu],
             **envelhecimento, "revelados": novos,
+            "balanco": balancos.get(self.clube_id),
+            "transferencias": len(transferencias),
+            "compras_do_clube": [t for t in transferencias if t.para == self.clube_id],
+            "vendas_do_clube": [t for t in transferencias if t.de == self.clube_id],
+            "maiores_transferencias": sorted(transferencias, key=lambda t: -t.preco)[:6],
             "aposentadorias_do_clube": saidas,
             "destaques_do_clube": destaques,
             "base_do_clube": base,
