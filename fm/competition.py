@@ -89,22 +89,24 @@ def play_fixtures(
     rng: np.random.Generator,
     style: Style,
     mentality: Mentality = Mentality.NORMAL,
-    taticas: dict[int, tuple[float, float]] | None = None,
+    taticas: dict | None = None,
 ) -> list[Result]:
     """Simula um lote de partidas de uma vez -- este e o caminho rapido.
 
-    `taticas` mapeia clube -> (multiplica os proprios gols, multiplica os do adversario).
-    So os clubes com tatica escolhida aparecem ali; o resto joga no padrao.
+    `taticas` mapeia clube -> Tatica. So os clubes com tatica escolhida aparecem ali; o
+    resto joga no padrao. O par de multiplicadores sai de tatica.confronto, porque o efeito
+    de uma formacao depende da que esta do outro lado.
     """
     if not fixtures:
         return []
     rh = np.array([ratings[f.home] for f in fixtures], dtype=float)
     ra = np.array([ratings[f.away] for f in fixtures], dtype=float)
+    from fm.tatica import Tatica, confronto
     t = taticas or {}
-    neutro = (1.0, 1.0)
-    # os gols de cada lado sofrem o proprio ataque E a defesa do adversario
-    mc = np.array([t.get(f.home, neutro)[0] * t.get(f.away, neutro)[1] for f in fixtures])
-    mf = np.array([t.get(f.away, neutro)[0] * t.get(f.home, neutro)[1] for f in fixtures])
+    padrao = Tatica()
+    pares = [confronto(t.get(f.home, padrao), t.get(f.away, padrao)) for f in fixtures]
+    mc = np.array([p[0] for p in pares])
+    mf = np.array([p[1] for p in pares])
     gh, ga = simulate(rh, ra, rng, style, mentality, mult_casa=mc, mult_fora=mf)
     return [Result(f.home, f.away, int(x), int(y), f.matchday)
             for f, x, y in zip(fixtures, gh, ga, strict=True)]

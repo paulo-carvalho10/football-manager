@@ -146,15 +146,16 @@ class Carreira:
         meu_jogo = next((f for f in partidas if self.clube_id in (f.home, f.away)), None)
         detalhada: Partida | None = None
         if meu_jogo is not None:
-            ma, md = tatica.multiplicadores()
+            from fm.tatica import Tatica, confronto
             sou_casa = meu_jogo.home == self.clube_id
+            ma, md = (confronto(tatica, Tatica()) if sou_casa
+                      else confronto(Tatica(), tatica))
             detalhada = simular_partida(
                 self.world, meu_jogo.home, meu_jogo.away,
                 [p.id for p in self.world.best_xi(meu_jogo.home)],
                 [p.id for p in self.world.best_xi(meu_jogo.away)],
                 rng, style,
-                mult_casa=ma if sou_casa else md,
-                mult_fora=md if sou_casa else ma,
+                mult_casa=ma, mult_fora=md,
                 substituicoes=substituicoes)
 
         outras = [f for f in partidas if f is not meu_jogo]

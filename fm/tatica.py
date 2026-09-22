@@ -37,14 +37,33 @@ MARCACOES: dict[str, tuple[float, float]] = {
     "forte":   (0.93, 1.22),
 }
 
-# Formacao: (ataque, defesa). Mais atacantes cria mais e concede mais.
+# --- CONFRONTO DE FORMACOES ---
+# Nao e uma matriz de 15 numeros digitados a mao: o efeito e DERIVADO de dois fatos
+# estruturais do par, entao qualquer formacao nova entra na conta sozinha.
+#
+#   vantagem de meio  = meias meus - meias dele    -> quem controla o jogo
+#   pressao           = meus atacantes - zagueiros dele -> quem cria contra quantos
+#
+# Assim o 4-5-1 domina a posse do 4-3-3 mas nao finaliza; o 5-3-2 embuchai o 3-4-3; e
+# 4-3-3 contra 5-3-2 vira jogo travado dos dois lados. Os pesos foram ajustados para o
+# efeito ficar na MESMA ordem de grandeza da marcacao (cerca de 2 pontos de vitoria) --
+# tatica tem de ser escolha, nao gabarito.
+PESO_PONTA = 0.075
+PESO_MEIO_CHEIO = 0.055
+PESO_ABSORVE = 0.045
+FORMACAO_PADRAO = "4-3-3"   # ancora da calibracao: o espelho dela da exatamente 1.0
+
+# Formacao: (ataque, defesa), RELATIVO A FORMACAO PADRAO.
+# O 4-3-3 vale exatamente (1.00, 1.00) por definicao: ele e a ancora da calibracao. Antes
+# ele valia (1.05, 1.04) e, como o padrao tambem vale para quem nao escolheu tatica, TODO
+# jogo saia com 9% mais gols que o motor calibrado -- em silencio.
 EFEITO_FORMACAO: dict[str, tuple[float, float]] = {
-    "4-4-2": (1.00, 1.00),
-    "4-3-3": (1.05, 1.04),
-    "4-5-1": (0.93, 0.94),
-    "3-5-2": (1.03, 1.06),
-    "5-3-2": (0.92, 0.90),
-    "3-4-3": (1.09, 1.10),
+    "4-4-2": (0.95, 0.96),
+    "4-3-3": (1.00, 1.00),
+    "4-5-1": (0.89, 0.90),
+    "3-5-2": (0.98, 1.02),
+    "5-3-2": (0.88, 0.87),
+    "3-4-3": (1.04, 1.06),
 }
 
 
@@ -79,3 +98,34 @@ class Tatica:
 
     def como_texto(self) -> str:
         return f"{self.formacao}, marcacao {self.marcacao}, {self.estilo}"
+
+
+def _interacao(va: dict[str, int], vb: dict[str, int]) -> float:
+    """Vantagem de A sobre B que existe SO por causa do par.
+
+    Por que produtos e nao diferencas: um termo do tipo `A - B` se decompoe em efeito de A
+    menos efeito de B, ou seja, e efeito INDIVIDUAL disfarcado -- ele diz "esta formacao e
+    melhor", nunca "esta formacao e dificil para aquela". Medi e a interacao pura dava
+    0,2 ponto. Confronto de verdade e nao-aditivo, e sai de choques estruturais concretos.
+    """
+    ganho = 0.0
+    # ponta contra linha de tres: sem lateral, quem tem tres atacantes ataca o corredor
+    ganho += PESO_PONTA * max(0, va["FW"] - 2) * max(0, 4 - vb["DF"])
+    # meio povoado contra meio curto: quem tem cinco meias sufoca quem tem tres
+    ganho += PESO_MEIO_CHEIO * max(0, va["MF"] - 4) * max(0, 4 - vb["MF"])
+    # defesa de cinco absorve ataque de tres e devolve no contra-ataque
+    ganho += PESO_ABSORVE * max(0, va["DF"] - 4) * max(0, vb["FW"] - 2)
+    return ganho
+
+
+def confronto(a: Tatica, b: Tatica) -> tuple[float, float]:
+    """(multiplicador dos gols de A, multiplicador dos gols de B) para ESTE par.
+
+    Junta o efeito absoluto de cada tatica com o efeito do confronto entre as formacoes.
+    Com as duas no padrao, devolve (1.0, 1.0): e a ancora da calibracao.
+    """
+    a_ata, a_def = a.multiplicadores()
+    b_ata, b_def = b.multiplicadores()
+    va, vb = FORMACOES[a.formacao], FORMACOES[b.formacao]
+    return (a_ata * b_def * (1.0 + _interacao(va, vb)),
+            b_ata * a_def * (1.0 + _interacao(vb, va)))
