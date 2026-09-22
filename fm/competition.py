@@ -87,11 +87,15 @@ def knockout_tie(
     home_first: list[int], away_first: list[int],
     ratings: dict[int, float], rng: np.random.Generator,
     style: Style, mentality: Mentality = Mentality.CUP, legs: int = 2,
+    empate_favorece_visitante: bool = False,
 ) -> np.ndarray:
     """Resolve N confrontos de uma vez. Retorna o id de quem avanca.
 
     `home_first` recebe a primeira mao em casa. Em ida e volta o mando se alterna, o que da
     ao azarao um jogo em casa -- medido: eleva a zebra de 27,1% para 29,0% num gap de 14.
+
+    `empate_favorece_visitante` existe para as duas primeiras fases da Copa do Brasil: jogo
+    unico e quem visita avanca no empate. Nenhum outro torneio meu tem essa regra.
     """
     a = np.array(away_first, dtype=int)      # decide a volta em casa
     b = np.array(home_first, dtype=int)
@@ -106,6 +110,10 @@ def knockout_tie(
     tied = ga == gb
     a_wins = ga > gb
     if tied.any():
-        shoot = penalty_shootout(ra, rb, rng)                # empate no agregado -> penaltis
-        a_wins = np.where(tied, shoot, a_wins)
+        if empate_favorece_visitante:
+            # em jogo unico `a` manda; o visitante e `b`, e o empate passa para ele
+            a_wins = np.where(tied, False, a_wins)
+        else:
+            shoot = penalty_shootout(ra, rb, rng)            # empate -> penaltis
+            a_wins = np.where(tied, shoot, a_wins)
     return np.where(a_wins, a, b)

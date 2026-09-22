@@ -1,0 +1,45 @@
+# Copa do Brasil. E o torneio que exercita a entrada escalonada: os clubes entram em fases
+# diferentes conforme o tamanho, e os grandes so aparecem na terceira fase.
+#
+# Regra propria das duas primeiras fases: JOGO UNICO e o VISITANTE AVANCA NO EMPATE.
+# Nenhum outro torneio aqui tem isso.
+#
+# Aproximacao consciente: a Copa do Brasil real traz clubes de campeonato estadual, que nao
+# estao importados. No lugar deles entram Serie C e D, que e o mais proximo em nivel.
+id   = "copa_do_brasil"
+nome = "Copa do Brasil"
+
+[estilo]
+gols_base = 1.19
+mando     = 0.36
+
+[mentalidade]
+gols_mult  = 0.90
+compressao = 0.22   # em jogo unico o pequeno se fecha ainda mais
+
+[[formato.fases]]
+nome    = "Primeira fase"
+tipo    = "knockout"
+maos    = 1
+rodadas = 1
+visitante_avanca_empate = true
+entram = [
+  { liga = "BRA1", de = 13, ate = 20 },
+  { liga = "BRA2", de = 1,  ate = 20 },
+  { liga = "BRA3", de = 1,  ate = 20 },
+  { liga = "BRA4", de = 1,  ate = 32 },
+]
+
+[[formato.fases]]
+nome    = "Segunda fase"
+tipo    = "knockout"
+maos    = 1
+rodadas = 1
+visitante_avanca_empate = true
+
+[[formato.fases]]
+nome    = "Terceira fase em diante"
+tipo    = "knockout"
+maos    = 2
+# os 12 primeiros da Serie A entram so agora: sao os de Libertadores e os cabecas
+entram  = [ { liga = "BRA1", de = 1, ate = 12 } ]

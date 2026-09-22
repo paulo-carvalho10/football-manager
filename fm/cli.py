@@ -271,17 +271,23 @@ def cmd_torneio(args):
                 continue
         else:
             elenco = participantes(world, t, tabelas)
+            if not elenco and t.fases and t.fases[0].get("entram"):
+                elenco = []   # torneio que comeca vazio: todo mundo entra por fase
             codigos = {lg.codigo for lg in world.leagues.values() if lg.codigo}
             faltando = {lg: n for lg, n in t.vagas.items()
                         if lg not in codigos and lg not in world.leagues}
             if faltando:
                 print(f"\n{t.nome}: {sum(faltando.values())} vagas sem liga importada "
                       f"({', '.join(sorted(faltando))})")
-        if len(elenco) < 2:
+        entra_por_fase = any(f.get("entram") for f in t.fases)
+        if len(elenco) < 2 and not entra_por_fase:
             print(f"{t.nome}: participantes de menos ({len(elenco)})")
             continue
 
-        print(f"\n{t.nome}  --  {len(elenco)} participantes")
+        rotulo = (f"{len(elenco)} classificados diretos" if elenco
+                  else "campo inteiro entra por fase")
+        print()
+        print(f"{t.nome}  --  {rotulo}")
         for cid in elenco[:10]:
             c = world.clubs[cid]
             pos = ""
@@ -295,7 +301,7 @@ def cmd_torneio(args):
         titulos: dict[int, int] = {}
         for ed in range(args.edicoes):
             rng = streams.get("torneio", nome, ed)
-            vencedor = simular(world, t, rng, elenco=list(elenco))[0]
+            vencedor = simular(world, t, rng, elenco=list(elenco), tabelas=tabelas)[0]
             titulos[vencedor] = titulos.get(vencedor, 0) + 1
         campeoes[nome] = max(titulos, key=lambda k: titulos[k])
         print(f"   titulos em {args.edicoes} edicoes:")

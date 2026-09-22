@@ -143,27 +143,73 @@ def _fase_grupos(world, clubes, fase, rng, style, mentality):
 
 
 def _fase_mata_mata(world, clubes, fase, rng, style, mentality):
+    """Roda `rodadas` rodadas de mata-mata. Sem isso ninguem pode entrar no meio.
+
+    O padrao continua sendo "ate sobrar um", porque Champions e Libertadores acabam em
+    campeao. Mas Copa do Brasil precisa parar depois de uma rodada para os clubes de
+    Libertadores entrarem na terceira fase.
+    """
     ratings = {cid: world.team_rating(cid) for cid in clubes}
     vivos = list(clubes)
-    # mata-mata precisa de potencia de 2; com mundo parcial, os mais fortes passam direto
-    while len(vivos) & (len(vivos) - 1):
-        vivos = sorted(vivos, key=lambda c: -world.clubs[c].designed_strength)
-        vivos = vivos[:1 << (len(vivos).bit_length() - 1)]
-    while len(vivos) > 1:
+    pedido = fase.get("rodadas", "todas")
+    restantes = float("inf") if pedido == "todas" else int(pedido)
+    visitante = bool(fase.get("visitante_avanca_empate", False))
+
+    while len(vivos) > 1 and restantes > 0:
+        if len(vivos) % 2:
+            # numero impar: alguem passa sem jogar, e o sorteio decide QUEM.
+            # Dar o bye ao mais forte inflava o favorito -- numa copa de campo reduzido o
+            # Palmeiras subia para 40,8% dos titulos so por nunca jogar a rodada impar.
+            vivos = list(vivos)
+            rng.shuffle(vivos)
+            bye, vivos = vivos[:1], vivos[1:]
+        else:
+            bye = []
         rng.shuffle(vivos)
         metade = len(vivos) // 2
-        a, b = vivos[:metade], vivos[metade:2 * metade]
+        a, b = vivos[:metade], vivos[metade:]
         vencedores = knockout_tie(b, a, ratings, rng, style, mentality,
-                                  legs=int(fase.get("maos", 2)))
-        vivos = [int(x) for x in vencedores] + vivos[2 * metade:]
+                                  legs=int(fase.get("maos", 2)),
+                                  empate_favorece_visitante=visitante)
+        vivos = [int(x) for x in vencedores] + bye
+        restantes -= 1
     return vivos
 
 
+def resolver_entradas(world: World, entradas: list[dict],
+                      tabelas: dict[str, list[int]]) -> list[int]:
+    """Clubes que entram NESTA fase, por posicao na tabela da liga de origem.
+
+    `{ liga = "BRA1", de = 13, ate = 20 }` = do 13o ao 20o do Brasileirao. E assim que a
+    Copa do Brasil pega a Serie A inteira em fases diferentes e que o pre-Libertadores pega
+    quem ficou logo abaixo da zona de classificacao direta.
+    """
+    por_codigo = {lg.codigo: lg for lg in world.leagues.values() if lg.codigo}
+    saida: list[int] = []
+    for e in entradas:
+        if "convidado" in e:
+            saida.append(clube_convidado(world, e["convidado"]))
+            continue
+        chave = e["liga"]
+        liga = por_codigo.get(chave) or world.leagues.get(chave)
+        if liga is None:
+            continue
+        ordem = tabelas.get(chave) or tabelas.get(liga.id) or sorted(
+            liga.club_ids, key=lambda cid: -world.clubs[cid].designed_strength)
+        saida += ordem[int(e.get("de", 1)) - 1:int(e.get("ate", len(ordem)))]
+    return saida
+
+
 def simular(world: World, torneio: Torneio, rng: np.random.Generator,
-            elenco: list[int] | None = None) -> list[int]:
+            elenco: list[int] | None = None,
+            tabelas: dict[str, list[int]] | None = None) -> list[int]:
     """Roda o torneio e devolve os sobreviventes, do campeao para baixo."""
-    clubes = elenco if elenco is not None else participantes(world, torneio)
+    tabelas = tabelas or {}
+    clubes = elenco if elenco is not None else participantes(world, torneio, tabelas)
     for fase in torneio.fases:
+        # quem entra so nesta fase se junta a quem sobreviveu da anterior
+        novos = resolver_entradas(world, fase.get("entram", []), tabelas)
+        clubes = list(clubes) + [c for c in novos if c not in clubes]
         tipo = fase.get("tipo")
         if tipo == "groups":
             clubes = _fase_grupos(world, clubes, fase, rng, torneio.style,
