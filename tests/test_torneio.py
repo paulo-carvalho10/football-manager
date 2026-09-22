@@ -216,3 +216,48 @@ def test_champions_esta_no_formato_atual():
     pre = sum(r["vagas"] for r in t.classificacao_regras if r["entra_em"] == "pre")
     assert diretas == 28
     assert pre == 16, "16 na pre, 8 passam: 28 + 8 = 36"
+
+
+def test_funil_da_libertadores_para_a_sudamericana():
+    """O 3o de cada grupo da Libertadores cai para as oitavas da Sudamericana."""
+    lib, sul = carregar("libertadores"), carregar("sudamericana")
+    grupos = next(f for f in lib.fases if f.get("tipo") == "groups")
+    assert grupos["exporta"] == [{"posicao": 3, "para": "terceiros"}]
+    recebe = [r for r in sul.classificacao_regras
+              if r["fonte"] == "libertadores:terceiros"]
+    assert recebe and recebe[0]["entra_em"] == "oitavas"
+    assert recebe[0]["vagas"] == 8
+
+    pre = next(f for f in lib.fases if f.get("rodadas") == 1)
+    assert pre["exporta"] == [{"eliminados": True, "para": "eliminados_pre"}]
+    assert any(r["fonte"] == "libertadores:eliminados_pre"
+               for r in sul.classificacao_regras)
+
+
+def test_a_fase_de_liga_da_champions_nao_derruba_ninguem():
+    """Regressao da mudanca de 2024-25: o 3o de grupo NAO cai mais para a Europa League.
+
+    Do 25o ao 36o da fase de liga todos estao eliminados. O unico funil europeu que
+    sobrou e a qualificacao: quem perde a pre da Champions entra na Europa.
+    """
+    cl, el = carregar("champions"), carregar("europa_league")
+    liga = next(f for f in cl.fases if f.get("tipo") == "liga_suica")
+    assert not liga.get("exporta"), "a fase de liga nao pode derrubar ninguem"
+    pre = next(f for f in cl.fases if f.get("rodadas") == 1)
+    assert pre["exporta"] == [{"eliminados": True, "para": "eliminados_pre"}]
+    assert any(r["fonte"] == "champions:eliminados_pre"
+               for r in el.classificacao_regras)
+
+
+def test_vaga_e_unica_na_temporada(mundo):
+    """Quem pega vaga na Champions sai da lista da Europa. Sem isso o Real Madrid
+    disputava as duas ao mesmo tempo."""
+    from fm.torneio import resolver_classificacao
+    world, tabelas = mundo
+    ocupados: set[int] = set()
+    a = resolver_classificacao(world, carregar("libertadores"), tabelas, {}, ocupados)
+    b = resolver_classificacao(world, carregar("sudamericana"), tabelas, {}, ocupados)
+    da_liberta = {c for lista in a.values() for c in lista}
+    da_sula = {c for lista in b.values() for c in lista}
+    assert da_liberta and da_sula
+    assert not (da_liberta & da_sula), "clube em duas competicoes continentais"

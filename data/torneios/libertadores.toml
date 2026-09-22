@@ -123,6 +123,8 @@ tipo    = "knockout"
 maos    = 2
 rodadas = 1
 entram  = [ { classificacao = "pre" } ]
+# quem perde a pre nao fica sem competicao: cai para a Sudamericana
+exporta = [ { eliminados = true, para = "eliminados_pre" } ]
 
 [[formato.fases]]
 nome    = "Fase de grupos"
@@ -131,6 +133,9 @@ grupos  = 8
 voltas  = 2
 avancam = 2
 entram  = [ { classificacao = "grupos" } ]
+# o 3o de cada grupo cai para as oitavas da Sudamericana. Continua valendo na America do
+# Sul -- na Europa essa queda acabou em 2024-25, junto com os grupos.
+exporta = [ { posicao = 3, para = "terceiros" } ]
 
 [[formato.fases]]
 nome     = "Mata-mata"

@@ -140,7 +140,7 @@ def _grupos_possiveis(n: int, pedido: int) -> int:
     return 0
 
 
-def _fase_grupos(world, clubes, fase, rng, style, mentality):
+def _fase_grupos(world, clubes, fase, rng, style, mentality, exportados=None):
     clubes = list(clubes)
     g = _grupos_possiveis(len(clubes), int(fase.get("grupos", 8)))
     if g == 0 and len(clubes) > 2:
@@ -154,12 +154,17 @@ def _fase_grupos(world, clubes, fase, rng, style, mentality):
     ratings = {cid: world.team_rating(cid) for cid in clubes}
     for fixtures in grupos:
         ids = sorted({f.home for f in fixtures} | {f.away for f in fixtures})
-        resultados = play_fixtures(fixtures, ratings, rng, style, mentality)
-        passa += [linha.club_id for linha in build_table(ids, resultados)[:avancam]]
+        tabela = build_table(ids, play_fixtures(fixtures, ratings, rng, style, mentality))
+        passa += [linha.club_id for linha in tabela[:avancam]]
+        # o 3o de cada grupo da Libertadores cai para a Sudamericana: e daqui que ele sai
+        for regra in fase.get("exporta", []):
+            pos = int(regra.get("posicao", 0))
+            if pos and pos <= len(tabela) and exportados is not None:
+                exportados.setdefault(regra["para"], []).append(tabela[pos - 1].club_id)
     return passa
 
 
-def _fase_mata_mata(world, clubes, fase, rng, style, mentality):
+def _fase_mata_mata(world, clubes, fase, rng, style, mentality, exportados=None):
     """Roda `rodadas` rodadas de mata-mata. Sem isso ninguem pode entrar no meio.
 
     O padrao continua sendo "ate sobrar um", porque Champions e Libertadores acabam em
@@ -193,6 +198,10 @@ def _fase_mata_mata(world, clubes, fase, rng, style, mentality):
                                   legs=int(fase.get("maos", 2)),
                                   empate_favorece_visitante=visitante)
         perdedores = [int(x) for x in (np.array(a) + np.array(b) - vencedores)]
+        # quem perde a pre da Champions entra na Europa League: e daqui que ele sai
+        for regra in fase.get("exporta", []):
+            if regra.get("eliminados") and exportados is not None:
+                exportados.setdefault(regra["para"], []).extend(perdedores)
         vivos = [int(x) for x in vencedores] + bye
         restantes -= 1
     if len(vivos) == 1 and perdedores and not poupados:
@@ -210,8 +219,16 @@ def _fase_liga_suica(world, clubes, fase, rng, style, mentality):
     clubes = sorted(clubes, key=lambda c: -world.clubs[c].designed_strength)
     advs = min(int(fase.get("adversarios", 8)), len(clubes) - 1)
     advs -= advs % 2
-    fixtures = liga_suica(clubes, adversarios=max(advs, 2),
-                          potes=int(fase.get("potes", 4)))
+    if len(clubes) < 4 or advs < 2:
+        # campo pequeno demais para calendario parcial: joga todo mundo contra todo mundo.
+        # Acontece com mundo parcial, enquanto as ligas nao estao todas importadas.
+        if len(clubes) < 2:
+            return clubes
+        fixtures = round_robin(clubes, legs=1)
+    elif advs >= len(clubes) - 1:
+        fixtures = round_robin(clubes, legs=1)
+    else:
+        fixtures = liga_suica(clubes, adversarios=advs, potes=int(fase.get("potes", 4)))
     ratings = {cid: world.team_rating(cid) for cid in clubes}
     resultados = play_fixtures(fixtures, ratings, rng, style, mentality)
     tabela = build_table(clubes, resultados)
@@ -249,10 +266,12 @@ def resolver_entradas(world: World, entradas: list[dict],
 def simular(world: World, torneio: Torneio, rng: np.random.Generator,
             elenco: list[int] | None = None,
             tabelas: dict[str, list[int]] | None = None,
-            copas: dict[str, list[int]] | None = None) -> list[int]:
+            copas: dict[str, list[int]] | None = None,
+            exportados: dict[str, list[int]] | None = None,
+            ocupados: set[int] | None = None) -> list[int]:
     """Roda o torneio e devolve [campeao, vice]."""
     tabelas = tabelas or {}
-    classificados = (resolver_classificacao(world, torneio, tabelas, copas)
+    classificados = (resolver_classificacao(world, torneio, tabelas, copas, ocupados)
                      if torneio.classificacao_regras or torneio.convidados else {})
     if elenco is not None:
         clubes = elenco
@@ -270,7 +289,7 @@ def simular(world: World, torneio: Torneio, rng: np.random.Generator,
                                   torneio.mentality)
         elif tipo == "knockout":
             clubes = _fase_mata_mata(world, clubes, fase, rng, torneio.style,
-                                     torneio.mentality)
+                                     torneio.mentality, exportados)
         elif tipo == "liga_suica":
             clubes = _fase_liga_suica(world, clubes, fase, rng, torneio.style,
                                       torneio.mentality)
@@ -293,6 +312,7 @@ def disponiveis() -> list[str]:
 def resolver_classificacao(
     world: World, torneio: Torneio, tabelas: dict[str, list[int]],
     copas: dict[str, list[int]] | None = None,
+    ocupados: set[int] | None = None,
 ) -> dict[str, list[int]]:
     """Distribui as vagas por ordem de prioridade, com CASCATA.
 
@@ -303,7 +323,9 @@ def resolver_classificacao(
     E exatamente o que acontece na vida real.
     """
     copas = copas or {}
-    ja: set[int] = set()
+    # `ocupados` e COMPARTILHADO entre os torneios da temporada: quem pegou vaga na
+    # Champions sai da lista da Europa. Sem isso o Real Madrid disputava as duas.
+    ja: set[int] = ocupados if ocupados is not None else set()
     saida: dict[str, list[int]] = {}
     for regra in torneio.classificacao_regras:
         fonte = regra["fonte"]

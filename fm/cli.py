@@ -279,6 +279,7 @@ def cmd_torneio(args):
 
     alvos = disponiveis() if args.torneio == "todos" else [args.torneio]
     copas: dict[str, list[int]] = {}
+    ocupados_por_edicao: dict[int, set[int]] = {}
     for nome in _ordem_de_dependencia(alvos, carregar):
         t = carregar(nome)
         elenco = None
@@ -293,14 +294,22 @@ def cmd_torneio(args):
         canonico = None
         for ed in range(args.edicoes):
             rng = streams.get("torneio", nome, ed)
+            saidas: dict[str, list[int]] = {}
+            # a vaga e unica na temporada: quem ja pegou noutro torneio nao entra aqui
+            reservados = set(ocupados_por_edicao.setdefault(ed, set()))
             fim = simular(world, t, rng,
                           elenco=list(elenco) if elenco is not None else None,
-                          tabelas=tabelas, copas=copas)
+                          tabelas=tabelas, copas=copas, exportados=saidas,
+                          ocupados=reservados)
+            ocupados_por_edicao[ed] = reservados
             if not fim:
                 break
             titulos[fim[0]] = titulos.get(fim[0], 0) + 1
             if canonico is None:
                 canonico = fim
+                # o funil: quem caiu deste torneio alimenta o de baixo
+                for balde, clubes in saidas.items():
+                    copas[f"{nome}:{balde}"] = clubes
         if canonico is None:
             print()
             print(f"{t.nome}: nao rodou (participantes de menos)")

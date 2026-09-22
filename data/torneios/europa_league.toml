@@ -1,0 +1,103 @@
+# Europa League. Mesmo padrao da Champions, inclusive a FASE DE LIGA de 36 clubes -- ela
+# tambem trocou os grupos pelo modelo suico em 2024-25.
+#
+# O FUNIL europeu e menor do que era: hoje so vem quem perde a QUALIFICACAO da Champions.
+# O 3o de grupo nao cai mais, porque nao ha mais grupos: do 25o ao 36o da fase de liga
+# todos estao eliminados.
+#
+# NAO CONFERIDO: a divisao de vagas por liga e estimativa.
+id   = "europa_league"
+nome = "Liga Europa"
+
+[estilo]
+gols_base = 1.29
+mando     = 0.27   # mando pesa um pouco mais que na Champions: elencos menores viajam pior
+
+[mentalidade]
+gols_mult  = 0.93
+compressao = 0.14
+
+# ---- 28 diretas, por classificacao (a cascata pula quem ja esta na Champions)
+[[classificacao]]
+fonte = "GB1"
+vagas = 3
+entra_em = "liga"
+[[classificacao]]
+fonte = "ES1"
+vagas = 3
+entra_em = "liga"
+[[classificacao]]
+fonte = "IT1"
+vagas = 3
+entra_em = "liga"
+[[classificacao]]
+fonte = "L1"
+vagas = 3
+entra_em = "liga"
+[[classificacao]]
+fonte = "FR1"
+vagas = 3
+entra_em = "liga"
+[[classificacao]]
+fonte = "PO1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "NL1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "BE1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "TR1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "GR1"
+vagas = 1
+entra_em = "liga"
+[[classificacao]]
+fonte = "UKR1"
+vagas = 1
+entra_em = "liga"
+[[classificacao]]
+fonte = "RU1"
+vagas = 1
+entra_em = "liga"
+[[classificacao]]
+fonte = "A1"
+vagas = 1
+entra_em = "liga"
+[[classificacao]]
+fonte = "C1"
+vagas = 1
+entra_em = "liga"
+
+# ---- 8 vindas do funil: quem perdeu a pre da Champions
+[[classificacao]]
+fonte = "champions:eliminados_pre"
+vagas = 8
+entra_em = "liga"
+
+[[formato.fases]]
+nome        = "Fase de liga"
+tipo        = "liga_suica"
+adversarios = 8
+potes       = 4
+avancam     = 24
+entram      = [ { classificacao = "liga" } ]
+
+[[formato.fases]]
+nome    = "Playoff"
+tipo    = "knockout"
+maos    = 2
+rodadas = 1
+isentos = 8
+
+[[formato.fases]]
+nome     = "Mata-mata"
+tipo     = "knockout"
+maos     = 2
+penaltis = true

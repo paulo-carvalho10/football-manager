@@ -140,7 +140,13 @@ tipo    = "knockout"
 maos    = 2
 rodadas = 1
 entram  = [ { classificacao = "pre" } ]
+# Unico funil europeu que ainda existe: quem perde a QUALIFICACAO da Champions vai para a
+# Europa League. Da fase de liga nao cai mais ninguem -- do 25o ao 36o todos estao
+# eliminados desde 2024-25, quando os grupos acabaram.
+exporta = [ { eliminados = true, para = "eliminados_pre" } ]
 
+# ATENCAO: a fase de liga NAO exporta ninguem. Antes de 2024-25 o 3o de cada grupo caia
+# para a Europa League; com o fim dos grupos isso acabou.
 [[formato.fases]]
 nome        = "Fase de liga"
 tipo        = "liga_suica"

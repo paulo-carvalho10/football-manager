@@ -1,0 +1,86 @@
+# Copa Sudamericana. Segue exatamente o mesmo padrao da Libertadores: vagas em ordem de
+# prioridade com cascata, entrada escalonada por fase e convidados para quem nao tem liga.
+#
+# O FUNIL, que e a razao de ela existir aqui: os 8 terceiros colocados dos grupos da
+# Libertadores entram direto nas oitavas, e quem perde a pre-Libertadores entra na fase de
+# grupos. Isso continua valendo na America do Sul.
+#
+# NAO CONFERIDO: a divisao de vagas por pais e estimativa. So a regra brasileira da
+# Libertadores veio da fonte.
+id   = "sudamericana"
+nome = "Copa Sudamericana"
+
+[estilo]
+gols_base = 1.14   # nivel mais baixo que a Libertadores e jogo ainda mais truncado
+mando     = 0.44   # e o mando pesa mais ainda: campos piores e viagens piores
+
+[mentalidade]
+gols_mult  = 0.90
+compressao = 0.20
+
+# ---- 32 para a fase de grupos, por classificacao (a cascata pula quem ja esta na Liberta)
+[[classificacao]]
+fonte = "BRA1"
+vagas = 9
+entra_em = "grupos"
+[[classificacao]]
+fonte = "ARG1"
+vagas = 6
+entra_em = "grupos"
+[[classificacao]]
+fonte = "URU1"
+vagas = 3
+entra_em = "grupos"
+[[classificacao]]
+fonte = "COLP"
+vagas = 3
+entra_em = "grupos"
+[[classificacao]]
+fonte = "CLPD"
+vagas = 3
+entra_em = "grupos"
+[[classificacao]]
+fonte = "EC1N"
+vagas = 3
+entra_em = "grupos"
+[[classificacao]]
+fonte = "PR1A"
+vagas = 3
+entra_em = "grupos"
+# quem perdeu a pre-Libertadores nao fica sem competicao
+[[classificacao]]
+fonte = "libertadores:eliminados_pre"
+vagas = 8
+entra_em = "grupos"
+
+# ---- os 8 terceiros dos grupos da Libertadores entram direto nas oitavas
+[[classificacao]]
+fonte = "libertadores:terceiros"
+vagas = 8
+entra_em = "oitavas"
+
+[[convidados]]
+nome = "Always Ready"
+pais = "BOL"
+forca = 56
+entra_em = "grupos"
+[[convidados]]
+nome = "Metropolitanos"
+pais = "VEN"
+forca = 55
+entra_em = "grupos"
+
+[[formato.fases]]
+nome    = "Fase de grupos"
+tipo    = "groups"
+grupos  = 8
+voltas  = 2
+avancam = 1        # so o 1o de cada grupo passa: os 8 vagos sao dos terceiros da Liberta
+entram  = [ { classificacao = "grupos" } ]
+
+[[formato.fases]]
+nome     = "Mata-mata"
+tipo     = "knockout"
+maos     = 2
+penaltis = true
+entram   = [ { classificacao = "oitavas" } ]
