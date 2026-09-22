@@ -176,36 +176,98 @@ def tela_escalacao(c: Carreira) -> None:
 
 # ---------------------------------------------------------------- partida
 
-def tela_partida(c: Carreira) -> None:
-    """A rodada: o seu jogo em destaque e todos os outros acontecendo junto."""
-    jogo = c.proxima_partida()
-    resultados = c.avancar()
-    meu = next((r for r in resultados if c.clube_id in (r.home, r.away)), None)
+def _pedir_substituicoes(c: Carreira, partida, minuto: int) -> list:
+    """Chamada pelo motor no fim de cada bloco. E aqui que o banco vira decisao."""
+    if minuto not in (45, 60, 75):
+        return []
+    meu = c.clube_id
+    em_campo = (partida.em_campo_casa if partida.casa == meu else partida.em_campo_fora)
+    feitas = sum(1 for e in partida.eventos
+                 if e.tipo == "substituicao" and e.clube == meu)
+    if feitas >= 5:
+        return []
 
     print()
-    print(_linha("="))
-    print(f"  RODADA {c.rodada}".center(LARGURA))
-    print(_linha("="))
-    if meu:
-        casa, fora = c.world.clubs[meu.home], c.world.clubs[meu.away]
+    print(f"  --- minuto {minuto}: {partida.gols_casa} x {partida.gols_fora} "
+          f"({3 - min(feitas, 3)} trocas restantes) ---")
+    print("  em campo:")
+    for pid in sorted(em_campo, key=lambda i: -c.world.players[i].overall):
+        p = c.world.players[pid]
+        rend = max(55, round(100 - (100 - p.condition) * 0.45 * minuto / 90))
+        print(f"    {p.id:5d} {p.position:4s}{p.name:22s} ovr {p.overall:3d}"
+              f"  rendimento ~{rend}%")
+    banco = [p for p in c.world.squad(meu) if p.id not in em_campo]
+    print("  banco:")
+    for p in sorted(banco, key=lambda x: -x.overall)[:8]:
+        print(f"    {p.id:5d} {p.position:4s}{p.name:22s} ovr {p.overall:3d}"
+              f"  energia {p.condition}%")
+    resposta = input("  trocar? (sai entra, ou enter para seguir): ").strip()
+    if not resposta:
+        return []
+    partes = resposta.split()
+    if len(partes) != 2 or not all(x.isdigit() for x in partes):
+        print("  !! formato: dois numeros, o que sai e o que entra")
+        return []
+    sai, entra = int(partes[0]), int(partes[1])
+    if sai not in em_campo:
+        print("  !! esse jogador nao esta em campo")
+        return []
+    if entra not in {p.id for p in banco}:
+        print("  !! esse jogador nao esta no banco")
+        return []
+    return [(meu, sai, entra)]
+
+
+def tela_partida(c: Carreira) -> None:
+    """A rodada: sua partida minuto a minuto, depois o resto."""
+    jogo = c.proxima_partida()
+    if jogo:
+        casa, fora = c.world.clubs[jogo.home], c.world.clubs[jogo.away]
         print()
-        print(f"  {casa.name:>30s}   {meu.goals_home}  x  {meu.goals_away}   "
+        print(_linha("="))
+        print(f"  RODADA {c.rodada + 1}   {casa.name}  x  {fora.name}".center(LARGURA))
+        print(_linha("="))
+        print(f"  sua tatica: {c.tatica_atual().como_texto()}")
+
+    resultados, partida = c.avancar(
+        substituicoes=lambda p, m: _pedir_substituicoes(c, p, m))
+
+    if partida is not None:
+        casa, fora = c.world.clubs[partida.casa], c.world.clubs[partida.fora]
+        print()
+        print(_linha())
+        print("  SUMULA")
+        if not partida.eventos:
+            print("    (nada digno de nota)")
+        for e in partida.eventos:
+            lado = c.world.clubs[e.clube].name
+            simbolo = {"gol": "GOL", "amarelo": " ! ", "vermelho": "!!!",
+                       "substituicao": "<->"}.get(e.tipo, "   ")
+            extra = ""
+            if e.tipo == "gol" and e.segundo:
+                extra = f"  (assist. {c.world.players[e.segundo].name})"
+            print(f"    {e.minuto:3d}'  {simbolo}  {lado:22s} {e.texto}{extra}")
+        print(_linha())
+        print(f"  {casa.name:>28s}   {partida.gols_casa}  x  {partida.gols_fora}   "
               f"{fora.name}")
-        venceu = ((meu.goals_home > meu.goals_away and meu.home == c.clube_id)
-                  or (meu.goals_away > meu.goals_home and meu.away == c.clube_id))
-        empatou = meu.goals_home == meu.goals_away
-        print(f"  {'VITORIA' if venceu else 'EMPATE' if empatou else 'DERROTA':^{LARGURA-4}s}")
+        sc, sf = partida.stats_casa, partida.stats_fora
         print()
-        t = c.tatica_atual() if jogo else None
-        if t:
-            print(f"  sua tatica: {t.como_texto()}")
+        print(f"  {'':>28s}   {'casa':>5s}     {'fora':<5s}")
+        for rot, a, b in (("posse de bola", f"{sc.posse}%", f"{sf.posse}%"),
+                          ("finalizacoes", sc.finalizacoes, sf.finalizacoes),
+                          ("no gol", sc.no_gol, sf.no_gol),
+                          ("escanteios", sc.escanteios, sf.escanteios),
+                          ("desarmes", sc.desarmes, sf.desarmes),
+                          ("faltas", sc.faltas, sf.faltas)):
+            print(f"  {rot:>28s}   {str(a):>5s}     {str(b):<5s}")
+
     print(_linha())
     print("  OUTROS JOGOS DA RODADA")
     for r in resultados:
-        if meu and r is meu:
+        if partida is not None and r.home == partida.casa and r.away == partida.fora:
             continue
-        casa, fora = c.world.clubs[r.home], c.world.clubs[r.away]
-        print(f"    {casa.name:>26s}  {r.goals_home} x {r.goals_away}  {fora.name}")
+        ca, fo = c.world.clubs[r.home], c.world.clubs[r.away]
+        print(f"    {ca.name:>26s}  {r.goals_home} x {r.goals_away}  {fo.name}")
     print(_linha())
     tabela = c.tabela()
     print(f"  Voce esta em {c.posicao()}o lugar com "

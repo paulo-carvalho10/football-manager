@@ -20,9 +20,12 @@ def test_avancar_joga_exatamente_uma_rodada(carreira):
     """O coracao do jogo: uma rodada por vez, nao a temporada inteira."""
     assert carreira.rodada == 0
     jogos_por_rodada = len(carreira.world.leagues[carreira.liga_id].club_ids) // 2
-    resultados = carreira.avancar()
+    resultados, partida = carreira.avancar()
     assert carreira.rodada == 1
     assert len(resultados) == jogos_por_rodada
+    assert partida is not None, "a partida do usuario tem de vir detalhada"
+    assert partida.gols_casa + partida.gols_fora == len(
+        [e for e in partida.eventos if e.tipo == "gol"])
     assert len(carreira.resultados) == jogos_por_rodada
     carreira.avancar()
     assert carreira.rodada == 2

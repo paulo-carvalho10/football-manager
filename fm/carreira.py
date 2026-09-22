@@ -17,6 +17,7 @@ import numpy as np
 
 from fm.competition import Fixture, Result, play_fixtures, round_robin
 from fm.config import load_league, style_of
+from fm.eventos import Partida, simular_partida
 from fm.generate import build_world
 from fm.match import effective_rating
 from fm.model import World
@@ -116,8 +117,14 @@ class Carreira:
             raise ValueError(f"o onze precisa de 11 jogadores, vieram {len(jogadores)}")
         self.decisoes[self.rodada + 1] = Decisao(list(jogadores), asdict(tatica))
 
-    def avancar(self) -> list[Result]:
-        """Joga UMA rodada e para. E o coracao do jogo: rodada, volta ao lobby, rodada."""
+    def avancar(self, substituicoes=None) -> tuple[list[Result], Partida | None]:
+        """Joga UMA rodada e para. E o coracao do jogo: rodada, volta ao lobby, rodada.
+
+        A SUA partida passa pelo motor detalhado (minuto a minuto, com substituicao); o
+        resto da rodada passa pelo rapido. Os dois foram calibrados um contra o outro, e ha
+        teste cobrando isso -- se a sua partida tivesse media de gols diferente do resto do
+        mundo, a tabela ficaria torta e voce sentiria sem saber por que.
+        """
         if self.acabou:
             raise RuntimeError("a temporada acabou")
         n = self.rodada + 1
@@ -134,13 +141,31 @@ class Carreira:
             for cid in self.world.leagues[self.liga_id].club_ids
         }
         rng = self.streams.get("carreira", self.temporada, n)
-        resultados = play_fixtures(
-            partidas, ratings, rng, style_of(cfg),
-            taticas={self.clube_id: tatica.multiplicadores()})
+        style = style_of(cfg)
+
+        meu_jogo = next((f for f in partidas if self.clube_id in (f.home, f.away)), None)
+        detalhada: Partida | None = None
+        if meu_jogo is not None:
+            ma, md = tatica.multiplicadores()
+            sou_casa = meu_jogo.home == self.clube_id
+            detalhada = simular_partida(
+                self.world, meu_jogo.home, meu_jogo.away,
+                [p.id for p in self.world.best_xi(meu_jogo.home)],
+                [p.id for p in self.world.best_xi(meu_jogo.away)],
+                rng, style,
+                mult_casa=ma if sou_casa else md,
+                mult_fora=md if sou_casa else ma,
+                substituicoes=substituicoes)
+
+        outras = [f for f in partidas if f is not meu_jogo]
+        resultados = play_fixtures(outras, ratings, rng, style)
+        if detalhada is not None:
+            resultados.append(Result(meu_jogo.home, meu_jogo.away,
+                                     detalhada.gols_casa, detalhada.gols_fora, n))
         self.resultados.extend(resultados)
         self._gastar_energia(partidas, tatica)
         self.rodada = n
-        return resultados
+        return resultados, detalhada
 
     def _gastar_energia(self, partidas: list[Fixture], tatica: Tatica) -> None:
         """Energia entre rodadas.
