@@ -117,3 +117,46 @@ def knockout_tie(
             shoot = penalty_shootout(ra, rb, rng)            # empate -> penaltis
             a_wins = np.where(tied, shoot, a_wins)
     return np.where(a_wins, a, b)
+
+
+def liga_suica(club_ids: list[int], adversarios: int = 8, potes: int = 4) -> list[Fixture]:
+    """Fase de liga no modelo suico: tabela unica e calendario PARCIAL.
+
+    E o formato da Champions desde 2024-25: 36 clubes numa tabela so, cada um joga 8
+    partidas contra 8 adversarios DIFERENTES, metade em casa. Nao joga contra todos.
+
+    A construcao usa um grafo circulante e nao sorteio com repeticao, porque circulante
+    garante de graca as tres propriedades que a regra exige:
+
+    - cada clube enfrenta `adversarios` rivais distintos (grafo k-regular);
+    - metade em casa e metade fora (orientacao por paridade do deslocamento);
+    - INTERCALANDO os potes na ordem, cada clube pega exatamente 2 de cada pote --
+      que e a regra do sorteio real, sem precisar de sorteio com retentativa.
+    """
+    n = len(club_ids)
+    if adversarios % 2 or adversarios >= n:
+        raise ValueError(f"adversarios deve ser par e menor que {n}; veio {adversarios}")
+    if n % 2:
+        raise ValueError("liga suica exige numero par de clubes")
+
+    # intercala os potes: pote0[0], pote1[0], ..., pote0[1], pote1[1], ...
+    tamanho = max(1, n // potes)
+    grupos = [club_ids[i * tamanho:(i + 1) * tamanho] for i in range(potes)]
+    grupos[-1] += club_ids[potes * tamanho:]
+    ordem: list[int] = []
+    for i in range(max(len(g) for g in grupos)):
+        for g in grupos:
+            if i < len(g):
+                ordem.append(g[i])
+
+    fixtures: list[Fixture] = []
+    rodada = 0
+    for d in range(1, adversarios // 2 + 1):
+        for i in range(n):
+            j = (i + d) % n
+            # deslocamento impar: manda quem esta antes; par: manda quem esta depois.
+            # E o que reparte 4 jogos em casa e 4 fora para todo mundo.
+            casa, fora = (ordem[i], ordem[j]) if d % 2 else (ordem[j], ordem[i])
+            fixtures.append(Fixture(casa, fora, rodada + 1))
+        rodada += 2
+    return fixtures

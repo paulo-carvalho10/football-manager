@@ -14,7 +14,14 @@ from pathlib import Path
 
 import numpy as np
 
-from fm.competition import Fixture, group_stage, knockout_tie, play_fixtures, round_robin
+from fm.competition import (
+    Fixture,
+    group_stage,
+    knockout_tie,
+    liga_suica,
+    play_fixtures,
+    round_robin,
+)
 from fm.match import Mentality, Style
 from fm.model import World
 from fm.table import build_table
@@ -160,6 +167,10 @@ def _fase_mata_mata(world, clubes, fase, rng, style, mentality):
     Libertadores entrarem na terceira fase.
     """
     ratings = {cid: world.team_rating(cid) for cid in clubes}
+    # `isentos`: os N primeiros da ordem de entrada pulam esta fase e voltam depois.
+    # E como o 1o ao 8o da fase de liga da Champions vao direto as oitavas.
+    isentos = int(fase.get("isentos", 0))
+    poupados, clubes = list(clubes[:isentos]), list(clubes[isentos:])
     vivos, perdedores = list(clubes), []
     pedido = fase.get("rodadas", "todas")
     restantes = float("inf") if pedido == "todas" else int(pedido)
@@ -184,10 +195,27 @@ def _fase_mata_mata(world, clubes, fase, rng, style, mentality):
         perdedores = [int(x) for x in (np.array(a) + np.array(b) - vencedores)]
         vivos = [int(x) for x in vencedores] + bye
         restantes -= 1
-    if len(vivos) == 1 and perdedores:
+    if len(vivos) == 1 and perdedores and not poupados:
         # o ultimo eliminado e o vice: fontes de classificacao precisam dele
         vivos = vivos + [perdedores[-1]]
-    return vivos
+    return poupados + vivos
+
+
+def _fase_liga_suica(world, clubes, fase, rng, style, mentality):
+    """Tabela unica com calendario parcial. Devolve os `avancam` primeiros, em ordem."""
+    clubes = list(clubes)
+    if len(clubes) % 2:
+        clubes = sorted(clubes, key=lambda c: -world.clubs[c].designed_strength)[:-1]
+    # os potes sao por forca, como na vida real
+    clubes = sorted(clubes, key=lambda c: -world.clubs[c].designed_strength)
+    advs = min(int(fase.get("adversarios", 8)), len(clubes) - 1)
+    advs -= advs % 2
+    fixtures = liga_suica(clubes, adversarios=max(advs, 2),
+                          potes=int(fase.get("potes", 4)))
+    ratings = {cid: world.team_rating(cid) for cid in clubes}
+    resultados = play_fixtures(fixtures, ratings, rng, style, mentality)
+    tabela = build_table(clubes, resultados)
+    return [linha.club_id for linha in tabela[:int(fase.get("avancam", len(clubes)))]]
 
 
 def resolver_entradas(world: World, entradas: list[dict],
@@ -243,6 +271,9 @@ def simular(world: World, torneio: Torneio, rng: np.random.Generator,
         elif tipo == "knockout":
             clubes = _fase_mata_mata(world, clubes, fase, rng, torneio.style,
                                      torneio.mentality)
+        elif tipo == "liga_suica":
+            clubes = _fase_liga_suica(world, clubes, fase, rng, torneio.style,
+                                      torneio.mentality)
         elif tipo == "round_robin":
             ratings = {cid: world.team_rating(cid) for cid in clubes}
             fixtures: list[Fixture] = round_robin(clubes, legs=int(fase.get("voltas", 2)))

@@ -1,38 +1,163 @@
-# Liga dos Campeoes. Participantes FIXOS: dado o mundo, o campo e sempre o mesmo.
-# As vagas nao sao lista de nomes digitada a mao -- sao vagas POR LIGA, e hoje vao para os
-# clubes mais fortes de cada uma. Quando existir carreira, basta trocar "mais forte" por
-# "posicao final na tabela" em fm.torneio.participantes e isto vira classificacao de
-# verdade, sem mexer em mais nada.
+# Liga dos Campeoes no formato ATUAL, que vale desde 2024-25.
+#
+# O que mudou e por que isto foi reescrito: o formato antigo (8 grupos de 4) acabou. Hoje
+# sao 36 clubes numa TABELA UNICA, cada um jogando 8 partidas contra 8 adversarios
+# diferentes, 4 em casa e 4 fora -- nao joga contra todos. Do 1o ao 8o vao direto as
+# oitavas; do 9o ao 24o disputam um playoff eliminatorio; do 25o ao 36o estao fora.
+#
+# PRE CURTA: a Champions real tem duas trilhas de qualificacao (Campeoes e Liga) com quatro
+# rodadas cada, alimentadas por ligas que nao importamos. Aqui a pre e uma rodada so, com
+# os clubes das ligas que EXISTEM no jogo: 16 entram, 8 passam e completam os 36.
+#
+# Conta das 36 vagas:  28 diretas + 8 vindas da pre.
 id   = "champions"
 nome = "Liga dos Campeoes"
 
 [estilo]
-gols_base = 1.31    # nivel altissimo dos dois lados: jogo mais aberto que liga nacional
-mando     = 0.24    # mando pesa menos: elenco grande viaja bem
+gols_base = 1.31   # nivel altissimo dos dois lados: jogo mais aberto que liga nacional
+mando     = 0.24   # elenco grande viaja bem, o mando pesa menos
 
 [mentalidade]
-gols_mult  = 0.94   # mata-mata continental e mais cauteloso que pontos corridos
-compressao = 0.12   # o azarao se fecha, mas menos que numa copa nacional
+gols_mult  = 0.94
+compressao = 0.12
 
-[formato]
-fases = [
-  { tipo = "groups",   grupos = 8, voltas = 2, avancam = 2 },
-  { tipo = "knockout", maos = 2, penaltis = true },
-]
+# ---- 28 vagas diretas para a fase de liga, em ordem de prioridade
+[[classificacao]]
+fonte = "GB1"
+vagas = 4
+entra_em = "liga"
+[[classificacao]]
+fonte = "ES1"
+vagas = 4
+entra_em = "liga"
+[[classificacao]]
+fonte = "IT1"
+vagas = 4
+entra_em = "liga"
+[[classificacao]]
+fonte = "L1"
+vagas = 4
+entra_em = "liga"
+[[classificacao]]
+fonte = "FR1"
+vagas = 4
+entra_em = "liga"
+[[classificacao]]
+fonte = "PO1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "NL1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "BE1"
+vagas = 1
+entra_em = "liga"
+[[classificacao]]
+fonte = "TR1"
+vagas = 1
+entra_em = "liga"
+[[classificacao]]
+fonte = "GR1"
+vagas = 1
+entra_em = "liga"
+[[classificacao]]
+fonte = "UKR1"
+vagas = 1
+entra_em = "liga"
 
-# 32 vagas
-[vagas]
-GB1  = 4
-ES1  = 4
-IT1  = 4
-L1   = 4
-FR1  = 3
-PO1  = 2
-NL1  = 2
-BE1  = 2
-TR1  = 2
-GR1  = 1
-UKR1 = 1
-RU1  = 1
-A1   = 1
-C1   = 1
+# ---- 16 na pre curta: o clube seguinte de cada liga ja representada, mais o campeao das
+# ligas menores que temos importadas. Passam 8.
+[[classificacao]]
+fonte = "PO1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "NL1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "BE1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "TR1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "GR1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "UKR1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "RU1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "A1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "C1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "SC1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "DK1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "NO1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "SE1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "SER1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "KR1"
+vagas = 1
+entra_em = "pre"
+[[classificacao]]
+fonte = "PL1"
+vagas = 1
+entra_em = "pre"
+
+[[formato.fases]]
+nome    = "Pre-eliminatoria"
+tipo    = "knockout"
+maos    = 2
+rodadas = 1
+entram  = [ { classificacao = "pre" } ]
+
+[[formato.fases]]
+nome        = "Fase de liga"
+tipo        = "liga_suica"
+adversarios = 8
+potes       = 4
+avancam     = 24     # do 25o ao 36o estao fora
+entram      = [ { classificacao = "liga" } ]
+
+[[formato.fases]]
+nome    = "Playoff"
+tipo    = "knockout"
+maos    = 2
+rodadas = 1
+isentos = 8          # 1o ao 8o da fase de liga vao direto as oitavas
+
+[[formato.fases]]
+nome     = "Mata-mata"
+tipo     = "knockout"
+maos     = 2
+penaltis = true

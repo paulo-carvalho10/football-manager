@@ -153,3 +153,66 @@ def test_ninguem_se_classifica_duas_vezes(mundo):
                                {"copa_do_brasil": [tabelas["BRA1"][1], tabelas["BRA1"][3]]})
     todos = [c for lista in r.values() for c in lista]
     assert len(todos) == len(set(todos)), "clube ocupando duas vagas"
+
+
+def test_liga_suica_reproduz_a_regra_do_sorteio():
+    """Formato da Champions desde 2024-25. As quatro propriedades da regra real."""
+    from collections import Counter
+
+    from fm.competition import liga_suica
+    ids = list(range(1, 37))
+    fixtures = liga_suica(ids, adversarios=8, potes=4)
+
+    assert len(fixtures) == 36 * 8 // 2
+    jogos, casa, advs = Counter(), Counter(), {i: set() for i in ids}
+    for f in fixtures:
+        jogos[f.home] += 1
+        jogos[f.away] += 1
+        casa[f.home] += 1
+        advs[f.home].add(f.away)
+        advs[f.away].add(f.home)
+    assert set(jogos.values()) == {8}, "cada clube joga 8 partidas"
+    assert set(casa.values()) == {4}, "metade em casa"
+    assert {len(v) for v in advs.values()} == {8}, "8 adversarios DIFERENTES"
+
+    # os potes sao por forca; intercalando a ordem, cada clube pega 2 de cada pote
+    pote = {c: ids.index(c) // 9 for c in ids}
+    por_clube = {tuple(sorted(Counter(pote[a] for a in advs[c]).values())) for c in ids}
+    assert por_clube == {(2, 2, 2, 2)}, "2 adversarios de cada pote, como no sorteio real"
+
+
+def test_liga_suica_recusa_pedido_impossivel():
+    from fm.competition import liga_suica
+    with pytest.raises(ValueError):
+        liga_suica(list(range(10)), adversarios=7)      # impar
+    with pytest.raises(ValueError):
+        liga_suica(list(range(10)), adversarios=10)     # mais que o numero de rivais
+    with pytest.raises(ValueError):
+        liga_suica(list(range(9)), adversarios=4)       # numero impar de clubes
+
+
+def test_isentos_pulam_a_fase(mundo):
+    """1o ao 8o da fase de liga da Champions vao direto as oitavas, sem playoff."""
+    world, tabelas = mundo
+    clubes = tabelas["BRA1"][:12]
+    sobrou = _fase_mata_mata(world, clubes, {"rodadas": 1, "maos": 2, "isentos": 8},
+                             np.random.default_rng(2), Style(), Mentality.CUP)
+    assert sobrou[:8] == clubes[:8], "os isentos tem de passar intactos e na ordem"
+    assert len(sobrou) == 8 + 2, "os outros 4 viraram 2"
+
+
+def test_champions_esta_no_formato_atual():
+    """Guarda contra voltar ao formato de 8 grupos de 4, abolido em 2024-25."""
+    t = carregar("champions")
+    tipos = [f.get("tipo") for f in t.fases]
+    assert "liga_suica" in tipos, "a Champions tem de usar fase de liga, nao grupos"
+    assert "groups" not in tipos, "8 grupos de 4 acabou em 2024-25"
+    liga = next(f for f in t.fases if f.get("tipo") == "liga_suica")
+    assert liga["adversarios"] == 8
+    assert liga["avancam"] == 24
+    playoff = next(f for f in t.fases if f.get("isentos"))
+    assert playoff["isentos"] == 8
+    diretas = sum(r["vagas"] for r in t.classificacao_regras if r["entra_em"] == "liga")
+    pre = sum(r["vagas"] for r in t.classificacao_regras if r["entra_em"] == "pre")
+    assert diretas == 28
+    assert pre == 16, "16 na pre, 8 passam: 28 + 8 = 36"
