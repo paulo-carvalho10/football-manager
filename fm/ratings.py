@@ -67,6 +67,13 @@ REALIZACAO_PESO = 0.8     # quanto jogar reduz o desconto de imaturidade
 # caros da liga sao todos titulares.
 OVR_MIN, OVR_MAX = 40, 95
 
+# Quanto um jogador pode ficar ABAIXO da forca do clube. Quem joga muito nao pode despencar:
+# minutos sao evidencia de qualidade independente do preco, e num elenco de Serie B a
+# diferenca entre 300 mil e 500 mil de valor e ruido de mercado, nao informacao. Sem este
+# piso, titular de 900 minutos saia 18 pontos abaixo do proprio clube.
+QUEDA_MAXIMA_RESERVA = 16.0
+QUEDA_MAXIMA_TITULAR = 8.0
+
 # Teto por posicao. A normalizacao e DENTRO do elenco, entao num clube onde todo mundo e
 # caro (Real Madrid, 1,46 bi) ate o lateral reserva sobe: Cucurella, Alexander-Arnold e
 # Koundé saiam todos com 90, alto demais para a posicao. Nao e corte seco -- acima do
@@ -84,8 +91,12 @@ def aplicar_teto(valor: float, posicao: str | None) -> float:
     limiar = teto - MARGEM_TETO
     return min(teto, limiar + (valor - limiar) * COMPRESSAO_TETO)
 
-# Quando o valor nao existe (jogador sem cotacao), usa-se este piso para nao zerar o log.
+# Quando o valor nao existe, usa-se este piso para nao zerar o log -- mas so como ultimo
+# recurso: antes disso, os MINUTOS estimam o valor que falta.
 VALOR_PISO = 25_000
+# Desconto de quem nao tem cotacao: joga tanto quanto um cotado de valor X, mas o mercado
+# nao o precificou, entao vale menos que ele.
+DESCONTO_SEM_COTACAO = 0.55
 
 
 def idade_mult(idade: int | None) -> float:
@@ -138,6 +149,7 @@ def converter_elenco(
         return []
     if formacao is None:
         formacao = tuple(FORMATION_DEFAULT[g] for g in ("GK", "DF", "MF", "FW"))
+    jogadores = imputar_valores(jogadores)
     q = np.log([valor_qualidade(j.get("valor"), j.get("posicao"), j.get("idade"), k_pos)
                 for j in jogadores])
     desvio = q.std() or 1.0
@@ -172,7 +184,11 @@ def converter_elenco(
                                                             strict=True)])
     pot_teto = np.array([aplicar_teto(v, p) for v, p in zip(pot_prov + alpha, posicoes,
                                                             strict=True)])
-    ovr = np.clip(np.round(ovr_teto), OVR_MIN, OVR_MAX).astype(int)
+    # piso por minutos: quem joga nao despenca abaixo do proprio clube
+    piso = np.array([
+        forca_clube - (QUEDA_MAXIMA_TITULAR * r + QUEDA_MAXIMA_RESERVA * (1 - r))
+        for r in realizacao])
+    ovr = np.clip(np.round(np.maximum(ovr_teto, piso)), OVR_MIN, OVR_MAX).astype(int)
     pot = np.clip(np.round(pot_teto), ovr, OVR_MAX).astype(int)
     saida = []
     for i, j in enumerate(jogadores):
@@ -240,3 +256,37 @@ def forca_mundial(
     resultado = calcular(desloc)
     return {liga: dict(zip(valores_por_liga[liga], resultado[liga], strict=True))
             for liga in valores_por_liga}
+
+
+def imputar_valores(jogadores: list[dict]) -> list[dict]:
+    """Estima o valor de quem nao tem cotacao, a partir dos MINUTOS jogados.
+
+    Sem isto, jogador sem cotacao caia no piso e virava overall 40 e poucos -- inclusive
+    quem jogou a temporada inteira. Medido na base real: 237 de 2.403 sem valor, e 38 deles
+    com mais de 600 minutos. O pior caso tinha 2.218 minutos pelo Ceara e overall 45.
+
+    Minutos sao evidencia de qualidade independente do preco: quem joga 2.200 minutos numa
+    liga profissional nao e um 45. A estimativa casa o percentil de minutos do jogador com
+    o percentil de valor do elenco, e aplica desconto -- ele joga como um cotado de X, mas
+    o mercado nao o precificou.
+    """
+    com = [j for j in jogadores if (j.get("valor") or 0) > 0]
+    sem = [j for j in jogadores if not (j.get("valor") or 0)]
+    if not sem or len(com) < 4:
+        return jogadores
+
+    valores = np.sort([j["valor"] for j in com])
+    minutos_todos = np.array([j.get("minutos") or 0 for j in jogadores], dtype=float)
+    saida = []
+    for j in jogadores:
+        if (j.get("valor") or 0) > 0:
+            saida.append(j)
+            continue
+        meus = j.get("minutos") or 0
+        pct = float(np.mean(minutos_todos <= meus)) if minutos_todos.size else 0.5
+        estimado = float(np.quantile(valores, np.clip(pct, 0.0, 1.0)))
+        novo = dict(j)
+        novo["valor"] = max(int(estimado * DESCONTO_SEM_COTACAO), VALOR_PISO)
+        novo["valor_estimado"] = True
+        saida.append(novo)
+    return saida

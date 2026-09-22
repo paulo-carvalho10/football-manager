@@ -278,6 +278,18 @@ valor_elenco = 33400000
   id_fonte = "977463"
 
   [[clubes.jogadores]]
+  nome = "Lucas Sasha"
+  pos = "DM"
+  idade = 36
+  ovr = 59
+  pot = 59
+  valor = 150000
+  partidas = 39
+  minutos = 3488
+  gols = 2
+  id_fonte = "121986"
+
+  [[clubes.jogadores]]
   nome = "Neris"
   pos = "CB"
   idade = 34
@@ -302,18 +314,6 @@ valor_elenco = 33400000
   id_fonte = "869477"
 
   [[clubes.jogadores]]
-  nome = "Lucas Sasha"
-  pos = "DM"
-  idade = 36
-  ovr = 56
-  pot = 56
-  valor = 150000
-  partidas = 39
-  minutos = 3488
-  gols = 2
-  id_fonte = "121986"
-
-  [[clubes.jogadores]]
   nome = "Magrão"
   pos = "GK"
   idade = 26
@@ -321,6 +321,41 @@ valor_elenco = 33400000
   pot = 58
   valor = 250000
   id_fonte = "818068"
+
+  [[clubes.jogadores]]
+  nome = "Kauã Rocha"
+  pos = "CB"
+  idade = 19
+  ovr = 55
+  pot = 60
+  valor = 500000
+  partidas = 10
+  minutos = 900
+  id_fonte = "1386991"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Emanoel"
+  pos = "AM"
+  idade = 20
+  ovr = 54
+  pot = 54
+  valor = 300000
+  partidas = 9
+  minutos = 810
+  gols = 3
+  id_fonte = "1279322"
+
+  [[clubes.jogadores]]
+  nome = "Lucca Prior"
+  pos = "AM"
+  idade = 22
+  ovr = 54
+  pot = 60
+  valor = 750000
+  partidas = 8
+  minutos = 741
+  gols = 2
+  id_fonte = "1082523"
 
   [[clubes.jogadores]]
   nome = "Kaio Henrique"
@@ -334,33 +369,10 @@ valor_elenco = 33400000
   id_fonte = "1221826"
 
   [[clubes.jogadores]]
-  nome = "Lucca Prior"
-  pos = "AM"
-  idade = 22
-  ovr = 53
-  pot = 60
-  valor = 750000
-  partidas = 8
-  minutos = 741
-  gols = 2
-  id_fonte = "1082523"
-
-  [[clubes.jogadores]]
-  nome = "Kauã Rocha"
-  pos = "CB"
-  idade = 19
-  ovr = 49
-  pot = 60
-  valor = 500000
-  partidas = 10
-  minutos = 900
-  id_fonte = "1386991"
-
-  [[clubes.jogadores]]
   nome = "Paulinho"
   pos = "FB"
   idade = 21
-  ovr = 46
+  ovr = 52
   pot = 58
   valor = 400000
   partidas = 2
@@ -368,22 +380,10 @@ valor_elenco = 33400000
   id_fonte = "1083888"
 
   [[clubes.jogadores]]
-  nome = "Lucas Emanoel"
-  pos = "AM"
-  idade = 20
-  ovr = 44
-  pot = 54
-  valor = 300000
-  partidas = 9
-  minutos = 810
-  gols = 3
-  id_fonte = "1279322"
-
-  [[clubes.jogadores]]
   nome = "Juan Cantillo"
   pos = "FW"
   idade = 23
-  ovr = 43
+  ovr = 51
   pot = 51
   valor = 200000
   id_fonte = "907567"
@@ -397,8 +397,8 @@ valor_elenco = 24880000
   nome = "Patrick de Paula"
   pos = "DM"
   idade = 27
-  ovr = 68
-  pot = 69
+  ovr = 69
+  pot = 70
   valor = 2500000
   partidas = 1
   minutos = 68
@@ -409,8 +409,8 @@ valor_elenco = 24880000
   nome = "Fernando Sobral"
   pos = "MF"
   idade = 31
-  ovr = 67
-  pot = 67
+  ovr = 68
+  pot = 68
   valor = 1500000
   partidas = 1
   minutos = 133
@@ -420,8 +420,8 @@ valor_elenco = 24880000
   nome = "Chrystian Barletta"
   pos = "WG"
   idade = 25
-  ovr = 66
-  pot = 67
+  ovr = 67
+  pot = 68
   valor = 2500000
   partidas = 34
   minutos = 3076
@@ -480,24 +480,12 @@ valor_elenco = 24880000
   pos = "FB"
   idade = 25
   ovr = 64
-  pot = 67
+  pot = 68
   valor = 1700000
   partidas = 3
   minutos = 281
   gols = 1
   id_fonte = "697845"
-
-  [[clubes.jogadores]]
-  nome = "Diego Hernández"
-  pos = "WG"
-  idade = 26
-  ovr = 64
-  pot = 65
-  valor = 1500000
-  partidas = 9
-  minutos = 799
-  gols = 3
-  id_fonte = "800732"
 
   [[clubes.jogadores]]
   nome = "Juan Alano"
@@ -511,11 +499,23 @@ valor_elenco = 24880000
   id_fonte = "520467"
 
   [[clubes.jogadores]]
+  nome = "Diego Hernández"
+  pos = "WG"
+  idade = 26
+  ovr = 63
+  pot = 65
+  valor = 1500000
+  partidas = 9
+  minutos = 799
+  gols = 3
+  id_fonte = "800732"
+
+  [[clubes.jogadores]]
   nome = "Clayson"
   pos = "WG"
   idade = 31
-  ovr = 63
-  pot = 63
+  ovr = 62
+  pot = 62
   valor = 700000
   partidas = 16
   minutos = 1474
@@ -526,8 +526,8 @@ valor_elenco = 24880000
   nome = "Perotti"
   pos = "FW"
   idade = 28
-  ovr = 63
-  pot = 63
+  ovr = 62
+  pot = 62
   valor = 900000
   partidas = 31
   minutos = 2772
@@ -538,8 +538,8 @@ valor_elenco = 24880000
   nome = "Brenno"
   pos = "GK"
   idade = 27
-  ovr = 62
-  pot = 63
+  ovr = 61
+  pot = 62
   valor = 500000
   id_fonte = "555016"
 
@@ -547,41 +547,19 @@ valor_elenco = 24880000
   nome = "Dudu Teodora"
   pos = "FW"
   idade = 27
-  ovr = 62
-  pot = 63
+  ovr = 61
+  pot = 62
   valor = 1000000
   partidas = 2
   minutos = 218
   id_fonte = "594561"
 
   [[clubes.jogadores]]
-  nome = "Willian Oliveira"
-  pos = "DM"
-  idade = 33
-  ovr = 62
-  pot = 62
-  valor = 300000
-  partidas = 7
-  minutos = 624
-  id_fonte = "252900"
-
-  [[clubes.jogadores]]
-  nome = "Zé Gabriel"
-  pos = "DM"
-  idade = 27
-  ovr = 62
-  pot = 62
-  valor = 550000
-  partidas = 26
-  minutos = 2316
-  id_fonte = "670968"
-
-  [[clubes.jogadores]]
   nome = "Habraão"
   pos = "CB"
   idade = 25
   ovr = 61
-  pot = 64
+  pot = 63
   valor = 800000
   partidas = 9
   minutos = 826
@@ -592,8 +570,8 @@ valor_elenco = 24880000
   nome = "Marcelo Ajul"
   pos = "CB"
   idade = 24
-  ovr = 61
-  pot = 63
+  ovr = 60
+  pot = 61
   valor = 600000
   partidas = 27
   minutos = 2432
@@ -601,34 +579,33 @@ valor_elenco = 24880000
   id_fonte = "910216"
 
   [[clubes.jogadores]]
-  nome = "Marlon"
-  pos = "WG"
-  idade = 29
+  nome = "Willian Oliveira"
+  pos = "DM"
+  idade = 33
   ovr = 60
   pot = 60
-  valor = 400000
-  partidas = 14
-  minutos = 1274
-  gols = 1
-  id_fonte = "635807"
+  valor = 300000
+  partidas = 7
+  minutos = 624
+  id_fonte = "252900"
 
   [[clubes.jogadores]]
-  nome = "Neto Pessoa"
-  pos = "FW"
-  idade = 32
+  nome = "Zé Gabriel"
+  pos = "DM"
+  idade = 27
   ovr = 60
-  pot = 60
-  valor = 350000
-  partidas = 2
-  minutos = 25
-  id_fonte = "639751"
+  pot = 61
+  valor = 550000
+  partidas = 26
+  minutos = 2316
+  id_fonte = "670968"
 
   [[clubes.jogadores]]
   nome = "Augusto Pucci"
   pos = "FB"
   idade = 18
-  ovr = 59
-  pot = 63
+  ovr = 58
+  pot = 61
   valor = 700000
   partidas = 27
   minutos = 2429
@@ -636,11 +613,22 @@ valor_elenco = 24880000
   id_fonte = "1355323"
 
   [[clubes.jogadores]]
+  nome = "Neto Pessoa"
+  pos = "FW"
+  idade = 32
+  ovr = 58
+  pot = 58
+  valor = 350000
+  partidas = 2
+  minutos = 25
+  id_fonte = "639751"
+
+  [[clubes.jogadores]]
   nome = "Biel Fonseca"
   pos = "AM"
   idade = 24
-  ovr = 59
-  pot = 60
+  ovr = 57
+  pot = 58
   valor = 500000
   partidas = 24
   minutos = 2131
@@ -648,11 +636,23 @@ valor_elenco = 24880000
   id_fonte = "867139"
 
   [[clubes.jogadores]]
+  nome = "Marlon"
+  pos = "WG"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 14
+  minutos = 1274
+  gols = 1
+  id_fonte = "635807"
+
+  [[clubes.jogadores]]
   nome = "Raí"
   pos = "FB"
   idade = 26
-  ovr = 58
-  pot = 60
+  ovr = 56
+  pot = 58
   valor = 350000
   partidas = 1
   minutos = 62
@@ -662,33 +662,35 @@ valor_elenco = 24880000
   nome = "Kayky Almeida"
   pos = "CB"
   idade = 21
-  ovr = 55
-  pot = 64
+  ovr = 54
+  pot = 63
   valor = 800000
   partidas = 8
   minutos = 729
   id_fonte = "1089609"
 
   [[clubes.jogadores]]
+  nome = "Edson Lucas"
+  pos = "FB"
+  idade = 26
+  ovr = 52
+  pot = 52
+  valor = 50000
+  partidas = 10
+  minutos = 872
+  id_fonte = "886688"
+
+  [[clubes.jogadores]]
   nome = "Fábio Matheus"
   pos = "MF"
   idade = 23
-  ovr = 54
-  pot = 61
+  ovr = 52
+  pot = 59
   valor = 500000
   partidas = 4
   minutos = 376
   gols = 1
   id_fonte = "1087725"
-
-  [[clubes.jogadores]]
-  nome = "Denis"
-  pos = "GK"
-  idade = 39
-  ovr = 53
-  pot = 53
-  valor = 25000
-  id_fonte = "75102"
 
   [[clubes.jogadores]]
   nome = "Kervin Andrade"
@@ -702,31 +704,12 @@ valor_elenco = 24880000
   id_fonte = "896338"
 
   [[clubes.jogadores]]
-  nome = "Edson Lucas"
-  pos = "FB"
-  idade = 26
-  ovr = 50
-  pot = 51
-  valor = 50000
-  partidas = 10
-  minutos = 872
-  id_fonte = "886688"
-
-  [[clubes.jogadores]]
-  nome = "Murilo Rhikman"
-  pos = "DM"
-  idade = 20
-  ovr = 47
-  pot = 61
-  valor = 500000
-  id_fonte = "1083245"
-
-  [[clubes.jogadores]]
   nome = "Adriano"
   pos = "GK"
   idade = 23
-  ovr = 43
-  pot = 50
+  ovr = 51
+  pot = 58
+  valor = 275887
   partidas = 3
   minutos = 270
   id_fonte = "738411"
@@ -735,11 +718,30 @@ valor_elenco = 24880000
   nome = "Patrick"
   pos = "CB"
   idade = 21
-  ovr = 40
-  pot = 50
+  ovr = 50
+  pot = 58
+  valor = 370806
   partidas = 4
   minutos = 339
   id_fonte = "1130054"
+
+  [[clubes.jogadores]]
+  nome = "Denis"
+  pos = "GK"
+  idade = 39
+  ovr = 49
+  pot = 49
+  valor = 25000
+  id_fonte = "75102"
+
+  [[clubes.jogadores]]
+  nome = "Murilo Rhikman"
+  pos = "DM"
+  idade = 20
+  ovr = 49
+  pot = 59
+  valor = 500000
+  id_fonte = "1083245"
 
 [[clubes]]
 nome = "Juventude"
@@ -750,8 +752,8 @@ valor_elenco = 15180000
   nome = "Mandaca"
   pos = "MF"
   idade = 24
-  ovr = 64
-  pot = 66
+  ovr = 66
+  pot = 67
   valor = 2200000
   partidas = 23
   minutos = 2083
@@ -762,8 +764,8 @@ valor_elenco = 15180000
   nome = "Lucas Mineiro"
   pos = "DM"
   idade = 30
-  ovr = 63
-  pot = 63
+  ovr = 64
+  pot = 64
   valor = 900000
   partidas = 27
   minutos = 2469
@@ -774,8 +776,8 @@ valor_elenco = 15180000
   nome = "Manuel Castro"
   pos = "WG"
   idade = 30
-  ovr = 62
-  pot = 62
+  ovr = 63
+  pot = 63
   valor = 1000000
   partidas = 14
   minutos = 1282
@@ -793,6 +795,17 @@ valor_elenco = 15180000
   minutos = 2701
   gols = 1
   id_fonte = "401539"
+
+  [[clubes.jogadores]]
+  nome = "Nathan"
+  pos = "FB"
+  idade = 25
+  ovr = 62
+  pot = 64
+  valor = 1200000
+  partidas = 12
+  minutos = 1114
+  id_fonte = "740273"
 
   [[clubes.jogadores]]
   nome = "Alisson Safira"
@@ -818,22 +831,23 @@ valor_elenco = 15180000
   id_fonte = "167291"
 
   [[clubes.jogadores]]
-  nome = "Nathan"
+  nome = "Patryck"
   pos = "FB"
-  idade = 25
-  ovr = 61
+  idade = 23
+  ovr = 60
   pot = 64
   valor = 1200000
-  partidas = 12
-  minutos = 1114
-  id_fonte = "740273"
+  partidas = 13
+  minutos = 1181
+  gols = 3
+  id_fonte = "662326"
 
   [[clubes.jogadores]]
   nome = "Jandrei"
   pos = "GK"
   idade = 33
-  ovr = 60
-  pot = 60
+  ovr = 59
+  pot = 59
   valor = 200000
   partidas = 40
   minutos = 3600
@@ -843,8 +857,8 @@ valor_elenco = 15180000
   nome = "Luis Amarilla"
   pos = "FW"
   idade = 31
-  ovr = 60
-  pot = 60
+  ovr = 59
+  pot = 59
   valor = 500000
   partidas = 3
   minutos = 253
@@ -854,8 +868,8 @@ valor_elenco = 15180000
   nome = "Raí Ramos"
   pos = "FB"
   idade = 32
-  ovr = 60
-  pot = 60
+  ovr = 59
+  pot = 59
   valor = 300000
   partidas = 17
   minutos = 1571
@@ -865,8 +879,8 @@ valor_elenco = 15180000
   nome = "Rodrigo Sam"
   pos = "CB"
   idade = 31
-  ovr = 60
-  pot = 60
+  ovr = 59
+  pot = 59
   valor = 350000
   partidas = 36
   minutos = 3251
@@ -877,8 +891,8 @@ valor_elenco = 15180000
   nome = "Ari Moura"
   pos = "WG"
   idade = 30
-  ovr = 59
-  pot = 59
+  ovr = 58
+  pot = 58
   valor = 500000
   id_fonte = "681497"
 
@@ -886,8 +900,8 @@ valor_elenco = 15180000
   nome = "Diogo Barbosa"
   pos = "FB"
   idade = 34
-  ovr = 59
-  pot = 59
+  ovr = 58
+  pot = 58
   valor = 200000
   partidas = 19
   minutos = 1752
@@ -897,8 +911,8 @@ valor_elenco = 15180000
   nome = "Pablo Roberto"
   pos = "MF"
   idade = 26
-  ovr = 59
-  pot = 60
+  ovr = 58
+  pot = 59
   valor = 600000
   partidas = 8
   minutos = 682
@@ -906,23 +920,11 @@ valor_elenco = 15180000
   id_fonte = "592375"
 
   [[clubes.jogadores]]
-  nome = "Patryck"
-  pos = "FB"
-  idade = 23
-  ovr = 59
-  pot = 64
-  valor = 1200000
-  partidas = 13
-  minutos = 1181
-  gols = 3
-  id_fonte = "662326"
-
-  [[clubes.jogadores]]
   nome = "Raí"
   pos = "AM"
   idade = 24
-  ovr = 59
-  pot = 60
+  ovr = 58
+  pot = 59
   valor = 700000
   partidas = 28
   minutos = 2498
@@ -930,23 +932,11 @@ valor_elenco = 15180000
   id_fonte = "978146"
 
   [[clubes.jogadores]]
-  nome = "Gabriel Pinheiro"
-  pos = "CB"
-  idade = 29
-  ovr = 58
-  pot = 58
-  valor = 250000
-  partidas = 23
-  minutos = 2047
-  gols = 2
-  id_fonte = "806150"
-
-  [[clubes.jogadores]]
   nome = "Marcos Paulo"
   pos = "WG"
   idade = 25
-  ovr = 58
-  pot = 59
+  ovr = 57
+  pot = 57
   valor = 550000
   partidas = 25
   minutos = 2209
@@ -954,11 +944,23 @@ valor_elenco = 15180000
   id_fonte = "612496"
 
   [[clubes.jogadores]]
+  nome = "Gabriel Pinheiro"
+  pos = "CB"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 250000
+  partidas = 23
+  minutos = 2047
+  gols = 2
+  id_fonte = "806150"
+
+  [[clubes.jogadores]]
   nome = "Fábio Lima"
   pos = "WG"
   idade = 29
-  ovr = 57
-  pot = 57
+  ovr = 55
+  pot = 55
   valor = 300000
   partidas = 19
   minutos = 1714
@@ -966,11 +968,22 @@ valor_elenco = 15180000
   id_fonte = "691861"
 
   [[clubes.jogadores]]
+  nome = "Pedro Rocha"
+  pos = "GK"
+  idade = 28
+  ovr = 55
+  pot = 55
+  valor = 165000
+  partidas = 8
+  minutos = 720
+  id_fonte = "740287"
+
+  [[clubes.jogadores]]
   nome = "Aderlan"
   pos = "FB"
   idade = 36
-  ovr = 56
-  pot = 56
+  ovr = 54
+  pot = 54
   valor = 100000
   partidas = 14
   minutos = 1216
@@ -980,8 +993,8 @@ valor_elenco = 15180000
   nome = "Allanzinho"
   pos = "WG"
   idade = 26
-  ovr = 56
-  pot = 57
+  ovr = 54
+  pot = 56
   valor = 400000
   partidas = 5
   minutos = 416
@@ -989,11 +1002,23 @@ valor_elenco = 15180000
   id_fonte = "685768"
 
   [[clubes.jogadores]]
+  nome = "Juan Christian"
+  pos = "WG"
+  idade = 25
+  ovr = 54
+  pot = 58
+  valor = 600000
+  partidas = 3
+  minutos = 274
+  gols = 2
+  id_fonte = "1010016"
+
+  [[clubes.jogadores]]
   nome = "Luan Martins"
   pos = "DM"
   idade = 27
-  ovr = 56
-  pot = 57
+  ovr = 54
+  pot = 55
   valor = 250000
   partidas = 17
   minutos = 1498
@@ -1003,8 +1028,8 @@ valor_elenco = 15180000
   nome = "Marcos Paulo"
   pos = "CB"
   idade = 23
-  ovr = 56
-  pot = 58
+  ovr = 54
+  pot = 56
   valor = 300000
   partidas = 36
   minutos = 3280
@@ -1015,43 +1040,30 @@ valor_elenco = 15180000
   nome = "Alan Ruschel"
   pos = "FB"
   idade = 37
-  ovr = 55
-  pot = 55
+  ovr = 52
+  pot = 52
   valor = 75000
   partidas = 1
   minutos = 105
   id_fonte = "75080"
 
   [[clubes.jogadores]]
-  nome = "Juan Christian"
-  pos = "WG"
-  idade = 25
-  ovr = 55
-  pot = 59
-  valor = 600000
-  partidas = 3
-  minutos = 274
-  gols = 2
-  id_fonte = "1010016"
-
-  [[clubes.jogadores]]
-  nome = "Alan Kardec"
-  pos = "FW"
-  idade = 37
-  ovr = 54
-  pot = 54
-  valor = 100000
-  partidas = 14
-  minutos = 1300
-  gols = 4
-  id_fonte = "53922"
+  nome = "Ruan Carneiro"
+  pos = "GK"
+  idade = 36
+  ovr = 52
+  pot = 52
+  valor = 55000
+  partidas = 1
+  minutos = 90
+  id_fonte = "203822"
 
   [[clubes.jogadores]]
   nome = "Wadson"
   pos = "FB"
   idade = 26
-  ovr = 54
-  pot = 56
+  ovr = 52
+  pot = 54
   valor = 200000
   partidas = 7
   minutos = 619
@@ -1059,53 +1071,57 @@ valor_elenco = 15180000
   id_fonte = "979677"
 
   [[clubes.jogadores]]
+  nome = "Alan Kardec"
+  pos = "FW"
+  idade = 37
+  ovr = 51
+  pot = 51
+  valor = 100000
+  partidas = 14
+  minutos = 1300
+  gols = 4
+  id_fonte = "53922"
+
+  [[clubes.jogadores]]
   nome = "Titi"
   pos = "CB"
   idade = 38
-  ovr = 53
-  pot = 53
+  ovr = 50
+  pot = 50
   valor = 50000
   partidas = 12
   minutos = 1039
   id_fonte = "55250"
 
   [[clubes.jogadores]]
-  nome = "Ruan Carneiro"
-  pos = "GK"
-  idade = 36
-  ovr = 51
-  pot = 51
-  partidas = 1
-  minutos = 90
-  id_fonte = "203822"
-
-  [[clubes.jogadores]]
   nome = "Iba Ly"
   pos = "DM"
   idade = 23
-  ovr = 50
-  pot = 56
+  ovr = 48
+  pot = 54
   valor = 250000
   partidas = 7
   minutos = 670
   id_fonte = "1127817"
 
   [[clubes.jogadores]]
-  nome = "Pedro Rocha"
-  pos = "GK"
-  idade = 28
-  ovr = 48
-  pot = 48
-  partidas = 8
-  minutos = 720
-  id_fonte = "740287"
+  nome = "Ray Breno"
+  pos = "AM"
+  idade = 22
+  ovr = 47
+  pot = 49
+  valor = 137500
+  partidas = 4
+  minutos = 334
+  gols = 2
+  id_fonte = "1083974"
 
   [[clubes.jogadores]]
   nome = "Davi Góes"
   pos = "DM"
   idade = 21
-  ovr = 45
-  pot = 56
+  ovr = 46
+  pot = 54
   valor = 250000
   partidas = 3
   minutos = 279
@@ -1115,30 +1131,21 @@ valor_elenco = 15180000
   nome = "Lucas Alves"
   pos = "FW"
   idade = 24
-  ovr = 40
-  pot = 45
+  ovr = 46
+  pot = 46
+  valor = 72285
   partidas = 1
   minutos = 93
   gols = 1
   id_fonte = "870487"
 
   [[clubes.jogadores]]
-  nome = "Ray Breno"
-  pos = "AM"
-  idade = 22
-  ovr = 40
-  pot = 45
-  partidas = 4
-  minutos = 334
-  gols = 2
-  id_fonte = "1083974"
-
-  [[clubes.jogadores]]
   nome = "Zé Henrique"
   pos = "GK"
   idade = 21
-  ovr = 40
-  pot = 48
+  ovr = 45
+  pot = 46
+  valor = 50285
   id_fonte = "1031409"
 
 [[clubes]]
@@ -1150,8 +1157,8 @@ valor_elenco = 13530000
   nome = "Zanocelo"
   pos = "DM"
   idade = 25
-  ovr = 63
-  pot = 64
+  ovr = 64
+  pot = 65
   valor = 2000000
   partidas = 19
   minutos = 1693
@@ -1162,8 +1169,8 @@ valor_elenco = 13530000
   nome = "Luizão"
   pos = "CB"
   idade = 33
-  ovr = 62
-  pot = 62
+  ovr = 63
+  pot = 63
   valor = 550000
   partidas = 34
   minutos = 3039
@@ -1174,13 +1181,25 @@ valor_elenco = 13530000
   nome = "Wendel"
   pos = "FW"
   idade = 26
-  ovr = 62
-  pot = 63
+  ovr = 63
+  pot = 64
   valor = 2000000
   partidas = 16
   minutos = 1455
   gols = 4
   id_fonte = "589911"
+
+  [[clubes.jogadores]]
+  nome = "Matheus Araújo"
+  pos = "AM"
+  idade = 24
+  ovr = 61
+  pot = 63
+  valor = 1500000
+  partidas = 20
+  minutos = 1764
+  gols = 7
+  id_fonte = "678853"
 
   [[clubes.jogadores]]
   nome = "Renzo López"
@@ -1205,18 +1224,6 @@ valor_elenco = 13530000
   id_fonte = "553727"
 
   [[clubes.jogadores]]
-  nome = "Matheus Araújo"
-  pos = "AM"
-  idade = 24
-  ovr = 60
-  pot = 62
-  valor = 1500000
-  partidas = 20
-  minutos = 1764
-  gols = 7
-  id_fonte = "678853"
-
-  [[clubes.jogadores]]
   nome = "Rafael Ramos"
   pos = "FB"
   idade = 31
@@ -1227,17 +1234,6 @@ valor_elenco = 13530000
   minutos = 1857
   gols = 1
   id_fonte = "290388"
-
-  [[clubes.jogadores]]
-  nome = "Bryan Borges"
-  pos = "FB"
-  idade = 30
-  ovr = 59
-  pot = 59
-  valor = 300000
-  partidas = 7
-  minutos = 658
-  id_fonte = "524568"
 
   [[clubes.jogadores]]
   nome = "Matheus Nogueira"
@@ -1262,49 +1258,27 @@ valor_elenco = 13530000
   id_fonte = "607093"
 
   [[clubes.jogadores]]
+  nome = "Bryan Borges"
+  pos = "FB"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 300000
+  partidas = 7
+  minutos = 658
+  id_fonte = "524568"
+
+  [[clubes.jogadores]]
   nome = "Vina"
   pos = "AM"
   idade = 35
-  ovr = 59
-  pot = 59
+  ovr = 58
+  pot = 58
   valor = 250000
   partidas = 18
   minutos = 1577
   gols = 9
   id_fonte = "106281"
-
-  [[clubes.jogadores]]
-  nome = "Giovanni Pavani"
-  pos = "MF"
-  idade = 29
-  ovr = 58
-  pot = 58
-  valor = 350000
-  partidas = 4
-  minutos = 322
-  id_fonte = "976522"
-
-  [[clubes.jogadores]]
-  nome = "Lucas Mugni"
-  pos = "AM"
-  idade = 34
-  ovr = 58
-  pot = 58
-  valor = 200000
-  partidas = 4
-  minutos = 398
-  id_fonte = "148231"
-
-  [[clubes.jogadores]]
-  nome = "Richard Costa"
-  pos = "GK"
-  idade = 35
-  ovr = 58
-  pot = 58
-  valor = 100000
-  partidas = 34
-  minutos = 3047
-  id_fonte = "159893"
 
   [[clubes.jogadores]]
   nome = "Éder"
@@ -1318,11 +1292,33 @@ valor_elenco = 13530000
   id_fonte = "375690"
 
   [[clubes.jogadores]]
+  nome = "Giovanni Pavani"
+  pos = "MF"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 350000
+  partidas = 4
+  minutos = 322
+  id_fonte = "976522"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Mugni"
+  pos = "AM"
+  idade = 34
+  ovr = 57
+  pot = 57
+  valor = 200000
+  partidas = 4
+  minutos = 398
+  id_fonte = "148231"
+
+  [[clubes.jogadores]]
   nome = "Júlio César"
   pos = "CB"
   idade = 22
-  ovr = 57
-  pot = 59
+  ovr = 56
+  pot = 58
   valor = 400000
   partidas = 29
   minutos = 2621
@@ -1341,10 +1337,33 @@ valor_elenco = 13530000
   id_fonte = "865028"
 
   [[clubes.jogadores]]
+  nome = "Richard Costa"
+  pos = "GK"
+  idade = 35
+  ovr = 56
+  pot = 56
+  valor = 100000
+  partidas = 34
+  minutos = 3047
+  id_fonte = "159893"
+
+  [[clubes.jogadores]]
+  nome = "João Gabriel"
+  pos = "DM"
+  idade = 20
+  ovr = 55
+  pot = 58
+  valor = 458333
+  partidas = 25
+  minutos = 2218
+  gols = 2
+  id_fonte = "1223077"
+
+  [[clubes.jogadores]]
   nome = "Lucca"
   pos = "FW"
   idade = 23
-  ovr = 56
+  ovr = 55
   pot = 58
   valor = 600000
   partidas = 21
@@ -1356,42 +1375,19 @@ valor_elenco = 13530000
   nome = "Richardson"
   pos = "DM"
   idade = 35
-  ovr = 56
-  pot = 56
+  ovr = 55
+  pot = 55
   valor = 100000
   partidas = 14
   minutos = 1226
   id_fonte = "145573"
 
   [[clubes.jogadores]]
-  nome = "Luiz Otávio"
-  pos = "CB"
-  idade = 38
-  ovr = 54
-  pot = 54
-  valor = 50000
-  partidas = 5
-  minutos = 488
-  id_fonte = "265693"
-
-  [[clubes.jogadores]]
-  nome = "Melk"
-  pos = "AM"
-  idade = 20
-  ovr = 54
-  pot = 57
-  valor = 350000
-  partidas = 27
-  minutos = 2428
-  gols = 9
-  id_fonte = "1096082"
-
-  [[clubes.jogadores]]
   nome = "Nicolás Ferreira"
   pos = "WG"
   idade = 24
   ovr = 54
-  pot = 59
+  pot = 58
   valor = 600000
   partidas = 8
   minutos = 722
@@ -1399,30 +1395,45 @@ valor_elenco = 13530000
   id_fonte = "995638"
 
   [[clubes.jogadores]]
+  nome = "Melk"
+  pos = "AM"
+  idade = 20
+  ovr = 53
+  pot = 55
+  valor = 350000
+  partidas = 27
+  minutos = 2428
+  gols = 9
+  id_fonte = "1096082"
+
+  [[clubes.jogadores]]
+  nome = "Luiz Otávio"
+  pos = "CB"
+  idade = 38
+  ovr = 52
+  pot = 52
+  valor = 50000
+  partidas = 5
+  minutos = 488
+  id_fonte = "265693"
+
+  [[clubes.jogadores]]
   nome = "Thalisson"
   pos = "CB"
   idade = 24
-  ovr = 53
-  pot = 59
+  ovr = 52
+  pot = 58
   valor = 400000
   partidas = 1
   minutos = 94
   id_fonte = "874307"
 
   [[clubes.jogadores]]
-  nome = "Caíque França"
-  pos = "GK"
-  idade = 31
-  ovr = 51
-  pot = 51
-  id_fonte = "408850"
-
-  [[clubes.jogadores]]
   nome = "Sánchez"
   pos = "FB"
   idade = 30
-  ovr = 49
-  pot = 49
+  ovr = 50
+  pot = 50
   valor = 25000
   partidas = 16
   minutos = 1456
@@ -1430,22 +1441,33 @@ valor_elenco = 13530000
   id_fonte = "375241"
 
   [[clubes.jogadores]]
-  nome = "João Gabriel"
-  pos = "DM"
-  idade = 20
-  ovr = 45
+  nome = "Caíque França"
+  pos = "GK"
+  idade = 31
+  ovr = 48
   pot = 48
-  partidas = 25
-  minutos = 2218
-  gols = 2
-  id_fonte = "1223077"
+  valor = 25000
+  id_fonte = "408850"
+
+  [[clubes.jogadores]]
+  nome = "Pedro Gilmar"
+  pos = "CB"
+  idade = 20
+  ovr = 48
+  pot = 55
+  valor = 220000
+  partidas = 10
+  minutos = 864
+  gols = 1
+  id_fonte = "1096081"
 
   [[clubes.jogadores]]
   nome = "Rian Santana"
   pos = "WG"
   idade = 25
-  ovr = 43
-  pot = 47
+  ovr = 46
+  pot = 50
+  valor = 100833
   partidas = 1
   minutos = 74
   gols = 1
@@ -1455,29 +1477,20 @@ valor_elenco = 13530000
   nome = "Kauã"
   pos = "WG"
   idade = 20
-  ovr = 40
-  pot = 47
+  ovr = 45
+  pot = 46
+  valor = 58666
   partidas = 1
   minutos = 72
   id_fonte = "1220334"
 
   [[clubes.jogadores]]
-  nome = "Pedro Gilmar"
-  pos = "CB"
-  idade = 20
-  ovr = 40
-  pot = 48
-  partidas = 10
-  minutos = 864
-  gols = 1
-  id_fonte = "1096081"
-
-  [[clubes.jogadores]]
   nome = "Stanley Boateng"
   pos = "CB"
   idade = 21
-  ovr = 40
-  pot = 48
+  ovr = 44
+  pot = 47
+  valor = 42166
   partidas = 1
   minutos = 3
   id_fonte = "1218994"
@@ -1491,8 +1504,8 @@ valor_elenco = 12500000
   nome = "Lourenço"
   pos = "MF"
   idade = 29
-  ovr = 64
-  pot = 64
+  ovr = 65
+  pot = 65
   valor = 2500000
   partidas = 32
   minutos = 2882
@@ -1503,8 +1516,8 @@ valor_elenco = 12500000
   nome = "Tadeu"
   pos = "GK"
   idade = 34
-  ovr = 64
-  pot = 64
+  ovr = 65
+  pot = 65
   valor = 900000
   partidas = 33
   minutos = 2970
@@ -1630,7 +1643,7 @@ valor_elenco = 12500000
   pos = "CB"
   idade = 23
   ovr = 57
-  pot = 59
+  pot = 58
   valor = 500000
   partidas = 29
   minutos = 2586
@@ -1665,8 +1678,8 @@ valor_elenco = 12500000
   nome = "Brayann"
   pos = "AM"
   idade = 28
-  ovr = 55
-  pot = 55
+  ovr = 54
+  pot = 54
   valor = 200000
   partidas = 6
   minutos = 509
@@ -1676,8 +1689,8 @@ valor_elenco = 12500000
   nome = "Bruno Sávio"
   pos = "AM"
   idade = 32
-  ovr = 55
-  pot = 55
+  ovr = 54
+  pot = 54
   valor = 150000
   partidas = 7
   minutos = 641
@@ -1685,70 +1698,11 @@ valor_elenco = 12500000
   id_fonte = "352042"
 
   [[clubes.jogadores]]
-  nome = "Cadu"
-  pos = "FW"
-  idade = 22
-  ovr = 53
-  pot = 58
-  valor = 600000
-  partidas = 15
-  minutos = 1380
-  gols = 4
-  id_fonte = "1083073"
-
-  [[clubes.jogadores]]
-  nome = "Juninho"
-  pos = "DM"
-  idade = 38
-  ovr = 53
-  pot = 53
-  valor = 50000
-  partidas = 14
-  minutos = 1288
-  gols = 1
-  id_fonte = "271187"
-
-  [[clubes.jogadores]]
-  nome = "Thiago Rodrigues"
-  pos = "GK"
-  idade = 37
-  ovr = 52
-  pot = 52
-  valor = 25000
-  partidas = 15
-  minutos = 1350
-  id_fonte = "76139"
-
-  [[clubes.jogadores]]
-  nome = "Pedrinho"
-  pos = "WG"
-  idade = 22
-  ovr = 51
-  pot = 58
-  valor = 600000
-  partidas = 9
-  minutos = 844
-  gols = 1
-  id_fonte = "1022057"
-
-  [[clubes.jogadores]]
-  nome = "Lucas Rodrigues"
-  pos = "DM"
-  idade = 18
-  ovr = 50
-  pot = 54
-  valor = 150000
-  partidas = 24
-  minutos = 2141
-  gols = 5
-  id_fonte = "1257109"
-
-  [[clubes.jogadores]]
   nome = "Anselmo Ramon"
   pos = "FW"
   idade = 38
-  ovr = 49
-  pot = 49
+  ovr = 52
+  pot = 52
   valor = 25000
   partidas = 27
   minutos = 2440
@@ -1756,21 +1710,22 @@ valor_elenco = 12500000
   id_fonte = "118007"
 
   [[clubes.jogadores]]
-  nome = "Baldória"
-  pos = "DM"
-  idade = 21
-  ovr = 49
+  nome = "Cadu"
+  pos = "FW"
+  idade = 22
+  ovr = 52
   pot = 57
-  valor = 400000
-  partidas = 9
-  minutos = 792
-  id_fonte = "1097843"
+  valor = 600000
+  partidas = 15
+  minutos = 1380
+  gols = 4
+  id_fonte = "1083073"
 
   [[clubes.jogadores]]
   nome = "Jean Carlos"
   pos = "AM"
   idade = 21
-  ovr = 49
+  ovr = 52
   pot = 52
   valor = 100000
   partidas = 29
@@ -1779,41 +1734,102 @@ valor_elenco = 12500000
   id_fonte = "1092857"
 
   [[clubes.jogadores]]
-  nome = "Ezequiel Oliveira"
-  pos = "GK"
-  idade = 23
-  ovr = 46
-  pot = 54
-  valor = 100000
-  id_fonte = "689579"
+  nome = "Juninho"
+  pos = "DM"
+  idade = 38
+  ovr = 52
+  pot = 52
+  valor = 50000
+  partidas = 14
+  minutos = 1288
+  gols = 1
+  id_fonte = "271187"
 
   [[clubes.jogadores]]
-  nome = "Felipe Clemente"
-  pos = "FW"
-  idade = 27
-  ovr = 46
-  pot = 47
-  partidas = 2
-  minutos = 203
-  id_fonte = "688662"
+  nome = "Lucas Rodrigues"
+  pos = "DM"
+  idade = 18
+  ovr = 52
+  pot = 53
+  valor = 150000
+  partidas = 24
+  minutos = 2141
+  gols = 5
+  id_fonte = "1257109"
 
   [[clubes.jogadores]]
   nome = "Kadu"
   pos = "WG"
   idade = 24
-  ovr = 44
-  pot = 47
+  ovr = 51
+  pot = 54
+  valor = 222661
   partidas = 17
   minutos = 1494
   gols = 9
   id_fonte = "1115017"
 
   [[clubes.jogadores]]
+  nome = "Pedrinho"
+  pos = "WG"
+  idade = 22
+  ovr = 51
+  pot = 57
+  valor = 600000
+  partidas = 9
+  minutos = 844
+  gols = 1
+  id_fonte = "1022057"
+
+  [[clubes.jogadores]]
+  nome = "Thiago Rodrigues"
+  pos = "GK"
+  idade = 37
+  ovr = 51
+  pot = 51
+  valor = 25000
+  partidas = 15
+  minutos = 1350
+  id_fonte = "76139"
+
+  [[clubes.jogadores]]
+  nome = "Baldória"
+  pos = "DM"
+  idade = 21
+  ovr = 48
+  pot = 57
+  valor = 400000
+  partidas = 9
+  minutos = 792
+  id_fonte = "1097843"
+
+  [[clubes.jogadores]]
+  nome = "Felipe Clemente"
+  pos = "FW"
+  idade = 27
+  ovr = 48
+  pot = 49
+  valor = 55887
+  partidas = 2
+  minutos = 203
+  id_fonte = "688662"
+
+  [[clubes.jogadores]]
+  nome = "Ezequiel Oliveira"
+  pos = "GK"
+  idade = 23
+  ovr = 45
+  pot = 53
+  valor = 100000
+  id_fonte = "689579"
+
+  [[clubes.jogadores]]
   nome = "Danilo Cunha"
   pos = "FB"
   idade = 19
-  ovr = 40
+  ovr = 44
   pot = 48
+  valor = 37258
   partidas = 2
   minutos = 141
   id_fonte = "1257107"
@@ -1822,8 +1838,8 @@ valor_elenco = 12500000
   nome = "Halerrandrio"
   pos = "WG"
   idade = 20
-  ovr = 40
-  pot = 49
+  ovr = 44
+  pot = 48
   valor = 50000
   partidas = 2
   minutos = 29
@@ -1833,8 +1849,9 @@ valor_elenco = 12500000
   nome = "Vitor Hugo"
   pos = "WG"
   idade = 22
-  ovr = 40
-  pot = 47
+  ovr = 44
+  pot = 45
+  valor = 25000
   id_fonte = "989599"
 
 [[clubes]]
@@ -1846,8 +1863,8 @@ valor_elenco = 12100000
   nome = "Rômulo"
   pos = "AM"
   idade = 24
-  ovr = 64
-  pot = 65
+  ovr = 65
+  pot = 67
   valor = 2500000
   partidas = 36
   minutos = 3206
@@ -1864,6 +1881,18 @@ valor_elenco = 12100000
   partidas = 33
   minutos = 3000
   id_fonte = "255928"
+
+  [[clubes.jogadores]]
+  nome = "Juninho"
+  pos = "AM"
+  idade = 25
+  ovr = 61
+  pot = 63
+  valor = 1200000
+  partidas = 17
+  minutos = 1551
+  gols = 6
+  id_fonte = "740271"
 
   [[clubes.jogadores]]
   nome = "Matheus Bianqui"
@@ -1887,18 +1916,6 @@ valor_elenco = 12100000
   partidas = 12
   minutos = 1050
   id_fonte = "412685"
-
-  [[clubes.jogadores]]
-  nome = "Juninho"
-  pos = "AM"
-  idade = 25
-  ovr = 60
-  pot = 62
-  valor = 1200000
-  partidas = 17
-  minutos = 1551
-  gols = 6
-  id_fonte = "740271"
 
   [[clubes.jogadores]]
   nome = "Luís Oyama"
@@ -1937,17 +1954,6 @@ valor_elenco = 12100000
   id_fonte = "161188"
 
   [[clubes.jogadores]]
-  nome = "Christian Ortíz"
-  pos = "AM"
-  idade = 34
-  ovr = 59
-  pot = 59
-  valor = 250000
-  partidas = 6
-  minutos = 564
-  id_fonte = "126239"
-
-  [[clubes.jogadores]]
   nome = "Léo Naldi"
   pos = "DM"
   idade = 25
@@ -1971,38 +1977,15 @@ valor_elenco = 12100000
   id_fonte = "911994"
 
   [[clubes.jogadores]]
-  nome = "Carlinhos"
-  pos = "CB"
-  idade = 31
-  ovr = 58
-  pot = 58
-  valor = 200000
-  partidas = 8
-  minutos = 759
-  id_fonte = "683337"
-
-  [[clubes.jogadores]]
-  nome = "Carlão"
-  pos = "FW"
+  nome = "Christian Ortíz"
+  pos = "AM"
   idade = 34
   ovr = 58
   pot = 58
   valor = 250000
   partidas = 6
-  minutos = 565
-  gols = 5
-  id_fonte = "349144"
-
-  [[clubes.jogadores]]
-  nome = "Eduardo Brock"
-  pos = "CB"
-  idade = 35
-  ovr = 58
-  pot = 58
-  valor = 150000
-  partidas = 13
-  minutos = 1136
-  id_fonte = "435232"
+  minutos = 564
+  id_fonte = "126239"
 
   [[clubes.jogadores]]
   nome = "Madson"
@@ -2017,6 +2000,40 @@ valor_elenco = 12100000
   id_fonte = "177845"
 
   [[clubes.jogadores]]
+  nome = "Carlinhos"
+  pos = "CB"
+  idade = 31
+  ovr = 57
+  pot = 57
+  valor = 200000
+  partidas = 8
+  minutos = 759
+  id_fonte = "683337"
+
+  [[clubes.jogadores]]
+  nome = "Carlão"
+  pos = "FW"
+  idade = 34
+  ovr = 57
+  pot = 57
+  valor = 250000
+  partidas = 6
+  minutos = 565
+  gols = 5
+  id_fonte = "349144"
+
+  [[clubes.jogadores]]
+  nome = "Eduardo Brock"
+  pos = "CB"
+  idade = 35
+  ovr = 57
+  pot = 57
+  valor = 150000
+  partidas = 13
+  minutos = 1136
+  id_fonte = "435232"
+
+  [[clubes.jogadores]]
   nome = "Jhilmar Lora"
   pos = "FB"
   idade = 25
@@ -2026,17 +2043,6 @@ valor_elenco = 12100000
   partidas = 2
   minutos = 199
   id_fonte = "740464"
-
-  [[clubes.jogadores]]
-  nome = "Marlon"
-  pos = "DM"
-  idade = 36
-  ovr = 56
-  pot = 56
-  valor = 100000
-  partidas = 5
-  minutos = 32
-  id_fonte = "538234"
 
   [[clubes.jogadores]]
   nome = "Maykon Jesus"
@@ -2054,8 +2060,8 @@ valor_elenco = 12100000
   nome = "Vinícius Paiva"
   pos = "WG"
   idade = 25
-  ovr = 56
-  pot = 58
+  ovr = 55
+  pot = 57
   valor = 450000
   partidas = 20
   minutos = 1771
@@ -2063,11 +2069,22 @@ valor_elenco = 12100000
   id_fonte = "689561"
 
   [[clubes.jogadores]]
+  nome = "Marlon"
+  pos = "DM"
+  idade = 36
+  ovr = 54
+  pot = 54
+  valor = 100000
+  partidas = 5
+  minutos = 32
+  id_fonte = "538234"
+
+  [[clubes.jogadores]]
   nome = "Sander"
   pos = "FB"
   idade = 35
-  ovr = 55
-  pot = 55
+  ovr = 53
+  pot = 53
   valor = 75000
   partidas = 7
   minutos = 640
@@ -2075,23 +2092,11 @@ valor_elenco = 12100000
   id_fonte = "353722"
 
   [[clubes.jogadores]]
-  nome = "Renato Palm"
-  pos = "CB"
-  idade = 34
-  ovr = 54
-  pot = 54
-  valor = 50000
-  partidas = 4
-  minutos = 360
-  gols = 1
-  id_fonte = "347285"
-
-  [[clubes.jogadores]]
   nome = "Tavinho"
   pos = "MF"
   idade = 22
-  ovr = 54
-  pot = 59
+  ovr = 53
+  pot = 58
   valor = 500000
   partidas = 15
   minutos = 1358
@@ -2099,22 +2104,11 @@ valor_elenco = 12100000
   id_fonte = "1093927"
 
   [[clubes.jogadores]]
-  nome = "Diego Mathias"
-  pos = "FW"
-  idade = 27
-  ovr = 53
-  pot = 54
-  valor = 150000
-  partidas = 3
-  minutos = 232
-  id_fonte = "695238"
-
-  [[clubes.jogadores]]
   nome = "Diego Galo"
   pos = "MF"
   idade = 21
-  ovr = 52
-  pot = 59
+  ovr = 51
+  pot = 58
   valor = 500000
   partidas = 13
   minutos = 1130
@@ -2122,11 +2116,65 @@ valor_elenco = 12100000
   id_fonte = "1093928"
 
   [[clubes.jogadores]]
+  nome = "Renato Palm"
+  pos = "CB"
+  idade = 34
+  ovr = 51
+  pot = 51
+  valor = 50000
+  partidas = 4
+  minutos = 360
+  gols = 1
+  id_fonte = "347285"
+
+  [[clubes.jogadores]]
+  nome = "Diego Mathias"
+  pos = "FW"
+  idade = 27
+  ovr = 50
+  pot = 51
+  valor = 150000
+  partidas = 3
+  minutos = 232
+  id_fonte = "695238"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Bahia"
+  pos = "CB"
+  idade = 27
+  ovr = 50
+  pot = 50
+  valor = 50000
+  partidas = 19
+  minutos = 1677
+  id_fonte = "1128780"
+
+  [[clubes.jogadores]]
+  nome = "Paulo Henrique"
+  pos = "GK"
+  idade = 35
+  ovr = 50
+  pot = 50
+  valor = 27500
+  id_fonte = "979473"
+
+  [[clubes.jogadores]]
+  nome = "Lucas"
+  pos = "GK"
+  idade = 28
+  ovr = 49
+  pot = 49
+  valor = 45294
+  partidas = 1
+  minutos = 90
+  id_fonte = "537866"
+
+  [[clubes.jogadores]]
   nome = "Nicolas Careca"
   pos = "FW"
   idade = 29
-  ovr = 52
-  pot = 52
+  ovr = 49
+  pot = 49
   valor = 100000
   partidas = 8
   minutos = 703
@@ -2134,40 +2182,11 @@ valor_elenco = 12100000
   id_fonte = "345401"
 
   [[clubes.jogadores]]
-  nome = "Paulo Henrique"
-  pos = "GK"
-  idade = 35
-  ovr = 52
-  pot = 52
-  id_fonte = "979473"
-
-  [[clubes.jogadores]]
-  nome = "Gabriel Bahia"
-  pos = "CB"
-  idade = 27
-  ovr = 51
-  pot = 51
-  valor = 50000
-  partidas = 19
-  minutos = 1677
-  id_fonte = "1128780"
-
-  [[clubes.jogadores]]
-  nome = "Lucas"
-  pos = "GK"
-  idade = 28
-  ovr = 50
-  pot = 50
-  partidas = 1
-  minutos = 90
-  id_fonte = "537866"
-
-  [[clubes.jogadores]]
   nome = "Jardiel"
   pos = "FW"
   idade = 21
-  ovr = 48
-  pot = 58
+  ovr = 47
+  pot = 57
   valor = 500000
   partidas = 5
   minutos = 437
@@ -2175,22 +2194,47 @@ valor_elenco = 12100000
   id_fonte = "976951"
 
   [[clubes.jogadores]]
+  nome = "Hector Bianchi"
+  pos = "WG"
+  idade = 21
+  ovr = 46
+  pot = 51
+  valor = 156911
+  partidas = 6
+  minutos = 574
+  gols = 2
+  id_fonte = "1137558"
+
+  [[clubes.jogadores]]
   nome = "Hélio Borges"
   pos = "WG"
   idade = 26
-  ovr = 45
-  pot = 47
+  ovr = 46
+  pot = 48
+  valor = 82500
   partidas = 4
   minutos = 372
   gols = 1
   id_fonte = "730938"
 
   [[clubes.jogadores]]
+  nome = "Luiz Gabriel"
+  pos = "DM"
+  idade = 21
+  ovr = 46
+  pot = 51
+  valor = 121323
+  partidas = 6
+  minutos = 519
+  id_fonte = "1500733"
+
+  [[clubes.jogadores]]
   nome = "João Scapin"
   pos = "GK"
   idade = 22
-  ovr = 41
-  pot = 49
+  ovr = 45
+  pot = 52
+  valor = 105147
   partidas = 5
   minutos = 450
   id_fonte = "1093924"
@@ -2199,32 +2243,12 @@ valor_elenco = 12100000
   nome = "Ronald Barcellos"
   pos = "WG"
   idade = 24
-  ovr = 41
-  pot = 46
+  ovr = 45
+  pot = 48
+  valor = 84117
   partidas = 4
   minutos = 386
   id_fonte = "1082968"
-
-  [[clubes.jogadores]]
-  nome = "Hector Bianchi"
-  pos = "WG"
-  idade = 21
-  ovr = 40
-  pot = 46
-  partidas = 6
-  minutos = 574
-  gols = 2
-  id_fonte = "1137558"
-
-  [[clubes.jogadores]]
-  nome = "Luiz Gabriel"
-  pos = "DM"
-  idade = 21
-  ovr = 40
-  pot = 47
-  partidas = 6
-  minutos = 519
-  id_fonte = "1500733"
 
 [[clubes]]
 nome = "Athletic Club"
@@ -2232,27 +2256,38 @@ forca = 59.6
 valor_elenco = 12080000
 
   [[clubes.jogadores]]
+  nome = "Lucas Belezi"
+  pos = "CB"
+  idade = 23
+  ovr = 65
+  pot = 66
+  valor = 1500000
+  partidas = 30
+  minutos = 2697
+  gols = 2
+  id_fonte = "668230"
+
+  [[clubes.jogadores]]
   nome = "Luan Polli"
   pos = "GK"
   idade = 33
-  ovr = 63
-  pot = 63
+  ovr = 64
+  pot = 64
   valor = 400000
   partidas = 29
   minutos = 2610
   id_fonte = "273250"
 
   [[clubes.jogadores]]
-  nome = "Lucas Belezi"
-  pos = "CB"
-  idade = 23
+  nome = "Zeca"
+  pos = "FB"
+  idade = 32
   ovr = 63
-  pot = 65
-  valor = 1500000
-  partidas = 30
-  minutos = 2697
-  gols = 2
-  id_fonte = "668230"
+  pot = 63
+  valor = 500000
+  partidas = 27
+  minutos = 2390
+  id_fonte = "325196"
 
   [[clubes.jogadores]]
   nome = "Carlinhos"
@@ -2265,17 +2300,6 @@ valor_elenco = 12080000
   minutos = 445
   gols = 2
   id_fonte = "363173"
-
-  [[clubes.jogadores]]
-  nome = "Zeca"
-  pos = "FB"
-  idade = 32
-  ovr = 62
-  pot = 62
-  valor = 500000
-  partidas = 27
-  minutos = 2390
-  id_fonte = "325196"
 
   [[clubes.jogadores]]
   nome = "Ronaldo Tavares"
@@ -2294,23 +2318,12 @@ valor_elenco = 12080000
   pos = "MF"
   idade = 21
   ovr = 60
-  pot = 62
+  pot = 63
   valor = 1000000
   partidas = 30
   minutos = 2685
   gols = 3
   id_fonte = "1074479"
-
-  [[clubes.jogadores]]
-  nome = "Jhonathan"
-  pos = "CB"
-  idade = 27
-  ovr = 59
-  pot = 59
-  valor = 300000
-  partidas = 34
-  minutos = 3071
-  id_fonte = "811949"
 
   [[clubes.jogadores]]
   nome = "Philipe Sampaio"
@@ -2324,16 +2337,15 @@ valor_elenco = 12080000
   id_fonte = "336697"
 
   [[clubes.jogadores]]
-  nome = "Diogo Batista"
-  pos = "FB"
-  idade = 23
-  ovr = 57
-  pot = 59
-  valor = 400000
-  partidas = 22
-  minutos = 1992
-  gols = 1
-  id_fonte = "994588"
+  nome = "Jhonathan"
+  pos = "CB"
+  idade = 27
+  ovr = 58
+  pot = 58
+  valor = 300000
+  partidas = 34
+  minutos = 3071
+  id_fonte = "811949"
 
   [[clubes.jogadores]]
   nome = "Dixon Vera"
@@ -2348,22 +2360,57 @@ valor_elenco = 12080000
   id_fonte = "961686"
 
   [[clubes.jogadores]]
+  nome = "Diogo Batista"
+  pos = "FB"
+  idade = 23
+  ovr = 56
+  pot = 59
+  valor = 400000
+  partidas = 22
+  minutos = 1992
+  gols = 1
+  id_fonte = "994588"
+
+  [[clubes.jogadores]]
   nome = "Douglas Pelé"
   pos = "FB"
   idade = 27
-  ovr = 57
-  pot = 58
+  ovr = 56
+  pot = 56
   valor = 250000
   partidas = 13
   minutos = 1137
   id_fonte = "868085"
 
   [[clubes.jogadores]]
+  nome = "Enzo"
+  pos = "FB"
+  idade = 24
+  ovr = 56
+  pot = 59
+  valor = 414071
+  partidas = 18
+  minutos = 1576
+  id_fonte = "1139255"
+
+  [[clubes.jogadores]]
+  nome = "Felipe Negrucci"
+  pos = "DM"
+  idade = 22
+  ovr = 55
+  pot = 63
+  valor = 1000000
+  partidas = 5
+  minutos = 480
+  gols = 1
+  id_fonte = "980837"
+
+  [[clubes.jogadores]]
   nome = "Glauco"
   pos = "GK"
   idade = 31
-  ovr = 57
-  pot = 57
+  ovr = 55
+  pot = 55
   valor = 100000
   partidas = 4
   minutos = 360
@@ -2373,8 +2420,8 @@ valor_elenco = 12080000
   nome = "Sidimar"
   pos = "CB"
   idade = 34
-  ovr = 57
-  pot = 57
+  ovr = 55
+  pot = 55
   valor = 100000
   id_fonte = "129119"
 
@@ -2382,40 +2429,19 @@ valor_elenco = 12080000
   nome = "Gian Cabezas"
   pos = "MF"
   idade = 23
-  ovr = 55
-  pot = 58
+  ovr = 53
+  pot = 56
   valor = 300000
   partidas = 18
   minutos = 1645
   id_fonte = "873528"
 
   [[clubes.jogadores]]
-  nome = "Fabrício Isidoro"
-  pos = "MF"
-  idade = 34
-  ovr = 54
-  pot = 54
-  valor = 50000
-  id_fonte = "512127"
-
-  [[clubes.jogadores]]
-  nome = "Felipe Negrucci"
-  pos = "DM"
-  idade = 22
-  ovr = 54
-  pot = 63
-  valor = 1000000
-  partidas = 5
-  minutos = 480
-  gols = 1
-  id_fonte = "980837"
-
-  [[clubes.jogadores]]
   nome = "Jota"
   pos = "MF"
   idade = 22
-  ovr = 54
-  pot = 59
+  ovr = 53
+  pot = 58
   valor = 400000
   partidas = 15
   minutos = 1345
@@ -2423,11 +2449,54 @@ valor_elenco = 12080000
   id_fonte = "1082637"
 
   [[clubes.jogadores]]
+  nome = "Tony Batista"
+  pos = "GK"
+  idade = 33
+  ovr = 53
+  pot = 53
+  valor = 55000
+  id_fonte = "347017"
+
+  [[clubes.jogadores]]
+  nome = "Gustavinho"
+  pos = "AM"
+  idade = 24
+  ovr = 52
+  pot = 57
+  valor = 400000
+  partidas = 3
+  minutos = 294
+  id_fonte = "800649"
+
+  [[clubes.jogadores]]
+  nome = "João Miguel"
+  pos = "DM"
+  idade = 22
+  ovr = 52
+  pot = 52
+  valor = 50000
+  partidas = 26
+  minutos = 2308
+  id_fonte = "1227001"
+
+  [[clubes.jogadores]]
+  nome = "Pedro Oliveira"
+  pos = "AM"
+  idade = 28
+  ovr = 52
+  pot = 52
+  valor = 137500
+  partidas = 3
+  minutos = 281
+  gols = 1
+  id_fonte = "752597"
+
+  [[clubes.jogadores]]
   nome = "Wilinton Aponzá"
   pos = "FW"
   idade = 26
-  ovr = 54
-  pot = 56
+  ovr = 51
+  pot = 53
   valor = 200000
   partidas = 5
   minutos = 494
@@ -2435,53 +2504,31 @@ valor_elenco = 12080000
   id_fonte = "854606"
 
   [[clubes.jogadores]]
-  nome = "Gustavinho"
-  pos = "AM"
-  idade = 24
-  ovr = 53
-  pot = 59
-  valor = 400000
-  partidas = 3
-  minutos = 294
-  id_fonte = "800649"
+  nome = "Fabrício Isidoro"
+  pos = "MF"
+  idade = 34
+  ovr = 50
+  pot = 50
+  valor = 50000
+  id_fonte = "512127"
 
   [[clubes.jogadores]]
   nome = "Jhan Torres"
   pos = "CB"
   idade = 25
-  ovr = 53
-  pot = 56
+  ovr = 50
+  pot = 54
   valor = 150000
   partidas = 5
   minutos = 415
   id_fonte = "837444"
 
   [[clubes.jogadores]]
-  nome = "Tony Batista"
-  pos = "GK"
-  idade = 33
-  ovr = 53
-  pot = 53
-  id_fonte = "347017"
-
-  [[clubes.jogadores]]
-  nome = "Max"
-  pos = "WG"
-  idade = 24
-  ovr = 52
-  pot = 55
-  valor = 175000
-  partidas = 16
-  minutos = 1465
-  gols = 2
-  id_fonte = "1226150"
-
-  [[clubes.jogadores]]
   nome = "Yago Santos"
   pos = "MF"
   idade = 23
-  ovr = 52
-  pot = 59
+  ovr = 50
+  pot = 58
   valor = 400000
   partidas = 3
   minutos = 267
@@ -2492,8 +2539,8 @@ valor_elenco = 12080000
   nome = "Kauan Lindes"
   pos = "AM"
   idade = 22
-  ovr = 50
-  pot = 58
+  ovr = 49
+  pot = 56
   valor = 350000
   partidas = 8
   minutos = 675
@@ -2501,37 +2548,16 @@ valor_elenco = 12080000
   id_fonte = "1222625"
 
   [[clubes.jogadores]]
-  nome = "João Miguel"
-  pos = "DM"
-  idade = 22
+  nome = "Max"
+  pos = "WG"
+  idade = 24
   ovr = 49
-  pot = 51
-  valor = 50000
-  partidas = 26
-  minutos = 2308
-  id_fonte = "1227001"
-
-  [[clubes.jogadores]]
-  nome = "Marcelo Henrique"
-  pos = "FB"
-  idade = 21
-  ovr = 49
-  pot = 57
-  valor = 250000
-  partidas = 8
-  minutos = 757
-  id_fonte = "1224595"
-
-  [[clubes.jogadores]]
-  nome = "Pedro Oliveira"
-  pos = "AM"
-  idade = 28
-  ovr = 48
-  pot = 48
-  partidas = 3
-  minutos = 281
-  gols = 1
-  id_fonte = "752597"
+  pot = 52
+  valor = 175000
+  partidas = 16
+  minutos = 1465
+  gols = 2
+  id_fonte = "1226150"
 
   [[clubes.jogadores]]
   nome = "Yarlen"
@@ -2545,73 +2571,79 @@ valor_elenco = 12080000
   id_fonte = "1241278"
 
   [[clubes.jogadores]]
-  nome = "Enzo"
-  pos = "FB"
-  idade = 24
-  ovr = 46
-  pot = 49
-  partidas = 18
-  minutos = 1576
-  id_fonte = "1139255"
-
-  [[clubes.jogadores]]
-  nome = "Assis"
-  pos = "AM"
-  idade = 24
-  ovr = 42
-  pot = 48
-  partidas = 1
-  minutos = 125
-  id_fonte = "1367321"
-
-  [[clubes.jogadores]]
   nome = "Bruninho"
   pos = "WG"
   idade = 23
-  ovr = 41
-  pot = 47
+  ovr = 47
+  pot = 53
+  valor = 220000
   partidas = 7
   minutos = 616
   gols = 2
   id_fonte = "977125"
 
   [[clubes.jogadores]]
+  nome = "Marcelo Henrique"
+  pos = "FB"
+  idade = 21
+  ovr = 47
+  pot = 56
+  valor = 250000
+  partidas = 8
+  minutos = 757
+  id_fonte = "1224595"
+
+  [[clubes.jogadores]]
   nome = "Eduardo Freire"
   pos = "GK"
   idade = 22
-  ovr = 41
-  pot = 50
+  ovr = 45
+  pot = 54
+  valor = 121785
   partidas = 3
   minutos = 270
   id_fonte = "1082667"
 
   [[clubes.jogadores]]
-  nome = "Alexandre Pena"
-  pos = "AM"
-  idade = 21
-  ovr = 40
-  pot = 48
-  partidas = 2
-  minutos = 2
-  id_fonte = "1096507"
-
-  [[clubes.jogadores]]
   nome = "Felipe Vieira"
   pos = "CB"
   idade = 21
-  ovr = 40
-  pot = 49
+  ovr = 45
+  pot = 54
+  valor = 165000
   partidas = 5
   minutos = 478
   gols = 1
   id_fonte = "1087844"
 
   [[clubes.jogadores]]
+  nome = "Alexandre Pena"
+  pos = "AM"
+  idade = 21
+  ovr = 44
+  pot = 46
+  valor = 55000
+  partidas = 2
+  minutos = 2
+  id_fonte = "1096507"
+
+  [[clubes.jogadores]]
+  nome = "Assis"
+  pos = "AM"
+  idade = 24
+  ovr = 44
+  pot = 49
+  valor = 95464
+  partidas = 1
+  minutos = 125
+  id_fonte = "1367321"
+
+  [[clubes.jogadores]]
   nome = "Gustavão"
   pos = "FW"
   idade = 21
-  ovr = 40
-  pot = 52
+  ovr = 44
+  pot = 48
   valor = 100000
   partidas = 1
   minutos = 5
@@ -2623,23 +2655,11 @@ forca = 59.5
 valor_elenco = 11850000
 
   [[clubes.jogadores]]
-  nome = "Jhonata Robert"
-  pos = "WG"
-  idade = 26
-  ovr = 62
-  pot = 62
-  valor = 2000000
-  partidas = 18
-  minutos = 1634
-  gols = 5
-  id_fonte = "711338"
-
-  [[clubes.jogadores]]
   nome = "Marcelo Hermes"
   pos = "FB"
   idade = 31
-  ovr = 62
-  pot = 62
+  ovr = 63
+  pot = 63
   valor = 1000000
   partidas = 39
   minutos = 3505
@@ -2650,12 +2670,24 @@ valor_elenco = 11850000
   nome = "Airton"
   pos = "GK"
   idade = 32
-  ovr = 61
-  pot = 61
+  ovr = 62
+  pot = 62
   valor = 500000
   partidas = 19
   minutos = 1710
   id_fonte = "377799"
+
+  [[clubes.jogadores]]
+  nome = "Jhonata Robert"
+  pos = "WG"
+  idade = 26
+  ovr = 62
+  pot = 63
+  valor = 2000000
+  partidas = 18
+  minutos = 1634
+  gols = 5
+  id_fonte = "711338"
 
   [[clubes.jogadores]]
   nome = "Alisson"
@@ -2715,30 +2747,6 @@ valor_elenco = 11850000
   id_fonte = "267849"
 
   [[clubes.jogadores]]
-  nome = "Bruno Alves"
-  pos = "CB"
-  idade = 35
-  ovr = 58
-  pot = 58
-  valor = 200000
-  partidas = 13
-  minutos = 1137
-  gols = 2
-  id_fonte = "177534"
-
-  [[clubes.jogadores]]
-  nome = "Diego Gonçalves"
-  pos = "WG"
-  idade = 32
-  ovr = 58
-  pot = 58
-  valor = 400000
-  partidas = 18
-  minutos = 1661
-  gols = 5
-  id_fonte = "405720"
-
-  [[clubes.jogadores]]
   nome = "Marcinho"
   pos = "FB"
   idade = 30
@@ -2750,6 +2758,30 @@ valor_elenco = 11850000
   id_fonte = "432967"
 
   [[clubes.jogadores]]
+  nome = "Bruno Alves"
+  pos = "CB"
+  idade = 35
+  ovr = 57
+  pot = 57
+  valor = 200000
+  partidas = 13
+  minutos = 1137
+  gols = 2
+  id_fonte = "177534"
+
+  [[clubes.jogadores]]
+  nome = "Diego Gonçalves"
+  pos = "WG"
+  idade = 32
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 18
+  minutos = 1661
+  gols = 5
+  id_fonte = "405720"
+
+  [[clubes.jogadores]]
   nome = "Eduardo"
   pos = "DM"
   idade = 29
@@ -2759,18 +2791,6 @@ valor_elenco = 11850000
   partidas = 23
   minutos = 2039
   id_fonte = "540541"
-
-  [[clubes.jogadores]]
-  nome = "Guilherme Lobo"
-  pos = "MF"
-  idade = 26
-  ovr = 56
-  pot = 57
-  valor = 400000
-  partidas = 31
-  minutos = 2810
-  gols = 1
-  id_fonte = "1151724"
 
   [[clubes.jogadores]]
   nome = "Jean Irmer"
@@ -2785,11 +2805,23 @@ valor_elenco = 11850000
   id_fonte = "349826"
 
   [[clubes.jogadores]]
+  nome = "Guilherme Lobo"
+  pos = "MF"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 400000
+  partidas = 31
+  minutos = 2810
+  gols = 1
+  id_fonte = "1151724"
+
+  [[clubes.jogadores]]
   nome = "Rómulo Otero"
   pos = "AM"
   idade = 33
-  ovr = 56
-  pot = 56
+  ovr = 54
+  pot = 54
   valor = 200000
   partidas = 16
   minutos = 1462
@@ -2797,11 +2829,22 @@ valor_elenco = 11850000
   id_fonte = "177680"
 
   [[clubes.jogadores]]
+  nome = "Yuri Tanque"
+  pos = "FW"
+  idade = 28
+  ovr = 54
+  pot = 54
+  valor = 350000
+  partidas = 1
+  minutos = 113
+  id_fonte = "514298"
+
+  [[clubes.jogadores]]
   nome = "Luciano Castán"
   pos = "CB"
   idade = 37
-  ovr = 55
-  pot = 55
+  ovr = 53
+  pot = 53
   valor = 100000
   partidas = 30
   minutos = 2737
@@ -2809,22 +2852,11 @@ valor_elenco = 11850000
   id_fonte = "140541"
 
   [[clubes.jogadores]]
-  nome = "Yuri Tanque"
-  pos = "FW"
-  idade = 28
-  ovr = 55
-  pot = 55
-  valor = 350000
-  partidas = 1
-  minutos = 113
-  id_fonte = "514298"
-
-  [[clubes.jogadores]]
   nome = "Fellipe Mateus"
   pos = "AM"
   idade = 35
-  ovr = 53
-  pot = 53
+  ovr = 52
+  pot = 52
   valor = 100000
   partidas = 21
   minutos = 1847
@@ -2835,43 +2867,30 @@ valor_elenco = 11850000
   nome = "João Carlos"
   pos = "WG"
   idade = 25
-  ovr = 52
-  pot = 55
+  ovr = 51
+  pot = 54
   valor = 350000
   partidas = 5
   minutos = 458
   id_fonte = "738502"
 
   [[clubes.jogadores]]
-  nome = "Nicolas"
-  pos = "FW"
-  idade = 36
-  ovr = 52
-  pot = 52
-  valor = 75000
-  partidas = 13
-  minutos = 1208
-  gols = 8
-  id_fonte = "186408"
-
-  [[clubes.jogadores]]
-  nome = "Cauê"
-  pos = "FW"
-  idade = 23
+  nome = "Rodrigo"
+  pos = "CB"
+  idade = 39
   ovr = 51
-  pot = 58
-  valor = 700000
-  partidas = 4
-  minutos = 349
-  gols = 1
-  id_fonte = "814268"
+  pot = 51
+  valor = 25000
+  partidas = 32
+  minutos = 2880
+  id_fonte = "349420"
 
   [[clubes.jogadores]]
   nome = "Waguininho"
   pos = "WG"
   idade = 36
-  ovr = 50
-  pot = 50
+  ovr = 51
+  pot = 51
   valor = 50000
   partidas = 32
   minutos = 2912
@@ -2879,40 +2898,66 @@ valor_elenco = 11850000
   id_fonte = "346923"
 
   [[clubes.jogadores]]
-  nome = "Rodrigo"
-  pos = "CB"
-  idade = 39
+  nome = "Cauê"
+  pos = "FW"
+  idade = 23
+  ovr = 50
+  pot = 57
+  valor = 700000
+  partidas = 4
+  minutos = 349
+  gols = 1
+  id_fonte = "814268"
+
+  [[clubes.jogadores]]
+  nome = "Nicolas"
+  pos = "FW"
+  idade = 36
   ovr = 49
   pot = 49
-  valor = 25000
-  partidas = 32
-  minutos = 2880
-  id_fonte = "349420"
+  valor = 75000
+  partidas = 13
+  minutos = 1208
+  gols = 8
+  id_fonte = "186408"
 
   [[clubes.jogadores]]
   nome = "Rômulo"
   pos = "CB"
   idade = 22
-  ovr = 48
-  pot = 58
+  ovr = 47
+  pot = 57
   valor = 450000
   id_fonte = "743588"
 
   [[clubes.jogadores]]
-  nome = "Kauã Moroso"
+  nome = "Pedro Santos"
   pos = "GK"
-  idade = 22
+  idade = 21
   ovr = 46
-  pot = 56
-  valor = 225000
-  id_fonte = "1033571"
+  pot = 54
+  valor = 192500
+  partidas = 7
+  minutos = 630
+  id_fonte = "1222017"
+
+  [[clubes.jogadores]]
+  nome = "Ruan Carvalho"
+  pos = "CB"
+  idade = 19
+  ovr = 46
+  pot = 53
+  valor = 200000
+  partidas = 7
+  minutos = 589
+  id_fonte = "1349600"
 
   [[clubes.jogadores]]
   nome = "Hiago Alves"
   pos = "FB"
   idade = 21
-  ovr = 44
-  pot = 54
+  ovr = 45
+  pot = 52
   valor = 200000
   partidas = 6
   minutos = 523
@@ -2920,33 +2965,54 @@ valor_elenco = 11850000
   id_fonte = "978189"
 
   [[clubes.jogadores]]
-  nome = "Ruan Carvalho"
-  pos = "CB"
-  idade = 19
-  ovr = 42
-  pot = 54
-  valor = 200000
-  partidas = 7
-  minutos = 589
-  id_fonte = "1349600"
+  nome = "Kauã Moroso"
+  pos = "GK"
+  idade = 22
+  ovr = 45
+  pot = 55
+  valor = 225000
+  id_fonte = "1033571"
 
   [[clubes.jogadores]]
   nome = "Thiaguinho"
   pos = "DM"
   idade = 20
-  ovr = 42
-  pot = 54
+  ovr = 45
+  pot = 52
   valor = 200000
   partidas = 5
   minutos = 476
   id_fonte = "1222029"
 
   [[clubes.jogadores]]
+  nome = "Octávio Henrique"
+  pos = "CB"
+  idade = 21
+  ovr = 44
+  pot = 49
+  valor = 110000
+  partidas = 2
+  minutos = 180
+  id_fonte = "1222015"
+
+  [[clubes.jogadores]]
+  nome = "Thales"
+  pos = "FW"
+  idade = 19
+  ovr = 44
+  pot = 51
+  valor = 250000
+  partidas = 1
+  minutos = 82
+  id_fonte = "1360738"
+
+  [[clubes.jogadores]]
   nome = "Eliel Costa"
   pos = "DM"
   idade = 23
-  ovr = 40
-  pot = 45
+  ovr = 43
+  pot = 46
+  valor = 61470
   partidas = 1
   minutos = 1
   id_fonte = "838057"
@@ -2955,48 +3021,19 @@ valor_elenco = 11850000
   nome = "Erick"
   pos = "CB"
   idade = 21
-  ovr = 40
-  pot = 45
+  ovr = 43
+  pot = 46
+  valor = 55000
   id_fonte = "1215637"
 
   [[clubes.jogadores]]
   nome = "Kaik Viçoza"
   pos = "FB"
   idade = 22
-  ovr = 40
-  pot = 45
+  ovr = 43
+  pot = 46
+  valor = 55000
   id_fonte = "1222016"
-
-  [[clubes.jogadores]]
-  nome = "Octávio Henrique"
-  pos = "CB"
-  idade = 21
-  ovr = 40
-  pot = 45
-  partidas = 2
-  minutos = 180
-  id_fonte = "1222015"
-
-  [[clubes.jogadores]]
-  nome = "Pedro Santos"
-  pos = "GK"
-  idade = 21
-  ovr = 40
-  pot = 47
-  partidas = 7
-  minutos = 630
-  id_fonte = "1222017"
-
-  [[clubes.jogadores]]
-  nome = "Thales"
-  pos = "FW"
-  idade = 19
-  ovr = 40
-  pot = 53
-  valor = 250000
-  partidas = 1
-  minutos = 82
-  id_fonte = "1360738"
 
 [[clubes]]
 nome = "Atlético Goianiense"
@@ -3007,8 +3044,8 @@ valor_elenco = 11550000
   nome = "David Terans"
   pos = "AM"
   idade = 32
-  ovr = 62
-  pot = 62
+  ovr = 63
+  pot = 63
   valor = 1000000
   id_fonte = "261309"
 
@@ -3016,8 +3053,8 @@ valor_elenco = 11550000
   nome = "Gustavo Coutinho"
   pos = "FW"
   idade = 27
-  ovr = 61
-  pot = 61
+  ovr = 62
+  pot = 62
   valor = 1500000
   partidas = 21
   minutos = 1913
@@ -3028,8 +3065,8 @@ valor_elenco = 11550000
   nome = "Matheusinho"
   pos = "AM"
   idade = 28
-  ovr = 61
-  pot = 61
+  ovr = 62
+  pot = 62
   valor = 1200000
   partidas = 1
   minutos = 101
@@ -3059,6 +3096,18 @@ valor_elenco = 11550000
   id_fonte = "981666"
 
   [[clubes.jogadores]]
+  nome = "Natã"
+  pos = "CB"
+  idade = 25
+  ovr = 60
+  pot = 62
+  valor = 900000
+  partidas = 15
+  minutos = 1325
+  gols = 1
+  id_fonte = "978004"
+
+  [[clubes.jogadores]]
   nome = "Guilherme Lopes"
   pos = "FB"
   idade = 24
@@ -3083,23 +3132,11 @@ valor_elenco = 11550000
   id_fonte = "298410"
 
   [[clubes.jogadores]]
-  nome = "Natã"
-  pos = "CB"
-  idade = 25
-  ovr = 59
-  pot = 61
-  valor = 900000
-  partidas = 15
-  minutos = 1325
-  gols = 1
-  id_fonte = "978004"
-
-  [[clubes.jogadores]]
   nome = "Marrony"
   pos = "WG"
   idade = 27
   ovr = 58
-  pot = 59
+  pot = 58
   valor = 700000
   partidas = 24
   minutos = 2144
@@ -3110,8 +3147,8 @@ valor_elenco = 11550000
   nome = "Bruno José"
   pos = "WG"
   idade = 28
-  ovr = 57
-  pot = 57
+  ovr = 55
+  pot = 55
   valor = 400000
   partidas = 14
   minutos = 1237
@@ -3122,8 +3159,8 @@ valor_elenco = 11550000
   nome = "Guilherme"
   pos = "AM"
   idade = 35
-  ovr = 57
-  pot = 57
+  ovr = 55
+  pot = 55
   valor = 200000
   partidas = 23
   minutos = 2048
@@ -3134,41 +3171,86 @@ valor_elenco = 11550000
   nome = "Yuri"
   pos = "FB"
   idade = 30
-  ovr = 57
-  pot = 57
+  ovr = 55
+  pot = 55
   valor = 250000
   partidas = 2
   minutos = 160
   id_fonte = "476337"
 
   [[clubes.jogadores]]
+  nome = "Daniel Peixoto"
+  pos = "DM"
+  idade = 29
+  ovr = 54
+  pot = 54
+  valor = 271562
+  partidas = 8
+  minutos = 679
+  id_fonte = "675047"
+
+  [[clubes.jogadores]]
+  nome = "Geovany Soares"
+  pos = "WG"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 440000
+  partidas = 24
+  minutos = 2194
+  gols = 3
+  id_fonte = "984512"
+
+  [[clubes.jogadores]]
   nome = "Leandro Vilela"
   pos = "DM"
   idade = 31
-  ovr = 56
-  pot = 56
+  ovr = 54
+  pot = 54
   valor = 200000
   partidas = 18
   minutos = 1632
   id_fonte = "347090"
 
   [[clubes.jogadores]]
+  nome = "Paulo Henrique"
+  pos = "GK"
+  idade = 32
+  ovr = 54
+  pot = 54
+  valor = 137500
+  partidas = 5
+  minutos = 450
+  id_fonte = "285684"
+
+  [[clubes.jogadores]]
   nome = "Paulo Vítor"
   pos = "GK"
   idade = 37
-  ovr = 56
-  pot = 56
+  ovr = 54
+  pot = 54
   valor = 100000
   partidas = 46
   minutos = 4140
   id_fonte = "419120"
 
   [[clubes.jogadores]]
+  nome = "Warley"
+  pos = "FB"
+  idade = 27
+  ovr = 53
+  pot = 54
+  valor = 250000
+  partidas = 8
+  minutos = 676
+  id_fonte = "681627"
+
+  [[clubes.jogadores]]
   nome = "Ewerthon"
   pos = "FB"
   idade = 25
-  ovr = 55
-  pot = 56
+  ovr = 52
+  pot = 53
   valor = 250000
   partidas = 25
   minutos = 2206
@@ -3179,53 +3261,19 @@ valor_elenco = 11550000
   nome = "Geovane"
   pos = "DM"
   idade = 37
-  ovr = 55
-  pot = 55
+  ovr = 52
+  pot = 52
   valor = 100000
   partidas = 5
   minutos = 433
   id_fonte = "100124"
 
   [[clubes.jogadores]]
-  nome = "Tito"
-  pos = "CB"
-  idade = 26
-  ovr = 55
-  pot = 55
-  valor = 200000
-  partidas = 31
-  minutos = 2823
-  gols = 2
-  id_fonte = "867798"
-
-  [[clubes.jogadores]]
-  nome = "Warley"
-  pos = "FB"
-  idade = 27
-  ovr = 55
-  pot = 56
-  valor = 250000
-  partidas = 8
-  minutos = 676
-  id_fonte = "681627"
-
-  [[clubes.jogadores]]
-  nome = "Cristiano"
-  pos = "MF"
-  idade = 26
-  ovr = 54
-  pot = 54
-  valor = 200000
-  partidas = 22
-  minutos = 1983
-  id_fonte = "902135"
-
-  [[clubes.jogadores]]
   nome = "Gustavo Maia"
   pos = "WG"
   idade = 25
-  ovr = 54
-  pot = 57
+  ovr = 52
+  pot = 55
   valor = 500000
   partidas = 4
   minutos = 378
@@ -3233,124 +3281,121 @@ valor_elenco = 11550000
   id_fonte = "752560"
 
   [[clubes.jogadores]]
+  nome = "Tito"
+  pos = "CB"
+  idade = 26
+  ovr = 52
+  pot = 52
+  valor = 200000
+  partidas = 31
+  minutos = 2823
+  gols = 2
+  id_fonte = "867798"
+
+  [[clubes.jogadores]]
+  nome = "Cristiano"
+  pos = "MF"
+  idade = 26
+  ovr = 51
+  pot = 51
+  valor = 200000
+  partidas = 22
+  minutos = 1983
+  id_fonte = "902135"
+
+  [[clubes.jogadores]]
   nome = "Vladimir"
   pos = "GK"
   idade = 37
-  ovr = 54
-  pot = 54
+  ovr = 50
+  pot = 50
   valor = 50000
   partidas = 2
   minutos = 180
   id_fonte = "98930"
 
   [[clubes.jogadores]]
-  nome = "Kahiser Lenis"
-  pos = "WG"
-  idade = 25
-  ovr = 50
-  pot = 54
-  valor = 200000
-  id_fonte = "900540"
-
-  [[clubes.jogadores]]
-  nome = "Paulo Henrique"
-  pos = "GK"
-  idade = 32
-  ovr = 50
-  pot = 50
-  partidas = 5
-  minutos = 450
-  id_fonte = "285684"
-
-  [[clubes.jogadores]]
-  nome = "Daniel Peixoto"
-  pos = "DM"
-  idade = 29
-  ovr = 47
-  pot = 47
-  partidas = 8
-  minutos = 679
-  id_fonte = "675047"
-
-  [[clubes.jogadores]]
-  nome = "Netinho"
-  pos = "DM"
-  idade = 28
-  ovr = 47
-  pot = 47
-  partidas = 2
-  minutos = 187
-  id_fonte = "978036"
-
-  [[clubes.jogadores]]
   nome = "Henrique Freitas"
   pos = "DM"
   idade = 27
-  ovr = 46
-  pot = 47
+  ovr = 49
+  pot = 50
+  valor = 137500
   partidas = 5
   minutos = 494
   id_fonte = "735650"
 
   [[clubes.jogadores]]
-  nome = "Daniel Lima"
-  pos = "FW"
-  idade = 21
-  ovr = 45
-  pot = 57
-  valor = 500000
-  id_fonte = "965614"
-
-  [[clubes.jogadores]]
-  nome = "Geovany Soares"
-  pos = "WG"
-  idade = 26
-  ovr = 45
-  pot = 46
-  partidas = 24
-  minutos = 2194
-  gols = 3
-  id_fonte = "984512"
-
-  [[clubes.jogadores]]
   nome = "Léo Tocantins"
   pos = "WG"
   idade = 27
-  ovr = 45
-  pot = 46
+  ovr = 48
+  pot = 49
+  valor = 178750
   partidas = 6
   minutos = 510
   id_fonte = "739249"
 
   [[clubes.jogadores]]
-  nome = "Léo"
-  pos = "GK"
-  idade = 24
-  ovr = 42
+  nome = "Netinho"
+  pos = "DM"
+  idade = 28
+  ovr = 48
   pot = 48
-  id_fonte = "1042363"
+  valor = 110000
+  partidas = 2
+  minutos = 187
+  id_fonte = "978036"
 
   [[clubes.jogadores]]
-  nome = "Felipe Guimarães"
-  pos = "FB"
-  idade = 22
-  ovr = 40
-  pot = 47
-  partidas = 3
-  minutos = 270
-  id_fonte = "1090821"
+  nome = "Kahiser Lenis"
+  pos = "WG"
+  idade = 25
+  ovr = 46
+  pot = 50
+  valor = 200000
+  id_fonte = "900540"
 
   [[clubes.jogadores]]
   nome = "Gustavo Daniel"
   pos = "FB"
   idade = 21
-  ovr = 40
-  pot = 49
+  ovr = 45
+  pot = 45
   valor = 50000
   partidas = 5
   minutos = 416
   gols = 1
   id_fonte = "1096866"
+
+  [[clubes.jogadores]]
+  nome = "Felipe Guimarães"
+  pos = "FB"
+  idade = 22
+  ovr = 44
+  pot = 48
+  valor = 110000
+  partidas = 3
+  minutos = 270
+  id_fonte = "1090821"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Lima"
+  pos = "FW"
+  idade = 21
+  ovr = 43
+  pot = 54
+  valor = 500000
+  id_fonte = "965614"
+
+  [[clubes.jogadores]]
+  nome = "Léo"
+  pos = "GK"
+  idade = 24
+  ovr = 43
+  pot = 46
+  valor = 55000
+  id_fonte = "1042363"
 
 [[clubes]]
 nome = "CRB"
@@ -3386,7 +3431,7 @@ valor_elenco = 11450000
   pos = "CB"
   idade = 24
   ovr = 60
-  pot = 61
+  pot = 62
   valor = 1000000
   partidas = 23
   minutos = 2112
@@ -3427,18 +3472,6 @@ valor_elenco = 11450000
   id_fonte = "689737"
 
   [[clubes.jogadores]]
-  nome = "Mikael"
-  pos = "FW"
-  idade = 27
-  ovr = 59
-  pot = 59
-  valor = 800000
-  partidas = 38
-  minutos = 3417
-  gols = 26
-  id_fonte = "642689"
-
-  [[clubes.jogadores]]
   nome = "Douglas Baggio"
   pos = "WG"
   idade = 31
@@ -3451,28 +3484,16 @@ valor_elenco = 11450000
   id_fonte = "191872"
 
   [[clubes.jogadores]]
-  nome = "Luiz Phellype"
+  nome = "Mikael"
   pos = "FW"
-  idade = 32
-  ovr = 58
-  pot = 58
-  valor = 400000
-  partidas = 5
-  minutos = 490
-  gols = 4
-  id_fonte = "240578"
-
-  [[clubes.jogadores]]
-  nome = "Thiaguinho"
-  pos = "WG"
-  idade = 25
+  idade = 27
   ovr = 58
   pot = 59
   valor = 800000
-  partidas = 21
-  minutos = 1897
-  gols = 3
-  id_fonte = "638305"
+  partidas = 38
+  minutos = 3417
+  gols = 26
+  id_fonte = "642689"
 
   [[clubes.jogadores]]
   nome = "Bressan"
@@ -3510,37 +3531,39 @@ valor_elenco = 11450000
   id_fonte = "544254"
 
   [[clubes.jogadores]]
-  nome = "Reverson"
-  pos = "FB"
-  idade = 29
+  nome = "Luiz Phellype"
+  pos = "FW"
+  idade = 32
   ovr = 57
   pot = 57
-  valor = 300000
-  partidas = 7
-  minutos = 664
-  id_fonte = "642570"
+  valor = 400000
+  partidas = 5
+  minutos = 490
+  gols = 4
+  id_fonte = "240578"
+
+  [[clubes.jogadores]]
+  nome = "Thiaguinho"
+  pos = "WG"
+  idade = 25
+  ovr = 57
+  pot = 59
+  valor = 800000
+  partidas = 21
+  minutos = 1897
+  gols = 3
+  id_fonte = "638305"
 
   [[clubes.jogadores]]
   nome = "Geovane"
   pos = "MF"
   idade = 27
   ovr = 56
-  pot = 57
+  pot = 56
   valor = 400000
   partidas = 3
   minutos = 308
   id_fonte = "865572"
-
-  [[clubes.jogadores]]
-  nome = "Luizão"
-  pos = "DM"
-  idade = 28
-  ovr = 56
-  pot = 56
-  valor = 250000
-  partidas = 10
-  minutos = 945
-  id_fonte = "518723"
 
   [[clubes.jogadores]]
   nome = "Pedro Castro"
@@ -3555,11 +3578,33 @@ valor_elenco = 11450000
   id_fonte = "214312"
 
   [[clubes.jogadores]]
+  nome = "Reverson"
+  pos = "FB"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 300000
+  partidas = 7
+  minutos = 664
+  id_fonte = "642570"
+
+  [[clubes.jogadores]]
+  nome = "Luizão"
+  pos = "DM"
+  idade = 28
+  ovr = 55
+  pot = 55
+  valor = 250000
+  partidas = 10
+  minutos = 945
+  id_fonte = "518723"
+
+  [[clubes.jogadores]]
   nome = "Dadá Belmonte"
   pos = "WG"
   idade = 29
-  ovr = 55
-  pot = 55
+  ovr = 54
+  pot = 54
   valor = 300000
   partidas = 38
   minutos = 3429
@@ -3570,8 +3615,8 @@ valor_elenco = 11450000
   nome = "Kevin"
   pos = "FB"
   idade = 29
-  ovr = 54
-  pot = 54
+  ovr = 53
+  pot = 53
   valor = 150000
   partidas = 14
   minutos = 1280
@@ -3582,8 +3627,8 @@ valor_elenco = 11450000
   nome = "Vitor Caetano"
   pos = "GK"
   idade = 27
-  ovr = 53
-  pot = 53
+  ovr = 51
+  pot = 52
   valor = 100000
   partidas = 24
   minutos = 2186
@@ -3593,8 +3638,8 @@ valor_elenco = 11450000
   nome = "Guilherme Pato"
   pos = "WG"
   idade = 25
-  ovr = 51
-  pot = 54
+  ovr = 50
+  pot = 53
   valor = 250000
   partidas = 10
   minutos = 895
@@ -3605,8 +3650,8 @@ valor_elenco = 11450000
   nome = "Léo Campos"
   pos = "FB"
   idade = 34
-  ovr = 51
-  pot = 51
+  ovr = 50
+  pot = 50
   valor = 50000
   partidas = 6
   minutos = 528
@@ -3614,15 +3659,26 @@ valor_elenco = 11450000
   id_fonte = "203643"
 
   [[clubes.jogadores]]
-  nome = "Darlisson"
+  nome = "Lyncon"
   pos = "CB"
-  idade = 22
-  ovr = 46
-  pot = 55
-  valor = 250000
-  partidas = 3
-  minutos = 270
-  id_fonte = "898441"
+  idade = 21
+  ovr = 47
+  pot = 49
+  valor = 100000
+  partidas = 11
+  minutos = 1004
+  id_fonte = "1083889"
+
+  [[clubes.jogadores]]
+  nome = "Ygor Catatau"
+  pos = "WG"
+  idade = 31
+  ovr = 47
+  pot = 47
+  valor = 61666
+  partidas = 1
+  minutos = 18
+  id_fonte = "591650"
 
   [[clubes.jogadores]]
   nome = "Lucas Kallyel"
@@ -3640,7 +3696,7 @@ valor_elenco = 11450000
   pos = "WG"
   idade = 27
   ovr = 46
-  pot = 47
+  pot = 46
   valor = 50000
   partidas = 10
   minutos = 868
@@ -3648,11 +3704,22 @@ valor_elenco = 11450000
   id_fonte = "548258"
 
   [[clubes.jogadores]]
+  nome = "Darlisson"
+  pos = "CB"
+  idade = 22
+  ovr = 45
+  pot = 54
+  valor = 250000
+  partidas = 3
+  minutos = 270
+  id_fonte = "898441"
+
+  [[clubes.jogadores]]
   nome = "João Neto"
   pos = "FW"
   idade = 23
   ovr = 45
-  pot = 51
+  pot = 49
   valor = 150000
   partidas = 6
   minutos = 549
@@ -3660,67 +3727,49 @@ valor_elenco = 11450000
   id_fonte = "875339"
 
   [[clubes.jogadores]]
-  nome = "Ygor Catatau"
-  pos = "WG"
-  idade = 31
-  ovr = 45
-  pot = 45
-  partidas = 1
-  minutos = 18
-  id_fonte = "591650"
-
-  [[clubes.jogadores]]
-  nome = "Lyncon"
-  pos = "CB"
-  idade = 21
-  ovr = 44
-  pot = 51
-  valor = 100000
-  partidas = 11
-  minutos = 1004
-  id_fonte = "1083889"
-
-  [[clubes.jogadores]]
-  nome = "Fábio Henrique"
-  pos = "GK"
-  idade = 23
-  ovr = 42
-  pot = 50
-  valor = 50000
-  id_fonte = "990156"
-
-  [[clubes.jogadores]]
   nome = "Anderson Dias"
   pos = "MF"
   idade = 21
-  ovr = 40
-  pot = 44
+  ovr = 43
+  pot = 45
+  valor = 55000
   id_fonte = "1116611"
 
   [[clubes.jogadores]]
   nome = "Estêvão"
   pos = "AM"
   idade = 24
-  ovr = 40
-  pot = 44
+  ovr = 43
+  pot = 47
+  valor = 82500
   partidas = 1
   minutos = 47
   id_fonte = "982552"
 
   [[clubes.jogadores]]
+  nome = "Fábio Henrique"
+  pos = "GK"
+  idade = 23
+  ovr = 43
+  pot = 48
+  valor = 50000
+  id_fonte = "990156"
+
+  [[clubes.jogadores]]
   nome = "Pablo"
   pos = "GK"
   idade = 22
-  ovr = 40
-  pot = 46
+  ovr = 43
+  pot = 48
+  valor = 55000
   id_fonte = "1088832"
 
   [[clubes.jogadores]]
   nome = "Rodriguinho"
   pos = "WG"
   idade = 21
-  ovr = 40
-  pot = 52
+  ovr = 43
+  pot = 51
   valor = 200000
   id_fonte = "1088848"
 
@@ -3733,12 +3782,23 @@ valor_elenco = 11000000
   nome = "Higor Meritão"
   pos = "DM"
   idade = 32
-  ovr = 63
-  pot = 63
+  ovr = 64
+  pot = 64
   valor = 800000
   partidas = 3
   minutos = 291
   id_fonte = "646432"
+
+  [[clubes.jogadores]]
+  nome = "Willian Maranhão"
+  pos = "DM"
+  idade = 30
+  ovr = 62
+  pot = 62
+  valor = 750000
+  partidas = 21
+  minutos = 1875
+  id_fonte = "538107"
 
   [[clubes.jogadores]]
   nome = "Everton Galdino"
@@ -3753,27 +3813,28 @@ valor_elenco = 11000000
   id_fonte = "458251"
 
   [[clubes.jogadores]]
-  nome = "Willian Maranhão"
-  pos = "DM"
-  idade = 30
-  ovr = 61
-  pot = 61
-  valor = 750000
-  partidas = 21
-  minutos = 1875
-  id_fonte = "538107"
-
-  [[clubes.jogadores]]
   nome = "João Vieira"
   pos = "DM"
   idade = 28
-  ovr = 60
-  pot = 60
+  ovr = 61
+  pot = 61
   valor = 700000
   partidas = 39
   minutos = 3504
   gols = 9
   id_fonte = "699824"
+
+  [[clubes.jogadores]]
+  nome = "Janderson"
+  pos = "WG"
+  idade = 27
+  ovr = 60
+  pot = 60
+  valor = 900000
+  partidas = 29
+  minutos = 2651
+  gols = 7
+  id_fonte = "670940"
 
   [[clubes.jogadores]]
   nome = "Helton Leite"
@@ -3787,23 +3848,11 @@ valor_elenco = 11000000
   id_fonte = "175383"
 
   [[clubes.jogadores]]
-  nome = "Janderson"
-  pos = "WG"
-  idade = 27
-  ovr = 59
-  pot = 60
-  valor = 900000
-  partidas = 29
-  minutos = 2651
-  gols = 7
-  id_fonte = "670940"
-
-  [[clubes.jogadores]]
   nome = "Anderson"
   pos = "CB"
   idade = 31
-  ovr = 58
-  pot = 58
+  ovr = 57
+  pot = 57
   valor = 300000
   partidas = 16
   minutos = 1476
@@ -3813,8 +3862,8 @@ valor_elenco = 11000000
   nome = "André Luis"
   pos = "WG"
   idade = 29
-  ovr = 58
-  pot = 58
+  ovr = 57
+  pot = 57
   valor = 550000
   partidas = 27
   minutos = 2409
@@ -3825,8 +3874,8 @@ valor_elenco = 11000000
   nome = "Dellatorre"
   pos = "FW"
   idade = 34
-  ovr = 58
-  pot = 58
+  ovr = 57
+  pot = 57
   valor = 350000
   partidas = 23
   minutos = 2035
@@ -3837,8 +3886,8 @@ valor_elenco = 11000000
   nome = "Hayner"
   pos = "FB"
   idade = 30
-  ovr = 58
-  pot = 58
+  ovr = 57
+  pot = 57
   valor = 350000
   partidas = 20
   minutos = 1842
@@ -3861,8 +3910,8 @@ valor_elenco = 11000000
   nome = "Igor Cariús"
   pos = "FB"
   idade = 33
-  ovr = 56
-  pot = 56
+  ovr = 55
+  pot = 55
   valor = 200000
   partidas = 3
   minutos = 299
@@ -3872,8 +3921,8 @@ valor_elenco = 11000000
   nome = "Dudu"
   pos = "DM"
   idade = 24
-  ovr = 55
-  pot = 57
+  ovr = 54
+  pot = 56
   valor = 400000
   partidas = 20
   minutos = 1844
@@ -3884,8 +3933,8 @@ valor_elenco = 11000000
   nome = "Rafa Silva"
   pos = "FW"
   idade = 34
-  ovr = 55
-  pot = 55
+  ovr = 54
+  pot = 54
   valor = 225000
   partidas = 11
   minutos = 950
@@ -3896,8 +3945,8 @@ valor_elenco = 11000000
   nome = "Willian Formiga"
   pos = "FB"
   idade = 31
-  ovr = 55
-  pot = 55
+  ovr = 54
+  pot = 54
   valor = 200000
   partidas = 23
   minutos = 2089
@@ -3905,11 +3954,34 @@ valor_elenco = 11000000
   id_fonte = "477621"
 
   [[clubes.jogadores]]
+  nome = "Douglas Mendes"
+  pos = "CB"
+  idade = 22
+  ovr = 53
+  pot = 61
+  valor = 800000
+  partidas = 6
+  minutos = 526
+  gols = 1
+  id_fonte = "921863"
+
+  [[clubes.jogadores]]
+  nome = "Higor"
+  pos = "FB"
+  idade = 21
+  ovr = 53
+  pot = 55
+  valor = 400000
+  partidas = 25
+  minutos = 2292
+  id_fonte = "1090843"
+
+  [[clubes.jogadores]]
   nome = "Bruno Xavier"
   pos = "AM"
   idade = 29
-  ovr = 54
-  pot = 54
+  ovr = 52
+  pot = 52
   valor = 250000
   partidas = 5
   minutos = 442
@@ -3917,22 +3989,22 @@ valor_elenco = 11000000
   id_fonte = "537386"
 
   [[clubes.jogadores]]
-  nome = "Higor"
-  pos = "FB"
-  idade = 21
-  ovr = 54
-  pot = 56
-  valor = 400000
-  partidas = 25
-  minutos = 2292
-  id_fonte = "1090843"
+  nome = "Dalberson"
+  pos = "GK"
+  idade = 29
+  ovr = 52
+  pot = 52
+  valor = 131083
+  partidas = 8
+  minutos = 723
+  id_fonte = "554297"
 
   [[clubes.jogadores]]
   nome = "Marquinhos Gabriel"
   pos = "AM"
   idade = 36
-  ovr = 54
-  pot = 54
+  ovr = 52
+  pot = 52
   valor = 150000
   partidas = 33
   minutos = 2960
@@ -3943,31 +4015,19 @@ valor_elenco = 11000000
   nome = "Tiago Pagnussat"
   pos = "CB"
   idade = 36
-  ovr = 54
-  pot = 54
+  ovr = 52
+  pot = 52
   valor = 100000
   partidas = 33
   minutos = 2930
   id_fonte = "346729"
 
   [[clubes.jogadores]]
-  nome = "Douglas Mendes"
-  pos = "CB"
-  idade = 22
-  ovr = 52
-  pot = 61
-  valor = 800000
-  partidas = 6
-  minutos = 526
-  gols = 1
-  id_fonte = "921863"
-
-  [[clubes.jogadores]]
   nome = "Emerson Urso"
   pos = "WG"
   idade = 25
-  ovr = 52
-  pot = 55
+  ovr = 51
+  pot = 53
   valor = 400000
   partidas = 9
   minutos = 784
@@ -3978,31 +4038,19 @@ valor_elenco = 11000000
   nome = "Gabriel Átila"
   pos = "GK"
   idade = 23
-  ovr = 50
-  pot = 57
+  ovr = 49
+  pot = 56
   valor = 300000
   partidas = 3
   minutos = 270
   id_fonte = "1083089"
 
   [[clubes.jogadores]]
-  nome = "Dodô"
-  pos = "WG"
-  idade = 32
-  ovr = 48
-  pot = 48
-  valor = 75000
-  partidas = 12
-  minutos = 1042
-  gols = 1
-  id_fonte = "281837"
-
-  [[clubes.jogadores]]
   nome = "Nathan Camargo"
   pos = "DM"
   idade = 21
-  ovr = 47
-  pot = 52
+  ovr = 49
+  pot = 50
   valor = 200000
   partidas = 17
   minutos = 1536
@@ -4010,30 +4058,34 @@ valor_elenco = 11000000
   id_fonte = "1015962"
 
   [[clubes.jogadores]]
-  nome = "Gustavo Cabral"
-  pos = "AM"
-  idade = 25
-  ovr = 46
-  pot = 50
-  valor = 150000
-  id_fonte = "1135708"
+  nome = "Jonathan Costa"
+  pos = "CB"
+  idade = 31
+  ovr = 48
+  pot = 48
+  valor = 91666
+  partidas = 4
+  minutos = 315
+  id_fonte = "355471"
 
   [[clubes.jogadores]]
-  nome = "Dalberson"
-  pos = "GK"
-  idade = 29
-  ovr = 45
-  pot = 45
-  partidas = 8
-  minutos = 723
-  id_fonte = "554297"
+  nome = "Dodô"
+  pos = "WG"
+  idade = 32
+  ovr = 47
+  pot = 47
+  valor = 75000
+  partidas = 12
+  minutos = 1042
+  gols = 1
+  id_fonte = "281837"
 
   [[clubes.jogadores]]
   nome = "Enzo"
   pos = "DM"
   idade = 23
-  ovr = 45
-  pot = 51
+  ovr = 46
+  pot = 48
   valor = 150000
   partidas = 8
   minutos = 753
@@ -4041,21 +4093,12 @@ valor_elenco = 11000000
   id_fonte = "1083674"
 
   [[clubes.jogadores]]
-  nome = "Jonathan Costa"
-  pos = "CB"
-  idade = 31
-  ovr = 44
-  pot = 44
-  partidas = 4
-  minutos = 315
-  id_fonte = "355471"
-
-  [[clubes.jogadores]]
   nome = "Breno Bora"
   pos = "CB"
   idade = 24
-  ovr = 40
-  pot = 43
+  ovr = 45
+  pot = 47
+  valor = 119166
   partidas = 8
   minutos = 675
   gols = 1
@@ -4065,13 +4108,22 @@ valor_elenco = 11000000
   nome = "Gustavo Puskas"
   pos = "FW"
   idade = 18
-  ovr = 40
-  pot = 53
+  ovr = 44
+  pot = 50
   valor = 300000
   partidas = 4
   minutos = 359
   gols = 2
   id_fonte = "1367320"
+
+  [[clubes.jogadores]]
+  nome = "Gustavo Cabral"
+  pos = "AM"
+  idade = 25
+  ovr = 43
+  pot = 47
+  valor = 150000
+  id_fonte = "1135708"
 
 [[clubes]]
 nome = "Cuiabá"
@@ -4082,8 +4134,8 @@ valor_elenco = 10850000
   nome = "Pedro Henrique"
   pos = "FW"
   idade = 29
-  ovr = 62
-  pot = 62
+  ovr = 63
+  pot = 63
   valor = 1500000
   partidas = 5
   minutos = 419
@@ -4093,8 +4145,8 @@ valor_elenco = 10850000
   nome = "Raul"
   pos = "DM"
   idade = 30
-  ovr = 62
-  pot = 62
+  ovr = 63
+  pot = 63
   valor = 1000000
   partidas = 28
   minutos = 2517
@@ -4104,8 +4156,8 @@ valor_elenco = 10850000
   nome = "Pepê"
   pos = "MF"
   idade = 28
-  ovr = 61
-  pot = 61
+  ovr = 62
+  pot = 62
   valor = 1200000
   partidas = 17
   minutos = 1550
@@ -4116,8 +4168,8 @@ valor_elenco = 10850000
   nome = "Alan Empereur"
   pos = "CB"
   idade = 32
-  ovr = 60
-  pot = 60
+  ovr = 61
+  pot = 61
   valor = 500000
   partidas = 7
   minutos = 663
@@ -4127,8 +4179,8 @@ valor_elenco = 10850000
   nome = "João Basso"
   pos = "CB"
   idade = 29
-  ovr = 60
-  pot = 60
+  ovr = 61
+  pot = 61
   valor = 700000
   partidas = 26
   minutos = 2375
@@ -4162,8 +4214,8 @@ valor_elenco = 10850000
   nome = "Marcos Júnior"
   pos = "AM"
   idade = 33
-  ovr = 57
-  pot = 57
+  ovr = 56
+  pot = 56
   valor = 300000
   partidas = 1
   minutos = 98
@@ -4173,8 +4225,8 @@ valor_elenco = 10850000
   nome = "Rodrigo Rodrigues"
   pos = "FW"
   idade = 26
-  ovr = 57
-  pot = 58
+  ovr = 56
+  pot = 57
   valor = 700000
   partidas = 15
   minutos = 1393
@@ -4184,34 +4236,12 @@ valor_elenco = 10850000
   nome = "Igor Inocêncio"
   pos = "FB"
   idade = 28
-  ovr = 56
-  pot = 56
+  ovr = 55
+  pot = 55
   valor = 300000
   partidas = 8
   minutos = 707
   id_fonte = "733578"
-
-  [[clubes.jogadores]]
-  nome = "Luiz Otávio"
-  pos = "DM"
-  idade = 29
-  ovr = 56
-  pot = 56
-  valor = 250000
-  partidas = 3
-  minutos = 310
-  id_fonte = "520484"
-
-  [[clubes.jogadores]]
-  nome = "Railan"
-  pos = "FB"
-  idade = 26
-  ovr = 55
-  pot = 56
-  valor = 300000
-  partidas = 18
-  minutos = 1653
-  id_fonte = "752558"
 
   [[clubes.jogadores]]
   nome = "Vitão"
@@ -4223,11 +4253,33 @@ valor_elenco = 10850000
   id_fonte = "982039"
 
   [[clubes.jogadores]]
+  nome = "Luiz Otávio"
+  pos = "DM"
+  idade = 29
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 3
+  minutos = 310
+  id_fonte = "520484"
+
+  [[clubes.jogadores]]
+  nome = "Railan"
+  pos = "FB"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 300000
+  partidas = 18
+  minutos = 1653
+  id_fonte = "752558"
+
+  [[clubes.jogadores]]
   nome = "Calebe Costa"
   pos = "DM"
   idade = 23
-  ovr = 54
-  pot = 56
+  ovr = 52
+  pot = 54
   valor = 300000
   partidas = 34
   minutos = 3099
@@ -4238,8 +4290,8 @@ valor_elenco = 10850000
   nome = "Vitor Mendes"
   pos = "CB"
   idade = 27
-  ovr = 54
-  pot = 55
+  ovr = 52
+  pot = 53
   valor = 200000
   partidas = 20
   minutos = 1756
@@ -4250,8 +4302,8 @@ valor_elenco = 10850000
   nome = "Eric"
   pos = "FB"
   idade = 26
-  ovr = 53
-  pot = 54
+  ovr = 51
+  pot = 52
   valor = 200000
   partidas = 7
   minutos = 615
@@ -4259,11 +4311,31 @@ valor_elenco = 10850000
   id_fonte = "1100070"
 
   [[clubes.jogadores]]
+  nome = "Gustavo Busatto"
+  pos = "GK"
+  idade = 35
+  ovr = 51
+  pot = 51
+  valor = 60661
+  id_fonte = "136574"
+
+  [[clubes.jogadores]]
+  nome = "David Miguel"
+  pos = "AM"
+  idade = 19
+  ovr = 50
+  pot = 54
+  valor = 400000
+  partidas = 22
+  minutos = 1983
+  id_fonte = "1096475"
+
+  [[clubes.jogadores]]
   nome = "Eliel"
   pos = "WG"
   idade = 23
-  ovr = 52
-  pot = 56
+  ovr = 50
+  pot = 54
   valor = 450000
   partidas = 15
   minutos = 1314
@@ -4271,11 +4343,45 @@ valor_elenco = 10850000
   id_fonte = "1035650"
 
   [[clubes.jogadores]]
+  nome = "Jean"
+  pos = "GK"
+  idade = 26
+  ovr = 49
+  pot = 50
+  valor = 110000
+  partidas = 3
+  minutos = 270
+  id_fonte = "838835"
+
+  [[clubes.jogadores]]
+  nome = "João Carlos"
+  pos = "GK"
+  idade = 38
+  ovr = 49
+  pot = 49
+  valor = 25000
+  partidas = 18
+  minutos = 1614
+  id_fonte = "68408"
+
+  [[clubes.jogadores]]
+  nome = "Wesley Dias"
+  pos = "DM"
+  idade = 31
+  ovr = 49
+  pot = 49
+  valor = 93823
+  partidas = 2
+  minutos = 165
+  gols = 1
+  id_fonte = "520456"
+
+  [[clubes.jogadores]]
   nome = "Jean Dias"
   pos = "WG"
   idade = 35
-  ovr = 52
-  pot = 52
+  ovr = 48
+  pot = 48
   valor = 75000
   partidas = 9
   minutos = 848
@@ -4283,74 +4389,11 @@ valor_elenco = 10850000
   id_fonte = "788362"
 
   [[clubes.jogadores]]
-  nome = "David Miguel"
-  pos = "AM"
-  idade = 19
-  ovr = 51
-  pot = 56
-  valor = 400000
-  partidas = 22
-  minutos = 1983
-  id_fonte = "1096475"
-
-  [[clubes.jogadores]]
-  nome = "Gustavo Busatto"
-  pos = "GK"
-  idade = 35
-  ovr = 50
-  pot = 50
-  id_fonte = "136574"
-
-  [[clubes.jogadores]]
-  nome = "João Carlos"
-  pos = "GK"
-  idade = 38
-  ovr = 50
-  pot = 50
-  valor = 25000
-  partidas = 18
-  minutos = 1614
-  id_fonte = "68408"
-
-  [[clubes.jogadores]]
-  nome = "Luis Soares"
-  pos = "CB"
-  idade = 21
-  ovr = 47
-  pot = 54
-  valor = 200000
-  partidas = 13
-  minutos = 1154
-  id_fonte = "1223923"
-
-  [[clubes.jogadores]]
-  nome = "Wesley Dias"
-  pos = "DM"
-  idade = 31
-  ovr = 47
-  pot = 47
-  partidas = 2
-  minutos = 165
-  gols = 1
-  id_fonte = "520456"
-
-  [[clubes.jogadores]]
-  nome = "Weverson"
-  pos = "DM"
-  idade = 23
-  ovr = 47
-  pot = 54
-  valor = 200000
-  partidas = 6
-  minutos = 536
-  id_fonte = "868810"
-
-  [[clubes.jogadores]]
   nome = "Kauan Cristtyan"
   pos = "WG"
   idade = 20
-  ovr = 46
-  pot = 53
+  ovr = 48
+  pot = 50
   valor = 250000
   partidas = 15
   minutos = 1357
@@ -4358,11 +4401,33 @@ valor_elenco = 10850000
   id_fonte = "1223701"
 
   [[clubes.jogadores]]
+  nome = "Lorenzo"
+  pos = "FB"
+  idade = 19
+  ovr = 47
+  pot = 49
+  valor = 150000
+  partidas = 12
+  minutos = 1062
+  id_fonte = "1268054"
+
+  [[clubes.jogadores]]
+  nome = "Luis Soares"
+  pos = "CB"
+  idade = 21
+  ovr = 47
+  pot = 52
+  valor = 200000
+  partidas = 13
+  minutos = 1154
+  id_fonte = "1223923"
+
+  [[clubes.jogadores]]
   nome = "Vinicius Peixoto"
   pos = "FW"
   idade = 22
   ovr = 46
-  pot = 53
+  pot = 50
   valor = 250000
   partidas = 9
   minutos = 818
@@ -4370,63 +4435,56 @@ valor_elenco = 10850000
   id_fonte = "1273512"
 
   [[clubes.jogadores]]
-  nome = "Jean"
-  pos = "GK"
-  idade = 26
-  ovr = 45
-  pot = 47
-  partidas = 3
-  minutos = 270
-  id_fonte = "838835"
-
-  [[clubes.jogadores]]
-  nome = "Lorenzo"
-  pos = "FB"
-  idade = 19
-  ovr = 43
-  pot = 53
-  valor = 150000
-  partidas = 12
-  minutos = 1062
-  id_fonte = "1268054"
-
-  [[clubes.jogadores]]
-  nome = "Ramon"
-  pos = "FW"
-  idade = 26
-  ovr = 42
-  pot = 44
-  partidas = 1
-  minutos = 69
-  id_fonte = "980022"
-
-  [[clubes.jogadores]]
-  nome = "João Araújo"
-  pos = "DM"
-  idade = 21
-  ovr = 40
-  pot = 45
-  partidas = 2
-  minutos = 206
-  id_fonte = "1156560"
-
-  [[clubes.jogadores]]
   nome = "Luiz Felipe"
   pos = "MF"
   idade = 22
-  ovr = 40
-  pot = 45
+  ovr = 45
+  pot = 48
+  valor = 137500
   partidas = 5
   minutos = 491
   gols = 1
   id_fonte = "1092749"
 
   [[clubes.jogadores]]
+  nome = "Weverson"
+  pos = "DM"
+  idade = 23
+  ovr = 45
+  pot = 51
+  valor = 200000
+  partidas = 6
+  minutos = 536
+  id_fonte = "868810"
+
+  [[clubes.jogadores]]
+  nome = "João Araújo"
+  pos = "DM"
+  idade = 21
+  ovr = 44
+  pot = 47
+  valor = 110000
+  partidas = 2
+  minutos = 206
+  id_fonte = "1156560"
+
+  [[clubes.jogadores]]
+  nome = "Tarcísio"
+  pos = "FB"
+  idade = 23
+  ovr = 44
+  pot = 48
+  valor = 110000
+  partidas = 3
+  minutos = 270
+  id_fonte = "1083249"
+
+  [[clubes.jogadores]]
   nome = "Nathan Cruz"
   pos = "FW"
   idade = 19
-  ovr = 40
-  pot = 51
+  ovr = 43
+  pot = 47
   valor = 150000
   partidas = 2
   minutos = 169
@@ -4436,21 +4494,23 @@ valor_elenco = 10850000
   nome = "Pedro Mello"
   pos = "GK"
   idade = 20
-  ovr = 40
-  pot = 47
+  ovr = 43
+  pot = 48
+  valor = 82500
   partidas = 1
   minutos = 90
   id_fonte = "1387052"
 
   [[clubes.jogadores]]
-  nome = "Tarcísio"
-  pos = "FB"
-  idade = 23
-  ovr = 40
-  pot = 46
-  partidas = 3
-  minutos = 270
-  id_fonte = "1083249"
+  nome = "Ramon"
+  pos = "FW"
+  idade = 26
+  ovr = 43
+  pot = 44
+  valor = 82500
+  partidas = 1
+  minutos = 69
+  id_fonte = "980022"
 
 [[clubes]]
 nome = "Operário FEC"
@@ -4461,13 +4521,24 @@ valor_elenco = 9280000
   nome = "Gabriel Boschilia"
   pos = "AM"
   idade = 30
-  ovr = 62
-  pot = 62
+  ovr = 63
+  pot = 63
   valor = 1500000
   partidas = 41
   minutos = 3715
   gols = 15
   id_fonte = "288496"
+
+  [[clubes.jogadores]]
+  nome = "Vagner"
+  pos = "GK"
+  idade = 40
+  ovr = 62
+  pot = 62
+  valor = 446637
+  partidas = 38
+  minutos = 3433
+  id_fonte = "68442"
 
   [[clubes.jogadores]]
   nome = "Miranda"
@@ -4484,7 +4555,7 @@ valor_elenco = 9280000
   nome = "Mikael Doka"
   pos = "FB"
   idade = 26
-  ovr = 59
+  ovr = 58
   pot = 59
   valor = 750000
   partidas = 30
@@ -4495,8 +4566,8 @@ valor_elenco = 9280000
   nome = "Juan Zuluaga"
   pos = "MF"
   idade = 33
-  ovr = 58
-  pot = 58
+  ovr = 57
+  pot = 57
   valor = 400000
   partidas = 2
   minutos = 168
@@ -4506,8 +4577,8 @@ valor_elenco = 9280000
   nome = "Maxwell"
   pos = "WG"
   idade = 31
-  ovr = 58
-  pot = 58
+  ovr = 57
+  pot = 57
   valor = 600000
   partidas = 3
   minutos = 264
@@ -4517,8 +4588,8 @@ valor_elenco = 9280000
   nome = "José Cuenú"
   pos = "CB"
   idade = 31
-  ovr = 57
-  pot = 57
+  ovr = 56
+  pot = 56
   valor = 300000
   partidas = 35
   minutos = 3109
@@ -4529,8 +4600,8 @@ valor_elenco = 9280000
   nome = "Matheus Trindade"
   pos = "DM"
   idade = 30
-  ovr = 57
-  pot = 57
+  ovr = 56
+  pot = 56
   valor = 400000
   partidas = 25
   minutos = 2273
@@ -4541,8 +4612,8 @@ valor_elenco = 9280000
   nome = "Pablo"
   pos = "FW"
   idade = 34
-  ovr = 57
-  pot = 57
+  ovr = 56
+  pot = 56
   valor = 350000
   partidas = 24
   minutos = 2125
@@ -4553,8 +4624,8 @@ valor_elenco = 9280000
   nome = "Vinícius Diniz"
   pos = "AM"
   idade = 27
-  ovr = 57
-  pot = 57
+  ovr = 56
+  pot = 56
   valor = 600000
   partidas = 41
   minutos = 3681
@@ -4562,22 +4633,11 @@ valor_elenco = 9280000
   id_fonte = "731531"
 
   [[clubes.jogadores]]
-  nome = "William Klaus"
-  pos = "CB"
-  idade = 32
-  ovr = 57
-  pot = 57
-  valor = 250000
-  partidas = 11
-  minutos = 977
-  id_fonte = "484599"
-
-  [[clubes.jogadores]]
   nome = "Gabriel Feliciano"
   pos = "FB"
   idade = 25
-  ovr = 56
-  pot = 57
+  ovr = 55
+  pot = 56
   valor = 500000
   partidas = 22
   minutos = 1955
@@ -4585,11 +4645,22 @@ valor_elenco = 9280000
   id_fonte = "1100029"
 
   [[clubes.jogadores]]
+  nome = "William Klaus"
+  pos = "CB"
+  idade = 32
+  ovr = 55
+  pot = 55
+  valor = 250000
+  partidas = 11
+  minutos = 977
+  id_fonte = "484599"
+
+  [[clubes.jogadores]]
   nome = "Aylon"
   pos = "FW"
   idade = 34
-  ovr = 55
-  pot = 55
+  ovr = 53
+  pot = 53
   valor = 225000
   partidas = 28
   minutos = 2500
@@ -4600,8 +4671,8 @@ valor_elenco = 9280000
   nome = "Caio Dantas"
   pos = "FW"
   idade = 33
-  ovr = 55
-  pot = 55
+  ovr = 53
+  pot = 53
   valor = 250000
   partidas = 7
   minutos = 614
@@ -4612,8 +4683,8 @@ valor_elenco = 9280000
   nome = "Moraes"
   pos = "FB"
   idade = 28
-  ovr = 55
-  pot = 55
+  ovr = 52
+  pot = 52
   valor = 250000
   partidas = 33
   minutos = 2953
@@ -4621,22 +4692,11 @@ valor_elenco = 9280000
   id_fonte = "596586"
 
   [[clubes.jogadores]]
-  nome = "Joseph"
-  pos = "CB"
-  idade = 31
-  ovr = 54
-  pot = 54
-  valor = 150000
-  partidas = 7
-  minutos = 630
-  id_fonte = "663523"
-
-  [[clubes.jogadores]]
   nome = "Vinicius Mingotti"
   pos = "FW"
   idade = 26
-  ovr = 54
-  pot = 56
+  ovr = 52
+  pot = 54
   valor = 500000
   partidas = 2
   minutos = 208
@@ -4644,11 +4704,33 @@ valor_elenco = 9280000
   id_fonte = "658664"
 
   [[clubes.jogadores]]
+  nome = "Joseph"
+  pos = "CB"
+  idade = 31
+  ovr = 51
+  pot = 51
+  valor = 150000
+  partidas = 7
+  minutos = 630
+  id_fonte = "663523"
+
+  [[clubes.jogadores]]
+  nome = "Pedro Vilhena"
+  pos = "MF"
+  idade = 24
+  ovr = 51
+  pot = 55
+  valor = 500000
+  partidas = 8
+  minutos = 749
+  id_fonte = "729263"
+
+  [[clubes.jogadores]]
   nome = "Berto"
   pos = "WG"
   idade = 30
-  ovr = 53
-  pot = 53
+  ovr = 50
+  pot = 50
   valor = 200000
   partidas = 24
   minutos = 2200
@@ -4656,33 +4738,33 @@ valor_elenco = 9280000
   id_fonte = "290384"
 
   [[clubes.jogadores]]
+  nome = "Charles Raphael"
+  pos = "DM"
+  idade = 31
+  ovr = 50
+  pot = 50
+  valor = 137500
+  partidas = 7
+  minutos = 637
+  id_fonte = "544469"
+
+  [[clubes.jogadores]]
   nome = "Elias Curzel"
   pos = "GK"
   idade = 31
-  ovr = 53
-  pot = 53
+  ovr = 50
+  pot = 50
   valor = 100000
   partidas = 10
   minutos = 887
   id_fonte = "479211"
 
   [[clubes.jogadores]]
-  nome = "Pedro Vilhena"
-  pos = "MF"
-  idade = 24
-  ovr = 52
-  pot = 56
-  valor = 500000
-  partidas = 8
-  minutos = 749
-  id_fonte = "729263"
-
-  [[clubes.jogadores]]
   nome = "Talles"
   pos = "GK"
   idade = 29
-  ovr = 52
-  pot = 52
+  ovr = 49
+  pot = 49
   valor = 100000
   id_fonte = "726096"
 
@@ -4690,8 +4772,8 @@ valor_elenco = 9280000
   nome = "Índio"
   pos = "DM"
   idade = 33
-  ovr = 52
-  pot = 52
+  ovr = 49
+  pot = 49
   valor = 100000
   partidas = 19
   minutos = 1694
@@ -4701,8 +4783,8 @@ valor_elenco = 9280000
   nome = "Ángel Torres"
   pos = "WG"
   idade = 26
-  ovr = 51
-  pot = 53
+  ovr = 48
+  pot = 50
   valor = 250000
   partidas = 5
   minutos = 450
@@ -4713,8 +4795,8 @@ valor_elenco = 9280000
   nome = "Maguinho"
   pos = "FB"
   idade = 34
-  ovr = 50
-  pot = 50
+  ovr = 46
+  pot = 46
   valor = 50000
   partidas = 10
   minutos = 862
@@ -4724,8 +4806,8 @@ valor_elenco = 9280000
   nome = "Neto Paraíba"
   pos = "MF"
   idade = 34
-  ovr = 49
-  pot = 49
+  ovr = 46
+  pot = 46
   valor = 50000
   partidas = 14
   minutos = 1228
@@ -4733,31 +4815,12 @@ valor_elenco = 9280000
   id_fonte = "594650"
 
   [[clubes.jogadores]]
-  nome = "Vagner"
-  pos = "GK"
-  idade = 40
-  ovr = 48
-  pot = 48
-  partidas = 38
-  minutos = 3433
-  id_fonte = "68442"
-
-  [[clubes.jogadores]]
-  nome = "Charles Raphael"
-  pos = "DM"
-  idade = 31
-  ovr = 45
-  pot = 45
-  partidas = 7
-  minutos = 637
-  id_fonte = "544469"
-
-  [[clubes.jogadores]]
   nome = "Diego Monteiro"
   pos = "GK"
   idade = 26
-  ovr = 43
-  pot = 45
+  ovr = 45
+  pot = 47
+  valor = 75862
   partidas = 3
   minutos = 270
   id_fonte = "797235"
@@ -4766,8 +4829,9 @@ valor_elenco = 9280000
   nome = "João Gabriel"
   pos = "FB"
   idade = 20
-  ovr = 40
-  pot = 43
+  ovr = 43
+  pot = 46
+  valor = 114741
   partidas = 6
   minutos = 506
   id_fonte = "1223070"
@@ -4776,8 +4840,9 @@ valor_elenco = 9280000
   nome = "Renan Gustavo"
   pos = "CB"
   idade = 21
-  ovr = 40
-  pot = 43
+  ovr = 42
+  pot = 42
+  valor = 55000
   partidas = 2
   minutos = 196
   id_fonte = "1091886"
@@ -4786,6 +4851,18 @@ valor_elenco = 9280000
 nome = "Avaí"
 forca = 56.6
 valor_elenco = 8200000
+
+  [[clubes.jogadores]]
+  nome = "Allyson"
+  pos = "CB"
+  idade = 35
+  ovr = 61
+  pot = 61
+  valor = 409999
+  partidas = 31
+  minutos = 2768
+  gols = 2
+  id_fonte = "390695"
 
   [[clubes.jogadores]]
   nome = "Zé Ricardo"
@@ -4797,29 +4874,6 @@ valor_elenco = 8200000
   partidas = 33
   minutos = 2980
   id_fonte = "476336"
-
-  [[clubes.jogadores]]
-  nome = "Bruno Ferreira"
-  pos = "GK"
-  idade = 32
-  ovr = 59
-  pot = 59
-  valor = 250000
-  partidas = 9
-  minutos = 810
-  id_fonte = "214701"
-
-  [[clubes.jogadores]]
-  nome = "Daniel Penha"
-  pos = "AM"
-  idade = 27
-  ovr = 59
-  pot = 59
-  valor = 700000
-  partidas = 26
-  minutos = 2342
-  gols = 10
-  id_fonte = "468256"
 
   [[clubes.jogadores]]
   nome = "Wenderson"
@@ -4834,15 +4888,27 @@ valor_elenco = 8200000
   id_fonte = "681501"
 
   [[clubes.jogadores]]
-  nome = "Igor Bohn"
+  nome = "Bruno Ferreira"
   pos = "GK"
-  idade = 30
+  idade = 32
   ovr = 58
   pot = 58
   valor = 250000
-  partidas = 14
-  minutos = 1216
-  id_fonte = "530385"
+  partidas = 9
+  minutos = 810
+  id_fonte = "214701"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Penha"
+  pos = "AM"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 700000
+  partidas = 26
+  minutos = 2342
+  gols = 10
+  id_fonte = "468256"
 
   [[clubes.jogadores]]
   nome = "Léo Chú"
@@ -4854,17 +4920,6 @@ valor_elenco = 8200000
   partidas = 3
   minutos = 269
   id_fonte = "468320"
-
-  [[clubes.jogadores]]
-  nome = "Otávio"
-  pos = "GK"
-  idade = 33
-  ovr = 58
-  pot = 58
-  valor = 150000
-  partidas = 7
-  minutos = 630
-  id_fonte = "65937"
 
   [[clubes.jogadores]]
   nome = "Paulo Vitor"
@@ -4879,56 +4934,66 @@ valor_elenco = 8200000
   id_fonte = "1116366"
 
   [[clubes.jogadores]]
+  nome = "Igor Bohn"
+  pos = "GK"
+  idade = 30
+  ovr = 57
+  pot = 57
+  valor = 250000
+  partidas = 14
+  minutos = 1216
+  id_fonte = "530385"
+
+  [[clubes.jogadores]]
   nome = "Quaresma"
   pos = "FB"
   idade = 30
-  ovr = 58
-  pot = 58
+  ovr = 57
+  pot = 57
   valor = 300000
   partidas = 5
   minutos = 442
   id_fonte = "530032"
 
   [[clubes.jogadores]]
-  nome = "Felipe Vizeu"
-  pos = "FW"
-  idade = 29
+  nome = "Otávio"
+  pos = "GK"
+  idade = 33
   ovr = 56
   pot = 56
-  valor = 300000
-  partidas = 6
-  minutos = 547
-  id_fonte = "425462"
-
-  [[clubes.jogadores]]
-  nome = "Jean Lucas"
-  pos = "AM"
-  idade = 31
-  ovr = 56
-  pot = 56
-  valor = 200000
-  partidas = 35
-  minutos = 3177
-  gols = 7
-  id_fonte = "532828"
+  valor = 150000
+  partidas = 7
+  minutos = 630
+  id_fonte = "65937"
 
   [[clubes.jogadores]]
   nome = "Rildo"
   pos = "AM"
   idade = 26
-  ovr = 56
-  pot = 58
+  ovr = 55
+  pot = 57
   valor = 500000
   partidas = 1
   minutos = 110
   id_fonte = "800177"
 
   [[clubes.jogadores]]
+  nome = "Felipe Vizeu"
+  pos = "FW"
+  idade = 29
+  ovr = 54
+  pot = 54
+  valor = 300000
+  partidas = 6
+  minutos = 547
+  id_fonte = "425462"
+
+  [[clubes.jogadores]]
   nome = "Wallison"
   pos = "FB"
   idade = 25
-  ovr = 56
-  pot = 57
+  ovr = 54
+  pot = 55
   valor = 300000
   partidas = 29
   minutos = 2638
@@ -4936,11 +5001,23 @@ valor_elenco = 8200000
   id_fonte = "682134"
 
   [[clubes.jogadores]]
+  nome = "Jean Lucas"
+  pos = "AM"
+  idade = 31
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 35
+  minutos = 3177
+  gols = 7
+  id_fonte = "532828"
+
+  [[clubes.jogadores]]
   nome = "Luiz Henrique"
   pos = "AM"
   idade = 27
-  ovr = 55
-  pot = 55
+  ovr = 53
+  pot = 53
   valor = 250000
   partidas = 33
   minutos = 2932
@@ -4948,11 +5025,22 @@ valor_elenco = 8200000
   id_fonte = "689521"
 
   [[clubes.jogadores]]
+  nome = "Reynaldo"
+  pos = "CB"
+  idade = 29
+  ovr = 53
+  pot = 53
+  valor = 165000
+  partidas = 9
+  minutos = 834
+  id_fonte = "514297"
+
+  [[clubes.jogadores]]
   nome = "Romildo Del Piage"
   pos = "MF"
   idade = 26
-  ovr = 55
-  pot = 56
+  ovr = 53
+  pot = 54
   valor = 300000
   partidas = 3
   minutos = 307
@@ -4963,31 +5051,19 @@ valor_elenco = 8200000
   nome = "Guilherme Aquino"
   pos = "CB"
   idade = 22
-  ovr = 53
-  pot = 58
+  ovr = 52
+  pot = 57
   valor = 400000
   partidas = 17
   minutos = 1515
   id_fonte = "1090822"
 
   [[clubes.jogadores]]
-  nome = "Léo Gamalho"
-  pos = "FW"
-  idade = 40
-  ovr = 53
-  pot = 53
-  valor = 75000
-  partidas = 5
-  minutos = 449
-  gols = 1
-  id_fonte = "143817"
-
-  [[clubes.jogadores]]
   nome = "Jefferson"
   pos = "CB"
   idade = 23
-  ovr = 52
-  pot = 57
+  ovr = 50
+  pot = 55
   valor = 300000
   partidas = 10
   minutos = 944
@@ -4995,22 +5071,11 @@ valor_elenco = 8200000
   id_fonte = "1012161"
 
   [[clubes.jogadores]]
-  nome = "Allyson"
-  pos = "CB"
-  idade = 35
-  ovr = 51
-  pot = 51
-  partidas = 31
-  minutos = 2768
-  gols = 2
-  id_fonte = "390695"
-
-  [[clubes.jogadores]]
   nome = "Douglas Teixeira"
   pos = "FB"
   idade = 25
-  ovr = 50
-  pot = 50
+  ovr = 49
+  pot = 49
   valor = 50000
   partidas = 34
   minutos = 3026
@@ -5018,92 +5083,90 @@ valor_elenco = 8200000
   id_fonte = "973499"
 
   [[clubes.jogadores]]
+  nome = "Léo Gamalho"
+  pos = "FW"
+  idade = 40
+  ovr = 49
+  pot = 49
+  valor = 75000
+  partidas = 5
+  minutos = 449
+  gols = 1
+  id_fonte = "143817"
+
+  [[clubes.jogadores]]
+  nome = "João Vitor"
+  pos = "FB"
+  idade = 24
+  ovr = 47
+  pot = 52
+  valor = 165000
+  partidas = 6
+  minutos = 520
+  id_fonte = "1226336"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Cipriano"
+  pos = "WG"
+  idade = 26
+  ovr = 46
+  pot = 48
+  valor = 112500
+  partidas = 3
+  minutos = 261
+  id_fonte = "1082235"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Simples"
+  pos = "CB"
+  idade = 21
+  ovr = 46
+  pot = 53
+  valor = 200000
+  partidas = 13
+  minutos = 1163
+  id_fonte = "1095742"
+
+  [[clubes.jogadores]]
   nome = "Gaspar"
   pos = "WG"
   idade = 24
-  ovr = 49
-  pot = 54
+  ovr = 46
+  pot = 51
   valor = 200000
   partidas = 4
   minutos = 376
   id_fonte = "767623"
 
   [[clubes.jogadores]]
-  nome = "Reynaldo"
-  pos = "CB"
-  idade = 29
-  ovr = 49
-  pot = 49
-  partidas = 9
-  minutos = 834
-  id_fonte = "514297"
+  nome = "Pedro Cuiabá"
+  pos = "MF"
+  idade = 24
+  ovr = 46
+  pot = 51
+  valor = 165000
+  partidas = 6
+  minutos = 535
+  id_fonte = "997464"
 
   [[clubes.jogadores]]
   nome = "Hyan"
   pos = "MF"
   idade = 22
-  ovr = 47
-  pot = 56
+  ovr = 45
+  pot = 54
   valor = 300000
   partidas = 4
   minutos = 390
   id_fonte = "1082852"
 
   [[clubes.jogadores]]
-  nome = "Gabriel Cipriano"
-  pos = "WG"
-  idade = 26
-  ovr = 45
-  pot = 47
-  partidas = 3
-  minutos = 261
-  id_fonte = "1082235"
-
-  [[clubes.jogadores]]
-  nome = "Pedrão"
-  pos = "CB"
-  idade = 22
-  ovr = 44
-  pot = 54
-  valor = 125000
-  id_fonte = "1019701"
-
-  [[clubes.jogadores]]
-  nome = "João Vitor"
-  pos = "FB"
-  idade = 24
-  ovr = 43
-  pot = 48
-  partidas = 6
-  minutos = 520
-  id_fonte = "1226336"
-
-  [[clubes.jogadores]]
-  nome = "Pedro Cuiabá"
-  pos = "MF"
-  idade = 24
-  ovr = 42
-  pot = 47
-  partidas = 6
-  minutos = 535
-  id_fonte = "997464"
-
-  [[clubes.jogadores]]
-  nome = "Gabriel Simples"
-  pos = "CB"
-  idade = 21
-  ovr = 41
-  pot = 48
-  partidas = 13
-  minutos = 1163
-  id_fonte = "1095742"
-
-  [[clubes.jogadores]]
   nome = "Caio Suassuna"
   pos = "FW"
   idade = 19
-  ovr = 40
-  pot = 46
+  ovr = 41
+  pot = 45
+  valor = 87500
   partidas = 1
   minutos = 122
   id_fonte = "1275070"
@@ -5112,8 +5175,9 @@ valor_elenco = 8200000
   nome = "Filipinho"
   pos = "WG"
   idade = 20
-  ovr = 40
-  pot = 46
+  ovr = 41
+  pot = 42
+  valor = 48750
   partidas = 1
   minutos = 25
   id_fonte = "1091994"
@@ -5122,8 +5186,9 @@ valor_elenco = 8200000
   nome = "Isaías"
   pos = "WG"
   idade = 21
-  ovr = 40
-  pot = 46
+  ovr = 41
+  pot = 47
+  valor = 110000
   partidas = 2
   minutos = 199
   id_fonte = "1214549"
@@ -5132,18 +5197,29 @@ valor_elenco = 8200000
   nome = "Juan Rocha"
   pos = "WG"
   idade = 22
-  ovr = 40
-  pot = 46
+  ovr = 41
+  pot = 44
+  valor = 66250
   partidas = 1
   minutos = 59
   id_fonte = "1273516"
 
   [[clubes.jogadores]]
+  nome = "Pedrão"
+  pos = "CB"
+  idade = 22
+  ovr = 41
+  pot = 50
+  valor = 125000
+  id_fonte = "1019701"
+
+  [[clubes.jogadores]]
   nome = "Vinicius Gugel"
   pos = "DM"
   idade = 19
-  ovr = 40
-  pot = 47
+  ovr = 41
+  pot = 48
+  valor = 105000
   partidas = 2
   minutos = 189
   id_fonte = "1362096"
@@ -5157,13 +5233,25 @@ valor_elenco = 7930000
   nome = "Jemerson"
   pos = "CB"
   idade = 34
-  ovr = 59
-  pot = 59
+  ovr = 60
+  pot = 60
   valor = 500000
   partidas = 22
   minutos = 1968
   gols = 1
   id_fonte = "258254"
+
+  [[clubes.jogadores]]
+  nome = "Hyoran"
+  pos = "AM"
+  idade = 33
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 10
+  minutos = 919
+  gols = 2
+  id_fonte = "338861"
 
   [[clubes.jogadores]]
   nome = "Lucas Fernandes"
@@ -5186,18 +5274,6 @@ valor_elenco = 7930000
   partidas = 27
   minutos = 2422
   id_fonte = "411663"
-
-  [[clubes.jogadores]]
-  nome = "Hyoran"
-  pos = "AM"
-  idade = 33
-  ovr = 57
-  pot = 57
-  valor = 500000
-  partidas = 10
-  minutos = 919
-  gols = 2
-  id_fonte = "338861"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Andrade"
@@ -5247,18 +5323,6 @@ valor_elenco = 7930000
   id_fonte = "787269"
 
   [[clubes.jogadores]]
-  nome = "Pará"
-  pos = "FB"
-  idade = 31
-  ovr = 56
-  pot = 56
-  valor = 300000
-  partidas = 33
-  minutos = 3003
-  gols = 2
-  id_fonte = "323618"
-
-  [[clubes.jogadores]]
   nome = "Foguinho"
   pos = "DM"
   idade = 34
@@ -5271,16 +5335,28 @@ valor_elenco = 7930000
   id_fonte = "268572"
 
   [[clubes.jogadores]]
-  nome = "Pedrinho"
-  pos = "WG"
-  idade = 26
+  nome = "Hugo Sanches"
+  pos = "FB"
+  idade = 32
   ovr = 55
-  pot = 56
-  valor = 600000
-  partidas = 17
-  minutos = 1518
-  gols = 4
-  id_fonte = "538978"
+  pot = 55
+  valor = 275000
+  partidas = 16
+  minutos = 1444
+  gols = 1
+  id_fonte = "612328"
+
+  [[clubes.jogadores]]
+  nome = "Pará"
+  pos = "FB"
+  idade = 31
+  ovr = 55
+  pot = 55
+  valor = 300000
+  partidas = 33
+  minutos = 3003
+  gols = 2
+  id_fonte = "323618"
 
   [[clubes.jogadores]]
   nome = "Pedro Vitor"
@@ -5306,6 +5382,18 @@ valor_elenco = 7930000
   id_fonte = "157117"
 
   [[clubes.jogadores]]
+  nome = "Daniel Amorim"
+  pos = "FW"
+  idade = 37
+  ovr = 54
+  pot = 54
+  valor = 251428
+  partidas = 11
+  minutos = 1023
+  gols = 3
+  id_fonte = "490613"
+
+  [[clubes.jogadores]]
   nome = "Lucas Lima"
   pos = "DM"
   idade = 26
@@ -5318,16 +5406,39 @@ valor_elenco = 7930000
   id_fonte = "688310"
 
   [[clubes.jogadores]]
+  nome = "Pedrinho"
+  pos = "WG"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 600000
+  partidas = 17
+  minutos = 1518
+  gols = 4
+  id_fonte = "538978"
+
+  [[clubes.jogadores]]
   nome = "Dudu Miraíma"
   pos = "MF"
   idade = 26
   ovr = 53
-  pot = 54
+  pot = 53
   valor = 300000
   partidas = 26
   minutos = 2367
   gols = 3
   id_fonte = "740162"
+
+  [[clubes.jogadores]]
+  nome = "Júnior Oliveira"
+  pos = "GK"
+  idade = 36
+  ovr = 53
+  pot = 53
+  valor = 90357
+  partidas = 4
+  minutos = 405
+  id_fonte = "373432"
 
   [[clubes.jogadores]]
   nome = "Mário Sérgio"
@@ -5345,8 +5456,8 @@ valor_elenco = 7930000
   nome = "Hélder Maciel"
   pos = "CB"
   idade = 36
-  ovr = 52
-  pot = 52
+  ovr = 51
+  pot = 51
   valor = 75000
   partidas = 24
   minutos = 2187
@@ -5354,11 +5465,23 @@ valor_elenco = 7930000
   id_fonte = "133118"
 
   [[clubes.jogadores]]
+  nome = "Luizão"
+  pos = "CB"
+  idade = 24
+  ovr = 50
+  pot = 55
+  valor = 400000
+  partidas = 6
+  minutos = 562
+  gols = 1
+  id_fonte = "894531"
+
+  [[clubes.jogadores]]
   nome = "Matheus Salustiano"
   pos = "CB"
   idade = 33
-  ovr = 52
-  pot = 52
+  ovr = 50
+  pot = 50
   valor = 75000
   partidas = 10
   minutos = 883
@@ -5368,8 +5491,8 @@ valor_elenco = 7930000
   nome = "Felipe Garcia"
   pos = "WG"
   idade = 35
-  ovr = 51
-  pot = 51
+  ovr = 49
+  pot = 49
   valor = 75000
   partidas = 30
   minutos = 2664
@@ -5377,23 +5500,11 @@ valor_elenco = 7930000
   id_fonte = "98511"
 
   [[clubes.jogadores]]
-  nome = "Luizão"
-  pos = "CB"
-  idade = 24
-  ovr = 51
-  pot = 55
-  valor = 400000
-  partidas = 6
-  minutos = 562
-  gols = 1
-  id_fonte = "894531"
-
-  [[clubes.jogadores]]
   nome = "Lucas Rian"
   pos = "FW"
   idade = 26
-  ovr = 50
-  pot = 51
+  ovr = 49
+  pot = 50
   valor = 200000
   partidas = 10
   minutos = 857
@@ -5404,29 +5515,30 @@ valor_elenco = 7930000
   nome = "Marcão"
   pos = "DM"
   idade = 35
-  ovr = 50
-  pot = 50
+  ovr = 48
+  pot = 48
   valor = 50000
   partidas = 14
   minutos = 1272
   id_fonte = "346072"
 
   [[clubes.jogadores]]
-  nome = "Júnior Oliveira"
-  pos = "GK"
-  idade = 36
-  ovr = 49
-  pot = 49
-  partidas = 4
-  minutos = 405
-  id_fonte = "373432"
+  nome = "Wellington"
+  pos = "CB"
+  idade = 25
+  ovr = 48
+  pot = 51
+  valor = 168142
+  partidas = 9
+  minutos = 805
+  id_fonte = "725053"
 
   [[clubes.jogadores]]
   nome = "Echaporã"
   pos = "WG"
   idade = 26
-  ovr = 48
-  pot = 49
+  ovr = 46
+  pot = 47
   valor = 100000
   partidas = 18
   minutos = 1620
@@ -5434,34 +5546,13 @@ valor_elenco = 7930000
   id_fonte = "688896"
 
   [[clubes.jogadores]]
-  nome = "Hugo Sanches"
-  pos = "FB"
-  idade = 32
-  ovr = 47
-  pot = 47
-  partidas = 16
-  minutos = 1444
-  gols = 1
-  id_fonte = "612328"
-
-  [[clubes.jogadores]]
   nome = "Léo Lang"
   pos = "GK"
   idade = 28
-  ovr = 47
-  pot = 47
-  id_fonte = "570584"
-
-  [[clubes.jogadores]]
-  nome = "Daniel Amorim"
-  pos = "FW"
-  idade = 37
   ovr = 46
   pot = 46
-  partidas = 11
-  minutos = 1023
-  gols = 3
-  id_fonte = "490613"
+  valor = 41250
+  id_fonte = "570584"
 
   [[clubes.jogadores]]
   nome = "Léo Jabá"
@@ -5469,26 +5560,41 @@ valor_elenco = 7930000
   idade = 28
   ovr = 44
   pot = 44
+  valor = 51857
   partidas = 1
   minutos = 108
   id_fonte = "468260"
 
   [[clubes.jogadores]]
-  nome = "Wellington"
-  pos = "CB"
-  idade = 25
-  ovr = 43
+  nome = "Daniel Davi"
+  pos = "WG"
+  idade = 21
+  ovr = 42
+  pot = 47
+  valor = 107642
+  partidas = 5
+  minutos = 459
+  gols = 1
+  id_fonte = "1362527"
+
+  [[clubes.jogadores]]
+  nome = "Jota"
+  pos = "FB"
+  idade = 21
+  ovr = 41
   pot = 45
-  partidas = 9
-  minutos = 805
-  id_fonte = "725053"
+  valor = 55785
+  partidas = 2
+  minutos = 173
+  id_fonte = "1098654"
 
   [[clubes.jogadores]]
   nome = "Breno Melo"
   pos = "AM"
   idade = 21
   ovr = 40
-  pot = 44
+  pot = 43
+  valor = 43214
   partidas = 1
   minutos = 14
   id_fonte = "1156561"
@@ -5498,46 +5604,28 @@ valor_elenco = 7930000
   pos = "CB"
   idade = 22
   ovr = 40
-  pot = 45
+  pot = 44
+  valor = 41250
   id_fonte = "1092744"
-
-  [[clubes.jogadores]]
-  nome = "Daniel Davi"
-  pos = "WG"
-  idade = 21
-  ovr = 40
-  pot = 43
-  partidas = 5
-  minutos = 459
-  gols = 1
-  id_fonte = "1362527"
 
   [[clubes.jogadores]]
   nome = "Galdino"
   pos = "DM"
   idade = 21
   ovr = 40
-  pot = 45
+  pot = 43
+  valor = 41250
   partidas = 1
   minutos = 1
   id_fonte = "1362355"
-
-  [[clubes.jogadores]]
-  nome = "Jota"
-  pos = "FB"
-  idade = 21
-  ovr = 40
-  pot = 45
-  partidas = 2
-  minutos = 173
-  id_fonte = "1098654"
 
   [[clubes.jogadores]]
   nome = "Lucas Reis"
   pos = "FW"
   idade = 25
   ovr = 40
-  pot = 44
+  pot = 42
+  valor = 41250
   partidas = 1
   minutos = 2
   id_fonte = "980681"
@@ -5547,13 +5635,14 @@ nome = "Botafogo"
 forca = 54.8
 id_fonte = "60175"
 valor_elenco = 6450000
+cores = ["#1A1A1A", "#F2F2F2"]
 
   [[clubes.jogadores]]
   nome = "Everton Morelli"
   pos = "MF"
   idade = 28
-  ovr = 58
-  pot = 58
+  ovr = 59
+  pot = 59
   valor = 1000000
   partidas = 32
   minutos = 2835
@@ -5564,8 +5653,8 @@ valor_elenco = 6450000
   nome = "Leandro Maciel"
   pos = "DM"
   idade = 30
-  ovr = 57
-  pot = 57
+  ovr = 58
+  pot = 58
   valor = 600000
   partidas = 18
   minutos = 1576
@@ -5576,8 +5665,8 @@ valor_elenco = 6450000
   nome = "Matheus Sales"
   pos = "DM"
   idade = 31
-  ovr = 57
-  pot = 57
+  ovr = 58
+  pot = 58
   valor = 550000
   partidas = 19
   minutos = 1733
@@ -5619,18 +5708,6 @@ valor_elenco = 6450000
   id_fonte = "224481"
 
   [[clubes.jogadores]]
-  nome = "Kelvin"
-  pos = "WG"
-  idade = 29
-  ovr = 55
-  pot = 55
-  valor = 500000
-  partidas = 19
-  minutos = 1718
-  gols = 1
-  id_fonte = "638722"
-
-  [[clubes.jogadores]]
   nome = "Rafael Gava"
   pos = "AM"
   idade = 33
@@ -5654,11 +5731,23 @@ valor_elenco = 6450000
   id_fonte = "788402"
 
   [[clubes.jogadores]]
+  nome = "Kelvin"
+  pos = "WG"
+  idade = 29
+  ovr = 54
+  pot = 54
+  valor = 500000
+  partidas = 19
+  minutos = 1718
+  gols = 1
+  id_fonte = "638722"
+
+  [[clubes.jogadores]]
   nome = "Victor Souza"
   pos = "GK"
   idade = 34
-  ovr = 53
-  pot = 53
+  ovr = 52
+  pot = 52
   valor = 100000
   partidas = 32
   minutos = 2880
@@ -5668,8 +5757,8 @@ valor_elenco = 6450000
   nome = "Felipe Vieira"
   pos = "FB"
   idade = 27
-  ovr = 52
-  pot = 53
+  ovr = 51
+  pot = 52
   valor = 250000
   partidas = 5
   minutos = 476
@@ -5677,44 +5766,66 @@ valor_elenco = 6450000
   id_fonte = "527192"
 
   [[clubes.jogadores]]
-  nome = "Jonathan"
-  pos = "FB"
-  idade = 34
-  ovr = 52
-  pot = 52
-  valor = 100000
-  partidas = 4
-  minutos = 383
-  id_fonte = "147366"
-
-  [[clubes.jogadores]]
   nome = "Guilherme Mariano"
   pos = "CB"
   idade = 26
-  ovr = 51
-  pot = 53
+  ovr = 50
+  pot = 52
   valor = 250000
   partidas = 2
   minutos = 214
   id_fonte = "1007070"
 
   [[clubes.jogadores]]
+  nome = "Guilherme Queiróz"
+  pos = "FW"
+  idade = 36
+  ovr = 50
+  pot = 50
+  valor = 137500
+  partidas = 5
+  minutos = 493
+  id_fonte = "411707"
+
+  [[clubes.jogadores]]
   nome = "Jefferson Nem"
   pos = "WG"
   idade = 30
-  ovr = 51
-  pot = 51
+  ovr = 50
+  pot = 50
   valor = 200000
   partidas = 13
   minutos = 1181
   id_fonte = "402734"
 
   [[clubes.jogadores]]
+  nome = "Jonathan"
+  pos = "FB"
+  idade = 34
+  ovr = 50
+  pot = 50
+  valor = 100000
+  partidas = 4
+  minutos = 383
+  id_fonte = "147366"
+
+  [[clubes.jogadores]]
+  nome = "Jordan"
+  pos = "GK"
+  idade = 28
+  ovr = 50
+  pot = 50
+  valor = 134062
+  partidas = 5
+  minutos = 450
+  id_fonte = "823508"
+
+  [[clubes.jogadores]]
   nome = "Vilar"
   pos = "CB"
   idade = 26
-  ovr = 51
-  pot = 51
+  ovr = 49
+  pot = 49
   valor = 150000
   partidas = 35
   minutos = 3109
@@ -5725,8 +5836,8 @@ valor_elenco = 6450000
   nome = "Zé Hugo"
   pos = "WG"
   idade = 26
-  ovr = 51
-  pot = 51
+  ovr = 49
+  pot = 50
   valor = 250000
   partidas = 21
   minutos = 1859
@@ -5737,8 +5848,8 @@ valor_elenco = 6450000
   nome = "Hygor"
   pos = "FW"
   idade = 34
-  ovr = 50
-  pot = 50
+  ovr = 48
+  pot = 48
   valor = 100000
   partidas = 21
   minutos = 1895
@@ -5746,105 +5857,101 @@ valor_elenco = 6450000
   id_fonte = "419474"
 
   [[clubes.jogadores]]
-  nome = "Carlão"
-  pos = "CB"
-  idade = 25
-  ovr = 46
-  pot = 49
-  valor = 100000
-  partidas = 5
-  minutos = 476
-  id_fonte = "638301"
-
-  [[clubes.jogadores]]
   nome = "Ericson"
   pos = "FB"
   idade = 27
   ovr = 46
-  pot = 47
+  pot = 46
   valor = 50000
   partidas = 23
   minutos = 2032
   id_fonte = "555017"
 
   [[clubes.jogadores]]
-  nome = "Guilherme Queiróz"
-  pos = "FW"
-  idade = 36
-  ovr = 45
-  pot = 45
-  partidas = 5
-  minutos = 493
-  id_fonte = "411707"
-
-  [[clubes.jogadores]]
-  nome = "Jordan"
-  pos = "GK"
-  idade = 28
-  ovr = 45
-  pot = 45
-  partidas = 5
-  minutos = 450
-  id_fonte = "823508"
-
-  [[clubes.jogadores]]
   nome = "Thiaguinho"
   pos = "DM"
   idade = 28
-  ovr = 44
-  pot = 44
+  ovr = 45
+  pot = 45
+  valor = 82500
   partidas = 3
   minutos = 273
   id_fonte = "701485"
 
   [[clubes.jogadores]]
-  nome = "Marco Antônio"
-  pos = "DM"
-  idade = 26
-  ovr = 42
-  pot = 44
-  partidas = 3
-  minutos = 311
-  id_fonte = "894776"
-
-  [[clubes.jogadores]]
-  nome = "Márcio Maranhão"
-  pos = "WG"
-  idade = 27
-  ovr = 42
-  pot = 43
-  partidas = 3
-  minutos = 251
-  id_fonte = "744895"
-
-  [[clubes.jogadores]]
-  nome = "Pedro Souza"
-  pos = "FB"
-  idade = 19
-  ovr = 42
-  pot = 53
-  valor = 300000
-  partidas = 10
-  minutos = 881
-  id_fonte = "1223922"
-
-  [[clubes.jogadores]]
   nome = "Wesley Santos"
   pos = "WG"
   idade = 26
-  ovr = 41
-  pot = 42
+  ovr = 45
+  pot = 46
+  valor = 137500
   partidas = 9
   minutos = 826
   gols = 2
   id_fonte = "816148"
 
   [[clubes.jogadores]]
+  nome = "Marco Antônio"
+  pos = "DM"
+  idade = 26
+  ovr = 44
+  pot = 46
+  valor = 99687
+  partidas = 3
+  minutos = 311
+  id_fonte = "894776"
+
+  [[clubes.jogadores]]
+  nome = "Carlão"
+  pos = "CB"
+  idade = 25
+  ovr = 43
+  pot = 47
+  valor = 100000
+  partidas = 5
+  minutos = 476
+  id_fonte = "638301"
+
+  [[clubes.jogadores]]
+  nome = "Pedro Souza"
+  pos = "FB"
+  idade = 19
+  ovr = 42
+  pot = 52
+  valor = 300000
+  partidas = 10
+  minutos = 881
+  id_fonte = "1223922"
+
+  [[clubes.jogadores]]
+  nome = "Márcio Maranhão"
+  pos = "WG"
+  idade = 27
+  ovr = 41
+  pot = 42
+  valor = 65312
+  partidas = 3
+  minutos = 251
+  id_fonte = "744895"
+
+  [[clubes.jogadores]]
+  nome = "Yuri Felipe"
+  pos = "MF"
+  idade = 20
+  ovr = 41
+  pot = 47
+  valor = 137500
+  partidas = 5
+  minutos = 481
+  id_fonte = "1097183"
+
+  [[clubes.jogadores]]
   nome = "Badaró"
   pos = "CB"
   idade = 21
   ovr = 40
-  pot = 44
+  pot = 43
+  valor = 55000
   partidas = 1
   minutos = 81
   gols = 1
@@ -5855,7 +5962,8 @@ valor_elenco = 6450000
   pos = "GK"
   idade = 23
   ovr = 40
-  pot = 45
+  pot = 43
+  valor = 44687
   id_fonte = "1082829"
 
   [[clubes.jogadores]]
@@ -5863,7 +5971,8 @@ valor_elenco = 6450000
   pos = "CB"
   idade = 22
   ovr = 40
-  pot = 44
+  pot = 43
+  valor = 55000
   partidas = 1
   minutos = 1
   id_fonte = "997862"
@@ -5873,7 +5982,8 @@ valor_elenco = 6450000
   pos = "DM"
   idade = 21
   ovr = 40
-  pot = 43
+  pot = 42
+  valor = 55000
   partidas = 1
   minutos = 7
   id_fonte = "1222356"
@@ -5883,21 +5993,11 @@ valor_elenco = 6450000
   pos = "WG"
   idade = 21
   ovr = 40
-  pot = 51
+  pot = 49
   valor = 250000
   partidas = 2
   minutos = 16
   id_fonte = "1094414"
-
-  [[clubes.jogadores]]
-  nome = "Yuri Felipe"
-  pos = "MF"
-  idade = 20
-  ovr = 40
-  pot = 43
-  partidas = 5
-  minutos = 481
-  id_fonte = "1097183"
 
 [[clubes]]
 nome = "Londrina"
@@ -5908,13 +6008,24 @@ valor_elenco = 6100000
   nome = "João Vitor"
   pos = "MF"
   idade = 28
-  ovr = 58
-  pot = 58
+  ovr = 60
+  pot = 60
   valor = 900000
   partidas = 12
   minutos = 1053
   gols = 3
   id_fonte = "935978"
+
+  [[clubes.jogadores]]
+  nome = "Wallace"
+  pos = "CB"
+  idade = 38
+  ovr = 59
+  pot = 59
+  valor = 349186
+  partidas = 25
+  minutos = 2219
+  id_fonte = "68833"
 
   [[clubes.jogadores]]
   nome = "Thalis"
@@ -5943,30 +6054,18 @@ valor_elenco = 6100000
   pos = "CB"
   idade = 26
   ovr = 54
-  pot = 55
+  pot = 54
   valor = 350000
   partidas = 18
   minutos = 1644
   id_fonte = "697401"
 
   [[clubes.jogadores]]
-  nome = "Kevyn"
-  pos = "FB"
-  idade = 28
-  ovr = 54
-  pot = 54
-  valor = 250000
-  partidas = 20
-  minutos = 1775
-  gols = 1
-  id_fonte = "530286"
-
-  [[clubes.jogadores]]
   nome = "Lucas Marques"
   pos = "MF"
   idade = 31
-  ovr = 54
-  pot = 54
+  ovr = 53
+  pot = 53
   valor = 250000
   partidas = 31
   minutos = 2778
@@ -5977,30 +6076,30 @@ valor_elenco = 6100000
   nome = "Mauricio Kozlinski"
   pos = "GK"
   idade = 35
-  ovr = 54
-  pot = 54
+  ovr = 53
+  pot = 53
   valor = 100000
   partidas = 43
   minutos = 3870
   id_fonte = "438431"
 
   [[clubes.jogadores]]
-  nome = "Pablo Dyego"
-  pos = "WG"
-  idade = 32
-  ovr = 54
-  pot = 54
-  valor = 250000
+  nome = "Nino Paraíba"
+  pos = "FB"
+  idade = 40
+  ovr = 53
+  pot = 53
+  valor = 137500
   partidas = 5
-  minutos = 467
-  id_fonte = "264343"
+  minutos = 438
+  id_fonte = "72451"
 
   [[clubes.jogadores]]
   nome = "Gabriel Lacerda"
   pos = "CB"
   idade = 27
-  ovr = 53
-  pot = 54
+  ovr = 52
+  pot = 52
   valor = 250000
   partidas = 23
   minutos = 2079
@@ -6008,23 +6107,34 @@ valor_elenco = 6100000
   id_fonte = "742855"
 
   [[clubes.jogadores]]
-  nome = "Gilberto"
-  pos = "FW"
-  idade = 37
-  ovr = 53
-  pot = 53
-  valor = 150000
-  partidas = 9
-  minutos = 782
-  gols = 2
-  id_fonte = "164013"
+  nome = "Kevyn"
+  pos = "FB"
+  idade = 28
+  ovr = 52
+  pot = 52
+  valor = 250000
+  partidas = 20
+  minutos = 1775
+  gols = 1
+  id_fonte = "530286"
+
+  [[clubes.jogadores]]
+  nome = "Pablo Dyego"
+  pos = "WG"
+  idade = 32
+  ovr = 52
+  pot = 52
+  valor = 250000
+  partidas = 5
+  minutos = 467
+  id_fonte = "264343"
 
   [[clubes.jogadores]]
   nome = "Paulinho Moccelin"
   pos = "WG"
   idade = 32
-  ovr = 53
-  pot = 53
+  ovr = 51
+  pot = 51
   valor = 200000
   partidas = 20
   minutos = 1803
@@ -6032,33 +6142,123 @@ valor_elenco = 6100000
   id_fonte = "282502"
 
   [[clubes.jogadores]]
-  nome = "Weverton"
-  pos = "FB"
-  idade = 27
-  ovr = 53
-  pot = 53
-  valor = 250000
-  partidas = 6
-  minutos = 540
-  id_fonte = "580572"
-
-  [[clubes.jogadores]]
   nome = "Vitor Jacaré"
   pos = "WG"
   idade = 26
-  ovr = 52
-  pot = 54
+  ovr = 51
+  pot = 53
   valor = 450000
   partidas = 2
   minutos = 183
   id_fonte = "691843"
 
   [[clubes.jogadores]]
+  nome = "Weverton"
+  pos = "FB"
+  idade = 27
+  ovr = 51
+  pot = 52
+  valor = 250000
+  partidas = 6
+  minutos = 540
+  id_fonte = "580572"
+
+  [[clubes.jogadores]]
+  nome = "Gilberto"
+  pos = "FW"
+  idade = 37
+  ovr = 50
+  pot = 50
+  valor = 150000
+  partidas = 9
+  minutos = 782
+  gols = 2
+  id_fonte = "164013"
+
+  [[clubes.jogadores]]
+  nome = "André Dhominique"
+  pos = "FB"
+  idade = 22
+  ovr = 49
+  pot = 57
+  valor = 600000
+  partidas = 6
+  minutos = 500
+  id_fonte = "959171"
+
+  [[clubes.jogadores]]
+  nome = "Artur"
+  pos = "FB"
+  idade = 32
+  ovr = 49
+  pot = 49
+  valor = 115116
+  partidas = 2
+  minutos = 139
+  id_fonte = "296903"
+
+  [[clubes.jogadores]]
+  nome = "Igor Bahia"
+  pos = "FW"
+  idade = 33
+  ovr = 49
+  pot = 49
+  valor = 137500
+  partidas = 3
+  minutos = 264
+  gols = 2
+  id_fonte = "941369"
+
+  [[clubes.jogadores]]
+  nome = "Luan Ribeiro"
+  pos = "GK"
+  idade = 29
+  ovr = 49
+  pot = 49
+  valor = 110000
+  partidas = 1
+  minutos = 90
+  id_fonte = "643832"
+
+  [[clubes.jogadores]]
+  nome = "Geovane Meurer"
+  pos = "MF"
+  idade = 24
+  ovr = 47
+  pot = 53
+  valor = 375000
+  id_fonte = "1056021"
+
+  [[clubes.jogadores]]
+  nome = "Guilherme Portuga"
+  pos = "AM"
+  idade = 28
+  ovr = 47
+  pot = 47
+  valor = 157965
+  partidas = 6
+  minutos = 521
+  gols = 1
+  id_fonte = "752562"
+
+  [[clubes.jogadores]]
+  nome = "João Tavares"
+  pos = "DM"
+  idade = 22
+  ovr = 47
+  pot = 51
+  valor = 244941
+  partidas = 19
+  minutos = 1704
+  gols = 2
+  id_fonte = "1056019"
+
+  [[clubes.jogadores]]
   nome = "Vitinho Mota"
   pos = "WG"
   idade = 23
-  ovr = 50
-  pot = 52
+  ovr = 47
+  pot = 49
   valor = 250000
   partidas = 23
   minutos = 2085
@@ -6066,98 +6266,15 @@ valor_elenco = 6100000
   id_fonte = "1090856"
 
   [[clubes.jogadores]]
-  nome = "André Dhominique"
-  pos = "FB"
-  idade = 22
-  ovr = 48
-  pot = 56
-  valor = 600000
-  partidas = 6
-  minutos = 500
-  id_fonte = "959171"
-
-  [[clubes.jogadores]]
-  nome = "Geovane Meurer"
-  pos = "MF"
-  idade = 24
-  ovr = 48
-  pot = 54
-  valor = 375000
-  id_fonte = "1056021"
-
-  [[clubes.jogadores]]
-  nome = "Nino Paraíba"
-  pos = "FB"
-  idade = 40
-  ovr = 47
-  pot = 47
-  partidas = 5
-  minutos = 438
-  id_fonte = "72451"
-
-  [[clubes.jogadores]]
-  nome = "Wallace"
-  pos = "CB"
-  idade = 38
-  ovr = 47
-  pot = 47
-  partidas = 25
-  minutos = 2219
-  id_fonte = "68833"
-
-  [[clubes.jogadores]]
-  nome = "Artur"
-  pos = "FB"
-  idade = 32
+  nome = "Raí Nascimento"
+  pos = "WG"
+  idade = 28
   ovr = 46
   pot = 46
+  valor = 137500
   partidas = 2
-  minutos = 139
-  id_fonte = "296903"
-
-  [[clubes.jogadores]]
-  nome = "Luan Ribeiro"
-  pos = "GK"
-  idade = 29
-  ovr = 46
-  pot = 46
-  partidas = 1
-  minutos = 90
-  id_fonte = "643832"
-
-  [[clubes.jogadores]]
-  nome = "Tarik"
-  pos = "DM"
-  idade = 33
-  ovr = 46
-  pot = 46
-  valor = 25000
-  partidas = 6
-  minutos = 499
-  gols = 1
-  id_fonte = "458115"
-
-  [[clubes.jogadores]]
-  nome = "Chumbinho"
-  pos = "DM"
-  idade = 23
-  ovr = 45
-  pot = 52
-  valor = 200000
-  partidas = 3
-  minutos = 253
-  id_fonte = "1084070"
-
-  [[clubes.jogadores]]
-  nome = "Igor Bahia"
-  pos = "FW"
-  idade = 33
-  ovr = 45
-  pot = 45
-  partidas = 3
-  minutos = 264
-  gols = 2
-  id_fonte = "941369"
+  minutos = 168
+  id_fonte = "483499"
 
   [[clubes.jogadores]]
   nome = "Victor Feitosa"
@@ -6165,18 +6282,31 @@ valor_elenco = 6100000
   idade = 30
   ovr = 45
   pot = 45
+  valor = 72906
   id_fonte = "554431"
 
   [[clubes.jogadores]]
-  nome = "Guilherme Portuga"
-  pos = "AM"
-  idade = 28
+  nome = "Herbert"
+  pos = "WG"
+  idade = 26
   ovr = 44
-  pot = 44
-  partidas = 6
-  minutos = 521
-  gols = 1
-  id_fonte = "752562"
+  pot = 45
+  valor = 137500
+  partidas = 3
+  minutos = 300
+  gols = 2
+  id_fonte = "978241"
+
+  [[clubes.jogadores]]
+  nome = "Kauê Leonardo"
+  pos = "FB"
+  idade = 21
+  ovr = 44
+  pot = 50
+  valor = 220639
+  partidas = 14
+  minutos = 1243
+  id_fonte = "1124214"
 
   [[clubes.jogadores]]
   nome = "Juninho"
@@ -6184,48 +6314,40 @@ valor_elenco = 6100000
   idade = 27
   ovr = 43
   pot = 44
+  valor = 82500
   partidas = 1
   minutos = 22
   id_fonte = "986798"
 
   [[clubes.jogadores]]
-  nome = "Raí Nascimento"
-  pos = "WG"
-  idade = 28
+  nome = "Rafael Monteiro"
+  pos = "FB"
+  idade = 22
   ovr = 43
-  pot = 43
-  partidas = 2
-  minutos = 168
-  id_fonte = "483499"
+  pot = 50
+  valor = 202093
+  partidas = 9
+  minutos = 800
+  id_fonte = "1083669"
 
   [[clubes.jogadores]]
-  nome = "Fabiano"
+  nome = "Chumbinho"
   pos = "DM"
-  idade = 21
-  ovr = 41
-  pot = 51
-  valor = 150000
-  partidas = 6
-  minutos = 521
-  id_fonte = "1222735"
-
-  [[clubes.jogadores]]
-  nome = "Herbert"
-  pos = "WG"
-  idade = 26
-  ovr = 41
-  pot = 43
+  idade = 23
+  ovr = 42
+  pot = 49
+  valor = 200000
   partidas = 3
-  minutos = 300
-  gols = 2
-  id_fonte = "978241"
+  minutos = 253
+  id_fonte = "1084070"
 
   [[clubes.jogadores]]
   nome = "André Cardoso"
   pos = "DM"
   idade = 23
   ovr = 40
-  pot = 44
+  pot = 46
+  valor = 127267
   partidas = 2
   minutos = 160
   gols = 1
@@ -6236,7 +6358,8 @@ valor_elenco = 6100000
   pos = "WG"
   idade = 22
   ovr = 40
-  pot = 43
+  pot = 40
+  valor = 72906
   id_fonte = "1082521"
 
   [[clubes.jogadores]]
@@ -6244,7 +6367,8 @@ valor_elenco = 6100000
   pos = "CB"
   idade = 22
   ovr = 40
-  pot = 44
+  pot = 47
+  valor = 137500
   partidas = 6
   minutos = 518
   gols = 1
@@ -6255,11 +6379,22 @@ valor_elenco = 6100000
   pos = "WG"
   idade = 21
   ovr = 40
-  pot = 48
+  pot = 42
   valor = 100000
   partidas = 4
   minutos = 43
   id_fonte = "1083072"
+
+  [[clubes.jogadores]]
+  nome = "Fabiano"
+  pos = "DM"
+  idade = 21
+  ovr = 40
+  pot = 47
+  valor = 150000
+  partidas = 6
+  minutos = 521
+  id_fonte = "1222735"
 
   [[clubes.jogadores]]
   nome = "Fabricio"
@@ -6267,6 +6402,7 @@ valor_elenco = 6100000
   idade = 22
   ovr = 40
   pot = 43
+  valor = 106162
   partidas = 1
   minutos = 71
   id_fonte = "1093769"
@@ -6276,7 +6412,8 @@ valor_elenco = 6100000
   pos = "WG"
   idade = 22
   ovr = 40
-  pot = 43
+  pot = 41
+  valor = 82500
   partidas = 1
   minutos = 13
   id_fonte = "1089147"
@@ -6286,38 +6423,19 @@ valor_elenco = 6100000
   pos = "WG"
   idade = 24
   ovr = 40
-  pot = 43
+  pot = 42
+  valor = 94011
   partidas = 1
   minutos = 47
   id_fonte = "662337"
-
-  [[clubes.jogadores]]
-  nome = "João Tavares"
-  pos = "DM"
-  idade = 22
-  ovr = 40
-  pot = 44
-  partidas = 19
-  minutos = 1704
-  gols = 2
-  id_fonte = "1056019"
-
-  [[clubes.jogadores]]
-  nome = "Kauê Leonardo"
-  pos = "FB"
-  idade = 21
-  ovr = 40
-  pot = 44
-  partidas = 14
-  minutos = 1243
-  id_fonte = "1124214"
 
   [[clubes.jogadores]]
   nome = "Luis Aucélio"
   pos = "DM"
   idade = 20
   ovr = 40
-  pot = 44
+  pot = 42
+  valor = 72906
   id_fonte = "1311432"
 
   [[clubes.jogadores]]
@@ -6325,28 +6443,32 @@ valor_elenco = 6100000
   pos = "DM"
   idade = 21
   ovr = 40
-  pot = 44
+  pot = 45
+  valor = 110000
   partidas = 1
   minutos = 89
   id_fonte = "1094386"
-
-  [[clubes.jogadores]]
-  nome = "Rafael Monteiro"
-  pos = "FB"
-  idade = 22
-  ovr = 40
-  pot = 44
-  partidas = 9
-  minutos = 800
-  id_fonte = "1083669"
 
   [[clubes.jogadores]]
   nome = "Rafael Soares"
   pos = "FB"
   idade = 21
   ovr = 40
-  pot = 44
+  pot = 43
+  valor = 72906
   id_fonte = "1082831"
+
+  [[clubes.jogadores]]
+  nome = "Tarik"
+  pos = "DM"
+  idade = 33
+  ovr = 40
+  pot = 40
+  valor = 25000
+  partidas = 6
+  minutos = 499
+  gols = 1
+  id_fonte = "458115"
 
   [[clubes.jogadores]]
   nome = "Zanella"
@@ -6354,6 +6476,7 @@ valor_elenco = 6100000
   idade = 22
   ovr = 40
   pot = 45
+  valor = 72906
   id_fonte = "1094762"
 
 [[clubes]]
@@ -6365,8 +6488,8 @@ valor_elenco = 5880000
   nome = "Gonzalo Mastriani"
   pos = "FW"
   idade = 33
-  ovr = 58
-  pot = 58
+  ovr = 59
+  pot = 59
   valor = 1000000
   partidas = 14
   minutos = 1291
@@ -6419,17 +6542,6 @@ valor_elenco = 5880000
   id_fonte = "223024"
 
   [[clubes.jogadores]]
-  nome = "Gustavo Barreto"
-  pos = "DM"
-  idade = 30
-  ovr = 54
-  pot = 54
-  valor = 300000
-  partidas = 6
-  minutos = 547
-  id_fonte = "348262"
-
-  [[clubes.jogadores]]
   nome = "Ricardo Silva"
   pos = "CB"
   idade = 34
@@ -6453,6 +6565,17 @@ valor_elenco = 5880000
   id_fonte = "520665"
 
   [[clubes.jogadores]]
+  nome = "Gustavo Barreto"
+  pos = "DM"
+  idade = 30
+  ovr = 53
+  pot = 53
+  valor = 300000
+  partidas = 6
+  minutos = 547
+  id_fonte = "348262"
+
+  [[clubes.jogadores]]
   nome = "Felipe Amaral"
   pos = "MF"
   idade = 23
@@ -6463,17 +6586,6 @@ valor_elenco = 5880000
   minutos = 2540
   gols = 1
   id_fonte = "875994"
-
-  [[clubes.jogadores]]
-  nome = "Manoel"
-  pos = "CB"
-  idade = 36
-  ovr = 52
-  pot = 52
-  valor = 100000
-  partidas = 8
-  minutos = 754
-  id_fonte = "113586"
 
   [[clubes.jogadores]]
   nome = "Matías Segovia"
@@ -6500,11 +6612,22 @@ valor_elenco = 5880000
   id_fonte = "495109"
 
   [[clubes.jogadores]]
-  nome = "Alê"
-  pos = "DM"
+  nome = "Manoel"
+  pos = "CB"
   idade = 36
   ovr = 51
   pot = 51
+  valor = 100000
+  partidas = 8
+  minutos = 754
+  id_fonte = "113586"
+
+  [[clubes.jogadores]]
+  nome = "Alê"
+  pos = "DM"
+  idade = 36
+  ovr = 50
+  pot = 50
   valor = 100000
   partidas = 9
   minutos = 783
@@ -6514,8 +6637,8 @@ valor_elenco = 5880000
   nome = "Bruno Brígido"
   pos = "GK"
   idade = 35
-  ovr = 50
-  pot = 50
+  ovr = 49
+  pot = 49
   valor = 50000
   partidas = 7
   minutos = 630
@@ -6525,8 +6648,8 @@ valor_elenco = 5880000
   nome = "Eduardo Person"
   pos = "MF"
   idade = 29
-  ovr = 50
-  pot = 50
+  ovr = 49
+  pot = 49
   valor = 150000
   partidas = 19
   minutos = 1683
@@ -6537,8 +6660,8 @@ valor_elenco = 5880000
   nome = "Paulo Victor"
   pos = "WG"
   idade = 25
-  ovr = 50
-  pot = 51
+  ovr = 49
+  pot = 49
   valor = 250000
   partidas = 25
   minutos = 2240
@@ -6549,8 +6672,8 @@ valor_elenco = 5880000
   nome = "Rodrigo Piñeiro"
   pos = "WG"
   idade = 27
-  ovr = 50
-  pot = 51
+  ovr = 49
+  pot = 50
   valor = 275000
   partidas = 2
   minutos = 205
@@ -6558,11 +6681,22 @@ valor_elenco = 5880000
   id_fonte = "481272"
 
   [[clubes.jogadores]]
+  nome = "Guilherme Parede"
+  pos = "WG"
+  idade = 31
+  ovr = 48
+  pot = 48
+  valor = 137500
+  partidas = 10
+  minutos = 913
+  id_fonte = "393830"
+
+  [[clubes.jogadores]]
   nome = "Willian Bigode"
   pos = "FW"
   idade = 39
-  ovr = 50
-  pot = 50
+  ovr = 48
+  pot = 48
   valor = 100000
   partidas = 19
   minutos = 1735
@@ -6570,22 +6704,44 @@ valor_elenco = 5880000
   id_fonte = "55338"
 
   [[clubes.jogadores]]
+  nome = "Jorge Jiménez"
+  pos = "DM"
+  idade = 33
+  ovr = 47
+  pot = 47
+  valor = 67419
+  partidas = 5
+  minutos = 490
+  id_fonte = "539365"
+
+  [[clubes.jogadores]]
   nome = "Rafa Barcelos"
   pos = "CB"
   idade = 22
   ovr = 46
-  pot = 48
+  pot = 47
   valor = 100000
   partidas = 27
   minutos = 2414
   id_fonte = "1085182"
 
   [[clubes.jogadores]]
+  nome = "William"
+  pos = "GK"
+  idade = 28
+  ovr = 46
+  pot = 46
+  valor = 55000
+  partidas = 5
+  minutos = 450
+  id_fonte = "638060"
+
+  [[clubes.jogadores]]
   nome = "Emerson"
   pos = "CB"
   idade = 31
-  ovr = 45
-  pot = 45
+  ovr = 43
+  pot = 43
   valor = 25000
   partidas = 15
   minutos = 1327
@@ -6593,50 +6749,32 @@ valor_elenco = 5880000
   id_fonte = "382171"
 
   [[clubes.jogadores]]
-  nome = "Jorge Jiménez"
-  pos = "DM"
-  idade = 33
-  ovr = 45
-  pot = 45
-  partidas = 5
-  minutos = 490
-  id_fonte = "539365"
-
-  [[clubes.jogadores]]
-  nome = "William"
-  pos = "GK"
-  idade = 28
-  ovr = 45
-  pot = 45
-  partidas = 5
-  minutos = 450
-  id_fonte = "638060"
-
-  [[clubes.jogadores]]
   nome = "Cássio"
   pos = "GK"
   idade = 24
-  ovr = 43
-  pot = 49
+  ovr = 41
+  pot = 47
   valor = 75000
   id_fonte = "983979"
 
   [[clubes.jogadores]]
-  nome = "Guilherme Parede"
-  pos = "WG"
-  idade = 31
-  ovr = 43
-  pot = 43
-  partidas = 10
-  minutos = 913
-  id_fonte = "393830"
+  nome = "Otávio Gonçalves"
+  pos = "MF"
+  idade = 20
+  ovr = 41
+  pot = 47
+  valor = 137500
+  partidas = 9
+  minutos = 790
+  id_fonte = "1259352"
 
   [[clubes.jogadores]]
   nome = "Fábio"
   pos = "FB"
   idade = 25
   ovr = 40
-  pot = 43
+  pot = 44
+  valor = 55000
   partidas = 5
   minutos = 408
   id_fonte = "980832"
@@ -6647,6 +6785,7 @@ valor_elenco = 5880000
   idade = 25
   ovr = 40
   pot = 42
+  valor = 49233
   partidas = 2
   minutos = 21
   id_fonte = "869094"
@@ -6656,7 +6795,8 @@ valor_elenco = 5880000
   pos = "FB"
   idade = 22
   ovr = 40
-  pot = 43
+  pot = 42
+  valor = 40362
   partidas = 1
   minutos = 3
   id_fonte = "902123"
@@ -6666,7 +6806,8 @@ valor_elenco = 5880000
   pos = "GK"
   idade = 20
   ovr = 40
-  pot = 44
+  pot = 42
+  valor = 31491
   id_fonte = "1091606"
 
   [[clubes.jogadores]]
@@ -6675,19 +6816,10 @@ valor_elenco = 5880000
   idade = 23
   ovr = 40
   pot = 41
+  valor = 55000
   partidas = 2
   minutos = 155
   id_fonte = "1463877"
-
-  [[clubes.jogadores]]
-  nome = "Otávio Gonçalves"
-  pos = "MF"
-  idade = 20
-  ovr = 40
-  pot = 42
-  partidas = 9
-  minutos = 790
-  id_fonte = "1259352"
 
   [[clubes.jogadores]]
   nome = "Thallyson"
@@ -6695,6 +6827,7 @@ valor_elenco = 5880000
   idade = 20
   ovr = 40
   pot = 43
+  valor = 55000
   partidas = 3
   minutos = 231
   id_fonte = "1254135"
@@ -6708,8 +6841,8 @@ valor_elenco = 4330000
   nome = "Lucas Cunha"
   pos = "CB"
   idade = 29
-  ovr = 61
-  pot = 61
+  ovr = 62
+  pot = 62
   valor = 1200000
   partidas = 28
   minutos = 2514
@@ -6728,11 +6861,22 @@ valor_elenco = 4330000
   id_fonte = "271666"
 
   [[clubes.jogadores]]
+  nome = "Kevyson"
+  pos = "FB"
+  idade = 22
+  ovr = 55
+  pot = 59
+  valor = 800000
+  partidas = 18
+  minutos = 1600
+  id_fonte = "1032891"
+
+  [[clubes.jogadores]]
   nome = "David da Hora"
   pos = "WG"
   idade = 26
-  ovr = 54
-  pot = 55
+  ovr = 53
+  pot = 54
   valor = 400000
   partidas = 13
   minutos = 1155
@@ -6740,21 +6884,32 @@ valor_elenco = 4330000
   id_fonte = "752724"
 
   [[clubes.jogadores]]
-  nome = "Kevyson"
-  pos = "FB"
-  idade = 22
-  ovr = 54
-  pot = 58
-  valor = 800000
+  nome = "Sergio Palacios"
+  pos = "CB"
+  idade = 21
+  ovr = 53
+  pot = 60
+  valor = 900000
+  partidas = 13
+  minutos = 1152
+  id_fonte = "1174214"
+
+  [[clubes.jogadores]]
+  nome = "André Lima"
+  pos = "DM"
+  idade = 26
+  ovr = 52
+  pot = 52
+  valor = 200000
   partidas = 18
-  minutos = 1600
-  id_fonte = "1032891"
+  minutos = 1605
+  id_fonte = "740299"
 
   [[clubes.jogadores]]
   nome = "Murilo"
   pos = "DM"
   idade = 27
-  ovr = 53
+  ovr = 52
   pot = 53
   valor = 200000
   partidas = 9
@@ -6762,44 +6917,11 @@ valor_elenco = 4330000
   id_fonte = "689975"
 
   [[clubes.jogadores]]
-  nome = "André Lima"
-  pos = "DM"
-  idade = 26
-  ovr = 52
-  pot = 53
-  valor = 200000
-  partidas = 18
-  minutos = 1605
-  id_fonte = "740299"
-
-  [[clubes.jogadores]]
-  nome = "Sergio Palacios"
-  pos = "CB"
-  idade = 21
-  ovr = 52
-  pot = 59
-  valor = 900000
-  partidas = 13
-  minutos = 1152
-  id_fonte = "1174214"
-
-  [[clubes.jogadores]]
-  nome = "Rodrigo Souza"
-  pos = "DM"
-  idade = 38
-  ovr = 51
-  pot = 51
-  valor = 50000
-  partidas = 12
-  minutos = 1076
-  id_fonte = "271329"
-
-  [[clubes.jogadores]]
   nome = "Élvis"
   pos = "AM"
   idade = 36
-  ovr = 51
-  pot = 51
+  ovr = 50
+  pot = 50
   valor = 75000
   partidas = 21
   minutos = 1887
@@ -6810,38 +6932,83 @@ valor_elenco = 4330000
   nome = "Diego Porfírio"
   pos = "FB"
   idade = 27
-  ovr = 50
-  pot = 51
+  ovr = 49
+  pot = 49
   valor = 100000
   partidas = 9
   minutos = 852
   id_fonte = "896860"
 
   [[clubes.jogadores]]
+  nome = "Rodrigo Souza"
+  pos = "DM"
+  idade = 38
+  ovr = 49
+  pot = 49
+  valor = 50000
+  partidas = 12
+  minutos = 1076
+  id_fonte = "271329"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Caran"
+  pos = "CB"
+  idade = 27
+  ovr = 48
+  pot = 48
+  valor = 81400
+  partidas = 1
+  minutos = 90
+  id_fonte = "938367"
+
+  [[clubes.jogadores]]
+  nome = "Karl"
+  pos = "MF"
+  idade = 33
+  ovr = 48
+  pot = 48
+  valor = 50050
+  id_fonte = "380483"
+
+  [[clubes.jogadores]]
   nome = "Jonathan Cafu"
   pos = "WG"
   idade = 35
-  ovr = 50
-  pot = 50
+  ovr = 47
+  pot = 47
   valor = 50000
   partidas = 3
   minutos = 281
   id_fonte = "347100"
 
   [[clubes.jogadores]]
-  nome = "Karl"
-  pos = "MF"
-  idade = 33
-  ovr = 47
-  pot = 47
-  id_fonte = "380483"
+  nome = "Diego Leão"
+  pos = "CB"
+  idade = 21
+  ovr = 46
+  pot = 53
+  valor = 211200
+  partidas = 13
+  minutos = 1150
+  id_fonte = "1096542"
+
+  [[clubes.jogadores]]
+  nome = "Vinicius Ferrari"
+  pos = "GK"
+  idade = 23
+  ovr = 46
+  pot = 51
+  valor = 110000
+  partidas = 11
+  minutos = 990
+  id_fonte = "986954"
 
   [[clubes.jogadores]]
   nome = "Brandão"
   pos = "FW"
   idade = 22
-  ovr = 46
-  pot = 52
+  ovr = 44
+  pot = 50
   valor = 200000
   partidas = 12
   minutos = 1092
@@ -6849,14 +7016,15 @@ valor_elenco = 4330000
   id_fonte = "1090830"
 
   [[clubes.jogadores]]
-  nome = "Gabriel Caran"
-  pos = "CB"
-  idade = 27
-  ovr = 45
-  pot = 46
-  partidas = 1
-  minutos = 90
-  id_fonte = "938367"
+  nome = "Guilherme Viana"
+  pos = "GK"
+  idade = 23
+  ovr = 44
+  pot = 51
+  valor = 110000
+  partidas = 4
+  minutos = 360
+  id_fonte = "1463940"
 
   [[clubes.jogadores]]
   nome = "Vitor Ribeiro"
@@ -6864,26 +7032,29 @@ valor_elenco = 4330000
   idade = 27
   ovr = 43
   pot = 44
+  valor = 57200
   partidas = 1
   minutos = 1
   id_fonte = "975774"
 
   [[clubes.jogadores]]
-  nome = "Vinicius Ferrari"
-  pos = "GK"
+  nome = "Jota"
+  pos = "FB"
   idade = 23
   ovr = 41
-  pot = 47
-  partidas = 11
-  minutos = 990
-  id_fonte = "986954"
+  pot = 48
+  valor = 93500
+  partidas = 2
+  minutos = 180
+  id_fonte = "980980"
 
   [[clubes.jogadores]]
   nome = "Denis"
   pos = "MF"
   idade = 22
   ovr = 40
-  pot = 45
+  pot = 46
+  valor = 69300
   partidas = 1
   minutos = 89
   id_fonte = "1093758"
@@ -6894,17 +7065,8 @@ valor_elenco = 4330000
   idade = 20
   ovr = 40
   pot = 45
+  valor = 50050
   id_fonte = "1363182"
-
-  [[clubes.jogadores]]
-  nome = "Diego Leão"
-  pos = "CB"
-  idade = 21
-  ovr = 40
-  pot = 45
-  partidas = 13
-  minutos = 1150
-  id_fonte = "1096542"
 
   [[clubes.jogadores]]
   nome = "Diogo Mora"
@@ -6912,6 +7074,7 @@ valor_elenco = 4330000
   idade = 24
   ovr = 40
   pot = 44
+  valor = 50050
   id_fonte = "1096519"
 
   [[clubes.jogadores]]
@@ -6920,17 +7083,8 @@ valor_elenco = 4330000
   idade = 21
   ovr = 40
   pot = 45
+  valor = 50050
   id_fonte = "1097006"
-
-  [[clubes.jogadores]]
-  nome = "Guilherme Viana"
-  pos = "GK"
-  idade = 23
-  ovr = 40
-  pot = 47
-  partidas = 4
-  minutos = 360
-  id_fonte = "1463940"
 
   [[clubes.jogadores]]
   nome = "José Luiz"
@@ -6938,17 +7092,8 @@ valor_elenco = 4330000
   idade = 18
   ovr = 40
   pot = 46
+  valor = 50050
   id_fonte = "1497372"
-
-  [[clubes.jogadores]]
-  nome = "Jota"
-  pos = "FB"
-  idade = 23
-  ovr = 40
-  pot = 45
-  partidas = 2
-  minutos = 180
-  id_fonte = "980980"
 
   [[clubes.jogadores]]
   nome = "Kawann"
@@ -6956,6 +7101,7 @@ valor_elenco = 4330000
   idade = 21
   ovr = 40
   pot = 45
+  valor = 50050
   id_fonte = "1362501"
 
 [[clubes]]
@@ -6967,8 +7113,8 @@ valor_elenco = 3300000
   nome = "Jean Carlos"
   pos = "AM"
   idade = 34
-  ovr = 53
-  pot = 53
+  ovr = 54
+  pot = 54
   valor = 350000
   partidas = 11
   minutos = 950
@@ -6998,17 +7144,6 @@ valor_elenco = 3300000
   id_fonte = "373299"
 
   [[clubes.jogadores]]
-  nome = "Wenderson"
-  pos = "DM"
-  idade = 28
-  ovr = 51
-  pot = 51
-  valor = 300000
-  partidas = 32
-  minutos = 2850
-  id_fonte = "524404"
-
-  [[clubes.jogadores]]
   nome = "Derek"
   pos = "FW"
   idade = 28
@@ -7033,11 +7168,22 @@ valor_elenco = 3300000
   id_fonte = "250841"
 
   [[clubes.jogadores]]
+  nome = "Wenderson"
+  pos = "DM"
+  idade = 28
+  ovr = 50
+  pot = 50
+  valor = 300000
+  partidas = 32
+  minutos = 2850
+  id_fonte = "524404"
+
+  [[clubes.jogadores]]
   nome = "Vinícius"
   pos = "WG"
   idade = 33
-  ovr = 50
-  pot = 50
+  ovr = 49
+  pot = 49
   valor = 200000
   partidas = 28
   minutos = 2495
@@ -7045,11 +7191,22 @@ valor_elenco = 3300000
   id_fonte = "146020"
 
   [[clubes.jogadores]]
+  nome = "Arnaldo"
+  pos = "FB"
+  idade = 34
+  ovr = 48
+  pot = 48
+  valor = 110000
+  partidas = 14
+  minutos = 1301
+  id_fonte = "268522"
+
+  [[clubes.jogadores]]
   nome = "Betão"
   pos = "CB"
   idade = 27
-  ovr = 49
-  pot = 49
+  ovr = 48
+  pot = 48
   valor = 200000
   partidas = 15
   minutos = 1360
@@ -7059,8 +7216,8 @@ valor_elenco = 3300000
   nome = "Júnior Todinho"
   pos = "FW"
   idade = 32
-  ovr = 49
-  pot = 49
+  ovr = 48
+  pot = 48
   valor = 200000
   partidas = 13
   minutos = 1154
@@ -7071,8 +7228,8 @@ valor_elenco = 3300000
   nome = "Mateus Silva"
   pos = "CB"
   idade = 31
-  ovr = 49
-  pot = 49
+  ovr = 48
+  pot = 48
   valor = 150000
   partidas = 13
   minutos = 1137
@@ -7082,8 +7239,8 @@ valor_elenco = 3300000
   nome = "Benjamín Borasi"
   pos = "WG"
   idade = 28
-  ovr = 48
-  pot = 48
+  ovr = 47
+  pot = 47
   valor = 250000
   partidas = 7
   minutos = 655
@@ -7091,22 +7248,11 @@ valor_elenco = 3300000
   id_fonte = "671539"
 
   [[clubes.jogadores]]
-  nome = "Luiz Felipe"
-  pos = "FB"
-  idade = 28
-  ovr = 48
-  pot = 48
-  valor = 150000
-  partidas = 15
-  minutos = 1336
-  id_fonte = "877578"
-
-  [[clubes.jogadores]]
   nome = "Reginaldo"
   pos = "FB"
   idade = 33
-  ovr = 48
-  pot = 48
+  ovr = 47
+  pot = 47
   valor = 100000
   partidas = 19
   minutos = 1675
@@ -7117,8 +7263,8 @@ valor_elenco = 3300000
   nome = "Victor Andrade"
   pos = "WG"
   idade = 30
-  ovr = 48
-  pot = 48
+  ovr = 47
+  pot = 47
   valor = 200000
   partidas = 10
   minutos = 920
@@ -7126,90 +7272,72 @@ valor_elenco = 3300000
   id_fonte = "203323"
 
   [[clubes.jogadores]]
-  nome = "Muriel"
-  pos = "GK"
-  idade = 39
+  nome = "Wanderson"
+  pos = "CB"
+  idade = 31
   ovr = 47
   pot = 47
-  valor = 50000
-  partidas = 36
-  minutos = 3275
-  id_fonte = "27349"
-
-  [[clubes.jogadores]]
-  nome = "Léo Oliveira"
-  pos = "DM"
-  idade = 30
-  ovr = 43
-  pot = 43
-  valor = 50000
-  partidas = 9
-  minutos = 827
+  valor = 117333
+  partidas = 15
+  minutos = 1392
   gols = 1
-  id_fonte = "978287"
-
-  [[clubes.jogadores]]
-  nome = "Arnaldo"
-  pos = "FB"
-  idade = 34
-  ovr = 42
-  pot = 42
-  partidas = 14
-  minutos = 1301
-  id_fonte = "268522"
+  id_fonte = "550891"
 
   [[clubes.jogadores]]
   nome = "Auremir"
   pos = "DM"
   idade = 35
-  ovr = 42
-  pot = 42
+  ovr = 46
+  pot = 46
+  valor = 82500
   partidas = 4
   minutos = 392
   id_fonte = "151505"
 
   [[clubes.jogadores]]
-  nome = "Luiz Paulo"
+  nome = "Luiz Felipe"
   pos = "FB"
-  idade = 33
-  ovr = 42
-  pot = 42
-  partidas = 2
-  minutos = 38
-  id_fonte = "448994"
-
-  [[clubes.jogadores]]
-  nome = "Samuel"
-  pos = "DM"
-  idade = 22
-  ovr = 42
-  pot = 47
+  idade = 28
+  ovr = 46
+  pot = 46
   valor = 150000
-  partidas = 17
-  minutos = 1558
-  id_fonte = "1222898"
+  partidas = 15
+  minutos = 1336
+  id_fonte = "877578"
 
   [[clubes.jogadores]]
   nome = "Paulo Sérgio"
   pos = "FW"
   idade = 37
-  ovr = 41
-  pot = 41
+  ovr = 46
+  pot = 46
+  valor = 110000
   partidas = 11
   minutos = 1024
   gols = 9
   id_fonte = "53019"
 
   [[clubes.jogadores]]
-  nome = "Wanderson"
-  pos = "CB"
-  idade = 31
+  nome = "Muriel"
+  pos = "GK"
+  idade = 39
+  ovr = 45
+  pot = 45
+  valor = 50000
+  partidas = 36
+  minutos = 3275
+  id_fonte = "27349"
+
+  [[clubes.jogadores]]
+  nome = "Luiz Paulo"
+  pos = "FB"
+  idade = 33
   ovr = 41
   pot = 41
-  partidas = 15
-  minutos = 1392
-  gols = 1
-  id_fonte = "550891"
+  valor = 44000
+  partidas = 2
+  minutos = 38
+  id_fonte = "448994"
 
   [[clubes.jogadores]]
   nome = "Danielzinho"
@@ -7217,6 +7345,7 @@ valor_elenco = 3300000
   idade = 25
   ovr = 40
   pot = 40
+  valor = 29333
   partidas = 1
   minutos = 3
   gols = 1
@@ -7228,6 +7357,7 @@ valor_elenco = 3300000
   idade = 23
   ovr = 40
   pot = 40
+  valor = 58666
   partidas = 1
   minutos = 45
   id_fonte = "1083106"
@@ -7237,7 +7367,8 @@ valor_elenco = 3300000
   pos = "CB"
   idade = 20
   ovr = 40
-  pot = 40
+  pot = 41
+  valor = 82500
   partidas = 5
   minutos = 464
   id_fonte = "1082701"
@@ -7248,6 +7379,7 @@ valor_elenco = 3300000
   idade = 22
   ovr = 40
   pot = 40
+  valor = 93500
   partidas = 8
   minutos = 754
   gols = 3
@@ -7259,7 +7391,20 @@ valor_elenco = 3300000
   idade = 22
   ovr = 40
   pot = 40
+  valor = 27500
   id_fonte = "1091488"
+
+  [[clubes.jogadores]]
+  nome = "Léo Oliveira"
+  pos = "DM"
+  idade = 30
+  ovr = 40
+  pot = 40
+  valor = 50000
+  partidas = 9
+  minutos = 827
+  gols = 1
+  id_fonte = "978287"
 
   [[clubes.jogadores]]
   nome = "Patricio Núñez"
@@ -7267,6 +7412,7 @@ valor_elenco = 3300000
   idade = 27
   ovr = 40
   pot = 40
+  valor = 73333
   partidas = 1
   minutos = 83
   id_fonte = "883285"
@@ -7276,17 +7422,30 @@ valor_elenco = 3300000
   pos = "FB"
   idade = 24
   ovr = 40
-  pot = 40
+  pot = 41
+  valor = 82500
   partidas = 4
   minutos = 334
   id_fonte = "1082832"
+
+  [[clubes.jogadores]]
+  nome = "Samuel"
+  pos = "DM"
+  idade = 22
+  ovr = 40
+  pot = 45
+  valor = 150000
+  partidas = 17
+  minutos = 1558
+  id_fonte = "1222898"
 
   [[clubes.jogadores]]
   nome = "Índio"
   pos = "CB"
   idade = 22
   ovr = 40
-  pot = 40
+  pot = 42
+  valor = 82500
   partidas = 3
   minutos = 277
   id_fonte = "987945"
