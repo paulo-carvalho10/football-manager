@@ -12,11 +12,17 @@ from fm.match import FLOOR, K, Mentality, Style, effective_rating, lambdas, simu
 FM_DIR = Path(__file__).resolve().parent.parent / "fm"
 
 
+# Camada de apresentacao: os UNICOS modulos autorizados a falar com o usuario.
+# A lista e explicita de proposito -- quando surgir interface grafica, ela entra aqui e
+# em nenhum outro lugar, e o motor continua sem saber que existe tela.
+APRESENTACAO = {"cli.py", "jogo.py"}
+
+
 def test_motor_nao_faz_io():
-    """Nenhum modulo do motor imprime nem le. Quem fala com o usuario e a camada cli."""
+    """Nenhum modulo do motor imprime nem le. Quem fala com o usuario e a apresentacao."""
     proibidos = []
     for path in FM_DIR.glob("*.py"):
-        if path.name == "cli.py":
+        if path.name in APRESENTACAO:
             continue
         texto = path.read_text(encoding="utf-8")
         for termo in ("print(", "input("):

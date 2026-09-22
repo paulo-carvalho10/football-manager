@@ -324,6 +324,30 @@ def cmd_torneio(args):
             print(f"     {100*n/args.edicoes:5.1f}%  {world.clubs[cid].name}")
 
 
+def cmd_jogar(args):
+    """Abre a carreira e entra no ciclo lobby -> escalar -> partida."""
+    from fm.carreira import Carreira, saves_disponiveis
+    from fm.jogo import jogar
+
+    if args.carregar:
+        c = Carreira.carregar(args.carregar)
+        print(f"carregado: {c.clube.name}, rodada {c.rodada}")
+    else:
+        if not args.clube:
+            cfg = load_league(args.liga)
+            from fm.generate import build_world
+            mundo, _ = build_world([cfg], seed=args.seed)
+            nomes = sorted(x.name for x in mundo.clubs.values())
+            print(f"escolha um clube de {args.liga} com --clube:")
+            for n in nomes:
+                print(f"   {n}")
+            return
+        c = Carreira.nova(args.liga, args.clube, seed=args.seed)
+    if saves_disponiveis():
+        print(f"saves existentes: {', '.join(saves_disponiveis())}")
+    jogar(c)
+
+
 def cmd_diagnostico(args):
     """Roda os diagnosticos da conversao valor -> overall sobre um pack importado."""
     from fm.diagnostics import diagnosticar
@@ -396,6 +420,13 @@ def main(argv=None):
                    help="todos, champions, libertadores ou intercontinental")
     p.add_argument("--edicoes", type=int, default=2000)
     p.set_defaults(func=cmd_torneio)
+
+    p = sub.add_parser("jogar", parents=[common],
+                       help="joga uma carreira: rodada a rodada, escalando o time")
+    p.add_argument("--liga", default="brasil_real")
+    p.add_argument("--clube", default=None, help="sem isto, lista os clubes da liga")
+    p.add_argument("--carregar", default=None, help="nome de um save")
+    p.set_defaults(func=cmd_jogar)
 
     p = sub.add_parser("diagnostico", parents=[common],
                        help="valida a conversao valor -> overall de um pack")

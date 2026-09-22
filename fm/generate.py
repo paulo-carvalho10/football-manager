@@ -160,10 +160,16 @@ def curve_delta(i: int) -> float:
 
 
 def _filler_positions(pack_players) -> list[str]:
-    """Posicoes que faltam para fechar a quota do elenco, na ordem da forma padrao."""
+    """Posicoes que faltam para fechar a quota do elenco, na ordem da forma padrao.
+
+    A quota conta GRUPOS (GK/DF/MF/FW), mas o pack traz posicao DETALHADA (CB, FB, DM...).
+    Sem converter, a quota nunca era abatida e todo clube ganhava ~18 jogadores de
+    preenchimento com overall 35 e salario zero, ao lado do elenco real.
+    """
     falta = dict(SQUAD_QUOTA)
     for j in pack_players:
-        falta[j.pos] = falta.get(j.pos, 0) - 1
+        grupo = grupo_posicao(j.pos) or j.pos
+        falta[grupo] = falta.get(grupo, 0) - 1
     ordem: list[str] = []
     for pos in SQUAD_SHAPE:
         if falta.get(pos, 0) > 0:
