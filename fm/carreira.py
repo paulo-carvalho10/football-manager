@@ -80,6 +80,8 @@ class Carreira:
     ultimo_compromisso: tuple[str, str] = ("", "")
     valor_de_elenco: dict = field(default_factory=dict)
     aprovacao: object | None = None
+    estatisticas: object | None = None
+    treinador: str = "Treinador"
 
     @classmethod
     def nova(cls, ligas: list[str] | str, clube: str, seed: int = 2027) -> Carreira:
@@ -121,6 +123,8 @@ class Carreira:
         self.valor_de_elenco = {c.id: valor_do_elenco(self.world, c.id)
                                 for c in self.world.clubs.values()}
         self._nova_meta()
+        from fm.estatisticas import Estatisticas
+        self.estatisticas = Estatisticas(temporada=self.temporada)
 
     def _montar_agenda(self) -> None:
         """Intercala as etapas de copa entre as rodadas de liga.
@@ -478,11 +482,34 @@ class Carreira:
             self.resultados[nome].extend(r)
             todos.extend(r)
 
+        # FORA do laco das divisoes: dentro dele, a partida do usuario era contada uma vez
+        # por divisao e o artilheiro terminava o ano com noventa jogos
+        rng_est = self.streams.get("estatisticas", self.temporada, n)
+        self._somar_estatisticas(todos, detalhada, rng_est)
+
         self._gastar_energia(jogaram, tatica)
         self.rodada = n
         self.data += 1
         self._checar_emprego()
         return todos, detalhada
+
+    def _somar_estatisticas(self, resultados, detalhada, rng) -> None:
+        """A partida do usuario entra pelos EVENTOS; as outras, por amostragem do placar.
+
+        Sem a segunda metade nao existe artilharia de campeonato: os jogos dos outros
+        clubes sao resolvidos pelo motor rapido, que devolve so o placar.
+        """
+        from fm.estatisticas import registrar_partida_detalhada, registrar_resultado
+
+        if self.estatisticas is None:
+            return
+        for r in resultados:
+            se_e_minha = detalhada is not None and (r.home, r.away) == (
+                detalhada.casa, detalhada.fora)
+            if not se_e_minha:
+                registrar_resultado(self.estatisticas, self.world, r, rng)
+        if detalhada is not None:
+            registrar_partida_detalhada(self.estatisticas, self.world, detalhada)
 
     def _minha_partida(self, jogo: Fixture, rng, style, tatica: Tatica,
                        substituicoes) -> Partida:
@@ -534,6 +561,7 @@ class Carreira:
                    for cid in {f.home for f in etapa.fixtures} | {f.away for f in etapa.fixtures}}
         resultados += play_fixtures(jogos, ratings, rng, t.style, t.mentality)
         registrar(self.world, andamento, resultados, rng, self.exportados)
+        self._somar_estatisticas(resultados, detalhada, rng)
 
         jogaram = {f.home for f in etapa.fixtures} | {f.away for f in etapa.fixtures}
         self._gastar_energia(jogaram, tatica)

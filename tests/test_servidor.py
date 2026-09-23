@@ -138,3 +138,95 @@ def test_uma_temporada_inteira_pela_api(jogo):
     fim = virar_o_ano(jogo)
     assert fim["estado"]["temporada"] == 2028
     assert fim["estado"]["rodada"] == 0
+
+
+# ------------------------------------------------------------ as telas do brief
+
+def test_o_topo_tem_o_que_a_barra_superior_mostra(jogo):
+    e = estado(jogo)
+    for campo in ("treinador", "data", "temporada", "caixa", "proximo"):
+        assert campo in e, f"o topo precisa de {campo}"
+    # a data e derivada da rodada, e cosmetica -- mas tem de ser uma data
+    import re
+    assert re.fullmatch(r"\d{2}/\d{2}/\d{4}", e["data"])
+
+
+def test_o_elenco_traz_as_colunas_da_tabela(jogo):
+    """As colunas do brief: overall, potencial, condicao, moral, jogos, gols, contrato."""
+    from fm.servidor import estado as ler
+    p = ler(jogo)["elenco"][0]
+    for campo in ("posicao", "idade", "overall", "potencial", "energia", "moral",
+                  "jogos", "gols", "assistencias", "salario", "contrato"):
+        assert campo in p, f"falta {campo} na linha do elenco"
+
+
+def test_o_perfil_traz_os_atributos_numericos(jogo):
+    from fm.servidor import jogador
+
+    p = jogador(jogo, estado(jogo)["onze"][0])
+    assert p["atributos"], "o perfil precisa dos atributos"
+    assert len(p["atributos"]) >= 10
+    assert all(isinstance(v, int) for v in p["atributos"].values())
+    for campo in ("nacionalidade", "pe", "altura", "valor", "salario", "contrato"):
+        assert campo in p
+    assert set(p["temporada"]) == {"jogos", "gols", "assistencias",
+                                   "amarelos", "vermelhos"}
+
+
+def test_o_perfil_de_quem_nao_existe_nao_derruba(jogo):
+    from fm.servidor import jogador
+    assert "erro" in jogador(jogo, 999999)
+
+
+def test_a_tela_inicial_responde_como_estou(jogo):
+    from fm.servidor import inicio
+
+    c = jogo.c
+    for _ in range(12):
+        c.avancar()
+    d = inicio(jogo)
+    assert d["campanha"]["jogos"] > 0
+    assert d["ultimos"], "sem ultimos jogos depois de doze datas"
+    assert all(u["resultado"] in "VED" for u in d["ultimos"])
+    assert d["proximos"], "sem proximos jogos no meio da temporada"
+
+
+def test_artilheiros_saem_do_campeonato_inteiro(jogo):
+    """O motor rapido devolve so o placar: sem a amostragem por jogador nao existiria
+    artilharia de campeonato, so a do clube do usuario."""
+    from fm.servidor import estatisticas
+
+    c = jogo.c
+    while not c.acabou:
+        c.avancar()
+    d = estatisticas(jogo)
+    assert len(d["artilheiros"]) >= 10
+    clubes = {x["clube"] for x in d["artilheiros"]}
+    assert len(clubes) > 3, "a artilharia so tem jogadores de um punhado de clubes"
+    gols = [x["gols"] for x in d["artilheiros"]]
+    assert gols == sorted(gols, reverse=True)
+    assert gols[0] >= 10, f"o artilheiro do ano fez so {gols[0]} gols"
+
+
+def test_o_calendario_cobre_a_temporada(jogo):
+    from fm.servidor import calendario
+
+    c = jogo.c
+    for _ in range(9):
+        c.avancar()
+    d = calendario(jogo)
+    assert len(d["datas"]) == len(c.agenda)
+    assert d["atual"] == c.data
+    assert sum(1 for x in d["datas"] if x["passou"]) == c.data
+    assert any(x["resultado"] for x in d["datas"]), "nenhuma data jogada tem resultado"
+
+
+def test_as_financas_batem_com_o_motor(jogo):
+    from fm.financas import folha_anual
+    from fm.servidor import financas
+
+    d = financas(jogo)
+    assert d["caixa"] == jogo.c.clube.balance
+    assert d["folha"] == folha_anual(jogo.c.world, jogo.c.clube_id)
+    assert d["salarios"], "a folha precisa listar os maiores salarios"
+    assert d["salarios"] == sorted(d["salarios"], key=lambda x: -x["salario"])

@@ -8,118 +8,267 @@
 </head>
 <body>
 
+<!-- =============================================================== TOPO -->
 <header class="topo">
-  <div class="identidade">
-    <span class="faixa" id="faixa-cor"></span>
+  <div class="bloco clube">
+    <div class="escudo" id="escudo"></div>
     <div>
       <h1 id="nome-do-clube">carregando</h1>
-      <p id="contexto"></p>
+      <div class="sub" id="linha-clube"></div>
     </div>
   </div>
-  <div class="indicadores">
-    <div class="indicador"><b id="posicao">-</b><span>na tabela</span></div>
-    <div class="indicador"><b id="pontos">-</b><span>pontos</span></div>
-    <div class="indicador"><b id="caixa">-</b><span>em caixa</span></div>
+
+  <div class="bloco">
+    <span class="rotulo">Treinador</span>
+    <b id="treinador">—</b>
+    <span class="rotulo">Temporada <b id="temporada">—</b></span>
   </div>
+
+  <div class="bloco">
+    <span class="rotulo">Caixa</span>
+    <b id="caixa" class="numero">—</b>
+    <span class="rotulo">Data <b id="data">—</b></span>
+  </div>
+
+  <div class="bloco proximo" id="bloco-proximo">
+    <span class="rotulo">Próximo jogo</span>
+    <b id="proximo-confronto">—</b>
+    <span class="rotulo" id="proximo-onde"></span>
+  </div>
+
+  <button id="jogar" class="acao">Avançar</button>
 </header>
 
-<nav class="abas" role="tablist">
-  <button class="aba ativa" data-painel="lobby" role="tab">Elenco</button>
-  <button class="aba" data-painel="campo" role="tab">Escalação</button>
-  <button class="aba" data-painel="tabela" role="tab">Tabela</button>
-  <button class="aba" data-painel="copas" role="tab">Copas</button>
-</nav>
+<div class="corpo">
 
-<main>
-  <!-- ---------------------------------------------------------- lobby -->
-  <section id="lobby" class="painel ativo">
-    <div class="coluna-dupla">
-      <div class="cartao proximo-jogo">
-        <h2>Próximo compromisso</h2>
-        <div id="proximo"></div>
-        <button id="jogar" class="botao-grande">Jogar</button>
-        <p class="dica" id="dica-jogar"></p>
-      </div>
+  <!-- =========================================================== MENU -->
+  <nav class="menu" id="menu">
+    <button class="item" data-tela="inicio">Início</button>
 
-      <div class="cartao clima">
-        <h2>Clima no clube</h2>
-        <p class="meta" id="meta"></p>
-        <div class="medidor">
-          <label>Torcida <b id="torcida-n"></b></label>
-          <div class="trilho"><i id="torcida-b"></i></div>
+    <span class="grupo">Clube</span>
+    <button class="item" data-tela="elenco">Elenco</button>
+    <button class="item" data-tela="escalacao">Escalação</button>
+    <button class="item" data-tela="tatica">Tática</button>
+    <button class="item" data-tela="financas">Finanças</button>
+
+    <span class="grupo">Competições</span>
+    <button class="item" data-tela="classificacao">Classificação</button>
+    <button class="item" data-tela="copas">Copas</button>
+    <button class="item" data-tela="calendario">Calendário</button>
+
+    <span class="grupo">Estatísticas</span>
+    <button class="item" data-tela="artilheiros">Artilheiros</button>
+
+    <span class="grupo">Sistema</span>
+    <button class="item" data-tela="salvar">Salvar</button>
+  </nav>
+
+  <!-- =========================================================== TELAS -->
+  <main id="conteudo">
+
+    <!-- ------------------------------------------------- início -->
+    <section class="tela" id="tela-inicio">
+      <div class="grade-inicio">
+        <div class="painel">
+          <h2>Campanha</h2>
+          <div class="numeros-campanha" id="campanha"></div>
         </div>
-        <div class="medidor">
-          <label>Diretoria <b id="diretoria-n"></b></label>
-          <div class="trilho"><i id="diretoria-b"></i></div>
+        <div class="painel">
+          <h2>Clima no clube</h2>
+          <div id="clima"></div>
         </div>
-        <p class="etiqueta-clima" id="clima"></p>
+        <div class="painel">
+          <h2>Últimos jogos</h2>
+          <table class="grade compacta"><tbody id="ultimos"></tbody></table>
+        </div>
+        <div class="painel">
+          <h2>Próximos jogos</h2>
+          <table class="grade compacta"><tbody id="proximos"></tbody></table>
+        </div>
+        <div class="painel largo-2">
+          <div class="cabecalho-painel">
+            <h2>Classificação</h2>
+            <span class="dica">a tabela em volta do seu clube</span>
+          </div>
+          <table class="grade compacta" id="mini-tabela">
+            <thead><tr><th class="n">#</th><th>Clube</th><th class="n">P</th>
+              <th class="n">J</th><th class="n">V</th><th class="n">E</th>
+              <th class="n">D</th><th class="n">SG</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="cartao">
-      <h2>Elenco</h2>
-      <table class="lista" id="tabela-elenco">
-        <thead><tr>
-          <th></th><th>Pos</th><th>Jogador</th><th class="n">Ovr</th>
-          <th class="n">Pot</th><th class="n">Idade</th><th>Energia</th>
-          <th class="n">Salário</th>
-        </tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ---------------------------------------------------------- campo -->
-  <section id="campo" class="painel">
-    <div class="cartao">
-      <h2>Escalação</h2>
-      <div class="controles">
-        <label>Formação <select id="formacao"></select></label>
-        <label>Marcação <select id="marcacao"></select></label>
-        <label>Estilo <select id="estilo"></select></label>
-        <button id="auto" class="botao">Escalar automático</button>
+    <!-- ------------------------------------------------- elenco -->
+    <section class="tela" id="tela-elenco">
+      <div class="painel">
+        <div class="cabecalho-painel">
+          <h2>Elenco</h2>
+          <span class="dica">Clique num jogador para ver o perfil. Clique no cabeçalho para ordenar.</span>
+        </div>
+        <div class="rolavel"><table class="grade" id="grade-elenco">
+          <thead><tr>
+            <th data-ord="numero" class="n">#</th>
+            <th data-ord="posicao">POS</th>
+            <th data-ord="nome">Nome</th>
+            <th data-ord="idade" class="n">Idade</th>
+            <th data-ord="overall" class="n">Ovr</th>
+            <th data-ord="potencial" class="n">Pot</th>
+            <th data-ord="energia" class="n">Cond</th>
+            <th data-ord="moral">Moral</th>
+            <th data-ord="jogos" class="n">J</th>
+            <th data-ord="gols" class="n">G</th>
+            <th data-ord="assistencias" class="n">A</th>
+            <th data-ord="salario" class="n">Salário</th>
+            <th data-ord="contrato" class="n">Contrato</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table></div>
       </div>
-      <p class="dica">Clique num titular e depois num reserva para trocar.</p>
-      <div class="gramado" id="gramado"></div>
-      <div class="banco">
-        <h3>Reservas</h3>
-        <div id="reservas"></div>
+    </section>
+
+    <!-- ------------------------------------------------- escalação -->
+    <section class="tela" id="tela-escalacao">
+      <div class="grade-escalacao">
+        <div class="painel">
+          <div class="cabecalho-painel">
+            <h2>Escalação</h2>
+            <span class="dica">Clique num titular e depois num reserva para trocar.</span>
+          </div>
+          <div class="linha-controles">
+            <label>Formação <select id="formacao"></select></label>
+            <button id="auto" class="botao">Automática</button>
+            <span class="dica" id="resumo-onze"></span>
+          </div>
+          <div class="gramado" id="gramado"></div>
+        </div>
+        <div class="painel">
+          <h2>Reservas</h2>
+          <div class="rolavel"><table class="grade compacta" id="grade-reservas"><tbody></tbody></table></div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ---------------------------------------------------------- tabela -->
-  <section id="tabela" class="painel">
-    <div class="cartao">
-      <div class="cabecalho-com-abas">
-        <h2>Classificação</h2>
-        <div id="abas-ligas" class="abas-menores"></div>
+    <!-- ------------------------------------------------- tática -->
+    <section class="tela" id="tela-tatica">
+      <div class="painel estreito">
+        <h2>Tática</h2>
+        <div class="campos-tatica" id="campos-tatica"></div>
+        <p class="dica" id="efeito-tatica"></p>
       </div>
-      <table class="lista classificacao" id="tabela-liga">
-        <thead><tr>
-          <th class="n">#</th><th>Clube</th><th class="n">P</th><th class="n">J</th>
-          <th class="n">V</th><th class="n">E</th><th class="n">D</th>
-          <th class="n">GP</th><th class="n">GC</th><th class="n">SG</th>
-        </tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </section>
+    </section>
 
-  <!-- ---------------------------------------------------------- copas -->
-  <section id="copas" class="painel">
-    <div class="cartao">
-      <h2>Competições</h2>
-      <div id="lista-copas" class="cartoes-copa"></div>
-    </div>
-  </section>
-</main>
+    <!-- ------------------------------------------------- finanças -->
+    <section class="tela" id="tela-financas">
+      <div class="grade-financas">
+        <div class="painel">
+          <h2>Resumo do ano</h2>
+          <table class="grade compacta" id="resumo-financas"><tbody></tbody></table>
+        </div>
+        <div class="painel">
+          <h2>Maiores salários</h2>
+          <table class="grade compacta" id="folha">
+            <thead><tr><th>Jogador</th><th>POS</th><th class="n">Salário</th>
+              <th class="n">Valor</th><th class="n">Contrato</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
-<!-- ---------------------------------------------------------- partida -->
+    <!-- ------------------------------------------------- classificação -->
+    <section class="tela" id="tela-classificacao">
+      <div class="painel">
+        <div class="cabecalho-painel">
+          <h2>Classificação</h2>
+          <div class="pastilhas" id="pastilhas-ligas"></div>
+        </div>
+        <table class="grade" id="grade-classificacao">
+          <thead><tr>
+            <th class="n">#</th><th>Clube</th><th class="n">P</th><th class="n">J</th>
+            <th class="n">V</th><th class="n">E</th><th class="n">D</th>
+            <th class="n">GP</th><th class="n">GC</th><th class="n">SG</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+        <div class="legenda">
+          <span><i class="faixa-continental"></i> continental</span>
+          <span><i class="faixa-rebaixamento"></i> rebaixamento</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------- copas -->
+    <section class="tela" id="tela-copas">
+      <div class="painel">
+        <h2>Competições</h2>
+        <table class="grade" id="grade-copas">
+          <thead><tr><th>Competição</th><th>Fase</th><th>Situação</th>
+            <th>Campeão</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------- calendário -->
+    <section class="tela" id="tela-calendario">
+      <div class="painel">
+        <h2>Calendário</h2>
+        <div class="rolavel"><table class="grade compacta" id="grade-calendario">
+          <thead><tr><th class="n">#</th><th>Competição</th><th>Adversário</th>
+            <th class="n">Resultado</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------- artilheiros -->
+    <section class="tela" id="tela-artilheiros">
+      <div class="grade-estatisticas">
+        <div class="painel">
+          <h2>Artilheiros</h2>
+          <table class="grade compacta" id="grade-artilheiros">
+            <thead><tr><th class="n">#</th><th>Jogador</th><th>Clube</th>
+              <th class="n">G</th><th class="n">A</th><th class="n">J</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="painel">
+          <h2>Assistências</h2>
+          <table class="grade compacta" id="grade-garcons">
+            <thead><tr><th class="n">#</th><th>Jogador</th><th>Clube</th>
+              <th class="n">A</th><th class="n">G</th><th class="n">J</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------- salvar -->
+    <section class="tela" id="tela-salvar">
+      <div class="painel estreito">
+        <h2>Salvar</h2>
+        <div class="linha-controles">
+          <label>Nome <input id="nome-do-save" value="carreira"></label>
+          <button id="botao-salvar" class="botao">Salvar</button>
+        </div>
+        <p class="dica" id="aviso-save">
+          O save guarda a semente e as suas decisões, não o mundo — por isso tem alguns KB.
+        </p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ============================================================= JANELAS -->
 <div class="cortina" id="cortina" hidden>
-  <div class="janela" id="janela-partida">
-    <div id="conteudo-modal"></div>
-    <button id="fechar-modal" class="botao-grande">Continuar</button>
+  <div class="janela" id="janela">
+    <div id="conteudo-janela"></div>
+    <div class="rodape-janela">
+      <button id="fechar-janela" class="acao">Continuar</button>
+    </div>
   </div>
 </div>
 

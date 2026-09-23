@@ -1,282 +1,422 @@
-/* A cor do CLUBE manda na tela. --tema e trocado pelo JS a cada carregamento, e e' o que
-   faz a interface ser do Flamengo e nao do jogo. */
+/* Interface de manager clássico: densa, retangular, feita para 1920x1080.
+ *
+ * As decisões que sustentam o resto:
+ * - pouco arredondamento e bordas discretas, em vez de cards grandes;
+ * - tabelas com linha de 26px, para caber um elenco inteiro sem rolar;
+ * - --clube é trocado no carregamento, e é a única cor que muda de tela para tela.
+ */
 :root {
-  --tema: #1b6b45;
-  --tema-suave: #1b6b4522;
-  --fundo: #0e1512;
-  --painel: #16201b;
-  --painel-alto: #1d2822;
-  --borda: #26332c;
-  --texto: #e7eee9;
-  --fraco: #93a89b;
-  --bom: #4fbe88;
-  --medio: #e0b341;
-  --ruim: #e06a5a;
-  --mono: 'JetBrains Mono', 'Cascadia Mono', Consolas, ui-monospace, monospace;
+  --clube: #1b6b45;
+  --clube-fraco: color-mix(in srgb, var(--clube) 18%, transparent);
+
+  --fundo: #14181a;
+  --painel: #1b2124;
+  --painel-2: #222a2d;
+  --linha: #2c3538;
+  --linha-forte: #3a4549;
+
+  --texto: #e6ebe8;
+  --texto-fraco: #94a3a0;
+  --texto-apagado: #6b7a77;
+
+  --verde: #4caf7d;
+  --amarelo: #d6a93c;
+  --vermelho: #d2604f;
+  --azul: #5a94c4;
+
+  --mono: "JetBrains Mono", Consolas, "Cascadia Mono", ui-monospace, monospace;
+  --linha-alta: 26px;
 }
 
 * { box-sizing: border-box; }
 
+html, body { height: 100%; }
 body {
   margin: 0;
   background: var(--fundo);
   color: var(--texto);
-  font: 15px/1.5 "Segoe UI", system-ui, -apple-system, sans-serif;
-  padding-bottom: 40px;
+  font: 13px/1.45 "Segoe UI", system-ui, -apple-system, sans-serif;
+  overflow: hidden;
 }
 
-/* ------------------------------------------------------------------ topo */
+/* ================================================================== topo */
 .topo {
-  display: flex; flex-wrap: wrap; gap: 20px;
-  align-items: center; justify-content: space-between;
-  padding: 18px max(16px, 4vw);
-  background: linear-gradient(90deg, var(--tema-suave), transparent 60%), var(--painel);
-  border-bottom: 1px solid var(--borda);
+  display: flex; align-items: stretch; gap: 0;
+  height: 62px; background: var(--painel);
+  border-bottom: 1px solid var(--linha-forte);
 }
-.identidade { display: flex; align-items: center; gap: 14px; }
-.faixa { width: 6px; height: 46px; border-radius: 3px; background: var(--tema); }
-.topo h1 { margin: 0; font-size: 24px; letter-spacing: -.02em; }
-.topo p { margin: 2px 0 0; color: var(--fraco); font-size: 13.5px; }
+.topo .bloco {
+  display: flex; flex-direction: column; justify-content: center; gap: 1px;
+  padding: 0 18px; border-right: 1px solid var(--linha);
+  white-space: nowrap;
+}
+.topo .clube { flex-direction: row; align-items: center; gap: 12px; min-width: 250px; }
+.escudo {
+  width: 34px; height: 34px; border-radius: 3px; flex: 0 0 auto;
+  background: var(--clube);
+  box-shadow: inset 0 0 0 1px #0004;
+}
+.topo h1 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
+.topo .sub { color: var(--texto-fraco); font-size: 11.5px; }
+.topo .rotulo {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--texto-apagado);
+}
+.topo b { font-size: 14px; font-weight: 600; }
+.topo .numero { font-variant-numeric: tabular-nums; }
+.topo .proximo { flex: 1; min-width: 200px; }
+.topo .acao { margin: 10px 14px; }
 
-.indicadores { display: flex; gap: 26px; }
-.indicador { text-align: right; }
-.indicador b {
-  display: block; font-size: 21px; font-variant-numeric: tabular-nums;
+.acao {
+  background: var(--clube); color: #fff; border: 0; border-radius: 3px;
+  padding: 0 22px; font: inherit; font-size: 13.5px; font-weight: 600;
+  cursor: pointer; min-width: 120px;
 }
-.indicador span { font-size: 12px; color: var(--fraco); }
+.acao:hover { filter: brightness(1.14); }
+.acao:disabled { opacity: .4; cursor: not-allowed; }
 
-/* ------------------------------------------------------------------ abas */
-.abas {
-  display: flex; gap: 4px; padding: 0 max(16px, 4vw);
-  border-bottom: 1px solid var(--borda); background: var(--painel);
-}
-.aba {
-  background: none; border: 0; border-bottom: 2px solid transparent;
-  color: var(--fraco); font: inherit; font-size: 14px;
-  padding: 12px 16px; cursor: pointer;
-}
-.aba:hover { color: var(--texto); }
-.aba.ativa { color: var(--texto); border-bottom-color: var(--tema); }
-.aba:focus-visible { outline: 2px solid var(--tema); outline-offset: -2px; }
+/* ================================================================== menu */
+.corpo { display: flex; height: calc(100% - 62px); }
 
-main { padding: 22px max(16px, 4vw); max-width: 1180px; margin: 0 auto; }
-.painel { display: none; }
-.painel.ativo { display: block; }
+.menu {
+  width: 178px; flex: 0 0 auto; background: var(--painel);
+  border-right: 1px solid var(--linha-forte);
+  padding: 8px 0; overflow-y: auto;
+}
+.menu .grupo {
+  display: block; padding: 14px 16px 5px;
+  font-size: 10px; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--texto-apagado);
+}
+.menu .item {
+  display: block; width: 100%; text-align: left;
+  background: none; border: 0; border-left: 3px solid transparent;
+  color: var(--texto-fraco); font: inherit; font-size: 13px;
+  padding: 6px 16px; cursor: pointer;
+}
+.menu .item:hover { background: var(--painel-2); color: var(--texto); }
+.menu .item.ativo {
+  border-left-color: var(--clube); background: var(--clube-fraco); color: var(--texto);
+}
+.menu .item:focus-visible { outline: 1px solid var(--clube); outline-offset: -1px; }
 
-.cartao {
-  background: var(--painel); border: 1px solid var(--borda);
-  border-radius: 10px; padding: 18px 20px; margin-bottom: 18px;
-}
-.cartao h2 {
-  margin: 0 0 14px; font-size: 15px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: .07em; color: var(--fraco);
-}
-.coluna-dupla {
-  display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
+/* ================================================================== telas */
+main { flex: 1; overflow-y: auto; padding: 14px; }
+.tela { display: none; }
+/* As telas ocupam a altura da janela: com 1080px de tela, um painel de 400px no topo e
+   o resto vazio nao e um manager, e um site. */
+.tela.ativa { display: flex; flex-direction: column; gap: 14px; min-height: 100%; }
+.tela.ativa > .painel:last-child { flex: 1; }
+.tela.ativa > .painel { margin-bottom: 0; }
 
-/* --------------------------------------------------------- proximo jogo */
-.proximo-jogo .confronto {
-  display: flex; align-items: center; gap: 14px; margin-bottom: 6px;
+.painel {
+  background: var(--painel); border: 1px solid var(--linha-forte);
+  border-radius: 3px; padding: 12px 14px; margin-bottom: 14px;
 }
-.proximo-jogo .confronto svg { width: 46px; height: auto; flex: 0 0 auto; }
-.proximo-jogo .rival { font-size: 20px; font-weight: 600; }
-.proximo-jogo .onde { color: var(--fraco); font-size: 13.5px; }
-.botao-grande {
-  width: 100%; margin-top: 14px; padding: 13px;
-  background: var(--tema); color: #fff; border: 0; border-radius: 8px;
-  font: inherit; font-size: 15.5px; font-weight: 600; cursor: pointer;
+.painel.estreito { max-width: 620px; }
+.painel h2 {
+  margin: 0 0 10px; font-size: 11.5px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .08em; color: var(--texto-fraco);
 }
-.botao-grande:hover { filter: brightness(1.12); }
-.botao-grande:disabled { opacity: .45; cursor: not-allowed; }
-.botao {
-  background: var(--painel-alto); color: var(--texto);
-  border: 1px solid var(--borda); border-radius: 7px;
-  padding: 8px 14px; font: inherit; font-size: 13.5px; cursor: pointer;
-}
-.botao:hover { border-color: var(--tema); }
-.dica { color: var(--fraco); font-size: 13px; margin: 8px 0 0; }
-
-/* ------------------------------------------------------------------ clima */
-.meta { margin: 0 0 14px; font-size: 15px; }
-.medidor { margin-bottom: 12px; }
-.medidor label {
-  display: flex; justify-content: space-between;
-  font-size: 13px; color: var(--fraco); margin-bottom: 5px;
-}
-.medidor b { color: var(--texto); font-variant-numeric: tabular-nums; }
-.trilho {
-  height: 8px; background: var(--painel-alto); border-radius: 4px; overflow: hidden;
-}
-.trilho i { display: block; height: 100%; border-radius: 4px; transition: width .4s; }
-.etiqueta-clima {
-  margin: 14px 0 0; font-size: 13px; text-transform: uppercase;
-  letter-spacing: .09em; color: var(--fraco);
-}
-
-/* ------------------------------------------------------------------ listas */
-.lista { width: 100%; border-collapse: collapse; font-size: 14px; }
-.lista th {
-  text-align: left; font-weight: 500; font-size: 11.5px; color: var(--fraco);
-  text-transform: uppercase; letter-spacing: .06em;
-  padding: 0 10px 8px; border-bottom: 1px solid var(--borda);
-}
-.lista td { padding: 7px 10px; border-bottom: 1px solid var(--borda); }
-.lista tr:last-child td { border-bottom: 0; }
-.lista .n { text-align: right; font-variant-numeric: tabular-nums; }
-.lista .titular td { background: var(--tema-suave); }
-.lista .marca { width: 18px; color: var(--tema); font-weight: 700; }
-.posicao-etiqueta {
-  display: inline-block; min-width: 30px; padding: 1px 6px; border-radius: 4px;
-  background: var(--painel-alto); font-size: 11.5px; text-align: center;
-  font-family: var(--mono);
-}
-.barra-energia {
-  display: inline-block; width: 54px; height: 6px; border-radius: 3px;
-  background: var(--painel-alto); overflow: hidden; vertical-align: middle;
-  margin-right: 7px;
-}
-.barra-energia i { display: block; height: 100%; }
-
-.classificacao tr.eu td { background: var(--tema-suave); font-weight: 600; }
-.classificacao .clube { display: flex; align-items: center; gap: 8px; }
-.classificacao .pastilha {
-  width: 11px; height: 11px; border-radius: 3px; flex: 0 0 auto;
-}
-.zona-libertadores { box-shadow: inset 3px 0 0 var(--bom); }
-.zona-rebaixamento { box-shadow: inset 3px 0 0 var(--ruim); }
-
-.cabecalho-com-abas {
+.cabecalho-painel {
   display: flex; align-items: baseline; justify-content: space-between;
-  flex-wrap: wrap; gap: 10px;
+  gap: 14px; flex-wrap: wrap; margin-bottom: 10px;
 }
-.abas-menores { display: flex; gap: 6px; margin-bottom: 14px; }
-.abas-menores button {
-  background: var(--painel-alto); border: 1px solid var(--borda); color: var(--fraco);
-  border-radius: 999px; padding: 4px 12px; font: inherit; font-size: 12.5px;
-  cursor: pointer;
-}
-.abas-menores button.ativa { border-color: var(--tema); color: var(--texto); }
+.cabecalho-painel h2 { margin: 0; }
+.dica { color: var(--texto-apagado); font-size: 11.5px; margin: 0; }
 
-/* ------------------------------------------------------------------ campo */
-.controles {
-  display: flex; flex-wrap: wrap; gap: 14px; align-items: end; margin-bottom: 12px;
+.grade-inicio {
+  display: grid; gap: 14px; flex: 1;
+  grid-template-columns: repeat(2, 1fr); grid-template-rows: auto auto 1fr;
 }
-.controles label { font-size: 12.5px; color: var(--fraco); display: grid; gap: 4px; }
-.controles select {
-  background: var(--painel-alto); color: var(--texto); border: 1px solid var(--borda);
-  border-radius: 7px; padding: 7px 10px; font: inherit; font-size: 13.5px;
+.largo-2 { grid-column: 1 / -1; }
+.grade-escalacao {
+  display: grid; gap: 14px; flex: 1;
+  grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr);
 }
+.grade-financas { display: grid; gap: 14px; flex: 1; grid-template-columns: 1fr 1.5fr; }
+.grade-estatisticas { display: grid; gap: 14px; flex: 1; grid-template-columns: 1fr 1fr; }
+.grade-inicio > .painel, .grade-escalacao > .painel,
+.grade-financas > .painel, .grade-estatisticas > .painel {
+  margin-bottom: 0; display: flex; flex-direction: column; min-height: 0;
+}
+/* A tabela NAO estica: dar flex:1 a ela espalhava as linhas pela altura do painel e uma
+   lista de seis jogos virava seis linhas de 120px. Quem cresce e o painel. */
+.grade-inicio .grade, .grade-estatisticas .grade,
+.grade-escalacao .grade, .grade-financas .grade { flex: 0 0 auto; }
+.rolavel { overflow-y: auto; flex: 1; min-height: 0; }
+
+/* ================================================================== tabelas */
+.grade { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.grade th {
+  text-align: left; font-weight: 600; font-size: 10.5px;
+  text-transform: uppercase; letter-spacing: .05em; color: var(--texto-apagado);
+  padding: 5px 8px; border-bottom: 1px solid var(--linha-forte);
+  background: var(--painel-2); position: sticky; top: 0; cursor: default;
+  user-select: none;
+}
+.grade th[data-ord] { cursor: pointer; }
+.grade th[data-ord]:hover { color: var(--texto); }
+.grade th.ordenado { color: var(--clube); }
+.grade td {
+  padding: 0 8px; height: var(--linha-alta);
+  border-bottom: 1px solid var(--linha); vertical-align: middle;
+}
+.grade.compacta td { height: 23px; }
+.grade tbody tr:hover td { background: var(--painel-2); }
+.grade .n { text-align: right; font-variant-numeric: tabular-nums; }
+.grade .clicavel { cursor: pointer; }
+/* Larguras fixas onde o conteudo e' numero: o navegador espalhava as colunas pela
+   largura toda e o nome do jogador ficava a meia tela do overall dele. */
+#grade-elenco th:nth-child(1), #grade-elenco td:nth-child(1) { width: 38px; }
+#grade-elenco th:nth-child(2), #grade-elenco td:nth-child(2) { width: 48px; }
+#grade-elenco th:nth-child(3) { width: auto; }
+#grade-elenco th:nth-child(n+4), #grade-elenco td:nth-child(n+4) { width: 74px; }
+#grade-elenco th:nth-child(7), #grade-elenco td:nth-child(7) { width: 96px; }
+#grade-elenco th:nth-child(8), #grade-elenco td:nth-child(8) { width: 74px; }
+#grade-elenco th:nth-child(12), #grade-elenco td:nth-child(12) { width: 84px; }
+#grade-classificacao th:nth-child(1), #grade-classificacao td:nth-child(1) { width: 40px; }
+#grade-classificacao th:nth-child(n+3),
+#grade-classificacao td:nth-child(n+3) { width: 56px; }
+#grade-reservas td:nth-child(1) { width: 46px; }
+#grade-reservas td:nth-child(n+3) { width: 56px; }
+#mini-tabela th:nth-child(1), #mini-tabela td:nth-child(1) { width: 34px; }
+#mini-tabela th:nth-child(n+3), #mini-tabela td:nth-child(n+3) { width: 48px; }
+#folha th:nth-child(2), #folha td:nth-child(2) { width: 52px; }
+#folha th:nth-child(n+3), #folha td:nth-child(n+3) { width: 88px; }
+#grade-artilheiros th:nth-child(1), #grade-artilheiros td:nth-child(1),
+#grade-garcons th:nth-child(1), #grade-garcons td:nth-child(1) { width: 34px; }
+#grade-artilheiros th:nth-child(n+4), #grade-artilheiros td:nth-child(n+4),
+#grade-garcons th:nth-child(n+4), #grade-garcons td:nth-child(n+4) { width: 46px; }
+#grade-calendario th:nth-child(1), #grade-calendario td:nth-child(1) { width: 40px; }
+#grade-calendario th:nth-child(4), #grade-calendario td:nth-child(4) { width: 110px; }
+#resumo-financas td:nth-child(2) { width: 180px; }
+.grade tr.eu td { background: var(--clube-fraco); font-weight: 600; }
+.grade tr.eu:hover td { background: color-mix(in srgb, var(--clube) 26%, transparent); }
+.grade tr.titular td:first-child { box-shadow: inset 2px 0 0 var(--clube); }
+
+.etiqueta {
+  display: inline-block; min-width: 30px; padding: 1px 5px; border-radius: 2px;
+  background: var(--painel-2); border: 1px solid var(--linha);
+  font-family: var(--mono); font-size: 10.5px; text-align: center;
+}
+.pastilha-clube {
+  display: inline-block; width: 9px; height: 9px; border-radius: 2px;
+  margin-right: 7px; vertical-align: -1px;
+}
+.barra {
+  display: inline-block; width: 42px; height: 5px; border-radius: 2px;
+  background: var(--painel-2); overflow: hidden; vertical-align: middle;
+  margin-right: 6px;
+}
+.barra i { display: block; height: 100%; }
+
+tr.continental td:first-child { box-shadow: inset 3px 0 0 var(--verde); }
+tr.rebaixamento td:first-child { box-shadow: inset 3px 0 0 var(--vermelho); }
+.legenda {
+  display: flex; gap: 18px; margin-top: 9px;
+  font-size: 11px; color: var(--texto-apagado);
+}
+.legenda i { display: inline-block; width: 9px; height: 9px; margin-right: 5px; }
+.faixa-continental { background: var(--verde); }
+.faixa-rebaixamento { background: var(--vermelho); }
+
+.res-V { color: var(--verde); font-weight: 700; }
+.res-E { color: var(--amarelo); font-weight: 700; }
+.res-D { color: var(--vermelho); font-weight: 700; }
+
+/* ================================================================== início */
+.numeros-campanha {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: var(--linha); border: 1px solid var(--linha);
+}
+.numeros-campanha div {
+  background: var(--painel); padding: 9px 10px;
+}
+.numeros-campanha b {
+  display: block; font-size: 21px; font-variant-numeric: tabular-nums; line-height: 1.1;
+}
+.numeros-campanha span {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--texto-apagado);
+}
+
+.medidor { margin-bottom: 9px; }
+.medidor .topo-medidor {
+  display: flex; justify-content: space-between; font-size: 11.5px;
+  color: var(--texto-fraco); margin-bottom: 4px;
+}
+.medidor .topo-medidor b { color: var(--texto); font-variant-numeric: tabular-nums; }
+.trilho { height: 7px; background: var(--painel-2); border-radius: 2px; overflow: hidden; }
+.trilho i { display: block; height: 100%; }
+.meta-texto { margin: 0 0 12px; font-size: 13px; }
+.clima-etiqueta {
+  margin-top: 10px; font-size: 10.5px; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--texto-apagado);
+}
+
+/* ================================================================== campo */
+.linha-controles {
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 10px;
+}
+.linha-controles label {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11.5px; color: var(--texto-fraco);
+}
+select, input {
+  background: var(--painel-2); color: var(--texto); border: 1px solid var(--linha-forte);
+  border-radius: 2px; padding: 4px 8px; font: inherit; font-size: 12.5px;
+}
+.botao {
+  background: var(--painel-2); color: var(--texto); border: 1px solid var(--linha-forte);
+  border-radius: 2px; padding: 5px 12px; font: inherit; font-size: 12.5px; cursor: pointer;
+}
+.botao:hover { border-color: var(--clube); }
+
 .gramado {
-  position: relative; aspect-ratio: 3/4; max-width: 720px; margin: 0 auto;
-  border-radius: 10px; overflow: hidden;
+  position: relative; aspect-ratio: 3/4; margin: 0 auto;
+  flex: 1; min-height: 0; max-width: 100%;
   background: repeating-linear-gradient(180deg,
-    #3f8a43 0 6.25%, #39803d 6.25% 12.5%);
+    #35703a 0 6.25%, #2f6634 6.25% 12.5%);
+  border: 1px solid var(--linha-forte);
 }
 .gramado .linhas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.pecaJ {
+.peca {
   position: absolute; transform: translate(-50%, -50%);
-  width: 13%; min-width: 62px; display: flex; flex-direction: column;
-  align-items: center; text-align: center; cursor: pointer;
-  background: none; border: 0; padding: 0; color: #fff; font: inherit;
+  width: 12.5%; min-width: 58px; background: none; border: 0; padding: 0;
+  display: flex; flex-direction: column; align-items: center;
+  color: #fff; font: inherit; cursor: pointer;
 }
-.pecaJ svg { width: 100%; height: auto; filter: drop-shadow(0 3px 4px #0007); }
-.pecaJ .nome {
-  margin-top: 3px; font-weight: 700; font-size: 12.5px; line-height: 1.15;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150%;
-  text-shadow: 0 1px 3px #000, 0 0 2px #000;
+.peca svg { width: 100%; height: auto; filter: drop-shadow(0 2px 3px #0008); }
+.peca .nome {
+  margin-top: 2px; font-weight: 700; font-size: 11.5px; line-height: 1.1;
+  white-space: nowrap; text-shadow: 0 1px 2px #000, 0 0 2px #000;
 }
-.pecaJ .dados {
-  font-size: 11.5px; text-shadow: 0 1px 3px #000, 0 0 2px #000;
-  font-variant-numeric: tabular-nums;
+.peca .info {
+  font-size: 10.5px; font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 2px #000, 0 0 2px #000;
 }
-.pecaJ.escolhido svg { filter: drop-shadow(0 0 0 3px #fff) drop-shadow(0 3px 4px #0007); }
-.pecaJ.escolhido .nome { text-decoration: underline; }
+.peca.marcado svg { outline: 2px solid #fff; outline-offset: 1px; }
 
-.banco { margin-top: 18px; }
-.banco h3 {
-  font-size: 12px; text-transform: uppercase; letter-spacing: .07em;
-  color: var(--fraco); margin: 0 0 10px;
+/* ================================================================== tática */
+.campos-tatica { display: grid; gap: 10px; }
+.campo-tatica {
+  display: grid; grid-template-columns: 130px 1fr; align-items: center; gap: 12px;
 }
-#reservas { display: flex; flex-wrap: wrap; gap: 7px; }
-.reserva {
-  background: var(--painel-alto); border: 1px solid var(--borda); border-radius: 7px;
-  padding: 6px 11px; font: inherit; font-size: 13px; color: var(--texto); cursor: pointer;
-  display: flex; gap: 7px; align-items: center;
+.campo-tatica > span {
+  font-size: 11.5px; color: var(--texto-fraco);
+  text-transform: uppercase; letter-spacing: .05em;
 }
-.reserva:hover { border-color: var(--tema); }
-.reserva .pos { color: var(--fraco); font-family: var(--mono); font-size: 11.5px; }
-.reserva .ovr { font-weight: 600; font-variant-numeric: tabular-nums; }
+.opcoes { display: flex; gap: 0; border: 1px solid var(--linha-forte); border-radius: 2px; }
+.opcoes button {
+  flex: 1; background: var(--painel-2); color: var(--texto-fraco);
+  border: 0; border-right: 1px solid var(--linha-forte);
+  padding: 6px 10px; font: inherit; font-size: 12px; cursor: pointer;
+}
+.opcoes button:last-child { border-right: 0; }
+.opcoes button:hover { color: var(--texto); }
+.opcoes button.ativo { background: var(--clube); color: #fff; font-weight: 600; }
 
-/* ------------------------------------------------------------------ copas */
-.cartoes-copa {
-  display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-}
-.copa {
-  background: var(--painel-alto); border: 1px solid var(--borda);
-  border-radius: 9px; padding: 14px 16px;
-}
-.copa h3 { margin: 0 0 6px; font-size: 15px; }
-.copa p { margin: 0; font-size: 13px; color: var(--fraco); }
-.copa .situacao { margin-top: 9px; font-size: 12px; font-weight: 600; }
-.copa.vivo { border-color: var(--bom); }
-.copa.vivo .situacao { color: var(--bom); }
-.copa.fora .situacao { color: var(--fraco); }
-
-/* ------------------------------------------------------------------ modal */
+/* ================================================================== janela */
 .cortina {
-  position: fixed; inset: 0; background: #000b; backdrop-filter: blur(3px);
-  display: grid; place-items: center; padding: 20px; z-index: 10;
+  position: fixed; inset: 0; background: #000a;
+  display: grid; place-items: center; padding: 24px; z-index: 20;
 }
 .cortina[hidden] { display: none; }
 .janela {
-  background: var(--painel); border: 1px solid var(--borda); border-radius: 12px;
-  padding: 22px 24px; max-width: 640px; width: 100%;
-  max-height: 86vh; overflow-y: auto;
+  background: var(--painel); border: 1px solid var(--linha-forte); border-radius: 3px;
+  width: 100%; max-width: 760px; max-height: 88vh;
+  display: flex; flex-direction: column;
 }
-.placar {
+#conteudo-janela { padding: 18px 20px; overflow-y: auto; }
+.rodape-janela {
+  padding: 12px 20px; border-top: 1px solid var(--linha); text-align: right;
+}
+.janela h2 { margin: 0 0 12px; font-size: 15px; letter-spacing: -.01em;
+             text-transform: none; color: var(--texto); }
+.janela h3 {
+  margin: 16px 0 8px; font-size: 11px; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--texto-fraco);
+}
+
+.placar-janela {
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-  gap: 14px; margin-bottom: 16px;
+  gap: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--linha);
 }
-.placar .lado { display: grid; justify-items: center; gap: 6px; }
-.placar .lado svg { width: 54px; height: auto; }
-.placar .lado span { font-size: 14px; font-weight: 600; text-align: center; }
-.placar .numeros {
-  font-size: 40px; font-weight: 700; font-variant-numeric: tabular-nums;
+.placar-janela .lado { display: grid; justify-items: center; gap: 5px; }
+.placar-janela .lado svg { width: 50px; height: auto; }
+.placar-janela .lado span { font-size: 13px; font-weight: 600; text-align: center; }
+.placar-janela .numeros {
+  font-size: 34px; font-weight: 700; font-variant-numeric: tabular-nums;
 }
-.sumula { list-style: none; padding: 0; margin: 0 0 16px; font-size: 13.5px; }
-.sumula li {
-  display: grid; grid-template-columns: 42px 30px 1fr; gap: 9px;
-  padding: 5px 0; border-bottom: 1px solid var(--borda);
+.relogio {
+  text-align: center; font-family: var(--mono); font-size: 12px;
+  color: var(--texto-apagado); margin-top: 3px;
 }
-.sumula .minuto { color: var(--fraco); font-family: var(--mono); }
-.sumula .meu { color: var(--bom); }
-.tabela-stats { width: 100%; font-size: 13.5px; border-collapse: collapse; }
-.tabela-stats td { padding: 4px 0; }
-.tabela-stats .rotulo { text-align: center; color: var(--fraco); font-size: 12.5px; }
-.tabela-stats .v { font-variant-numeric: tabular-nums; width: 70px; }
-.tabela-stats .v.dir { text-align: right; }
-.outros-jogos { margin-top: 16px; font-size: 13.5px; }
-.outros-jogos div {
-  display: grid; grid-template-columns: 1fr 58px 1fr; gap: 8px;
-  padding: 4px 0; border-bottom: 1px solid var(--borda);
-}
-.outros-jogos .placarzinho {
-  text-align: center; font-variant-numeric: tabular-nums; color: var(--fraco);
-}
-.outros-jogos .dir { text-align: right; }
 
-.aviso-grande {
-  border: 2px solid var(--ruim); border-radius: 10px; padding: 16px;
-  margin-bottom: 16px; text-align: center;
+.lances { list-style: none; padding: 0; margin: 0; font-size: 12.5px; }
+.lances li {
+  display: grid; grid-template-columns: 38px 34px 1fr; gap: 8px;
+  padding: 4px 0; border-bottom: 1px solid var(--linha);
 }
-.aviso-grande b { display: block; font-size: 19px; color: var(--ruim); }
-.aviso-grande span { color: var(--fraco); font-size: 14px; }
-.destaque { color: var(--bom); font-weight: 600; }
+.lances .minuto { color: var(--texto-apagado); font-family: var(--mono); }
+.lances .tipo { font-weight: 700; font-size: 10.5px; }
+.lances .gol { color: var(--verde); }
+.lances .amarelo { color: var(--amarelo); }
+.lances .vermelho { color: var(--vermelho); }
+.lances .sub { color: var(--azul); }
 
-@media (max-width: 620px) {
-  .gramado { aspect-ratio: 2/3; }
-  .indicadores { gap: 16px; }
-  .indicador b { font-size: 18px; }
+.comparativo { width: 100%; font-size: 12.5px; border-collapse: collapse; }
+.comparativo td { padding: 3px 0; }
+.comparativo .meio {
+  text-align: center; color: var(--texto-apagado); font-size: 11.5px;
+}
+.comparativo .v { width: 64px; font-variant-numeric: tabular-nums; }
+.comparativo .v.dir { text-align: right; }
+
+.atributos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px 22px; }
+.atributo {
+  display: grid; grid-template-columns: 1fr 34px 60px; align-items: center; gap: 8px;
+  font-size: 12.5px; padding: 2px 0;
+}
+.atributo b { font-variant-numeric: tabular-nums; text-align: right; }
+.ficha {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 1px; background: var(--linha); border: 1px solid var(--linha);
+  margin-bottom: 14px;
+}
+.ficha div { background: var(--painel); padding: 7px 9px; }
+.ficha span {
+  display: block; font-size: 10px; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--texto-apagado);
+}
+.ficha b { font-size: 14px; font-variant-numeric: tabular-nums; }
+
+.aviso {
+  border-left: 3px solid var(--vermelho); background: var(--painel-2);
+  padding: 10px 14px; margin-bottom: 14px;
+}
+.aviso b { display: block; font-size: 15px; color: var(--vermelho); }
+.aviso span { color: var(--texto-fraco); font-size: 12.5px; }
+.bom { color: var(--verde); font-weight: 600; }
+.ruim { color: var(--vermelho); font-weight: 600; }
+
+.pastilhas { display: flex; gap: 5px; }
+.pastilhas button {
+  background: var(--painel-2); border: 1px solid var(--linha-forte);
+  color: var(--texto-fraco); border-radius: 2px; padding: 3px 11px;
+  font: inherit; font-size: 11.5px; cursor: pointer;
+}
+.pastilhas button.ativo { border-color: var(--clube); color: var(--texto); }
+
+/* ================================================================== telas menores */
+@media (max-width: 1500px) {
+  .grade-escalacao, .grade-financas { grid-template-columns: 1fr; }
+}
+@media (max-width: 1100px) {
+  .grade-inicio, .grade-estatisticas { grid-template-columns: 1fr; }
+  .topo { height: auto; flex-wrap: wrap; }
+  .topo .bloco { padding: 8px 14px; }
+  .menu { width: 150px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

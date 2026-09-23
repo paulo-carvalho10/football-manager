@@ -48,6 +48,8 @@ def _jogador(c: Carreira, p, titular: bool) -> dict:
         "overall": p.overall, "potencial": p.potential,
         "idade": p.age(c.temporada), "energia": p.condition,
         "salario": p.wage, "valor": p.market_value, "titular": titular,
+        "contrato": p.contract_until, "moral": p.morale,
+        **_estatistica_do_jogador(c, p.id),
     }
 
 
@@ -88,9 +90,11 @@ def estado(jogo: Jogo) -> dict:
     ap = c.aprovacao
     return {
         "clube": _clube(c, c.clube_id),
+        "treinador": c.treinador, "data": data_do_jogo(c),
         "liga": c.liga, "temporada": c.temporada,
         "rodada": c.rodada, "total_de_rodadas": c.total_de_rodadas,
-        "data": c.data, "datas": len(c.agenda),
+        # `data` e a do calendario (texto); o indice na agenda e outra coisa
+        "indice_da_data": c.data, "datas": len(c.agenda),
         "acabou": c.acabou, "demitido": c.demitido,
         "motivo": ap.motivo if ap else "",
         "posicao": c.posicao() if tabela else 0,
@@ -254,9 +258,180 @@ def camisa_svg(jogo: Jogo, clube_id: int, numero: str = "1") -> str:
     return _camisa_svg(pano, detalhe, club.kit_pattern, f"c{clube_id}{numero}")
 
 
+
+# --------------------------------------------------------------------- telas novas
+
+# O motor conta RODADAS, nao dias. A data e derivada para dar o clima de temporada que um
+# manager tem -- e cosmetica, e nenhuma regra depende dela.
+INICIO_DA_TEMPORADA = (4, 6)        # a temporada abre em 6 de abril
+DIAS_POR_DATA = 4
+
+
+def data_do_jogo(c: Carreira) -> str:
+    from datetime import date, timedelta
+    mes, dia = INICIO_DA_TEMPORADA
+    return (date(c.temporada, mes, dia)
+            + timedelta(days=c.data * DIAS_POR_DATA)).strftime("%d/%m/%Y")
+
+
+def _estatistica_do_jogador(c: Carreira, pid: int) -> dict:
+    est = c.estatisticas
+    linha = est.por_jogador.get(pid) if est else None
+    return {"jogos": linha.jogos if linha else 0,
+            "gols": linha.gols if linha else 0,
+            "assistencias": linha.assistencias if linha else 0,
+            "amarelos": linha.amarelos if linha else 0,
+            "vermelhos": linha.vermelhos if linha else 0}
+
+
+def jogador(jogo: Jogo, pid: int) -> dict:
+    """O perfil completo: identidade, contrato, atributos e a temporada."""
+    c = jogo.c
+    p = c.world.players.get(pid)
+    if p is None:
+        return {"erro": "jogador nao existe"}
+    return {
+        "id": p.id, "nome": p.name, "nacionalidade": p.nationality,
+        "idade": p.age(c.temporada), "posicao": p.position,
+        "posicao_detalhe": p.position_detail,
+        "pe": "esquerdo" if p.foot == "E" else "direito",
+        "altura": p.height_cm, "overall": p.overall, "potencial": p.potential,
+        "valor": p.market_value, "salario": p.wage, "contrato": p.contract_until,
+        "energia": p.condition, "moral": p.morale, "forma": p.form,
+        "clube": _clube(c, p.club_id) if p.club_id in c.world.clubs else None,
+        "atributos": {
+            "finalizacao": p.finishing, "passe": p.passing, "drible": p.dribbling,
+            "marcacao": p.marking, "velocidade": p.pace, "forca": p.strength,
+            "resistencia": p.stamina, "tecnica": p.technique,
+            "posicionamento": p.positioning, "visao": p.vision,
+            "reflexos": p.reflexes, "jogo aereo": p.aerial,
+        },
+        "temporada": _estatistica_do_jogador(c, pid),
+    }
+
+
+def _resultado_curto(c: Carreira, r) -> dict:
+    eu_em_casa = r.home == c.clube_id
+    meus = r.goals_home if eu_em_casa else r.goals_away
+    deles = r.goals_away if eu_em_casa else r.goals_home
+    return {"casa": _clube(c, r.home)["nome"], "fora": _clube(c, r.away)["nome"],
+            "gols_casa": r.goals_home, "gols_fora": r.goals_away,
+            "resultado": "V" if meus > deles else "E" if meus == deles else "D"}
+
+
+def inicio(jogo: Jogo) -> dict:
+    """O painel de abertura: como esta a campanha, o que passou e o que vem."""
+    c = jogo.c
+    meus = [r for r in c.jogos() if c.clube_id in (r.home, r.away)]
+    for a in c.copas.values():
+        meus += [r for r in a.resultados_do_ano if c.clube_id in (r.home, r.away)]
+    tabela_ = c.tabela()
+    linha = next((x for x in tabela_ if x.club_id == c.clube_id), None)
+
+    futuros = []
+    for f in c.calendario:
+        if f.matchday > c.rodada and c.clube_id in (f.home, f.away):
+            rival = f.away if f.home == c.clube_id else f.home
+            futuros.append({"rival": _clube(c, rival)["nome"],
+                            "cor": _clube(c, rival)["cor"],
+                            "casa": f.home == c.clube_id, "rodada": f.matchday})
+    futuros.sort(key=lambda x: x["rodada"])
+    return {
+        "campanha": {
+            "posicao": c.posicao() if tabela_ else 0,
+            "pontos": linha.points if linha else 0,
+            "jogos": linha.played if linha else 0,
+            "vitorias": linha.wins if linha else 0,
+            "empates": linha.draws if linha else 0,
+            "derrotas": linha.losses if linha else 0,
+            "gols_pro": linha.goals_for if linha else 0,
+            "gols_contra": linha.goals_against if linha else 0,
+        },
+        "ultimos": [_resultado_curto(c, r) for r in meus[-10:]][::-1],
+        "proximos": futuros[:10],
+    }
+
+
+def estatisticas(jogo: Jogo) -> dict:
+    c = jogo.c
+    est = c.estatisticas
+    if est is None:
+        return {"artilheiros": [], "garcons": []}
+
+    def linhas(lista):
+        fora = []
+        for x in lista:
+            p = c.world.players[x.jogador]
+            clube = _clube(c, p.club_id) if p.club_id in c.world.clubs else None
+            fora.append({"nome": p.name, "posicao": p.position,
+                         "clube": clube["nome"] if clube else "-",
+                         "cor": clube["cor"] if clube else "#888",
+                         "gols": x.gols, "assistencias": x.assistencias,
+                         "jogos": x.jogos, "meu": p.club_id == c.clube_id})
+        return fora
+    return {"artilheiros": linhas(est.artilheiros(c.world, 25)),
+            "garcons": linhas(est.garcons(c.world, 25))}
+
+
+def financas(jogo: Jogo) -> dict:
+    from fm.config import load_league
+    from fm.financas import CUSTO_DE_OPERACAO, folha_anual, receita_anual
+
+    c = jogo.c
+    tier = int(load_league(c.liga).get("tier", 1))
+    valor = c.valor_de_elenco.get(c.clube_id)
+    receita = receita_anual(c.world, c.clube_id, tier, valor)
+    folha = folha_anual(c.world, c.clube_id)
+    operacao = int(receita * CUSTO_DE_OPERACAO)
+    return {
+        "caixa": c.clube.balance, "receita": receita, "folha": folha,
+        "operacao": operacao, "saldo_previsto": receita - folha - operacao,
+        "valor_do_elenco": valor or 0, "reputacao": c.clube.reputation,
+        "salarios": sorted(
+            [{"nome": p.name, "posicao": p.position, "salario": p.wage,
+              "contrato": p.contract_until, "valor": p.market_value}
+             for p in c.world.squad(c.clube_id)],
+            key=lambda x: -x["salario"])[:14],
+    }
+
+
+def calendario(jogo: Jogo) -> dict:
+    """A agenda inteira da temporada, com o que ja foi jogado."""
+    c = jogo.c
+    jogados = {}
+    for r in c.jogos():
+        if c.clube_id in (r.home, r.away):
+            jogados[r.matchday] = _resultado_curto(c, r)
+    linhas, rodada = [], 0
+    for i, (tipo, quem) in enumerate(c.agenda):
+        if tipo == "liga":
+            rodada += 1
+            f = next((x for x in c.calendario
+                      if x.matchday == rodada and c.clube_id in (x.home, x.away)), None)
+            rival = None
+            if f is not None:
+                outro = f.away if f.home == c.clube_id else f.home
+                rival = {"nome": _clube(c, outro)["nome"], "casa": f.home == c.clube_id}
+            linhas.append({"ordem": i, "tipo": "liga", "competicao": c.liga,
+                           "rodada": rodada, "rival": rival,
+                           "resultado": jogados.get(rodada), "passou": i < c.data})
+        else:
+            a = c.copas.get(quem)
+            linhas.append({"ordem": i, "tipo": "copa",
+                           "competicao": a.torneio.nome if a else quem,
+                           "rodada": None, "rival": None,
+                           "resultado": None, "passou": i < c.data})
+    return {"datas": linhas, "atual": c.data}
+
+
 ROTAS_GET = {
     "/api/estado": lambda jogo, q: estado(jogo),
     "/api/tabela": lambda jogo, q: tabela(jogo, q.get("liga", [None])[0]),
+    "/api/inicio": lambda jogo, q: inicio(jogo),
+    "/api/estatisticas": lambda jogo, q: estatisticas(jogo),
+    "/api/financas": lambda jogo, q: financas(jogo),
+    "/api/calendario": lambda jogo, q: calendario(jogo),
+    "/api/jogador": lambda jogo, q: jogador(jogo, int(q.get("id", [0])[0])),
 }
 ROTAS_POST = {
     "/api/avancar": lambda jogo, corpo: avancar(jogo),

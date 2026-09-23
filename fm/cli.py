@@ -372,6 +372,7 @@ def cmd_servir(args):
                 print(f"  {liga}: {', '.join(nomes)}")
             return
         c = Carreira.nova(ligas, args.clube, seed=args.seed)
+    c.treinador = args.treinador
     servir(c, porta=args.porta)
 
 
@@ -519,6 +520,7 @@ def main(argv=None):
     p.add_argument("--clube", default=None, help="sem isto, lista os clubes")
     p.add_argument("--carregar", default=None, help="nome de um save")
     p.add_argument("--porta", type=int, default=8000)
+    p.add_argument("--treinador", default="Treinador", help="seu nome, no topo da tela")
     p.set_defaults(func=cmd_servir)
 
     p = sub.add_parser("campo", parents=[common],
