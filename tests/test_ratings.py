@@ -166,14 +166,27 @@ def test_piramide_primeira_divisao_e_mais_forte_que_segunda():
 
 
 def test_motor_nao_depende_do_importador():
-    """Regra de arquitetura: o jogo nao baixa pagina. Nada em fm/ importa bs4 ou urllib."""
+    """Regra de arquitetura: o jogo nao baixa pagina. Nada em fm/ importa bs4 ou urllib.
+
+    `servidor.py` e a excecao explicita: ele usa urllib para ANALISAR a URL que o navegador
+    pediu, nao para buscar nada na rede. As cascas podem falar com fora; o motor, nao.
+    """
     proibidos = []
     for path in FM_DIR.glob("*.py"):
+        if path.name == "servidor.py":
+            continue
         texto = path.read_text(encoding="utf-8")
         for termo in ("bs4", "BeautifulSoup", "urllib", "requests"):
             if termo in texto:
                 proibidos.append(f"{path.name}: {termo}")
     assert not proibidos, f"dependencia de rede no motor: {proibidos}"
+
+
+def test_o_servidor_nao_busca_nada_na_rede():
+    """A excecao acima nao pode virar uma porta: o servidor analisa URL, nao baixa pagina."""
+    texto = (FM_DIR / "servidor.py").read_text(encoding="utf-8")
+    for termo in ("urlopen", "urlretrieve", "bs4", "requests"):
+        assert termo not in texto, f"servidor.py foi buscar coisa na rede: {termo}"
 
 
 def test_teto_por_posicao_comprime_sem_perder_ordem():

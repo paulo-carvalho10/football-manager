@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Football Manager</title>
+<link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+
+<header class="topo">
+  <div class="identidade">
+    <span class="faixa" id="faixa-cor"></span>
+    <div>
+      <h1 id="nome-do-clube">carregando</h1>
+      <p id="contexto"></p>
+    </div>
+  </div>
+  <div class="indicadores">
+    <div class="indicador"><b id="posicao">-</b><span>na tabela</span></div>
+    <div class="indicador"><b id="pontos">-</b><span>pontos</span></div>
+    <div class="indicador"><b id="caixa">-</b><span>em caixa</span></div>
+  </div>
+</header>
+
+<nav class="abas" role="tablist">
+  <button class="aba ativa" data-painel="lobby" role="tab">Elenco</button>
+  <button class="aba" data-painel="campo" role="tab">Escalação</button>
+  <button class="aba" data-painel="tabela" role="tab">Tabela</button>
+  <button class="aba" data-painel="copas" role="tab">Copas</button>
+</nav>
+
+<main>
+  <!-- ---------------------------------------------------------- lobby -->
+  <section id="lobby" class="painel ativo">
+    <div class="coluna-dupla">
+      <div class="cartao proximo-jogo">
+        <h2>Próximo compromisso</h2>
+        <div id="proximo"></div>
+        <button id="jogar" class="botao-grande">Jogar</button>
+        <p class="dica" id="dica-jogar"></p>
+      </div>
+
+      <div class="cartao clima">
+        <h2>Clima no clube</h2>
+        <p class="meta" id="meta"></p>
+        <div class="medidor">
+          <label>Torcida <b id="torcida-n"></b></label>
+          <div class="trilho"><i id="torcida-b"></i></div>
+        </div>
+        <div class="medidor">
+          <label>Diretoria <b id="diretoria-n"></b></label>
+          <div class="trilho"><i id="diretoria-b"></i></div>
+        </div>
+        <p class="etiqueta-clima" id="clima"></p>
+      </div>
+    </div>
+
+    <div class="cartao">
+      <h2>Elenco</h2>
+      <table class="lista" id="tabela-elenco">
+        <thead><tr>
+          <th></th><th>Pos</th><th>Jogador</th><th class="n">Ovr</th>
+          <th class="n">Pot</th><th class="n">Idade</th><th>Energia</th>
+          <th class="n">Salário</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------- campo -->
+  <section id="campo" class="painel">
+    <div class="cartao">
+      <h2>Escalação</h2>
+      <div class="controles">
+        <label>Formação <select id="formacao"></select></label>
+        <label>Marcação <select id="marcacao"></select></label>
+        <label>Estilo <select id="estilo"></select></label>
+        <button id="auto" class="botao">Escalar automático</button>
+      </div>
+      <p class="dica">Clique num titular e depois num reserva para trocar.</p>
+      <div class="gramado" id="gramado"></div>
+      <div class="banco">
+        <h3>Reservas</h3>
+        <div id="reservas"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------- tabela -->
+  <section id="tabela" class="painel">
+    <div class="cartao">
+      <div class="cabecalho-com-abas">
+        <h2>Classificação</h2>
+        <div id="abas-ligas" class="abas-menores"></div>
+      </div>
+      <table class="lista classificacao" id="tabela-liga">
+        <thead><tr>
+          <th class="n">#</th><th>Clube</th><th class="n">P</th><th class="n">J</th>
+          <th class="n">V</th><th class="n">E</th><th class="n">D</th>
+          <th class="n">GP</th><th class="n">GC</th><th class="n">SG</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------- copas -->
+  <section id="copas" class="painel">
+    <div class="cartao">
+      <h2>Competições</h2>
+      <div id="lista-copas" class="cartoes-copa"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ---------------------------------------------------------- partida -->
+<div class="cortina" id="cortina" hidden>
+  <div class="janela" id="janela-partida">
+    <div id="conteudo-modal"></div>
+    <button id="fechar-modal" class="botao-grande">Continuar</button>
+  </div>
+</div>
+
+<script src="/jogo.js"></script>
+</body>
+</html>

@@ -15,7 +15,10 @@ FM_DIR = Path(__file__).resolve().parent.parent / "fm"
 # Camada de apresentacao: os UNICOS modulos autorizados a falar com o usuario.
 # A lista e explicita de proposito -- quando surgir interface grafica, ela entra aqui e
 # em nenhum outro lugar, e o motor continua sem saber que existe tela.
-APRESENTACAO = {"cli.py", "jogo.py"}
+# As CASCAS: os unicos modulos autorizados a falar com o mundo. Sao tres agora, porque a
+# interface do navegador e a terceira -- e o motor continua sem saber que alguma delas
+# existe.
+APRESENTACAO = {"cli.py", "jogo.py", "servidor.py"}
 
 
 def test_motor_nao_faz_io():

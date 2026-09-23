@@ -353,6 +353,28 @@ def cmd_jogar(args):
     jogar(c)
 
 
+def cmd_servir(args):
+    """Sobe o jogo no navegador. E a interface grafica; o terminal continua funcionando."""
+    from fm.carreira import Carreira
+    from fm.servidor import servir
+
+    if args.carregar:
+        c = Carreira.carregar(args.carregar)
+    else:
+        ligas = [n.strip() for n in args.liga.split(",") if n.strip()]
+        if not args.clube:
+            from fm.generate import build_world
+            mundo, _ = build_world([load_league(n) for n in ligas], seed=args.seed)
+            print(f"escolha um clube com --clube (de {', '.join(ligas)}):")
+            for liga in ligas:
+                lid = load_league(liga)["id"]
+                nomes = sorted(mundo.clubs[cid].name for cid in mundo.leagues[lid].club_ids)
+                print(f"  {liga}: {', '.join(nomes)}")
+            return
+        c = Carreira.nova(ligas, args.clube, seed=args.seed)
+    servir(c, porta=args.porta)
+
+
 def cmd_campo(args):
     """Gera a tela de escalacao e abre no navegador."""
     from fm.carreira import Carreira
@@ -490,6 +512,14 @@ def main(argv=None):
     p.add_argument("--clube", default=None, help="sem isto, lista os clubes das ligas")
     p.add_argument("--carregar", default=None, help="nome de um save")
     p.set_defaults(func=cmd_jogar)
+
+    p = sub.add_parser("servir", parents=[common],
+                       help="abre o jogo no navegador (a interface grafica)")
+    p.add_argument("--liga", default="brasil_real,brasil_b_real")
+    p.add_argument("--clube", default=None, help="sem isto, lista os clubes")
+    p.add_argument("--carregar", default=None, help="nome de um save")
+    p.add_argument("--porta", type=int, default=8000)
+    p.set_defaults(func=cmd_servir)
 
     p = sub.add_parser("campo", parents=[common],
                        help="abre a escalacao no navegador: campo, camisas e o onze")
