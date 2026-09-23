@@ -353,6 +353,22 @@ def cmd_jogar(args):
     jogar(c)
 
 
+def cmd_campo(args):
+    """Gera a tela de escalacao e abre no navegador."""
+    from fm.carreira import Carreira
+    from fm.jogo import abrir_campo
+
+    if args.carregar:
+        c = Carreira.carregar(args.carregar)
+    else:
+        ligas = [n.strip() for n in args.liga.split(",") if n.strip()]
+        c = Carreira.nova(ligas, args.clube, seed=args.seed)
+        for _ in range(args.rodadas):
+            c.avancar()
+    destino = abrir_campo(c)
+    print(f"{c.clube.name}: {destino}")
+
+
 def cmd_cores(args):
     """Reaplica cor, camisa e padrao nos packs ja gerados.
 
@@ -453,6 +469,15 @@ def main(argv=None):
     p.add_argument("--clube", default=None, help="sem isto, lista os clubes das ligas")
     p.add_argument("--carregar", default=None, help="nome de um save")
     p.set_defaults(func=cmd_jogar)
+
+    p = sub.add_parser("campo", parents=[common],
+                       help="abre a escalacao no navegador: campo, camisas e o onze")
+    p.add_argument("--liga", default="brasil_real,brasil_b_real")
+    p.add_argument("--clube", default="Flamengo")
+    p.add_argument("--carregar", default=None, help="nome de um save")
+    p.add_argument("--rodadas", type=int, default=0,
+                   help="joga N rodadas antes, para ver a energia gasta")
+    p.set_defaults(func=cmd_campo)
 
     p = sub.add_parser("cores", parents=[common],
                        help="reaplica data/cores/*.toml nos packs, sem rede")

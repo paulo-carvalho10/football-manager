@@ -9,9 +9,12 @@ quando existir interface grafica, ela troca este arquivo e mais nada.
 
 from __future__ import annotations
 
+import webbrowser
+from pathlib import Path
+
 from fm.camisa import LARGURA as CAMISA_LARGURA
 from fm.camisa import camisa, legenda
-from fm.carreira import Carreira
+from fm.carreira import SAVES_DIR, Carreira
 from fm.financas import folha_anual
 from fm.tatica import ESTILOS, FORMACOES, MARCACOES, Tatica
 
@@ -183,7 +186,8 @@ def tela_escalacao(c: Carreira) -> None:
             print(f"    ... e mais {len(reservas) - 12}")
         print(_linha())
         print("  [t] trocar jogador   [f] formacao   [m] marcacao   [e] estilo")
-        print("  [a] escalar automatico (melhores e mais inteiros)   [s] salvar e voltar")
+        print("  [c] ver o campo no navegador   [a] escalar automatico")
+        print("  [s] salvar e voltar")
         escolha = input("  > ").strip().lower()
 
         if escolha == "s":
@@ -193,6 +197,10 @@ def tela_escalacao(c: Carreira) -> None:
                 print(f"  !! {e}")
                 continue
             return
+        if escolha == "c":
+            destino = abrir_campo(c, onze, tatica)
+            print(f"  campo aberto no navegador ({destino})")
+            continue
         if escolha == "a":
             c.world.escalacao_fixa.pop(c.clube_id, None)
             onze = [p.id for p in c.world.best_xi(c.clube_id, tatica.vagas)]
@@ -434,3 +442,19 @@ def jogar(c: Carreira) -> None:
         elif escolha == "0":
             print("  ate mais.")
             return
+
+
+def abrir_campo(c: Carreira, onze: list[int] | None = None,
+                tatica: Tatica | None = None) -> Path:
+    """Grava a tela de escalacao e abre no navegador.
+
+    Aqui, e nao em fm/tela_campo.py: aquele modulo devolve uma string e nao toca em disco,
+    pela mesma razao que o resto do motor nao toca -- so cli.py e jogo.py falam com fora.
+    """
+    from fm.tela_campo import escalacao_html
+
+    destino = SAVES_DIR / "campo.html"   # junto dos saves, que ja sao ignorados
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    destino.write_text(escalacao_html(c, onze, tatica), encoding="utf-8")
+    webbrowser.open(destino.resolve().as_uri())
+    return destino
