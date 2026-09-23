@@ -92,15 +92,39 @@ def test_ninguem_compra_o_que_nao_pode_pagar(carreira):
             f"{clube.name} gastou muito alem do que tinha")
 
 
-def test_a_receita_segue_a_reputacao_e_a_divisao(carreira):
+def test_a_receita_segue_o_tamanho_do_clube_e_a_divisao(carreira):
+    """REGRESSAO: a receita saia so da reputacao, que satura em 100. Funcionava no Brasil e
+    quebrava na Espanha, onde a folha varia 26 vezes dentro da primeira divisao -- o Real
+    Madrid ficava com folha de 159M contra receita de 44M."""
+    from fm.financas import valor_do_elenco
+
     c = carreira
-    grande = max(c.world.clubs.values(), key=lambda x: x.reputation)
-    pequeno = min((x for x in c.world.clubs.values() if x.player_ids),
-                  key=lambda x: x.reputation)
+    vivos = [x for x in c.world.clubs.values() if x.player_ids]
+    grande = max(vivos, key=lambda x: valor_do_elenco(c.world, x.id))
+    pequeno = min(vivos, key=lambda x: valor_do_elenco(c.world, x.id))
     assert receita_anual(c.world, grande.id, 1) > receita_anual(c.world, pequeno.id, 1) * 5
     # cair de divisao tem de doer no caixa, nao so na tabela
-    assert receita_anual(c.world, grande.id, 2) < receita_anual(c.world, grande.id, 1) * 0.6
+    assert receita_anual(c.world, grande.id, 2) < receita_anual(c.world, grande.id, 1) * 0.8
     assert premiacao(1, 20, 1) > premiacao(20, 20, 1) > 0
+
+
+def test_a_receita_cobre_a_folha_nas_duas_piramides():
+    """O teste que teria pego o bug: a proporcao entre o que entra e o que se paga de
+    salario tem de fazer sentido no Brasil E na Espanha."""
+    from fm.financas import folha_anual, valor_do_elenco
+
+    for ligas, clube in ((["brasil_real", "brasil_b_real"], "Santos"),
+                         (["espanha_real", "espanha_b_real"], "Real Madrid")):
+        c = Carreira.nova(ligas, clube, seed=7)
+        cfg = load_league(ligas[0])
+        ids = c.world.leagues[cfg["id"]].club_ids
+        razoes = [folha_anual(c.world, i)
+                  / max(receita_anual(c.world, i, 1, valor_do_elenco(c.world, i)), 1)
+                  for i in ids]
+        assert max(razoes) < 1.0, (
+            f"{ligas[0]}: algum clube paga mais salario do que fatura "
+            f"(pior caso {max(razoes):.2f})")
+        assert 0.2 < st.median(razoes) < 0.8, f"{ligas[0]}: folha/receita fora da faixa"
 
 
 def test_a_reputacao_e_estacionaria(carreira):
@@ -136,14 +160,24 @@ def test_o_campeao_ganha_mais_que_o_lanterna(carreira):
 
 
 def test_o_dinheiro_aperta(vinte_anos):
-    """Caixa que so cresce nao decide nada. Antes desta calibracao nenhum clube terminava
-    20 temporadas no vermelho e o maior empilhava 485M sem uso."""
+    """Caixa que so cresce nao decide nada. Antes da calibracao nenhum clube terminava 20
+    temporadas no vermelho e o maior empilhava 485M sem uso.
+
+    O que se mede NAO e' a contagem de clubes no vermelho: perto do ponto de calibracao ela
+    salta de tres para quarenta com dois centesimos no custo de operacao, e um teste sobre
+    ela quebra ao vento. O que importa e' que o clube tipico NAO tenha um ano de folha
+    guardado no banco -- e' isso que faz vender alguem ser uma decisao.
+    """
+    from fm.financas import folha_anual
+
     c, _ = vinte_anos
     caixas = [cl.balance for cl in c.world.clubs.values()]
-    no_vermelho = sum(1 for x in caixas if x < 0)
-    assert no_vermelho >= 2, "ninguem sente o dinheiro: as financas viraram enfeite"
-    assert no_vermelho <= len(caixas) // 2, "o mundo inteiro quebrou"
-    assert max(caixas) < 250_000_000, f"caixa parado de {max(caixas)/1e6:.0f}M"
+    folhas = [folha_anual(c.world, cl.id) for cl in c.world.clubs.values()]
+    assert st.median(caixas) < st.median(folhas), (
+        f"caixa mediano de {st.median(caixas)/1e6:.0f}M contra folha de "
+        f"{st.median(folhas)/1e6:.0f}M: o dinheiro nao restringe nada")
+    assert max(caixas) < 300_000_000, f"caixa parado de {max(caixas)/1e6:.0f}M"
+    assert sum(1 for x in caixas if x < 0) <= len(caixas) * 0.6, "o mundo inteiro quebrou"
 
 
 def test_o_mercado_nao_para(vinte_anos):

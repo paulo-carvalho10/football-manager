@@ -115,12 +115,29 @@ def _market_value(overall: int, potential: int, age: int) -> int:
     return int(base * curve)
 
 
+# Para quem nao tem lista propria: o espanhol cobre a America do Sul hispanica, que e de
+# onde vem os convidados das competicoes continentais (Bolivar, Deportivo Tachira). Sem
+# isto, gerar um jogador para um clube boliviano levantava KeyError na virada do ano.
+IDIOMA_VIZINHO = {"BOL": "ESP", "VEN": "ESP", "ARG": "ESP", "URU": "ESP", "COL": "ESP",
+                  "CHI": "ESP", "ECU": "ESP", "PER": "ESP", "PAR": "ESP", "POR": "BRA"}
+
+
+def _pais_com_nomes(country: str) -> str:
+    if country in FIRST_NAMES:
+        return country
+    vizinho = IDIOMA_VIZINHO.get(country)
+    if vizinho in FIRST_NAMES:
+        return vizinho
+    return next(iter(sorted(FIRST_NAMES)))
+
+
 def _random_name(rng, country: str) -> str:
     """Nome de jogador. No Brasil, parte dos atletas e conhecido por um nome so."""
-    apelidos = NICKNAMES.get(country)
+    pais = _pais_com_nomes(country)
+    apelidos = NICKNAMES.get(pais)
     if apelidos and rng.random() < 0.35:
         return str(rng.choice(apelidos))
-    return f"{rng.choice(FIRST_NAMES[country])} {rng.choice(SURNAMES[country])}"
+    return f"{rng.choice(FIRST_NAMES[pais])} {rng.choice(SURNAMES[pais])}"
 
 
 def _make_player(pid, rng, country, season_year, overall, position, age, club_id,

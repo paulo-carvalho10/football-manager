@@ -16,18 +16,25 @@ def carreira():
     return Carreira.nova("brasil_real", "Santos", seed=42)
 
 
+def _avancar_ate_a_liga(c):
+    """Avanca ate a proxima data de LIGA, jogando as de copa que vierem antes."""
+    while not c.acabou and c.compromisso[0] != "liga":
+        c.avancar()
+    return c.avancar()
+
+
 def test_avancar_joga_exatamente_uma_rodada(carreira):
     """O coracao do jogo: uma rodada por vez, nao a temporada inteira."""
     assert carreira.rodada == 0
     jogos_por_rodada = len(carreira.world.leagues[carreira.liga_id].club_ids) // 2
-    resultados, partida = carreira.avancar()
+    resultados, partida = _avancar_ate_a_liga(carreira)
     assert carreira.rodada == 1
     assert len(resultados) == jogos_por_rodada
     assert partida is not None, "a partida do usuario tem de vir detalhada"
     assert partida.gols_casa + partida.gols_fora == len(
         [e for e in partida.eventos if e.tipo == "gol"])
     assert len(carreira.jogos()) == jogos_por_rodada
-    carreira.avancar()
+    _avancar_ate_a_liga(carreira)
     assert carreira.rodada == 2
     assert len(carreira.jogos()) == 2 * jogos_por_rodada
 

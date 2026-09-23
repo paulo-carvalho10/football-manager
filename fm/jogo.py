@@ -53,16 +53,27 @@ def tela_lobby(c: Carreira) -> None:
           f" | reputacao {clube.reputation}")
     print(_linha("="))
 
-    jogo = c.proxima_partida()
-    if jogo:
+    tipo, onde, jogo = c.proximo_jogo()
+    t = c.tatica_atual()
+    if tipo == "liga" and jogo is not None:
         mando = "em casa contra" if jogo.home == c.clube_id else "fora contra"
         rival = c.world.clubs[jogo.away if jogo.home == c.clube_id else jogo.home]
-        t = c.tatica_atual()
         print(f"  PROXIMO  rodada {c.rodada + 1}: {mando} {rival.name} "
               f"(forca {rival.designed_strength:.0f})")
         print(f"  TATICA   {t.como_texto()}")
+    elif tipo == "copa":
+        andamento = c.copas[onde]
+        print(f"  PROXIMO  {andamento.torneio.nome}: {andamento.nome_da_fase} "
+              f"({len(andamento.vivos)} clubes vivos)")
+        print("           o sorteio dos confrontos sai na hora da partida")
+        print(f"  TATICA   {t.como_texto()}")
     else:
         print("  TEMPORADA ENCERRADA")
+
+    vivas = [c.copas[n].torneio.nome for n in c.copas
+             if c.copas[n].esta_vivo(c.clube_id) and not c.copas[n].acabou]
+    if vivas:
+        print(f"  DISPUTA  {', '.join(vivas)}")
     print(_linha())
 
     print(f"  {'':2s}{'pos':4s}{'jogador':24s}{'ovr':>4}{'pot':>5}{'id':>4}"
@@ -272,12 +283,14 @@ def _pedir_substituicoes(c: Carreira, partida, minuto: int) -> list:
 
 def tela_partida(c: Carreira) -> None:
     """A rodada: sua partida minuto a minuto, depois o resto."""
-    jogo = c.proxima_partida()
+    tipo, onde, jogo = c.proximo_jogo()
+    rotulo = (f"RODADA {c.rodada + 1}" if tipo == "liga"
+              else c.copas[onde].torneio.nome.upper() if tipo == "copa" else "")
     if jogo:
         casa, fora = c.world.clubs[jogo.home], c.world.clubs[jogo.away]
         print()
         print(_linha("="))
-        print(f"  RODADA {c.rodada + 1}   {casa.name}  x  {fora.name}".center(LARGURA))
+        print(f"  {rotulo}   {casa.name}  x  {fora.name}".center(LARGURA))
         print(_linha("="))
         print(f"  sua tatica: {c.tatica_atual().como_texto()}")
 
@@ -314,16 +327,27 @@ def tela_partida(c: Carreira) -> None:
             print(f"  {rot:>28s}   {str(a):>5s}     {str(b):<5s}")
 
     print(_linha())
-    print("  OUTROS JOGOS DA RODADA")
+    tipo_jogado, onde_jogado = c.ultimo_compromisso
+    cabecalho = ("OUTROS JOGOS DA RODADA" if tipo_jogado == "liga"
+                 else f"OUTROS JOGOS -- {c.copas[onde_jogado].torneio.nome}"
+                 if onde_jogado in c.copas else "OUTROS JOGOS")
+    print(f"  {cabecalho}")
     for r in resultados:
         if partida is not None and r.home == partida.casa and r.away == partida.fora:
             continue
         ca, fo = c.world.clubs[r.home], c.world.clubs[r.away]
         print(f"    {ca.name:>26s}  {r.goals_home} x {r.goals_away}  {fo.name}")
     print(_linha())
-    tabela = c.tabela()
-    print(f"  Voce esta em {c.posicao()}o lugar com "
-          f"{next(r.points for r in tabela if r.club_id == c.clube_id)} pontos.")
+    if c.ultimo_compromisso[0] == "liga":
+        tabela = c.tabela()
+        print(f"  Voce esta em {c.posicao()}o lugar com "
+              f"{next(r.points for r in tabela if r.club_id == c.clube_id)} pontos.")
+    else:
+        a = c.copas.get(c.ultimo_compromisso[1])
+        if a is not None:
+            situacao = ("segue vivo" if a.esta_vivo(c.clube_id) else "esta fora")
+            print(f"  {a.torneio.nome}: voce {situacao}. "
+                  f"{len(a.vivos)} clubes restam.")
     input("  [enter] volta ao lobby ")
 
 
@@ -346,6 +370,13 @@ def tela_fim_de_temporada(c: Carreira) -> None:
 
     for liga, campeao in r["campeoes"].items():
         print(f"  CAMPEAO  {liga:<22s} {campeao}")
+    for copa, campeao in r.get("copas", {}).items():
+        if campeao:
+            print(f"  CAMPEAO  {copa:<22s} {campeao}")
+    if r.get("minhas_copas"):
+        print()
+        for copa in r["minhas_copas"]:
+            print(f"  *** VOCE E CAMPEAO DA {copa.replace('_', ' ').upper()} ***")
     print(_linha())
     meu = next(i for i, linha in enumerate(tabela, 1) if linha.club_id == c.clube_id)
     pts = next(linha.points for linha in tabela if linha.club_id == c.clube_id)
@@ -362,8 +393,10 @@ def tela_fim_de_temporada(c: Carreira) -> None:
     b = r["balanco"]
     if b is not None:
         print(_linha())
+        premio_copa = r.get("premios_de_copa", 0)
+        detalhe = f" (inclui {_dinheiro(premio_copa)} de copa)" if premio_copa else ""
         print(f"  CAIXA    receita {_dinheiro(b.receita)} + premiacao "
-              f"{_dinheiro(b.premiacao)}")
+              f"{_dinheiro(b.premiacao)}{detalhe}")
         print(f"           folha {_dinheiro(b.folha)} + operacao {_dinheiro(b.operacao)}")
         sinal = "sobrou" if b.saldo >= 0 else "faltou"
         print(f"           {sinal} {_dinheiro(abs(b.saldo))} no ano  ->  "

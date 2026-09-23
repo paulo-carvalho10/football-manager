@@ -193,19 +193,24 @@ def _nivel_de_formacao(world: World) -> dict[int, float]:
     primeira divisao inflava 0.24 ponto por temporada, acelerando. Reputacao anda devagar,
     tem teto e e limitada pela divisao, entao o laco fica amortecido. E e mais parecido com
     o futebol: a base de um clube e a estrutura e a historia dele, nao a campanha do ano.
-    A reta e ajustada sobre o proprio mundo a cada virada, para nao embutir numeros de um
-    pack especifico -- um mundo espanhol tem outra relacao entre reputacao e forca.
+
+    O mapeamento e por POSTO, nao por reta: o clube com a k-esima reputacao recebe a
+    k-esima forca. Assim a base devolve a distribuicao que a liga tem, qualquer que seja o
+    formato dela, em vez de assumir que reputacao e forca andam numa reta -- o que nao e'
+    verdade numa liga de dois gigantes como a espanhola.
+
+    (Honestidade sobre a medicao: troquei a reta pelo posto perseguindo um achatamento da
+    Espanha que, medido direito, era RUIDO -- o desvio depois de 20 temporadas varia quase
+    um ponto entre sementes, e ao longo de 40 ele oscila em torno do valor inicial sem
+    tendencia. A troca ficou porque e' melhor por construcao, nao porque consertou algo.)
     """
-    reps, onzes, clubes = [], [], []
-    for c in world.clubs.values():
-        if c.player_ids:
-            reps.append(float(c.reputation))
-            onzes.append(world.team_rating(c.id))
-            clubes.append(c.id)
+    clubes = [c for c in world.clubs.values() if c.player_ids]
     if len(clubes) < 4:
-        return {cid: world.team_rating(cid) for cid in clubes}
-    a, b = np.polyfit(reps, onzes, 1)
-    return {cid: float(a * r + b) for cid, r in zip(clubes, reps, strict=True)}
+        return {c.id: world.team_rating(c.id) for c in clubes}
+
+    por_reputacao = sorted(clubes, key=lambda c: (c.reputation, c.id))
+    forcas = sorted(world.team_rating(c.id) for c in clubes)
+    return {c.id: forcas[i] for i, c in enumerate(por_reputacao)}
 
 
 def repor_elencos(world: World, rng: np.random.Generator, temporada: int,
