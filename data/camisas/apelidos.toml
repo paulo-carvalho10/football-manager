@@ -1,0 +1,30 @@
+# Como cada clube esta escrito no nome de arquivo da Wikimedia Commons.
+#
+# O nome do arquivo e `Kit_body_<apelido><temporada><h|a>.png`. Na maioria o apelido e o
+# nome do clube sem espaco e sem acento, e nesse caso nao precisa entrar aqui -- o
+# importador acerta sozinho. Esta lista e para quem nao segue essa regra.
+#
+# ADIVINHAR o apelido a partir de pedacos do nome foi tentado e e PERIGOSO: "Vasco da
+# Gama" casava com `gama`, que e o Gama-DF, e "Gremio Novorizontino" casaria com `gremio`,
+# que e o de Porto Alegre. Vestir o clube com a camisa de outro nao levanta erro nenhum --
+# so aparece na tela, depois. Por isso o importador so tenta o nome inteiro e, fora isso,
+# exige uma linha aqui.
+#
+# Cada apelido abaixo foi conferido baixando a camisa e OLHANDO: `inter` e vermelha lisa
+# (Internacional; a Inter de Milao e listrada azul e preta), `coxa` e branca e verde
+# (Coritiba) e `cap` e preta e vermelha na diagonal (Athletico Paranaense).
+
+fonte = "Wikimedia Commons; cada apelido conferido visualmente na camisa baixada"
+verificado = true
+
+[clubes]
+"Sao Paulo" = "spfc"
+"Vasco da Gama" = "vasco"
+"Atletico Mineiro" = "atleticomg"
+"Athletico Paranaense" = "cap"
+"Coritiba" = "coxa"
+"Internacional" = "inter"
+
+# Pendente: "Red Bull Bragantino". O prefixo `bragantino` so tem arquivos ate 2019, antes
+# de o clube virar Red Bull, e `rbbragantino` tem dois. Fica sem camisa importada ate
+# alguem conferir qual e o certo -- melhor sem do que com a do clube errado.

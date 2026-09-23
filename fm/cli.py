@@ -369,6 +369,27 @@ def cmd_campo(args):
     print(f"{c.clube.name}: {destino}")
 
 
+def cmd_camisas(args):
+    """Importa as camisas dos clubes de um pack.
+
+    Devagar de proposito: a Commons serve de graca e devolve 429 com facilidade. Vinte
+    clubes levam alguns minutos.
+    """
+    from fm.importer.camisas import CAMISAS_DIR, baixar
+    from fm.pack import load_pack
+
+    clubes = [c.nome for c in load_pack(args.pack).clubes]
+    print(f"{len(clubes)} clubes de {args.pack}. Isto leva alguns minutos.")
+    baixadas, faltaram = baixar(clubes, refazer=args.refazer)
+    for b in sorted(baixadas, key=lambda x: (x.clube, x.numero)):
+        print(f"  {b.clube:26s} camisa {b.numero}  temporada {b.temporada:4s}  {b.licenca}")
+    print(f"{len(baixadas)} camisas em {CAMISAS_DIR}")
+    if faltaram:
+        print(f"sem camisa ({len(faltaram)}): {', '.join(faltaram)}")
+        print("Para resolver, descubra o apelido na Commons e ponha em "
+              "data/camisas/apelidos.toml -- adivinhar veste o clube errado.")
+
+
 def cmd_cores(args):
     """Reaplica cor, camisa e padrao nos packs ja gerados.
 
@@ -478,6 +499,14 @@ def main(argv=None):
     p.add_argument("--rodadas", type=int, default=0,
                    help="joga N rodadas antes, para ver a energia gasta")
     p.set_defaults(func=cmd_campo)
+
+    p = sub.add_parser("camisas", parents=[common],
+                       help="baixa as camisas da Wikimedia Commons e as guarda em SVG")
+    p.add_argument("--pack", default="brasil_serie_a",
+                   help="de qual pack tirar a lista de clubes")
+    p.add_argument("--refazer", action="store_true",
+                   help="rebaixa tudo, inclusive o que ja esta em disco")
+    p.set_defaults(func=cmd_camisas)
 
     p = sub.add_parser("cores", parents=[common],
                        help="reaplica data/cores/*.toml nos packs, sem rede")

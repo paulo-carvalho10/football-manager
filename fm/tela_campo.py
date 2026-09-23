@@ -12,9 +12,11 @@ grava e abre e o cli.
 from __future__ import annotations
 
 import html
+import re
 from dataclasses import dataclass
 
 from fm.carreira import Carreira
+from fm.importer.camisas import carregar
 from fm.tatica import Tatica
 
 # Onde cada linha fica no campo, de 0 (linha de fundo adversaria) a 100 (o proprio gol).
@@ -140,6 +142,14 @@ def _camisa_svg(pano: str, detalhe: str, padrao: str, ident: str) -> str:
 </svg>'''
 
 
+def _como_simbolo(svg_texto: str, ident: str) -> str:
+    """Troca o <svg> externo por um <symbol>, para ser reusado com <use>."""
+    viewbox = re.search(r'viewBox="([^"]+)"', svg_texto)
+    corpo = re.sub(r"^.*?<svg[^>]*>|</svg>\s*$", "", svg_texto, flags=re.S)
+    vb = viewbox.group(1) if viewbox else "0 0 100 59"
+    return f'<symbol id="{ident}" viewBox="{vb}">{corpo}</symbol>'
+
+
 def _campo_svg() -> str:
     """As linhas do campo. Meio-campo embaixo do onze, area e circulo, como na tela."""
     linha = 'fill="none" stroke="#ffffff" stroke-opacity=".38" stroke-width=".5"'
@@ -168,13 +178,28 @@ def escalacao_html(c: Carreira, onze: list[int] | None = None,
     detalhe = clube.kit_detail or clube.color_secondary
     gk_pano, gk_detalhe = detalhe, pano
 
+    # A camisa importada da Commons ganha da desenhada: e o uniforme de verdade. Quem nao
+    # tiver importacao continua com o desenho parametrico, que cobre o mundo inteiro.
+    #
+    # Ela vai UMA VEZ em <defs> e cada jogador a referencia com <use>. Repetir o SVG por
+    # jogador custava 27 KB vezes onze so de camisa, e ainda obrigava a renomear os ids de
+    # cada copia -- repetidos, as onze camisas usariam o recorte da primeira.
+    definicoes, usos = [], {}
+    for numero in ("1", "2"):
+        bruto = carregar(clube.name, numero)
+        if bruto:
+            ident = f"camisa{numero}"
+            definicoes.append(_como_simbolo(bruto, ident))
+            usos[numero] = (f'<svg class="camisa" viewBox="0 0 100 59" role="img">'
+                            f'<use href="#{ident}"/></svg>')
+
     jogadores = montar_onze(c, onze, tatica)
     pecas = []
     for i, j in enumerate(jogadores):
         goleiro = j.posicao == "GK"
-        svg = _camisa_svg(gk_pano if goleiro else pano,
-                          gk_detalhe if goleiro else detalhe,
-                          "liso" if goleiro else clube.kit_pattern, str(i))
+        svg = usos.get("2" if goleiro else "1") or _camisa_svg(
+            gk_pano if goleiro else pano, gk_detalhe if goleiro else detalhe,
+            "liso" if goleiro else clube.kit_pattern, str(i))
         pecas.append(
             f'<div class="jogador" style="left:{j.x}%;top:{j.y}%">'
             f'{svg}'
@@ -189,7 +214,7 @@ def escalacao_html(c: Carreira, onze: list[int] | None = None,
         temporada=c.temporada, rodada=c.rodada, total=c.total_de_rodadas,
         tatica=html.escape(tatica.como_texto()), media=f"{media:.1f}",
         energia=f"{energia:.0f}", campo=_campo_svg(), jogadores="".join(pecas),
-        tema=clube.color_primary)
+        definicoes="".join(definicoes), tema=clube.color_primary)
 
 
 _PAGINA = """<!doctype html>
@@ -243,5 +268,6 @@ _PAGINA = """<!doctype html>
     <span>onze: overall {media} &middot; energia {energia}%</span>
   </div>
   <div class="campo">{campo}{jogadores}</div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">{definicoes}</svg>
 </body></html>
 """

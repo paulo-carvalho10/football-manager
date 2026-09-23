@@ -12,6 +12,7 @@ import re
 import pytest
 
 from fm.carreira import Carreira
+from fm.importer.camisas import carregar
 from fm.tatica import FORMACOES, Tatica
 from fm.tela_campo import escalacao_html, montar_onze
 
@@ -49,32 +50,50 @@ def test_toda_formacao_cabe_dentro_do_campo(carreira, formacao):
     assert len({(round(j.x, 1), round(j.y, 1)) for j in jogadores}) == 11, "dois no mesmo ponto"
 
 
-def test_a_camisa_usa_as_cores_do_clube(carreira):
-    c = carreira
+def test_a_camisa_desenhada_usa_as_cores_do_clube():
+    """Vale para quem NAO tem camisa importada -- que e a maior parte do mundo."""
+    c = Carreira.nova(LIGAS, "Chapecoense", seed=42)
+    if carregar(c.clube.name):
+        pytest.skip("este clube ja tem camisa importada")
     html = escalacao_html(c)
-    clube = c.clube
-    assert (clube.kit_body or clube.color_primary).lower() in html.lower()
-    assert (clube.kit_detail or clube.color_secondary).lower() in html.lower()
+    assert (c.clube.kit_body or c.clube.color_primary).lower() in html.lower()
+    assert (c.clube.kit_detail or c.clube.color_secondary).lower() in html.lower()
 
 
-def test_o_goleiro_veste_o_inverso():
-    c = Carreira.nova(LIGAS, "Gremio", seed=42)
+def test_a_camisa_importada_ganha_da_desenhada():
+    """A da Commons e o uniforme de verdade; a desenhada e o que cobre o resto do mundo."""
+    c = Carreira.nova(LIGAS, "Flamengo", seed=42)
+    importada = carregar("Flamengo")
+    if not importada:
+        pytest.skip("Flamengo ainda nao importado")
     html = escalacao_html(c)
-    # a camisa do goleiro e a ultima peca e nao leva o padrao do clube
-    goleiro = html.rsplit('class="jogador"', 1)[-1]
-    assert "GK" in goleiro
-    assert 'fill="' + c.clube.color_secondary in goleiro
+    # um trecho de path da camisa importada tem de aparecer na tela
+    trecho = re.search(r'd="(M[^"]{40,})"', importada).group(1)[:40]
+    assert trecho in html
 
 
-def test_cada_camisa_tem_ids_proprios(carreira):
-    """REGRESSAO em potencial: clipPath com id repetido faz onze camisas usarem o recorte
-    da primeira, e as cores de um jogador vazam para os outros."""
-    html = escalacao_html(carreira)
-    ids = re.findall(r'<clipPath id="([^"]+)"', html)
-    assert len(ids) == 11
-    assert len(set(ids)) == 11, "ids de clipPath repetidos entre camisas"
-    gradientes = re.findall(r'<linearGradient id="([^"]+)"', html)
-    assert len(set(gradientes)) == 11
+@pytest.mark.parametrize("clube", ["Gremio", "Chapecoense"])
+def test_o_goleiro_nao_veste_a_mesma_camisa_da_linha(clube):
+    """Regra do futebol, e ajuda a ler o campo. Com camisa importada ele usa a 2; sem ela,
+    as cores do tema invertidas -- o que muda e a fonte, nao a regra."""
+    html = escalacao_html(Carreira.nova(LIGAS, clube, seed=42))
+    pecas = re.findall(r'<div class="jogador".*?</div>', html, re.S)
+    assert len(pecas) == 11
+    gol = next(p for p in pecas if ">GK " in p)
+    linha = [p for p in pecas if ">GK " not in p]
+    def desenho(peca):
+        return re.sub(r'id="[^"]*"|url\(#[^)]*\)', "", peca.split("<span")[0])
+    assert all(desenho(gol) != desenho(p) for p in linha), "o goleiro veste igual a linha"
+
+
+@pytest.mark.parametrize("clube", ["Flamengo", "Chapecoense"])
+def test_nenhum_id_se_repete_entre_camisas(clube):
+    """Onze camisas na mesma pagina: id repetido faz todas usarem o recorte da primeira, e
+    as cores de um jogador vazam para os outros. Vale para a desenhada e para a importada."""
+    html = escalacao_html(Carreira.nova(LIGAS, clube, seed=42))
+    ids = re.findall(r'id="([^"]+)"', html)
+    repetidos = {i for i in ids if ids.count(i) > 1}
+    assert not repetidos, f"ids repetidos: {sorted(repetidos)}"
 
 
 def test_o_nome_do_jogador_e_escapado():
