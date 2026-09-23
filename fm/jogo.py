@@ -9,6 +9,8 @@ quando existir interface grafica, ela troca este arquivo e mais nada.
 
 from __future__ import annotations
 
+from fm.camisa import LARGURA as CAMISA_LARGURA
+from fm.camisa import camisa, legenda
 from fm.carreira import Carreira
 from fm.financas import folha_anual
 from fm.tatica import ESTILOS, FORMACOES, MARCACOES, Tatica
@@ -96,30 +98,61 @@ def tela_tabela(c: Carreira) -> None:
 # ---------------------------------------------------------------- escalacao
 
 def _desenhar_campo(c: Carreira, onze: list[int], tatica: Tatica) -> None:
-    """Campo em texto, com o onze distribuido por linha, como na tela de escalar."""
+    """O onze em campo, cada um na camisa do clube, com nome e numeros embaixo.
+
+    Cinco linhas por fileira: tres de camisa, o nome e os numeros. O overall vai no peito
+    porque e o que se le de relance; posicao e energia ficam na linha de baixo.
+    """
+    clube = c.clube
     jogadores = [c.world.players[i] for i in onze]
     por_grupo: dict[str, list] = {}
     for p in jogadores:
         por_grupo.setdefault(p.position, []).append(p)
+
     print()
     print("  " + "_" * (LARGURA - 4))
-    for grupo, rotulo in (("FW", "ataque"), ("MF", "meio"), ("DF", "defesa"),
-                          ("GK", "gol")):
-        linha = por_grupo.get(grupo, [])
+    for grupo, rotulo in (("FW", "ataque"), ("MF", "meio"), ("DF", "defesa"), ("GK", "gol")):
+        linha = sorted(por_grupo.get(grupo, []), key=lambda p: -p.overall)
         if not linha:
             continue
-        largura_util = LARGURA - 14
-        celula = largura_util // max(len(linha), 1)
-        # o nome encolhe conforme a linha enche: com 5 zagueiros ainda tem de caber
-        limite = max(4, celula - 10)
-        nomes = []
-        for p in linha:
-            curto = p.name if len(p.name) <= limite else p.name[:limite - 1] + "."
-            nomes.append(f"{curto} {p.overall}/{p.condition}%")
-        corpo = "".join(n.center(celula) for n in nomes)
-        print(f"  |{rotulo:>7s} {corpo[:largura_util]:<{largura_util}s}|")
-        print(f"  |{'':>7s} {'':<{largura_util}s}|")
+        util = LARGURA - 14
+        celula = max(CAMISA_LARGURA + 1, util // max(len(linha), 1))
+
+        # o goleiro veste outra cor: e a regra do futebol e ajuda a ler o campo
+        cores = ((clube.color_secondary, clube.color_primary) if grupo == "GK"
+                 else (clube.color_primary, clube.color_secondary))
+        desenhos = [camisa(*cores, numero=str(p.overall)) for p in linha]
+
+        # Toda a coluna -- camisa, nome e numeros -- passa pelo MESMO centrador, com a
+        # largura visivel dita explicitamente. Misturar str.center com o desenho colorido
+        # desalinhava o nome do peito em uma ou duas colunas, e a fileira inteira entortava.
+        colunas = []
+        for p, desenho in zip(linha, desenhos, strict=True):
+            # o nome tem a largura da camisa: se puder crescer ate a celula inteira,
+            # um "Benjamin Rollheiser" fica mais largo que o desenho e desencosta a coluna
+            colunas.append([*[(d, CAMISA_LARGURA) for d in desenho],
+                            (legenda(p.name, CAMISA_LARGURA), CAMISA_LARGURA),
+                            (f"{p.position} {p.condition:3d}%".center(CAMISA_LARGURA),
+                             CAMISA_LARGURA)])
+
+        for altura in range(5):
+            faixa = "".join(_centrado(*col[altura], celula) for col in colunas)
+            rot = rotulo if altura == 1 else ""
+            sobra = " " * max(0, util - celula * len(linha))
+            print(f"  |{rot:>7s} {faixa}{sobra}|")
+        print(f"  |{'':>7s} {'':<{util}s}|")
     print("  " + "-" * (LARGURA - 4))
+
+
+def _centrado(pintado: str, visivel: int, celula: int) -> str:
+    """Centraliza um texto que tem codigos de cor dentro.
+
+    str.center contaria os bytes do ANSI como largura e desalinharia a fileira inteira --
+    o desenho tem 11 colunas na tela e umas setenta no arquivo.
+    """
+    sobra = max(0, celula - visivel)
+    esquerda = sobra // 2
+    return " " * esquerda + pintado + " " * (sobra - esquerda)
 
 
 def tela_escalacao(c: Carreira) -> None:
