@@ -74,6 +74,14 @@ def tela_lobby(c: Carreira) -> None:
              if c.copas[n].esta_vivo(c.clube_id) and not c.copas[n].acabou]
     if vivas:
         print(f"  DISPUTA  {', '.join(vivas)}")
+
+    a = c.aprovacao
+    if a is not None:
+        print(_linha())
+        print(f"  META     {a.meta.texto if a.meta else '-'}")
+        print(f"  TORCIDA  {_barra(int(a.torcida))} {a.torcida:4.0f}%"
+              f"      DIRETORIA  {_barra(int(a.diretoria))} {a.diretoria:4.0f}%")
+        print(f"  CLIMA    {a.clima}")
     print(_linha())
 
     print(f"  {'':2s}{'pos':4s}{'jogador':24s}{'ovr':>4}{'pot':>5}{'id':>4}"
@@ -89,6 +97,12 @@ def tela_lobby(c: Carreira) -> None:
     if len(elenco) > 24:
         print(f"  ... e mais {len(elenco) - 24} no elenco")
     print(_linha())
+    if c.demitido:
+        print("  VOCE FOI DEMITIDO")
+        print(f"  {c.aprovacao.motivo}")
+        print(_linha())
+        print("  [3] Tabela   [4] Elenco completo   [0] Sair")
+        return
     acao = "[2] ENCERRAR TEMPORADA" if c.acabou else "[2] Jogar rodada"
     print(f"  [1] Escalar   {acao}   [3] Tabela   [4] Elenco completo"
           "   [5] Salvar   [0] Sair")
@@ -404,6 +418,20 @@ def tela_fim_de_temporada(c: Carreira) -> None:
         if c.clube.balance < 0:
             print("           no vermelho: o clube sera obrigado a vender")
 
+    clima = r.get("clima")
+    if clima:
+        print(_linha())
+        veredito = "META CUMPRIDA" if clima["bateu_a_meta"] else "META NAO CUMPRIDA"
+        print(f"  DIRETORIA  a meta era {clima['meta']}  ->  {veredito}")
+        print(f"             torcida {clima['torcida']:.0f}%   "
+              f"diretoria {clima['diretoria']:.0f}%")
+    if r.get("demitido"):
+        print()
+        print("  " + "!" * (LARGURA - 4))
+        print("  VOCE FOI DEMITIDO".center(LARGURA - 4))
+        print(f"  {r['motivo_da_demissao']}".center(LARGURA - 4))
+        print("  " + "!" * (LARGURA - 4))
+
     if r.get("minha_campanha"):
         print(_linha())
         print("  SUAS COPAS")
@@ -452,12 +480,17 @@ def jogar(c: Carreira) -> None:
         tela_lobby(c)
         escolha = input("  > ").strip().lower()
         if escolha == "1":
+            if c.demitido:
+                print("  !! voce nao trabalha mais aqui")
+                continue
             if c.acabou:
                 print("  !! a temporada acabou")
                 continue
             tela_escalacao(c)
         elif escolha == "2":
-            if c.acabou:
+            if c.demitido:
+                print("  !! voce nao trabalha mais aqui")
+            elif c.acabou:
                 tela_fim_de_temporada(c)
             else:
                 tela_partida(c)

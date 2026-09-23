@@ -79,6 +79,7 @@ class Carreira:
     # quem chama nao consegue deduzir isso do compromisso que leu antes de avancar.
     ultimo_compromisso: tuple[str, str] = ("", "")
     valor_de_elenco: dict = field(default_factory=dict)
+    aprovacao: object | None = None
 
     @classmethod
     def nova(cls, ligas: list[str] | str, clube: str, seed: int = 2027) -> Carreira:
@@ -119,6 +120,7 @@ class Carreira:
         from fm.financas import valor_do_elenco
         self.valor_de_elenco = {c.id: valor_do_elenco(self.world, c.id)
                                 for c in self.world.clubs.values()}
+        self._nova_meta()
 
     def _montar_agenda(self) -> None:
         """Intercala as etapas de copa entre as rodadas de liga.
@@ -180,6 +182,75 @@ class Carreira:
                 if copa not in fora:
                     fora.append(copa)
         return tuple(fora)
+
+    def _nova_meta(self) -> None:
+        """A diretoria cobra uma meta por temporada, pela forca do elenco."""
+        from fm.diretoria import Aprovacao, definir_meta
+
+        cfg = load_league(self.liga)
+        meta = definir_meta(self.world, self.clube_id,
+                            list(self.world.leagues[cfg["id"]].club_ids),
+                            int(cfg.get("tier", 1)))
+        if self.aprovacao is None:
+            self.aprovacao = Aprovacao()
+        self.aprovacao.meta = meta
+
+    def _meus_ultimos(self, quantos: int) -> list[str]:
+        """V/E/D dos ultimos jogos do clube, em qualquer competicao."""
+        fora: list[str] = []
+        jogos = list(self.jogos())
+        for a in self.copas.values():
+            jogos += a.resultados_do_ano
+        for r in jogos[-quantos * 3:]:
+            if self.clube_id not in (r.home, r.away):
+                continue
+            meus = r.goals_home if r.home == self.clube_id else r.goals_away
+            deles = r.goals_away if r.home == self.clube_id else r.goals_home
+            fora.append("V" if meus > deles else "E" if meus == deles else "D")
+        return fora[-quantos:]
+
+    def avaliar_clima(self) -> object:
+        """Atualiza torcida e diretoria com a situacao de agora."""
+        from fm.diretoria import JOGOS_DE_MEMORIA, avaliar
+        from fm.financas import folha_anual, receita_anual
+
+        cfg = load_league(self.liga)
+        tabela = self.tabela()
+        clubes = len(tabela)
+        posicao = self.posicao() if tabela else clubes
+        campanhas = [(a.etapas_vividas[self.clube_id], a.etapas_totais,
+                      a.esta_vivo(self.clube_id) and not a.acabou)
+                     for a in self.copas.values()
+                     if self.clube_id in a.etapas_vividas and a.etapas_totais]
+        titulos = sum(1 for a in self.copas.values() if a.campeao == self.clube_id)
+        receita = receita_anual(self.world, self.clube_id, int(cfg.get("tier", 1)),
+                                self.valor_de_elenco.get(self.clube_id))
+        folha = folha_anual(self.world, self.clube_id)
+        return avaliar(
+            self.aprovacao, posicao=posicao, clubes=clubes,
+            ultimos=self._meus_ultimos(JOGOS_DE_MEMORIA),
+            campanhas=campanhas, titulos=titulos,
+            saldo=receita - folha, receita=receita,
+            caixa=self.clube.balance, folha=folha)
+
+    def _checar_emprego(self, fim_da_temporada: bool = False,
+                        rebaixado: bool = False) -> None:
+        """Atualiza o clima e, se for o caso, encerra o trabalho no clube."""
+        from fm.diretoria import decidir_demissao
+
+        self.avaliar_clima()
+        tabela = self.tabela()
+        motivo = decidir_demissao(
+            self.aprovacao, rodada=self.rodada, fim_da_temporada=fim_da_temporada,
+            posicao=self.posicao() if tabela else len(tabela),
+            clubes=len(tabela) or 20, rebaixado=rebaixado)
+        if motivo and not self.aprovacao.demitido:
+            self.aprovacao.demitido = True
+            self.aprovacao.motivo = motivo
+
+    @property
+    def demitido(self) -> bool:
+        return bool(self.aprovacao and self.aprovacao.demitido)
 
     def _titulos_de_copa(self) -> dict[str, list[int]]:
         """Campeao e vice de cada copa, na ordem em que as regras de vaga esperam."""
@@ -410,6 +481,7 @@ class Carreira:
         self._gastar_energia(jogaram, tatica)
         self.rodada = n
         self.data += 1
+        self._checar_emprego()
         return todos, detalhada
 
     def _minha_partida(self, jogo: Fixture, rng, style, tatica: Tatica,
@@ -465,6 +537,7 @@ class Carreira:
 
         jogaram = {f.home for f in etapa.fixtures} | {f.away for f in etapa.fixtures}
         self._gastar_energia(jogaram, tatica)
+        self._checar_emprego()
         return resultados, detalhada
 
     def _gastar_energia(self, jogaram: set[int], tatica: Tatica) -> None:
@@ -545,6 +618,14 @@ class Carreira:
             key=lambda d: -d[2])[:6]
 
         minha = next((m for m in mudancas if m.clube == self.clube_id), None)
+        # a régua do ano: a diretoria cobra a meta que ela mesma deu em marco
+        clima_final = {
+            "torcida": round(self.aprovacao.torcida, 1),
+            "diretoria": round(self.aprovacao.diretoria, 1),
+            "meta": self.aprovacao.meta.texto if self.aprovacao.meta else "",
+            "bateu_a_meta": bool(self.aprovacao.meta
+                                 and minha_posicao <= self.aprovacao.meta.posicao),
+        }
         resumo = {
             "temporada": self.temporada,
             "campeoes": campeoes,
@@ -572,6 +653,9 @@ class Carreira:
                 for n, a in self.copas.items()
                 if self.clube_id in a.etapas_vividas},
             "premios_de_copa": premios_de_copa.get(self.clube_id, 0),
+            "clima": clima_final,
+            "demitido": False,       # preenchido logo abaixo, depois da regua do ano
+            "motivo_da_demissao": "",
             "aposentadorias_do_clube": saidas,
             "destaques_do_clube": destaques,
             "base_do_clube": base,
@@ -585,6 +669,17 @@ class Carreira:
         self.world.formacao_fixa.clear()
         for p in self.world.players.values():
             p.condition = 100
+        from fm.diretoria import decidir_demissao
+        motivo = decidir_demissao(
+            self.aprovacao, rodada=self.rodada, fim_da_temporada=True,
+            posicao=minha_posicao, clubes=len(tabelas[minha_liga]),
+            rebaixado=bool(minha and not minha.subiu))
+        if motivo and not self.aprovacao.demitido:
+            self.aprovacao.demitido = True
+            self.aprovacao.motivo = motivo
+        resumo["demitido"] = self.aprovacao.demitido
+        resumo["motivo_da_demissao"] = self.aprovacao.motivo
+
         self.tabelas_do_ano_anterior = self._tabelas_para_classificacao(tabelas, titulos)
         self.exportados = {}
         self._novo_calendario()
