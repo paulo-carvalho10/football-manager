@@ -118,10 +118,13 @@ def _desenhar_campo(c: Carreira, onze: list[int], tatica: Tatica) -> None:
         util = LARGURA - 14
         celula = max(CAMISA_LARGURA + 1, util // max(len(linha), 1))
 
-        # o goleiro veste outra cor: e a regra do futebol e ajuda a ler o campo
-        cores = ((clube.color_secondary, clube.color_primary) if grupo == "GK"
-                 else (clube.color_primary, clube.color_secondary))
-        desenhos = [camisa(*cores, numero=str(p.overall)) for p in linha]
+        # A camisa tem cores proprias quando o uniforme difere da cor-tema; e o goleiro
+        # veste o inverso, que e a regra do futebol e ajuda a ler o campo de relance.
+        pano = clube.kit_body or clube.color_primary
+        detalhe = clube.kit_detail or clube.color_secondary
+        cores = (detalhe, pano) if grupo == "GK" else (pano, detalhe)
+        padrao = "liso" if grupo == "GK" else clube.kit_pattern
+        desenhos = [camisa(*cores, padrao=padrao) for _ in linha]
 
         # Toda a coluna -- camisa, nome e numeros -- passa pelo MESMO centrador, com a
         # largura visivel dita explicitamente. Misturar str.center com o desenho colorido
@@ -130,10 +133,13 @@ def _desenhar_campo(c: Carreira, onze: list[int], tatica: Tatica) -> None:
         for p, desenho in zip(linha, desenhos, strict=True):
             # o nome tem a largura da camisa: se puder crescer ate a celula inteira,
             # um "Benjamin Rollheiser" fica mais largo que o desenho e desencosta a coluna
+            # overall junto de posicao e energia, fora da camisa: numero no peito
+            # disputa espaco com o padrao e some numa camisa listrada
+            numeros = f"{p.position} {p.overall} {p.condition}%"
             colunas.append([*[(d, CAMISA_LARGURA) for d in desenho],
                             (legenda(p.name, CAMISA_LARGURA), CAMISA_LARGURA),
-                            (f"{p.position} {p.condition:3d}%".center(CAMISA_LARGURA),
-                             CAMISA_LARGURA)])
+                            (numeros.center(CAMISA_LARGURA), max(CAMISA_LARGURA,
+                                                                 len(numeros)))])
 
         for altura in range(5):
             faixa = "".join(_centrado(*col[altura], celula) for col in colunas)

@@ -17,6 +17,8 @@ Formato:
     id_fonte = "20016"                          # opcional: id na fonte (CBF, API, ...)
     apelido = "CEX"                             # opcional
     cores = ["#c8102e", "#ffffff"]              # opcional
+    camisa = ["#ffffff", "#c8102e"]             # opcional: pano e detalhe, se difere do tema
+    padrao = "listras"                          # opcional: liso, listras, aros, faixa, diagonal
     # Escalacao nominal e OPCIONAL. O que faltar para 24 jogadores e gerado.
     [[clubes.jogadores]]
     nome = "Nome do Jogador"        # unico campo obrigatorio
@@ -81,6 +83,8 @@ class PackClub:
     forca: float
     apelido: str | None = None
     cores: tuple[str, str] | None = None
+    camisa: tuple[str, str] | None = None   # pano e detalhe; None = usa as cores do tema
+    padrao: str | None = None     # padrao da camisa; None = liso
     id_fonte: str | None = None   # id do clube na fonte do pack (ex.: Codigo_Clube da CBF)
     valor_elenco: int | None = None   # valor total do elenco em EUR (base do forca)
     jogadores: list[PackPlayer] = field(default_factory=list)
@@ -145,6 +149,8 @@ def load_pack(name: str) -> Pack:
         clubes.append(PackClub(
             nome=c["nome"], forca=float(c["forca"]), apelido=c.get("apelido"),
             cores=(cores[0], cores[1]) if cores else None,
+            camisa=(camisa[0], camisa[1]) if (camisa := c.get("camisa")) else None,
+            padrao=c.get("padrao"),
             id_fonte=c.get("id_fonte"),
             valor_elenco=int(c["valor_elenco"]) if "valor_elenco" in c else None,
             jogadores=jogadores))

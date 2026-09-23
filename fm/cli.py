@@ -353,6 +353,26 @@ def cmd_jogar(args):
     jogar(c)
 
 
+def cmd_cores(args):
+    """Reaplica cor, camisa e padrao nos packs ja gerados.
+
+    Separa a edicao visual da importacao: trocar o padrao da camisa do Gremio nao deveria
+    exigir rede nem re-importar o Transfermarkt por cima dos ajustes manuais de jogador.
+    """
+    from pathlib import Path
+
+    from fm.importer.build import PACKS_DIR, reaplicar_cores
+
+    packs = [PACKS_DIR / f"{args.pack}.toml"] if args.pack else None
+    if packs and not packs[0].exists():
+        raise SystemExit(f"pack {args.pack!r} nao existe em {PACKS_DIR}")
+    resumo = reaplicar_cores([Path(x) for x in packs] if packs else None)
+    for nome, n in sorted(resumo.items()):
+        print(f"  {nome:24s} {n:3d} clubes com cor")
+    total = sum(resumo.values())
+    print(f"{total} clubes atualizados. Sem cor ficam com a paleta generica.")
+
+
 def cmd_diagnostico(args):
     """Roda os diagnosticos da conversao valor -> overall sobre um pack importado."""
     from fm.diagnostics import diagnosticar
@@ -433,6 +453,11 @@ def main(argv=None):
     p.add_argument("--clube", default=None, help="sem isto, lista os clubes das ligas")
     p.add_argument("--carregar", default=None, help="nome de um save")
     p.set_defaults(func=cmd_jogar)
+
+    p = sub.add_parser("cores", parents=[common],
+                       help="reaplica data/cores/*.toml nos packs, sem rede")
+    p.add_argument("--pack", default=None, help="so este pack (por omissao, todos)")
+    p.set_defaults(func=cmd_cores)
 
     p = sub.add_parser("diagnostico", parents=[common],
                        help="valida a conversao valor -> overall de um pack")

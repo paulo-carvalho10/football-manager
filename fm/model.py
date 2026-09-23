@@ -91,8 +91,15 @@ class Club:
     league_id: str
     reputation: int             # 0-100: alimenta receita, propostas e mercado
     designed_strength: float    # forca alvo do perfil da liga (referencia de autoria)
-    color_primary: str
+    color_primary: str          # cor-TEMA do clube, para a interface
     color_secondary: str
+    # A camisa e outra coisa. O Corinthians tem tema preto e camisa branca; o Sao Paulo,
+    # tema vermelho e camisa branca com faixas. Usar a cor-tema como cor de pano vestia
+    # metade da Serie A com o uniforme errado, entao a camisa tem os campos dela. Vazio
+    # = a camisa e o tema, que e o caso da maioria.
+    kit_body: str = ""
+    kit_detail: str = ""
+    kit_pattern: str = "liso"   # ver fm/camisa.PADROES
     player_ids: list[int] = field(default_factory=list)
     balance: int = 0
 

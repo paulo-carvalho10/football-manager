@@ -32,22 +32,32 @@ ID_CBF = {
 
 MINUTOS_POR_JOGO = 90
 CORES_DIR = Path(__file__).resolve().parent.parent.parent / "data" / "cores"
+PACKS_DIR = Path(__file__).resolve().parent.parent.parent / "data" / "packs"
 
 
-def carregar_cores() -> dict[str, tuple[str, str]]:
+def carregar_cores(pack: str | None = None) -> dict[str, dict]:
     """Cores por nome de clube, de data/cores/*.toml.
 
     Fora do pack de proposito: o pack e gerado, entao cor editada nele sumiria na proxima
     importacao.
+
+    O `packs` do arquivo delimita a que packs ele se aplica, porque nome de clube COLIDE
+    entre paises: "Athletic Club" e o Bilbao na Espanha e o de Sao Joao del-Rei na Serie B
+    do Brasil, e sem escopo o Bilbao saiu vestido de preto e amarelo. Arquivo sem `packs`
+    vale para todos, que era o comportamento antigo.
     """
     import tomllib
-    fora: dict[str, tuple[str, str]] = {}
+    fora: dict[str, dict] = {}
     if not CORES_DIR.exists():
         return fora
     for arq in sorted(CORES_DIR.glob("*.toml")):
         with arq.open("rb") as fh:
-            for c in tomllib.load(fh).get("clubes", []):
-                fora[c["nome"]] = (c["primaria"], c["secundaria"])
+            dados = tomllib.load(fh)
+        escopo = dados.get("packs")
+        if pack is not None and escopo and pack not in escopo:
+            continue
+        for c in dados.get("clubes", []):
+            fora[c["nome"]] = c
     return fora
 
 
@@ -59,7 +69,7 @@ class ClubeMontado:
     id_cbf: str | None
     id_tm: str
     jogadores: list[dict]
-    cores: tuple[str, str] | None = None
+    cores: dict | None = None   # a entrada inteira de data/cores/*.toml
 
 
 def baixar_tudo(competicao: str = "bra_a") -> tuple[
@@ -101,7 +111,10 @@ def escrever_pack(montados: list[ClubeMontado], destino, cabecalho: str) -> int:
             L.append(f'id_fonte = "{c.id_cbf}"')
         L.append(f"valor_elenco = {c.valor_elenco}")
         if c.cores:
-            L.append(f'cores = ["{c.cores[0]}", "{c.cores[1]}"]')
+            L.append(f'cores = ["{c.cores["primaria"]}", "{c.cores["secundaria"]}"]')
+            if camisa := c.cores.get("camisa"):
+                L.append(f'camisa = ["{camisa[0]}", "{camisa[1]}"]')
+            L.append(f'padrao = "{c.cores.get("padrao", "liso")}"')
         for j in sorted(c.jogadores, key=lambda x: (-x["ovr"], x["nome"])):
             n_jogadores += 1
             L.append("")
@@ -203,3 +216,42 @@ def aplicar_ajustes(pack: str, montados) -> list[str]:
     """Ajustes manuais do arquivo data/ajustes/<pack>.toml, aplicados apos a conversao."""
     from fm.importer.ajustes import aplicar
     return aplicar(pack, montados)
+
+
+def reaplicar_cores(packs: list[Path] | None = None) -> dict[str, int]:
+    """Reescreve `cores`, `camisa` e `padrao` nos packs ja gerados, a partir de
+    data/cores/*.toml.
+
+    Existe para separar a edicao visual da importacao. Trocar o padrao da camisa do Gremio
+    nao deveria exigir rede, cache e uma re-importacao inteira do Transfermarkt -- e pack
+    regerado tambem sobrescreveria qualquer ajuste manual de jogador.
+
+    Mexe SO nas tres linhas de cor de cada clube, deixando o resto do arquivo intacto.
+    """
+    packs = packs or sorted(PACKS_DIR.glob("*.toml"))
+    resumo: dict[str, int] = {}
+
+    for caminho in packs:
+        cores = carregar_cores(caminho.stem)
+        linhas = caminho.read_text(encoding="utf-8").splitlines()
+        fora: list[str] = []
+        clube: dict | None = None
+        trocados = 0
+        for linha in linhas:
+            if linha.startswith("nome = "):
+                clube = cores.get(linha[7:].strip().strip('"'))
+            elif linha.startswith("  "):
+                clube = None                       # entrou nos jogadores
+            if linha.startswith(("cores = ", "camisa = ", "padrao = ")):
+                continue                           # as antigas saem; as novas entram abaixo
+            fora.append(linha)
+            if clube is not None and linha.startswith("valor_elenco = "):
+                fora.append(f'cores = ["{clube["primaria"]}", "{clube["secundaria"]}"]')
+                if camisa := clube.get("camisa"):
+                    fora.append(f'camisa = ["{camisa[0]}", "{camisa[1]}"]')
+                fora.append(f'padrao = "{clube.get("padrao", "liso")}"')
+                trocados += 1
+                clube = None
+        caminho.write_text("\n".join(fora) + "\n", encoding="utf-8")
+        resumo[caminho.stem] = trocados
+    return resumo

@@ -256,6 +256,9 @@ def generate_league(world: World, cfg: dict, streams: Streams, *, next_id: list[
             id=club_id, name=nome, country=country, league_id=league.id,
             reputation=reputation, designed_strength=float(strength),
             color_primary=cores[0], color_secondary=cores[1],
+            kit_body=(pack_club.camisa[0] if pack_club and pack_club.camisa else ""),
+            kit_detail=(pack_club.camisa[1] if pack_club and pack_club.camisa else ""),
+            kit_pattern=(pack_club.padrao if pack_club and pack_club.padrao else "liso"),
             balance=int(reputation ** 2 * 12_000),
         )
         _build_squad(world, club, pack_club, strength, rng, next_id, country,

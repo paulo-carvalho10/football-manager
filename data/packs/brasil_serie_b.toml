@@ -16,6 +16,8 @@ fonte = "Transfermarkt BRA2 (valores de mercado); ovr/pot derivados por fm.ratin
 nome = "Fortaleza"
 forca = 67.4
 valor_elenco = 33400000
+cores = ["#0B3F8C", "#D8232A"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Maílton"
@@ -392,6 +394,8 @@ valor_elenco = 33400000
 nome = "Sport Recife"
 forca = 65.1
 valor_elenco = 24880000
+cores = ["#D8232A", "#111111"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Patrick de Paula"
@@ -747,6 +751,8 @@ valor_elenco = 24880000
 nome = "Juventude"
 forca = 61.3
 valor_elenco = 15180000
+cores = ["#0B6B3A", "#F2F2F2"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Mandaca"
@@ -1152,6 +1158,8 @@ valor_elenco = 15180000
 nome = "Ceará"
 forca = 60.5
 valor_elenco = 13530000
+cores = ["#1A1A1A", "#F2F2F2"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Zanocelo"
@@ -1499,6 +1507,8 @@ valor_elenco = 13530000
 nome = "Goiás"
 forca = 59.9
 valor_elenco = 12500000
+cores = ["#0B7A3B", "#F2F2F2"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Lourenço"
@@ -1858,6 +1868,8 @@ valor_elenco = 12500000
 nome = "Grêmio Novorizontino"
 forca = 59.6
 valor_elenco = 12100000
+cores = ["#D8232A", "#111111"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Rômulo"
@@ -2254,6 +2266,8 @@ valor_elenco = 12100000
 nome = "Athletic Club"
 forca = 59.6
 valor_elenco = 12080000
+cores = ["#1A1A1A", "#F0C419"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Lucas Belezi"
@@ -2653,6 +2667,8 @@ valor_elenco = 12080000
 nome = "Criciúma"
 forca = 59.5
 valor_elenco = 11850000
+cores = ["#F0C419", "#111111"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Marcelo Hermes"
@@ -3039,6 +3055,8 @@ valor_elenco = 11850000
 nome = "Atlético Goianiense"
 forca = 59.3
 valor_elenco = 11550000
+cores = ["#D8232A", "#111111"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "David Terans"
@@ -3401,6 +3419,8 @@ valor_elenco = 11550000
 nome = "CRB"
 forca = 59.2
 valor_elenco = 11450000
+cores = ["#D8232A", "#F2F2F2"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Danielzinho"
@@ -3777,6 +3797,8 @@ valor_elenco = 11450000
 nome = "Vila Nova"
 forca = 58.9
 valor_elenco = 11000000
+cores = ["#D8232A", "#F2F2F2"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Higor Meritão"
@@ -4129,6 +4151,8 @@ valor_elenco = 11000000
 nome = "Cuiabá"
 forca = 58.8
 valor_elenco = 10850000
+cores = ["#0B7A3B", "#F0C419"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Pedro Henrique"
@@ -4516,6 +4540,8 @@ valor_elenco = 10850000
 nome = "Operário FEC"
 forca = 57.6
 valor_elenco = 9280000
+cores = ["#1A1A1A", "#F2F2F2"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Gabriel Boschilia"
@@ -4851,6 +4877,8 @@ valor_elenco = 9280000
 nome = "Avaí"
 forca = 56.6
 valor_elenco = 8200000
+cores = ["#0B4EA2", "#F2F2F2"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Allyson"
@@ -5228,6 +5256,8 @@ valor_elenco = 8200000
 nome = "São Bernardo"
 forca = 56.4
 valor_elenco = 7930000
+cores = ["#F2C200", "#1A1A1A"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Jemerson"
@@ -5636,6 +5666,7 @@ forca = 54.8
 id_fonte = "60175"
 valor_elenco = 6450000
 cores = ["#1A1A1A", "#F2F2F2"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Everton Morelli"
@@ -6003,6 +6034,8 @@ cores = ["#1A1A1A", "#F2F2F2"]
 nome = "Londrina"
 forca = 54.4
 valor_elenco = 6100000
+cores = ["#0B4EA2", "#F2F2F2"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "João Vitor"
@@ -6483,6 +6516,8 @@ valor_elenco = 6100000
 nome = "América Mineiro"
 forca = 54.1
 valor_elenco = 5880000
+cores = ["#0B6B3A", "#F2F2F2"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Mastriani"
@@ -6836,6 +6871,8 @@ valor_elenco = 5880000
 nome = "AA Ponte Preta"
 forca = 51.8
 valor_elenco = 4330000
+cores = ["#1A1A1A", "#F2F2F2"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Lucas Cunha"
@@ -7108,6 +7145,8 @@ valor_elenco = 4330000
 nome = "Náutico"
 forca = 49.7
 valor_elenco = 3300000
+cores = ["#D8232A", "#F2F2F2"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Jean Carlos"

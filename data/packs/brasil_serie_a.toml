@@ -18,6 +18,7 @@ forca = 79.7
 id_fonte = "20002"
 valor_elenco = 209480000
 cores = ["#006437", "#F2F2F2"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Andreas Pereira"
@@ -334,6 +335,7 @@ forca = 79.4
 id_fonte = "20016"
 valor_elenco = 204250000
 cores = ["#E2231A", "#111111"]
+padrao = "aros"
 
   [[clubes.jogadores]]
   nome = "Lucas Paquetá"
@@ -652,6 +654,7 @@ forca = 77.3
 id_fonte = "59849"
 valor_elenco = 168400000
 cores = ["#0B4EA2", "#F2F2F2"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Gerson"
@@ -1023,6 +1026,8 @@ forca = 76.1
 id_fonte = "20001"
 valor_elenco = 149800000
 cores = ["#1A1A1A", "#F2F2F2"]
+camisa = ["#F2F2F2", "#1A1A1A"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Breno Bidon"
@@ -1421,6 +1426,8 @@ forca = 74.8
 id_fonte = "60646"
 valor_elenco = 133350000
 cores = ["#1A1A1A", "#F2F2F2"]
+camisa = ["#F2F2F2", "#1A1A1A"]
+padrao = "diagonal"
 
   [[clubes.jogadores]]
   nome = "Léo Jardim"
@@ -1840,6 +1847,7 @@ forca = 73.4
 id_fonte = "60175"
 valor_elenco = 117100000
 cores = ["#1A1A1A", "#F2F2F2"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Danilo"
@@ -2219,6 +2227,7 @@ forca = 73.0
 id_fonte = "20014"
 valor_elenco = 112630000
 cores = ["#8B1538", "#0B6B3A"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Hércules"
@@ -2619,6 +2628,8 @@ forca = 72.4
 id_fonte = "61377"
 valor_elenco = 106200000
 cores = ["#0B63B0", "#D8232A"]
+camisa = ["#F2F2F2", "#0B63B0"]
+padrao = "faixa"
 
   [[clubes.jogadores]]
   nome = "Jean Lucas"
@@ -2989,6 +3000,8 @@ forca = 72.3
 id_fonte = "20008"
 valor_elenco = 105100000
 cores = ["#111111", "#F2F2F2"]
+camisa = ["#F2F2F2", "#111111"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Neymar"
@@ -3400,6 +3413,8 @@ forca = 71.5
 id_fonte = "20007"
 valor_elenco = 97850000
 cores = ["#D8232A", "#F2F2F2"]
+camisa = ["#F2F2F2", "#D8232A"]
+padrao = "faixa"
 
   [[clubes.jogadores]]
   nome = "Cleiton"
@@ -3809,6 +3824,7 @@ forca = 71.4
 id_fonte = "62194"
 valor_elenco = 96700000
 cores = ["#1A1A1A", "#F2F2F2"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Renan Lodi"
@@ -4180,6 +4196,8 @@ forca = 69.9
 id_fonte = "20005"
 valor_elenco = 84300000
 cores = ["#D4232A", "#111111"]
+camisa = ["#F2F2F2", "#D4232A"]
+padrao = "faixa"
 
   [[clubes.jogadores]]
   nome = "Marcos Antônio"
@@ -4633,6 +4651,7 @@ forca = 69.3
 id_fonte = "20013"
 valor_elenco = 79950000
 cores = ["#1A8FC1", "#111111"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Carlos Vinícius"
@@ -5029,6 +5048,7 @@ forca = 68.7
 id_fonte = "20011"
 valor_elenco = 75500000
 cores = ["#D8232A", "#F2F2F2"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Alexandro Bernabei"
@@ -5386,6 +5406,7 @@ forca = 67.7
 id_fonte = "20052"
 valor_elenco = 68980000
 cores = ["#D8232A", "#111111"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Kevin Viveros"
@@ -5737,6 +5758,7 @@ forca = 63.2
 id_fonte = "61590"
 valor_elenco = 45350000
 cores = ["#0B6B3A", "#F2F2F2"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Jacy"
@@ -6105,6 +6127,7 @@ forca = 62.7
 id_fonte = "20018"
 valor_elenco = 43480000
 cores = ["#D8232A", "#111111"]
+padrao = "listras"
 
   [[clubes.jogadores]]
   nome = "Lucas Arcanjo"
@@ -6518,6 +6541,7 @@ forca = 58.5
 id_fonte = "20385"
 valor_elenco = 29480000
 cores = ["#F0C419", "#0B6B3A"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Neto Moura"
@@ -6899,6 +6923,7 @@ forca = 57.0
 id_fonte = "20022"
 valor_elenco = 25630000
 cores = ["#14357F", "#F2F2F2"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Leonel Picco"
@@ -7279,6 +7304,7 @@ forca = 54.4
 id_fonte = "20086"
 valor_elenco = 20000000
 cores = ["#0B6B3A", "#F2F2F2"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Carvalheira"

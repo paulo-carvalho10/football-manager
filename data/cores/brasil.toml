@@ -1,111 +1,274 @@
-# Cores dos clubes: primaria e secundaria, em hexadecimal.
+# Cores dos clubes: tema, camisa e padrao.
 #
 # Ficam FORA do pack porque o pack e gerado pelo importador -- editar as cores la
-# sumiria na proxima importacao. O importador le este arquivo e grava as cores no
-# pack, do mesmo jeito que data/ajustes/ corrige overall.
+# sumiria na proxima importacao. O importador le este arquivo e grava no pack, do
+# mesmo jeito que data/ajustes/ corrige overall. Depois de editar aqui, rode
+# `python -m fm.cli cores` para reaplicar nos packs ja gerados, sem rede.
 #
-# Sao as cores que a interface usa como tema do clube. Pintar o Corinthians de verde
-# porque verde e a cor do jogo e pior que nao pintar nada: verde e a cor do rival.
+# TEMA (`primaria`/`secundaria`) e a cor de identidade do clube: e o que pinta a
+# interface. Pintar o Corinthians de verde porque verde e a cor do jogo e pior que
+# nao pintar nada: verde e a cor do rival.
+#
+# CAMISA (`camisa` = [pano, detalhe]) e outra coisa, e so aparece quando difere do
+# tema. O Corinthians tem tema preto e uniforme branco; o Sao Paulo, tema vermelho e
+# uniforme branco com faixas. Usar a cor-tema como pano vestia metade da Serie A com
+# o uniforme errado.
+#
+# PADRAO: liso, listras (verticais), aros (horizontais estreitos), faixa (uma faixa
+# no peito) ou diagonal. Sem `padrao`, liso.
+#
+# Confianca: os vinte da Serie A foram escritos com o uniforme 1 em mente e sao os
+# que eu conheco. Na Serie B varios ficaram `liso` porque nao sei o padrao -- liso
+# com a cor certa erra menos que listras inventadas.
 
-fonte = "cores conhecidas dos clubes; conferir antes de tratar como oficial"
+# A que packs este arquivo se aplica. Nome de clube colide entre paises: "Athletic Club"
+# e o Bilbao na Espanha e o de Sao Joao del-Rei aqui. Sem esta linha o Bilbao saiu de
+# preto e amarelo.
+packs = ["brasil_serie_a", "brasil_serie_b", "brasil"]
+
+fonte = "cores e padroes conhecidos dos clubes; conferir antes de tratar como oficial"
 verificado = false
+
+# --------------------------------------------------------------- Serie A
 
 [[clubes]]
 nome = "Flamengo"
 primaria = "#E2231A"
 secundaria = "#111111"
+padrao = "aros"
 
 [[clubes]]
 nome = "Palmeiras"
 primaria = "#006437"
 secundaria = "#F2F2F2"
+padrao = "liso"
 
 [[clubes]]
 nome = "Cruzeiro"
 primaria = "#0B4EA2"
 secundaria = "#F2F2F2"
+padrao = "liso"
 
 [[clubes]]
 nome = "Botafogo"
 primaria = "#1A1A1A"
 secundaria = "#F2F2F2"
+padrao = "listras"
 
 [[clubes]]
 nome = "Sao Paulo"
 primaria = "#D4232A"
 secundaria = "#111111"
+camisa = ["#F2F2F2", "#D4232A"]
+padrao = "faixa"
 
 [[clubes]]
 nome = "Atletico Mineiro"
 primaria = "#1A1A1A"
 secundaria = "#F2F2F2"
+padrao = "listras"
 
 [[clubes]]
 nome = "Fluminense"
 primaria = "#8B1538"
 secundaria = "#0B6B3A"
+padrao = "listras"
 
 [[clubes]]
 nome = "Internacional"
 primaria = "#D8232A"
 secundaria = "#F2F2F2"
+padrao = "liso"
 
 [[clubes]]
 nome = "Corinthians"
 primaria = "#1A1A1A"
 secundaria = "#F2F2F2"
+camisa = ["#F2F2F2", "#1A1A1A"]
+padrao = "liso"
 
 [[clubes]]
 nome = "Gremio"
 primaria = "#1A8FC1"
 secundaria = "#111111"
+padrao = "listras"
 
 [[clubes]]
 nome = "Bahia"
 primaria = "#0B63B0"
 secundaria = "#D8232A"
+camisa = ["#F2F2F2", "#0B63B0"]
+padrao = "faixa"
 
 [[clubes]]
 nome = "Vasco da Gama"
 primaria = "#1A1A1A"
 secundaria = "#F2F2F2"
+camisa = ["#F2F2F2", "#1A1A1A"]
+padrao = "diagonal"
 
 [[clubes]]
 nome = "Red Bull Bragantino"
 primaria = "#D8232A"
 secundaria = "#F2F2F2"
+camisa = ["#F2F2F2", "#D8232A"]
+padrao = "faixa"
 
 [[clubes]]
 nome = "Santos"
 primaria = "#111111"
 secundaria = "#F2F2F2"
+camisa = ["#F2F2F2", "#111111"]
+padrao = "liso"
 
 [[clubes]]
 nome = "Athletico Paranaense"
 primaria = "#D8232A"
 secundaria = "#111111"
+padrao = "listras"
 
 [[clubes]]
 nome = "Mirassol"
 primaria = "#F0C419"
 secundaria = "#0B6B3A"
+padrao = "liso"
 
 [[clubes]]
 nome = "Vitoria"
 primaria = "#D8232A"
 secundaria = "#111111"
+padrao = "listras"
 
 [[clubes]]
 nome = "Coritiba"
 primaria = "#0B6B3A"
 secundaria = "#F2F2F2"
+padrao = "listras"
 
 [[clubes]]
 nome = "Chapecoense"
 primaria = "#0B6B3A"
 secundaria = "#F2F2F2"
+padrao = "liso"
 
 [[clubes]]
 nome = "Remo"
 primaria = "#14357F"
 secundaria = "#F2F2F2"
+padrao = "liso"
+
+# --------------------------------------------------------------- Serie B
+
+[[clubes]]
+nome = "Fortaleza"
+primaria = "#0B3F8C"
+secundaria = "#D8232A"
+padrao = "listras"
+
+[[clubes]]
+nome = "Sport Recife"
+primaria = "#D8232A"
+secundaria = "#111111"
+padrao = "listras"
+
+[[clubes]]
+nome = "Juventude"
+primaria = "#0B6B3A"
+secundaria = "#F2F2F2"
+padrao = "listras"
+
+[[clubes]]
+nome = "Ceará"
+primaria = "#1A1A1A"
+secundaria = "#F2F2F2"
+padrao = "listras"
+
+[[clubes]]
+nome = "Goiás"
+primaria = "#0B7A3B"
+secundaria = "#F2F2F2"
+padrao = "liso"
+
+[[clubes]]
+nome = "Grêmio Novorizontino"
+primaria = "#D8232A"
+secundaria = "#111111"
+padrao = "liso"
+
+[[clubes]]
+nome = "Athletic Club"
+primaria = "#1A1A1A"
+secundaria = "#F0C419"
+padrao = "liso"
+
+[[clubes]]
+nome = "Criciúma"
+primaria = "#F0C419"
+secundaria = "#111111"
+padrao = "listras"
+
+[[clubes]]
+nome = "Atlético Goianiense"
+primaria = "#D8232A"
+secundaria = "#111111"
+padrao = "listras"
+
+[[clubes]]
+nome = "CRB"
+primaria = "#D8232A"
+secundaria = "#F2F2F2"
+padrao = "listras"
+
+[[clubes]]
+nome = "Vila Nova"
+primaria = "#D8232A"
+secundaria = "#F2F2F2"
+padrao = "listras"
+
+[[clubes]]
+nome = "Cuiabá"
+primaria = "#0B7A3B"
+secundaria = "#F0C419"
+padrao = "liso"
+
+[[clubes]]
+nome = "Operário FEC"
+primaria = "#1A1A1A"
+secundaria = "#F2F2F2"
+padrao = "listras"
+
+[[clubes]]
+nome = "Avaí"
+primaria = "#0B4EA2"
+secundaria = "#F2F2F2"
+padrao = "listras"
+
+[[clubes]]
+nome = "São Bernardo"
+primaria = "#F2C200"
+secundaria = "#1A1A1A"
+padrao = "liso"
+
+[[clubes]]
+nome = "Londrina"
+primaria = "#0B4EA2"
+secundaria = "#F2F2F2"
+padrao = "liso"
+
+[[clubes]]
+nome = "América Mineiro"
+primaria = "#0B6B3A"
+secundaria = "#F2F2F2"
+padrao = "listras"
+
+[[clubes]]
+nome = "AA Ponte Preta"
+primaria = "#1A1A1A"
+secundaria = "#F2F2F2"
+padrao = "listras"
+
+[[clubes]]
+nome = "Náutico"
+primaria = "#D8232A"
+secundaria = "#F2F2F2"
+padrao = "listras"
