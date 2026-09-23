@@ -165,12 +165,14 @@ def _para_path(loops: list[list[Ponto]], raio: float) -> str:
             corte = min(raio, le / 2, ls / 2)
             a = atual - entra / le * corte
             b = atual + sai / ls * corte
+            # uma casa decimal: em coordenadas de 0 a 100 isso e precisao de 0,1 pixel,
+            # invisivel na tela e um quarto a menos de arquivo
             if not d:
-                d.append(f"M{a[0]:.2f} {a[1]:.2f}")
+                d.append(f"M{a[0]:.1f} {a[1]:.1f}")
             else:
-                d.append(f"L{a[0]:.2f} {a[1]:.2f}")
+                d.append(f"L{a[0]:.1f} {a[1]:.1f}")
             if corte > 0.01:
-                d.append(f"Q{atual[0]:.2f} {atual[1]:.2f} {b[0]:.2f} {b[1]:.2f}")
+                d.append(f"Q{atual[0]:.1f} {atual[1]:.1f} {b[0]:.1f} {b[1]:.1f}")
         if d:
             partes.append(" ".join(d) + " Z")
     return " ".join(partes)
