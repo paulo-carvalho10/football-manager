@@ -64,6 +64,10 @@ class Andamento:
     # Copa do Brasil depois de eliminados e o torneio nunca terminava.
     ja_entraram: set[int] = field(default_factory=set)
     rodadas_da_fase_feitas: int = 0
+    # quantas etapas cada clube sobreviveu. E por aqui que a premiacao sabe ate onde cada
+    # um chegou -- cair nas oitavas tem de pagar mais que cair na primeira fase.
+    etapas_vividas: dict[int, int] = field(default_factory=dict)
+    etapas_totais: int = 0
 
     @property
     def acabou(self) -> bool:
@@ -217,6 +221,9 @@ def registrar(world: World, andamento: Andamento, resultados: list[Result],
     """Aplica os resultados da etapa e avanca a fase quando ela termina."""
     andamento.resultados += resultados
     andamento.resultados_do_ano += resultados
+    andamento.etapas_totais += 1
+    for cid in andamento.vivos:
+        andamento.etapas_vividas[cid] = andamento.etapas_totais
     andamento.pendentes.pop(0)
     andamento.rodada_da_fase += 1
     if not andamento.pendentes:

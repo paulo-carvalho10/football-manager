@@ -187,3 +187,35 @@ def test_o_save_atravessa_uma_data_de_copa(carreira):
         assert volta.clube.balance == c.clube.balance
     finally:
         caminho.unlink()
+
+
+def test_a_copa_paga_por_campanha_e_nao_so_por_titulo():
+    """REGRESSAO: so campeao e vice recebiam. Quem caia nas oitavas levava ZERO e ainda
+    tinha pagado o custo dos jogos -- disputar a Libertadores sem chegar a final era
+    prejuizo puro, e nao havia razao financeira para buscar a vaga."""
+    from fm.financas import premio_de_campanha
+
+    total = 6
+    valores = [premio_de_campanha("libertadores", n, total) for n in range(1, total + 1)]
+    assert all(v > 0 for v in valores), "alguem avancou e nao recebeu nada"
+    assert all(a <= b for a, b in zip(valores, valores[1:], strict=False)), \
+        "avancar mais tem de pagar mais"
+
+    campeao = premio_de_campanha("libertadores", total, total, campeao=True)
+    vice = premio_de_campanha("libertadores", total, total, vice=True)
+    semi = premio_de_campanha("libertadores", total - 1, total)
+    assert campeao > vice > semi, "campeao, vice e semifinalista tem de se separar"
+    # campeao e vice sobrevivem as MESMAS etapas: sem degrau proprio o vice levava 92%
+    assert vice < campeao * 0.7
+
+
+def test_quem_vai_longe_na_copa_termina_o_ano_melhor(carreira):
+    c = carreira
+    while not c.acabou:
+        c.avancar()
+    premios = c._premiar_copas()
+    assert premios, "nenhum clube recebeu premio de copa"
+    liberta = c.copas["libertadores"]
+    if liberta.campeao and liberta.etapas_vividas:
+        mais_curto = min(liberta.etapas_vividas, key=lambda k: liberta.etapas_vividas[k])
+        assert premios.get(liberta.campeao, 0) > premios.get(mais_curto, 0)

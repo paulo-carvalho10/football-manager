@@ -54,37 +54,71 @@ PREMIO_DO_LANTERNA = 0.12          # fracao do premio do campeao que o ultimo le
 REPUTACAO_PASSO = 2.2              # pontos, no maximo, por temporada
 REPUTACAO_PISO, REPUTACAO_TETO = 5, 97
 
-# Premiacao de copa, para o campeao (o vice leva 45%). Ir longe na Libertadores tem de
-# aparecer no caixa -- e o que torna a competicao uma decisao e nao um enfeite.
+# Premiacao de copa. O valor e o TOTAL que o campeao acumula na campanha, e cada clube
+# leva a fracao correspondente ao quanto avancou.
 #
-# A escala e PROPORCIONAL a receita deste mundo, nao a do futebol real em reais. Comecei
-# com 22M para a Libertadores, que e a ordem de grandeza certa em dolar, e isso era metade
-# do faturamento anual de um grande daqui: o premio sozinho tirou todos os 40 clubes do
-# vermelho e as financas viraram enfeite de novo. Na vida real o titulo vale perto de 15%
-# da receita de um grande, e e essa proporcao que esta aqui.
+# Pagar so campeao e vice estava errado, e nao era simplificacao: a CONMEBOL paga US$ 3M
+# so pela fase de grupos da Libertadores, 1,25M pelas oitavas, 1,7M pelas quartas. Do
+# jeito antigo, quem caia nas oitavas recebia ZERO e ainda tinha pagado o custo dos jogos
+# -- disputar a Libertadores e nao chegar a final era prejuizo puro, e nao havia razao
+# financeira para buscar a vaga. Copa e premio de CAMPANHA, nao de titulo.
 PREMIO_DE_COPA = {
-    "libertadores": 7_000_000,
-    "copa_do_brasil": 3_500_000,
-    "sudamericana": 2_200_000,
-    "champions": 18_000_000,
-    "europa_league": 5_500_000,
-    "intercontinental": 4_000_000,
+    "libertadores": 9_000_000,
+    "copa_do_brasil": 4_500_000,
+    "sudamericana": 3_000_000,
+    "champions": 24_000_000,
+    "europa_league": 7_500_000,
+    "intercontinental": 5_000_000,
 }
 
+# Quanto da campanha ja esta pago so por entrar, e como o resto se concentra no fim. Com
+# expoente 2.5 a curva imita a real: a fase de grupos vale perto de 10% do total do
+# campeao, e o salto grande fica entre a final e o titulo.
+PREMIO_POR_PARTICIPACAO = 0.10
+CONCENTRACAO_DO_PREMIO = 3.5
+PREMIO_DO_VICE = 0.55            # o vice acumula perto da metade do campeao
+TETO_DE_QUEM_NAO_DECIDE = 0.45   # quem nao chegou a final nao encosta no vice
+
 # Disputar copa custa: viagem, logistica, elenco maior. Por jogo alem do calendario da
-# liga. Sem isto o premio entra e nada sai, e quem vai longe so ganha.
+# liga.
 CUSTO_POR_JOGO_EXTRA = 260_000
 
+
+def premio_de_campanha(torneio: str, etapas_vividas: int, etapas_totais: int,
+                       campeao: bool = False, vice: bool = False) -> int:
+    """O que um clube leva pela campanha que fez, nao pelo lugar onde parou.
+
+    `etapas_vividas` e quantas etapas ele sobreviveu; `etapas_totais` e quantas a
+    competicao teve.
+
+    Campeao e vice precisam de degrau PROPRIO porque sobrevivem o mesmo numero de etapas
+    -- os dois chegam a final. So pela curva o vice levava 92% do campeao; na Libertadores
+    de verdade ele acumula perto da metade.
+    """
+    base = PREMIO_DE_COPA.get(torneio, 0)
+    if not base or etapas_totais <= 0:
+        return 0
+    if campeao:
+        return base
+    if vice:
+        return int(base * PREMIO_DO_VICE)
+    avanco = min(1.0, max(0, etapas_vividas) / etapas_totais)
+    fracao = PREMIO_POR_PARTICIPACAO + (1 - PREMIO_POR_PARTICIPACAO) * (
+        avanco ** CONCENTRACAO_DO_PREMIO)
+    return int(base * min(fracao, TETO_DE_QUEM_NAO_DECIDE))
+
+
 MESES = 12
-# Estrutura, categorias de base, viagem, encargos. Alto de proposito: com 0.28 nenhum clube
-# do mundo terminava 20 temporadas no vermelho e o maior empilhava 485M sem uso -- o
-# dinheiro nao restringia nada e as financas eram enfeite.
+# Estrutura, categorias de base, viagem, encargos.
 #
-# A faixa util e estreita e o sistema e' sensivel perto dela: com 0.62 o caixa mediano fica
-# em poucos milhoes e o mercado gira umas 80 transferencias por ano; com 0.64 quarenta dos
-# quarenta e seis clubes quebram e o mercado seca. Mexer aqui pede rodar o portao das duas
-# piramides, nao so o do Brasil.
-CUSTO_DE_OPERACAO = 0.62
+# NAO e' um botao de dificuldade. Ja esteve em 0.62, calibrado para deixar a maioria dos
+# clubes no vermelho porque "dinheiro que nao acaba nao decide nada" -- e o efeito era um
+# mundo em que quase ninguem podia comprar ninguem. Um clube que faz uma boa campanha PODE
+# acumular caixa, e nao ha teto: quem ganha muito fica rico, como no futebol.
+#
+# O que continua valendo: quem paga folha acima do que fatura afunda, e cair de divisao
+# doi. O aperto vem de gastar mal, nao de uma taxa calibrada para machucar.
+CUSTO_DE_OPERACAO = 0.46
 
 
 @dataclass(slots=True)

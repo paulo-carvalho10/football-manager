@@ -404,6 +404,12 @@ def tela_fim_de_temporada(c: Carreira) -> None:
         if c.clube.balance < 0:
             print("           no vermelho: o clube sera obrigado a vender")
 
+    if r.get("minha_campanha"):
+        print(_linha())
+        print("  SUAS COPAS")
+        for copa, ate_onde in r["minha_campanha"].items():
+            print(f"    {copa.replace('_', ' '):24s} {ate_onde}")
+
     print(_linha())
     print(f"  MERCADO  {r['transferencias']} transferencias no pais")
     for t in r["compras_do_clube"]:

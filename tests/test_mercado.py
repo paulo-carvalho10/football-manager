@@ -159,25 +159,43 @@ def test_o_campeao_ganha_mais_que_o_lanterna(carreira):
     assert campeao.receita > 0 and campeao.folha > 0
 
 
-def test_o_dinheiro_aperta(vinte_anos):
-    """Caixa que so cresce nao decide nada. Antes da calibracao nenhum clube terminava 20
-    temporadas no vermelho e o maior empilhava 485M sem uso.
+def test_o_dinheiro_circula(vinte_anos):
+    """O caixa nao e' botao de dificuldade.
 
-    O que se mede NAO e' a contagem de clubes no vermelho: perto do ponto de calibracao ela
-    salta de tres para quarenta com dois centesimos no custo de operacao, e um teste sobre
-    ela quebra ao vento. O que importa e' que o clube tipico NAO tenha um ano de folha
-    guardado no banco -- e' isso que faz vender alguem ser uma decisao.
+    Ja houve aqui um teste exigindo clubes no vermelho e um TETO de caixa, com o custo de
+    operacao calibrado para machucar. O efeito era um mundo em que quase ninguem podia
+    comprar ninguem. Clube que faz boa campanha PODE ficar rico, e nao ha limite -- e assim
+    no futebol. O que se cobra e que o dinheiro exista e se mova, nao que falte.
     """
-    from fm.financas import folha_anual
-
     c, _ = vinte_anos
     caixas = [cl.balance for cl in c.world.clubs.values()]
-    folhas = [folha_anual(c.world, cl.id) for cl in c.world.clubs.values()]
-    assert st.median(caixas) < st.median(folhas), (
-        f"caixa mediano de {st.median(caixas)/1e6:.0f}M contra folha de "
-        f"{st.median(folhas)/1e6:.0f}M: o dinheiro nao restringe nada")
-    assert max(caixas) < 300_000_000, f"caixa parado de {max(caixas)/1e6:.0f}M"
-    assert sum(1 for x in caixas if x < 0) <= len(caixas) * 0.6, "o mundo inteiro quebrou"
+    assert st.median(caixas) > 0, "o mundo inteiro quebrou"
+    # quem fatura mais tem mais: se o caixa nao separa os clubes, ele nao significa nada
+    ricos = sorted(caixas)[-5:]
+    pobres = sorted(caixas)[:5]
+    assert st.mean(ricos) > st.mean(pobres) * 3, "o caixa e igual para todos"
+
+
+def test_gastar_mal_ainda_afunda(carreira):
+    """Sem aperto artificial, o que resta e a consequencia real: folha acima da receita
+    consome o caixa. E a unica restricao que devia existir."""
+    from fm.financas import folha_anual, receita_anual, valor_do_elenco
+
+    c = carreira
+    clube = c.clube
+    caixa_antes = clube.balance
+    # dobra a folha do elenco: agora ele paga muito mais do que fatura
+    for pid in clube.player_ids:
+        if pid in c.world.players:
+            c.world.players[pid].wage *= 6
+    folha = folha_anual(c.world, clube.id)
+    receita = receita_anual(c.world, clube.id, 1, valor_do_elenco(c.world, clube.id))
+    assert folha > receita, "o teste nao conseguiu montar um clube gastador"
+
+    while not c.acabou:
+        c.avancar()
+    c.virar_o_ano()
+    assert clube.balance < caixa_antes, "pagar folha impagavel nao custou nada"
 
 
 def test_o_mercado_nao_para(vinte_anos):

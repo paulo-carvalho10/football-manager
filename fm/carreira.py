@@ -212,18 +212,21 @@ class Carreira:
         return fora
 
     def _premiar_copas(self) -> dict[int, int]:
-        """Premiacao de copa, por clube. E o que faz ir longe na Libertadores valer caixa."""
-        from fm.financas import PREMIO_DE_COPA
+        """Premiacao de copa por CAMPANHA: cada clube leva pelo quanto avancou.
+
+        Antes so campeao e vice recebiam, e ai chegar as oitavas da Libertadores era
+        prejuizo -- os jogos custavam e nada entrava.
+        """
+        from fm.financas import premio_de_campanha
 
         fora: dict[int, int] = {}
         for nome, a in self.copas.items():
-            base = PREMIO_DE_COPA.get(nome, 0)
-            if not base:
-                continue
-            if a.campeao is not None:
-                fora[a.campeao] = fora.get(a.campeao, 0) + base
-            if a.vice is not None:
-                fora[a.vice] = fora.get(a.vice, 0) + int(base * 0.45)
+            for cid, etapas in a.etapas_vividas.items():
+                valor = premio_de_campanha(nome, etapas, a.etapas_totais,
+                                           campeao=(cid == a.campeao),
+                                           vice=(cid == a.vice))
+                if valor:
+                    fora[cid] = fora.get(cid, 0) + valor
         return fora
 
     def _tabelas_por_forca(self) -> dict[str, list[int]]:
@@ -561,6 +564,13 @@ class Carreira:
                       for n, a in self.copas.items()},
             "minhas_copas": [n for n, a in self.copas.items()
                              if a.campeao == self.clube_id],
+            "minha_campanha": {
+                n: ("campeao" if a.campeao == self.clube_id else
+                    "vice" if a.vice == self.clube_id else
+                    f"{a.etapas_vividas.get(self.clube_id, 0)} de "
+                    f"{a.etapas_totais} etapas")
+                for n, a in self.copas.items()
+                if self.clube_id in a.etapas_vividas},
             "premios_de_copa": premios_de_copa.get(self.clube_id, 0),
             "aposentadorias_do_clube": saidas,
             "destaques_do_clube": destaques,
