@@ -361,18 +361,13 @@ def cmd_servir(args):
     if args.carregar:
         c = Carreira.carregar(args.carregar)
     else:
-        ligas = [n.strip() for n in args.liga.split(",") if n.strip()]
         if not args.clube:
-            from fm.generate import build_world
-            mundo, _ = build_world([load_league(n) for n in ligas], seed=args.seed)
-            print(f"escolha um clube com --clube (de {', '.join(ligas)}):")
-            for liga in ligas:
-                lid = load_league(liga)["id"]
-                nomes = sorted(mundo.clubs[cid].name for cid in mundo.leagues[lid].club_ids)
-                print(f"  {liga}: {', '.join(nomes)}")
+            # sem clube, o jogo abre no menu: novo jogo, escolha de liga e de clube
+            servir(None, porta=args.porta)
             return
+        ligas = [n.strip() for n in args.liga.split(",") if n.strip()]
         c = Carreira.nova(ligas, args.clube, seed=args.seed)
-    c.treinador = args.treinador
+        c.treinador = args.treinador
     servir(c, porta=args.porta)
 
 
@@ -517,7 +512,7 @@ def main(argv=None):
     p = sub.add_parser("servir", parents=[common],
                        help="abre o jogo no navegador (a interface grafica)")
     p.add_argument("--liga", default="brasil_real,brasil_b_real")
-    p.add_argument("--clube", default=None, help="sem isto, lista os clubes")
+    p.add_argument("--clube", default=None, help="sem isto, abre o menu do jogo")
     p.add_argument("--carregar", default=None, help="nome de um save")
     p.add_argument("--porta", type=int, default=8000)
     p.add_argument("--treinador", default="Treinador", help="seu nome, no topo da tela")

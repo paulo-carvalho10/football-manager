@@ -1,685 +1,991 @@
 "use strict";
-/* A casca do jogo no navegador.
- *
- * Nenhuma regra mora aqui: este arquivo pede estado ao servidor, desenha, e manda de volta
- * o que o usuario clicou. E a mesma divisao do terminal -- por isso as duas interfaces
- * convivem sem duplicar uma linha de logica de jogo. */
-
-/* ------------------------------------------------------------------ rede */
-
-const api = {
-  async get(rota) {
-    const r = await fetch(rota);
-    if (!r.ok) throw new Error(`${rota}: ${r.status}`);
-    return r.json();
-  },
-  async post(rota, corpo = {}) {
-    const r = await fetch(rota, {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(corpo),
-    });
-    if (!r.ok) throw new Error(`${rota}: ${r.status}`);
-    return r.json();
-  },
-};
-
-const $ = (s) => document.querySelector(s);
-const $$ = (s) => Array.from(document.querySelectorAll(s));
+/* O jogo: a casca de gerenciamento e as telas do clube. */
 
 let ESTADO = null;
-let telaAtual = "inicio";
-let ligaVisivel = null;
-let marcado = null;                       // titular clicado, esperando um reserva
-let ordem = {coluna: "overall", desc: true};
+let telaAtual = "elenco";
+let selecionado = null;               // jogador em destaque na lateral
+const ORDEM_ELENCO = {coluna: "titular", desc: true};
 
-/* ------------------------------------------------------------------ formato */
+const ABAS = [
+  {id: "elenco", rotulo: "Elenco", icone: "elenco"},
+  {id: "escalacao", rotulo: "Escalação", icone: "tatica"},
+  {id: "mercado", rotulo: "Mercado", icone: "mercado"},
+  {id: "classificacao", rotulo: "Tabela", icone: "tabela"},
+  {id: "calendario", rotulo: "Calendário", icone: "calendario"},
+  {id: "financas", rotulo: "Finanças", icone: "financas"},
+  {id: "mensagens", rotulo: "Mensagens", icone: "mensagens"},
+  {id: "treinador", rotulo: "Treinador", icone: "treinador"},
+  {id: "salvar", rotulo: "Salvar", icone: "salvar", acao: janelaSalvar},
+  {id: "menu", rotulo: "Menu", icone: "sair", acao: () => irParaModo("menu")},
+];
 
-function dinheiro(v) {
-  const n = Math.abs(v ?? 0);
-  if (n >= 1e6) return `${((v ?? 0) / 1e6).toFixed(1)}M`;
-  if (n >= 1e3) return `${Math.round((v ?? 0) / 1e3)}k`;
-  return String(v ?? 0);
+const TELAS = {};
+
+async function abrirJogo(tela) {
+  $("#marca-topo").innerHTML = logo(true);
+  $("#icones").innerHTML = ABAS.map((a) => `
+    <button data-aba="${a.id}" title="${a.rotulo}">${icone(a.icone)}<span>${a.rotulo}</span>
+      ${a.id === "mensagens" ? '<span class="badge" id="badge-msg" hidden></span>' : ""}</button>`).join("");
+  $$("[data-aba]").forEach((b) => b.addEventListener("click", () => {
+    const a = ABAS.find((x) => x.id === b.dataset.aba);
+    if (a.acao) a.acao(); else irPara(a.id);
+  }));
+  await recarregarEstado();
+  await irPara(tela || PARAMS.get("tela") || telaAtual);
 }
 
-function reais(v) {
-  return `R$ ${(v ?? 0).toLocaleString("pt-BR")}`;
+async function recarregarEstado() {
+  const e = await api.get("/api/estado");
+  if (e.sem_carreira) { irParaModo("menu"); return null; }
+  aplicarEstado(e);
+  return e;
 }
 
-function corDe(valor, bom = 80, medio = 60) {
-  if (valor >= bom) return "var(--verde)";
-  if (valor >= medio) return "var(--amarelo)";
-  return "var(--vermelho)";
+function aplicarEstado(e) {
+  ESTADO = e;
+  document.documentElement.style.setProperty("--clube", corDeAcento(e.clube.cor));
+  desenharTopo(e);
+  desenharLateral(e);
+  desenharRodape(e);
 }
 
-function moral(n) {
-  if (n >= 80) return "Ótima";
-  if (n >= 65) return "Boa";
-  if (n >= 50) return "Normal";
-  if (n >= 35) return "Baixa";
-  return "Péssima";
-}
-
-function barra(valor, cor) {
-  return `<span class="barra"><i style="width:${valor}%;background:${cor}"></i></span>`;
-}
-
-function escapar(t) {
-  return String(t ?? "").replace(/[&<>"]/g, (c) =>
-    ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
-}
-
-/* ------------------------------------------------------------------ camisas */
-
-const cacheDeCamisas = new Map();
-async function camisa(clubeId, numero = "1") {
-  const chave = `${clubeId}-${numero}`;
-  if (!cacheDeCamisas.has(chave)) {
-    const r = await fetch(`/api/camisa/${clubeId}/${numero}`);
-    cacheDeCamisas.set(chave, await r.text());
-  }
-  return cacheDeCamisas.get(chave);
-}
-
-/** Onze camisas na mesma pagina com os mesmos ids fariam todas usarem o recorte da
- *  primeira, e a cor de um jogador vazaria nos outros. */
-let contador = 0;
-function idsProprios(svg) {
-  const s = `u${contador++}`;
-  return svg.replace(/id="([\w-]+)"/g, `id="$1${s}"`)
-            .replace(/url\(#([\w-]+)\)/g, `url(#$1${s})`)
-            .replace(/href="#([\w-]+)"/g, `href="#$1${s}"`);
+async function irPara(nome) {
+  if (!TELAS[nome]) nome = "elenco";
+  telaAtual = nome;
+  $$(".tela").forEach((t) => t.classList.toggle("ativa", t.id === `tela-${nome}`));
+  $$("[data-aba]").forEach((b) => b.classList.toggle("ativo", b.dataset.aba === nome));
+  await TELAS[nome]();
 }
 
 /* ------------------------------------------------------------------ topo */
 
-/** A cor do clube vira ACENTO, e acento precisa se ver sobre o fundo escuro.
- *  O Santos e o Corinthians sao pretos: usados crus, o tema simplesmente sumia. */
-function corDeAcento(hex) {
-  const n = parseInt((hex || "#1b6b45").slice(1), 16);
-  let [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  const luz = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-  if (luz >= 0.32) return hex;
-  const f = luz < 0.05 ? 3.4 : 0.34 / Math.max(luz, 0.02);
-  const clarear = (v) => Math.round(Math.min(255, Math.max(v * f, v + 60)));
-  return `rgb(${clarear(r)}, ${clarear(g)}, ${clarear(b)})`;
+function textoDoProximo(e) {
+  if (e.demitido) return {rotulo: "Fim da linha", texto: "Você foi demitido", botao: "Menu"};
+  if (e.acabou) return {rotulo: "Temporada encerrada", texto: "Balanço, acesso e mercado", botao: "Encerrar ano ›"};
+  const p = e.proximo;
+  if (p && p.tipo === "liga") {
+    const casa = p.casa ? e.clube.nome : p.rival.nome;
+    const fora = p.casa ? p.rival.nome : e.clube.nome;
+    return {rotulo: `${p.competicao} · rodada ${p.rodada}`, texto: `${casa} x ${fora}`, botao: "Jogar ›"};
+  }
+  if (p) return {rotulo: `${p.competicao}`, texto: p.fase, botao: "Jogar ›"};
+  return {rotulo: "Sem jogo do clube", texto: "Rodada dos outros", botao: "Avançar ›"};
 }
 
 function desenharTopo(e) {
-  document.documentElement.style.setProperty("--clube", corDeAcento(e.clube.cor));
-  $("#escudo").style.background =
-    `linear-gradient(135deg, ${e.clube.cor} 55%, ${e.clube.cor2} 55%)`;
-  $("#nome-do-clube").textContent = e.clube.nome;
-  $("#linha-clube").textContent = `${e.liga} · rodada ${e.rodada} de ${e.total_de_rodadas}`;
-  $("#treinador").textContent = e.treinador;
-  $("#temporada").textContent = e.temporada;
-  $("#caixa").textContent = reais(e.caixa);
-  $("#data").textContent = e.data;
+  const t = textoDoProximo(e);
+  $("#prox-rotulo").textContent = t.rotulo;
+  $("#prox-texto").textContent = t.texto;
+  $("#jogar").innerHTML = t.botao;
+  const badge = $("#badge-msg");
+  if (badge) { badge.hidden = !e.nao_lidas; badge.textContent = e.nao_lidas; }
+}
 
-  const botao = $("#jogar");
-  const confronto = $("#proximo-confronto");
-  const onde = $("#proximo-onde");
-  if (e.demitido) {
-    confronto.textContent = "Você foi demitido";
-    onde.textContent = e.motivo;
-    botao.disabled = true;
-    botao.textContent = "Fim";
+/* ------------------------------------------------------------------ lateral */
+
+function trilho(rotulo, v) {
+  return `<div class="linha"><span>${rotulo}</span>
+    <span class="trilho"><i style="width:${v}%;background:${corDe(v, 65, 40)}"></i></span><b>${Math.round(v)}%</b></div>`;
+}
+
+function desenharLateral(e) {
+  const p = e.proximo;
+  let prox = `<div class="vazio">Sem jogo marcado.</div>`;
+  if (p && p.tipo === "liga") {
+    const [casa, fora] = p.casa ? [e.clube, p.rival] : [p.rival, e.clube];
+    prox = `<div class="confronto">
+        <div>${escudo(casa)}<span>${escapar(casa.nome)}</span></div>
+        <span class="x">×</span>
+        <div>${escudo(fora)}<span>${escapar(fora.nome)}</span></div></div>
+      <div class="onde">${escapar(p.competicao)} · rodada ${p.rodada} · ${p.casa ? "em casa" : "fora"}</div>`;
+  } else if (p) {
+    prox = `<div class="confronto"><div>${escudo(e.clube)}<span>${escapar(e.clube.nome)}</span></div>
+      <span class="x">×</span><div>${escudo({nome: "?", cor: "#25302a", cor2: "#71897a"})}<span>sorteio da fase</span></div></div>
+      <div class="onde">${escapar(p.competicao)} · ${escapar(p.fase)}</div>`;
   } else if (e.acabou) {
-    confronto.textContent = "Temporada encerrada";
-    onde.textContent = "acesso, mercado e balanço do ano";
-    botao.disabled = false;
-    botao.textContent = "Encerrar ano";
-  } else if (e.proximo && e.proximo.tipo === "liga") {
-    const p = e.proximo;
-    confronto.textContent = p.casa
-      ? `${e.clube.nome} x ${p.rival.nome}` : `${p.rival.nome} x ${e.clube.nome}`;
-    onde.textContent = `${p.competicao} · rodada ${p.rodada}`;
-    botao.disabled = false;
-    botao.textContent = "Jogar";
-  } else if (e.proximo) {
-    confronto.textContent = e.proximo.competicao;
-    onde.textContent = `${e.proximo.fase} · ${e.proximo.vivos} clubes`;
-    botao.disabled = false;
-    botao.textContent = "Jogar";
-  } else {
-    confronto.textContent = "Sem jogo nesta data";
-    onde.textContent = "";
-    botao.disabled = false;
-    botao.textContent = "Avançar";
+    prox = `<div class="vazio">Temporada encerrada.</div>`;
   }
+  $("#lateral").innerHTML = `
+    <div class="cartao-clube">
+      <div class="topo-clube">${escudo(e.clube)}
+        <div><h1>${escapar(e.clube.nome)}</h1>
+          <div class="sub">${escapar(e.liga_nome)} · ${e.rodada ? `${e.posicao}º lugar` : "pré-temporada"}</div>
+          <div class="sub">${icone("treinador", 'style="width:.9rem;height:.9rem;vertical-align:-2px"')} ${escapar(e.treinador)}</div></div>
+      </div>
+      <div class="confianca">${trilho("Diretoria", e.aprovacao.diretoria)}${trilho("Torcida", e.aprovacao.torcida)}</div>
+      <div class="clima">Ambiente: <b>${escapar(clima(e.aprovacao.clima))}</b><br>Meta: ${escapar(e.aprovacao.meta)}</div>
+    </div>
+    <div class="painel fixo"><div class="cab"><h2>Próxima partida</h2></div>
+      <div class="prox-jogo">${prox}
+        <button class="btn azul bloco" id="btn-escalar">${icone("tatica")} Escalar time</button></div></div>
+    <div class="painel fixo" id="resumo-jogador"></div>`;
+  $("#btn-escalar").addEventListener("click", () => irPara("escalacao"));
+  desenharResumoJogador();
 }
 
-/* ------------------------------------------------------------------ início */
+const ROTULOS_ATRIBUTOS = {
+  finalizacao: "Finalização", passe: "Passe", drible: "Drible", marcacao: "Marcação",
+  velocidade: "Velocidade", forca: "Força", resistencia: "Resistência", tecnica: "Técnica",
+  posicionamento: "Posicionamento", visao: "Visão", reflexos: "Reflexos", "jogo aereo": "Jogo aéreo",
+};
 
-async function telaInicio() {
-  const d = await api.get("/api/inicio");
-  const c = d.campanha;
-  $("#campanha").innerHTML = [
-    ["Posição", c.posicao ? `${c.posicao}º` : "—"], ["Pontos", c.pontos],
-    ["Jogos", c.jogos], ["Vitórias", c.vitorias],
-    ["Empates", c.empates], ["Derrotas", c.derrotas],
-    ["Gols pró", c.gols_pro], ["Gols contra", c.gols_contra],
-  ].map(([r, v]) => `<div><b>${v}</b><span>${r}</span></div>`).join("");
-
-  const a = ESTADO.aprovacao;
-  $("#clima").innerHTML = `
-    <p class="meta-texto">A diretoria quer <b>${escapar(a.meta || "—")}</b>.</p>
-    ${[["Torcida", a.torcida], ["Diretoria", a.diretoria]].map(([r, v]) => `
-      <div class="medidor">
-        <div class="topo-medidor"><span>${r}</span><b>${Math.round(v)}%</b></div>
-        <div class="trilho"><i style="width:${v}%;background:${corDe(v, 60, 35)}"></i></div>
-      </div>`).join("")}
-    <div class="clima-etiqueta">${escapar(a.clima)}</div>`;
-
-  $("#ultimos").innerHTML = d.ultimos.length ? d.ultimos.map((j) => `
-    <tr><td class="res-${j.resultado}">${j.resultado}</td>
-    <td>${escapar(j.casa)}</td>
-    <td class="n"><b>${j.gols_casa} × ${j.gols_fora}</b></td>
-    <td>${escapar(j.fora)}</td></tr>`).join("")
-    : `<tr><td class="dica">Nenhum jogo ainda.</td></tr>`;
-
-  $("#proximos").innerHTML = d.proximos.length ? d.proximos.map((j) => `
-    <tr><td class="n">${j.rodada}</td>
-    <td><span class="pastilha-clube" style="background:${j.cor}"></span>
-      ${escapar(j.rival)}</td>
-    <td class="dica">${j.casa ? "em casa" : "fora"}</td></tr>`).join("")
-    : `<tr><td class="dica">Fim do calendário.</td></tr>`;
-
-  await miniTabela();
+async function desenharResumoJogador() {
+  const alvo = $("#resumo-jogador");
+  if (!alvo) return;
+  const lista = ESTADO.elenco;
+  const j = lista.find((p) => p.id === selecionado) || lista.find((p) => p.titular) || lista[0];
+  if (!j) { alvo.innerHTML = ""; return; }
+  const [perfil, svg] = await Promise.all([
+    api.get(`/api/jogador?id=${j.id}`),
+    camisa(ESTADO.clube.id, j.posicao === "GK" ? "2" : "1"),
+  ]);
+  const chaves = j.posicao === "GK"
+    ? ["reflexos", "posicionamento", "jogo aereo", "passe"]
+    : ["finalizacao", "passe", "drible", "marcacao", "velocidade", "forca"];
+  alvo.innerHTML = `<div class="cab"><h2>Jogador</h2>
+      <button class="btn fantasma pequeno" id="ver-perfil">Perfil ›</button></div>
+    <div class="resumo-jogador">
+      <div class="topo-j"><span class="camisa-mini">${idsProprios(svg)}</span>
+        <div><h3>${escapar(j.nome)}</h3>
+          <div class="linha-flex" style="margin-top:.3rem">${pos(j.posicao)} ${ovr(j.overall)}
+            <span class="dica">${j.idade} anos · ${escapar(j.perfil)}</span></div></div></div>
+      <div class="atributos-mini">${chaves.map((k) => {
+        const v = perfil.atributos[k];
+        return `<div><span>${ROTULOS_ATRIBUTOS[k]}</span><b>${v}</b>
+          <span class="t"><i style="width:${v}%;background:${corDe(v, 75, 60)}"></i></span></div>`;
+      }).join("")}</div>
+      <div class="kpis">
+        <div class="kpi-c"><span>Energia</span><b style="color:${corDe(j.energia, 85, 70)}">${j.energia}%</b></div>
+        <div class="kpi-c"><span>Valor</span><b>${dinheiro(j.valor)}</b></div>
+      </div>
+    </div>`;
+  $("#ver-perfil").addEventListener("click", () => abrirPerfil(j.id));
 }
 
-/** A tabela em volta do clube: e o que um manager mostra na abertura, e o que faz a tela
- *  inicial responder "como estou?" sem exigir um clique. */
-async function miniTabela() {
-  const t = await api.get("/api/tabela");
-  const eu = t.linhas.findIndex((l) => l.eu);
-  const inicio = Math.max(0, Math.min(eu - 4, t.linhas.length - 9));
-  const total = t.linhas.length;
-  $("#mini-tabela tbody").innerHTML = t.linhas.slice(inicio, inicio + 9).map((l) => {
-    const zona = l.posicao <= 4 ? "continental"
-      : l.posicao > total - 4 ? "rebaixamento" : "";
-    return `<tr class="${l.eu ? "eu" : ""} ${zona}">
-      <td class="n">${l.posicao}</td>
-      <td><span class="pastilha-clube" style="background:${l.clube.cor}"></span>
-        ${escapar(l.clube.nome)}</td>
-      <td class="n"><b>${l.pontos}</b></td><td class="n">${l.jogos}</td>
-      <td class="n">${l.vitorias}</td><td class="n">${l.empates}</td>
-      <td class="n">${l.derrotas}</td>
-      <td class="n">${l.saldo > 0 ? "+" : ""}${l.saldo}</td></tr>`;
-  }).join("");
+/* ------------------------------------------------------------------ rodape */
+
+function desenharRodape(e) {
+  $("#rodape").innerHTML = `
+    <div>${icone("calendario")} <b>${e.data}</b></div>
+    <div>Temporada <b>${e.temporada}</b></div>
+    <div>${escapar(e.liga_nome)} · rodada <b>${e.rodada}</b>/${e.total_de_rodadas}</div>
+    <div>${icone("financas")} Caixa <b class="${e.caixa < 0 ? "ruim" : ""}">${reais(e.caixa)}</b></div>
+    <div>Reputação <b>${e.reputacao}</b></div>
+    <span class="espaco"></span>
+    <button id="rodape-msg">${icone("mensagens")} ${e.nao_lidas ? `<b>${e.nao_lidas}</b> não lidas` : "Mensagens"}</button>
+    <div>${icone("treinador")} ${escapar(e.treinador)}</div>`;
+  $("#rodape-msg").addEventListener("click", () => irPara("mensagens"));
 }
 
-/* ------------------------------------------------------------------ elenco */
+/* ================================================================== ELENCO */
 
-function ordenar(lista) {
-  const {coluna, desc} = ordem;
+const COLUNAS_ELENCO = [
+  {id: "posicao", rotulo: "Pos", valor: (p) => ORDEM_POS[p.posicao]},
+  {id: "nome", rotulo: "Nome"},
+  {id: "pe", rotulo: "Pé", classe: "c"},
+  {id: "overall", rotulo: "OVR", classe: "n"},
+  {id: "energia", rotulo: "Energia"},
+  {id: "salario", rotulo: "Salário", classe: "n"},
+  {id: "valor", rotulo: "Valor", classe: "n"},
+  {id: "gols", rotulo: "Gols", classe: "n"},
+  {id: "assistencias", rotulo: "Assist.", classe: "n"},
+  {id: "perfil", rotulo: "Perfil"},
+  {id: "idade", rotulo: "Idade", classe: "n"},
+  {id: "cartoes", rotulo: "Cartões", classe: "c", valor: (p) => p.amarelos + 3 * p.vermelhos},
+];
+const ORDEM_POS = {GK: 0, DF: 1, MF: 2, FW: 3};
+
+function ordenarElenco(lista) {
+  const {coluna, desc} = ORDEM_ELENCO;
+  const col = COLUNAS_ELENCO.find((c) => c.id === coluna);
+  const v = (p) => coluna === "titular" ? (p.titular ? 1 : 0) * 1000 - ORDEM_POS[p.posicao] * 100 + p.overall / 10
+    : col && col.valor ? col.valor(p) : p[coluna];
   return [...lista].sort((a, b) => {
-    const x = a[coluna], y = b[coluna];
-    const cmp = typeof x === "string" ? x.localeCompare(y) : (x ?? 0) - (y ?? 0);
-    return desc ? -cmp : cmp;
+    const va = v(a), vb = v(b);
+    const r = typeof va === "string" ? va.localeCompare(vb) : va - vb;
+    return desc ? -r : r;
   });
 }
 
-function telaElenco() {
-  const lista = ordenar(ESTADO.elenco.map((p, i) => ({...p, numero: i + 1})));
-  $("#grade-elenco tbody").innerHTML = lista.map((p) => `
-    <tr class="clicavel ${p.titular ? "titular" : ""}" data-id="${p.id}">
-      <td class="n">${p.numero}</td>
-      <td><span class="etiqueta">${p.posicao}</span></td>
-      <td>${escapar(p.nome)}</td>
-      <td class="n">${p.idade}</td>
-      <td class="n"><b>${p.overall}</b></td>
-      <td class="n">${p.potencial}</td>
-      <td class="n">${barra(p.energia, corDe(p.energia))}${p.energia}%</td>
-      <td>${moral(p.moral)}</td>
-      <td class="n">${p.jogos}</td>
-      <td class="n">${p.gols}</td>
-      <td class="n">${p.assistencias}</td>
-      <td class="n">${dinheiro(p.salario)}</td>
-      <td class="n">${p.contrato}</td>
-    </tr>`).join("");
-  $$("#grade-elenco th[data-ord]").forEach((th) =>
-    th.classList.toggle("ordenado", th.dataset.ord === ordem.coluna));
-}
+TELAS.elenco = function () {
+  const e = ESTADO;
+  const lista = ordenarElenco(e.elenco);
+  const titulares = e.elenco.filter((p) => p.titular);
+  const media = titulares.reduce((s, p) => s + p.overall, 0) / (titulares.length || 1);
+  const folha = e.elenco.reduce((s, p) => s + p.salario, 0);
+  const pe = (x) => x === "E" ? "Esq" : x === "A" ? "Amb" : "Dir";
+  $("#tela-elenco").innerHTML = `
+    <div class="painel">
+      <div class="cab"><h2>Elenco · ${e.elenco.length} jogadores</h2>
+        <span class="dica">Titulares: OVR médio ${media.toFixed(1)} · folha ${dinheiro(folha)}/mês</span>
+        <button class="btn pequeno" id="ordem-padrao">Titulares primeiro</button></div>
+      <div class="corpo sem-margem">
+        <table class="grade" id="grade-elenco">
+          <thead><tr>${COLUNAS_ELENCO.map((c) => `<th data-ord="${c.id}" class="${c.classe || ""}
+            ${ORDEM_ELENCO.coluna === c.id ? "ativo" : ""} ${ORDEM_ELENCO.coluna === c.id && !ORDEM_ELENCO.desc ? "asc" : ""}">${c.rotulo}</th>`).join("")}</tr></thead>
+          <tbody>${lista.map((p, i) => {
+            const divisor = ORDEM_ELENCO.coluna === "titular" && i > 0 && lista[i - 1].titular && !p.titular;
+            return `<tr class="clicavel ${p.titular ? "" : "reserva"} ${p.id === selecionado ? "sel" : ""} ${divisor ? "divisor" : ""}" data-id="${p.id}">
+              <td>${pos(p.posicao)}</td>
+              <td><div class="nome-celula"><b>${escapar(p.nome)}</b>
+                ${e.funcoes.capitao === p.id ? '<span class="chip ouro">C</span>' : ""}</div></td>
+              <td class="c">${pe(p.pe)}</td>
+              <td class="n">${ovr(p.overall)}</td>
+              <td>${energia(p.energia)}</td>
+              <td class="n">${dinheiro(p.salario)}</td>
+              <td class="n">${dinheiro(p.valor)}</td>
+              <td class="n">${p.gols}</td>
+              <td class="n">${p.assistencias}</td>
+              <td>${escapar(p.perfil)}</td>
+              <td class="n">${p.idade}</td>
+              <td class="c">${p.amarelos ? `<span class="cartao am"></span> ${p.amarelos}` : ""}
+                ${p.vermelhos ? ` <span class="cartao vm"></span> ${p.vermelhos}` : ""}</td>
+            </tr>`;
+          }).join("")}</tbody>
+        </table>
+      </div>
+    </div>`;
+  $$("#grade-elenco th[data-ord]").forEach((th) => th.addEventListener("click", () => {
+    const c = th.dataset.ord;
+    Object.assign(ORDEM_ELENCO, ORDEM_ELENCO.coluna === c ? {desc: !ORDEM_ELENCO.desc}
+      : {coluna: c, desc: !["nome", "posicao", "perfil", "pe"].includes(c)});
+    TELAS.elenco();
+  }));
+  $("#ordem-padrao").addEventListener("click", () => {
+    Object.assign(ORDEM_ELENCO, {coluna: "titular", desc: true});
+    TELAS.elenco();
+  });
+  $$("#grade-elenco tbody tr").forEach((tr) => {
+    tr.addEventListener("click", () => {
+      selecionado = +tr.dataset.id;
+      $$("#grade-elenco tbody tr").forEach((x) => x.classList.toggle("sel", x === tr));
+      desenharResumoJogador();
+    });
+    tr.addEventListener("dblclick", () => abrirPerfil(+tr.dataset.id));
+  });
+};
+
+/* ================================================================== PERFIL DO JOGADOR */
 
 async function abrirPerfil(id) {
-  const p = await api.get(`/api/jogador?id=${id}`);
-  if (p.erro) return;
-  const t = p.temporada;
-  abrirJanela(`
-    <h2>${escapar(p.nome)}</h2>
-    <div class="ficha">
-      <div><span>Posição</span><b>${escapar(p.posicao_detalhe || p.posicao)}</b></div>
-      <div><span>Idade</span><b>${p.idade}</b></div>
-      <div><span>Overall</span><b>${p.overall}</b></div>
-      <div><span>Potencial</span><b>${p.potencial}</b></div>
-      <div><span>Pé</span><b style="font-size:13px">${escapar(p.pe)}</b></div>
-      <div><span>Altura</span><b>${p.altura} cm</b></div>
-      <div><span>País</span><b style="font-size:13px">${escapar(p.nacionalidade)}</b></div>
-      <div><span>Valor</span><b>${dinheiro(p.valor)}</b></div>
-      <div><span>Salário</span><b>${dinheiro(p.salario)}</b></div>
-      <div><span>Contrato até</span><b>${p.contrato}</b></div>
-      <div><span>Condição</span><b>${p.energia}%</b></div>
-      <div><span>Moral</span><b style="font-size:13px">${moral(p.moral)}</b></div>
-    </div>
-    <h3>Atributos</h3>
-    <div class="atributos">${Object.entries(p.atributos).map(([nome, v]) => `
-      <div class="atributo"><span>${escapar(nome)}</span><b>${v}</b>
-        ${barra(v, corDe(v, 78, 62))}</div>`).join("")}</div>
-    <h3>Temporada</h3>
-    <div class="ficha">
-      <div><span>Jogos</span><b>${t.jogos}</b></div>
-      <div><span>Gols</span><b>${t.gols}</b></div>
-      <div><span>Assistências</span><b>${t.assistencias}</b></div>
-      <div><span>Amarelos</span><b>${t.amarelos}</b></div>
-      <div><span>Vermelhos</span><b>${t.vermelhos}</b></div>
-    </div>`);
+  const j = await api.get(`/api/jogador?id=${id}`);
+  if (j.erro) return avisar(j.erro);
+  const svg = j.clube ? await camisa(j.clube.id, j.posicao === "GK" ? "2" : "1") : "";
+  const t = j.temporada;
+  const attrs = Object.entries(j.atributos).map(([k, v]) => `
+    <div class="attr"><span>${ROTULOS_ATRIBUTOS[k] || k}</span>
+      <span class="t"><i style="width:${v}%;background:${corDe(v, 75, 60)}"></i></span><b>${v}</b></div>`).join("");
+  return abrirJanela({titulo: escapar(j.nome), corpo: `
+    <div class="perfil-j">
+      <div>
+        <span class="camisa-grande">${svg ? idsProprios(svg) : ""}</span>
+        <div class="linha-flex" style="justify-content:center">${pos(j.posicao)} ${ovr(j.overall)}</div>
+        <p class="dica" style="text-align:center">${escapar(j.posicao_detalhe)} · ${POSICOES_LONGAS[j.posicao]}</p>
+        ${j.clube ? `<div class="linha-flex" style="justify-content:center">${escudo(j.clube)} <b>${escapar(j.clube.nome)}</b></div>` : ""}
+      </div>
+      <div>
+        <div class="kpis">
+          <div class="kpi-c"><span>Idade</span><b>${j.idade}</b></div>
+          <div class="kpi-c"><span>Potencial</span><b>${j.potencial}</b></div>
+          <div class="kpi-c"><span>Pé</span><b>${j.pe}</b></div>
+          <div class="kpi-c"><span>Altura</span><b>${j.altura ? `${j.altura} cm` : "—"}</b></div>
+          <div class="kpi-c"><span>Nacionalidade</span><b>${escapar(j.nacionalidade || "—")}</b></div>
+          <div class="kpi-c"><span>Energia</span><b style="color:${corDe(j.energia, 85, 70)}">${j.energia}%</b></div>
+          <div class="kpi-c"><span>Moral</span><b>${j.moral}</b></div>
+          <div class="kpi-c"><span>Valor</span><b>${dinheiro(j.valor)}</b></div>
+          <div class="kpi-c"><span>Salário/mês</span><b>${dinheiro(j.salario)}</b></div>
+          <div class="kpi-c"><span>Contrato até</span><b>${j.contrato}</b></div>
+        </div>
+        <div class="secao"><h3>Atributos</h3><div class="atributos">${attrs}</div></div>
+        <div class="secao"><h3>Temporada</h3>
+          <div class="kpis">
+            <div class="kpi-c"><span>Jogos</span><b>${t.jogos}</b></div>
+            <div class="kpi-c destaque"><span>Gols</span><b>${t.gols}</b></div>
+            <div class="kpi-c"><span>Assistências</span><b>${t.assistencias}</b></div>
+            <div class="kpi-c"><span>Amarelos</span><b>${t.amarelos}</b></div>
+            <div class="kpi-c"><span>Vermelhos</span><b>${t.vermelhos}</b></div>
+          </div></div>
+      </div>
+    </div>`});
 }
 
-/* ------------------------------------------------------------------ escalação */
+/* ================================================================== ESCALACAO E TATICA */
 
-const ALTURAS = {GK: 90, DF: 71, MF: 47, FW: 21};
-
-function colunasDe(n) {
-  if (n <= 0) return [];
-  if (n === 1) return [50];
-  const m = 13;
-  return Array.from({length: n}, (_, i) => m + (i * (100 - 2 * m)) / (n - 1));
-}
+let marcado = null;           // {id, onde: "campo" | "banco"}
+let onzeLocal = null;         // o onze enquanto o usuario mexe, antes de mandar
 
 const LINHAS_CAMPO = `
 <svg class="linhas" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-  <g fill="none" stroke="#fff" stroke-opacity=".34" stroke-width=".5">
-    <rect x="2" y="2" width="96" height="96"/><line x1="2" y1="50" x2="98" y2="50"/>
-    <circle cx="50" cy="50" r="11"/>
-    <rect x="26" y="83" width="48" height="15"/><rect x="38" y="93" width="24" height="5"/>
-    <rect x="26" y="2" width="48" height="15"/><rect x="38" y="2" width="24" height="5"/>
-    <path d="M38 83 A 13 13 0 0 1 62 83"/><path d="M38 17 A 13 13 0 0 0 62 17"/>
+  <g fill="none" stroke="#fff" stroke-opacity=".38" stroke-width=".45">
+    <rect x="3" y="2.5" width="94" height="95"/><line x1="3" y1="50" x2="97" y2="50"/>
+    <ellipse cx="50" cy="50" rx="10" ry="8"/>
+    <rect x="25" y="83" width="50" height="14.5"/><rect x="38" y="92.5" width="24" height="5"/>
+    <rect x="25" y="2.5" width="50" height="14.5"/><rect x="38" y="2.5" width="24" height="5"/>
+    <path d="M40 83 A 11 8 0 0 1 60 83"/><path d="M40 17 A 11 8 0 0 0 60 17"/>
   </g></svg>`;
 
-async function telaEscalacao() {
-  const e = ESTADO;
-  const alturas = {...ALTURAS};
-  if ((e.tatica.vagas.MF || 0) >= 5) { alturas.MF = 51; alturas.FW = 19; }
-  if ((e.tatica.vagas.DF || 0) >= 5) alturas.DF = 73;
-  if ((e.tatica.vagas.FW || 0) >= 3) alturas.FW = 23;
-
-  const svgLinha = await camisa(e.clube.id, "1");
-  const svgGol = await camisa(e.clube.id, "2");
-  const porGrupo = {};
-  for (const p of e.elenco.filter((x) => x.titular)) (porGrupo[p.posicao] ||= []).push(p);
-
-  const pecas = [];
-  for (const [grupo, gente] of Object.entries(porGrupo)) {
-    gente.sort((a, b) => b.overall - a.overall);
-    const xs = colunasDe(gente.length);
-    gente.forEach((p, i) => {
-      pecas.push(`<button class="peca" data-id="${p.id}"
-        style="left:${xs[i]}%;top:${alturas[grupo] ?? 50}%">
-        ${idsProprios(grupo === "GK" ? svgGol : svgLinha)}
-        <span class="nome">${escapar(p.nome.split(" ").slice(-1)[0])}</span>
-        <span class="info">${p.posicao} ${p.overall} · ${p.energia}%</span></button>`);
-    });
+/** Onde cada jogador fica no desenho. Setor pela posicao do jogador; no 4-2-3-1 o
+ *  meio vira duas linhas, com os volantes atras. So desenho: o motor le a lista. */
+function posicoesNoCampo(titulares, formacao) {
+  const grupos = {GK: [], DF: [], MF: [], FW: []};
+  for (const p of titulares) grupos[p.posicao].push(p);
+  const alturas = {GK: 89, DF: 71, MF: 48, FW: 22};
+  const xs = (n, m = 12) => n === 1 ? [50] : Array.from({length: n}, (_, i) => m + (i * (100 - 2 * m)) / (n - 1));
+  const saida = [];
+  const ordemDetalhe = {DM: 0, CB: 0, FB: 1, MF: 1, AM: 2, WG: 2, FW: 3};
+  for (const [g, gente] of Object.entries(grupos)) {
+    gente.sort((a, b) => (ordemDetalhe[a.detalhe] ?? 1) - (ordemDetalhe[b.detalhe] ?? 1) || b.overall - a.overall);
+    if (g === "MF" && formacao === "4-2-3-1" && gente.length === 5) {
+      const volantes = gente.slice(0, 2), meias = gente.slice(2);
+      xs(2, 32).forEach((x, i) => saida.push({p: volantes[i], x, y: 58}));
+      xs(3, 18).forEach((x, i) => saida.push({p: meias[i], x, y: 38}));
+      continue;
+    }
+    let y = alturas[g];
+    if (g === "MF" && gente.length >= 5) y = 50;
+    if (g === "FW" && gente.length === 1) y = 18;
+    if (g === "DF" && gente.length >= 5) y = 73;
+    // laterais nas pontas: FB para as bordas, CB no meio
+    if (g === "DF") {
+      const fb = gente.filter((p) => p.detalhe === "FB"), cb = gente.filter((p) => p.detalhe !== "FB");
+      const ord = fb.length >= 2 ? [fb[0], ...cb, ...fb.slice(1)] : gente;
+      xs(ord.length, gente.length >= 5 ? 9 : 12).forEach((x, i) => saida.push({p: ord[i], x, y}));
+      continue;
+    }
+    xs(gente.length, gente.length >= 5 ? 9 : 16).forEach((x, i) => saida.push({p: gente[i], x, y}));
   }
-  $("#gramado").innerHTML = LINHAS_CAMPO + pecas.join("");
+  return saida;
+}
 
-  $("#grade-reservas tbody").innerHTML = e.elenco.filter((p) => !p.titular).map((p) => `
-    <tr class="clicavel" data-id="${p.id}">
-      <td><span class="etiqueta">${p.posicao}</span></td>
-      <td>${escapar(p.nome)}</td>
-      <td class="n"><b>${p.overall}</b></td>
-      <td class="n">${p.energia}%</td></tr>`).join("");
-
-  $("#formacao").innerHTML = e.opcoes.formacoes.map((f) =>
-    `<option ${f === e.tatica.formacao ? "selected" : ""}>${f}</option>`).join("");
-
-  const titulares = e.elenco.filter((p) => p.titular);
+TELAS.escalacao = async function () {
+  const e = ESTADO;
+  if (!onzeLocal) onzeLocal = [...e.onze];
+  const porId = Object.fromEntries(e.elenco.map((p) => [p.id, p]));
+  const titulares = onzeLocal.map((id) => porId[id]).filter(Boolean);
+  const reservas = e.elenco.filter((p) => !onzeLocal.includes(p.id))
+    .sort((a, b) => ORDEM_POS[a.posicao] - ORDEM_POS[b.posicao] || b.overall - a.overall);
+  const [svgLinha, svgGol] = await Promise.all([camisa(e.clube.id, "1"), camisa(e.clube.id, "2")]);
+  const vagas = e.tatica.vagas;
+  const contagem = {GK: 0, DF: 0, MF: 0, FW: 0};
+  titulares.forEach((p) => contagem[p.posicao]++);
   const media = titulares.reduce((s, p) => s + p.overall, 0) / (titulares.length || 1);
-  const energia = titulares.reduce((s, p) => s + p.energia, 0) / (titulares.length || 1);
-  $("#resumo-onze").textContent =
-    `onze: overall ${media.toFixed(1)} · energia ${energia.toFixed(0)}%`;
+  const energiaMedia = titulares.reduce((s, p) => s + p.energia, 0) / (titulares.length || 1);
+  const f = e.funcoes || {};
+
+  const pecas = posicoesNoCampo(titulares, e.tatica.formacao).map(({p, x, y}) => `
+    <button class="peca ${contagem[p.posicao] > (vagas[p.posicao] || 0) ? "fora-de-posicao" : ""}
+      ${marcado && marcado.id === p.id ? "marcado" : ""}" data-campo="${p.id}" draggable="true"
+      style="left:${x}%;top:${y}%">
+      <span class="camisa-peca">${idsProprios(p.posicao === "GK" ? svgGol : svgLinha)}
+        ${f.capitao === p.id ? '<span class="faixa">C</span>' : ""}</span>
+      <span class="nome">${escapar(sobrenome(p.nome))}</span>
+      <span class="info">${pos(p.posicao)}${ovr(p.overall)}</span>
+      <span class="energia"><i style="width:${p.energia}%;background:${corDe(p.energia, 85, 70)}"></i></span>
+    </button>`).join("");
+
+  const seg = (campo, opcoes, atual, rotulos = {}) => `<div class="segmentado" data-tatica="${campo}">${opcoes.map((o) =>
+    `<button data-v="${o}" class="${o === atual ? "ativo" : ""}">${rotulos[o] || o}</button>`).join("")}</div>`;
+  const opcoesFuncao = (chave) => `<select data-funcao="${chave}"><option value="">—</option>${titulares.map((p) =>
+    `<option value="${p.id}" ${f[chave] === p.id ? "selected" : ""}>${escapar(p.nome)}</option>`).join("")}</select>`;
+  const formacoes = [...e.opcoes.formacoes].sort();
+  const faltam = Object.entries(vagas).filter(([g, n]) => contagem[g] !== n)
+    .map(([g, n]) => `${POSICOES[g]} ${contagem[g]}/${n}`);
+
+  $("#tela-escalacao").innerHTML = `
+    <div class="painel">
+      <div class="cab"><h2>Escalação</h2>
+        <select id="sel-formacao" style="width:auto">${formacoes.map((x) =>
+          `<option ${x === e.tatica.formacao ? "selected" : ""}>${x}</option>`).join("")}</select>
+        <button class="btn pequeno" id="auto">Automática</button>
+        <button class="btn primario pequeno" id="confirmar-onze" ${onzeIgual() ? "disabled" : ""}>Confirmar</button></div>
+      <div class="gramado" id="gramado">${LINHAS_CAMPO}${pecas}</div>
+      <div class="pe"><span class="dica">OVR médio <b class="num">${media.toFixed(1)}</b> ·
+        energia <b class="num">${energiaMedia.toFixed(0)}%</b></span>
+        <span class="espaco" style="flex:1"></span>
+        ${faltam.length ? `<span class="chip" style="border-color:var(--ruim);color:var(--ruim)">fora do esquema: ${faltam.join(" · ")}</span>`
+          : '<span class="chip ativo">esquema completo</span>'}
+        <span class="dica">Clique ou arraste para trocar</span></div>
+    </div>
+    <div class="coluna">
+      <div class="painel">
+        <div class="cab"><h2>Reservas</h2><span class="dica">${reservas.length}</span></div>
+        <div class="corpo sem-margem"><table class="grade compacta lista-banco"><tbody>${reservas.map((p) => `
+          <tr class="clicavel ${marcado && marcado.id === p.id ? "marcado" : ""}" data-banco="${p.id}" draggable="true">
+            <td>${pos(p.posicao)}</td><td><b>${escapar(p.nome)}</b></td>
+            <td class="n">${ovr(p.overall)}</td><td>${energia(p.energia)}</td><td class="n dica">${p.idade}a</td></tr>`).join("")}
+        </tbody></table></div>
+      </div>
+      <div class="painel fixo">
+        <div class="cab"><h2>Tática</h2></div>
+        <div class="corpo tatica-grade">
+          <div class="linha-t"><span>Mentalidade</span>${seg("estilo", ["retrancado", "defensivo", "equilibrado", "ofensivo", "all-out"],
+            e.tatica.estilo, {"retrancado": "Retranca", "defensivo": "Defensiva", "equilibrado": "Equilíbrio", "ofensivo": "Ofensiva", "all-out": "Tudo"})}</div>
+          <div class="linha-t"><span>Marcação</span>${seg("marcacao", ["leve", "normal", "forte"], e.tatica.marcacao,
+            {leve: "Leve", normal: "Normal", forte: "Pressão alta"})}</div>
+          <div class="efeito" id="efeito-tatica">${efeitoDaTatica(e.tatica)}</div>
+        </div>
+      </div>
+      <div class="painel fixo">
+        <div class="cab"><h2>Funções</h2></div>
+        <div class="corpo">
+          <div class="funcoes">
+            <label class="campo"><span>Capitão</span>${opcoesFuncao("capitao")}</label>
+            <label class="campo"><span>Pênaltis</span>${opcoesFuncao("penaltis")}</label>
+            <label class="campo"><span>Faltas</span>${opcoesFuncao("faltas")}</label>
+            <label class="campo"><span>Escanteios</span>${opcoesFuncao("escanteios")}</label>
+          </div>
+          <p class="nota-honesta">Ficam salvos na carreira, mas o motor ainda não simula bola parada nem
+            liderança: por enquanto não mudam o resultado.</p>
+        </div>
+      </div>
+    </div>`;
+  ligarEscalacao();
+};
+
+function efeitoDaTatica(t) {
+  const txt = {
+    retrancado: "cria bem menos e concede bem menos", defensivo: "cria um pouco menos e se expõe menos",
+    equilibrado: "sem viés: o elenco decide", ofensivo: "cria mais e se expõe mais",
+    "all-out": "tudo ao ataque: muito mais gols pros dois lados",
+  }[t.estilo];
+  const mrc = {leve: "marcação leve poupa energia e cede espaço",
+               normal: "marcação normal", forte: "pressão alta sufoca o rival e cansa o time na rodada seguinte"}[t.marcacao];
+  return `<b>${t.formacao}</b> · ${txt}; ${mrc}. Os efeitos são modestos de propósito — tática é escolha, não atalho.`;
 }
 
-/* ------------------------------------------------------------------ tática */
-
-const CAMPOS_DE_TATICA = [
-  {chave: "formacao", rotulo: "Formação", opcoes: "formacoes"},
-  {chave: "marcacao", rotulo: "Pressão", opcoes: "marcacoes"},
-  {chave: "estilo", rotulo: "Mentalidade", opcoes: "estilos"},
-];
-
-function telaTatica() {
-  const e = ESTADO;
-  $("#campos-tatica").innerHTML = CAMPOS_DE_TATICA.map((c) => `
-    <div class="campo-tatica"><span>${c.rotulo}</span>
-      <div class="opcoes" data-campo="${c.chave}">
-        ${e.opcoes[c.opcoes].map((o) => `<button data-valor="${escapar(o)}"
-          class="${o === e.tatica[c.chave] ? "ativo" : ""}">${escapar(o)}</button>`)
-          .join("")}
-      </div></div>`).join("");
-  $("#efeito-tatica").textContent =
-    "Formação, pressão e mentalidade mudam o resultado de verdade: pressão forte cansa " +
-    "mais, e o confronto de formações é calculado no motor — não é enfeite.";
+function onzeIgual() {
+  return onzeLocal && ESTADO && onzeLocal.length === ESTADO.onze.length
+    && onzeLocal.every((id) => ESTADO.onze.includes(id));
 }
 
-/* ------------------------------------------------------------------ tabelas */
-
-async function telaClassificacao() {
-  const d = await api.get(`/api/tabela${ligaVisivel ? `?liga=${ligaVisivel}` : ""}`);
-  ligaVisivel = d.liga;
-  $("#pastilhas-ligas").innerHTML = d.ligas.map((n) =>
-    `<button class="${n === d.liga ? "ativo" : ""}" data-liga="${escapar(n)}">${
-      escapar(n)}</button>`).join("");
-  const total = d.linhas.length;
-  $("#grade-classificacao tbody").innerHTML = d.linhas.map((l) => {
-    const zona = l.posicao <= 4 ? "continental"
-      : l.posicao > total - 4 ? "rebaixamento" : "";
-    return `<tr class="${l.eu ? "eu" : ""} ${zona}">
-      <td class="n">${l.posicao}</td>
-      <td><span class="pastilha-clube" style="background:${l.clube.cor}"></span>
-        ${escapar(l.clube.nome)}</td>
-      <td class="n"><b>${l.pontos}</b></td><td class="n">${l.jogos}</td>
-      <td class="n">${l.vitorias}</td><td class="n">${l.empates}</td>
-      <td class="n">${l.derrotas}</td><td class="n">${l.gols_pro}</td>
-      <td class="n">${l.gols_contra}</td>
-      <td class="n">${l.saldo > 0 ? "+" : ""}${l.saldo}</td></tr>`;
-  }).join("");
+function trocar(a, b) {
+  // a e b: {id, onde}. Troca de campo por banco; dois do campo so trocam de marcacao.
+  if (a.onde === b.onde) { marcado = b; return; }
+  const doCampo = a.onde === "campo" ? a.id : b.id;
+  const doBanco = a.onde === "banco" ? a.id : b.id;
+  onzeLocal = onzeLocal.map((id) => id === doCampo ? doBanco : id);
+  marcado = null;
 }
 
-function telaCopas() {
-  const linhas = ESTADO.copas;
-  $("#grade-copas tbody").innerHTML = linhas.length ? linhas.map((c) => `
-    <tr><td>${escapar(c.nome)}</td>
-    <td>${c.acabou ? "encerrada" : escapar(c.fase)}</td>
-    <td class="${c.vivo && !c.acabou ? "bom" : ""}">${
-      c.acabou ? "—" : c.vivo ? "vivo" : "eliminado"}</td>
-    <td>${c.campeao ? escapar(c.campeao) : "—"}</td></tr>`).join("")
-    : `<tr><td class="dica">Sem copas nesta carreira.</td></tr>`;
+function ligarEscalacao() {
+  const clicar = (id, onde) => {
+    if (!marcado) marcado = {id, onde};
+    else if (marcado.id === id) marcado = null;
+    else trocar(marcado, {id, onde});
+    TELAS.escalacao();
+  };
+  $$("[data-campo]").forEach((el) => {
+    el.addEventListener("click", () => clicar(+el.dataset.campo, "campo"));
+    el.addEventListener("dblclick", () => abrirPerfil(+el.dataset.campo));
+  });
+  $$("[data-banco]").forEach((el) => {
+    el.addEventListener("click", () => clicar(+el.dataset.banco, "banco"));
+    el.addEventListener("dblclick", () => abrirPerfil(+el.dataset.banco));
+  });
+  // arrastar: do banco para o campo e do campo para o banco
+  const alvos = [...$$("[data-campo]"), ...$$("[data-banco]")];
+  alvos.forEach((el) => {
+    const eu = () => el.dataset.campo ? {id: +el.dataset.campo, onde: "campo"} : {id: +el.dataset.banco, onde: "banco"};
+    el.addEventListener("dragstart", (ev) => { ev.dataTransfer.setData("text/plain", JSON.stringify(eu())); });
+    el.addEventListener("dragover", (ev) => { ev.preventDefault(); el.classList.add("alvo"); });
+    el.addEventListener("dragleave", () => el.classList.remove("alvo"));
+    el.addEventListener("drop", (ev) => {
+      ev.preventDefault();
+      const origem = JSON.parse(ev.dataTransfer.getData("text/plain"));
+      if (origem.onde !== eu().onde) { trocar(origem, eu()); TELAS.escalacao(); }
+    });
+  });
+  $("#auto").addEventListener("click", async () => {
+    const r = await api.post("/api/escalar", {formacao: ESTADO.tatica.formacao});
+    aplicarEstado(r.estado);
+    onzeLocal = [...r.estado.onze];
+    avisar("Escalação automática aplicada");
+    TELAS.escalacao();
+  });
+  $("#confirmar-onze").addEventListener("click", mandarOnze);
+  $("#sel-formacao").addEventListener("change", (ev) => mandarTatica({formacao: ev.target.value}));
+  $$("[data-tatica] button").forEach((b) => b.addEventListener("click", () =>
+    mandarTatica({[b.parentNode.dataset.tatica]: b.dataset.v})));
+  $$("[data-funcao]").forEach((s) => s.addEventListener("change", async () => {
+    const funcoes = {...ESTADO.funcoes};
+    $$("[data-funcao]").forEach((x) => { if (x.value) funcoes[x.dataset.funcao] = +x.value; else delete funcoes[x.dataset.funcao]; });
+    const r = await api.post("/api/escalar", {onze: ESTADO.onze, funcoes});
+    aplicarEstado(r.estado);
+    TELAS.escalacao();
+  }));
 }
 
-async function telaCalendario() {
-  const d = await api.get("/api/calendario");
-  $("#grade-calendario tbody").innerHTML = d.datas.map((x) => {
-    const res = x.resultado
-      ? `<span class="res-${x.resultado.resultado}">${x.resultado.resultado}</span>
-         ${x.resultado.gols_casa} × ${x.resultado.gols_fora}`
-      : (x.passou ? "—" : "");
-    return `<tr class="${x.ordem === d.atual ? "eu" : ""}">
-      <td class="n">${x.rodada ?? "—"}</td>
-      <td>${escapar(x.competicao)}</td>
-      <td>${x.rival ? `${escapar(x.rival.nome)}
-        <span class="dica">${x.rival.casa ? "casa" : "fora"}</span>` : "—"}</td>
-      <td class="n">${res}</td></tr>`;
-  }).join("");
+async function mandarOnze() {
+  const r = await api.post("/api/escalar", {onze: onzeLocal, funcoes: ESTADO.funcoes});
+  if (r.erro) { avisar(r.erro); return; }
+  aplicarEstado(r.estado);
+  onzeLocal = [...r.estado.onze];
+  avisar("Escalação confirmada");
+  TELAS.escalacao();
 }
 
-async function telaArtilheiros() {
-  const d = await api.get("/api/estatisticas");
-  const linhas = (lista, a, b) => lista.length ? lista.map((x, i) => `
-    <tr class="${x.meu ? "eu" : ""}"><td class="n">${i + 1}</td>
-    <td>${escapar(x.nome)} <span class="etiqueta">${x.posicao}</span></td>
-    <td><span class="pastilha-clube" style="background:${x.cor}"></span>
-      ${escapar(x.clube)}</td>
-    <td class="n"><b>${x[a]}</b></td><td class="n">${x[b]}</td>
-    <td class="n">${x.jogos}</td></tr>`).join("")
-    : `<tr><td class="dica">Ainda não há números nesta temporada.</td></tr>`;
-  $("#grade-artilheiros tbody").innerHTML = linhas(d.artilheiros, "gols", "assistencias");
-  $("#grade-garcons tbody").innerHTML = linhas(d.garcons, "assistencias", "gols");
+async function mandarTatica(mudanca) {
+  const t = {...ESTADO.tatica, ...mudanca};
+  // mudar a formacao sem escolher o onze refaz a escalacao automatica para o esquema novo
+  const corpo = {formacao: t.formacao, marcacao: t.marcacao, estilo: t.estilo};
+  if (!mudanca.formacao) corpo.onze = onzeIgual() ? ESTADO.onze : onzeLocal;
+  const r = await api.post("/api/escalar", corpo);
+  if (r.erro) { avisar(r.erro); return; }
+  aplicarEstado(r.estado);
+  onzeLocal = [...r.estado.onze];
+  TELAS.escalacao();
 }
 
-async function telaFinancas() {
-  const d = await api.get("/api/financas");
-  $("#resumo-financas tbody").innerHTML = [
-    ["Caixa", reais(d.caixa), d.caixa < 0 ? "ruim" : ""],
-    ["Receita prevista", reais(d.receita), ""],
-    ["Folha salarial", reais(d.folha), ""],
-    ["Custo de operação", reais(d.operacao), ""],
-    ["Saldo previsto", reais(d.saldo_previsto), d.saldo_previsto < 0 ? "ruim" : "bom"],
-    ["Valor do elenco", reais(d.valor_do_elenco), ""],
-    ["Reputação", d.reputacao, ""],
-  ].map(([r, v, cls]) => `<tr><td>${r}</td><td class="n ${cls}">${v}</td></tr>`).join("");
+/* ================================================================== CLASSIFICACAO */
 
-  $("#folha tbody").innerHTML = d.salarios.map((s) => `
-    <tr><td>${escapar(s.nome)}</td>
-    <td><span class="etiqueta">${s.posicao}</span></td>
-    <td class="n">${dinheiro(s.salario)}</td>
-    <td class="n">${dinheiro(s.valor)}</td>
-    <td class="n">${s.contrato}</td></tr>`).join("");
+let CLASS = {liga: null, visao: "geral"};
+
+TELAS.classificacao = async function () {
+  const d = await api.get(`/api/classificacao${CLASS.liga ? `?liga=${CLASS.liga}` : ""}`);
+  CLASS.liga = d.liga;
+  const z = d.zonas;
+  const n = d.linhas.length;
+  const zona = (i) => i <= z.continental ? "continental" : i <= z.acesso ? "acesso"
+    : i > n - z.rebaixamento ? "rebaixamento" : "";
+  const v = CLASS.visao;
+  const linha = (l) => v === "geral" ? l : {...l, ...l[v]};
+  const ordenadas = v === "geral" ? d.linhas : [...d.linhas].sort((a, b) =>
+    b[v].pontos - a[v].pontos || (b[v].gols_pro - b[v].gols_contra) - (a[v].gols_pro - a[v].gols_contra) || b[v].gols_pro - a[v].gols_pro);
+  const lista = (titulo, itens, fmt) => `<div class="painel fixo"><div class="cab"><h2>${titulo}</h2></div>
+    <div class="corpo sem-margem"><table class="grade compacta"><tbody>${itens.length ? itens.map(fmt).join("")
+      : '<tr><td class="vazio">Sem jogos ainda.</td></tr>'}</tbody></table></div></div>`;
+  const corSituacao = {"vivo": "bom", "campeão": "ouro", "eliminado": "ruim"};
+  const copas = ESTADO.copas.map((c) => `<tr><td><b>${escapar(c.nome)}</b><div class="dica">${escapar(c.fase)}</div></td>
+    <td class="${corSituacao[c.situacao] || "fraco"}" style="white-space:normal">${escapar(c.situacao)}</td></tr>`);
+
+  $("#tela-classificacao").innerHTML = `
+    <div class="painel">
+      <div class="cab"><h2>${escapar(d.nome)} · rodada ${d.rodada}/${d.total_de_rodadas}</h2>
+        <div class="abas">${d.ligas.map((l) => `<button data-liga="${l.id}" class="${l.id === d.liga ? "ativo" : ""}">${escapar(l.nome)}</button>`).join("")}</div>
+        <div class="segmentado" style="width:15rem">${[["geral", "Geral"], ["casa", "Casa"], ["fora", "Fora"]].map(([k, r]) =>
+          `<button data-visao="${k}" class="${k === v ? "ativo" : ""}">${r}</button>`).join("")}</div></div>
+      <div class="corpo sem-margem"><table class="grade">
+        <thead><tr><th class="c">#</th><th>Clube</th><th class="n">P</th><th class="n">J</th><th class="n">V</th>
+          <th class="n">E</th><th class="n">D</th><th class="n">GP</th><th class="n">GC</th><th class="n">SG</th>
+          <th class="n">%</th><th class="c">Últimos 5</th></tr></thead>
+        <tbody>${ordenadas.map((l0, i) => {
+          const l = linha(l0);
+          const sg = l.gols_pro - l.gols_contra;
+          return `<tr class="${l0.eu ? "eu" : ""}">
+            <td class="c"><span class="zona ${v === "geral" ? zona(i + 1) : ""}">${i + 1}</span></td>
+            <td><div class="nome-celula">${escudo(l0.clube)}<b>${escapar(l0.clube.nome)}</b></div></td>
+            <td class="n"><b>${l.pontos}</b></td><td class="n">${l.jogos}</td><td class="n">${l.vitorias}</td>
+            <td class="n">${l.empates}</td><td class="n">${l.derrotas}</td><td class="n">${l.gols_pro}</td>
+            <td class="n">${l.gols_contra}</td><td class="n ${sg > 0 ? "bom" : sg < 0 ? "ruim" : ""}">${sg > 0 ? "+" : ""}${sg}</td>
+            <td class="n">${l.jogos ? Math.round(100 * l.pontos / (3 * l.jogos)) : 0}</td>
+            <td class="c">${forma(l0.ultimos)}</td></tr>`;
+        }).join("")}</tbody></table></div>
+      <div class="pe">
+        ${z.continental ? '<span class="linha-flex"><span class="zona continental">&nbsp;</span> <span class="dica">vaga continental (indicativa)</span></span>' : ""}
+        ${z.acesso ? '<span class="linha-flex"><span class="zona acesso">&nbsp;</span> <span class="dica">acesso</span></span>' : ""}
+        ${z.rebaixamento ? '<span class="linha-flex"><span class="zona rebaixamento">&nbsp;</span> <span class="dica">rebaixamento</span></span>' : ""}
+      </div>
+    </div>
+    <div class="coluna" style="overflow:auto">
+      ${lista("Artilharia", d.artilheiros.slice(0, 6), (x, i) => `<tr class="${x.meu ? "eu" : ""}"><td class="n">${i + 1}</td>
+        <td><b>${escapar(x.nome)}</b><div class="dica">${escapar(x.clube)}</div></td><td class="n"><b>${x.gols}</b></td></tr>`)}
+      ${lista("Assistências", d.garcons.slice(0, 5), (x, i) => `<tr class="${x.meu ? "eu" : ""}"><td class="n">${i + 1}</td>
+        <td><b>${escapar(x.nome)}</b><div class="dica">${escapar(x.clube)}</div></td><td class="n"><b>${x.assistencias}</b></td></tr>`)}
+      ${lista("Melhores defesas", d.melhores_defesas.slice(0, 3), (x) => `<tr><td>${escapar(x.clube)}</td><td class="n">${x.gols} gc</td></tr>`)}
+      ${lista("Piores defesas", d.piores_defesas.slice(0, 3), (x) => `<tr><td>${escapar(x.clube)}</td><td class="n ruim">${x.gols} gc</td></tr>`)}
+      ${lista("Copas", copas, (x) => x)}
+    </div>`;
+  $$("[data-liga]").forEach((b) => b.addEventListener("click", () => { CLASS.liga = b.dataset.liga; TELAS.classificacao(); }));
+  $$("[data-visao]").forEach((b) => b.addEventListener("click", () => { CLASS.visao = b.dataset.visao; TELAS.classificacao(); }));
+};
+
+/* ================================================================== MERCADO */
+
+const MERC = {filtros: {pos: "", nome: "", idade_min: "", idade_max: "", ovr_min: "", valor_max: "", liga: "", observados: ""},
+              lista: null, selecionado: null};
+
+TELAS.mercado = async function () {
+  const f = MERC.filtros;
+  const q = new URLSearchParams(Object.entries(f).filter(([, v]) => v !== "")).toString();
+  MERC.lista = await api.get(`/api/mercado?${q}`);
+  if (!MERC.lista.jogadores.some((j) => j.id === MERC.selecionado)) MERC.selecionado = MERC.lista.jogadores[0]?.id ?? null;
+  $("#tela-mercado").innerHTML = `
+    <div class="painel">
+      <div class="cab"><h2>Busca</h2></div>
+      <div class="corpo filtros">
+        <label class="campo"><span>Nome</span><input type="search" data-f="nome" value="${escapar(f.nome)}" placeholder="Jogador"></label>
+        <label class="campo"><span>Posição</span><select data-f="pos"><option value="">Todas</option>${Object.entries(POSICOES_LONGAS).map(([k, v]) =>
+          `<option value="${k}" ${f.pos === k ? "selected" : ""}>${v}</option>`).join("")}</select></label>
+        <div class="campo"><span>Idade</span><div class="campo-duplo">
+          <input type="number" data-f="idade_min" placeholder="mín" value="${f.idade_min}">
+          <input type="number" data-f="idade_max" placeholder="máx" value="${f.idade_max}"></div></div>
+        <label class="campo"><span>OVR mínimo</span><input type="number" data-f="ovr_min" value="${f.ovr_min}" placeholder="ex.: 70"></label>
+        <label class="campo"><span>Valor máximo (R$ mi)</span><input type="number" data-f="valor_max_mi"
+          value="${f.valor_max ? f.valor_max / 1e6 : ""}" placeholder="sem limite"></label>
+        <label class="campo"><span>Liga</span><select data-f="liga"><option value="">Todas</option>${MERC.lista.ligas.map((l) =>
+          `<option value="${l.id}" ${f.liga === l.id ? "selected" : ""}>${escapar(l.nome)}</option>`).join("")}</select></label>
+        <label class="linha-flex"><input type="checkbox" data-f="observados" ${f.observados ? "checked" : ""}
+          style="accent-color:var(--ouro)"> <span>Só a lista de observação (${ESTADO.observados})</span></label>
+        <button class="btn" id="limpar-filtros">Limpar filtros</button>
+      </div>
+    </div>
+    <div class="painel">
+      <div class="cab"><h2>Jogadores</h2><span class="dica">${MERC.lista.total.toLocaleString("pt-BR")} encontrados${MERC.lista.total > 250 ? " · mostrando 250" : ""}</span></div>
+      <div class="corpo sem-margem"><table class="grade" id="grade-mercado">
+        <thead><tr><th>Pos</th><th>Nome</th><th class="n">Idade</th><th class="n">OVR</th><th class="n">Pot</th>
+          <th>Clube</th><th class="n">Valor</th><th class="n">Salário</th><th class="n">Contrato</th><th></th></tr></thead>
+        <tbody>${MERC.lista.jogadores.map((j) => `
+          <tr class="clicavel ${j.id === MERC.selecionado ? "sel" : ""}" data-id="${j.id}">
+            <td>${pos(j.posicao)}</td><td><b>${escapar(j.nome)}</b></td><td class="n">${j.idade}</td>
+            <td class="n">${ovr(j.overall)}</td><td class="n dica">${j.potencial}</td>
+            <td><div class="nome-celula">${escudo(j.clube, "1.3rem")}<span>${escapar(j.clube.nome)}</span></div></td>
+            <td class="n">${dinheiro(j.valor)}</td><td class="n">${dinheiro(j.salario)}</td><td class="n">${j.contrato}</td>
+            <td>${j.observado ? `<span class="ouro" title="observado">${icone("olho", 'style="width:1rem;height:1rem"')}</span>` : ""}</td>
+          </tr>`).join("") || '<tr><td colspan="10" class="vazio">Ninguém com esse perfil.</td></tr>'}</tbody>
+      </table></div>
+    </div>
+    <div class="painel" id="detalhe-mercado"></div>`;
+  let espera = null;
+  $$("[data-f]").forEach((el) => el.addEventListener(el.type === "search" || el.type === "number" ? "input" : "change", () => {
+    clearTimeout(espera);
+    espera = setTimeout(() => {
+      $$("[data-f]").forEach((x) => {
+        if (x.dataset.f === "valor_max_mi") MERC.filtros.valor_max = x.value ? String(Math.round(+x.value * 1e6)) : "";
+        else if (x.type === "checkbox") MERC.filtros[x.dataset.f] = x.checked ? "1" : "";
+        else MERC.filtros[x.dataset.f] = x.value;
+      });
+      TELAS.mercado();
+    }, 280);
+  }));
+  $("#limpar-filtros").addEventListener("click", () => {
+    Object.keys(MERC.filtros).forEach((k) => { MERC.filtros[k] = ""; });
+    TELAS.mercado();
+  });
+  $$("#grade-mercado tbody tr[data-id]").forEach((tr) => {
+    tr.addEventListener("click", () => {
+      MERC.selecionado = +tr.dataset.id;
+      $$("#grade-mercado tbody tr").forEach((x) => x.classList.toggle("sel", x === tr));
+      detalheDoMercado();
+    });
+    tr.addEventListener("dblclick", () => abrirPerfil(+tr.dataset.id));
+  });
+  detalheDoMercado();
+};
+
+async function detalheDoMercado() {
+  const alvo = $("#detalhe-mercado");
+  const j = MERC.lista.jogadores.find((x) => x.id === MERC.selecionado);
+  if (!j) { alvo.innerHTML = '<div class="vazio">Selecione um jogador.</div>'; return; }
+  const p = await api.get(`/api/jogador?id=${j.id}`);
+  const principais = Object.entries(p.atributos).sort((a, b) => b[1] - a[1]).slice(0, 6);
+  alvo.innerHTML = `
+    <div class="cab"><h2>${escapar(j.nome)}</h2></div>
+    <div class="corpo">
+      <div class="linha-flex">${escudo(j.clube, "2.6rem")}<div><b>${escapar(j.clube.nome)}</b>
+        <div class="dica">${escapar(j.liga)}</div></div><span class="espaco"></span>${pos(j.posicao)}${ovr(j.overall)}</div>
+      <div class="kpis" style="margin-top:.9rem">
+        <div class="kpi-c"><span>Idade</span><b>${j.idade}</b></div>
+        <div class="kpi-c"><span>Potencial</span><b>${j.potencial}</b></div>
+        <div class="kpi-c destaque"><span>Valor</span><b>${dinheiro(j.valor)}</b></div>
+        <div class="kpi-c"><span>Salário</span><b>${dinheiro(j.salario)}</b></div>
+        <div class="kpi-c"><span>Contrato</span><b>${j.contrato}</b></div>
+        <div class="kpi-c"><span>Pé</span><b>${j.pe === "E" ? "Esquerdo" : "Direito"}</b></div>
+      </div>
+      <div class="secao"><h3>Pontos fortes</h3><div class="atributos" style="grid-template-columns:1fr">${principais.map(([k, v]) => `
+        <div class="attr"><span>${ROTULOS_ATRIBUTOS[k] || k}</span><span class="t"><i style="width:${v}%;background:${corDe(v, 75, 60)}"></i></span><b>${v}</b></div>`).join("")}</div></div>
+      <div class="secao"><h3>Ações</h3>
+        <div class="form-col" style="gap:.5rem">
+          <button class="btn ${j.observado ? "" : "azul"} bloco" id="observar">${icone("olho")} ${j.observado ? "Deixar de observar" : "Observar"}</button>
+          <div class="campo-duplo">
+            <button class="btn" disabled title="Negociação ainda não existe no motor">Contratar</button>
+            <button class="btn" disabled title="Negociação ainda não existe no motor">Fazer proposta</button>
+            <button class="btn" disabled title="Negociação ainda não existe no motor">Emprestar</button>
+            <button class="btn" onclick="abrirPerfil(${j.id})">Ver perfil</button>
+          </div>
+        </div>
+        <p class="nota-honesta">Proposta, contratação e empréstimo chegam com o mercado interativo. Hoje as
+          transferências acontecem na janela automática da virada do ano.</p></div>
+    </div>`;
+  $("#observar").addEventListener("click", async () => {
+    await api.post("/api/observar", {id: j.id});
+    await recarregarEstado();
+    TELAS.mercado();
+  });
 }
 
-/* ------------------------------------------------------------------ janelas */
+/* ================================================================== CALENDARIO */
 
-function abrirJanela(html) {
-  $("#conteudo-janela").innerHTML = html;
-  $("#cortina").hidden = false;
-  $("#conteudo-janela").scrollTop = 0;
-  $("#fechar-janela").focus({preventScroll: true});
+TELAS.calendario = async function () {
+  const [cal, ini] = await Promise.all([api.get("/api/calendario"), api.get("/api/inicio")]);
+  const c = ini.campanha;
+  $("#tela-calendario").innerHTML = `
+    <div class="painel">
+      <div class="cab"><h2>Calendário ${ESTADO.temporada}</h2><span class="dica">${cal.datas.length} datas · liga e copas</span></div>
+      <div class="corpo sem-margem"><table class="grade" id="grade-cal">
+        <thead><tr><th class="n">#</th><th>Data</th><th>Competição</th><th>Adversário</th><th class="c">Local</th><th class="c">Resultado</th></tr></thead>
+        <tbody>${cal.datas.map((d) => {
+          const r = d.resultado;
+          const res = r ? `<span class="forma"><i class="${r.resultado}">${r.resultado}</i></span> <b class="num">${r.gols_casa} x ${r.gols_fora}</b>` : "";
+          return `<tr class="${d.ordem === cal.atual ? "eu" : ""} ${d.passou ? "reserva" : ""}">
+            <td class="n">${d.ordem + 1}</td><td class="num">${dataDaAgenda(d.ordem)}</td>
+            <td>${d.tipo === "copa" ? `<span class="chip ouro">${escapar(d.competicao)}</span>` : `${escapar(ESTADO.liga_nome)} · ${d.rodada}ª rodada`}</td>
+            <td>${d.rival ? `<b>${escapar(d.rival.nome)}</b>` : '<span class="dica">conforme o chaveamento</span>'}</td>
+            <td class="c">${d.rival ? (d.rival.casa ? "Casa" : "Fora") : ""}</td>
+            <td class="c">${res}</td></tr>`;
+        }).join("")}</tbody></table></div>
+    </div>
+    <div class="coluna">
+      <div class="painel fixo"><div class="cab"><h2>Campanha na liga</h2></div>
+        <div class="corpo"><div class="kpis">
+          <div class="kpi-c destaque"><span>Posição</span><b>${c.posicao ? `${c.posicao}º` : "—"}</b></div>
+          <div class="kpi-c"><span>Pontos</span><b>${c.pontos}</b></div>
+          <div class="kpi-c"><span>Jogos</span><b>${c.jogos}</b></div>
+          <div class="kpi-c"><span>V-E-D</span><b>${c.vitorias}-${c.empates}-${c.derrotas}</b></div>
+          <div class="kpi-c"><span>Gols</span><b>${c.gols_pro}:${c.gols_contra}</b></div>
+        </div></div></div>
+      <div class="painel"><div class="cab"><h2>Últimos jogos</h2></div>
+        <div class="corpo sem-margem"><table class="grade compacta"><tbody>${ini.ultimos.map((r) => `
+          <tr><td>${forma([r.resultado])}</td><td>${escapar(r.casa)}</td><td class="n"><b>${r.gols_casa} x ${r.gols_fora}</b></td>
+          <td>${escapar(r.fora)}</td></tr>`).join("") || '<tr><td class="vazio">Nenhum jogo ainda.</td></tr>'}</tbody></table></div></div>
+    </div>`;
+  $("#grade-cal tr.eu")?.scrollIntoView({block: "center"});
+};
+
+function dataDaAgenda(ordem) {
+  // a mesma regra do servidor: a temporada abre em 6 de abril e cada data anda 4 dias
+  const d = new Date(ESTADO.temporada, 3, 6 + ordem * 4);
+  return d.toLocaleDateString("pt-BR", {day: "2-digit", month: "2-digit"});
 }
 
-async function janelaDaPartida(r) {
-  const p = r.partida;
-  let html = "";
-  if (p) {
-    html += `<div class="placar-janela">
-      <div class="lado">${idsProprios(await camisa(p.casa.id, "1"))}
-        <span>${escapar(p.casa.nome)}</span></div>
-      <div><div class="numeros">${p.gols_casa} × ${p.gols_fora}</div>
-        <div class="relogio">90:00 · ${escapar(r.competicao)}</div></div>
-      <div class="lado">${idsProprios(await camisa(p.fora.id, "2"))}
-        <span>${escapar(p.fora.nome)}</span></div></div>`;
-    const marca = {gol: "GOL", amarelo: "CA", vermelho: "CV", substituicao: "SUB"};
-    html += `<h3>Lances</h3>`;
-    html += p.eventos.length ? `<ul class="lances">${p.eventos.map((e) => `
-      <li><span class="minuto">${e.minuto}'</span>
-      <span class="tipo ${e.tipo}">${marca[e.tipo] ?? ""}</span>
-      <span>${escapar(e.texto)} <span class="minuto">${escapar(e.clube)}</span></span>
-      </li>`).join("")}</ul>` : `<p class="dica">Nada digno de nota.</p>`;
-    html += `<h3>Números</h3><table class="comparativo">${p.estatisticas.map((s) => `
-      <tr><td class="v">${s.casa}</td><td class="meio">${escapar(s.nome)}</td>
-      <td class="v dir">${s.fora}</td></tr>`).join("")}</table>`;
-  } else {
-    html += `<h2>${escapar(r.competicao)}</h2>
-      <p class="dica">Seu time não entrou em campo nesta data.</p>`;
+/* ================================================================== FINANCAS */
+
+TELAS.financas = async function () {
+  const f = await api.get("/api/financas");
+  const despesas = f.folha + f.operacao;
+  const maior = Math.max(f.receita, despesas, 1);
+  const barraH = (rotulo, v, cor) => `<div style="margin-bottom:.8rem"><div class="linha-flex"><span>${rotulo}</span>
+    <span class="espaco"></span><b class="num">${reais(v)}</b></div>
+    <div class="forca-barra" style="width:100%;height:.7rem;margin-top:.3rem"><i style="width:${100 * v / maior}%;background:${cor}"></i></div></div>`;
+  $("#tela-financas").innerHTML = `
+    <div class="coluna">
+      <div class="painel fixo"><div class="cab"><h2>Situação</h2></div>
+        <div class="corpo"><div class="kpis">
+          <div class="kpi-c destaque"><span>Caixa</span><b>${dinheiro(f.caixa)}</b></div>
+          <div class="kpi-c"><span>Valor do elenco</span><b>${dinheiro(f.valor_do_elenco)}</b></div>
+          <div class="kpi-c"><span>Reputação</span><b>${f.reputacao}</b></div>
+          <div class="kpi-c"><span>Saldo previsto</span><b class="${f.saldo_previsto < 0 ? "ruim" : "bom"}">${dinheiro(f.saldo_previsto)}</b></div>
+        </div></div></div>
+      <div class="painel"><div class="cab"><h2>Orçamento do ano</h2></div>
+        <div class="corpo">
+          ${barraH("Receita prevista", f.receita, "var(--bom)")}
+          ${barraH("Folha salarial", f.folha, "var(--ruim)")}
+          ${barraH("Custo de operação", f.operacao, "#c77a2a")}
+          <p class="nota-honesta">A receita sai do valor do elenco no início do ano e da reputação; premiação
+            de liga e de copas entra no fechamento. O balanço é feito na virada da temporada.</p>
+        </div></div>
+      <div class="painel fixo"><div class="cab"><h2>Folha por setor</h2><span class="dica">por mês</span></div>
+        <div class="corpo">${folhaPorSetor()}</div></div>
+      <div class="painel"><div class="cab"><h2>Contratos terminando</h2><span class="dica">até ${ESTADO.temporada + 1}</span></div>
+        <div class="corpo sem-margem"><table class="grade compacta"><tbody>${ESTADO.elenco
+          .filter((p) => p.contrato <= ESTADO.temporada + 1).sort((a, b) => a.contrato - b.contrato || b.overall - a.overall)
+          .map((p) => `<tr><td>${pos(p.posicao)}</td><td><b>${escapar(p.nome)}</b></td><td class="n">${ovr(p.overall)}</td>
+            <td class="n">${p.idade}a</td><td class="n ${p.contrato <= ESTADO.temporada ? "ruim" : "medio"}">${p.contrato}</td></tr>`).join("")
+          || '<tr><td class="vazio">Nenhum contrato perto do fim.</td></tr>'}</tbody></table></div></div>
+    </div>
+    <div class="painel"><div class="cab"><h2>Maiores salários</h2></div>
+      <div class="corpo sem-margem"><table class="grade">
+        <thead><tr><th>Jogador</th><th>Pos</th><th class="n">Salário/mês</th><th class="n">Valor</th><th class="n">Contrato</th></tr></thead>
+        <tbody>${f.salarios.map((s) => `<tr><td><b>${escapar(s.nome)}</b></td><td>${pos(s.posicao)}</td>
+          <td class="n">${dinheiro(s.salario)}</td><td class="n">${dinheiro(s.valor)}</td>
+          <td class="n ${s.contrato <= ESTADO.temporada ? "ruim" : ""}">${s.contrato}</td></tr>`).join("")}</tbody></table></div></div>`;
+};
+
+function folhaPorSetor() {
+  const soma = {GK: 0, DF: 0, MF: 0, FW: 0};
+  ESTADO.elenco.forEach((p) => { soma[p.posicao] += p.salario; });
+  const total = Object.values(soma).reduce((a, b) => a + b, 0) || 1;
+  return Object.entries(soma).map(([g, v]) => `<div class="linha-flex" style="margin-bottom:.45rem">
+    <span style="width:6.5rem">${pos(g)} <span class="dica">${POSICOES_LONGAS[g]}</span></span>
+    <span class="forca-barra" style="flex:1;width:auto;height:.55rem"><i style="width:${100 * v / total}%"></i></span>
+    <b class="num" style="width:6rem;text-align:right">${dinheiro(v)}</b>
+    <span class="dica num" style="width:3rem;text-align:right">${Math.round(100 * v / total)}%</span></div>`).join("");
+}
+
+/* ================================================================== MENSAGENS */
+
+let msgSelecionada = null;
+
+TELAS.mensagens = async function () {
+  const {mensagens} = await api.get("/api/mensagens");
+  if (!mensagens.some((m) => m.id === msgSelecionada)) msgSelecionada = mensagens[0]?.id ?? null;
+  const m = mensagens.find((x) => x.id === msgSelecionada);
+  $("#tela-mensagens").innerHTML = `
+    <div class="painel"><div class="cab"><h2>Caixa de entrada</h2>
+        <button class="btn pequeno" id="ler-todas">Marcar todas como lidas</button></div>
+      <div class="corpo sem-margem caixa-msg">${mensagens.map((x) => `
+        <div class="msg ${x.lida ? "lida" : ""} ${x.tipo} ${x.id === msgSelecionada ? "sel" : ""}" data-msg="${escapar(x.id)}">
+          <span class="ponto"></span>
+          <div><b>${escapar(x.assunto)}</b><small>${escapar(x.remetente)} · ${x.data}</small></div>
+        </div>`).join("") || '<div class="vazio">Nada por aqui.</div>'}</div></div>
+    <div class="painel"><div class="corpo leitura">${m ? `
+      <h2>${escapar(m.assunto)}</h2><div class="de">De: ${escapar(m.remetente)} · ${m.data}</div>
+      <p>${escapar(m.texto)}</p>` : '<div class="vazio">Selecione uma mensagem.</div>'}
+      <p class="nota-honesta" style="margin-top:2rem">A caixa é montada da situação do clube a cada dia: o que a diretoria,
+        a torcida, a preparação física e o olheiro diriam hoje.</p></div></div>`;
+  if (m && !m.lida) {
+    await api.post("/api/lida", {ids: [m.id]});
+    recarregarEstado();
   }
-  if (r.outros.length) {
-    html += `<h3>Outros jogos</h3><table class="grade compacta"><tbody>
-      ${r.outros.slice(0, 14).map((o) => `<tr>
-        <td style="text-align:right">${escapar(o.casa.nome)}</td>
-        <td class="n">${o.gols_casa} × ${o.gols_fora}</td>
-        <td>${escapar(o.fora.nome)}</td></tr>`).join("")}</tbody></table>`;
-  }
-  abrirJanela(html);
+  $$("[data-msg]").forEach((el) => el.addEventListener("click", () => { msgSelecionada = el.dataset.msg; TELAS.mensagens(); }));
+  $("#ler-todas").addEventListener("click", async () => {
+    await api.post("/api/lida", {ids: mensagens.map((x) => x.id)});
+    await recarregarEstado();
+    TELAS.mensagens();
+  });
+};
+
+/* ================================================================== TREINADOR */
+
+TELAS.treinador = async function () {
+  const t = await api.get("/api/treinador");
+  const n = t.total;
+  $("#tela-treinador").innerHTML = `
+    <div class="coluna">
+      <div class="painel fixo"><div class="corpo" style="text-align:center">
+        <div class="avatar-treinador" style="justify-content:center;flex-direction:column;border:0;background:none">
+          <div class="rosto" style="width:5.5rem;height:5.5rem">${icone("pessoa", 'style="width:3rem;height:3rem"')}</div>
+          <b style="font-size:1.3rem">${escapar(t.nome)}</b>
+          <span class="dica">Treinador do ${escapar(t.clube)} · ${t.temporadas}ª temporada</span></div>
+        <div class="confianca" style="margin-top:1rem;text-align:left">${trilho("Diretoria", t.diretoria)}${trilho("Torcida", t.torcida)}</div>
+        <p class="clima" style="text-align:left">Ambiente: <b>${escapar(clima(t.clima))}</b></p>
+      </div></div>
+      <div class="painel fixo"><div class="cab"><h2>Carreira</h2></div><div class="corpo"><div class="kpis">
+        <div class="kpi-c"><span>Jogos</span><b>${n.jogos}</b></div>
+        <div class="kpi-c"><span>Vitórias</span><b class="bom">${n.vitorias}</b></div>
+        <div class="kpi-c"><span>Empates</span><b>${n.empates}</b></div>
+        <div class="kpi-c"><span>Derrotas</span><b class="ruim">${n.derrotas}</b></div>
+        <div class="kpi-c destaque"><span>Aproveitamento</span><b>${String(t.aproveitamento).replace(".", ",")}%</b></div>
+        <div class="kpi-c"><span>Gols</span><b>${n.gols_pro}:${n.gols_contra}</b></div>
+      </div></div></div>
+    </div>
+    <div class="coluna">
+      <div class="painel fixo"><div class="cab"><h2>Títulos</h2></div><div class="corpo">${t.titulos.length
+        ? `<div class="lista-simples">${t.titulos.map((x) => `<div class="item ok">${icone("tabela")}<b>${escapar(x.nome)}</b>
+            <span class="espaco"></span><span class="dica">${x.temporada}</span></div>`).join("")}</div>`
+        : '<div class="vazio">Nenhum título ainda. A primeira taça é a mais difícil.</div>'}</div></div>
+      <div class="painel fixo"><div class="cab"><h2>Confiança na temporada</h2>
+          <span class="linha-flex dica"><span class="cartao" style="background:var(--ouro);width:.8rem;height:.3rem"></span>Diretoria
+          <span class="cartao" style="background:var(--bom);width:.8rem;height:.3rem"></span>Torcida</span></div>
+        <div class="corpo">${curvaDeConfianca(t.curva)}</div></div>
+      <div class="painel"><div class="cab"><h2>Temporada a temporada</h2></div>
+        <div class="corpo sem-margem"><table class="grade">
+          <thead><tr><th>Ano</th><th>Clube</th><th>Divisão</th><th class="n">Pos</th><th class="n">J</th><th class="n">V</th>
+            <th class="n">E</th><th class="n">D</th><th>Destino</th></tr></thead>
+          <tbody>
+            <tr class="eu"><td>${t.atual.temporada}</td><td>${escapar(t.clube)}</td><td>${escapar(t.atual.liga)}</td>
+              <td class="n">${t.atual.posicao || "—"}</td><td class="n">${t.atual.numeros.jogos}</td><td class="n">${t.atual.numeros.vitorias}</td>
+              <td class="n">${t.atual.numeros.empates}</td><td class="n">${t.atual.numeros.derrotas}</td><td class="dica">em andamento</td></tr>
+            ${t.anos.map((a) => `<tr><td>${a.temporada}</td><td>${escapar(a.clube)}</td><td>${escapar(a.liga)}</td>
+              <td class="n">${a.posicao}º</td><td class="n">${a.numeros.jogos ?? "—"}</td><td class="n">${a.numeros.vitorias ?? "—"}</td>
+              <td class="n">${a.numeros.empates ?? "—"}</td><td class="n">${a.numeros.derrotas ?? "—"}</td>
+              <td>${a.subiu ? '<span class="bom">acesso</span>' : a.caiu ? '<span class="ruim">rebaixado</span>' : ""}</td></tr>`).join("")}
+          </tbody></table></div></div>
+    </div>`;
+};
+
+function curvaDeConfianca(curva) {
+  if (curva.length < 2) return '<div class="vazio">A curva aparece depois das primeiras rodadas.</div>';
+  const L = 600, A = 150, n = curva.length;
+  const x = (i) => 30 + (i * (L - 40)) / (n - 1);
+  const y = (v) => 10 + (A - 30) * (1 - v / 100);
+  const linha = (k) => curva.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)} ${y(p[k]).toFixed(1)}`).join(" ");
+  const guias = [25, 50, 75].map((v) => `<line x1="30" x2="${L - 10}" y1="${y(v)}" y2="${y(v)}" stroke="#21503a" stroke-dasharray="3 4"/>
+    <text x="4" y="${y(v) + 4}" fill="#71897a" font-size="11">${v}</text>`).join("");
+  return `<svg viewBox="0 0 ${L} ${A}" style="width:100%;height:9rem" preserveAspectRatio="none">${guias}
+    <path d="${linha("diretoria")}" fill="none" stroke="#f3c332" stroke-width="2.4" vector-effect="non-scaling-stroke"/>
+    <path d="${linha("torcida")}" fill="none" stroke="#3fcf72" stroke-width="2.4" vector-effect="non-scaling-stroke"/></svg>`;
 }
 
-function janelaDeFimDeAno(r) {
-  let html = `<h2>Fim da temporada ${r.temporada}</h2>`;
-  if (r.demitido) {
-    html += `<div class="aviso"><b>Você foi demitido</b>
-      <span>${escapar(r.motivo)}</span></div>`;
-  }
-  const destino = r.subi ? `<span class="bom">ACESSO</span>`
-    : r.cai ? `<span class="ruim">REBAIXADO</span>` : "";
-  html += `<p>${r.posicao}º lugar na ${escapar(r.liga)} ${destino}</p>`;
-  if (r.clima && r.clima.meta) {
-    html += `<p class="dica">A meta era ${escapar(r.clima.meta)} —
-      ${r.clima.bateu_a_meta ? '<span class="bom">cumprida</span>'
-        : '<span class="ruim">não cumprida</span>'} ·
-      torcida ${Math.round(r.clima.torcida)}% · diretoria
-      ${Math.round(r.clima.diretoria)}%</p>`;
-  }
+/* ================================================================== SALVAR E VIRADA */
+
+function janelaSalvar() {
+  return abrirJanela({titulo: "Salvar carreira", estreita: true, corpo: `
+    <label class="campo"><span>Nome do save</span>
+      <input type="text" id="nome-save" value="${escapar(ESTADO.clube.nome.toLowerCase().replace(/[^a-z0-9]+/g, "-"))}-${ESTADO.temporada}"></label>
+    <p class="nota-honesta">O save guarda a semente e as suas decisões — escalações, táticas e trocas durante
+      os jogos —, não o mundo inteiro. Por isso tem poucos KB.</p>`,
+    botoes: [{rotulo: "Cancelar"}, {rotulo: "Salvar", primario: true, acao: async () => {
+      const nome = $("#nome-save").value.trim().replace(/[^\w-]+/g, "-") || "carreira";
+      const r = await api.post("/api/salvar", {nome});
+      avisar(r.erro ? r.erro : `Salvo em ${r.arquivo.split(/[\\/]/).pop()}`);
+    }}]});
+}
+
+async function encerrarAno() {
+  const r = await api.post("/api/virar");
+  if (r.erro) return avisar(r.erro);
+  aplicarEstado(r.estado);
+  onzeLocal = null;
+  const destino = r.subi ? '<span class="chip ativo">ACESSO</span>' : r.cai ? '<span class="chip" style="color:var(--ruim);border-color:var(--ruim)">REBAIXADO</span>' : "";
   const campeoes = Object.entries({...r.campeoes, ...r.copas}).filter(([, v]) => v);
-  html += `<h3>Campeões</h3><table class="grade compacta"><tbody>${campeoes.map(([k, v]) =>
-    `<tr><td>${escapar(k.replace(/_/g, " "))}</td><td><b>${escapar(v)}</b></td></tr>`
-  ).join("")}</tbody></table>`;
-  if (r.minhas_copas.length) {
-    html += `<p class="bom">Você é campeão da
-      ${r.minhas_copas.map((x) => escapar(x.replace(/_/g, " "))).join(", ")}.</p>`;
-  }
+  let corpo = r.demitido ? `<div class="aviso"><b>Você foi demitido</b>${escapar(r.motivo)}</div>` : "";
+  corpo += `<div class="kpis">
+      <div class="kpi-c destaque"><span>Sua posição</span><b>${r.posicao}º</b></div>
+      <div class="kpi-c"><span>Divisão</span><b>${escapar(r.liga_nome)}</b></div>
+      <div class="kpi-c"><span>Torcida</span><b>${Math.round(r.clima.torcida || 0)}%</b></div>
+      <div class="kpi-c"><span>Diretoria</span><b>${Math.round(r.clima.diretoria || 0)}%</b></div>
+    </div>
+    <p>${destino} ${r.clima.meta ? `Meta: ${escapar(r.clima.meta)} — ${r.clima.bateu_a_meta ? '<span class="bom">cumprida</span>' : '<span class="ruim">não cumprida</span>'}` : ""}</p>
+    <div class="secao"><h3>Campeões</h3><table class="grade compacta"><tbody>${campeoes.map(([k, v]) =>
+      `<tr><td>${escapar(r.nomes[k] || k)}</td><td><b>${escapar(v)}</b></td></tr>`).join("")}</tbody></table></div>`;
   if (r.balanco) {
     const b = r.balanco;
     const saldo = b.receita + b.premiacao - b.folha - b.operacao;
-    html += `<h3>Balanço</h3><table class="grade compacta"><tbody>
-      <tr><td>Receita</td><td class="n">${reais(b.receita)}</td></tr>
-      <tr><td>Premiação</td><td class="n">${reais(b.premiacao)}</td></tr>
-      <tr><td>Folha</td><td class="n">−${reais(b.folha)}</td></tr>
-      <tr><td>Operação</td><td class="n">−${reais(b.operacao)}</td></tr>
-      <tr><td><b>Saldo</b></td><td class="n ${saldo < 0 ? "ruim" : "bom"}">
-        <b>${reais(saldo)}</b></td></tr></tbody></table>`;
+    corpo += `<div class="secao"><h3>Balanço</h3><div class="kpis">
+      <div class="kpi-c"><span>Receita</span><b>${dinheiro(b.receita)}</b></div>
+      <div class="kpi-c"><span>Premiação</span><b>${dinheiro(b.premiacao)}</b></div>
+      <div class="kpi-c"><span>Folha</span><b>${dinheiro(b.folha)}</b></div>
+      <div class="kpi-c"><span>Operação</span><b>${dinheiro(b.operacao)}</b></div>
+      <div class="kpi-c destaque"><span>Saldo</span><b class="${saldo < 0 ? "ruim" : "bom"}">${dinheiro(saldo)}</b></div></div></div>`;
   }
   if (r.compras.length || r.vendas.length) {
-    html += `<h3>Mercado</h3><table class="grade compacta"><tbody>
-      ${r.compras.map((t) => `<tr><td class="bom">chega</td>
-        <td>${escapar(t.nome)} (${t.overall})</td><td>${escapar(t.de)}</td>
-        <td class="n">${dinheiro(t.preco)}</td></tr>`).join("")}
-      ${r.vendas.map((t) => `<tr><td class="ruim">sai</td>
-        <td>${escapar(t.nome)} (${t.overall})</td><td>${escapar(t.para)}</td>
-        <td class="n">${dinheiro(t.preco)}</td></tr>`).join("")}
-      </tbody></table>`;
+    corpo += `<div class="secao"><h3>Mercado do clube</h3><table class="grade compacta"><tbody>
+      ${r.compras.map((t) => `<tr><td class="bom">chega</td><td>${escapar(t.nome)} (${t.overall})</td><td>${escapar(t.de)}</td><td class="n">${dinheiro(t.preco)}</td></tr>`).join("")}
+      ${r.vendas.map((t) => `<tr><td class="ruim">sai</td><td>${escapar(t.nome)} (${t.overall})</td><td>${escapar(t.para)}</td><td class="n">${dinheiro(t.preco)}</td></tr>`).join("")}
+      </tbody></table></div>`;
   }
-  html += `<p class="dica">${r.aposentaram} penduraram as chuteiras no país,
-    ${r.revelados} subiram da base, ${r.transferencias} transferências.</p>`;
-  abrirJanela(html);
+  corpo += `<p class="dica">${r.aposentaram} aposentadorias no mundo, ${r.revelados} garotos subiram da base, ${r.transferencias} transferências.</p>`;
+  await abrirJanela({titulo: `Fim da temporada ${r.temporada}`, corpo,
+                     botoes: [{rotulo: r.demitido ? "Voltar ao menu" : `Começar ${r.temporada + 1}`, primario: true}]});
+  if (r.demitido) return irParaModo("menu");
+  irPara(telaAtual);
 }
 
-/* ------------------------------------------------------------------ ações */
-
-async function mandarTatica(extra = {}) {
-  const r = await api.post("/api/escalar", {
-    formacao: $("#formacao")?.value ?? ESTADO.tatica.formacao,
-    marcacao: ESTADO.tatica.marcacao, estilo: ESTADO.tatica.estilo, ...extra,
-  });
-  if (r.erro) alert(r.erro);
-  await aplicar(r.estado);
-}
+/* ================================================================== JOGAR */
 
 async function jogar() {
-  const botao = $("#jogar");
-  botao.disabled = true;
-  try {
-    if (ESTADO.acabou) {
-      const r = await api.post("/api/virar");
-      if (r.erro) { alert(r.erro); return; }
-      janelaDeFimDeAno(r);
-      await aplicar(r.estado);
-      return;
-    }
-    const r = await api.post("/api/avancar");
-    if (r.erro) { alert(r.erro); return; }
-    await janelaDaPartida(r);
-    await aplicar(r.estado);
-  } finally {
-    botao.disabled = ESTADO?.demitido ?? false;
+  const e = ESTADO;
+  if (e.demitido) {
+    await abrirJanela({titulo: "Fim da linha", estreita: true,
+      corpo: `<div class="aviso"><b>Você foi demitido</b>${escapar(e.motivo)}</div>`,
+      botoes: [{rotulo: "Voltar ao menu", primario: true}]});
+    return irParaModo("menu");
   }
+  if (e.acabou) return encerrarAno();
+  if (!onzeIgual() && onzeLocal) await mandarOnze();
+  irParaModo("aovivo");
 }
 
-/* ------------------------------------------------------------------ navegação */
+$("#jogar").addEventListener("click", jogar);
 
-const DESENHOS = {
-  inicio: telaInicio, elenco: telaElenco, escalacao: telaEscalacao,
-  tatica: telaTatica, financas: telaFinancas, classificacao: telaClassificacao,
-  copas: telaCopas, calendario: telaCalendario, artilheiros: telaArtilheiros,
-  salvar: () => {},
-};
-
-async function irPara(nome) {
-  telaAtual = nome;
-  $$(".item").forEach((b) => b.classList.toggle("ativo", b.dataset.tela === nome));
-  $$(".tela").forEach((t) => t.classList.toggle("ativa", t.id === `tela-${nome}`));
-  await DESENHOS[nome]?.();
-}
-
-async function aplicar(e) {
-  ESTADO = e;
-  desenharTopo(e);
-  await DESENHOS[telaAtual]?.();
-}
-
-function ligarEventos() {
-  $("#menu").addEventListener("click", (ev) => {
-    const b = ev.target.closest(".item");
-    if (b) irPara(b.dataset.tela);
-  });
-  $("#jogar").addEventListener("click", jogar);
-  $("#fechar-janela").addEventListener("click", () => { $("#cortina").hidden = true; });
-
-  $("#grade-elenco").addEventListener("click", (ev) => {
-    const th = ev.target.closest("th[data-ord]");
-    if (th) {
-      const col = th.dataset.ord;
-      ordem = {coluna: col, desc: ordem.coluna === col ? !ordem.desc : true};
-      telaElenco();
-      return;
-    }
-    const tr = ev.target.closest("tr[data-id]");
-    if (tr) abrirPerfil(Number(tr.dataset.id));
-  });
-
-  $("#gramado").addEventListener("click", (ev) => {
-    const peca = ev.target.closest(".peca");
-    if (!peca) return;
-    $$(".peca").forEach((x) => x.classList.remove("marcado"));
-    if (marcado === Number(peca.dataset.id)) { marcado = null; return; }
-    marcado = Number(peca.dataset.id);
-    peca.classList.add("marcado");
-  });
-
-  $("#grade-reservas").addEventListener("click", async (ev) => {
-    const tr = ev.target.closest("tr[data-id]");
-    if (!tr) return;
-    if (marcado === null) {
-      $("#resumo-onze").textContent = "escolha antes um titular no campo";
-      return;
-    }
-    const entra = Number(tr.dataset.id);
-    const onze = ESTADO.onze.map((x) => (x === marcado ? entra : x));
-    marcado = null;
-    await mandarTatica({onze});
-  });
-
-  $("#formacao").addEventListener("change", () => mandarTatica());
-  $("#auto").addEventListener("click", () => mandarTatica());
-
-  $("#campos-tatica").addEventListener("click", (ev) => {
-    const b = ev.target.closest("button[data-valor]");
-    if (!b) return;
-    const campo = b.closest(".opcoes").dataset.campo;
-    mandarTatica({[campo]: b.dataset.valor, onze: ESTADO.onze});
-  });
-
-  $("#pastilhas-ligas").addEventListener("click", (ev) => {
-    const b = ev.target.closest("button");
-    if (b) { ligaVisivel = b.dataset.liga; telaClassificacao(); }
-  });
-
-  $("#botao-salvar").addEventListener("click", async () => {
-    const r = await api.post("/api/salvar", {nome: $("#nome-do-save").value || "carreira"});
-    $("#aviso-save").textContent = `Salvo em ${r.arquivo}`;
-  });
-
-  document.addEventListener("keydown", (ev) => {
-    if (ev.key === "Escape") $("#cortina").hidden = true;
-    if (ev.key === " " && $("#cortina").hidden
-        && !ev.target.closest("select, button, input")) {
-      ev.preventDefault();
-      jogar();
-    }
-  });
-}
-
-async function comecar() {
-  ligarEventos();
-  const parametros = new URLSearchParams(location.search);
-  ESTADO = await api.get("/api/estado");
-  desenharTopo(ESTADO);
-  const inicial = parametros.get("tela");
-  await irPara(DESENHOS[inicial] ? inicial : "inicio");
-
-  // ?jogar=N avanca N datas ao abrir: serve para retomar e para conferir a tela de partida
-  const pular = Number(parametros.get("jogar") || 0);
-  for (let i = 0; i < pular && !ESTADO.demitido && !ESTADO.acabou; i++) {
-    await jogar();
-    if (i < pular - 1) $("#cortina").hidden = true;
-  }
-}
-
-comecar();
+registrarModo("jogo", {
+  elemento: "#jogo",
+  abrir: (tela) => abrirJogo(tela),
+  tecla(ev) {
+    if (ev.key === "Enter" && !ev.repeat) { jogar(); ev.preventDefault(); }
+    const atalhos = {"1": "elenco", "2": "escalacao", "3": "mercado", "4": "classificacao",
+                     "5": "calendario", "6": "financas", "7": "mensagens", "8": "treinador"};
+    if (atalhos[ev.key]) irPara(atalhos[ev.key]);
+    if (ev.key === "Escape" && marcado) { marcado = null; TELAS.escalacao(); }
+  },
+});

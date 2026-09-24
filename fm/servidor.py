@@ -20,7 +20,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
 
-from fm.carreira import Carreira
+from fm import telas
+from fm.carreira import Carreira, saves_disponiveis
 from fm.tatica import ESTILOS, FORMACOES, MARCACOES, Tatica
 
 WEB = Path(__file__).resolve().parent / "web"
@@ -31,20 +32,72 @@ class Jogo:
     """A carreira e o pouco de estado que so a interface precisa.
 
     A ultima partida fica guardada aqui porque o navegador pede o estado e a sumula em
-    requisicoes separadas -- a Carreira nao tem por que saber disso.
+    requisicoes separadas -- a Carreira nao tem por que saber disso. A carreira pode nao
+    existir ainda: o jogo abre no menu, e ela nasce em "novo jogo" ou "jogos salvos".
     """
 
-    def __init__(self, carreira: Carreira) -> None:
+    def __init__(self, carreira: Carreira | None = None) -> None:
         self.c = carreira
         self.ultima_partida = None
         self.ultimos_resultados: list = []
         self.ultimo_resumo: dict | None = None
+        self.ao_vivo = None                 # fm.ao_vivo.PartidaAoVivo, durante o jogo
+        self.competicao_ao_vivo = ("", "")
+        self.pos_jogo: dict | None = None
+        self.lidas: set[str] = set()
         self.trava = threading.Lock()
+
+
+# ------------------------------------------------------------------ escudos
+# Os escudos baixados da CBF ficam em data/escudos/<id_fonte>.png, fora do git. O clube
+# do mundo nao guarda o id da fonte; o pack guarda, entao o mapa sai dele uma vez.
+_ESCUDOS: dict[str, Path] | None = None
+
+
+def _escudos() -> dict[str, Path]:
+    global _ESCUDOS
+    if _ESCUDOS is None:
+        from fm.config import load_league
+        from fm.importer.escudos import ESCUDOS_DIR
+        from fm.pack import load_pack
+        from fm.telas import NACIONAIS
+        _ESCUDOS = {}
+        for n in NACIONAIS:
+            for liga, _ in n["ligas"]:
+                if not liga:
+                    continue
+                try:
+                    pack = load_pack(load_league(liga)["pack"])
+                except Exception:
+                    continue
+                for clube in pack.clubes:
+                    arq = ESCUDOS_DIR / f"{clube.id_fonte}.png" if clube.id_fonte else None
+                    if arq and arq.is_file():
+                        _ESCUDOS[clube.nome] = arq
+    return _ESCUDOS
+
+
+# O "perfil" da tabela do elenco: o atributo em que o jogador mais se destaca, dito
+# como o narrador diria. Derivado dos atributos, nao inventado.
+PERFIS = {
+    "finishing": "Finalizador", "passing": "Passador", "dribbling": "Driblador",
+    "marking": "Marcador", "pace": "Velocista", "strength": "Forte",
+    "technique": "Técnico", "positioning": "Posicionamento", "vision": "Armador",
+    "aerial": "Jogo aéreo", "reflexes": "Reflexos",
+}
+PERFIS_DO_GOLEIRO = ("reflexes", "positioning", "aerial")
+
+
+def _perfil(p) -> str:
+    campos = PERFIS_DO_GOLEIRO if p.position == "GK" else tuple(
+        k for k in PERFIS if k != "reflexes")
+    return PERFIS[max(campos, key=lambda k: getattr(p, k, 0))]
 
 
 def _jogador(c: Carreira, p, titular: bool) -> dict:
     return {
         "id": p.id, "nome": p.name, "posicao": p.position,
+        "detalhe": p.position_detail, "pe": p.foot, "perfil": _perfil(p),
         "overall": p.overall, "potencial": p.potential,
         "idade": p.age(c.temporada), "energia": p.condition,
         "salario": p.wage, "valor": p.market_value, "titular": titular,
@@ -54,14 +107,47 @@ def _jogador(c: Carreira, p, titular: bool) -> dict:
 
 
 def _clube(c: Carreira, cid: int) -> dict:
-    club = c.world.clubs[cid]
+    return _clube_do_mundo(c.world, cid)
+
+
+def _clube_do_mundo(world, cid: int) -> dict:
+    club = world.clubs[cid]
     return {
         "id": club.id, "nome": club.name,
         "cor": club.color_primary, "cor2": club.color_secondary,
         "camisa": club.kit_body or club.color_primary,
         "camisa2": club.kit_detail or club.color_secondary,
         "padrao": club.kit_pattern,
+        "escudo": club.name in _escudos(),
     }
+
+
+def _nome_da_liga(chave: str) -> str:
+    return telas.nome_da_liga(chave)
+
+
+def _situacao_na_copa(c: Carreira, a) -> str:
+    """Onde o usuario esta na copa. "fora" so para quem entrou e caiu: o clube que ainda
+    vai entrar numa fase adiante (a Serie A entra na Copa do Brasil depois) nao esta fora."""
+    from fm.torneio import resolver_entradas
+    eu = c.clube_id
+    if a.campeao == eu:
+        return "campeão"
+    if a.esta_vivo(eu):
+        return "vivo"
+    if eu in a.ja_entraram or eu in a.etapas_vividas:
+        return "eliminado"
+    if a.acabou:
+        return "não disputou"
+    tabelas = c.tabelas_do_ano_anterior or c._tabelas_por_forca()
+    for fase in a.torneio.fases[a.fase + 1:]:
+        try:
+            if eu in resolver_entradas(c.world, fase.get("entram", []), tabelas,
+                                       a.classificados):
+                return f"entra na {fase.get('nome', 'fase seguinte')}"
+        except (KeyError, ValueError):
+            break
+    return "não classificado"
 
 
 def estado(jogo: Jogo) -> dict:
@@ -76,7 +162,7 @@ def estado(jogo: Jogo) -> dict:
     proximo = None
     if tipo == "liga" and jogo_ is not None:
         rival = jogo_.away if jogo_.home == c.clube_id else jogo_.home
-        proximo = {"tipo": "liga", "competicao": c.liga,
+        proximo = {"tipo": "liga", "competicao": _nome_da_liga(c.liga),
                    "rival": _clube(c, rival),
                    "casa": jogo_.home == c.clube_id,
                    "rodada": c.rodada + 1}
@@ -92,6 +178,7 @@ def estado(jogo: Jogo) -> dict:
         "clube": _clube(c, c.clube_id),
         "treinador": c.treinador, "data": data_do_jogo(c),
         "liga": c.liga, "temporada": c.temporada,
+        "liga_nome": _nome_da_liga(c.liga),
         "rodada": c.rodada, "total_de_rodadas": c.total_de_rodadas,
         # `data` e a do calendario (texto); o indice na agenda e outra coisa
         "indice_da_data": c.data, "datas": len(c.agenda),
@@ -112,9 +199,15 @@ def estado(jogo: Jogo) -> dict:
                    "estilos": sorted(ESTILOS)},
         "elenco": [_jogador(c, p, p.id in onze) for p in elenco],
         "onze": list(c.escalacao_atual()),
+        "funcoes": c.funcoes,
+        "observados": len(c.observados),
+        "nao_lidas": sum(1 for m in telas.mensagens(c, data_do_jogo(c), jogo.lidas)
+                         if not m["lida"]),
+        "temporadas": len(c.historico) + 1,
         "copas": [
             {"id": nome, "nome": a.torneio.nome, "fase": a.nome_da_fase,
              "vivo": a.esta_vivo(c.clube_id), "acabou": a.acabou,
+             "situacao": _situacao_na_copa(c, a),
              "campeao": _clube(c, a.campeao)["nome"] if a.campeao else None}
             for nome, a in c.copas.items()
         ],
@@ -195,6 +288,10 @@ def escalar(jogo: Jogo, dados: dict) -> dict:
         formacao=dados.get("formacao", c.tatica_atual().formacao),
         marcacao=dados.get("marcacao", c.tatica_atual().marcacao),
         estilo=dados.get("estilo", c.tatica_atual().estilo))
+    if isinstance(dados.get("funcoes"), dict):
+        elenco = {p.id for p in c.world.squad(c.clube_id)}
+        c.funcoes = {k: int(v) for k, v in dados["funcoes"].items()
+                     if v and int(v) in elenco}
     onze = dados.get("onze")
     if not onze:
         c.world.escalacao_fixa.pop(c.clube_id, None)
@@ -219,6 +316,10 @@ def virar_o_ano(jogo: Jogo) -> dict:
         "minhas_copas": resumo.get("minhas_copas", []),
         "minha_campanha": resumo.get("minha_campanha", {}),
         "posicao": resumo["minha_posicao"], "liga": resumo["minha_liga"],
+        "liga_nome": _nome_da_liga(resumo["minha_liga"]),
+        # as chaves de campeoes/copas sao ids internos; a tela mostra estes nomes
+        "nomes": {**{n: _nome_da_liga(n) for n in c.ligas},
+                  **{n: a.torneio.nome for n, a in c.copas.items()}},
         "subi": resumo["subi"], "cai": resumo["cai"],
         "promovidos": resumo["promovidos"], "rebaixados": resumo["rebaixados"],
         "clima": resumo.get("clima", {}),
@@ -424,7 +525,147 @@ def calendario(jogo: Jogo) -> dict:
     return {"datas": linhas, "atual": c.data}
 
 
+# ------------------------------------------------------------------ menu e nova carreira
+
+def menu(jogo: Jogo) -> dict:
+    c = jogo.c
+    return {
+        "versao": telas.VERSAO, "saves": saves_disponiveis(),
+        "carreira": None if c is None else {
+            "clube": _clube(c, c.clube_id), "treinador": c.treinador,
+            "temporada": c.temporada, "data": data_do_jogo(c)},
+    }
+
+
+def clubes(q: dict) -> dict:
+    ligas = [x for x in q.get("ligas", [""])[0].split(",") if x]
+    try:
+        seed = int(q.get("seed", ["2027"])[0])
+    except ValueError:
+        seed = 2027
+    return telas.clubes(ligas, seed, _clube_do_mundo)
+
+
+def nova(jogo: Jogo, corpo: dict) -> dict:
+    livres = {i for n in telas.NACIONAIS if n["livre"] for i, _ in n["ligas"]}
+    ligas = [x for x in corpo.get("ligas", []) if x in livres]
+    if not ligas:
+        return {"erro": "escolha pelo menos uma liga"}
+    try:
+        seed = int(corpo.get("seed") or 2027)
+        c = Carreira.nova(ligas, str(corpo.get("clube", "")), seed=seed)
+    except (ValueError, KeyError) as e:
+        return {"erro": str(e)}
+    c.treinador = (str(corpo.get("treinador") or "").strip() or "Treinador")[:40]
+    _trocar_de_carreira(jogo, c)
+    return {"ok": True, "estado": estado(jogo)}
+
+
+def carregar(jogo: Jogo, corpo: dict) -> dict:
+    try:
+        c = Carreira.carregar(str(corpo.get("nome", "")))
+    except FileNotFoundError as e:
+        return {"erro": str(e)}
+    _trocar_de_carreira(jogo, c)
+    return {"ok": True, "estado": estado(jogo)}
+
+
+def _trocar_de_carreira(jogo: Jogo, c: Carreira) -> None:
+    if jogo.ao_vivo is not None and not jogo.ao_vivo.acabou:
+        jogo.ao_vivo.seguir(ate_o_fim=True)      # nao deixa thread pendurada
+    jogo.c = c
+    jogo.ao_vivo = None
+    jogo.pos_jogo = None
+    jogo.lidas = set()
+
+
+# ------------------------------------------------------------------ partida ao vivo
+
+def _competicao_da_proxima(c: Carreira) -> tuple[str, str]:
+    tipo, onde, _ = c.proximo_jogo()
+    if tipo == "liga":
+        from fm.config import load_league
+        return tipo, f"{telas.nome_da_liga(c.liga)} · Rodada {c.rodada + 1}"
+    if tipo == "copa":
+        a = c.copas[onde]
+        return tipo, f"{a.torneio.nome} · {a.nome_da_fase}"
+    return "", ""
+
+
+def partida_iniciar(jogo: Jogo) -> dict:
+    """Comeca a proxima data com a partida do usuario ao vivo."""
+    from fm.ao_vivo import PartidaAoVivo
+
+    c = jogo.c
+    if jogo.ao_vivo is not None and not jogo.ao_vivo.acabou:
+        return partida_atual(jogo)               # recarregou a pagina no meio do jogo
+    if c.demitido:
+        return {"erro": "voce nao trabalha mais aqui"}
+    if c.acabou:
+        return {"erro": "a temporada acabou", "fim_de_temporada": True}
+    jogo.competicao_ao_vivo = _competicao_da_proxima(c)
+    jogo.pos_jogo = None
+    jogo.ao_vivo = PartidaAoVivo(c)
+    jogo.ao_vivo.comecar()
+    return partida_atual(jogo)
+
+
+def partida_seguir(jogo: Jogo, corpo: dict) -> dict:
+    av = jogo.ao_vivo
+    if av is None:
+        return {"erro": "nao ha partida em andamento"}
+    try:
+        av.seguir(trocas=corpo.get("trocas"), tatica=corpo.get("tatica"),
+                  ate_o_fim=bool(corpo.get("ate_o_fim")))
+    except (ValueError, TypeError) as e:
+        return {"erro": str(e), **partida_atual(jogo)}
+    return partida_atual(jogo)
+
+
+def partida_atual(jogo: Jogo) -> dict:
+    av = jogo.ao_vivo
+    if av is None:
+        return {"erro": "nao ha partida em andamento"}
+    retrato = av.retrato(lambda cid: _clube(jogo.c, cid))
+    tipo, competicao = jogo.competicao_ao_vivo
+    retrato["competicao"] = competicao
+    if retrato.get("sem_jogo") and av.resultado is not None:
+        # data sem jogo do usuario: a tela mostra os resultados e segue
+        retrato["resultados"] = [
+            {"casa": _clube(jogo.c, r.home), "fora": _clube(jogo.c, r.away),
+             "gols_casa": r.goals_home, "gols_fora": r.goals_away}
+            for r in av.resultado[0]]
+        tipo_, onde = jogo.c.ultimo_compromisso
+        retrato["competicao"] = (jogo.c.copas[onde].torneio.nome
+                                 if tipo_ == "copa" and onde in jogo.c.copas else competicao)
+    if av.acabou and av.resultado is not None:
+        resultados, partida = av.resultado
+        jogo.ultima_partida, jogo.ultimos_resultados = partida, resultados
+        if partida is not None and jogo.pos_jogo is None:
+            jogo.pos_jogo = telas.pos_jogo(jogo.c, partida, resultados, competicao, tipo,
+                                           lambda cid: _clube(jogo.c, cid))
+        retrato["estado"] = estado(jogo)
+    return retrato
+
+
+def pos_jogo(jogo: Jogo) -> dict:
+    return jogo.pos_jogo or {"erro": "nenhuma partida jogada ainda"}
+
+
+ROTAS_SEM_CARREIRA = {"/api/menu", "/api/catalogo", "/api/clubes"}
+
 ROTAS_GET = {
+    "/api/menu": lambda jogo, q: menu(jogo),
+    "/api/catalogo": lambda jogo, q: telas.catalogo(),
+    "/api/clubes": lambda jogo, q: clubes(q),
+    "/api/mercado": lambda jogo, q: telas.mercado(jogo.c, q, lambda cid: _clube(jogo.c, cid)),
+    "/api/mensagens": lambda jogo, q: {
+        "mensagens": telas.mensagens(jogo.c, data_do_jogo(jogo.c), jogo.lidas)},
+    "/api/treinador": lambda jogo, q: telas.treinador(jogo.c),
+    "/api/classificacao": lambda jogo, q: telas.classificacao(
+        jogo.c, q.get("liga", [None])[0], lambda cid: _clube(jogo.c, cid)),
+    "/api/partida": lambda jogo, q: partida_atual(jogo),
+    "/api/posjogo": lambda jogo, q: pos_jogo(jogo),
     "/api/estado": lambda jogo, q: estado(jogo),
     "/api/tabela": lambda jogo, q: tabela(jogo, q.get("liga", [None])[0]),
     "/api/inicio": lambda jogo, q: inicio(jogo),
@@ -433,7 +674,16 @@ ROTAS_GET = {
     "/api/calendario": lambda jogo, q: calendario(jogo),
     "/api/jogador": lambda jogo, q: jogador(jogo, int(q.get("id", [0])[0])),
 }
+ROTAS_POST_SEM_CARREIRA = {"/api/nova", "/api/carregar", "/api/sair"}
+
 ROTAS_POST = {
+    "/api/nova": nova,
+    "/api/carregar": carregar,
+    "/api/observar": lambda jogo, corpo: telas.observar(jogo.c, int(corpo.get("id", 0))),
+    "/api/lida": lambda jogo, corpo: (jogo.lidas.update(corpo.get("ids", [])),
+                                      {"ok": True})[1],
+    "/api/partida/iniciar": lambda jogo, corpo: partida_iniciar(jogo),
+    "/api/partida/seguir": partida_seguir,
     "/api/avancar": lambda jogo, corpo: avancar(jogo),
     "/api/escalar": escalar,
     "/api/virar": lambda jogo, corpo: virar_o_ano(jogo),
@@ -466,13 +716,34 @@ def criar_handler(jogo: Jogo):
             from urllib.parse import parse_qs
             q = parse_qs(url.query)
 
+            if caminho.startswith("/api/escudo/"):
+                nome = caminho.rsplit("/", 1)[-1]
+                with jogo.trava:
+                    arq = None
+                    if jogo.c is not None and nome.isdigit():
+                        club = jogo.c.world.clubs.get(int(nome))
+                        arq = _escudos().get(club.name) if club else None
+                    elif nome.startswith("n-"):     # pela escolha de clube, sem carreira
+                        from urllib.parse import unquote
+                        arq = _escudos().get(unquote(nome[2:]))
+                if arq is None:
+                    self._json({"erro": "sem escudo"}, 404)
+                else:
+                    self._responder(arq.read_bytes(), "image/png")
+                return
             if caminho.startswith("/api/camisa/"):
+                if jogo.c is None:
+                    self._json({"erro": "sem carreira"}, 404)
+                    return
                 partes = caminho.rsplit("/", 2)
                 with jogo.trava:
                     svg = camisa_svg(jogo, int(partes[-2]), partes[-1])
                 self._responder(svg.encode("utf-8"), "image/svg+xml; charset=utf-8")
                 return
             if caminho in ROTAS_GET:
+                if jogo.c is None and caminho not in ROTAS_SEM_CARREIRA:
+                    self._json({"erro": "sem carreira", "sem_carreira": True})
+                    return
                 with jogo.trava:
                     self._json(ROTAS_GET[caminho](jogo, q))
                 return
@@ -481,9 +752,11 @@ def criar_handler(jogo: Jogo):
             if not arquivo.is_file() or WEB not in arquivo.resolve().parents:
                 self._json({"erro": "nao encontrado"}, 404)
                 return
-            tipos = {".html": "text/html; charset=utf-8", ".css": "text/css",
+            tipos = {".html": "text/html; charset=utf-8",
+                     ".css": "text/css; charset=utf-8",
                      ".js": "application/javascript; charset=utf-8",
-                     ".svg": "image/svg+xml"}
+                     ".svg": "image/svg+xml", ".png": "image/png",
+                     ".jpg": "image/jpeg", ".woff2": "font/woff2"}
             self._responder(arquivo.read_bytes(),
                             tipos.get(arquivo.suffix, "application/octet-stream"))
 
@@ -494,20 +767,33 @@ def criar_handler(jogo: Jogo):
                 return
             tamanho = int(self.headers.get("Content-Length") or 0)
             corpo = json.loads(self.rfile.read(tamanho) or b"{}") if tamanho else {}
+            if caminho == "/api/sair":
+                # o navegador nao pode fechar a si mesmo; o servidor pode parar
+                self._json({"ok": True})
+                threading.Thread(target=self.server.shutdown, daemon=True).start()
+                return
+            if jogo.c is None and caminho not in ROTAS_POST_SEM_CARREIRA:
+                self._json({"erro": "sem carreira", "sem_carreira": True})
+                return
             with jogo.trava:
                 self._json(ROTAS_POST[caminho](jogo, corpo))
 
     return Handler
 
 
-def servir(carreira: Carreira, porta: int = 8000, abrir: bool = True) -> None:
-    """Sobe o servidor e abre o navegador. Bloqueia ate Ctrl+C."""
+def servir(carreira: Carreira | None = None, porta: int = 8000,
+           abrir: bool = True) -> None:
+    """Sobe o servidor e abre o navegador. Bloqueia ate Ctrl+C.
+
+    Sem carreira, o jogo abre no menu principal: novo jogo ou jogo salvo.
+    """
     jogo = Jogo(carreira)
     servidor = ThreadingHTTPServer(("127.0.0.1", porta), criar_handler(jogo))
     url = f"http://127.0.0.1:{porta}/"
     if abrir:
         threading.Timer(0.6, lambda: webbrowser.open(url)).start()
-    print(f"  {carreira.clube.name} -- {url}")
+    print(f"  PRANCHETA 11 -- {url}"
+          + (f"  ({carreira.clube.name})" if carreira else ""))
     print("  Ctrl+C para encerrar")
     try:
         servidor.serve_forever()
