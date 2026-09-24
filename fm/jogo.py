@@ -319,6 +319,8 @@ def tela_partida(c: Carreira) -> None:
         if not partida.eventos:
             print("    (nada digno de nota)")
         for e in partida.eventos:
+            if e.tipo not in ("gol", "amarelo", "vermelho", "substituicao"):
+                continue      # o lance a lance e da tela ao vivo; a sumula e curta
             lado = c.world.clubs[e.clube].name
             simbolo = {"gol": "GOL", "amarelo": " ! ", "vermelho": "!!!",
                        "substituicao": "<->"}.get(e.tipo, "   ")

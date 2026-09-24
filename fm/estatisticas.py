@@ -73,9 +73,10 @@ def _pesos(world: World, onze: list[int], tabela: dict[str, float]) -> np.ndarra
 
 def registrar_partida_detalhada(est: Estatisticas, world: World, partida) -> None:
     """Os eventos ja dizem quem fez e quem deu: aqui e' so somar."""
-    for lado in (partida.em_campo_casa, partida.em_campo_fora):
-        for pid in lado:
-            est.linha(pid).jogos += 1
+    # `entrada` e todo mundo que pisou em campo: quem saiu no intervalo ou foi expulso
+    # tambem jogou. Contar so quem terminou em campo apagava o jogo deles.
+    for pid in (partida.entrada or partida.em_campo_casa + partida.em_campo_fora):
+        est.linha(pid).jogos += 1
     for e in partida.eventos:
         if e.jogador is None:
             continue

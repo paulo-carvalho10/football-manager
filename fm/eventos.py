@@ -20,11 +20,17 @@ import numpy as np
 from fm.match import Mentality, Style, lambdas
 from fm.model import World
 
-BLOCOS = 6              # 6 blocos de 15 minutos
-MINUTOS_POR_BLOCO = 15
+# Blocos de 5 minutos. Eram 15, e isso bastava para o terminal, que so pergunta sobre
+# trocas no intervalo e aos 60 e 75. A tela ao vivo pausa em qualquer minuto: com bloco
+# de 15 a troca pedida aos 17' so entrava aos 30'. Os pesos sao os mesmos seis de antes,
+# cada um repetido tres vezes, e a soma de Poissons e Poisson -- o placar tem a mesma
+# distribuicao.
+MINUTOS_POR_BLOCO = 5
+BLOCOS = 90 // MINUTOS_POR_BLOCO
 
 # Gol e mais provavel no fim de cada tempo: cansaco, espaco e desespero.
-PESO_DO_BLOCO = np.array([0.82, 1.00, 1.10, 0.95, 1.05, 1.18])
+PESO_DO_BLOCO = np.repeat(np.array([0.82, 1.00, 1.10, 0.95, 1.05, 1.18]),
+                          15 // MINUTOS_POR_BLOCO)
 
 # Quanto cada posicao participa dos gols do time.
 PESO_DE_GOL = {"FW": 4.2, "WG": 2.6, "AM": 2.0, "MF": 1.0, "DM": 0.45,
@@ -37,10 +43,21 @@ PESO_DE_CARTAO = {"DM": 2.6, "CB": 2.2, "FB": 1.8, "MF": 1.4, "AM": 0.9,
 
 CONVERSAO = 0.105       # gols por finalizacao
 NO_GOL = 0.36           # fracao das finalizacoes que vao no gol
+# Gol e sempre no gol, entao a chance de um chute SEM gol ir no alvo e menor que NO_GOL:
+# (0.36/0.105 - 1) / (1/0.105 - 1) = 0.285. Assim o total continua batendo os 36%.
+NO_GOL_SEM_GOL = 0.285
+# chutes de longe e bloqueados, por time e jogo, fora do xG. Com 4.0 o jogo somava 32
+# finalizacoes; o futebol de verdade fica perto de 25.
+CHUTES_SEM_CHANCE = 1.5
 AMARELOS_POR_TIME = 1.9
 CHANCE_DE_VERMELHO = 0.035
 DESARMES_BASE = 16.0
 FALTAS_BASE = 12.0
+IMPEDIMENTOS_BASE = 2.2
+PASSES_ERRADOS_BASE = 58.0
+ESCANTEIOS_POR_CHUTE = 0.42
+# Nem toda falta vira linha no lance a lance: 24 faltas por jogo afogariam os gols.
+FALTAS_NARRADAS = 0.35
 
 # Desgaste DENTRO da partida. Duas parcelas, com pesos bem diferentes de proposito:
 # o FOLEGO (stamina) pesa pouco, porque ele separa jogadores entre si e mexeria na
@@ -70,6 +87,22 @@ class Estatisticas:
     desarmes: int = 0
     faltas: int = 0
     escanteios: int = 0
+    impedimentos: int = 0
+    passes_errados: int = 0
+    amarelos: int = 0
+    vermelhos: int = 0
+
+
+@dataclass(slots=True)
+class Ajuste:
+    """O que o treinador muda no fim de um bloco: trocas e, se quiser, a tatica.
+
+    `mult_casa`/`mult_fora` None mantem os multiplicadores que estavam valendo. O motor
+    nao conhece Tatica -- quem traduz tatica em multiplicador e quem chama.
+    """
+    trocas: list = field(default_factory=list)
+    mult_casa: float | None = None
+    mult_fora: float | None = None
 
 
 @dataclass(slots=True)
@@ -83,6 +116,11 @@ class Partida:
     stats_fora: Estatisticas = field(default_factory=Estatisticas)
     em_campo_casa: list[int] = field(default_factory=list)
     em_campo_fora: list[int] = field(default_factory=list)
+    # minuto em que cada um entrou: e o que diz o desgaste e quem jogou
+    entrada: dict[int, int] = field(default_factory=dict)
+    minuto: int = 0             # ate onde a partida ja foi jogada
+    # posse de cada bloco jogado; a da partida e a media
+    posses: list[float] = field(default_factory=list)
 
     @property
     def placar(self) -> str:
@@ -134,64 +172,99 @@ def simular_partida(
     """Partida minuto a minuto.
 
     `substituicoes` e uma funcao chamada ao fim de cada bloco:
-        f(partida, minuto) -> [(clube, sai, entra), ...]
-    E por ela que o usuario troca jogador no meio do jogo, e por ela que a IA rodaria o
-    elenco. Devolver lista vazia mantem os onze em campo.
+        f(partida, minuto) -> [(clube, sai, entra), ...]  ou  Ajuste
+    E por ela que o usuario troca jogador e muda a tatica no meio do jogo -- e por ela que
+    a tela ao vivo pausa: enquanto a funcao nao volta, a partida nao anda. Devolver lista
+    vazia mantem tudo como esta.
     """
     p = Partida(casa=casa, fora=fora,
                 em_campo_casa=list(onze_casa), em_campo_fora=list(onze_fora))
-    entrada: dict[int, int] = {pid: 0 for pid in onze_casa + onze_fora}
+    p.entrada = {pid: 0 for pid in onze_casa + onze_fora}
     amarelados: set[int] = set()
 
     for bloco in range(BLOCOS):
         minuto_ini = bloco * MINUTOS_POR_BLOCO
         minuto_meio = minuto_ini + MINUTOS_POR_BLOCO // 2
 
-        rc = _forca_em_campo(world, p.em_campo_casa, minuto_meio, entrada)
-        rf = _forca_em_campo(world, p.em_campo_fora, minuto_meio, entrada)
+        rc = _forca_em_campo(world, p.em_campo_casa, minuto_meio, p.entrada)
+        rf = _forca_em_campo(world, p.em_campo_fora, minuto_meio, p.entrada)
         lc, lf = lambdas(rc, rf, style, mentality)
         peso = PESO_DO_BLOCO[bloco] / PESO_DO_BLOCO.sum()
-        gc = rng.poisson(float(lc) * mult_casa * peso)
-        gf = rng.poisson(float(lf) * mult_fora * peso)
+        xg_c = float(lc) * mult_casa * peso
+        xg_f = float(lf) * mult_fora * peso
+        gc = int(rng.poisson(xg_c))
+        gf = int(rng.poisson(xg_f))
 
-        # Gols e cartoes do bloco sao sorteados JUNTOS e processados em ordem de
+        # Gols, cartoes e lances do bloco sao sorteados JUNTOS e processados em ordem de
         # minuto. Separados, saiam fora de causalidade: um jogador levava vermelho aos
         # 51 e marcava aos 58, ja expulso.
         agenda = []
-        for _ in range(int(gc)):
-            agenda.append((int(minuto_ini + rng.integers(1, MINUTOS_POR_BLOCO + 1)),
-                           "gol", casa))
-        for _ in range(int(gf)):
-            agenda.append((int(minuto_ini + rng.integers(1, MINUTOS_POR_BLOCO + 1)),
-                           "gol", fora))
-        for clube_lado in (casa, fora):
-            for _ in range(int(rng.poisson(AMARELOS_POR_TIME / BLOCOS))):
+
+        def agendar(tipo: str, clube_lado: int, vezes: int) -> None:
+            for _ in range(vezes):
                 agenda.append((int(minuto_ini + rng.integers(1, MINUTOS_POR_BLOCO + 1)),
-                               "cartao", clube_lado))
+                               tipo, clube_lado))
+
+        agendar("gol", casa, gc)
+        agendar("gol", fora, gf)
+        for clube_lado in (casa, fora):
+            agendar("cartao", clube_lado, int(rng.poisson(AMARELOS_POR_TIME / BLOCOS)))
+        # Os lances que nao sao gol saem do MESMO xG do bloco: quem finaliza muito e quem
+        # tinha mais chance de marcar. A estatistica ao vivo conta estes lances, entao a
+        # tela e a sumula nunca discordam.
+        for clube_lado, xg, gols in ((casa, xg_c, gc), (fora, xg_f, gf)):
+            chutes = int(rng.poisson(xg * (1.0 / CONVERSAO - 1.0)
+                                     + CHUTES_SEM_CHANCE / BLOCOS))
+            agendar("chute", clube_lado, chutes)
+            agendar("escanteio", clube_lado,
+                    int(rng.poisson((chutes + gols) * ESCANTEIOS_POR_CHUTE)))
+            agendar("impedimento", clube_lado, int(rng.poisson(IMPEDIMENTOS_BASE / BLOCOS)))
+            agendar("falta", clube_lado, int(rng.poisson(FALTAS_BASE / BLOCOS)))
         agenda.sort(key=lambda x: x[0])
 
         for minuto, tipo, clube_lado in agenda:
             em_campo = p.em_campo_casa if clube_lado == casa else p.em_campo_fora
             if tipo == "gol":
                 _marcar(p, world, rng, clube_lado, em_campo, minuto)
-            else:
+            elif tipo == "cartao":
                 _cartao(p, world, rng, clube_lado, em_campo, minuto, amarelados)
+            else:
+                _lance(p, world, rng, tipo, clube_lado, em_campo, minuto)
+
+        _estatisticas_do_bloco(p, rng, rc, rf)
+        p.minuto = minuto_ini + MINUTOS_POR_BLOCO
+        p.eventos.sort(key=lambda e: e.minuto)
 
         if substituicoes and bloco < BLOCOS - 1:
-            for clube, sai, entra in (substituicoes(p, minuto_ini + MINUTOS_POR_BLOCO) or []):
+            ajuste = substituicoes(p, p.minuto) or []
+            if not isinstance(ajuste, Ajuste):
+                ajuste = Ajuste(trocas=list(ajuste))
+            if ajuste.mult_casa is not None:
+                mult_casa = ajuste.mult_casa
+            if ajuste.mult_fora is not None:
+                mult_fora = ajuste.mult_fora
+            for clube, sai, entra in ajuste.trocas:
                 lista = p.em_campo_casa if clube == casa else p.em_campo_fora
-                if sai in lista and entra not in lista:
+                # quem ja jogou nao entra de novo: sem isto o banco virava porta giratoria
+                if sai in lista and entra not in p.entrada:
                     lista[lista.index(sai)] = entra
-                    entrada[entra] = minuto_ini + MINUTOS_POR_BLOCO
+                    p.entrada[entra] = p.minuto
                     p.eventos.append(Evento(
-                        minuto_ini + MINUTOS_POR_BLOCO, "substituicao", clube,
+                        p.minuto, "substituicao", clube,
                         jogador=sai, segundo=entra,
                         texto=f"{world.players[entra].name} entra no lugar de "
                               f"{world.players[sai].name}"))
 
-    _fechar_estatisticas(p, rng)
+    _fechar_estatisticas(p)
     p.eventos.sort(key=lambda e: e.minuto)
     return p
+
+
+def rendimento_em_campo(world: World, partida: Partida, pid: int) -> int:
+    """O folego de quem esta em campo AGORA, em %: o que a tela ao vivo mostra."""
+    p = world.players[pid]
+    jogados = max(partida.minuto - partida.entrada.get(pid, 0), 0)
+    return int(round(p.condition * _rendimento(p, jogados)))
 
 
 def _marcar(p: Partida, world, rng, clube: int, em_campo: list[int], minuto: int) -> None:
@@ -202,6 +275,10 @@ def _marcar(p: Partida, world, rng, clube: int, em_campo: list[int], minuto: int
         p.gols_casa += 1
     else:
         p.gols_fora += 1
+    # gol e finalizacao no gol: sem isto um 2 x 0 saia com uma finalizacao no alvo
+    st = p.stats_casa if clube == p.casa else p.stats_fora
+    st.finalizacoes += 1
+    st.no_gol += 1
     nome = world.players[autor].name if autor else "?"
     p.eventos.append(Evento(minuto, "gol", clube, jogador=autor, segundo=assist,
                             texto=f"GOL! {nome}"))
@@ -222,19 +299,60 @@ def _cartao(p: Partida, world, rng, clube: int, em_campo: list[int],
                                 texto=f"amarelo em {world.players[quem].name}"))
 
 
-def _fechar_estatisticas(p: Partida, rng) -> None:
-    """Estatisticas derivadas do placar, nao sorteadas a esmo.
+def _lance(p: Partida, world, rng, tipo: str, clube: int, em_campo: list[int],
+           minuto: int) -> None:
+    """Chute, escanteio, impedimento ou falta: conta na estatistica e, quase sempre, narra."""
+    st = p.stats_casa if clube == p.casa else p.stats_fora
+    if tipo == "chute":
+        quem = _sortear(rng, em_campo, world, PESO_DE_GOL)
+        st.finalizacoes += 1
+        nome = world.players[quem].name if quem else "?"
+        if rng.random() < NO_GOL_SEM_GOL:
+            st.no_gol += 1
+            p.eventos.append(Evento(minuto, "defesa", clube, jogador=quem,
+                                    texto=f"{nome} finaliza e o goleiro defende"))
+        else:
+            p.eventos.append(Evento(minuto, "chute", clube, jogador=quem,
+                                    texto=f"{nome} finaliza para fora"))
+    elif tipo == "escanteio":
+        st.escanteios += 1
+        p.eventos.append(Evento(minuto, "escanteio", clube,
+                                texto=f"Escanteio para o {world.clubs[clube].name}"))
+    elif tipo == "impedimento":
+        quem = _sortear(rng, em_campo, world, PESO_DE_GOL)
+        st.impedimentos += 1
+        nome = world.players[quem].name if quem else "?"
+        p.eventos.append(Evento(minuto, "impedimento", clube, jogador=quem,
+                                texto=f"{nome} estava impedido"))
+    elif tipo == "falta":
+        quem = _sortear(rng, em_campo, world, PESO_DE_CARTAO)
+        st.faltas += 1
+        if quem and rng.random() < FALTAS_NARRADAS:
+            p.eventos.append(Evento(minuto, "falta", clube, jogador=quem,
+                                    texto=f"Falta de {world.players[quem].name}"))
 
-    Finalizacao vem do gol pela taxa de conversao, entao um 3 x 0 nunca sai com 2 chutes.
+
+def _estatisticas_do_bloco(p: Partida, rng, rc: float, rf: float) -> None:
+    """Posse, desarmes e passes errados do bloco: o que nao vira lance narrado.
+
+    A posse sai da diferenca de forca em campo -- o time melhor fica com a bola -- mais
+    ruido, e a da partida e a media dos blocos, entao ela se move ao vivo.
     """
-    for gols, st in ((p.gols_casa, p.stats_casa), (p.gols_fora, p.stats_fora)):
-        base = gols / CONVERSAO if gols else 0
-        st.finalizacoes = max(1, int(round(rng.normal(base + 4.0, 2.6))))
-        st.no_gol = max(gols, int(round(st.finalizacoes * NO_GOL)))
-        st.desarmes = max(0, int(round(rng.normal(DESARMES_BASE, 3.4))))
-        st.faltas = max(0, int(round(rng.normal(FALTAS_BASE, 3.0))))
-        st.escanteios = max(0, int(round(st.finalizacoes * 0.42 + rng.normal(0, 1.4))))
-    total = p.stats_casa.finalizacoes + p.stats_fora.finalizacoes
-    posse = 50 if not total else int(round(100 * p.stats_casa.finalizacoes / total))
-    p.stats_casa.posse = int(np.clip(posse, 28, 72))
+    posse = float(np.clip(50.0 + (rc - rf) * 0.9 + rng.normal(0, 5.0), 30, 70))
+    p.posses.append(posse)
+    for st, minha in ((p.stats_casa, posse), (p.stats_fora, 100 - posse)):
+        st.desarmes += int(rng.poisson(DESARMES_BASE / BLOCOS))
+        # quem fica menos com a bola erra mais passe
+        st.passes_errados += int(rng.poisson(
+            PASSES_ERRADOS_BASE / BLOCOS * (1.25 - minha / 200.0)))
+    casa = int(round(sum(p.posses) / len(p.posses)))
+    p.stats_casa.posse = int(np.clip(casa, 28, 72))
     p.stats_fora.posse = 100 - p.stats_casa.posse
+    _fechar_estatisticas(p)
+
+
+def _fechar_estatisticas(p: Partida) -> None:
+    """Cartoes vem dos eventos: a estatistica e a sumula nao podem discordar."""
+    for clube, st in ((p.casa, p.stats_casa), (p.fora, p.stats_fora)):
+        st.amarelos = sum(1 for e in p.eventos if e.tipo == "amarelo" and e.clube == clube)
+        st.vermelhos = sum(1 for e in p.eventos if e.tipo == "vermelho" and e.clube == clube)

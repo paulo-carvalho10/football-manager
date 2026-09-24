@@ -16,6 +16,9 @@ FORMACOES: dict[str, dict[str, int]] = {
     "3-5-2": {"GK": 1, "DF": 3, "MF": 5, "FW": 2},
     "5-3-2": {"GK": 1, "DF": 5, "MF": 3, "FW": 2},
     "3-4-3": {"GK": 1, "DF": 3, "MF": 4, "FW": 3},
+    # mesmas vagas do 4-5-1; a diferenca e onde os meias jogam (dois volantes e tres
+    # meias ofensivos), por isso o efeito fica entre o 4-5-1 e o 4-3-3
+    "4-2-3-1": {"GK": 1, "DF": 4, "MF": 5, "FW": 1},
 }
 
 # (ataque, defesa): multiplicam o gol esperado do proprio time e o do adversario.
@@ -64,6 +67,7 @@ EFEITO_FORMACAO: dict[str, tuple[float, float]] = {
     "3-5-2": (0.98, 1.02),
     "5-3-2": (0.88, 0.87),
     "3-4-3": (1.04, 1.06),
+    "4-2-3-1": (0.95, 0.95),
 }
 
 

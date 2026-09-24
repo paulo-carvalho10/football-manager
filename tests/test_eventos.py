@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 
 from fm.carreira import Carreira
-from fm.eventos import BLOCOS, Partida, simular_partida
+from fm.eventos import BLOCOS, MINUTOS_POR_BLOCO, Partida, simular_partida
 from fm.match import Style, simulate
 
 ESTILO = Style(goals_base=1.22, home_adv=0.36)
@@ -103,7 +103,7 @@ def test_eventos_batem_com_o_placar(mundo):
         assert len(gols) == p.gols_casa + p.gols_fora
         assert sum(1 for e in gols if e.clube == p.casa) == p.gols_casa
         for e in p.eventos:
-            assert 0 < e.minuto <= BLOCOS * 15
+            assert 0 < e.minuto <= BLOCOS * MINUTOS_POR_BLOCO == 90
             if e.tipo == "gol":
                 assert e.jogador is not None
                 assert e.jogador != e.segundo, "jogador deu assistencia para si mesmo"

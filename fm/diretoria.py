@@ -68,7 +68,8 @@ class Aprovacao:
     meta: Meta | None = None
     demitido: bool = False
     motivo: str = ""
-    historico: list[tuple[int, float, float]] = field(default_factory=list)
+    # (temporada, data, torcida, diretoria) a cada data jogada: a curva do perfil
+    historico: list[tuple[int, int, float, float]] = field(default_factory=list)
 
     @property
     def clima(self) -> str:

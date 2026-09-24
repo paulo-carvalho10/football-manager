@@ -40,6 +40,8 @@ COPAS_POR_PAIS = {
 }
 COPAS = COPAS_POR_PAIS["BRA"]
 
+MAX_TROCAS = 5
+
 
 @dataclass(slots=True)
 class Decisao:
@@ -82,6 +84,18 @@ class Carreira:
     aprovacao: object | None = None
     estatisticas: object | None = None
     treinador: str = "Treinador"
+    # O que o usuario fez DURANTE cada partida, por "temporada:data": trocas e mudancas de
+    # tatica, com o minuto. Sem isto o replay do save jogava sem as substituicoes e o
+    # placar carregado divergia do placar jogado.
+    na_partida: dict[str, dict] = field(default_factory=dict)
+    # os outros jogos da data, ja resolvidos, enquanto a partida do usuario ainda corre:
+    # e o painel "rodada ao vivo"
+    parciais: list = field(default_factory=list)
+    # Capitao e cobradores. Guardados e mostrados, mas o motor ainda NAO os le: nao ha
+    # penalti nem bola parada simulados. Ficam no save para valerem quando houver.
+    funcoes: dict[str, int] = field(default_factory=dict)
+    # a lista de observacao do mercado
+    observados: list[int] = field(default_factory=list)
 
     @classmethod
     def nova(cls, ligas: list[str] | str, clube: str, seed: int = 2027) -> Carreira:
@@ -243,6 +257,9 @@ class Carreira:
         from fm.diretoria import decidir_demissao
 
         self.avaliar_clima()
+        ap = self.aprovacao
+        ap.historico.append((self.temporada, self.data, round(ap.torcida, 1),
+                             round(ap.diretoria, 1)))
         tabela = self.tabela()
         motivo = decidir_demissao(
             self.aprovacao, rodada=self.rodada, fim_da_temporada=fim_da_temporada,
@@ -470,10 +487,13 @@ class Carreira:
             style = style_of(cfg)
 
             if meu_jogo is not None and meu_jogo in partidas:
-                detalhada = self._minha_partida(meu_jogo, rng, style, tatica,
-                                                substituicoes)
+                # os outros ANTES do meu: enquanto a minha partida pausa, a rodada ao vivo
+                # ja tem o que mostrar
                 outras = [f for f in partidas if f is not meu_jogo]
                 r = play_fixtures(outras, ratings, rng, style)
+                self.parciais = list(r)
+                detalhada = self._minha_partida(meu_jogo, rng, style, tatica,
+                                                substituicoes)
                 r.append(Result(meu_jogo.home, meu_jogo.away,
                                 detalhada.gols_casa, detalhada.gols_fora, n))
             else:
@@ -517,11 +537,69 @@ class Carreira:
         sou_casa = jogo.home == self.clube_id
         ma, md = (confronto(tatica, Tatica()) if sou_casa
                   else confronto(Tatica(), tatica))
+        chave = f"{self.temporada}:{self.data}"
         return simular_partida(
             self.world, jogo.home, jogo.away,
             [p.id for p in self.world.best_xi(jogo.home)],
             [p.id for p in self.world.best_xi(jogo.away)],
-            rng, style, mult_casa=ma, mult_fora=md, substituicoes=substituicoes)
+            rng, style, mult_casa=ma, mult_fora=md,
+            substituicoes=self._no_banco(substituicoes, chave, sou_casa))
+
+    def _no_banco(self, pedido, chave: str, sou_casa: bool):
+        """O intermediario entre quem decide (terminal, tela ao vivo ou o save) e o motor.
+
+        `pedido(partida, minuto)` pode devolver a lista antiga [(clube, sai, entra)] ou um
+        dict {"trocas": [(sai, entra)], "tatica": Tatica | dict}. O que passar pelas regras
+        -- so o proprio clube, no maximo MAX_TROCAS, quem jogou nao volta -- e gravado em
+        `na_partida`, e e isso que o replay devolve. Sem pedido e sem registro, o motor
+        joga sem banco, como sempre jogou.
+        """
+        from fm.eventos import Ajuste
+        from fm.tatica import confronto
+
+        gravado = self.na_partida.get(chave)
+        if pedido is None and not gravado:
+            return None
+
+        def decidir(partida, minuto):
+            if pedido is None:                    # replay: devolve o que foi feito
+                trocas = [(s, e) for m, s, e in gravado.get("trocas", []) if m == minuto]
+                nova = next((t for m, t in gravado.get("taticas", []) if m == minuto), None)
+            else:
+                resposta = pedido(partida, minuto) or []
+                if isinstance(resposta, dict):
+                    trocas = [tuple(t) for t in resposta.get("trocas", [])]
+                    nova = resposta.get("tatica")
+                else:
+                    trocas = [(s, e) for cl, s, e in resposta if cl == self.clube_id]
+                    nova = None
+            feitas = sum(1 for e in partida.eventos
+                         if e.tipo == "substituicao" and e.clube == self.clube_id)
+            em_campo = partida.em_campo_casa if sou_casa else partida.em_campo_fora
+            elenco = {p.id for p in self.world.squad(self.clube_id)}
+            validas: list[tuple[int, int]] = []
+            for sai, entra in trocas:
+                if feitas + len(validas) >= MAX_TROCAS:
+                    break
+                ja_vai = {e for _, e in validas} | {s for s, _ in validas}
+                if (sai in em_campo and entra in elenco and entra not in partida.entrada
+                        and sai not in ja_vai and entra not in ja_vai):
+                    validas.append((int(sai), int(entra)))
+            ajuste = Ajuste(trocas=[(self.clube_id, s, e) for s, e in validas])
+            t = None
+            if nova is not None:
+                t = nova if isinstance(nova, Tatica) else Tatica(**nova)
+                t.validar()
+                ma, md = (confronto(t, Tatica()) if sou_casa
+                          else confronto(Tatica(), t))
+                ajuste.mult_casa, ajuste.mult_fora = ma, md
+            if pedido is not None and (validas or t is not None):
+                reg = self.na_partida.setdefault(chave, {"trocas": [], "taticas": []})
+                reg["trocas"] += [[minuto, s, e] for s, e in validas]
+                if t is not None:
+                    reg["taticas"].append([minuto, asdict(t)])
+            return ajuste
+        return decidir
 
     def _jogar_etapa_de_copa(self, nome: str, substituicoes=None
                              ) -> tuple[list[Result], Partida | None] | None:
@@ -547,19 +625,22 @@ class Carreira:
         jogos = list(etapa.fixtures)
         resultados: list[Result] = []
 
-        if meus:
-            # no mata-mata de ida e volta o usuario joga a ida em detalhe; a volta resolve
-            # no motor rapido, senao uma data pediria duas partidas seguidas na tela
-            meu = meus[0]
-            detalhada = self._minha_partida(meu, rng, t.style, tatica, substituicoes)
-            resultados.append(Result(meu.home, meu.away, detalhada.gols_casa,
-                                     detalhada.gols_fora, meu.matchday))
-            jogos = [f for f in jogos if f is not meu]
-
         ratings = {cid: float(effective_rating(self.world.team_rating(cid),
                                                fatigue=self.world.fatigue_penalty(cid)))
                    for cid in {f.home for f in etapa.fixtures} | {f.away for f in etapa.fixtures}}
-        resultados += play_fixtures(jogos, ratings, rng, t.style, t.mentality)
+        # no mata-mata de ida e volta o usuario joga a ida em detalhe; a volta resolve
+        # no motor rapido, senao uma data pediria duas partidas seguidas na tela
+        meu = meus[0] if meus else None
+        if meu is not None:
+            jogos = [f for f in jogos if f is not meu]
+        # os outros primeiro, como na liga: e o que a rodada ao vivo mostra
+        outros = play_fixtures(jogos, ratings, rng, t.style, t.mentality)
+        self.parciais = list(outros)
+        if meu is not None:
+            detalhada = self._minha_partida(meu, rng, t.style, tatica, substituicoes)
+            resultados.append(Result(meu.home, meu.away, detalhada.gols_casa,
+                                     detalhada.gols_fora, meu.matchday))
+        resultados += outros
         registrar(self.world, andamento, resultados, rng, self.exportados)
         self._somar_estatisticas(resultados, detalhada, rng)
 
@@ -588,6 +669,21 @@ class Carreira:
 
     # ---------------------------------------------------------------- virar o ano
 
+    def numeros_do_ano(self) -> dict[str, int]:
+        """Vitorias, empates e derrotas do usuario no ano, liga e copas juntas."""
+        meus = [r for r in self.jogos() if self.clube_id in (r.home, r.away)]
+        for a in self.copas.values():
+            meus += [r for r in a.resultados_do_ano if self.clube_id in (r.home, r.away)]
+        v = e = d = gp = gc = 0
+        for r in meus:
+            casa = r.home == self.clube_id
+            pro, contra = ((r.goals_home, r.goals_away) if casa
+                           else (r.goals_away, r.goals_home))
+            gp, gc = gp + pro, gc + contra
+            v, e, d = v + (pro > contra), e + (pro == contra), d + (pro < contra)
+        return {"jogos": len(meus), "vitorias": v, "empates": e, "derrotas": d,
+                "gols_pro": gp, "gols_contra": gc}
+
     def virar_o_ano(self) -> dict:
         """Fecha a temporada e abre a proxima. E o que faz o jogo nao acabar na rodada 38.
 
@@ -607,6 +703,7 @@ class Carreira:
         campeoes = {n: self.world.clubs[t[0].club_id].name for n, t in tabelas.items()}
         minha_liga = self.liga
         minha_posicao = self.posicao()
+        meus_numeros = self.numeros_do_ano()
 
         # A ordem e a regra. As contas fecham na divisao em que o ano foi jogado, e so
         # depois o clube troca de divisao; o mercado vem depois do envelhecimento para
@@ -659,6 +756,8 @@ class Carreira:
             "campeoes": campeoes,
             "minha_liga": minha_liga,
             "minha_posicao": minha_posicao,
+            "meus_numeros": meus_numeros,
+            "clube": self.world.clubs[self.clube_id].name,
             "subi": bool(minha and minha.subiu),
             "cai": bool(minha and not minha.subiu),
             "promovidos": [self.world.clubs[m.clube].name for m in mudancas if m.subiu],
@@ -723,6 +822,10 @@ class Carreira:
             # copa. Guardar a rodada da liga perderia os jogos de copa no replay.
             "temporada": self.temporada, "data": self.data,
             "decisoes": {k: asdict(v) for k, v in self.decisoes.items()},
+            "na_partida": self.na_partida,
+            "treinador": self.treinador,
+            "funcoes": self.funcoes,
+            "observados": self.observados,
         }, indent=2, ensure_ascii=False), encoding="utf-8")
         return destino
 
@@ -737,6 +840,10 @@ class Carreira:
         c = cls(seed=d["seed"], ligas=list(d["ligas"]), clube_id=d["clube_id"],
                 temporada=d["temporada_inicial"])
         c.decisoes = {k: Decisao(**v) for k, v in d["decisoes"].items()}
+        c.na_partida = d.get("na_partida", {})
+        c.treinador = d.get("treinador", c.treinador)
+        c.funcoes = d.get("funcoes", {})
+        c.observados = d.get("observados", [])
         c._montar(world, streams)
         # REPLAY: as temporadas sao refeitas com as mesmas decisoes. Se isto divergir, o
         # determinismo do motor quebrou -- e o save seria a primeira vitima.

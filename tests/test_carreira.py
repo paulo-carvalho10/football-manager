@@ -84,10 +84,14 @@ def test_energia_estabiliza_e_nao_desaba(carreira):
     """Com escalacao FIXA os mesmos onze jogam sempre. Antes eles desciam ate o piso em
     seis rodadas; jogador de verdade estabiliza."""
     onze = carreira.escalacao_atual()
+    medias = []
     for _ in range(20):
         carreira.escalar(onze)
         carreira.avancar()
-    media = sum(carreira.world.players[j].condition for j in onze) / 11
+        medias.append(sum(carreira.world.players[j].condition for j in onze) / 11)
+    # a media das ultimas datas, nao a da ultima: se ela cai numa copa em que o clube
+    # folgou, o onze aparece descansado (94%) e o teste media a folga, nao o equilibrio
+    media = sum(medias[-8:]) / 8
     assert 70 < media < 92, f"energia de equilibrio fora do razoavel: {media:.0f}%"
 
 

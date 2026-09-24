@@ -189,11 +189,19 @@ def mover_reputacao(world: World, tabelas: dict[str, list[Row]]) -> None:
             continue
         escada = sorted((world.clubs[linha.club_id].reputation for linha in tabela),
                         reverse=True)
-        for posicao, linha in enumerate(tabela):
+        passos = [max(-REPUTACAO_PASSO,
+                      min(REPUTACAO_PASSO,
+                          escada[posicao] - world.clubs[linha.club_id].reputation))
+                  for posicao, linha in enumerate(tabela)]
+        # O limite do passo quebra a conservacao: o pequeno que foi campeao sobe no
+        # maximo o passo, o grande que caiu desce o passo, mas o meio da tabela anda
+        # pouco -- a soma nao da zero e a divisao deriva enquanto converge. Descontar a
+        # media dos passos devolve a estacionariedade que a docstring promete.
+        vies = sum(passos) / len(passos)
+        for linha, passo in zip(tabela, passos):
             club = world.clubs[linha.club_id]
-            passo = max(-REPUTACAO_PASSO, min(REPUTACAO_PASSO, escada[posicao] - club.reputation))
             club.reputation = int(round(
-                max(REPUTACAO_PISO, min(REPUTACAO_TETO, club.reputation + passo))))
+                max(REPUTACAO_PISO, min(REPUTACAO_TETO, club.reputation + passo - vies))))
 
 
 def fechar_o_ano(world: World, tabelas: dict[str, list[Row]],
