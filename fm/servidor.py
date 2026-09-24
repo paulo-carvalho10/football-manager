@@ -22,7 +22,7 @@ from urllib.parse import urlparse
 
 from fm import telas
 from fm.carreira import Carreira, saves_disponiveis
-from fm.tatica import ESTILOS, FORMACOES, MARCACOES, Tatica
+from fm.tatica import ESTILOS, FORMACOES, MARCACOES, VAGAS, Tatica, arrumar_no_campo
 
 WEB = Path(__file__).resolve().parent / "web"
 POSICAO_ORDEM = {"GK": 0, "DF": 1, "MF": 2, "FW": 3}
@@ -194,7 +194,9 @@ def estado(jogo: Jogo) -> dict:
         },
         "proximo": proximo,
         "tatica": {"formacao": tatica.formacao, "marcacao": tatica.marcacao,
-                   "estilo": tatica.estilo, "vagas": tatica.vagas},
+                   "estilo": tatica.estilo, "vagas": tatica.vagas,
+                   "posicoes": [{"rotulo": r, "setor": s, "papel": p, "x": x, "y": y}
+                                for r, s, p, x, y in VAGAS[tatica.formacao]]},
         "opcoes": {"formacoes": sorted(FORMACOES), "marcacoes": sorted(MARCACOES),
                    "estilos": sorted(ESTILOS)},
         "elenco": [_jogador(c, p, p.id in onze) for p in elenco],
@@ -295,7 +297,8 @@ def escalar(jogo: Jogo, dados: dict) -> dict:
     onze = dados.get("onze")
     if not onze:
         c.world.escalacao_fixa.pop(c.clube_id, None)
-        onze = [p.id for p in c.world.best_xi(c.clube_id, tatica.vagas)]
+        onze = [p.id for p in arrumar_no_campo(c.world.best_xi(c.clube_id, tatica.vagas),
+                                               tatica.formacao)]
     try:
         c.escalar([int(x) for x in onze], tatica)
     except ValueError as e:

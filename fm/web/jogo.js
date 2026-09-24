@@ -324,37 +324,11 @@ const LINHAS_CAMPO = `
     <path d="M40 83 A 11 8 0 0 1 60 83"/><path d="M40 17 A 11 8 0 0 0 60 17"/>
   </g></svg>`;
 
-/** Onde cada jogador fica no desenho. Setor pela posicao do jogador; no 4-2-3-1 o
- *  meio vira duas linhas, com os volantes atras. So desenho: o motor le a lista. */
-function posicoesNoCampo(titulares, formacao) {
-  const grupos = {GK: [], DF: [], MF: [], FW: []};
-  for (const p of titulares) grupos[p.posicao].push(p);
-  const alturas = {GK: 89, DF: 71, MF: 48, FW: 22};
-  const xs = (n, m = 12) => n === 1 ? [50] : Array.from({length: n}, (_, i) => m + (i * (100 - 2 * m)) / (n - 1));
-  const saida = [];
-  const ordemDetalhe = {DM: 0, CB: 0, FB: 1, MF: 1, AM: 2, WG: 2, FW: 3};
-  for (const [g, gente] of Object.entries(grupos)) {
-    gente.sort((a, b) => (ordemDetalhe[a.detalhe] ?? 1) - (ordemDetalhe[b.detalhe] ?? 1) || b.overall - a.overall);
-    if (g === "MF" && formacao === "4-2-3-1" && gente.length === 5) {
-      const volantes = gente.slice(0, 2), meias = gente.slice(2);
-      xs(2, 32).forEach((x, i) => saida.push({p: volantes[i], x, y: 58}));
-      xs(3, 18).forEach((x, i) => saida.push({p: meias[i], x, y: 38}));
-      continue;
-    }
-    let y = alturas[g];
-    if (g === "MF" && gente.length >= 5) y = 50;
-    if (g === "FW" && gente.length === 1) y = 18;
-    if (g === "DF" && gente.length >= 5) y = 73;
-    // laterais nas pontas: FB para as bordas, CB no meio
-    if (g === "DF") {
-      const fb = gente.filter((p) => p.detalhe === "FB"), cb = gente.filter((p) => p.detalhe !== "FB");
-      const ord = fb.length >= 2 ? [fb[0], ...cb, ...fb.slice(1)] : gente;
-      xs(ord.length, gente.length >= 5 ? 9 : 12).forEach((x, i) => saida.push({p: ord[i], x, y}));
-      continue;
-    }
-    xs(gente.length, gente.length >= 5 ? 9 : 16).forEach((x, i) => saida.push({p: gente[i], x, y}));
-  }
-  return saida;
+/** A lista do onze esta na ORDEM das vagas da formacao, que vem do servidor com rotulo,
+ *  setor e posicao no desenho. Trocar dois titulares e trocar os dois de vaga -- e a vaga
+ *  vale no jogo: quem ocupa a de centroavante finaliza como centroavante. */
+function pecasNoCampo(titulares) {
+  return ESTADO.tatica.posicoes.map((vaga, i) => ({p: titulares[i], vaga})).filter((x) => x.p);
 }
 
 TELAS.escalacao = async function () {
@@ -365,21 +339,20 @@ TELAS.escalacao = async function () {
   const reservas = e.elenco.filter((p) => !onzeLocal.includes(p.id))
     .sort((a, b) => ORDEM_POS[a.posicao] - ORDEM_POS[b.posicao] || b.overall - a.overall);
   const [svgLinha, svgGol] = await Promise.all([camisa(e.clube.id, "1"), camisa(e.clube.id, "2")]);
-  const vagas = e.tatica.vagas;
-  const contagem = {GK: 0, DF: 0, MF: 0, FW: 0};
-  titulares.forEach((p) => contagem[p.posicao]++);
   const media = titulares.reduce((s, p) => s + p.overall, 0) / (titulares.length || 1);
   const energiaMedia = titulares.reduce((s, p) => s + p.energia, 0) / (titulares.length || 1);
   const f = e.funcoes || {};
 
-  const pecas = posicoesNoCampo(titulares, e.tatica.formacao).map(({p, x, y}) => `
-    <button class="peca ${contagem[p.posicao] > (vagas[p.posicao] || 0) ? "fora-de-posicao" : ""}
+  const colocados = pecasNoCampo(titulares);
+  const pecas = colocados.map(({p, vaga}) => `
+    <button class="peca ${p.posicao !== vaga.setor ? "fora-de-posicao" : ""}
       ${marcado && marcado.id === p.id ? "marcado" : ""}" data-campo="${p.id}" draggable="true"
-      style="left:${x}%;top:${y}%">
+      title="${escapar(p.nome)} · ${ROTULOS_VAGA[vaga.rotulo] || vaga.rotulo}${p.posicao !== vaga.setor ? " (improvisado)" : ""}"
+      style="left:${vaga.x}%;top:${vaga.y}%">
       <span class="camisa-peca">${idsProprios(p.posicao === "GK" ? svgGol : svgLinha)}
         ${f.capitao === p.id ? '<span class="faixa">C</span>' : ""}</span>
       <span class="nome">${escapar(sobrenome(p.nome))}</span>
-      <span class="info">${pos(p.posicao)}${ovr(p.overall)}</span>
+      <span class="info"><span class="vaga ${p.posicao !== vaga.setor ? "improvisado" : ""}">${vaga.rotulo}</span>${ovr(p.overall)}</span>
       <span class="energia"><i style="width:${p.energia}%;background:${corDe(p.energia, 85, 70)}"></i></span>
     </button>`).join("");
 
@@ -388,8 +361,8 @@ TELAS.escalacao = async function () {
   const opcoesFuncao = (chave) => `<select data-funcao="${chave}"><option value="">—</option>${titulares.map((p) =>
     `<option value="${p.id}" ${f[chave] === p.id ? "selected" : ""}>${escapar(p.nome)}</option>`).join("")}</select>`;
   const formacoes = [...e.opcoes.formacoes].sort();
-  const faltam = Object.entries(vagas).filter(([g, n]) => contagem[g] !== n)
-    .map(([g, n]) => `${POSICOES[g]} ${contagem[g]}/${n}`);
+  const improvisados = colocados.filter(({p, vaga}) => p.posicao !== vaga.setor)
+    .map(({p, vaga}) => `${sobrenome(p.nome)} de ${vaga.rotulo}`);
 
   $("#tela-escalacao").innerHTML = `
     <div class="painel">
@@ -402,9 +375,9 @@ TELAS.escalacao = async function () {
       <div class="pe"><span class="dica">OVR médio <b class="num">${media.toFixed(1)}</b> ·
         energia <b class="num">${energiaMedia.toFixed(0)}%</b></span>
         <span class="espaco" style="flex:1"></span>
-        ${faltam.length ? `<span class="chip" style="border-color:var(--ruim);color:var(--ruim)">fora do esquema: ${faltam.join(" · ")}</span>`
-          : '<span class="chip ativo">esquema completo</span>'}
-        <span class="dica">Clique ou arraste para trocar</span></div>
+        ${improvisados.length ? `<span class="chip" style="border-color:var(--ruim);color:var(--ruim)">improvisado: ${escapar(improvisados.join(" · "))}</span>`
+          : '<span class="chip ativo">todos na posição</span>'}
+        <span class="dica">Clique em dois titulares para trocar de vaga · titular e reserva para substituir</span></div>
     </div>
     <div class="coluna">
       <div class="painel">
@@ -453,14 +426,25 @@ function efeitoDaTatica(t) {
   return `<b>${t.formacao}</b> · ${txt}; ${mrc}. Os efeitos são modestos de propósito — tática é escolha, não atalho.`;
 }
 
+const ROTULOS_VAGA = {GOL: "goleiro", LE: "lateral-esquerdo", LD: "lateral-direito", ZAG: "zagueiro",
+  VOL: "volante", MC: "meio-campo", MEI: "meia", ME: "meia-esquerda", MD: "meia-direita",
+  PE: "ponta-esquerda", PD: "ponta-direita", CA: "centroavante"};
+
+/** A ORDEM conta: e ela que diz quem ocupa cada vaga. */
 function onzeIgual() {
   return onzeLocal && ESTADO && onzeLocal.length === ESTADO.onze.length
-    && onzeLocal.every((id) => ESTADO.onze.includes(id));
+    && onzeLocal.every((id, i) => ESTADO.onze[i] === id);
 }
 
 function trocar(a, b) {
-  // a e b: {id, onde}. Troca de campo por banco; dois do campo so trocam de marcacao.
-  if (a.onde === b.onde) { marcado = b; return; }
+  // a e b: {id, onde}. Dois do campo trocam de vaga; campo e banco, substituicao.
+  if (a.onde === "banco" && b.onde === "banco") { marcado = b; return; }
+  if (a.onde === "campo" && b.onde === "campo") {
+    const i = onzeLocal.indexOf(a.id), k = onzeLocal.indexOf(b.id);
+    [onzeLocal[i], onzeLocal[k]] = [onzeLocal[k], onzeLocal[i]];
+    marcado = null;
+    return;
+  }
   const doCampo = a.onde === "campo" ? a.id : b.id;
   const doBanco = a.onde === "banco" ? a.id : b.id;
   onzeLocal = onzeLocal.map((id) => id === doCampo ? doBanco : id);
@@ -492,7 +476,10 @@ function ligarEscalacao() {
     el.addEventListener("drop", (ev) => {
       ev.preventDefault();
       const origem = JSON.parse(ev.dataTransfer.getData("text/plain"));
-      if (origem.onde !== eu().onde) { trocar(origem, eu()); TELAS.escalacao(); }
+      if (origem.id !== eu().id && !(origem.onde === "banco" && eu().onde === "banco")) {
+        trocar(origem, eu());
+        TELAS.escalacao();
+      }
     });
   });
   $("#auto").addEventListener("click", async () => {

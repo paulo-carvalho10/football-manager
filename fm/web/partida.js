@@ -42,14 +42,14 @@ async function abrirAoVivo() {
 
 async function dataSemJogo(s) {
   if (s.estado) aplicarEstado(s.estado);
-  await abrirJanela({titulo: escapar(s.competicao || "Resultados da data"), corpo: `
+  const escolha = await abrirJanela({titulo: escapar(s.competicao || "Resultados da data"), corpo: `
     <p class="dica">O seu clube não entrou em campo nesta data.</p>
     <table class="grade compacta"><tbody>${(s.resultados || []).map((r) => `
       <tr><td style="text-align:right"><div class="nome-celula" style="justify-content:flex-end">${escapar(r.casa.nome)} ${escudo(r.casa, "1.3rem")}</div></td>
         <td class="c"><b class="num">${r.gols_casa} x ${r.gols_fora}</b></td>
         <td><div class="nome-celula">${escudo(r.fora, "1.3rem")} ${escapar(r.fora.nome)}</div></td></tr>`).join("")}</tbody></table>`,
-    botoes: [{rotulo: "Continuar ›", primario: true}]});
-  irParaModo("jogo");
+    botoes: [{rotulo: "Ver tabela", valor: "tabela"}, {rotulo: "Continuar ›", primario: true, valor: "ok"}]});
+  irParaModo("jogo", escolha === "tabela" ? "classificacao" : undefined);
 }
 
 /* ------------------------------------------------------------------ montagem */
@@ -495,19 +495,55 @@ async function abrirPosJogo() {
         <div class="painel fixo"><div class="cab"><h2>Estatísticas</h2></div><div class="corpo comparativo">${cmp}</div></div>
       </div>
       ${time(p.time_fora, p.fora.nome)}
-      <div class="painel"><div class="cab"><h2>Rodada</h2></div>
-        <div class="corpo sem-margem rodada-vivo">${p.rodada.map((r) => `
-          <div class="jogo ${r.meu ? "meu" : ""}"><span>${escapar(r.casa.nome)}</span><b>${r.gols_casa} - ${r.gols_fora}</b><span>${escapar(r.fora.nome)}</span></div>`).join("")}</div>
+      <div class="painel"><div class="cab"><div class="abas">
+          <button data-paba="rodada" class="ativo">Rodada</button><button data-paba="tabela">Tabela <span class="tecla">T</span></button></div></div>
+        <div class="corpo sem-margem" id="pos-lateral"></div>
         <div class="pe"><span class="dica">Notas derivadas dos lances e do placar</span></div></div>
     </div>
     <footer class="fluxo-pe"><span class="dica">${escapar(ESTADO.aprovacao.clima ? `Ambiente no clube: ${clima(ESTADO.aprovacao.clima)}` : "")}</span>
       <span class="espaco"></span><button class="btn primario grande" id="pos-continuar">Continuar »</button></footer>`;
   $("#pos-continuar").addEventListener("click", () => irParaModo("jogo"));
+  POS.rodada = p.rodada;
+  $$("[data-paba]").forEach((b) => b.addEventListener("click", () => abaDoPosJogo(b.dataset.paba)));
+  abaDoPosJogo(PARAMS.get("aba") || "rodada");
+}
+
+const POS = {rodada: [], aba: "rodada"};
+
+/** A tabela da divisao do usuario como ficou depois da rodada. */
+async function tabelaCompacta() {
+  const d = await api.get("/api/classificacao");
+  const z = d.zonas, n = d.linhas.length;
+  const zona = (i) => i <= z.continental ? "continental" : i <= z.acesso ? "acesso"
+    : i > n - z.rebaixamento ? "rebaixamento" : "";
+  return `<table class="grade compacta"><thead><tr><th class="c">#</th><th>${escapar(d.nome)}</th>
+      <th class="n">J</th><th class="n">SG</th><th class="n">P</th></tr></thead>
+    <tbody>${d.linhas.map((l, i) => `<tr class="${l.eu ? "eu" : ""}">
+      <td class="c"><span class="zona ${zona(i + 1)}">${i + 1}</span></td>
+      <td><div class="nome-celula">${escudo(l.clube, "1.2rem")}<b>${escapar(l.clube.nome)}</b></div></td>
+      <td class="n">${l.jogos}</td><td class="n">${l.saldo > 0 ? "+" : ""}${l.saldo}</td>
+      <td class="n"><b>${l.pontos}</b></td></tr>`).join("")}</tbody></table>`;
+}
+
+async function abaDoPosJogo(aba) {
+  POS.aba = aba;
+  $$("[data-paba]").forEach((b) => b.classList.toggle("ativo", b.dataset.paba === aba));
+  const alvo = $("#pos-lateral");
+  if (aba === "tabela") {
+    alvo.innerHTML = await tabelaCompacta();
+    $("#pos-lateral tr.eu")?.scrollIntoView({block: "center"});
+    return;
+  }
+  alvo.innerHTML = `<div class="rodada-vivo">${POS.rodada.map((r) => `
+    <div class="jogo ${r.meu ? "meu" : ""}"><span>${escapar(r.casa.nome)}</span><b>${r.gols_casa} - ${r.gols_fora}</b><span>${escapar(r.fora.nome)}</span></div>`).join("")}</div>`;
 }
 
 registrarModo("posjogo", {
   elemento: "#pos-jogo", abrir: abrirPosJogo,
-  tecla(ev) { if (ev.key === "Enter" || ev.key === " ") { irParaModo("jogo"); ev.preventDefault(); } },
+  tecla(ev) {
+    if (ev.key === "Enter" || ev.key === " ") { irParaModo("jogo"); ev.preventDefault(); }
+    if (ev.key.toLowerCase() === "t") abaDoPosJogo(POS.aba === "tabela" ? "rodada" : "tabela");
+  },
 });
 
 /* ================================================================== COMECO */

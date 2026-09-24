@@ -383,11 +383,21 @@ class Carreira:
         return Tatica(**d.tatica) if d else Tatica()
 
     def escalacao_atual(self) -> list[int]:
+        """O onze na ORDEM das vagas da formacao (fm.tatica.VAGAS).
+
+        A escolha do usuario vem como ele deixou. O que sai da escalacao automatica -- ou
+        de um save antigo, anterior as vagas -- e arrumado no campo: sem isso o goleiro
+        podia cair na vaga de centroavante so por ordem de overall.
+        """
+        from fm.tatica import arrumar_no_campo
         d = self.decisoes.get(self._chave())
         if d and d.escalacao:
             return list(d.escalacao)
-        return [p.id for p in self.world.best_xi(self.clube_id,
-                                                 self.tatica_atual().vagas)]
+        tatica = self.tatica_atual()
+        xi = self.world.best_xi(self.clube_id, tatica.vagas)
+        if self.clube_id in self.world.escalacao_fixa and xi and xi[0].position == "GK":
+            return [p.id for p in xi]
+        return [p.id for p in arrumar_no_campo(xi, tatica.formacao)]
 
     def proximo_jogo(self) -> tuple[str, str, Fixture | None]:
         """(tipo, competicao, jogo) da proxima data em que o usuario entra em campo.
@@ -538,12 +548,15 @@ class Carreira:
         ma, md = (confronto(tatica, Tatica()) if sou_casa
                   else confronto(Tatica(), tatica))
         chave = f"{self.temporada}:{self.data}"
+        from fm.tatica import papeis_em_campo
+        papeis = papeis_em_campo(self.escalacao_atual(), tatica.formacao)
         return simular_partida(
             self.world, jogo.home, jogo.away,
             [p.id for p in self.world.best_xi(jogo.home)],
             [p.id for p in self.world.best_xi(jogo.away)],
             rng, style, mult_casa=ma, mult_fora=md,
-            substituicoes=self._no_banco(substituicoes, chave, sou_casa))
+            substituicoes=self._no_banco(substituicoes, chave, sou_casa),
+            papeis=papeis)
 
     def _no_banco(self, pedido, chave: str, sou_casa: bool):
         """O intermediario entre quem decide (terminal, tela ao vivo ou o save) e o motor.

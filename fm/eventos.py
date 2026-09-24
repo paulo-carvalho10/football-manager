@@ -121,6 +121,8 @@ class Partida:
     minuto: int = 0             # ate onde a partida ja foi jogada
     # posse de cada bloco jogado; a da partida e a media
     posses: list[float] = field(default_factory=list)
+    # {jogador: papel da vaga que ocupa}. Quem nao esta aqui joga pela propria posicao.
+    papeis: dict[int, str] = field(default_factory=dict)
 
     @property
     def placar(self) -> str:
@@ -154,10 +156,12 @@ def _forca_em_campo(world: World, ids: list[int], minuto: int,
     return total / len(ids)
 
 
-def _sortear(rng, ids, world, pesos: dict[str, float]) -> int | None:
+def _sortear(rng, ids, world, pesos: dict[str, float],
+             papeis: dict[int, str] | None = None) -> int | None:
     if not ids:
         return None
-    w = np.array([max(pesos.get(world.players[i].position_detail, 0.5), 0.01)
+    papeis = papeis or {}
+    w = np.array([max(pesos.get(papeis.get(i, world.players[i].position_detail), 0.5), 0.01)
                   for i in ids], dtype=float)
     return int(rng.choice(ids, p=w / w.sum()))
 
@@ -167,9 +171,13 @@ def simular_partida(
     rng: np.random.Generator, style: Style | None = None,
     mentality: Mentality = Mentality.NORMAL,
     mult_casa: float = 1.0, mult_fora: float = 1.0,
-    substituicoes=None,
+    substituicoes=None, papeis: dict[int, str] | None = None,
 ) -> Partida:
     """Partida minuto a minuto.
+
+    `papeis` diz a vaga de cada jogador escalado (fm.tatica.VAGAS): o meia escalado de
+    centroavante finaliza como centroavante. Nao mexe no total de gols do time, so em
+    quem os faz.
 
     `substituicoes` e uma funcao chamada ao fim de cada bloco:
         f(partida, minuto) -> [(clube, sai, entra), ...]  ou  Ajuste
@@ -180,6 +188,7 @@ def simular_partida(
     p = Partida(casa=casa, fora=fora,
                 em_campo_casa=list(onze_casa), em_campo_fora=list(onze_fora))
     p.entrada = {pid: 0 for pid in onze_casa + onze_fora}
+    p.papeis = dict(papeis or {})
     amarelados: set[int] = set()
 
     for bloco in range(BLOCOS):
@@ -249,6 +258,8 @@ def simular_partida(
                 if sai in lista and entra not in p.entrada:
                     lista[lista.index(sai)] = entra
                     p.entrada[entra] = p.minuto
+                    if sai in p.papeis:            # quem entra assume a vaga de quem saiu
+                        p.papeis[entra] = p.papeis[sai]
                     p.eventos.append(Evento(
                         p.minuto, "substituicao", clube,
                         jogador=sai, segundo=entra,
@@ -268,9 +279,9 @@ def rendimento_em_campo(world: World, partida: Partida, pid: int) -> int:
 
 
 def _marcar(p: Partida, world, rng, clube: int, em_campo: list[int], minuto: int) -> None:
-    autor = _sortear(rng, em_campo, world, PESO_DE_GOL)
+    autor = _sortear(rng, em_campo, world, PESO_DE_GOL, p.papeis)
     candidatos = [i for i in em_campo if i != autor]
-    assist = _sortear(rng, candidatos, world, PESO_DE_ASSISTENCIA) if candidatos else None
+    assist = _sortear(rng, candidatos, world, PESO_DE_ASSISTENCIA, p.papeis) if candidatos else None
     if clube == p.casa:
         p.gols_casa += 1
     else:
@@ -286,7 +297,7 @@ def _marcar(p: Partida, world, rng, clube: int, em_campo: list[int], minuto: int
 
 def _cartao(p: Partida, world, rng, clube: int, em_campo: list[int],
             minuto: int, amarelados: set[int]) -> None:
-    quem = _sortear(rng, em_campo, world, PESO_DE_CARTAO)
+    quem = _sortear(rng, em_campo, world, PESO_DE_CARTAO, p.papeis)
     if quem is None:
         return
     if quem in amarelados or rng.random() < CHANCE_DE_VERMELHO:
@@ -304,7 +315,7 @@ def _lance(p: Partida, world, rng, tipo: str, clube: int, em_campo: list[int],
     """Chute, escanteio, impedimento ou falta: conta na estatistica e, quase sempre, narra."""
     st = p.stats_casa if clube == p.casa else p.stats_fora
     if tipo == "chute":
-        quem = _sortear(rng, em_campo, world, PESO_DE_GOL)
+        quem = _sortear(rng, em_campo, world, PESO_DE_GOL, p.papeis)
         st.finalizacoes += 1
         nome = world.players[quem].name if quem else "?"
         if rng.random() < NO_GOL_SEM_GOL:
@@ -319,13 +330,13 @@ def _lance(p: Partida, world, rng, tipo: str, clube: int, em_campo: list[int],
         p.eventos.append(Evento(minuto, "escanteio", clube,
                                 texto=f"Escanteio para o {world.clubs[clube].name}"))
     elif tipo == "impedimento":
-        quem = _sortear(rng, em_campo, world, PESO_DE_GOL)
+        quem = _sortear(rng, em_campo, world, PESO_DE_GOL, p.papeis)
         st.impedimentos += 1
         nome = world.players[quem].name if quem else "?"
         p.eventos.append(Evento(minuto, "impedimento", clube, jogador=quem,
                                 texto=f"{nome} estava impedido"))
     elif tipo == "falta":
-        quem = _sortear(rng, em_campo, world, PESO_DE_CARTAO)
+        quem = _sortear(rng, em_campo, world, PESO_DE_CARTAO, p.papeis)
         st.faltas += 1
         if quem and rng.random() < FALTAS_NARRADAS:
             p.eventos.append(Evento(minuto, "falta", clube, jogador=quem,

@@ -70,3 +70,39 @@ def test_notas_premiam_quem_decide_e_ficam_na_escala():
         for e in partida.eventos:
             if e.tipo == "gol" and e.jogador in notas:
                 assert notas[e.jogador] >= 6.5, "quem marcou saiu com nota de quem nao jogou"
+
+
+def test_a_escalacao_automatica_poe_cada_um_na_sua_vaga():
+    from fm.tatica import VAGAS
+    c = Carreira.nova("brasil_real", "Flamengo", seed=2)
+    for formacao in VAGAS:
+        from fm.servidor import Jogo, escalar
+        escalar(Jogo(c), {"formacao": formacao})
+        onze = [c.world.players[i] for i in c.escalacao_atual()]
+        setores = [v[1] for v in VAGAS[formacao]]
+        assert onze[0].position == "GK", formacao
+        fora = sum(p.position != s for p, s in zip(onze, setores))
+        assert fora == 0, f"{formacao}: {fora} improvisados sem necessidade"
+
+
+def test_quem_joga_de_centroavante_finaliza_como_centroavante():
+    """A vaga vale no jogo: o zagueiro escalado de 9 passa a marcar gols."""
+    import numpy as np
+    from fm.eventos import simular_partida
+    c = Carreira.nova("brasil_real", "Flamengo", seed=2)
+    w = c.world
+    casa, fora = c.clube_id, next(i for i in w.clubs if i != c.clube_id
+                                   and i in w.leagues[next(iter(w.leagues))].club_ids)
+    onze = c.escalacao_atual()
+    zagueiro = onze[2]
+    onze_fora = [p.id for p in w.best_xi(fora)]
+
+    def gols_do(pid, papeis):
+        rng = np.random.default_rng(9)
+        total = 0
+        for _ in range(300):
+            p = simular_partida(w, casa, fora, onze, onze_fora, rng, papeis=papeis)
+            total += sum(1 for e in p.eventos if e.tipo == "gol" and e.jogador == pid)
+        return total
+
+    assert gols_do(zagueiro, {zagueiro: "FW"}) > 3 * gols_do(zagueiro, {})

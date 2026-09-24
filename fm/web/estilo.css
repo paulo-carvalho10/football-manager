@@ -778,3 +778,11 @@ input:focus, select:focus { border-color: var(--ouro); }
 .vivo-corpo { grid-template-rows: minmax(0, 1fr); }
 /* ?foto=1: sem animacao, para as capturas de verificacao pegarem o quadro final */
 .sem-animacao *, .sem-animacao *::before, .sem-animacao *::after { animation: none !important; transition: none !important; }
+
+/* a vaga que o jogador ocupa no campo: PE, CA, VOL... vermelha quando improvisado */
+.peca .vaga {
+  font-family: var(--fonte-titulo); font-weight: 700; font-size: .62rem; letter-spacing: .04em;
+  background: #0b2217; color: var(--ouro); border: 1px solid var(--ouro-2); border-radius: 3px;
+  padding: 0 .3em; min-width: 2.2em; text-align: center;
+}
+.peca .vaga.improvisado { color: #fff; background: #a3321f; border-color: #e3342b; }
