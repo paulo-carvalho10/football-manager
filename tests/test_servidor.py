@@ -230,3 +230,24 @@ def test_as_financas_batem_com_o_motor(jogo):
     assert d["folha"] == folha_anual(jogo.c.world, jogo.c.clube_id)
     assert d["salarios"], "a folha precisa listar os maiores salarios"
     assert d["salarios"] == sorted(d["salarios"], key=lambda x: -x["salario"])
+
+
+def test_dois_servidores_nao_dividem_a_mesma_porta():
+    """REGRESSAO: no Windows um segundo `servir` subia na mesma porta e os pedidos caiam
+    ora no servidor novo, ora no velho -- com tela nova e Python velho, a escalacao sumia."""
+    import pytest
+    from fm.servidor import Jogo, ServidorDoJogo, criar_handler
+    primeiro = ServidorDoJogo(("127.0.0.1", 0), criar_handler(Jogo(None)))
+    try:
+        porta = primeiro.server_address[1]
+        with pytest.raises(OSError):
+            ServidorDoJogo(("127.0.0.1", porta), criar_handler(Jogo(None)))
+    finally:
+        primeiro.server_close()
+
+
+def test_a_tela_e_fotografada_quando_o_servidor_sobe():
+    from fm.servidor import fotografar_a_tela
+    tela = fotografar_a_tela()
+    for arquivo in ("index.html", "estilo.css", "base.js", "jogo.js", "partida.js", "menu.js"):
+        assert arquivo in tela

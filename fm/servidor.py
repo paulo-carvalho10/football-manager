@@ -695,7 +695,38 @@ ROTAS_POST = {
 }
 
 
-def criar_handler(jogo: Jogo):
+TIPOS = {".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8",
+         ".js": "application/javascript; charset=utf-8", ".svg": "image/svg+xml",
+         ".png": "image/png", ".jpg": "image/jpeg", ".woff2": "font/woff2"}
+
+
+def fotografar_a_tela() -> dict[str, bytes]:
+    """Os arquivos da tela, lidos UMA vez, quando o servidor sobe.
+
+    Servir do disco a cada pedido juntava tela nova com Python velho: com o servidor
+    aberto desde antes de uma atualizacao, o navegador recebia o JS novo, pedia campos
+    que o Python carregado nao mandava, e a escalacao sumia. Com a foto, tela e servidor
+    sao sempre da mesma versao -- atualizou o codigo, reinicia o servidor.
+    """
+    return {str(a.relative_to(WEB)).replace("\\", "/"): a.read_bytes()
+            for a in WEB.rglob("*") if a.is_file()}
+
+
+class ServidorDoJogo(ThreadingHTTPServer):
+    """Sem SO_REUSEADDR: no Windows ele deixa DOIS servidores ouvirem a mesma porta, e os
+    pedidos caem ora num, ora no outro. Um segundo `servir` tem de falhar, nao dividir."""
+    allow_reuse_address = False
+
+    def server_bind(self) -> None:
+        import socket
+        if hasattr(socket, "SO_EXCLUSIVEADDRUSE"):
+            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
+        super().server_bind()
+
+
+def criar_handler(jogo: Jogo, tela: dict[str, bytes] | None = None):
+    tela = tela if tela is not None else fotografar_a_tela()
+
     class Handler(BaseHTTPRequestHandler):
         protocol_version = "HTTP/1.1"
 
@@ -706,6 +737,8 @@ def criar_handler(jogo: Jogo):
             self.send_response(codigo)
             self.send_header("Content-Type", tipo)
             self.send_header("Content-Length", str(len(corpo)))
+            # sem cache: a tela tem de ser sempre a do servidor que esta rodando
+            self.send_header("Cache-Control", "no-store")
             self.end_headers()
             self.wfile.write(corpo)
 
@@ -751,17 +784,12 @@ def criar_handler(jogo: Jogo):
                     self._json(ROTAS_GET[caminho](jogo, q))
                 return
 
-            arquivo = WEB / ("index.html" if caminho in ("/", "") else caminho.lstrip("/"))
-            if not arquivo.is_file() or WEB not in arquivo.resolve().parents:
+            nome = "index.html" if caminho in ("/", "") else caminho.lstrip("/")
+            if nome not in tela:
                 self._json({"erro": "nao encontrado"}, 404)
                 return
-            tipos = {".html": "text/html; charset=utf-8",
-                     ".css": "text/css; charset=utf-8",
-                     ".js": "application/javascript; charset=utf-8",
-                     ".svg": "image/svg+xml", ".png": "image/png",
-                     ".jpg": "image/jpeg", ".woff2": "font/woff2"}
-            self._responder(arquivo.read_bytes(),
-                            tipos.get(arquivo.suffix, "application/octet-stream"))
+            self._responder(tela[nome],
+                            TIPOS.get(Path(nome).suffix, "application/octet-stream"))
 
         def do_POST(self) -> None:                                 # noqa: N802
             caminho = urlparse(self.path).path
@@ -791,7 +819,12 @@ def servir(carreira: Carreira | None = None, porta: int = 8000,
     Sem carreira, o jogo abre no menu principal: novo jogo ou jogo salvo.
     """
     jogo = Jogo(carreira)
-    servidor = ThreadingHTTPServer(("127.0.0.1", porta), criar_handler(jogo))
+    try:
+        servidor = ServidorDoJogo(("127.0.0.1", porta), criar_handler(jogo))
+    except OSError:
+        print(f"  A porta {porta} ja esta em uso -- provavelmente o jogo ja esta aberto em")
+        print("  outro terminal. Feche aquele (Ctrl+C) ou use outra porta: --porta 8001")
+        return
     url = f"http://127.0.0.1:{porta}/"
     if abrir:
         threading.Timer(0.6, lambda: webbrowser.open(url)).start()
