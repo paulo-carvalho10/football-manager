@@ -793,16 +793,16 @@ input:focus, select:focus { border-color: var(--ouro); }
   background: repeating-linear-gradient(180deg, rgba(255,255,255,.035) 0 10%, transparent 10% 20%),
               linear-gradient(180deg, #2f8a4b, #287d43); overflow: hidden; }
 .campinho .linhas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.destaque {
+.campinho .destaque {
   position: absolute; transform: translate(-50%, -50%); width: 7.4rem;
   display: flex; flex-direction: column; align-items: center; gap: .15rem; text-align: center;
 }
-.destaque .escudo { --t: 2.3rem; filter: drop-shadow(0 2px 3px rgba(0,0,0,.5)); }
-.destaque .nome { background: rgba(4,8,6,.88); color: var(--branco); border-radius: 3px; padding: .08rem .4rem;
+.campinho .destaque .escudo { --t: 2.3rem; filter: drop-shadow(0 2px 3px rgba(0,0,0,.5)); }
+.campinho .destaque .nome { background: rgba(4,8,6,.88); color: var(--branco); border-radius: 3px; padding: .08rem .4rem;
   font-size: .74rem; font-weight: 600; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.destaque .linha-d { display: flex; gap: .25rem; align-items: center; font-size: .66rem; }
-.destaque.meu .nome { box-shadow: inset 0 -2px 0 var(--ouro); }
-.destaque.craque::before { content: "★"; position: absolute; top: -.6rem; right: 1.6rem; color: var(--ouro);
+.campinho .destaque .linha-d { display: flex; gap: .25rem; align-items: center; font-size: .66rem; }
+.campinho .destaque.meu .nome { box-shadow: inset 0 -2px 0 var(--ouro); }
+.campinho .destaque.craque::before { content: "★"; position: absolute; top: -.6rem; right: 1.6rem; color: var(--ouro);
   font-size: 1.1rem; text-shadow: 0 1px 3px #000; }
 .navegador { display: flex; align-items: center; gap: .4rem; }
 .navegador b { font-family: var(--fonte-numero); min-width: 6.5rem; text-align: center; }
