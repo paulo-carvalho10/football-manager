@@ -159,7 +159,10 @@ def test_as_cores_de_um_pais_nao_vazam_para_outro():
 
     brasileiras = carregar_cores("brasil_serie_b")
     espanholas = carregar_cores("espanha_primera")
-    assert "Athletic Club" in brasileiras
+    # desde 25/09/2026 o de Sao Joao del-Rei se chama "Athletic-MG": escudo e camisa sao
+    # procurados pelo nome em qualquer divisao, e so o escopo das cores nao bastava
+    assert "Athletic-MG" in brasileiras
+    assert "Athletic Club" not in brasileiras
     assert "Athletic Club" not in espanholas
 
 

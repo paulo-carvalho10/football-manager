@@ -2263,7 +2263,7 @@ padrao = "liso"
   id_fonte = "1500733"
 
 [[clubes]]
-nome = "Athletic Club"
+nome = "Athletic-MG"
 forca = 59.6
 valor_elenco = 12080000
 cores = ["#1A1A1A", "#F0C419"]
@@ -5661,12 +5661,11 @@ padrao = "liso"
   id_fonte = "980681"
 
 [[clubes]]
-nome = "Botafogo"
+nome = "Botafogo-SP"
 forca = 54.8
-id_fonte = "60175"
 valor_elenco = 6450000
-cores = ["#1A1A1A", "#F2F2F2"]
-padrao = "listras"
+cores = ["#C8102E", "#FFFFFF"]
+padrao = "liso"
 
   [[clubes.jogadores]]
   nome = "Everton Morelli"

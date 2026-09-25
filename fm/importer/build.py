@@ -18,6 +18,10 @@ NOME_PACK = {
     "585": "Sao Paulo", "210": "Gremio", "6600": "Internacional",
     "679": "Athletico Paranaense", "776": "Coritiba", "2125": "Vitoria",
     "3876": "Mirassol", "10997": "Remo", "17776": "Chapecoense",
+    # Serie B: nomes que colidiam com outro clube do mundo. Escudo, camisa e cores sao
+    # procurados pelo nome, e o Botafogo de Ribeirao Preto vestia o escudo do Botafogo do
+    # Rio; o Athletic de Sao Joao del-Rei, o do Athletic Bilbao.
+    "9030": "Botafogo-SP", "64918": "Athletic-MG",
 }
 
 # Codigo_Clube da CBF, para cruzar com a fonte oficial depois.

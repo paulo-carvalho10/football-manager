@@ -147,7 +147,8 @@ def baixar_do_transfermarkt(pack: str, delay: float = 0.6) -> tuple[dict[str, Pa
 
     ESCUDOS_DIR.mkdir(parents=True, exist_ok=True)
     (CACHE_DIR / "escudos").mkdir(parents=True, exist_ok=True)
-    tm = {normalizar(limpar_nome(c.nome)): c.verein_id
+    from fm.importer.build import NOME_PACK
+    tm = {normalizar(NOME_PACK.get(c.verein_id) or limpar_nome(c.nome)): c.verein_id
           for c in extrair_clubes(baixar_por_codigo(CODIGO_TM[pack]))}
     indice = ler_indice()
     baixados: dict[str, Path] = {}
