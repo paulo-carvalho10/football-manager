@@ -25,6 +25,28 @@ verificado = true
 "Coritiba" = "coxa"
 "Internacional" = "inter"
 
+# Espanha e Serie B (25/09/2026). Os ambiguos -- sport, depor, gijon -- foram conferidos
+# na camisa baixada antes de entrar aqui. `racing` NAO: e o Racing da Argentina (listras
+# celeste e branco); o Racing Santander joga de branco e verde e fica sem camisa importada.
+"Real Betis" = "betis"
+"Athletic Club" = "bilbao"
+"Deportivo A Coruña" = "depor"
+"Rayo Vallecano" = "rayo"
+"Real Sporting de Gijón" = "gijon"
+"Real Valladolid" = "valladolid"
+"Albacete Balompié" = "albacete"
+"CE Sabadell" = "sabadell"
+"Sport Recife" = "sport"
+"Atlético Goianiense" = "atleticogo"
+"América Mineiro" = "americamg"
+"AA Ponte Preta" = "pontepreta"
+# time B joga com a camisa do principal
+"Real Sociedad SS B (Sanse)" = "realsociedad"
+"Celta Fortuna" = "celta"
+
+# Sem camisa recente na Commons (25/09/2026): Novorizontino (a ultima e de 2019) e
+# Athletic Club (MG, nenhuma). Ficam com a camisa desenhada nas cores.
+#
 # Pendente: "Red Bull Bragantino". O prefixo `bragantino` so tem arquivos ate 2019, antes
 # de o clube virar Red Bull, e `rbbragantino` tem dois. Fica sem camisa importada ate
 # alguem conferir qual e o certo -- melhor sem do que com a do clube errado.
