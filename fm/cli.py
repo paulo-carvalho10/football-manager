@@ -408,6 +408,23 @@ def cmd_camisas(args):
               "data/camisas/apelidos.toml -- adivinhar veste o clube errado.")
 
 
+def cmd_escudos(args):
+    """Baixa os escudos de um pack. Serie A pela CBF, o resto pelo Transfermarkt."""
+    from fm.importer.escudos import CODIGO_TM, baixar, baixar_do_transfermarkt
+
+    if args.pack == "brasil_serie_a":
+        feitos = baixar(args.pack)
+        print(f"{len(feitos)} escudos da CBF")
+        return
+    if args.pack not in CODIGO_TM:
+        print(f"pack sem codigo do Transfermarkt: {args.pack}. Ha: {sorted(CODIGO_TM)}")
+        return
+    feitos, faltaram = baixar_do_transfermarkt(args.pack)
+    print(f"{len(feitos)} escudos do Transfermarkt")
+    if faltaram:
+        print(f"sem escudo ({len(faltaram)}): {', '.join(faltaram)}")
+
+
 def cmd_cores(args):
     """Reaplica cor, camisa e padrao nos packs ja gerados.
 
@@ -534,6 +551,11 @@ def main(argv=None):
     p.add_argument("--refazer", action="store_true",
                    help="rebaixa tudo, inclusive o que ja esta em disco")
     p.set_defaults(func=cmd_camisas)
+
+    p = sub.add_parser("escudos", parents=[common],
+                       help="baixa os escudos dos clubes de um pack (ficam fora do git)")
+    p.add_argument("--pack", default="brasil_serie_b")
+    p.set_defaults(func=cmd_escudos)
 
     p = sub.add_parser("cores", parents=[common],
                        help="reaplica data/cores/*.toml nos packs, sem rede")

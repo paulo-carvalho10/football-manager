@@ -526,6 +526,7 @@ input:focus, select:focus { border-color: var(--ouro); }
 .t-financas { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .8rem; }
 .t-mensagens { grid-template-columns: 25rem minmax(0, 1fr); gap: .8rem; }
 .t-treinador { grid-template-columns: 22rem minmax(0, 1fr); gap: .8rem; }
+.t-destaques { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: .8rem; }
 .coluna { display: flex; flex-direction: column; gap: .8rem; min-height: 0; min-width: 0; }
 .coluna > .painel { flex: 1 1 auto; }
 .coluna > .painel.fixo { flex: 0 0 auto; }
@@ -780,9 +781,32 @@ input:focus, select:focus { border-color: var(--ouro); }
 .sem-animacao *, .sem-animacao *::before, .sem-animacao *::after { animation: none !important; transition: none !important; }
 
 /* a vaga que o jogador ocupa no campo: PE, CA, VOL... vermelha quando improvisado */
-.peca .vaga {
+.vaga, .peca .vaga {
   font-family: var(--fonte-titulo); font-weight: 700; font-size: .62rem; letter-spacing: .04em;
   background: #0b2217; color: var(--ouro); border: 1px solid var(--ouro-2); border-radius: 3px;
   padding: 0 .3em; min-width: 2.2em; text-align: center;
 }
 .peca .vaga.improvisado { color: #fff; background: #a3321f; border-color: #e3342b; }
+
+/* ------------------------------------------------------------------ selecao da rodada */
+.campinho { position: relative; flex: 1; min-height: 0; margin: .8rem; border-radius: var(--raio);
+  background: repeating-linear-gradient(180deg, rgba(255,255,255,.035) 0 10%, transparent 10% 20%),
+              linear-gradient(180deg, #2f8a4b, #287d43); overflow: hidden; }
+.campinho .linhas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.destaque {
+  position: absolute; transform: translate(-50%, -50%); width: 7.4rem;
+  display: flex; flex-direction: column; align-items: center; gap: .15rem; text-align: center;
+}
+.destaque .escudo { --t: 2.3rem; filter: drop-shadow(0 2px 3px rgba(0,0,0,.5)); }
+.destaque .nome { background: rgba(4,8,6,.88); color: var(--branco); border-radius: 3px; padding: .08rem .4rem;
+  font-size: .74rem; font-weight: 600; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.destaque .linha-d { display: flex; gap: .25rem; align-items: center; font-size: .66rem; }
+.destaque.meu .nome { box-shadow: inset 0 -2px 0 var(--ouro); }
+.destaque.craque::before { content: "★"; position: absolute; top: -.6rem; right: 1.6rem; color: var(--ouro);
+  font-size: 1.1rem; text-shadow: 0 1px 3px #000; }
+.navegador { display: flex; align-items: center; gap: .4rem; }
+.navegador b { font-family: var(--fonte-numero); min-width: 6.5rem; text-align: center; }
+.lista-selecao .item-s { display: grid; grid-template-columns: 2.6rem 1.4rem minmax(0,1fr) auto; gap: .45rem;
+  align-items: center; padding: .34rem .7rem; border-bottom: 1px solid rgba(33,80,58,.45); font-size: .8rem; }
+.lista-selecao .item-s .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lista-selecao .item-s.meu { background: rgba(243,195,50,.08); }

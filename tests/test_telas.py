@@ -158,3 +158,44 @@ def test_o_treinador_acumula_a_curva_de_confianca(jogo):
     t = telas.treinador(c)
     assert len(t["curva"]) == 4
     assert t["total"]["jogos"] == t["atual"]["numeros"]["jogos"]
+
+
+def test_artilharia_por_competicao_fecha_com_a_tabela(jogo):
+    """Gol de copa nao e gol de campeonato: o caderno da liga soma exatamente a tabela."""
+    c = jogo.c
+    for _ in range(10):
+        c.avancar()
+    gols_da_liga = sum(r.goals_home + r.goals_away for r in c.jogos("brasil_real"))
+    caderno = c.estatisticas_por_comp["brasil_real"]
+    assert sum(x.gols for x in caderno.por_jogador.values()) == gols_da_liga
+    total = sum(x.gols for x in c.estatisticas.por_jogador.values())
+    por_comp = sum(sum(x.gols for x in e.por_jogador.values())
+                   for e in c.estatisticas_por_comp.values())
+    assert por_comp == total
+    a = telas.artilharia(c, "brasil_real", None, lambda cid: servidor._clube(c, cid))
+    assert a["artilheiros"] and a["artilheiros"][0]["gols"] >= a["artilheiros"][-1]["gols"]
+
+
+def test_selecao_da_rodada_e_um_433_de_quem_jogou(jogo):
+    from fm.tatica import VAGAS
+    c = jogo.c
+    for _ in range(3):
+        c.avancar()
+    s = telas.selecao(c, "brasil_real", None, lambda cid: servidor._clube(c, cid))
+    assert len(s["onze"]) == 11
+    setores = [v[1] for v in VAGAS["4-3-3"]]
+    assert [j["posicao"] for j in s["onze"]] == setores
+    ids = set(c.world.leagues[next(iter(c.world.leagues))].club_ids)
+    assert all(j["clube"]["id"] in ids for j in s["onze"]), "so clubes da divisao"
+    assert sum(j["craque"] for j in s["onze"]) == 1
+
+
+def test_a_artilharia_fica_guardada_na_virada_do_ano(jogo):
+    c = jogo.c
+    while not c.acabou:
+        c.avancar()
+    ano = c.temporada
+    c.virar_o_ano()
+    a = telas.artilharia(c, "brasil_real", ano, lambda cid: servidor._clube(c, cid))
+    assert a["temporada"] == ano and len(a["artilheiros"]) == 10
+    assert any(x["temporada"] == ano for x in a["campeoes"])

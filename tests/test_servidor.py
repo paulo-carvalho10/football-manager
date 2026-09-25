@@ -251,3 +251,19 @@ def test_a_tela_e_fotografada_quando_o_servidor_sobe():
     tela = fotografar_a_tela()
     for arquivo in ("index.html", "estilo.css", "base.js", "jogo.js", "partida.js", "menu.js"):
         assert arquivo in tela
+
+
+def test_todo_clube_das_quatro_divisoes_tem_escudo():
+    """Os escudos ficam fora do git (marca registrada): sem eles baixados, o teste pula."""
+    import pytest
+    from fm.config import load_league
+    from fm.generate import build_world
+    from fm.importer.escudos import ESCUDOS_DIR
+    from fm.servidor import _escudos
+    if not (ESCUDOS_DIR / "indice.json").exists():
+        pytest.skip("escudos nao baixados: python -m fm.cli escudos --pack <pack>")
+    w, _ = build_world([load_league(n) for n in
+                        ("brasil_real", "brasil_b_real", "espanha_real", "espanha_b_real")],
+                       seed=1)
+    sem = [c.name for c in w.clubs.values() if c.name not in _escudos()]
+    assert not sem, f"sem escudo: {sem}"

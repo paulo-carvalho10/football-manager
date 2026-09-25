@@ -115,3 +115,59 @@ def baixar(pack: str = "brasil_serie_a", delay: float = 0.4) -> dict[str, Path]:
         destino.write_bytes(_recortar_e_normalizar(bruto_path.read_bytes()))
         saida[clube.nome] = destino
     return saida
+
+
+# ------------------------------------------------------------------ Transfermarkt
+# Os packs fora da Serie A nao tem codigo da CBF. O Transfermarkt, de onde os elencos ja
+# vieram, serve o escudo por id de clube -- e esse id esta na pagina da liga que o
+# importador ja guardou em cache. PNG com fundo transparente, 130 px de altura.
+URL_TM = "https://tmssl.akamaized.net/images/wappen/head/{id}.png"
+CODIGO_TM = {"brasil_serie_a": "BRA1", "brasil_serie_b": "BRA2",
+             "espanha_primera": "ES1", "espanha_segunda": "ES2"}
+INDICE = ESCUDOS_DIR / "indice.json"
+
+
+def ler_indice() -> dict[str, str]:
+    """{nome do clube: arquivo em data/escudos}. Os da CBF continuam por id_fonte."""
+    import json
+    if not INDICE.exists():
+        return {}
+    return json.loads(INDICE.read_text(encoding="utf-8"))
+
+
+def baixar_do_transfermarkt(pack: str, delay: float = 0.6) -> tuple[dict[str, Path], list[str]]:
+    """Baixa o escudo de cada clube do pack que ainda nao tem um. Devolve (baixados, faltaram)."""
+    import json
+    import time
+    import urllib.request
+
+    from fm.importer.http import UA
+    from fm.importer.transfermarkt import (baixar_por_codigo, extrair_clubes, limpar_nome,
+                                           normalizar)
+
+    ESCUDOS_DIR.mkdir(parents=True, exist_ok=True)
+    (CACHE_DIR / "escudos").mkdir(parents=True, exist_ok=True)
+    tm = {normalizar(limpar_nome(c.nome)): c.verein_id
+          for c in extrair_clubes(baixar_por_codigo(CODIGO_TM[pack]))}
+    indice = ler_indice()
+    baixados: dict[str, Path] = {}
+    faltaram: list[str] = []
+    for clube in load_pack(pack).clubes:
+        vid = tm.get(normalizar(clube.nome))
+        if vid is None:
+            faltaram.append(clube.nome)
+            continue
+        destino = ESCUDOS_DIR / f"tm-{vid}.png"
+        if not destino.exists():
+            bruto_path = CACHE_DIR / "escudos" / f"tm_{vid}.png"
+            if not bruto_path.exists():
+                req = urllib.request.Request(URL_TM.format(id=vid), headers={"User-Agent": UA})
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    bruto_path.write_bytes(r.read())
+                time.sleep(delay)
+            destino.write_bytes(_recortar_e_normalizar(bruto_path.read_bytes()))
+        indice[clube.nome] = destino.name
+        baixados[clube.nome] = destino
+    INDICE.write_text(json.dumps(indice, ensure_ascii=False, indent=1, sort_keys=True),
+                      encoding="utf-8")
+    return baixados, faltaram

@@ -496,7 +496,7 @@ async function abrirPosJogo() {
       </div>
       ${time(p.time_fora, p.fora.nome)}
       <div class="painel"><div class="cab"><div class="abas">
-          <button data-paba="rodada" class="ativo">Rodada</button><button data-paba="tabela">Tabela <span class="tecla">T</span></button></div></div>
+          <button data-paba="rodada" class="ativo">Rodada</button><button data-paba="tabela">Tabela <span class="tecla">T</span></button><button data-paba="selecao">Seleção</button></div></div>
         <div class="corpo sem-margem" id="pos-lateral"></div>
         <div class="pe"><span class="dica">Notas derivadas dos lances e do placar</span></div></div>
     </div>
@@ -529,6 +529,17 @@ async function abaDoPosJogo(aba) {
   POS.aba = aba;
   $$("[data-paba]").forEach((b) => b.classList.toggle("ativo", b.dataset.paba === aba));
   const alvo = $("#pos-lateral");
+  if (aba === "selecao") {
+    const s = await api.get("/api/selecao");
+    alvo.innerHTML = s.onze.length ? `<div class="lista-selecao">${s.onze.map((j) => `
+      <div class="item-s ${j.meu ? "meu" : ""}"><span class="vaga">${j.vaga}</span>${escudo(j.clube, "1.2rem")}
+        <span class="nm">${j.craque ? '<span class="ouro">★</span> ' : ""}<b>${escapar(j.nome)}</b>
+          <span class="dica">${escapar(j.clube.nome)}</span></span>
+        <span class="nota ${classeNota(j.nota)}">${j.nota.toFixed(1).replace(".", ",")}</span></div>`).join("")}</div>
+      <p class="nota-honesta" style="margin:.7rem">${s.rodada}ª rodada da ${escapar(s.nome)}. Toda a seleção em Destaques.</p>`
+      : '<div class="vazio">Sem seleção: esta data não foi rodada de liga.</div>';
+    return;
+  }
   if (aba === "tabela") {
     alvo.innerHTML = await tabelaCompacta();
     $("#pos-lateral tr.eu")?.scrollIntoView({block: "center"});

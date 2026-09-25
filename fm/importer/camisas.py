@@ -38,6 +38,9 @@ PAUSA = 1.6               # entre chamadas: a Commons serve de graca, e devolve
                           # 429 quando a gente abusa
 
 CAMADAS = ("left_arm", "body", "right_arm")
+# Contra o 429: seis tentativas, recuo de 15 s dobrando ate 3 min. Com quatro tentativas e
+# piso de 5 s, a importacao da Espanha morreu no meio e levou o indice junto.
+TENTATIVAS = 6
 TENTATIVAS_DE_TEMPORADA = 4   # quantos anos recuar atras de uma camisa com as tres camadas
 # `h` e a camisa 1, `a` a 2. O `t` (terceira) existe mas nao entra aqui.
 TIPOS = {"1": "h", "2": "a"}
@@ -59,16 +62,16 @@ def _chamar(**params) -> dict:
     params.setdefault("format", "json")
     params.setdefault("maxlag", "5")
     url = API + "?" + urllib.parse.urlencode(params)
-    for tentativa in range(4):
+    for tentativa in range(TENTATIVAS):
         req = urllib.request.Request(url, headers={"User-Agent": UA})
         try:
             with urllib.request.urlopen(req, timeout=40) as r:
                 dados = json.loads(r.read())
         except urllib.error.HTTPError as e:
-            if e.code in (429, 503) and tentativa < 3:
+            if e.code in (429, 503) and tentativa < TENTATIVAS - 1:
                 # o Retry-After manda; sem ele, recuo exponencial com um piso generoso
-                espera = float(e.headers.get("Retry-After") or 0) or 5 * (2 ** tentativa)
-                time.sleep(min(espera, 60))
+                espera = float(e.headers.get("Retry-After") or 0) or 15 * (2 ** tentativa)
+                time.sleep(min(espera, 180))
                 continue
             raise
         if "error" in dados and dados["error"].get("code") == "maxlag":
@@ -159,15 +162,15 @@ def _info(titulos: list[str]) -> dict[str, dict]:
 
 def _baixar_png(url: str) -> bytes:
     """O mesmo cuidado da API vale aqui: upload.wikimedia tambem devolve 429."""
-    for tentativa in range(4):
+    for tentativa in range(TENTATIVAS):
         req = urllib.request.Request(url, headers={"User-Agent": UA})
         try:
             with urllib.request.urlopen(req, timeout=40) as r:
                 dados = r.read()
         except urllib.error.HTTPError as e:
-            if e.code in (429, 503) and tentativa < 3:
-                espera = float(e.headers.get("Retry-After") or 0) or 5 * (2 ** tentativa)
-                time.sleep(min(espera, 60))
+            if e.code in (429, 503) and tentativa < TENTATIVAS - 1:
+                espera = float(e.headers.get("Retry-After") or 0) or 15 * (2 ** tentativa)
+                time.sleep(min(espera, 180))
                 continue
             raise
         time.sleep(PAUSA)
@@ -281,12 +284,22 @@ def baixar(clubes: list[str], refazer: bool = False
     for nome in clubes:
         if not refazer and (nome, "1") in ja_tem and (nome, "2") in ja_tem:
             continue
-        achadas = baixar_clube(nome, apelidos.get(nome))
+        try:
+            achadas = baixar_clube(nome, apelidos.get(nome))
+        except (urllib.error.URLError, RuntimeError, OSError) as erro:
+            faltaram.append(f"{nome} (erro: {erro})")
+            continue
         if achadas:
             baixadas = [b for b in baixadas if b.clube != nome] + achadas
+            # a cada clube, e nao no fim: um erro no vigesimo nao apaga os dezenove
+            _gravar_indice(baixadas)
         else:
             faltaram.append(nome)
+    _gravar_indice(baixadas)
+    return baixadas, faltaram
 
+
+def _gravar_indice(baixadas: list[CamisaBaixada]) -> None:
     linhas = [
         "# GERADO por fm.importer.camisas. Nao editar a mao.",
         "#",
@@ -309,7 +322,6 @@ def baixar(clubes: list[str], refazer: bool = False
             "",
         ]
     (CAMISAS_DIR / "indice.toml").write_text("\n".join(linhas), encoding="utf-8")
-    return baixadas, faltaram
 
 
 def carregar(nome_do_clube: str, numero: str = "1") -> str | None:

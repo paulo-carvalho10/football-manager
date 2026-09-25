@@ -74,6 +74,13 @@ def _escudos() -> dict[str, Path]:
                     arq = ESCUDOS_DIR / f"{clube.id_fonte}.png" if clube.id_fonte else None
                     if arq and arq.is_file():
                         _ESCUDOS[clube.nome] = arq
+        # os demais vieram do Transfermarkt (fm.importer.escudos.baixar_do_transfermarkt),
+        # listados num indice por nome de clube; o da CBF tem preferencia quando ha os dois
+        from fm.importer.escudos import ler_indice
+        for nome, arquivo in ler_indice().items():
+            arq = ESCUDOS_DIR / arquivo
+            if nome not in _ESCUDOS and arq.is_file():
+                _ESCUDOS[nome] = arq
     return _ESCUDOS
 
 
@@ -179,7 +186,9 @@ def estado(jogo: Jogo) -> dict:
         "treinador": c.treinador, "data": data_do_jogo(c),
         "liga": c.liga, "temporada": c.temporada,
         "liga_nome": _nome_da_liga(c.liga),
-        "rodada": c.rodada, "total_de_rodadas": c.total_de_rodadas,
+        # a rodada DA DIVISAO do usuario: o relogio da carreira anda ate a mais longa
+        "rodada": min(c.rodada, c.rodadas_da_liga()),
+        "total_de_rodadas": c.rodadas_da_liga(),
         # `data` e a do calendario (texto); o indice na agenda e outra coisa
         "indice_da_data": c.data, "datas": len(c.agenda),
         "acabou": c.acabou, "demitido": c.demitido,
@@ -655,6 +664,13 @@ def pos_jogo(jogo: Jogo) -> dict:
     return jogo.pos_jogo or {"erro": "nenhuma partida jogada ainda"}
 
 
+def _inteiro(q: dict, chave: str) -> int | None:
+    try:
+        return int(q.get(chave, [""])[0])
+    except ValueError:
+        return None
+
+
 ROTAS_SEM_CARREIRA = {"/api/menu", "/api/catalogo", "/api/clubes"}
 
 ROTAS_GET = {
@@ -668,6 +684,12 @@ ROTAS_GET = {
     "/api/classificacao": lambda jogo, q: telas.classificacao(
         jogo.c, q.get("liga", [None])[0], lambda cid: _clube(jogo.c, cid)),
     "/api/partida": lambda jogo, q: partida_atual(jogo),
+    "/api/selecao": lambda jogo, q: telas.selecao(
+        jogo.c, q.get("liga", [None])[0], _inteiro(q, "rodada"),
+        lambda cid: _clube(jogo.c, cid)),
+    "/api/artilharia": lambda jogo, q: telas.artilharia(
+        jogo.c, q.get("comp", [None])[0], _inteiro(q, "temporada"),
+        lambda cid: _clube(jogo.c, cid)),
     "/api/posjogo": lambda jogo, q: pos_jogo(jogo),
     "/api/estado": lambda jogo, q: estado(jogo),
     "/api/tabela": lambda jogo, q: tabela(jogo, q.get("liga", [None])[0]),

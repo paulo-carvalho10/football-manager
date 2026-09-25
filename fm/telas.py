@@ -361,13 +361,13 @@ def classificacao(c: Carreira, liga: str | None, clube_json) -> dict:
     ataques = sorted(tabela, key=lambda x: -x["gols_pro"])
 
     individuais = {"artilheiros": [], "garcons": []}
-    est = c.estatisticas
+    est = c.estatisticas_por_comp.get(nome)
     if est is not None:
-        for chave, lista in (("artilheiros", est.artilheiros(c.world, 400)),
-                             ("garcons", est.garcons(c.world, 400))):
+        for chave, lista in (("artilheiros", est.artilheiros(c.world, 10)),
+                             ("garcons", est.garcons(c.world, 10))):
             for x in lista:
                 p = c.world.players[x.jogador]
-                if p.club_id in ids:
+                if p.club_id in c.world.clubs:
                     individuais[chave].append({
                         "nome": p.name, "clube": clube_json(p.club_id)["nome"],
                         "cor": clube_json(p.club_id)["cor"], "gols": x.gols,
@@ -380,7 +380,8 @@ def classificacao(c: Carreira, liga: str | None, clube_json) -> dict:
     return {
         "liga": nome, "nome": nome_da_liga(nome),
         "ligas": [{"id": n, "nome": nome_da_liga(n)} for n in c.ligas],
-        "rodada": c.rodada, "total_de_rodadas": c.total_de_rodadas,
+        "rodada": min(c.rodada, c.rodadas_da_liga(nome)),
+        "total_de_rodadas": c.rodadas_da_liga(nome),
         "linhas": tabela, "zonas": zonas,
         "melhores_defesas": [{"clube": x["clube"]["nome"], "gols": x["gols_contra"]}
                              for x in defesas[:5]],
@@ -472,3 +473,92 @@ def _mesma_divisao(c: Carreira, r, partida) -> bool:
         if partida.casa in lg.club_ids and partida.fora in lg.club_ids:
             ids = set(lg.club_ids)
     return ids is None or (r.home in ids and r.away in ids)
+
+
+# ------------------------------------------------------------------ destaques
+
+def nome_da_competicao(c: Carreira, chave: str) -> str:
+    if chave in c.ligas:
+        return nome_da_liga(chave)
+    if chave in c.copas:
+        return c.copas[chave].torneio.nome
+    from fm.torneio import carregar
+    try:
+        return carregar(chave).nome
+    except Exception:
+        return chave
+
+
+def selecao(c: Carreira, liga: str | None, rodada: int | None, clube_json) -> dict:
+    """A selecao de uma rodada de liga, com a posicao de cada um no desenho."""
+    from fm.selecao import FORMACAO
+    from fm.tatica import VAGAS
+
+    liga = liga if liga in c.ligas else c.liga
+    rodadas = sorted(c.selecoes.get(liga, {}))
+    if not rodadas:
+        return {"liga": liga, "nome": nome_da_liga(liga), "rodadas": [], "onze": [],
+                "ligas": [{"id": n, "nome": nome_da_liga(n)} for n in c.ligas]}
+    rodada = rodada if rodada in rodadas else rodadas[-1]
+    sel = c.selecoes[liga][rodada]
+    vagas = {v[0]: v for v in VAGAS[FORMACAO]}
+    onze = []
+    for i, x in enumerate(sel["onze"]):
+        p = c.world.players.get(x["jogador"])
+        vaga = VAGAS[FORMACAO][i]
+        onze.append({"id": x["jogador"], "nome": p.name if p else "?",
+                     "posicao": p.position if p else "", "clube": clube_json(x["clube"]),
+                     "nota": x["nota"], "gols": x["gols"],
+                     "assistencias": x["assistencias"], "vaga": vaga[0],
+                     "x": vaga[3], "y": vaga[4], "meu": x["clube"] == c.clube_id,
+                     "craque": x["jogador"] == sel["craque"]})
+    _ = vagas
+    return {"liga": liga, "nome": nome_da_liga(liga), "rodada": rodada, "rodadas": rodadas,
+            "ligas": [{"id": n, "nome": nome_da_liga(n)} for n in c.ligas],
+            "onze": onze, "meus": sum(1 for x in onze if x["meu"])}
+
+
+def artilharia(c: Carreira, comp: str | None, temporada: int | None, clube_json) -> dict:
+    """Artilharia e assistencias de UMA competicao, no ano em curso ou num ano passado.
+
+    O ano em curso vem do caderno vivo; os passados, do que a virada do ano gravou no
+    historico (so os dez primeiros, e sem assistencias: e o que vale guardar).
+    """
+    anos = {r["temporada"]: r.get("artilharia", {}) for r in c.historico}
+    temporada = temporada if temporada in anos else c.temporada
+    if temporada == c.temporada:
+        chaves = [k for k in list(c.ligas) + list(c.copas) if k in c.estatisticas_por_comp]
+    else:
+        chaves = list(anos[temporada])
+    comp = comp if comp in chaves else (chaves[0] if chaves else None)
+
+    artilheiros, garcons = [], []
+    if comp and temporada == c.temporada:
+        est = c.estatisticas_por_comp[comp]
+
+        def linha(x):
+            p = c.world.players[x.jogador]
+            clube = clube_json(p.club_id) if p.club_id in c.world.clubs else None
+            return {"id": x.jogador, "nome": p.name, "posicao": p.position, "clube": clube,
+                    "gols": x.gols, "assistencias": x.assistencias, "jogos": x.jogos,
+                    "meu": p.club_id == c.clube_id}
+        artilheiros = [linha(x) for x in est.artilheiros(c.world, 25)]
+        garcons = [linha(x) for x in est.garcons(c.world, 15)]
+    elif comp:
+        artilheiros = [{**x, "clube": {"nome": x["clube"]}, "meu": x["clube"] == c.clube.name}
+                       for x in anos[temporada][comp]]
+
+    # quem foi o artilheiro de cada competicao em cada ano ja encerrado
+    campeoes = []
+    for ano in sorted(anos, reverse=True):
+        for chave, lista in anos[ano].items():
+            if lista:
+                campeoes.append({"temporada": ano, "competicao": nome_da_competicao(c, chave),
+                                 "nome": lista[0]["nome"], "clube": lista[0]["clube"],
+                                 "gols": lista[0]["gols"]})
+    return {
+        "temporada": temporada, "temporadas": sorted(set(anos) | {c.temporada}, reverse=True),
+        "competicao": comp,
+        "competicoes": [{"id": k, "nome": nome_da_competicao(c, k)} for k in chaves],
+        "artilheiros": artilheiros, "garcons": garcons, "campeoes": campeoes,
+    }

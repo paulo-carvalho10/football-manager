@@ -71,8 +71,20 @@ def _pesos(world: World, onze: list[int], tabela: dict[str, float]) -> np.ndarra
     return np.clip(base * np.exp(relativo * PESO_DO_OVERALL / 4.0), 1e-6, None)
 
 
-def registrar_partida_detalhada(est: Estatisticas, world: World, partida) -> None:
+def _cadernos(est) -> list[Estatisticas]:
+    """Um caderno ou varios. Varios = o da temporada, o da competicao e o da rodada, todos
+    somando o MESMO sorteio: o artilheiro da copa e o do ano nao podem discordar sobre
+    quem fez o gol."""
+    return list(est) if isinstance(est, (list, tuple)) else [est]
+
+
+def registrar_partida_detalhada(est, world: World, partida) -> None:
     """Os eventos ja dizem quem fez e quem deu: aqui e' so somar."""
+    for caderno in _cadernos(est):
+        _somar_detalhada(caderno, world, partida)
+
+
+def _somar_detalhada(est: Estatisticas, world: World, partida) -> None:
     # `entrada` e todo mundo que pisou em campo: quem saiu no intervalo ou foi expulso
     # tambem jogou. Contar so quem terminou em campo apagava o jogo deles.
     for pid in (partida.entrada or partida.em_campo_casa + partida.em_campo_fora):
@@ -90,12 +102,13 @@ def registrar_partida_detalhada(est: Estatisticas, world: World, partida) -> Non
             est.linha(e.jogador).vermelhos += 1
 
 
-def registrar_resultado(est: Estatisticas, world: World, r: Result,
+def registrar_resultado(est, world: World, r: Result,
                         rng: np.random.Generator) -> None:
     """Distribui os gols de um placar entre os jogadores dos dois clubes.
 
     Respeita o placar: a soma da artilharia fecha com a tabela, sempre.
     """
+    cadernos = _cadernos(est)
     for clube, gols in ((r.home, r.goals_home), (r.away, r.goals_away)):
         if clube not in world.clubs:
             continue
@@ -103,18 +116,21 @@ def registrar_resultado(est: Estatisticas, world: World, r: Result,
         if not onze:
             continue
         for pid in onze:
-            est.linha(pid).jogos += 1
+            for c in cadernos:
+                c.linha(pid).jogos += 1
         if not gols:
             continue
         p_gol = _pesos(world, onze, PESO_DO_GOL)
         marcadores = rng.choice(onze, size=int(gols), p=p_gol / p_gol.sum())
         p_ass = _pesos(world, onze, PESO_DA_ASSISTENCIA)
         for autor in marcadores:
-            est.linha(int(autor)).gols += 1
+            for c in cadernos:
+                c.linha(int(autor)).gols += 1
             if rng.random() < CHANCE_DE_ASSISTENCIA:
                 # quem assiste nao pode ser quem marcou
                 sem_autor = p_ass.copy()
                 sem_autor[onze.index(int(autor))] = 0.0
                 if sem_autor.sum() > 0:
                     quem = rng.choice(onze, p=sem_autor / sem_autor.sum())
-                    est.linha(int(quem)).assistencias += 1
+                    for c in cadernos:
+                        c.linha(int(quem)).assistencias += 1

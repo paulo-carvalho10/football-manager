@@ -96,6 +96,10 @@ class Carreira:
     funcoes: dict[str, int] = field(default_factory=dict)
     # a lista de observacao do mercado
     observados: list[int] = field(default_factory=list)
+    # um caderno de artilharia por competicao ("brasil_real", "libertadores"...) no ano
+    estatisticas_por_comp: dict = field(default_factory=dict)
+    # {liga: {rodada: selecao}} -- a selecao de cada rodada de liga do ano (fm.selecao)
+    selecoes: dict = field(default_factory=dict)
 
     @classmethod
     def nova(cls, ligas: list[str] | str, clube: str, seed: int = 2027) -> Carreira:
@@ -139,6 +143,8 @@ class Carreira:
         self._nova_meta()
         from fm.estatisticas import Estatisticas
         self.estatisticas = Estatisticas(temporada=self.temporada)
+        self.estatisticas_por_comp = {}
+        self.selecoes = {}
 
     def _montar_agenda(self) -> None:
         """Intercala as etapas de copa entre as rodadas de liga.
@@ -366,6 +372,11 @@ class Carreira:
         return max((max((f.matchday for f in c), default=0)
                     for c in self.calendarios.values()), default=0)
 
+    def rodadas_da_liga(self, liga: str | None = None) -> int:
+        """Quantas rodadas tem UMA divisao. `total_de_rodadas` e a da mais longa -- com a
+        Espanha junto, a Segunda tem 42 e a Serie A aparecia como "rodada 4/42"."""
+        return max((f.matchday for f in self.calendarios[liga or self.liga]), default=0)
+
     @property
     def acabou(self) -> bool:
         return self.data >= len(self.agenda)
@@ -480,6 +491,7 @@ class Carreira:
         detalhada: Partida | None = None
         todos: list[Result] = []
         jogaram: set[int] = set()
+        por_liga: dict[str, list[Result]] = {}
 
         for nome in self.ligas:
             cfg = load_league(nome)
@@ -511,11 +523,21 @@ class Carreira:
 
             self.resultados[nome].extend(r)
             todos.extend(r)
+            por_liga[nome] = r
 
         # FORA do laco das divisoes: dentro dele, a partida do usuario era contada uma vez
         # por divisao e o artilheiro terminava o ano com noventa jogos
         rng_est = self.streams.get("estatisticas", self.temporada, n)
-        self._somar_estatisticas(todos, detalhada, rng_est)
+        from fm.estatisticas import Estatisticas
+        from fm.selecao import selecao_da_rodada
+        comp_de = {(r.home, r.away): nome for nome, rs in por_liga.items() for r in rs}
+        rodada = {nome: Estatisticas(temporada=self.temporada) for nome in por_liga}
+        self._somar_estatisticas(todos, detalhada, rng_est, comp_de, rodada)
+        for nome, rs in por_liga.items():
+            minha = detalhada if detalhada is not None and any(
+                (x.home, x.away) == (detalhada.casa, detalhada.fora) for x in rs) else None
+            self.selecoes.setdefault(nome, {})[n] = selecao_da_rodada(
+                self.world, rs, rodada[nome], minha)
 
         self._gastar_energia(jogaram, tatica)
         self.rodada = n
@@ -523,7 +545,15 @@ class Carreira:
         self._checar_emprego()
         return todos, detalhada
 
-    def _somar_estatisticas(self, resultados, detalhada, rng) -> None:
+    def caderno(self, competicao: str):
+        """O caderno de artilharia de uma competicao no ano, criado na primeira vez."""
+        from fm.estatisticas import Estatisticas
+        if competicao not in self.estatisticas_por_comp:
+            self.estatisticas_por_comp[competicao] = Estatisticas(temporada=self.temporada)
+        return self.estatisticas_por_comp[competicao]
+
+    def _somar_estatisticas(self, resultados, detalhada, rng, comp_de,
+                            rodada=None) -> None:
         """A partida do usuario entra pelos EVENTOS; as outras, por amostragem do placar.
 
         Sem a segunda metade nao existe artilharia de campeonato: os jogos dos outros
@@ -533,13 +563,28 @@ class Carreira:
 
         if self.estatisticas is None:
             return
+        rodada = rodada or {}
+
+        def cadernos(r):
+            # comp_de: o nome da copa (a etapa inteira e dela) ou {jogo: divisao}
+            comp = comp_de if isinstance(comp_de, str) else comp_de.get((r.home, r.away))
+            fora = [self.estatisticas]
+            if comp:
+                fora.append(self.caderno(comp))
+                if comp in rodada:
+                    fora.append(rodada[comp])
+            return fora
+
         for r in resultados:
             se_e_minha = detalhada is not None and (r.home, r.away) == (
                 detalhada.casa, detalhada.fora)
             if not se_e_minha:
-                registrar_resultado(self.estatisticas, self.world, r, rng)
+                registrar_resultado(cadernos(r), self.world, r, rng)
         if detalhada is not None:
-            registrar_partida_detalhada(self.estatisticas, self.world, detalhada)
+            minha = next((r for r in resultados
+                          if (r.home, r.away) == (detalhada.casa, detalhada.fora)), None)
+            alvo = cadernos(minha) if minha else [self.estatisticas]
+            registrar_partida_detalhada(alvo, self.world, detalhada)
 
     def _minha_partida(self, jogo: Fixture, rng, style, tatica: Tatica,
                        substituicoes) -> Partida:
@@ -655,7 +700,7 @@ class Carreira:
                                      detalhada.gols_fora, meu.matchday))
         resultados += outros
         registrar(self.world, andamento, resultados, rng, self.exportados)
-        self._somar_estatisticas(resultados, detalhada, rng)
+        self._somar_estatisticas(resultados, detalhada, rng, nome)
 
         jogaram = {f.home for f in etapa.fixtures} | {f.away for f in etapa.fixtures}
         self._gastar_energia(jogaram, tatica)
@@ -696,6 +741,21 @@ class Carreira:
             v, e, d = v + (pro > contra), e + (pro == contra), d + (pro < contra)
         return {"jogos": len(meus), "vitorias": v, "empates": e, "derrotas": d,
                 "gols_pro": gp, "gols_contra": gc}
+
+    def artilharia_do_ano(self, quantos: int = 10) -> dict[str, list[dict]]:
+        """O top de cada competicao do ano, com nome e clube gravados por extenso: o
+        jogador pode se aposentar, e o historico nao pode depender de ele existir."""
+        fora = {}
+        for comp, est in self.estatisticas_por_comp.items():
+            linhas = []
+            for x in est.artilheiros(self.world, quantos):
+                p = self.world.players[x.jogador]
+                clube = self.world.clubs[p.club_id].name if p.club_id in self.world.clubs else ""
+                linhas.append({"jogador": x.jogador, "nome": p.name, "clube": clube,
+                               "gols": x.gols, "assistencias": x.assistencias,
+                               "jogos": x.jogos})
+            fora[comp] = linhas
+        return fora
 
     def virar_o_ano(self) -> dict:
         """Fecha a temporada e abre a proxima. E o que faz o jogo nao acabar na rodada 38.
@@ -798,6 +858,9 @@ class Carreira:
             "motivo_da_demissao": "",
             "aposentadorias_do_clube": saidas,
             "destaques_do_clube": destaques,
+            # os artilheiros de cada competicao do ano ficam guardados: e o que a tela de
+            # artilharia mostra das temporadas passadas
+            "artilharia": self.artilharia_do_ano(),
             "base_do_clube": base,
         }
         self.historico.append(resumo)

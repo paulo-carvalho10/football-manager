@@ -15,6 +15,7 @@ const ABAS = [
   {id: "financas", rotulo: "Finanças", icone: "financas"},
   {id: "mensagens", rotulo: "Mensagens", icone: "mensagens"},
   {id: "treinador", rotulo: "Treinador", icone: "treinador"},
+  {id: "destaques", rotulo: "Destaques", icone: "estrela"},
   {id: "salvar", rotulo: "Salvar", icone: "salvar", acao: janelaSalvar},
   {id: "menu", rotulo: "Menu", icone: "sair", acao: () => irParaModo("menu")},
 ];
@@ -971,8 +972,102 @@ registrarModo("jogo", {
   tecla(ev) {
     if (ev.key === "Enter" && !ev.repeat) { jogar(); ev.preventDefault(); }
     const atalhos = {"1": "elenco", "2": "escalacao", "3": "mercado", "4": "classificacao",
-                     "5": "calendario", "6": "financas", "7": "mensagens", "8": "treinador"};
+                     "5": "calendario", "6": "financas", "7": "mensagens", "8": "treinador",
+                     "9": "destaques"};
     if (atalhos[ev.key]) irPara(atalhos[ev.key]);
     if (ev.key === "Escape" && marcado) { marcado = null; TELAS.escalacao(); }
   },
 });
+
+
+/* ================================================================== DESTAQUES
+ * A selecao de cada rodada de liga e a artilharia de cada competicao, deste ano e dos
+ * anos que ja acabaram. */
+
+const DEST = {liga: null, rodada: null, comp: null, temporada: null};
+
+function classeDaNota(n) { return n >= 8 ? "n8" : n >= 7 ? "n7" : n >= 6 ? "n6" : n >= 5 ? "n5" : "n4"; }
+
+function campinhoDaSelecao(s) {
+  if (!s.onze.length) return '<div class="vazio">A seleção aparece depois da primeira rodada.</div>';
+  return `<div class="campinho">${LINHAS_CAMPO}${s.onze.map((j) => `
+    <div class="destaque ${j.meu ? "meu" : ""} ${j.craque ? "craque" : ""}" style="left:${j.x}%;top:${j.y}%"
+      title="${escapar(j.nome)} · ${escapar(j.clube.nome)}">
+      ${escudo(j.clube)}
+      <span class="nome">${escapar(sobrenome(j.nome))}</span>
+      <span class="linha-d"><span class="vaga">${j.vaga}</span>
+        <span class="nota ${classeDaNota(j.nota)}">${j.nota.toFixed(1).replace(".", ",")}</span>
+        ${j.gols ? `<span>${"⚽".repeat(Math.min(j.gols, 3))}</span>` : ""}</span>
+    </div>`).join("")}</div>`;
+}
+
+TELAS.destaques = async function () {
+  const qs = new URLSearchParams();
+  if (DEST.liga) qs.set("liga", DEST.liga);
+  if (DEST.rodada) qs.set("rodada", DEST.rodada);
+  const qa = new URLSearchParams();
+  if (DEST.comp) qa.set("comp", DEST.comp);
+  if (DEST.temporada) qa.set("temporada", DEST.temporada);
+  const [s, a] = await Promise.all([api.get(`/api/selecao?${qs}`), api.get(`/api/artilharia?${qa}`)]);
+  DEST.liga = s.liga;
+  DEST.comp = a.competicao;
+  DEST.temporada = a.temporada;
+  const i = s.rodadas.indexOf(s.rodada);
+  const craque = s.onze.find((j) => j.craque);
+  const passado = a.temporada !== ESTADO.temporada;
+
+  $("#tela-destaques").innerHTML = `
+    <div class="painel">
+      <div class="cab"><h2>Seleção da rodada</h2>
+        <div class="abas">${s.ligas.map((l) => `<button data-sliga="${l.id}" class="${l.id === s.liga ? "ativo" : ""}">${escapar(l.nome)}</button>`).join("")}</div>
+        <div class="navegador">
+          <button class="btn pequeno" id="rod-ant" ${i > 0 ? "" : "disabled"}>‹</button>
+          <b>${s.rodada ? `${s.rodada}ª rodada` : "—"}</b>
+          <button class="btn pequeno" id="rod-prox" ${i >= 0 && i < s.rodadas.length - 1 ? "" : "disabled"}>›</button>
+        </div></div>
+      ${campinhoDaSelecao(s)}
+      <div class="pe">${craque ? `<span class="chip ouro">★ Craque da rodada: ${escapar(craque.nome)} (${escapar(craque.clube.nome)}) · ${craque.nota.toFixed(1).replace(".", ",")}</span>` : ""}
+        ${s.meus ? `<span class="chip ativo">${s.meus} do ${escapar(ESTADO.clube.nome)}</span>` : ""}
+        <span class="espaco" style="flex:1"></span>
+        <span class="dica">4-3-3 pelas notas · no seu jogo a nota vem dos lances; nos outros, do placar, gols e assistências</span></div>
+    </div>
+    <div class="coluna">
+      <div class="painel">
+        <div class="cab"><h2>Artilharia</h2>
+          <select id="art-temporada" style="width:auto">${a.temporadas.map((t) =>
+            `<option value="${t}" ${t === a.temporada ? "selected" : ""}>${t}${t === ESTADO.temporada ? " (atual)" : ""}</option>`).join("")}</select></div>
+        <div class="corpo sem-margem">
+          <div class="abas" style="padding:.5rem .8rem">${a.competicoes.map((c) =>
+            `<button data-comp="${c.id}" class="${c.id === a.competicao ? "ativo" : ""}">${escapar(c.nome)}</button>`).join("")
+            || '<span class="dica">Nenhum gol ainda.</span>'}</div>
+          <table class="grade compacta"><thead><tr><th class="n">#</th><th>Jogador</th><th>Clube</th>
+            <th class="n">J</th><th class="n">G</th>${passado ? "" : '<th class="n">A</th><th class="n">Média</th>'}</tr></thead>
+          <tbody>${a.artilheiros.map((x, k) => `<tr class="${x.meu ? "eu" : ""}">
+            <td class="n">${k + 1}</td><td><b>${escapar(x.nome)}</b></td>
+            <td><div class="nome-celula">${x.clube && x.clube.id ? escudo(x.clube, "1.2rem") : ""}<span>${escapar(x.clube ? x.clube.nome : "")}</span></div></td>
+            <td class="n">${x.jogos}</td><td class="n"><b>${x.gols}</b></td>
+            ${passado ? "" : `<td class="n">${x.assistencias}</td><td class="n dica">${x.jogos ? (x.gols / x.jogos).toFixed(2).replace(".", ",") : "—"}</td>`}</tr>`).join("")
+            || '<tr><td colspan="7" class="vazio">Sem gols nesta competição.</td></tr>'}</tbody></table>
+        </div></div>
+      <div class="painel fixo">
+        <div class="cab"><h2>${passado ? "Artilheiros de cada competição" : "Assistências"}</h2></div>
+        <div class="corpo sem-margem" style="max-height:15rem;overflow:auto"><table class="grade compacta"><tbody>${passado
+          ? a.campeoes.filter((x) => x.temporada === a.temporada).map((x) => `<tr><td>${escapar(x.competicao)}</td>
+              <td><b>${escapar(x.nome)}</b> <span class="dica">${escapar(x.clube)}</span></td><td class="n"><b>${x.gols}</b></td></tr>`).join("")
+          : a.garcons.slice(0, 8).map((x, k) => `<tr class="${x.meu ? "eu" : ""}"><td class="n">${k + 1}</td><td><b>${escapar(x.nome)}</b>
+              <span class="dica">${escapar(x.clube ? x.clube.nome : "")}</span></td><td class="n"><b>${x.assistencias}</b></td></tr>`).join("")
+            || '<tr><td class="vazio">Nenhuma assistência ainda.</td></tr>'}</tbody></table></div></div>
+      <div class="painel fixo">
+        <div class="cab"><h2>Galeria de artilheiros</h2><span class="dica">o maior de cada competição, ano a ano</span></div>
+        <div class="corpo sem-margem" style="max-height:12rem;overflow:auto"><table class="grade compacta"><tbody>${a.campeoes.map((x) =>
+          `<tr><td class="n">${x.temporada}</td><td>${escapar(x.competicao)}</td><td><b>${escapar(x.nome)}</b>
+            <span class="dica">${escapar(x.clube)}</span></td><td class="n"><b>${x.gols}</b></td></tr>`).join("")
+          || '<tr><td class="vazio">A galeria começa quando a primeira temporada terminar.</td></tr>'}</tbody></table></div></div>
+    </div>`;
+
+  $$("[data-sliga]").forEach((b) => b.addEventListener("click", () => { DEST.liga = b.dataset.sliga; DEST.rodada = null; TELAS.destaques(); }));
+  $("#rod-ant").addEventListener("click", () => { DEST.rodada = s.rodadas[i - 1]; TELAS.destaques(); });
+  $("#rod-prox").addEventListener("click", () => { DEST.rodada = s.rodadas[i + 1]; TELAS.destaques(); });
+  $$("[data-comp]").forEach((b) => b.addEventListener("click", () => { DEST.comp = b.dataset.comp; TELAS.destaques(); }));
+  $("#art-temporada").addEventListener("change", (ev) => { DEST.temporada = +ev.target.value; DEST.comp = null; TELAS.destaques(); });
+};

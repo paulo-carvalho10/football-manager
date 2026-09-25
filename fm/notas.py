@@ -62,3 +62,16 @@ def notas_da_partida(world: World, partida) -> dict[int, float]:
 
 def _lado(partida, clube: int, world: World) -> set[int]:
     return {pid for pid in partida.entrada if world.players[pid].club_id == clube}
+
+
+def nota_estimada(p, meus: int, deles: int, gols: int, assistencias: int) -> float:
+    """A nota de quem jogou uma partida resolvida pelo motor rapido: sem lances, so com o
+    placar e o que o caderno registrou para ele. Mesmas regras de notas_da_partida, com
+    o jogador considerado em campo os noventa minutos."""
+    nota = BASE + (p.overall - 70) * PESO_DO_OVERALL
+    nota += VITORIA if meus > deles else DERROTA if meus < deles else 0.0
+    if p.position in POR_GOL_SOFRIDO:
+        nota += (SEM_SOFRER[p.position] if deles == 0
+                 else POR_GOL_SOFRIDO[p.position] * max(deles - 1, 0))
+    nota += POR_GOL * gols + POR_ASSISTENCIA * assistencias
+    return round(min(10.0, max(3.0, nota)), 1)
