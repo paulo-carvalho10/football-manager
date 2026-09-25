@@ -199,3 +199,42 @@ def test_a_artilharia_fica_guardada_na_virada_do_ano(jogo):
     a = telas.artilharia(c, "brasil_real", ano, lambda cid: servidor._clube(c, cid))
     assert a["temporada"] == ano and len(a["artilheiros"]) == 10
     assert any(x["temporada"] == ano for x in a["campeoes"])
+
+
+def test_save_de_formato_antigo_da_erro_claro_e_nao_derruba(tmp_path, monkeypatch):
+    """REGRESSAO: um save de antes da piramide ("liga" em vez de "ligas") derrubava o
+    pedido e a tela ficava em "Carregando..." para sempre."""
+    import fm.carreira as mod
+    monkeypatch.setattr(mod, "SAVES_DIR", tmp_path)
+    (tmp_path / "velho.json").write_text(json.dumps({
+        "seed": 42, "liga": "brasil_real", "clube_id": 999999, "temporada": 2027,
+        "rodada": 3, "decisoes": {"1": {"escalacao": [], "tatica": {}}}}), encoding="utf-8")
+    r = servidor.carregar(servidor.Jogo(None), {"nome": "velho"})
+    assert "erro" in r and "versão" in r["erro"]
+
+
+def test_erro_dentro_de_uma_rota_volta_como_json():
+    """Excecao numa rota vira resposta 500 com a mensagem, nunca conexao cortada."""
+    import threading
+    import urllib.error
+    import urllib.request
+    from fm.servidor import ROTAS_GET, Jogo, ServidorDoJogo, criar_handler
+
+    ROTAS_GET["/api/teste-quebra"] = lambda jogo, q: 1 / 0
+    srv = ServidorDoJogo(("127.0.0.1", 0), criar_handler(Jogo(None)))
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    try:
+        from fm.servidor import ROTAS_SEM_CARREIRA
+        ROTAS_SEM_CARREIRA.add("/api/teste-quebra")
+        url = f"http://127.0.0.1:{srv.server_address[1]}/api/teste-quebra"
+        try:
+            urllib.request.urlopen(url, timeout=5)
+            raise AssertionError("devia ter dado 500")
+        except urllib.error.HTTPError as e:
+            assert e.code == 500
+            assert "ZeroDivisionError" in json.loads(e.read())["erro"]
+    finally:
+        srv.shutdown()
+        srv.server_close()
+        ROTAS_GET.pop("/api/teste-quebra", None)
+        ROTAS_SEM_CARREIRA.discard("/api/teste-quebra")

@@ -910,9 +910,13 @@ class Carreira:
         origem = SAVES_DIR / f"{nome}.json"
         if not origem.exists():
             raise FileNotFoundError(f"save {nome!r} nao existe. Ha: {saves_disponiveis()}")
-        d = json.loads(origem.read_text(encoding="utf-8"))
+        d = _atualizar_save(json.loads(origem.read_text(encoding="utf-8")))
         cfgs = [load_league(n) for n in d["ligas"]]
         world, streams = build_world(cfgs, seed=d["seed"])
+        if d["clube_id"] not in world.clubs:
+            # os packs foram refeitos depois do save: o mesmo seed gera outro mundo
+            raise ValueError("o save e de uma versao antiga do jogo e o clube dele nao "
+                             "existe mais neste mundo -- comece uma carreira nova")
         c = cls(seed=d["seed"], ligas=list(d["ligas"]), clube_id=d["clube_id"],
                 temporada=d["temporada_inicial"])
         c.decisoes = {k: Decisao(**v) for k, v in d["decisoes"].items()}
@@ -930,6 +934,24 @@ class Carreira:
         while c.data < d.get("data", d.get("rodada", 0)) and not c.acabou:
             c.avancar()
         return c
+
+
+def _atualizar_save(d: dict) -> dict:
+    """Traz um save de formato antigo para o atual.
+
+    O primeiro formato era de uma liga so ("liga") e chaveava as decisoes so pela rodada
+    ("3"); o atual tem a piramide ("ligas") e chaveia por "temporada:rodada". Sem isto,
+    abrir um save antigo derrubava o servidor e a tela ficava em "Carregando..." para
+    sempre. O replay refaz o mundo com o motor de HOJE, entao os resultados podem nao
+    ser os que foram jogados na epoca -- mas as decisoes do jogador sao as dele.
+    """
+    d = dict(d)
+    if "ligas" not in d:
+        d["ligas"] = [d["liga"]]
+    d.setdefault("temporada_inicial", d["temporada"])
+    d["decisoes"] = {(k if ":" in str(k) else f"{d['temporada_inicial']}:{k}"): v
+                     for k, v in d.get("decisoes", {}).items()}
+    return d
 
 
 def saves_disponiveis() -> list[str]:

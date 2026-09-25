@@ -10,6 +10,7 @@
 const api = {
   async get(rota) {
     const r = await fetch(rota);
+    if (r.status === 500) { const d = await r.json(); throw new Error(d.erro || rota); }
     if (!r.ok) throw new Error(`${rota}: ${r.status}`);
     return r.json();
   },
@@ -19,6 +20,7 @@ const api = {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(corpo),
     });
+    if (r.status === 500) { const d = await r.json(); throw new Error(d.erro || rota); }
     if (!r.ok) throw new Error(`${rota}: ${r.status}`);
     return r.json();
   },

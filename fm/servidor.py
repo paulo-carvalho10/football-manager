@@ -578,6 +578,8 @@ def carregar(jogo: Jogo, corpo: dict) -> dict:
         c = Carreira.carregar(str(corpo.get("nome", "")))
     except FileNotFoundError as e:
         return {"erro": str(e)}
+    except (KeyError, TypeError, ValueError) as e:
+        return {"erro": f"Esse save não abre nesta versão do jogo: {e}"}
     _trocar_de_carreira(jogo, c)
     return {"ok": True, "estado": estado(jogo)}
 
@@ -803,7 +805,7 @@ def criar_handler(jogo: Jogo, tela: dict[str, bytes] | None = None):
                     self._json({"erro": "sem carreira", "sem_carreira": True})
                     return
                 with jogo.trava:
-                    self._json(ROTAS_GET[caminho](jogo, q))
+                    self._rodar(ROTAS_GET[caminho], jogo, q)
                 return
 
             nome = "index.html" if caminho in ("/", "") else caminho.lstrip("/")
@@ -829,7 +831,20 @@ def criar_handler(jogo: Jogo, tela: dict[str, bytes] | None = None):
                 self._json({"erro": "sem carreira", "sem_carreira": True})
                 return
             with jogo.trava:
-                self._json(ROTAS_POST[caminho](jogo, corpo))
+                self._rodar(ROTAS_POST[caminho], jogo, corpo)
+
+        def _rodar(self, rota, jogo, dados) -> None:
+            """Erro dentro de uma rota volta como JSON e aparece na tela. Antes a conexao
+            caia sem resposta e a pagina ficava esperando em silencio -- "nao funciona",
+            sem pista nenhuma. O rastro completo vai para o terminal."""
+            try:
+                resposta = rota(jogo, dados)
+            except Exception as e:  # noqa: BLE001 -- a fronteira com o navegador
+                import traceback
+                traceback.print_exc()
+                self._json({"erro": f"erro interno: {type(e).__name__}: {e}"}, 500)
+                return
+            self._json(resposta)
 
     return Handler
 
