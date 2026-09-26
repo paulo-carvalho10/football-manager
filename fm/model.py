@@ -125,6 +125,9 @@ class World:
     # reescolhe o onze do time dele a cada rodada.
     escalacao_fixa: dict[int, list[int]] = field(default_factory=dict)
     formacao_fixa: dict[int, dict[str, int]] = field(default_factory=dict)
+    # Suspensos da competicao que esta sendo jogada AGORA (fm.disciplina). A carreira
+    # preenche antes de cada data e esvazia depois: fora da data ninguem esta suspenso.
+    indisponiveis: set[int] = field(default_factory=set)
 
     def squad(self, club_id: int) -> list[Player]:
         return [self.players[p] for p in self.clubs[club_id].player_ids]
@@ -141,7 +144,8 @@ class World:
         formation = formation or self.formacao_fixa.get(club_id) or FORMATION_DEFAULT
         # ordena pelo overall EFETIVO: jogador desgastado perde a vaga para o reserva
         # inteiro, e a rotacao passa a ser decisao de verdade.
-        pool = sorted(self.squad(club_id), key=lambda p: -p.effective_overall)
+        pool = sorted((p for p in self.squad(club_id) if p.id not in self.indisponiveis),
+                      key=lambda p: -p.effective_overall)
         need = dict(formation)
         xi: list[Player] = []
         for p in pool:

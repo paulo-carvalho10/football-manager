@@ -231,6 +231,23 @@ def mensagens(c: Carreira, data_texto: str, lidas: set[str]) -> list[dict]:
         msg(f"festa:{c.temporada}:{c.data // 4}", "Torcida", "Apoio total",
             f"A torcida está com o time: {ap.torcida:.0f}% de aprovação.")
 
+    comp = c.competicao_do_proximo()
+    if comp and c.disciplina is not None:
+        meus = {p.id: p for p in c.world.squad(c.clube_id)}
+        nome_comp = nome_da_competicao(c, comp)
+        suspensos = [meus[i].name for i in c.disciplina.suspensos(comp) if i in meus]
+        if suspensos:
+            msg(f"suspensos:{c.temporada}:{c.data}:{','.join(sorted(suspensos))}",
+                "Comissão técnica", "Desfalques por suspensão",
+                f"Não podem jogar a próxima partida da {nome_comp}: {', '.join(suspensos)}. "
+                "Se estiverem na escalação, entra o melhor reserva do mesmo setor.", "alerta")
+        pendurados = [meus[i].name for i in c.disciplina.pendurados(comp) if i in meus]
+        if pendurados:
+            msg(f"pendurados:{c.temporada}:{c.data}:{','.join(sorted(pendurados))}",
+                "Comissão técnica", "Pendurados",
+                f"Com mais um amarelo na {nome_comp}, ficam fora do jogo seguinte: "
+                f"{', '.join(pendurados)}.")
+
     cansados = sorted((p for p in c.world.squad(c.clube_id) if p.condition < 70),
                       key=lambda p: p.condition)
     if cansados:

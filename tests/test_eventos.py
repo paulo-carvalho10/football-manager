@@ -73,14 +73,18 @@ def test_substituir_cansado_melhora_o_fim_do_jogo(mundo):
         saem = sorted(p.em_campo_casa, key=lambda i: world.players[i].overall)[:3]
         return [(meu, s, e) for s, e in zip(saem, banco, strict=False)]
 
-    def saldo(fn, n=5000):
-        rng = np.random.default_rng(7)
+    # Media de QUATRO sementes. Com uma so, o ganho medido variava de +0,01 a +0,08 entre
+    # sementes (o efeito real e ~0,05): qualquer mudanca no sorteio -- a cautela de quem
+    # tem amarelo, em 26/09/2026 -- derrubava o teste sem o mecanismo ter mudado.
+    def saldo(fn, n=3000, sementes=(7, 8, 9, 10)):
         total = 0
-        for _ in range(n):
-            p = simular_partida(world, meu, rival, list(onze), list(onze_rival),
-                                rng, ESTILO, substituicoes=fn)
-            total += p.gols_casa - p.gols_fora
-        return total / n
+        for semente in sementes:
+            rng = np.random.default_rng(semente)
+            for _ in range(n):
+                p = simular_partida(world, meu, rival, list(onze), list(onze_rival),
+                                    rng, ESTILO, substituicoes=fn)
+                total += p.gols_casa - p.gols_fora
+        return total / (n * len(sementes))
 
     sem, com = saldo(None), saldo(trocar)
     for pid, v in antes.items():

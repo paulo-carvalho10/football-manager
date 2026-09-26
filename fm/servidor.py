@@ -157,9 +157,20 @@ def _situacao_na_copa(c: Carreira, a) -> str:
     return "não classificado"
 
 
+def _disciplina_do(c: Carreira, pid: int, comp: str | None) -> dict:
+    """Gancho e cartoes acumulados do jogador NA competicao do proximo jogo."""
+    if not comp or c.disciplina is None:
+        return {"suspenso": False, "pendurado": False, "amarelos_na_comp": 0}
+    return {"suspenso": pid in c.disciplina.suspensos(comp),
+            "pendurado": pid in c.disciplina.pendurados(comp),
+            "amarelos_na_comp": c.disciplina.amarelos.get(comp, {}).get(pid, 0)}
+
+
 def estado(jogo: Jogo) -> dict:
     """Tudo que o lobby precisa numa chamada so."""
     c = jogo.c
+    comp_prox = c.competicao_do_proximo()
+    suspensos_prox = c.suspensos_do_proximo()
     tatica = c.tatica_atual()
     onze = set(c.escalacao_atual())
     elenco = sorted(c.world.squad(c.clube_id),
@@ -208,7 +219,14 @@ def estado(jogo: Jogo) -> dict:
                                 for r, s, p, x, y in VAGAS[tatica.formacao]]},
         "opcoes": {"formacoes": sorted(FORMACOES), "marcacoes": sorted(MARCACOES),
                    "estilos": sorted(ESTILOS)},
-        "elenco": [_jogador(c, p, p.id in onze) for p in elenco],
+        "elenco": [{**_jogador(c, p, p.id in onze), **_disciplina_do(c, p.id, comp_prox)}
+                   for p in elenco],
+        "gancho": {
+            "competicao": telas.nome_da_competicao(c, comp_prox) if comp_prox else "",
+            "suspensos": sorted(c.world.players[i].name for i in suspensos_prox
+                                if c.world.players[i].club_id == c.clube_id),
+            "no_onze": [c.world.players[i].name for i in onze if i in suspensos_prox],
+        },
         "onze": list(c.escalacao_atual()),
         "funcoes": c.funcoes,
         "observados": len(c.observados),

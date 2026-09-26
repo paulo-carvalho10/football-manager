@@ -51,6 +51,10 @@ NO_GOL_SEM_GOL = 0.285
 CHUTES_SEM_CHANCE = 1.5
 AMARELOS_POR_TIME = 1.9
 CHANCE_DE_VERMELHO = 0.035
+# Quem ja tem amarelo segura a mao: a chance de ele cometer a proxima falta para cartao cai
+# para este fator. Sem isso o volante amarelado continuava sendo sorteado como se nada
+# tivesse acontecido, e saiam 0,42 vermelho por jogo -- o Brasileirao tem perto de 0,28.
+CAUTELA_DO_AMARELADO = 0.3
 DESARMES_BASE = 16.0
 FALTAS_BASE = 12.0
 IMPEDIMENTOS_BASE = 2.2
@@ -157,11 +161,14 @@ def _forca_em_campo(world: World, ids: list[int], minuto: int,
 
 
 def _sortear(rng, ids, world, pesos: dict[str, float],
-             papeis: dict[int, str] | None = None) -> int | None:
+             papeis: dict[int, str] | None = None,
+             cautelosos: set[int] | None = None) -> int | None:
     if not ids:
         return None
     papeis = papeis or {}
+    cautelosos = cautelosos or set()
     w = np.array([max(pesos.get(papeis.get(i, world.players[i].position_detail), 0.5), 0.01)
+                  * (CAUTELA_DO_AMARELADO if i in cautelosos else 1.0)
                   for i in ids], dtype=float)
     return int(rng.choice(ids, p=w / w.sum()))
 
@@ -297,7 +304,7 @@ def _marcar(p: Partida, world, rng, clube: int, em_campo: list[int], minuto: int
 
 def _cartao(p: Partida, world, rng, clube: int, em_campo: list[int],
             minuto: int, amarelados: set[int]) -> None:
-    quem = _sortear(rng, em_campo, world, PESO_DE_CARTAO, p.papeis)
+    quem = _sortear(rng, em_campo, world, PESO_DE_CARTAO, p.papeis, amarelados)
     if quem is None:
         return
     if quem in amarelados or rng.random() < CHANCE_DE_VERMELHO:

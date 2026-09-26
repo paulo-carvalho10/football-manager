@@ -810,3 +810,12 @@ input:focus, select:focus { border-color: var(--ouro); }
   align-items: center; padding: .34rem .7rem; border-bottom: 1px solid rgba(33,80,58,.45); font-size: .8rem; }
 .lista-selecao .item-s .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .lista-selecao .item-s.meu { background: rgba(243,195,50,.08); }
+
+/* ------------------------------------------------------------------ gancho */
+.selo-gancho { display: inline-block; font-family: var(--fonte-titulo); font-weight: 700; font-size: .6rem;
+  letter-spacing: .05em; border-radius: 3px; padding: .05em .4em; vertical-align: 1px; }
+.selo-gancho.susp { background: #e3342b; color: #fff; }
+.selo-gancho.pend { background: #f6d21b; color: #221c00; }
+.peca.suspenso .camisa-peca { opacity: .45; }
+.peca .selo-gancho { position: absolute; top: -.35rem; left: -.2rem; z-index: 2; }
+.lista-banco tr.suspenso td { opacity: .5; }

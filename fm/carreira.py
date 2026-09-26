@@ -100,6 +100,11 @@ class Carreira:
     estatisticas_por_comp: dict = field(default_factory=dict)
     # {liga: {rodada: selecao}} -- a selecao de cada rodada de liga do ano (fm.selecao)
     selecoes: dict = field(default_factory=dict)
+    # cartoes acumulados e suspensoes, por competicao (fm.disciplina)
+    disciplina: object | None = None
+    # o onze que o usuario ESCOLHEU, guardado enquanto a data corre com o reserva no lugar
+    # do suspenso -- depois da data ele volta, e o suspenso volta sozinho quando cumprir
+    _onze_pretendido: list[int] = field(default_factory=list)
 
     @classmethod
     def nova(cls, ligas: list[str] | str, clube: str, seed: int = 2027) -> Carreira:
@@ -145,6 +150,9 @@ class Carreira:
         self.estatisticas = Estatisticas(temporada=self.temporada)
         self.estatisticas_por_comp = {}
         self.selecoes = {}
+        from fm.disciplina import Disciplina
+        self.disciplina = Disciplina()      # gancho nao atravessa a virada do ano
+        self.world.indisponiveis = set()
 
     def _montar_agenda(self) -> None:
         """Intercala as etapas de copa entre as rodadas de liga.
@@ -484,8 +492,7 @@ class Carreira:
     def _jogar_rodada(self, substituicoes=None) -> tuple[list[Result], Partida | None]:
         n = self.rodada + 1
         tatica = self.tatica_atual()
-        self.world.escalacao_fixa[self.clube_id] = self.escalacao_atual()
-        self.world.formacao_fixa[self.clube_id] = tatica.vagas
+        self._preparar_desfalques(self.ligas, tatica)
 
         meu_jogo = self.proxima_partida()
         detalhada: Partida | None = None
@@ -538,8 +545,11 @@ class Carreira:
                 (x.home, x.away) == (detalhada.casa, detalhada.fora) for x in rs) else None
             self.selecoes.setdefault(nome, {})[n] = selecao_da_rodada(
                 self.world, rs, rodada[nome], minha)
+            clubes = {x.home for x in rs} | {x.away for x in rs}
+            self._cartoes_da_data(nome, rs, minha, clubes)
 
         self._gastar_energia(jogaram, tatica)
+        self._encerrar_desfalques()
         self.rodada = n
         self.data += 1
         self._checar_emprego()
@@ -594,7 +604,8 @@ class Carreira:
                   else confronto(Tatica(), tatica))
         chave = f"{self.temporada}:{self.data}"
         from fm.tatica import papeis_em_campo
-        papeis = papeis_em_campo(self.escalacao_atual(), tatica.formacao)
+        papeis = papeis_em_campo(self.world.escalacao_fixa.get(self.clube_id)
+                                 or self.escalacao_atual(), tatica.formacao)
         return simular_partida(
             self.world, jogo.home, jogo.away,
             [p.id for p in self.world.best_xi(jogo.home)],
@@ -674,8 +685,7 @@ class Carreira:
             return None
 
         tatica = self.tatica_atual()
-        self.world.escalacao_fixa[self.clube_id] = self.escalacao_atual()
-        self.world.formacao_fixa[self.clube_id] = tatica.vagas
+        self._preparar_desfalques([nome], tatica)
         t = andamento.torneio
         meus = [f for f in etapa.fixtures
                 if self.clube_id in (f.home, f.away)]
@@ -703,9 +713,91 @@ class Carreira:
         self._somar_estatisticas(resultados, detalhada, rng, nome)
 
         jogaram = {f.home for f in etapa.fixtures} | {f.away for f in etapa.fixtures}
+        self._cartoes_da_data(nome, resultados, detalhada, jogaram)
         self._gastar_energia(jogaram, tatica)
+        self._encerrar_desfalques()
         self._checar_emprego()
         return resultados, detalhada
+
+    # ---------------------------------------------------------------- o gancho
+
+    def competicao_do_proximo(self) -> str | None:
+        """A chave da competicao do proximo jogo do usuario: e nela que o gancho vale."""
+        tipo, onde, _ = self.proximo_jogo()
+        if tipo == "liga":
+            return self.liga
+        return onde or None
+
+    def suspensos_do_proximo(self) -> set[int]:
+        comp = self.competicao_do_proximo()
+        return self.disciplina.suspensos(comp) if comp and self.disciplina else set()
+
+    def _preparar_desfalques(self, competicoes: list[str], tatica: Tatica) -> None:
+        """Tira os suspensos de campo antes da data: dos adversarios pelo best_xi, do
+        usuario trocando cada um pelo melhor reserva do mesmo setor, NA MESMA VAGA."""
+        suspensos: set[int] = set()
+        for comp in competicoes:
+            suspensos |= self.disciplina.suspensos(comp)
+        self.world.indisponiveis = suspensos
+        self._onze_pretendido = self.escalacao_atual()
+        self.world.escalacao_fixa[self.clube_id] = self._sem_suspensos(
+            self._onze_pretendido, tatica, suspensos)
+        self.world.formacao_fixa[self.clube_id] = tatica.vagas
+
+    def _sem_suspensos(self, onze: list[int], tatica: Tatica, suspensos: set[int]) -> list[int]:
+        from fm.tatica import VAGAS
+        if not suspensos & set(onze):
+            return list(onze)
+        vagas = VAGAS.get(tatica.formacao, [])
+        banco = sorted((p for p in self.world.squad(self.clube_id)
+                        if p.id not in onze and p.id not in suspensos),
+                       key=lambda p: -p.effective_overall)
+        novo = list(onze)
+        for i, pid in enumerate(onze):
+            if pid not in suspensos or not banco:
+                continue
+            setor = vagas[i][1] if i < len(vagas) else self.world.players[pid].position
+            reserva = next((p for p in banco if p.position == setor), banco[0])
+            banco.remove(reserva)
+            novo[i] = reserva.id
+        return novo
+
+    def _encerrar_desfalques(self) -> None:
+        """Depois da data: ninguem mais esta indisponivel, e o onze volta a ser o escolhido."""
+        self.world.indisponiveis = set()
+        if self._onze_pretendido:
+            self.world.escalacao_fixa[self.clube_id] = list(self._onze_pretendido)
+
+    def _cartoes_da_data(self, comp: str, resultados, detalhada, clubes: set[int]) -> None:
+        """Cumpre os ganchos de quem jogou e soma os cartoes novos.
+
+        A ordem importa: primeiro cumpre (quem estava suspenso ficou fora DESTA data),
+        depois registra (o vermelho de hoje suspende o PROXIMO jogo). Os cartoes dos jogos
+        do motor rapido saem de um stream proprio: sorteia-los no stream da partida
+        mudaria os placares de todos os saves.
+        """
+        from fm.disciplina import cartoes_da_partida, sortear_cartoes
+
+        rng = self.streams.get("cartoes", self.temporada, self.data, comp)
+        self.disciplina.cumprir(comp, clubes, self.world)
+        for r in resultados:
+            if detalhada is not None and (r.home, r.away) == (detalhada.casa, detalhada.fora):
+                # os da partida detalhada ja entraram nos cadernos pelos eventos
+                self.disciplina.registrar(comp, cartoes_da_partida(detalhada))
+                continue
+            cartoes = []
+            for clube in (r.home, r.away):
+                if clube in self.world.clubs:
+                    onze = [p.id for p in self.world.best_xi(clube)]
+                    cartoes += sortear_cartoes(self.world, onze, rng)
+            for pid, tipo in cartoes:
+                for caderno in (self.estatisticas, self.caderno(comp)):
+                    linha = caderno.linha(pid)
+                    if tipo == "amarelo":
+                        linha.amarelos += 1
+                    else:
+                        linha.vermelhos += 1
+            self.disciplina.registrar(comp, cartoes)
 
     def _gastar_energia(self, jogaram: set[int], tatica: Tatica) -> None:
         """Energia entre rodadas.

@@ -196,6 +196,13 @@ const COLUNAS_ELENCO = [
 ];
 const ORDEM_POS = {GK: 0, DF: 1, MF: 2, FW: 3};
 
+/** SUSPENSO / PENDURADO, sempre na competicao do proximo jogo. */
+function seloGancho(p) {
+  if (p.suspenso) return '<span class="selo-gancho susp" title="Suspenso para o próximo jogo desta competição">SUSPENSO</span>';
+  if (p.pendurado) return '<span class="selo-gancho pend" title="Mais um amarelo e fica fora do jogo seguinte">PENDURADO</span>';
+  return "";
+}
+
 function ordenarElenco(lista) {
   const {coluna, desc} = ORDEM_ELENCO;
   const col = COLUNAS_ELENCO.find((c) => c.id === coluna);
@@ -229,7 +236,7 @@ TELAS.elenco = function () {
             return `<tr class="clicavel ${p.titular ? "" : "reserva"} ${p.id === selecionado ? "sel" : ""} ${divisor ? "divisor" : ""}" data-id="${p.id}">
               <td>${pos(p.posicao)}</td>
               <td><div class="nome-celula"><b>${escapar(p.nome)}</b>
-                ${e.funcoes.capitao === p.id ? '<span class="chip ouro">C</span>' : ""}</div></td>
+                ${e.funcoes.capitao === p.id ? '<span class="chip ouro">C</span>' : ""}${seloGancho(p)}</div></td>
               <td class="c">${pe(p.pe)}</td>
               <td class="n">${ovr(p.overall)}</td>
               <td>${energia(p.energia)}</td>
@@ -346,11 +353,11 @@ TELAS.escalacao = async function () {
 
   const colocados = pecasNoCampo(titulares);
   const pecas = colocados.map(({p, vaga}) => `
-    <button class="peca ${p.posicao !== vaga.setor ? "fora-de-posicao" : ""}
+    <button class="peca ${p.posicao !== vaga.setor ? "fora-de-posicao" : ""} ${p.suspenso ? "suspenso" : ""}
       ${marcado && marcado.id === p.id ? "marcado" : ""}" data-campo="${p.id}" draggable="true"
       title="${escapar(p.nome)} · ${ROTULOS_VAGA[vaga.rotulo] || vaga.rotulo}${p.posicao !== vaga.setor ? " (improvisado)" : ""}"
       style="left:${vaga.x}%;top:${vaga.y}%">
-      <span class="camisa-peca">${idsProprios(p.posicao === "GK" ? svgGol : svgLinha)}
+      ${seloGancho(p)}<span class="camisa-peca">${idsProprios(p.posicao === "GK" ? svgGol : svgLinha)}
         ${f.capitao === p.id ? '<span class="faixa">C</span>' : ""}</span>
       <span class="nome">${escapar(sobrenome(p.nome))}</span>
       <span class="info"><span class="vaga ${p.posicao !== vaga.setor ? "improvisado" : ""}">${vaga.rotulo}</span>${ovr(p.overall)}</span>
@@ -376,6 +383,7 @@ TELAS.escalacao = async function () {
       <div class="pe"><span class="dica">OVR médio <b class="num">${media.toFixed(1)}</b> ·
         energia <b class="num">${energiaMedia.toFixed(0)}%</b></span>
         <span class="espaco" style="flex:1"></span>
+        ${titulares.some((p) => p.suspenso) ? `<span class="chip" style="border-color:var(--ruim);color:var(--ruim)">suspenso na escalação: ${escapar(titulares.filter((p) => p.suspenso).map((p) => sobrenome(p.nome)).join(", "))} — entra o melhor reserva do setor</span>` : ""}
         ${improvisados.length ? `<span class="chip" style="border-color:var(--ruim);color:var(--ruim)">improvisado: ${escapar(improvisados.join(" · "))}</span>`
           : '<span class="chip ativo">todos na posição</span>'}
         <span class="dica">Clique em dois titulares para trocar de vaga · titular e reserva para substituir</span></div>
@@ -384,8 +392,8 @@ TELAS.escalacao = async function () {
       <div class="painel">
         <div class="cab"><h2>Reservas</h2><span class="dica">${reservas.length}</span></div>
         <div class="corpo sem-margem"><table class="grade compacta lista-banco"><tbody>${reservas.map((p) => `
-          <tr class="clicavel ${marcado && marcado.id === p.id ? "marcado" : ""}" data-banco="${p.id}" draggable="true">
-            <td>${pos(p.posicao)}</td><td><b>${escapar(p.nome)}</b></td>
+          <tr class="clicavel ${marcado && marcado.id === p.id ? "marcado" : ""} ${p.suspenso ? "suspenso" : ""}" data-banco="${p.id}" draggable="true">
+            <td>${pos(p.posicao)}</td><td><b>${escapar(p.nome)}</b> ${seloGancho(p)}</td>
             <td class="n">${ovr(p.overall)}</td><td>${energia(p.energia)}</td><td class="n dica">${p.idade}a</td></tr>`).join("")}
         </tbody></table></div>
       </div>
