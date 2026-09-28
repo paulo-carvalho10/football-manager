@@ -661,7 +661,10 @@ class Carreira:
                 if feitas + len(validas) >= MAX_TROCAS:
                     break
                 ja_vai = {e for _, e in validas} | {s for s, _ in validas}
+                # o suspenso tambem nao entra: a regra fica aqui, e nao so na tela, para
+                # valer do terminal, do navegador e do replay do save
                 if (sai in em_campo and entra in elenco and entra not in partida.entrada
+                        and entra not in self.world.indisponiveis
                         and sai not in ja_vai and entra not in ja_vai):
                     validas.append((int(sai), int(entra)))
             ajuste = Ajuste(trocas=[(self.clube_id, s, e) for s, e in validas])

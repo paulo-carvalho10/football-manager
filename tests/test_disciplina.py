@@ -90,3 +90,32 @@ def test_uma_temporada_tem_ganchos_para_todo_lado():
     jogos = len(c.jogos("brasil_real"))
     vermelhos = sum(x.vermelhos for x in caderno.values())
     assert 0.1 < vermelhos / jogos < 0.45
+
+
+def test_suspenso_nao_entra_nem_como_substituto():
+    """REGRESSAO: fora do onze, mas aparecia no banco ao vivo e o motor aceitava a troca."""
+    c = Carreira.nova("brasil_real", "Santos", seed=4)
+    onze = c.escalacao_atual()
+    reserva = next(p.id for p in sorted(c.world.squad(c.clube_id), key=lambda p: -p.overall)
+                   if p.id not in onze)
+    c.disciplina.registrar("brasil_real", [(reserva, "vermelho")])
+
+    def pedido(partida, minuto):
+        meus = partida.em_campo_casa if partida.casa == c.clube_id else partida.em_campo_fora
+        return {"trocas": [(meus[5], reserva)]} if minuto == 45 else None
+
+    _, partida = c.avancar(substituicoes=pedido)
+    assert reserva not in partida.entrada, "o suspenso entrou como substituto"
+
+
+def test_o_banco_ao_vivo_nao_mostra_o_suspenso():
+    from fm.ao_vivo import PartidaAoVivo
+    c = Carreira.nova("brasil_real", "Santos", seed=4)
+    onze = c.escalacao_atual()
+    reserva = next(p.id for p in c.world.squad(c.clube_id) if p.id not in onze)
+    c.disciplina.registrar("brasil_real", [(reserva, "vermelho")])
+    av = PartidaAoVivo(c)
+    av.comecar()
+    r = av.retrato(lambda cid: {"id": cid, "nome": c.world.clubs[cid].name})
+    assert reserva not in [j["id"] for j in r["banco"]]
+    av.seguir(ate_o_fim=True)

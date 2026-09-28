@@ -273,7 +273,8 @@ def _pedir_substituicoes(c: Carreira, partida, minuto: int) -> list:
         rend = max(55, round(100 - (100 - p.condition) * 0.45 * minuto / 90))
         print(f"    {p.id:5d} {p.position:4s}{p.name:22s} ovr {p.overall:3d}"
               f"  rendimento ~{rend}%")
-    banco = [p for p in c.world.squad(meu) if p.id not in em_campo]
+    banco = [p for p in c.world.squad(meu)
+             if p.id not in em_campo and p.id not in c.world.indisponiveis]
     print("  banco:")
     for p in sorted(banco, key=lambda x: -x.overall)[:8]:
         print(f"    {p.id:5d} {p.position:4s}{p.name:22s} ovr {p.overall:3d}"

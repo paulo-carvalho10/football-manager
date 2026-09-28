@@ -136,7 +136,8 @@ class PartidaAoVivo:
         banco = [{"id": j.id, "nome": j.name, "posicao": j.position,
                   "overall": j.overall, "energia": j.condition}
                  for j in sorted(c.world.squad(c.clube_id), key=lambda x: -x.overall)
-                 if j.id not in p.entrada][:12]
+                 # suspenso nao esta no banco: ele nao foi relacionado para o jogo
+                 if j.id not in p.entrada and j.id not in c.world.indisponiveis][:12]
         feitas = sum(1 for e in p.eventos
                      if e.tipo == "substituicao" and e.clube == c.clube_id)
         sc, sf = p.stats_casa, p.stats_fora
