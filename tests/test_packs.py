@@ -94,7 +94,8 @@ def test_cada_liga_passa_nos_seus_proprios_alvos():
         if fases[0].get("tipo") != "round_robin":
             continue
         metrics = report(targets=targets_of(cfg), ratings=strength_profile(cfg, int(cfg["clubes"])),
-                         style=style_of(cfg), seasons=400, seed=2026)
+                         style=style_of(cfg), seasons=400, seed=2026,
+                         voltas=int(fases[0].get("voltas", 2)))
         fora = [f"{m.name}={m.value:.2f} fora de [{m.low}, {m.high}]"
                 for m in metrics if not m.ok]
         assert not fora, f"{nome}: " + "; ".join(fora)

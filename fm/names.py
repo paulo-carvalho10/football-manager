@@ -26,6 +26,47 @@ FIRST_NAMES = {
         "Oscar", "Pablo", "Pedro", "Rafael", "Raul", "Ricardo", "Roberto", "Rodrigo",
         "Ruben", "Samuel", "Santiago", "Sergio", "Tomas", "Victor", "Xabi",
     ],
+    # 28/09/2026: os seis paises da versao completa. Nomes comuns de cada lingua, para os
+    # garotos que sobem da base -- um ingles da base nao pode sair chamado Kaique.
+    "ENG": [
+        "Adam", "Alfie", "Ben", "Callum", "Charlie", "Connor", "Dan", "Ethan", "Finley",
+        "George", "Harry", "Harvey", "Jack", "Jacob", "Jake", "James", "Joe", "Jordan",
+        "Josh", "Kieran", "Leo", "Lewis", "Liam", "Luke", "Mason", "Max", "Nathan",
+        "Oliver", "Owen", "Reece", "Ryan", "Sam", "Scott", "Tom", "Tyler", "Will",
+    ],
+    "ITA": [
+        "Alessandro", "Andrea", "Antonio", "Christian", "Daniele", "Davide", "Emanuele",
+        "Fabio", "Federico", "Filippo", "Francesco", "Gabriele", "Giacomo", "Gianluca",
+        "Giorgio", "Giovanni", "Giuseppe", "Leonardo", "Lorenzo", "Luca", "Manuel",
+        "Marco", "Matteo", "Mattia", "Michele", "Nicolo", "Paolo", "Pietro", "Riccardo",
+        "Roberto", "Samuele", "Simone", "Stefano", "Tommaso", "Valerio",
+    ],
+    "GER": [
+        "Alexander", "Andreas", "Benedikt", "Christian", "Daniel", "David", "Dominik",
+        "Elias", "Felix", "Finn", "Florian", "Jan", "Jannik", "Jonas", "Julian", "Kai",
+        "Leon", "Lukas", "Marcel", "Marco", "Mats", "Maximilian", "Moritz", "Niklas",
+        "Nico", "Pascal", "Patrick", "Philipp", "Robin", "Sebastian", "Stefan", "Timo",
+        "Tobias", "Yannick",
+    ],
+    "FRA": [
+        "Adrien", "Alexandre", "Antoine", "Arthur", "Baptiste", "Benjamin", "Clement",
+        "Corentin", "Damien", "Enzo", "Florian", "Hugo", "Jordan", "Julien", "Kevin",
+        "Lucas", "Maxime", "Mathis", "Nathan", "Nicolas", "Pierre", "Quentin", "Raphael",
+        "Romain", "Theo", "Thomas", "Valentin", "Yanis", "Yoann",
+    ],
+    "POR": [
+        "Afonso", "Andre", "Bernardo", "Bruno", "Diogo", "Duarte", "Fabio", "Francisco",
+        "Goncalo", "Guilherme", "Joao", "Jorge", "Jose", "Leonardo", "Luis", "Manuel",
+        "Martim", "Miguel", "Nuno", "Paulo", "Pedro", "Rafael", "Ricardo", "Rodrigo",
+        "Rui", "Salvador", "Simao", "Tiago", "Tomas", "Vasco", "Vitor",
+    ],
+    "ARG": [
+        "Agustin", "Alan", "Alexis", "Ariel", "Axel", "Bautista", "Braian", "Cristian",
+        "Damian", "Diego", "Emiliano", "Enzo", "Esteban", "Ezequiel", "Facundo", "Franco",
+        "Gaston", "Gonzalo", "Ignacio", "Joaquin", "Juan", "Julian", "Leandro", "Lautaro",
+        "Lucas", "Marcos", "Matias", "Maximiliano", "Nahuel", "Nicolas", "Pablo",
+        "Ramiro", "Santiago", "Thiago", "Tomas",
+    ],
 }
 
 SURNAMES = {
@@ -49,6 +90,48 @@ SURNAMES = {
         "Ortega", "Pardo", "Pastor", "Quintana", "Reyes", "Rivas", "Robledo", "Roldan",
         "Salazar", "Sandoval", "Segura", "Sierra", "Solano", "Tejada", "Ubeda", "Valdes",
         "Vargas", "Vega", "Velasco", "Ventura", "Zamora",
+    ],
+    "ENG": [
+        "Barnes", "Bennett", "Brooks", "Carter", "Clarke", "Cole", "Cooper", "Davies",
+        "Edwards", "Evans", "Fisher", "Foster", "Gray", "Green", "Hall", "Harris",
+        "Hughes", "Hunt", "Jackson", "Johnson", "Kelly", "King", "Lewis", "Marshall",
+        "Mitchell", "Moore", "Morgan", "Parker", "Phillips", "Price", "Reed", "Robinson",
+        "Shaw", "Stevens", "Taylor", "Turner", "Walker", "Ward", "Webb", "Wright",
+    ],
+    "ITA": [
+        "Barbieri", "Bellini", "Bernardi", "Bianchi", "Bruno", "Caputo", "Colombo",
+        "Conti", "Costa", "D'Angelo", "De Luca", "Esposito", "Fabbri", "Ferrara",
+        "Ferrari", "Fontana", "Gallo", "Greco", "Leone", "Lombardi", "Mancini", "Marino",
+        "Martini", "Moretti", "Pellegrini", "Rinaldi", "Rizzo", "Romano", "Russo",
+        "Santoro", "Serra", "Testa", "Valentini", "Villa", "Vitale",
+    ],
+    "GER": [
+        "Bauer", "Becker", "Braun", "Busch", "Fischer", "Frank", "Hahn", "Hartmann",
+        "Hoffmann", "Huber", "Jung", "Kaiser", "Keller", "Klein", "Koch", "Kraus",
+        "Lang", "Lehmann", "Maier", "Meyer", "Muller", "Neumann", "Richter", "Roth",
+        "Schafer", "Schmidt", "Schneider", "Schulz", "Schwarz", "Vogel", "Wagner",
+        "Weber", "Werner", "Wolf", "Zimmermann",
+    ],
+    "FRA": [
+        "Bernard", "Bertrand", "Blanc", "Bonnet", "Chevalier", "David", "Dubois",
+        "Dupont", "Durand", "Fontaine", "Fournier", "Garnier", "Girard", "Guerin",
+        "Lambert", "Laurent", "Lefebvre", "Leroy", "Martin", "Mercier", "Michel",
+        "Moreau", "Morel", "Perrin", "Petit", "Renaud", "Richard", "Robert", "Roux",
+        "Simon", "Thomas", "Vincent",
+    ],
+    "POR": [
+        "Almeida", "Antunes", "Barbosa", "Brito", "Carvalho", "Coelho", "Correia",
+        "Costa", "Cruz", "Dias", "Fernandes", "Ferreira", "Gomes", "Goncalves", "Henriques",
+        "Lopes", "Machado", "Marques", "Martins", "Mendes", "Monteiro", "Moreira", "Neves",
+        "Nunes", "Pereira", "Pinto", "Ramos", "Ribeiro", "Rocha", "Santos", "Silva",
+        "Sousa", "Teixeira", "Vieira",
+    ],
+    "ARG": [
+        "Acosta", "Aguero", "Alvarez", "Benitez", "Cabral", "Castro", "Diaz", "Dominguez",
+        "Fernandez", "Figueroa", "Flores", "Gimenez", "Gomez", "Gonzalez", "Herrera",
+        "Juarez", "Ledesma", "Lopez", "Medina", "Molina", "Morales", "Ojeda", "Ortiz",
+        "Paez", "Peralta", "Ponce", "Quiroga", "Ramirez", "Rios", "Romero", "Ruiz",
+        "Sosa", "Suarez", "Torres", "Vazquez",
     ],
 }
 

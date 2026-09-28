@@ -22,6 +22,9 @@ NOME_PACK = {
     # procurados pelo nome, e o Botafogo de Ribeirao Preto vestia o escudo do Botafogo do
     # Rio; o Athletic de Sao Joao del-Rei, o do Athletic Bilbao.
     "9030": "Botafogo-SP", "64918": "Athletic-MG",
+    # times B da Liga Portugal 2: a limpeza tira o "B" do fim (e sigla em "Barcelona B"
+    # quando nao e time B de ninguem) e eles viravam o clube principal
+    "10331": "Porto B", "10330": "Benfica B", "10949": "Sporting CP B",
 }
 
 # Codigo_Clube da CBF, para cruzar com a fonte oficial depois.
@@ -145,7 +148,17 @@ def escrever_pack(montados: list[ClubeMontado], destino, cabecalho: str) -> int:
     return n_jogadores
 
 
-BETAS_PADRAO = {"bra_a": 7.0, "bra_b": 4.0, "esp_1": 7.0, "esp_2": 5.0}
+BETAS_PADRAO = {"bra_a": 7.0, "bra_b": 4.0, "esp_1": 7.0, "esp_2": 5.0,
+                # primeiras divisoes europeias como a Espanha; segundas como a Serie B.
+                # Ponto de partida -- o portao de calibracao de cada liga diz se serve.
+                # Ajustados contra o portao (28/09/2026). Premier, Serie A e Portugal pediam
+                # mais (o campeao somava 71-78 pontos), mas com beta 10+ o topo delas passava
+                # do Real Madrid -- a comparacao entre ligas vale mais. Ficam em 8, e as
+                # faixas de campeao delas foram alargadas com o motivo escrito. Argentina e
+                # 2. Bundesliga pediam menos.
+                "eng_1": 8.0, "eng_2": 4.0, "ita_1": 8.0, "ita_2": 4.0,
+                "ger_1": 7.0, "ger_2": 3.2, "fra_1": 7.0, "fra_2": 4.0,
+                "por_1": 8.0, "por_2": 4.0, "arg_1": 3.5, "arg_2": 3.0}
 
 # Quem a importacao deixou de fora, por competicao. A CLI imprime -- descarte silencioso
 # de pessoa real e pior que erro.

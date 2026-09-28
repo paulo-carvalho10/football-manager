@@ -178,6 +178,18 @@ SAIDA_PADRAO = {
     "bra_b": ("brasil_serie_b", "brasil_b_real"),
     "esp_1": ("espanha_primera", "espanha_real"),
     "esp_2": ("espanha_segunda", "espanha_b_real"),
+    "eng_1": ("inglaterra_premier", "inglaterra_real"),
+    "eng_2": ("inglaterra_championship", "inglaterra_b_real"),
+    "ita_1": ("italia_serie_a", "italia_real"),
+    "ita_2": ("italia_serie_b", "italia_b_real"),
+    "ger_1": ("alemanha_bundesliga", "alemanha_real"),
+    "ger_2": ("alemanha_2_bundesliga", "alemanha_b_real"),
+    "fra_1": ("franca_ligue_1", "franca_real"),
+    "fra_2": ("franca_ligue_2", "franca_b_real"),
+    "por_1": ("portugal_liga", "portugal_real"),
+    "por_2": ("portugal_liga_2", "portugal_b_real"),
+    "arg_1": ("argentina_primera", "argentina_real"),
+    "arg_2": ("argentina_nacional", "argentina_b_real"),
 }
 
 
@@ -223,8 +235,9 @@ def cmd_importar(args):
               f"forcas {max(forcas):.1f}..{min(forcas):.1f}")
 
         cfg = load_league(liga)
+        voltas = int(cfg.get("formato", {}).get("fases", [{}])[0].get("voltas", 2))
         ms = report(targets=targets_of(cfg), ratings=forcas, style=style_of(cfg),
-                    seasons=args.temporadas, seed=2026)
+                    seasons=args.temporadas, seed=2026, voltas=voltas)
         fora = [f"{m.name}={m.value:.2f} [{m.low}, {m.high}]" for m in ms if not m.ok]
         print(f"    portao de {liga}: "
               + ("todos os alvos ok" if not fora else f"FORA DA FAIXA {fora}"))

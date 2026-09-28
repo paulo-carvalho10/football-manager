@@ -1,0 +1,6527 @@
+# IT2 -- GERADO por fm.importer. Nao editar a mao: rode o importador.
+#
+# Fonte: Transfermarkt (clube, posicao, idade, valor de mercado, jogos, minutos).
+# ovr e pot sao DERIVADOS por fm/ratings.py a partir desses campos. Sao estimativa, nao
+# rating oficial de ninguem, e a conta esta documentada no modulo.
+#
+# forca do clube = nivel_da_liga + 4.0 * z(ln(valor de elenco) dentro da liga).
+# O NIVEL da liga sai do valor medio de elenco na escala global de todas as competicoes
+# importadas, com o melhor clube do mundo ancorado em 90 -- fazer z so por liga apagava a
+# diferenca entre divisoes e o lanterna da Serie B saia mais forte que o da Serie A.
+# O BETA e proprio desta liga e foi ajustado contra os [alvos] do arquivo dela.
+verificado = false
+fonte = "Transfermarkt IT2 (valores de mercado); ovr/pot derivados por fm.ratings"
+
+[[clubes]]
+nome = "Pisa Sporting Club"
+forca = 68.4
+valor_elenco = 63450000
+cores = ["#224164", "#000000"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Simone Canestrelli"
+  pos = "CB"
+  idade = 26
+  ovr = 73
+  pot = 73
+  valor = 4500000
+  partidas = 6
+  minutos = 585
+  gols = 1
+  id_fonte = "358003"
+
+  [[clubes.jogadores]]
+  nome = "Felipe Loyola"
+  pos = "MF"
+  idade = 25
+  ovr = 71
+  pot = 74
+  valor = 7000000
+  partidas = 2
+  minutos = 185
+  gols = 1
+  id_fonte = "843286"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Tramoni"
+  pos = "AM"
+  idade = 26
+  ovr = 71
+  pot = 71
+  valor = 4500000
+  partidas = 5
+  minutos = 420
+  gols = 1
+  id_fonte = "475410"
+
+  [[clubes.jogadores]]
+  nome = "Samuele Angori"
+  pos = "AM"
+  idade = 22
+  ovr = 69
+  pot = 71
+  valor = 4500000
+  partidas = 4
+  minutos = 391
+  id_fonte = "705063"
+
+  [[clubes.jogadores]]
+  nome = "Simone Zanon"
+  pos = "FB"
+  idade = 25
+  ovr = 69
+  pot = 70
+  valor = 2500000
+  partidas = 5
+  minutos = 451
+  id_fonte = "593381"
+
+  [[clubes.jogadores]]
+  nome = "Antonio Caracciolo"
+  pos = "CB"
+  idade = 36
+  ovr = 68
+  pot = 68
+  valor = 800000
+  partidas = 4
+  minutos = 378
+  gols = 2
+  id_fonte = "149525"
+
+  [[clubes.jogadores]]
+  nome = "Simone Scuffet"
+  pos = "GK"
+  idade = 30
+  ovr = 68
+  pot = 68
+  valor = 900000
+  partidas = 1
+  minutos = 90
+  id_fonte = "238993"
+
+  [[clubes.jogadores]]
+  nome = "Gabriele Piccinini"
+  pos = "MF"
+  idade = 25
+  ovr = 67
+  pot = 70
+  valor = 3000000
+  partidas = 2
+  minutos = 220
+  id_fonte = "628365"
+
+  [[clubes.jogadores]]
+  nome = "Giuseppe Leone"
+  pos = "DM"
+  idade = 25
+  ovr = 67
+  pot = 68
+  valor = 2000000
+  partidas = 5
+  minutos = 478
+  gols = 1
+  id_fonte = "479284"
+
+  [[clubes.jogadores]]
+  nome = "Mehdi Léris"
+  pos = "WG"
+  idade = 28
+  ovr = 67
+  pot = 67
+  valor = 1800000
+  partidas = 5
+  minutos = 445
+  gols = 2
+  id_fonte = "348601"
+
+  [[clubes.jogadores]]
+  nome = "Stefano Moreo"
+  pos = "FW"
+  idade = 33
+  ovr = 67
+  pot = 67
+  valor = 1200000
+  partidas = 2
+  minutos = 215
+  gols = 1
+  id_fonte = "279823"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Confente"
+  pos = "GK"
+  idade = 28
+  ovr = 66
+  pot = 66
+  valor = 700000
+  partidas = 5
+  minutos = 450
+  id_fonte = "393797"
+
+  [[clubes.jogadores]]
+  nome = "Arturo Calabresi"
+  pos = "CB"
+  idade = 30
+  ovr = 66
+  pot = 66
+  valor = 800000
+  partidas = 3
+  minutos = 241
+  gols = 1
+  id_fonte = "240897"
+
+  [[clubes.jogadores]]
+  nome = "Omar Correia"
+  pos = "DM"
+  idade = 26
+  ovr = 66
+  pot = 67
+  valor = 1500000
+  partidas = 4
+  minutos = 388
+  gols = 1
+  id_fonte = "977119"
+
+  [[clubes.jogadores]]
+  nome = "Filippo Pittarello"
+  pos = "FW"
+  idade = 29
+  ovr = 64
+  pot = 64
+  valor = 1000000
+  partidas = 3
+  minutos = 239
+  gols = 1
+  id_fonte = "355455"
+
+  [[clubes.jogadores]]
+  nome = "İsak Vural"
+  pos = "MF"
+  idade = 20
+  ovr = 64
+  pot = 72
+  valor = 5000000
+  partidas = 3
+  minutos = 287
+  id_fonte = "989621"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Petagna"
+  pos = "FW"
+  idade = 31
+  ovr = 63
+  pot = 63
+  valor = 700000
+  partidas = 4
+  minutos = 321
+  id_fonte = "199258"
+
+  [[clubes.jogadores]]
+  nome = "Rosen Bozhinov"
+  pos = "CB"
+  idade = 21
+  ovr = 63
+  pot = 72
+  valor = 4000000
+  partidas = 2
+  minutos = 158
+  id_fonte = "877124"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Coppola"
+  pos = "CB"
+  idade = 21
+  ovr = 62
+  pot = 71
+  valor = 3500000
+  partidas = 2
+  minutos = 165
+  gols = 1
+  id_fonte = "925838"
+
+  [[clubes.jogadores]]
+  nome = "Emanuele Rao"
+  pos = "WG"
+  idade = 20
+  ovr = 61
+  pot = 72
+  valor = 6000000
+  partidas = 1
+  minutos = 134
+  id_fonte = "936229"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Esteves"
+  pos = "AM"
+  idade = 24
+  ovr = 60
+  pot = 66
+  valor = 1500000
+  partidas = 2
+  minutos = 36
+  id_fonte = "504085"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Loria"
+  pos = "GK"
+  idade = 27
+  ovr = 57
+  pot = 58
+  valor = 150000
+  id_fonte = "386567"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Marras"
+  pos = "WG"
+  idade = 22
+  ovr = 57
+  pot = 64
+  valor = 1300000
+  partidas = 2
+  minutos = 180
+  gols = 1
+  id_fonte = "941067"
+
+  [[clubes.jogadores]]
+  nome = "Ichem Ferrah"
+  pos = "WG"
+  idade = 20
+  ovr = 55
+  pot = 66
+  valor = 2000000
+  partidas = 1
+  minutos = 106
+  id_fonte = "1083024"
+
+  [[clubes.jogadores]]
+  nome = "Mateus Lusuardi"
+  pos = "CB"
+  idade = 22
+  ovr = 54
+  pot = 64
+  valor = 700000
+  partidas = 2
+  minutos = 199
+  id_fonte = "1159022"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Denoon"
+  pos = "CB"
+  idade = 22
+  ovr = 53
+  pot = 62
+  valor = 500000
+  partidas = 2
+  minutos = 40
+  id_fonte = "692187"
+
+  [[clubes.jogadores]]
+  nome = "Elia Giani"
+  pos = "FW"
+  idade = 25
+  ovr = 52
+  pot = 54
+  valor = 150000
+  id_fonte = "465988"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Primasso"
+  pos = "CB"
+  idade = 20
+  ovr = 49
+  pot = 59
+  valor = 300000
+  partidas = 2
+  minutos = 161
+  id_fonte = "1178016"
+
+  [[clubes.jogadores]]
+  nome = "Louis Buffon"
+  pos = "FW"
+  idade = 18
+  ovr = 44
+  pot = 62
+  valor = 800000
+  partidas = 1
+  minutos = 51
+  id_fonte = "1191069"
+
+  [[clubes.jogadores]]
+  nome = "Jacopo Frosali"
+  pos = "DM"
+  idade = 19
+  ovr = 40
+  pot = 55
+  valor = 150000
+  id_fonte = "934761"
+
+[[clubes]]
+nome = "Palermo"
+forca = 66.8
+valor_elenco = 51780000
+cores = ["#F6ADBD", "#000109"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Strefezza"
+  pos = "WG"
+  idade = 29
+  ovr = 71
+  pot = 71
+  valor = 6500000
+  partidas = 2
+  minutos = 179
+  gols = 2
+  id_fonte = "457673"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Perin"
+  pos = "GK"
+  idade = 33
+  ovr = 70
+  pot = 70
+  valor = 2000000
+  partidas = 2
+  minutos = 180
+  id_fonte = "110923"
+
+  [[clubes.jogadores]]
+  nome = "Joel Pohjanpalo"
+  pos = "FW"
+  idade = 32
+  ovr = 68
+  pot = 68
+  valor = 3500000
+  partidas = 5
+  minutos = 484
+  gols = 4
+  id_fonte = "173491"
+
+  [[clubes.jogadores]]
+  nome = "Niccolò Pierozzi"
+  pos = "FB"
+  idade = 25
+  ovr = 68
+  pot = 69
+  valor = 4000000
+  partidas = 3
+  minutos = 269
+  gols = 5
+  id_fonte = "534084"
+
+  [[clubes.jogadores]]
+  nome = "Filippo Ranocchia"
+  pos = "MF"
+  idade = 25
+  ovr = 67
+  pot = 68
+  valor = 4000000
+  partidas = 5
+  minutos = 439
+  gols = 1
+  id_fonte = "489611"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Bani"
+  pos = "CB"
+  idade = 32
+  ovr = 66
+  pot = 66
+  valor = 1400000
+  partidas = 4
+  minutos = 405
+  gols = 3
+  id_fonte = "176139"
+
+  [[clubes.jogadores]]
+  nome = "Antonio Palumbo"
+  pos = "AM"
+  idade = 30
+  ovr = 65
+  pot = 65
+  valor = 2300000
+  partidas = 4
+  minutos = 331
+  gols = 2
+  id_fonte = "287863"
+
+  [[clubes.jogadores]]
+  nome = "Jacopo Segre"
+  pos = "MF"
+  idade = 29
+  ovr = 65
+  pot = 65
+  valor = 2200000
+  partidas = 6
+  minutos = 512
+  gols = 4
+  id_fonte = "373899"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Fortin"
+  pos = "GK"
+  idade = 23
+  ovr = 65
+  pot = 67
+  valor = 2200000
+  partidas = 5
+  minutos = 445
+  id_fonte = "918811"
+
+  [[clubes.jogadores]]
+  nome = "Pietro Ceccaroni"
+  pos = "CB"
+  idade = 30
+  ovr = 65
+  pot = 65
+  valor = 1500000
+  partidas = 5
+  minutos = 450
+  gols = 3
+  id_fonte = "239099"
+
+  [[clubes.jogadores]]
+  nome = "Dennis Johnsen"
+  pos = "WG"
+  idade = 28
+  ovr = 64
+  pot = 64
+  valor = 2500000
+  partidas = 5
+  minutos = 463
+  gols = 4
+  id_fonte = "406042"
+
+  [[clubes.jogadores]]
+  nome = "Nahuel Estévez"
+  pos = "DM"
+  idade = 30
+  ovr = 64
+  pot = 64
+  valor = 1400000
+  partidas = 3
+  minutos = 232
+  id_fonte = "552472"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Augello"
+  pos = "FB"
+  idade = 32
+  ovr = 64
+  pot = 64
+  valor = 1200000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "284595"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Cassandro"
+  pos = "CB"
+  idade = 26
+  ovr = 64
+  pot = 65
+  valor = 2000000
+  partidas = 4
+  minutos = 344
+  id_fonte = "412649"
+
+  [[clubes.jogadores]]
+  nome = "Giangiacomo Magnani"
+  pos = "CB"
+  idade = 30
+  ovr = 63
+  pot = 63
+  valor = 1200000
+  partidas = 1
+  minutos = 106
+  id_fonte = "310458"
+
+  [[clubes.jogadores]]
+  nome = "Hernani"
+  pos = "MF"
+  idade = 32
+  ovr = 63
+  pot = 63
+  valor = 1200000
+  partidas = 3
+  minutos = 275
+  id_fonte = "181768"
+
+  [[clubes.jogadores]]
+  nome = "Patryk Peda"
+  pos = "CB"
+  idade = 24
+  ovr = 63
+  pot = 65
+  valor = 2000000
+  partidas = 2
+  minutos = 136
+  gols = 1
+  id_fonte = "555113"
+
+  [[clubes.jogadores]]
+  nome = "Dominic Vavassori"
+  pos = "FW"
+  idade = 20
+  ovr = 62
+  pot = 65
+  valor = 3500000
+  partidas = 6
+  minutos = 523
+  gols = 3
+  id_fonte = "936739"
+
+  [[clubes.jogadores]]
+  nome = "Jesse Joronen"
+  pos = "GK"
+  idade = 33
+  ovr = 62
+  pot = 62
+  valor = 500000
+  partidas = 1
+  minutos = 5
+  id_fonte = "131758"
+
+  [[clubes.jogadores]]
+  nome = "Luca Mazzitelli"
+  pos = "MF"
+  idade = 30
+  ovr = 62
+  pot = 62
+  valor = 1200000
+  id_fonte = "226025"
+
+  [[clubes.jogadores]]
+  nome = "Claudio Gomes"
+  pos = "DM"
+  idade = 26
+  ovr = 61
+  pot = 63
+  valor = 1500000
+  partidas = 1
+  minutos = 101
+  gols = 1
+  id_fonte = "395239"
+
+  [[clubes.jogadores]]
+  nome = "Emmanuel Gyasi"
+  pos = "AM"
+  idade = 32
+  ovr = 60
+  pot = 60
+  valor = 800000
+  partidas = 1
+  minutos = 95
+  id_fonte = "241076"
+
+  [[clubes.jogadores]]
+  nome = "Federico Barba"
+  pos = "CB"
+  idade = 33
+  ovr = 60
+  pot = 60
+  valor = 500000
+  partidas = 2
+  minutos = 180
+  id_fonte = "165873"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Bozzolan"
+  pos = "FB"
+  idade = 22
+  ovr = 56
+  pot = 65
+  valor = 2200000
+  partidas = 1
+  minutos = 90
+  id_fonte = "669793"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Gabrielloni"
+  pos = "FW"
+  idade = 32
+  ovr = 55
+  pot = 55
+  valor = 400000
+  partidas = 1
+  minutos = 96
+  id_fonte = "311333"
+
+  [[clubes.jogadores]]
+  nome = "Manfredi Nespola"
+  pos = "GK"
+  idade = 21
+  ovr = 40
+  pot = 52
+  valor = 75000
+  id_fonte = "1153389"
+
+[[clubes]]
+nome = "US Cremonese"
+forca = 66.5
+valor_elenco = 49750000
+cores = ["#BC1C21", "#666778"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Federico Baschirotto"
+  pos = "CB"
+  idade = 30
+  ovr = 70
+  pot = 70
+  valor = 3500000
+  partidas = 1
+  minutos = 114
+  gols = 2
+  id_fonte = "351955"
+
+  [[clubes.jogadores]]
+  nome = "Sebastiano Luperto"
+  pos = "CB"
+  idade = 30
+  ovr = 70
+  pot = 70
+  valor = 4000000
+  partidas = 5
+  minutos = 487
+  id_fonte = "278531"
+
+  [[clubes.jogadores]]
+  nome = "Jari Vandeputte"
+  pos = "MF"
+  idade = 30
+  ovr = 68
+  pot = 68
+  valor = 3000000
+  partidas = 5
+  minutos = 450
+  gols = 1
+  id_fonte = "258827"
+
+  [[clubes.jogadores]]
+  nome = "Morten Thorsby"
+  pos = "MF"
+  idade = 30
+  ovr = 68
+  pot = 68
+  valor = 2800000
+  partidas = 1
+  minutos = 108
+  gols = 1
+  id_fonte = "226524"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Vogliacco"
+  pos = "CB"
+  idade = 28
+  ovr = 67
+  pot = 67
+  valor = 2500000
+  partidas = 6
+  minutos = 514
+  id_fonte = "330208"
+
+  [[clubes.jogadores]]
+  nome = "Federico Bonazzoli"
+  pos = "FW"
+  idade = 29
+  ovr = 66
+  pot = 66
+  valor = 2500000
+  partidas = 5
+  minutos = 442
+  gols = 3
+  id_fonte = "241527"
+
+  [[clubes.jogadores]]
+  nome = "Giuseppe Pezzella"
+  pos = "FB"
+  idade = 28
+  ovr = 66
+  pot = 66
+  valor = 2000000
+  partidas = 2
+  minutos = 225
+  id_fonte = "336960"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Barbieri"
+  pos = "FB"
+  idade = 24
+  ovr = 66
+  pot = 69
+  valor = 3800000
+  partidas = 19
+  minutos = 1704
+  id_fonte = "569939"
+
+  [[clubes.jogadores]]
+  nome = "Alberto Grassi"
+  pos = "DM"
+  idade = 31
+  ovr = 65
+  pot = 65
+  valor = 1400000
+  partidas = 2
+  minutos = 162
+  id_fonte = "197473"
+
+  [[clubes.jogadores]]
+  nome = "Michele Collocolo"
+  pos = "MF"
+  idade = 26
+  ovr = 65
+  pot = 66
+  valor = 2400000
+  partidas = 2
+  minutos = 177
+  gols = 1
+  id_fonte = "434551"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Berti"
+  pos = "AM"
+  idade = 22
+  ovr = 65
+  pot = 69
+  valor = 5500000
+  partidas = 4
+  minutos = 382
+  gols = 1
+  id_fonte = "908768"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Fulignati"
+  pos = "GK"
+  idade = 31
+  ovr = 64
+  pot = 64
+  valor = 750000
+  partidas = 2
+  minutos = 180
+  id_fonte = "231381"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Bianchetti"
+  pos = "CB"
+  idade = 33
+  ovr = 64
+  pot = 64
+  valor = 800000
+  partidas = 6
+  minutos = 552
+  id_fonte = "160986"
+
+  [[clubes.jogadores]]
+  nome = "Milan Djuric"
+  pos = "FW"
+  idade = 36
+  ovr = 64
+  pot = 64
+  valor = 1000000
+  partidas = 2
+  minutos = 19
+  id_fonte = "67556"
+
+  [[clubes.jogadores]]
+  nome = "Salvatore Elia"
+  pos = "AM"
+  idade = 27
+  ovr = 64
+  pot = 65
+  valor = 2200000
+  partidas = 2
+  minutos = 187
+  id_fonte = "392963"
+
+  [[clubes.jogadores]]
+  nome = "Fabio Gerli"
+  pos = "DM"
+  idade = 29
+  ovr = 63
+  pot = 63
+  valor = 1000000
+  partidas = 6
+  minutos = 514
+  id_fonte = "330288"
+
+  [[clubes.jogadores]]
+  nome = "Simone Pontisso"
+  pos = "MF"
+  idade = 29
+  ovr = 63
+  pot = 63
+  valor = 1200000
+  partidas = 5
+  minutos = 421
+  id_fonte = "292422"
+
+  [[clubes.jogadores]]
+  nome = "Manuel De Luca"
+  pos = "FW"
+  idade = 28
+  ovr = 62
+  pot = 62
+  valor = 1300000
+  partidas = 3
+  minutos = 231
+  gols = 1
+  id_fonte = "375816"
+
+  [[clubes.jogadores]]
+  nome = "Marco Festa"
+  pos = "GK"
+  idade = 34
+  ovr = 60
+  pot = 60
+  valor = 200000
+  id_fonte = "257660"
+
+  [[clubes.jogadores]]
+  nome = "Marco Nasti"
+  pos = "FW"
+  idade = 23
+  ovr = 56
+  pot = 62
+  valor = 1400000
+  partidas = 2
+  minutos = 205
+  id_fonte = "629016"
+
+  [[clubes.jogadores]]
+  nome = "Yuri Rocchetti"
+  pos = "FB"
+  idade = 23
+  ovr = 56
+  pot = 61
+  valor = 700000
+  partidas = 3
+  minutos = 235
+  id_fonte = "667627"
+
+  [[clubes.jogadores]]
+  nome = "Adin Licina"
+  pos = "WG"
+  idade = 19
+  ovr = 55
+  pot = 63
+  valor = 1800000
+  partidas = 3
+  minutos = 309
+  gols = 2
+  id_fonte = "960943"
+
+  [[clubes.jogadores]]
+  nome = "Fellipe Jack"
+  pos = "CB"
+  idade = 20
+  ovr = 55
+  pot = 67
+  valor = 2500000
+  partidas = 1
+  minutos = 109
+  id_fonte = "1004723"
+
+  [[clubes.jogadores]]
+  nome = "Federico Agazzi"
+  pos = "GK"
+  idade = 21
+  ovr = 54
+  pot = 57
+  valor = 275000
+  partidas = 5
+  minutos = 450
+  id_fonte = "729536"
+
+  [[clubes.jogadores]]
+  nome = "Dachi Lordkipanidze"
+  pos = "MF"
+  idade = 21
+  ovr = 47
+  pot = 58
+  valor = 450000
+  partidas = 1
+  minutos = 53
+  id_fonte = "894456"
+
+  [[clubes.jogadores]]
+  nome = "David Stückler"
+  pos = "FW"
+  idade = 21
+  ovr = 46
+  pot = 57
+  valor = 500000
+  partidas = 1
+  minutos = 54
+  gols = 1
+  id_fonte = "896362"
+
+  [[clubes.jogadores]]
+  nome = "Simone Lottici Tessadri"
+  pos = "DM"
+  idade = 20
+  ovr = 45
+  pot = 54
+  valor = 200000
+  partidas = 2
+  minutos = 206
+  gols = 1
+  id_fonte = "897651"
+
+  [[clubes.jogadores]]
+  nome = "Adrian Lickūnas"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 51
+  valor = 75000
+  partidas = 1
+  minutos = 90
+  id_fonte = "819369"
+
+[[clubes]]
+nome = "Hellas Verona"
+forca = 66.2
+valor_elenco = 47830000
+cores = ["#FFCC0F", "#141414"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Andrias Edmundsson"
+  pos = "CB"
+  idade = 25
+  ovr = 68
+  pot = 69
+  valor = 3000000
+  partidas = 7
+  minutos = 620
+  id_fonte = "495839"
+
+  [[clubes.jogadores]]
+  nome = "Antoine Bernede"
+  pos = "MF"
+  idade = 27
+  ovr = 68
+  pot = 69
+  valor = 3500000
+  partidas = 4
+  minutos = 349
+  gols = 1
+  id_fonte = "395512"
+
+  [[clubes.jogadores]]
+  nome = "Gabriele Zappa"
+  pos = "FB"
+  idade = 26
+  ovr = 68
+  pot = 69
+  valor = 3000000
+  partidas = 4
+  minutos = 370
+  gols = 1
+  id_fonte = "392569"
+
+  [[clubes.jogadores]]
+  nome = "Martin Frese"
+  pos = "FB"
+  idade = 28
+  ovr = 68
+  pot = 68
+  valor = 2500000
+  partidas = 28
+  minutos = 2503
+  gols = 2
+  id_fonte = "488785"
+
+  [[clubes.jogadores]]
+  nome = "Suat Serdar"
+  pos = "MF"
+  idade = 29
+  ovr = 68
+  pot = 68
+  valor = 2800000
+  partidas = 13
+  minutos = 1199
+  gols = 2
+  id_fonte = "261905"
+
+  [[clubes.jogadores]]
+  nome = "Nicola Leali"
+  pos = "GK"
+  idade = 33
+  ovr = 67
+  pot = 67
+  valor = 1000000
+  partidas = 6
+  minutos = 540
+  id_fonte = "136111"
+
+  [[clubes.jogadores]]
+  nome = "Abdou Harroui"
+  pos = "MF"
+  idade = 28
+  ovr = 65
+  pot = 65
+  valor = 1600000
+  partidas = 4
+  minutos = 323
+  gols = 1
+  id_fonte = "416386"
+
+  [[clubes.jogadores]]
+  nome = "Amin Sarr"
+  pos = "FW"
+  idade = 25
+  ovr = 64
+  pot = 65
+  valor = 2400000
+  partidas = 6
+  minutos = 510
+  gols = 3
+  id_fonte = "748382"
+
+  [[clubes.jogadores]]
+  nome = "Caleb Ekuban"
+  pos = "FW"
+  idade = 32
+  ovr = 64
+  pot = 64
+  valor = 1200000
+  id_fonte = "199953"
+
+  [[clubes.jogadores]]
+  nome = "Domagoj Bradarić"
+  pos = "FB"
+  idade = 26
+  ovr = 64
+  pot = 65
+  valor = 1500000
+  partidas = 5
+  minutos = 441
+  gols = 1
+  id_fonte = "357796"
+
+  [[clubes.jogadores]]
+  nome = "Grigoris Kastanos"
+  pos = "MF"
+  idade = 28
+  ovr = 64
+  pot = 64
+  valor = 1300000
+  partidas = 3
+  minutos = 312
+  id_fonte = "298635"
+
+  [[clubes.jogadores]]
+  nome = "Samuele Mulattieri"
+  pos = "FW"
+  idade = 25
+  ovr = 63
+  pot = 64
+  valor = 2000000
+  partidas = 5
+  minutos = 475
+  gols = 3
+  id_fonte = "457422"
+
+  [[clubes.jogadores]]
+  nome = "Tomas Suslov"
+  pos = "AM"
+  idade = 24
+  ovr = 63
+  pot = 68
+  valor = 4000000
+  partidas = 1
+  minutos = 119
+  id_fonte = "540333"
+
+  [[clubes.jogadores]]
+  nome = "Andréa Le Borgne"
+  pos = "DM"
+  idade = 20
+  ovr = 62
+  pot = 67
+  valor = 2500000
+  partidas = 5
+  minutos = 417
+  id_fonte = "1204163"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Mosquera"
+  pos = "FW"
+  idade = 26
+  ovr = 62
+  pot = 64
+  valor = 1800000
+  partidas = 1
+  minutos = 22
+  gols = 2
+  id_fonte = "651569"
+
+  [[clubes.jogadores]]
+  nome = "Paweł Dawidowicz"
+  pos = "CB"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 500000
+  partidas = 2
+  minutos = 149
+  id_fonte = "248732"
+
+  [[clubes.jogadores]]
+  nome = "Seid Korac"
+  pos = "CB"
+  idade = 24
+  ovr = 61
+  pot = 64
+  valor = 1300000
+  partidas = 4
+  minutos = 325
+  id_fonte = "490573"
+
+  [[clubes.jogadores]]
+  nome = "Simone Perilli"
+  pos = "GK"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 400000
+  partidas = 1
+  minutos = 90
+  id_fonte = "240675"
+
+  [[clubes.jogadores]]
+  nome = "Edoardo Iannoni"
+  pos = "MF"
+  idade = 25
+  ovr = 58
+  pot = 61
+  valor = 800000
+  partidas = 3
+  minutos = 235
+  gols = 1
+  id_fonte = "700053"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Compagnon"
+  pos = "WG"
+  idade = 24
+  ovr = 58
+  pot = 61
+  valor = 1000000
+  partidas = 4
+  minutos = 316
+  gols = 1
+  id_fonte = "537509"
+
+  [[clubes.jogadores]]
+  nome = "Nunzio Lella"
+  pos = "MF"
+  idade = 26
+  ovr = 58
+  pot = 59
+  valor = 600000
+  partidas = 2
+  minutos = 165
+  id_fonte = "459945"
+
+  [[clubes.jogadores]]
+  nome = "Tobias Slotsager"
+  pos = "CB"
+  idade = 20
+  ovr = 58
+  pot = 68
+  valor = 3000000
+  partidas = 2
+  minutos = 166
+  id_fonte = "851385"
+
+  [[clubes.jogadores]]
+  nome = "Dailon Livramento"
+  pos = "FW"
+  idade = 25
+  ovr = 57
+  pot = 59
+  valor = 800000
+  partidas = 4
+  minutos = 334
+  id_fonte = "676411"
+
+  [[clubes.jogadores]]
+  nome = "Nicolò Calabrese"
+  pos = "CB"
+  idade = 21
+  ovr = 56
+  pot = 66
+  valor = 2000000
+  partidas = 1
+  minutos = 102
+  id_fonte = "815529"
+
+  [[clubes.jogadores]]
+  nome = "Kacper Sezonienko"
+  pos = "WG"
+  idade = 23
+  ovr = 51
+  pot = 58
+  valor = 600000
+  partidas = 1
+  minutos = 115
+  id_fonte = "699585"
+
+  [[clubes.jogadores]]
+  nome = "Fallou Cham"
+  pos = "FB"
+  idade = 20
+  ovr = 50
+  pot = 62
+  valor = 1000000
+  partidas = 1
+  minutos = 29
+  id_fonte = "1315458"
+
+  [[clubes.jogadores]]
+  nome = "Leorat Bega"
+  pos = "DM"
+  idade = 23
+  ovr = 48
+  pot = 56
+  valor = 300000
+  partidas = 2
+  minutos = 26
+  id_fonte = "708436"
+
+  [[clubes.jogadores]]
+  nome = "Davide De Battisti"
+  pos = "FB"
+  idade = 20
+  ovr = 44
+  pot = 55
+  valor = 250000
+  partidas = 2
+  minutos = 136
+  id_fonte = "986234"
+
+  [[clubes.jogadores]]
+  nome = "Giacomo Toniolo"
+  pos = "GK"
+  idade = 22
+  ovr = 41
+  pot = 51
+  valor = 75000
+  id_fonte = "709986"
+
+  [[clubes.jogadores]]
+  nome = "Noé Maël Tagne"
+  pos = "CB"
+  idade = 18
+  ovr = 41
+  pot = 59
+  valor = 500000
+  partidas = 1
+  minutos = 9
+  id_fonte = "1310290"
+
+  [[clubes.jogadores]]
+  nome = "Ruben Akalé"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 54
+  valor = 300000
+  id_fonte = "1185449"
+
+  [[clubes.jogadores]]
+  nome = "Salvatore Cerbone"
+  pos = "WG"
+  idade = 18
+  ovr = 40
+  pot = 54
+  valor = 300000
+  partidas = 1
+  minutos = 86
+  gols = 2
+  id_fonte = "1337321"
+
+[[clubes]]
+nome = "UC Sampdoria"
+forca = 65.6
+valor_elenco = 44550000
+cores = ["#004593", "#000000"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Antoine Makoumbou"
+  pos = "DM"
+  idade = 28
+  ovr = 69
+  pot = 69
+  valor = 4000000
+  partidas = 4
+  minutos = 325
+  id_fonte = "460651"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Mbabu"
+  pos = "FB"
+  idade = 31
+  ovr = 68
+  pot = 68
+  valor = 2200000
+  partidas = 1
+  minutos = 11
+  id_fonte = "183321"
+
+  [[clubes.jogadores]]
+  nome = "Danel Sinani"
+  pos = "AM"
+  idade = 29
+  ovr = 67
+  pot = 67
+  valor = 3000000
+  partidas = 4
+  minutos = 353
+  id_fonte = "346499"
+
+  [[clubes.jogadores]]
+  nome = "Peter Vindahl"
+  pos = "GK"
+  idade = 28
+  ovr = 67
+  pot = 67
+  valor = 2000000
+  partidas = 6
+  minutos = 540
+  id_fonte = "395421"
+
+  [[clubes.jogadores]]
+  nome = "Tobias Lauritsen"
+  pos = "FW"
+  idade = 29
+  ovr = 67
+  pot = 67
+  valor = 3500000
+  partidas = 2
+  minutos = 173
+  id_fonte = "272206"
+
+  [[clubes.jogadores]]
+  nome = "Luca Ravanelli"
+  pos = "CB"
+  idade = 29
+  ovr = 66
+  pot = 66
+  valor = 1800000
+  id_fonte = "312341"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Viti"
+  pos = "CB"
+  idade = 24
+  ovr = 66
+  pot = 69
+  valor = 4000000
+  partidas = 3
+  minutos = 265
+  id_fonte = "493702"
+
+  [[clubes.jogadores]]
+  nome = "Lorenzo Insigne"
+  pos = "WG"
+  idade = 35
+  ovr = 65
+  pot = 65
+  valor = 1400000
+  partidas = 2
+  minutos = 215
+  gols = 2
+  id_fonte = "133964"
+
+  [[clubes.jogadores]]
+  nome = "Salvatore Esposito"
+  pos = "DM"
+  idade = 25
+  ovr = 65
+  pot = 67
+  valor = 3000000
+  partidas = 3
+  minutos = 250
+  id_fonte = "390160"
+
+  [[clubes.jogadores]]
+  nome = "Stefan Gartenmann"
+  pos = "CB"
+  idade = 29
+  ovr = 65
+  pot = 65
+  valor = 1500000
+  partidas = 6
+  minutos = 540
+  id_fonte = "243770"
+
+  [[clubes.jogadores]]
+  nome = "Yari Verschaeren"
+  pos = "AM"
+  idade = 25
+  ovr = 64
+  pot = 66
+  valor = 3000000
+  partidas = 3
+  minutos = 308
+  id_fonte = "502302"
+
+  [[clubes.jogadores]]
+  nome = "Filippo Delli Carri"
+  pos = "CB"
+  idade = 27
+  ovr = 63
+  pot = 64
+  valor = 1500000
+  partidas = 3
+  minutos = 270
+  id_fonte = "393904"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Di Pardo"
+  pos = "FB"
+  idade = 27
+  ovr = 61
+  pot = 61
+  valor = 1000000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "457674"
+
+  [[clubes.jogadores]]
+  nome = "Liam Henderson"
+  pos = "MF"
+  idade = 30
+  ovr = 61
+  pot = 61
+  valor = 1000000
+  partidas = 6
+  minutos = 511
+  gols = 1
+  id_fonte = "193867"
+
+  [[clubes.jogadores]]
+  nome = "Fabio Depaoli"
+  pos = "FB"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 750000
+  partidas = 1
+  minutos = 115
+  gols = 3
+  id_fonte = "324282"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Cicconi"
+  pos = "FB"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 750000
+  partidas = 6
+  minutos = 540
+  id_fonte = "386850"
+
+  [[clubes.jogadores]]
+  nome = "Bjorn Meijer"
+  pos = "FB"
+  idade = 23
+  ovr = 59
+  pot = 67
+  valor = 3000000
+  partidas = 1
+  minutos = 29
+  id_fonte = "594227"
+
+  [[clubes.jogadores]]
+  nome = "Yann Karamoh"
+  pos = "WG"
+  idade = 28
+  ovr = 59
+  pot = 59
+  valor = 1000000
+  partidas = 1
+  minutos = 18
+  id_fonte = "324804"
+
+  [[clubes.jogadores]]
+  nome = "Gennaro Tutino"
+  pos = "FW"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 750000
+  partidas = 4
+  minutos = 364
+  gols = 1
+  id_fonte = "202979"
+
+  [[clubes.jogadores]]
+  nome = "Oliver Abildgaard"
+  pos = "DM"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 1
+  minutos = 129
+  gols = 1
+  id_fonte = "325993"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Conti"
+  pos = "MF"
+  idade = 21
+  ovr = 57
+  pot = 63
+  valor = 2000000
+  partidas = 17
+  minutos = 1497
+  gols = 2
+  id_fonte = "823560"
+
+  [[clubes.jogadores]]
+  nome = "Alex Ferrari"
+  pos = "CB"
+  idade = 32
+  ovr = 56
+  pot = 56
+  valor = 250000
+  partidas = 1
+  minutos = 5
+  id_fonte = "197491"
+
+  [[clubes.jogadores]]
+  nome = "Tjas Begic"
+  pos = "WG"
+  idade = 23
+  ovr = 56
+  pot = 61
+  valor = 1500000
+  partidas = 2
+  minutos = 189
+  gols = 1
+  id_fonte = "708186"
+
+  [[clubes.jogadores]]
+  nome = "Samuele Massolo"
+  pos = "GK"
+  idade = 30
+  ovr = 53
+  pot = 53
+  valor = 150000
+  id_fonte = "242537"
+
+  [[clubes.jogadores]]
+  nome = "Nikola Sekulov"
+  pos = "AM"
+  idade = 24
+  ovr = 50
+  pot = 54
+  valor = 400000
+  partidas = 1
+  minutos = 45
+  id_fonte = "542336"
+
+  [[clubes.jogadores]]
+  nome = "Andrey Krastev"
+  pos = "GK"
+  idade = 18
+  ovr = 40
+  pot = 53
+  valor = 200000
+  id_fonte = "1312295"
+
+  [[clubes.jogadores]]
+  nome = "Karim Diop"
+  pos = "CB"
+  idade = 17
+  ovr = 40
+  pot = 55
+  valor = 400000
+  id_fonte = "1234785"
+
+[[clubes]]
+nome = "Modena"
+forca = 62.7
+valor_elenco = 30300000
+cores = ["#FEEB00", "#000049"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Tonoli"
+  pos = "CB"
+  idade = 24
+  ovr = 68
+  pot = 70
+  valor = 4000000
+  partidas = 6
+  minutos = 540
+  gols = 5
+  id_fonte = "665057"
+
+  [[clubes.jogadores]]
+  nome = "Bryant Nieling"
+  pos = "CB"
+  idade = 23
+  ovr = 67
+  pot = 69
+  valor = 3500000
+  partidas = 6
+  minutos = 540
+  gols = 2
+  id_fonte = "698082"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Bianco"
+  pos = "MF"
+  idade = 23
+  ovr = 66
+  pot = 68
+  valor = 4000000
+  partidas = 5
+  minutos = 463
+  id_fonte = "602124"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Belotti"
+  pos = "FW"
+  idade = 32
+  ovr = 65
+  pot = 65
+  valor = 1500000
+  partidas = 1
+  minutos = 57
+  gols = 1
+  id_fonte = "167727"
+
+  [[clubes.jogadores]]
+  nome = "Simone Santoro"
+  pos = "MF"
+  idade = 27
+  ovr = 65
+  pot = 65
+  valor = 1800000
+  partidas = 4
+  minutos = 386
+  gols = 1
+  id_fonte = "392515"
+
+  [[clubes.jogadores]]
+  nome = "Gastón Brugman"
+  pos = "DM"
+  idade = 34
+  ovr = 64
+  pot = 64
+  valor = 750000
+  partidas = 5
+  minutos = 454
+  id_fonte = "131109"
+
+  [[clubes.jogadores]]
+  nome = "Giuseppe Ambrosino"
+  pos = "FW"
+  idade = 23
+  ovr = 63
+  pot = 64
+  valor = 2200000
+  partidas = 6
+  minutos = 514
+  gols = 4
+  id_fonte = "707295"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Zampano"
+  pos = "AM"
+  idade = 32
+  ovr = 62
+  pot = 62
+  valor = 800000
+  partidas = 5
+  minutos = 479
+  gols = 4
+  id_fonte = "216872"
+
+  [[clubes.jogadores]]
+  nome = "Giuseppe Caso"
+  pos = "AM"
+  idade = 27
+  ovr = 62
+  pot = 62
+  valor = 1200000
+  partidas = 5
+  minutos = 464
+  gols = 2
+  id_fonte = "398030"
+
+  [[clubes.jogadores]]
+  nome = "Paulo Azzi"
+  pos = "AM"
+  idade = 32
+  ovr = 62
+  pot = 62
+  valor = 800000
+  partidas = 2
+  minutos = 181
+  id_fonte = "310527"
+
+  [[clubes.jogadores]]
+  nome = "Davide Adorni"
+  pos = "CB"
+  idade = 34
+  ovr = 61
+  pot = 61
+  valor = 350000
+  partidas = 26
+  minutos = 2364
+  gols = 1
+  id_fonte = "163212"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Sersanti"
+  pos = "MF"
+  idade = 24
+  ovr = 60
+  pot = 64
+  valor = 1800000
+  partidas = 12
+  minutos = 1087
+  gols = 2
+  id_fonte = "657550"
+
+  [[clubes.jogadores]]
+  nome = "Leandro Chichizola"
+  pos = "GK"
+  idade = 36
+  ovr = 60
+  pot = 60
+  valor = 225000
+  partidas = 6
+  minutos = 540
+  id_fonte = "95736"
+
+  [[clubes.jogadores]]
+  nome = "Steven Nador"
+  pos = "CB"
+  idade = 24
+  ovr = 60
+  pot = 61
+  valor = 750000
+  partidas = 6
+  minutos = 536
+  id_fonte = "707219"
+
+  [[clubes.jogadores]]
+  nome = "Giacomo Olzer"
+  pos = "AM"
+  idade = 25
+  ovr = 57
+  pot = 59
+  valor = 600000
+  partidas = 4
+  minutos = 371
+  gols = 2
+  id_fonte = "539132"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Folino"
+  pos = "CB"
+  idade = 24
+  ovr = 56
+  pot = 61
+  valor = 800000
+  partidas = 2
+  minutos = 11
+  id_fonte = "603675"
+
+  [[clubes.jogadores]]
+  nome = "Kleis Bozhanaj"
+  pos = "AM"
+  idade = 25
+  ovr = 51
+  pot = 55
+  valor = 300000
+  partidas = 3
+  minutos = 16
+  id_fonte = "221421"
+
+  [[clubes.jogadores]]
+  nome = "Abdullah Laidani"
+  pos = "GK"
+  idade = 23
+  ovr = 50
+  pot = 58
+  valor = 300000
+  id_fonte = "618674"
+
+  [[clubes.jogadores]]
+  nome = "Daniele Montevago"
+  pos = "FW"
+  idade = 23
+  ovr = 50
+  pot = 58
+  valor = 600000
+  partidas = 4
+  minutos = 21
+  id_fonte = "678441"
+
+  [[clubes.jogadores]]
+  nome = "Stênio"
+  pos = "WG"
+  idade = 23
+  ovr = 50
+  pot = 58
+  valor = 600000
+  partidas = 1
+  minutos = 50
+  id_fonte = "796574"
+
+  [[clubes.jogadores]]
+  nome = "Antonio Imputato"
+  pos = "AM"
+  idade = 22
+  ovr = 47
+  pot = 54
+  valor = 250000
+  partidas = 2
+  minutos = 193
+  id_fonte = "976145"
+
+  [[clubes.jogadores]]
+  nome = "Diego Ronco"
+  pos = "CB"
+  idade = 21
+  ovr = 42
+  pot = 54
+  valor = 200000
+  id_fonte = "929771"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Consiglio"
+  pos = "GK"
+  idade = 20
+  ovr = 42
+  pot = 56
+  valor = 225000
+  id_fonte = "999404"
+
+  [[clubes.jogadores]]
+  nome = "Luca Bacchin"
+  pos = "FW"
+  idade = 22
+  ovr = 42
+  pot = 52
+  valor = 200000
+  partidas = 2
+  minutos = 28
+  id_fonte = "660878"
+
+  [[clubes.jogadores]]
+  nome = "Joris Manquant"
+  pos = "FW"
+  idade = 20
+  ovr = 41
+  pot = 55
+  valor = 400000
+  id_fonte = "1004950"
+
+  [[clubes.jogadores]]
+  nome = "Pietro Arnaboldi"
+  pos = "DM"
+  idade = 18
+  ovr = 41
+  pot = 58
+  valor = 500000
+  partidas = 1
+  minutos = 90
+  id_fonte = "1301529"
+
+  [[clubes.jogadores]]
+  nome = "Wisdom Acquah"
+  pos = "DM"
+  idade = 19
+  ovr = 41
+  pot = 57
+  valor = 400000
+  partidas = 3
+  minutos = 20
+  id_fonte = "1056746"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Maran"
+  pos = "GK"
+  idade = 18
+  ovr = 40
+  pot = 52
+  valor = 100000
+  id_fonte = "1193344"
+
+  [[clubes.jogadores]]
+  nome = "Martino Odero"
+  pos = "FB"
+  idade = 19
+  ovr = 40
+  pot = 54
+  valor = 200000
+  id_fonte = "1058344"
+
+  [[clubes.jogadores]]
+  nome = "Tito Fabbri"
+  pos = "AM"
+  idade = 17
+  ovr = 40
+  pot = 59
+  valor = 800000
+  partidas = 1
+  minutos = 17
+  id_fonte = "1336583"
+
+  [[clubes.jogadores]]
+  nome = "Treasure Egharevba"
+  pos = "AM"
+  idade = 18
+  ovr = 40
+  pot = 51
+  valor = 150000
+  id_fonte = "1300468"
+
+[[clubes]]
+nome = "US Avellino 1912"
+forca = 62.3
+valor_elenco = 28750000
+cores = ["#017A2B", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Martinelli"
+  pos = "GK"
+  idade = 20
+  ovr = 68
+  pot = 71
+  valor = 5000000
+  partidas = 6
+  minutos = 540
+  id_fonte = "934159"
+
+  [[clubes.jogadores]]
+  nome = "Armando Izzo"
+  pos = "CB"
+  idade = 34
+  ovr = 66
+  pot = 66
+  valor = 1000000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "32113"
+
+  [[clubes.jogadores]]
+  nome = "Walid Cheddira"
+  pos = "FW"
+  idade = 28
+  ovr = 64
+  pot = 64
+  valor = 2000000
+  partidas = 2
+  minutos = 210
+  gols = 1
+  id_fonte = "521407"
+
+  [[clubes.jogadores]]
+  nome = "Filippo Missori"
+  pos = "FB"
+  idade = 22
+  ovr = 63
+  pot = 65
+  valor = 2000000
+  partidas = 2
+  minutos = 209
+  gols = 2
+  id_fonte = "650993"
+
+  [[clubes.jogadores]]
+  nome = "Lorenco Simic"
+  pos = "CB"
+  idade = 30
+  ovr = 62
+  pot = 62
+  valor = 700000
+  partidas = 3
+  minutos = 298
+  gols = 3
+  id_fonte = "226093"
+
+  [[clubes.jogadores]]
+  nome = "Brando Moruzzi"
+  pos = "FB"
+  idade = 22
+  ovr = 61
+  pot = 63
+  valor = 1300000
+  partidas = 5
+  minutos = 465
+  gols = 1
+  id_fonte = "900630"
+
+  [[clubes.jogadores]]
+  nome = "Dimitrios Sounas"
+  pos = "DM"
+  idade = 32
+  ovr = 61
+  pot = 61
+  valor = 500000
+  partidas = 1
+  minutos = 134
+  gols = 1
+  id_fonte = "234137"
+
+  [[clubes.jogadores]]
+  nome = "Martin Palumbo"
+  pos = "AM"
+  idade = 24
+  ovr = 61
+  pot = 63
+  valor = 1500000
+  partidas = 5
+  minutos = 475
+  gols = 4
+  id_fonte = "617170"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Biasci"
+  pos = "FW"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 700000
+  partidas = 2
+  minutos = 164
+  gols = 12
+  id_fonte = "240129"
+
+  [[clubes.jogadores]]
+  nome = "Antony Iannarilli"
+  pos = "GK"
+  idade = 35
+  ovr = 60
+  pot = 60
+  valor = 200000
+  partidas = 15
+  minutos = 1350
+  gols = 1
+  id_fonte = "73929"
+
+  [[clubes.jogadores]]
+  nome = "Luca Palmiero"
+  pos = "DM"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 500000
+  partidas = 2
+  minutos = 213
+  id_fonte = "240357"
+
+  [[clubes.jogadores]]
+  nome = "Michele Besaggio"
+  pos = "MF"
+  idade = 24
+  ovr = 60
+  pot = 62
+  valor = 1000000
+  partidas = 5
+  minutos = 461
+  gols = 2
+  id_fonte = "616031"
+
+  [[clubes.jogadores]]
+  nome = "Giacomo Faticanti"
+  pos = "DM"
+  idade = 22
+  ovr = 59
+  pot = 69
+  valor = 4500000
+  partidas = 1
+  minutos = 7
+  id_fonte = "651002"
+
+  [[clubes.jogadores]]
+  nome = "Patrick Enrici"
+  pos = "CB"
+  idade = 25
+  ovr = 59
+  pot = 61
+  valor = 600000
+  partidas = 4
+  minutos = 350
+  gols = 2
+  id_fonte = "487633"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Cancellotti"
+  pos = "FB"
+  idade = 34
+  ovr = 59
+  pot = 59
+  valor = 225000
+  partidas = 4
+  minutos = 331
+  gols = 1
+  id_fonte = "167879"
+
+  [[clubes.jogadores]]
+  nome = "Emanuele Adamo"
+  pos = "AM"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 400000
+  id_fonte = "411666"
+
+  [[clubes.jogadores]]
+  nome = "Marco Sala"
+  pos = "FB"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 400000
+  partidas = 1
+  minutos = 75
+  id_fonte = "392570"
+
+  [[clubes.jogadores]]
+  nome = "Michael Venturi"
+  pos = "CB"
+  idade = 27
+  ovr = 58
+  pot = 58
+  valor = 350000
+  partidas = 3
+  minutos = 242
+  id_fonte = "441611"
+
+  [[clubes.jogadores]]
+  nome = "Raffaele Russo"
+  pos = "WG"
+  idade = 27
+  ovr = 58
+  pot = 58
+  valor = 450000
+  partidas = 6
+  minutos = 524
+  gols = 3
+  id_fonte = "393652"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Fila"
+  pos = "FW"
+  idade = 24
+  ovr = 57
+  pot = 63
+  valor = 1600000
+  partidas = 1
+  minutos = 67
+  id_fonte = "666268"
+
+  [[clubes.jogadores]]
+  nome = "Luca Pandolfi"
+  pos = "FW"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 1
+  minutos = 109
+  id_fonte = "438021"
+
+  [[clubes.jogadores]]
+  nome = "Luca Di Maggio"
+  pos = "MF"
+  idade = 21
+  ovr = 56
+  pot = 62
+  valor = 1200000
+  partidas = 4
+  minutos = 315
+  id_fonte = "724107"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Favilli"
+  pos = "FW"
+  idade = 29
+  ovr = 54
+  pot = 54
+  valor = 200000
+  partidas = 2
+  minutos = 196
+  gols = 1
+  id_fonte = "340151"
+
+  [[clubes.jogadores]]
+  nome = "Jacopo Sassi"
+  pos = "GK"
+  idade = 23
+  ovr = 50
+  pot = 58
+  valor = 250000
+  id_fonte = "617808"
+
+  [[clubes.jogadores]]
+  nome = "Thomas Berenbruch"
+  pos = "MF"
+  idade = 21
+  ovr = 50
+  pot = 61
+  valor = 1000000
+  partidas = 1
+  minutos = 13
+  id_fonte = "930780"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Di Bitonto"
+  pos = "CB"
+  idade = 20
+  ovr = 43
+  pot = 57
+  valor = 300000
+  id_fonte = "932763"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Di Paola"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 49
+  valor = 50000
+  id_fonte = "976828"
+
+  [[clubes.jogadores]]
+  nome = "Noah Mutanda"
+  pos = "MF"
+  idade = 21
+  ovr = 40
+  pot = 48
+  valor = 25000
+  id_fonte = "920941"
+
+  [[clubes.jogadores]]
+  nome = "Sebastiano Di Paolo"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 56
+  valor = 400000
+  partidas = 1
+  minutos = 2
+  id_fonte = "967814"
+
+[[clubes]]
+nome = "Mantova 1911"
+forca = 62.0
+valor_elenco = 27650000
+cores = ["#E8212C", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Alessio Castellini"
+  pos = "CB"
+  idade = 23
+  ovr = 66
+  pot = 68
+  valor = 2000000
+  partidas = 7
+  minutos = 616
+  id_fonte = "704283"
+
+  [[clubes.jogadores]]
+  nome = "Simone Trimboli"
+  pos = "MF"
+  idade = 24
+  ovr = 65
+  pot = 66
+  valor = 2000000
+  partidas = 3
+  minutos = 284
+  gols = 1
+  id_fonte = "487839"
+
+  [[clubes.jogadores]]
+  nome = "Rachid Kouda"
+  pos = "MF"
+  idade = 24
+  ovr = 64
+  pot = 67
+  valor = 2200000
+  partidas = 4
+  minutos = 366
+  gols = 1
+  id_fonte = "702324"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Bardi"
+  pos = "GK"
+  idade = 34
+  ovr = 62
+  pot = 62
+  valor = 300000
+  partidas = 7
+  minutos = 630
+  id_fonte = "110925"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Ruocco"
+  pos = "AM"
+  idade = 25
+  ovr = 62
+  pot = 63
+  valor = 1300000
+  partidas = 6
+  minutos = 497
+  gols = 6
+  id_fonte = "619494"
+
+  [[clubes.jogadores]]
+  nome = "Lorenzo Ignacchiti"
+  pos = "MF"
+  idade = 22
+  ovr = 62
+  pot = 64
+  valor = 1600000
+  partidas = 6
+  minutos = 503
+  id_fonte = "814445"
+
+  [[clubes.jogadores]]
+  nome = "Stefano Cella"
+  pos = "CB"
+  idade = 25
+  ovr = 62
+  pot = 63
+  valor = 1000000
+  partidas = 7
+  minutos = 630
+  gols = 2
+  id_fonte = "538937"
+
+  [[clubes.jogadores]]
+  nome = "Vanja Vlahović"
+  pos = "FW"
+  idade = 22
+  ovr = 61
+  pot = 69
+  valor = 3800000
+  partidas = 2
+  minutos = 171
+  gols = 2
+  id_fonte = "698546"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Meroni"
+  pos = "CB"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 500000
+  partidas = 1
+  minutos = 77
+  gols = 2
+  id_fonte = "337149"
+
+  [[clubes.jogadores]]
+  nome = "Davide Bragantini"
+  pos = "WG"
+  idade = 23
+  ovr = 60
+  pot = 65
+  valor = 2000000
+  partidas = 2
+  minutos = 142
+  gols = 6
+  id_fonte = "704335"
+
+  [[clubes.jogadores]]
+  nome = "Ettore Gliozzi"
+  pos = "FW"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 750000
+  partidas = 5
+  minutos = 459
+  gols = 1
+  id_fonte = "209936"
+
+  [[clubes.jogadores]]
+  nome = "Rareș Ilie"
+  pos = "AM"
+  idade = 23
+  ovr = 60
+  pot = 62
+  valor = 1200000
+  partidas = 5
+  minutos = 454
+  gols = 1
+  id_fonte = "812654"
+
+  [[clubes.jogadores]]
+  nome = "Fahem Benaïssa"
+  pos = "FB"
+  idade = 24
+  ovr = 59
+  pot = 60
+  valor = 700000
+  partidas = 7
+  minutos = 625
+  gols = 1
+  id_fonte = "805864"
+
+  [[clubes.jogadores]]
+  nome = "Nicolò Radaelli"
+  pos = "FB"
+  idade = 23
+  ovr = 59
+  pot = 63
+  valor = 1000000
+  partidas = 22
+  minutos = 1938
+  id_fonte = "627625"
+
+  [[clubes.jogadores]]
+  nome = "Luca Gemello"
+  pos = "GK"
+  idade = 26
+  ovr = 55
+  pot = 57
+  valor = 300000
+  id_fonte = "463792"
+
+  [[clubes.jogadores]]
+  nome = "Bodin Tomasevic"
+  pos = "CB"
+  idade = 20
+  ovr = 53
+  pot = 56
+  valor = 400000
+  partidas = 5
+  minutos = 468
+  id_fonte = "986324"
+
+  [[clubes.jogadores]]
+  nome = "Flavio Paoletti"
+  pos = "MF"
+  idade = 23
+  ovr = 53
+  pot = 59
+  valor = 650000
+  partidas = 2
+  minutos = 15
+  id_fonte = "622801"
+
+  [[clubes.jogadores]]
+  nome = "Jonathan Silva"
+  pos = "AM"
+  idade = 22
+  ovr = 53
+  pot = 55
+  valor = 450000
+  partidas = 6
+  minutos = 509
+  id_fonte = "1074917"
+
+  [[clubes.jogadores]]
+  nome = "David Wieser"
+  pos = "MF"
+  idade = 24
+  ovr = 52
+  pot = 56
+  valor = 400000
+  partidas = 1
+  minutos = 70
+  gols = 1
+  id_fonte = "562255"
+
+  [[clubes.jogadores]]
+  nome = "Sambaly Keïta"
+  pos = "MF"
+  idade = 25
+  ovr = 52
+  pot = 56
+  valor = 400000
+  id_fonte = "1028019"
+
+  [[clubes.jogadores]]
+  nome = "Jean-Pierre Longonda"
+  pos = "DM"
+  idade = 24
+  ovr = 50
+  pot = 55
+  valor = 350000
+  partidas = 1
+  minutos = 73
+  gols = 1
+  id_fonte = "647181"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Del Lungo"
+  pos = "CB"
+  idade = 22
+  ovr = 50
+  pot = 58
+  valor = 500000
+  partidas = 1
+  minutos = 91
+  id_fonte = "820620"
+
+  [[clubes.jogadores]]
+  nome = "Eman Košpo"
+  pos = "CB"
+  idade = 19
+  ovr = 49
+  pot = 65
+  valor = 1500000
+  partidas = 1
+  minutos = 7
+  id_fonte = "1015822"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Gasparini"
+  pos = "GK"
+  idade = 24
+  ovr = 48
+  pot = 54
+  valor = 200000
+  id_fonte = "487828"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Spinaccè"
+  pos = "FW"
+  idade = 20
+  ovr = 45
+  pot = 59
+  valor = 1000000
+  id_fonte = "930768"
+
+  [[clubes.jogadores]]
+  nome = "Ismael Cajazzo"
+  pos = "WG"
+  idade = 22
+  ovr = 44
+  pot = 52
+  valor = 300000
+  partidas = 2
+  minutos = 165
+  gols = 1
+  id_fonte = "1180701"
+
+  [[clubes.jogadores]]
+  nome = "Filippo Vesentini"
+  pos = "MF"
+  idade = 23
+  ovr = 43
+  pot = 51
+  valor = 200000
+  id_fonte = "619327"
+
+  [[clubes.jogadores]]
+  nome = "Cristian Marai"
+  pos = "CB"
+  idade = 18
+  ovr = 40
+  pot = 53
+  valor = 250000
+  partidas = 1
+  minutos = 1
+  id_fonte = "1310256"
+
+  [[clubes.jogadores]]
+  nome = "Federico Chinetti"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 52
+  valor = 300000
+  partidas = 1
+  minutos = 78
+  id_fonte = "934461"
+
+[[clubes]]
+nome = "Cesena"
+forca = 62.0
+valor_elenco = 27580000
+cores = ["#000000", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Jonathan Klinsmann"
+  pos = "GK"
+  idade = 29
+  ovr = 69
+  pot = 69
+  valor = 2500000
+  partidas = 36
+  minutos = 3240
+  id_fonte = "334992"
+
+  [[clubes.jogadores]]
+  nome = "Cristian Shpendi"
+  pos = "FW"
+  idade = 23
+  ovr = 66
+  pot = 67
+  valor = 4500000
+  partidas = 6
+  minutos = 507
+  gols = 6
+  id_fonte = "908760"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Ciofi"
+  pos = "CB"
+  idade = 27
+  ovr = 65
+  pot = 65
+  valor = 1700000
+  partidas = 6
+  minutos = 540
+  id_fonte = "392524"
+
+  [[clubes.jogadores]]
+  nome = "Gianluca Frabotta"
+  pos = "FB"
+  idade = 27
+  ovr = 64
+  pot = 64
+  valor = 1500000
+  partidas = 2
+  minutos = 209
+  gols = 4
+  id_fonte = "386755"
+
+  [[clubes.jogadores]]
+  nome = "Massimiliano Mangraviti"
+  pos = "CB"
+  idade = 28
+  ovr = 64
+  pot = 64
+  valor = 1200000
+  partidas = 4
+  minutos = 350
+  gols = 1
+  id_fonte = "395805"
+
+  [[clubes.jogadores]]
+  nome = "Mihajlo Ilić"
+  pos = "CB"
+  idade = 23
+  ovr = 64
+  pot = 66
+  valor = 2000000
+  partidas = 6
+  minutos = 524
+  id_fonte = "845566"
+
+  [[clubes.jogadores]]
+  nome = "Emil Bohinen"
+  pos = "DM"
+  idade = 27
+  ovr = 61
+  pot = 62
+  valor = 1000000
+  partidas = 1
+  minutos = 5
+  id_fonte = "406806"
+
+  [[clubes.jogadores]]
+  nome = "Riccardo Pagano"
+  pos = "MF"
+  idade = 21
+  ovr = 61
+  pot = 64
+  valor = 1800000
+  partidas = 6
+  minutos = 504
+  id_fonte = "659415"
+
+  [[clubes.jogadores]]
+  nome = "Jacopo Gelli"
+  pos = "CB"
+  idade = 25
+  ovr = 60
+  pot = 61
+  valor = 750000
+  partidas = 5
+  minutos = 450
+  id_fonte = "534081"
+
+  [[clubes.jogadores]]
+  nome = "Antonio Fiori"
+  pos = "WG"
+  idade = 23
+  ovr = 59
+  pot = 62
+  valor = 1500000
+  partidas = 4
+  minutos = 365
+  gols = 1
+  id_fonte = "704680"
+
+  [[clubes.jogadores]]
+  nome = "Dimitri Bisoli"
+  pos = "MF"
+  idade = 32
+  ovr = 59
+  pot = 59
+  valor = 400000
+  partidas = 6
+  minutos = 535
+  gols = 1
+  id_fonte = "163216"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Francesconi"
+  pos = "MF"
+  idade = 22
+  ovr = 59
+  pot = 63
+  valor = 1400000
+  partidas = 1
+  minutos = 97
+  gols = 1
+  id_fonte = "908791"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Siano"
+  pos = "GK"
+  idade = 25
+  ovr = 56
+  pot = 57
+  valor = 250000
+  partidas = 6
+  minutos = 540
+  id_fonte = "530847"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Piacentini"
+  pos = "CB"
+  idade = 27
+  ovr = 56
+  pot = 56
+  valor = 250000
+  partidas = 1
+  minutos = 6
+  gols = 1
+  id_fonte = "391453"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Guidi"
+  pos = "DM"
+  idade = 23
+  ovr = 53
+  pot = 56
+  valor = 300000
+  partidas = 4
+  minutos = 360
+  id_fonte = "702614"
+
+  [[clubes.jogadores]]
+  nome = "Mark Natta"
+  pos = "CB"
+  idade = 23
+  ovr = 52
+  pot = 60
+  valor = 600000
+  id_fonte = "813296"
+
+  [[clubes.jogadores]]
+  nome = "Maat Daniel Caprini"
+  pos = "WG"
+  idade = 20
+  ovr = 50
+  pot = 63
+  valor = 1800000
+  partidas = 1
+  minutos = 45
+  id_fonte = "996453"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Debenedetti"
+  pos = "FW"
+  idade = 22
+  ovr = 49
+  pot = 58
+  valor = 700000
+  partidas = 1
+  minutos = 66
+  id_fonte = "1044794"
+
+  [[clubes.jogadores]]
+  nome = "Antonio David"
+  pos = "FB"
+  idade = 22
+  ovr = 49
+  pot = 56
+  valor = 275000
+  partidas = 2
+  minutos = 185
+  id_fonte = "929688"
+
+  [[clubes.jogadores]]
+  nome = "Xavello Druiventak"
+  pos = "WG"
+  idade = 22
+  ovr = 49
+  pot = 53
+  valor = 200000
+  partidas = 4
+  minutos = 376
+  id_fonte = "1177045"
+
+  [[clubes.jogadores]]
+  nome = "Luca D'Andrea"
+  pos = "WG"
+  idade = 22
+  ovr = 48
+  pot = 57
+  valor = 500000
+  partidas = 1
+  minutos = 55
+  id_fonte = "725242"
+
+  [[clubes.jogadores]]
+  nome = "Luca Schirone"
+  pos = "MF"
+  idade = 23
+  ovr = 48
+  pot = 56
+  valor = 300000
+  partidas = 2
+  minutos = 36
+  id_fonte = "650248"
+
+  [[clubes.jogadores]]
+  nome = "Marco Dalla Vecchia"
+  pos = "MF"
+  idade = 21
+  ovr = 48
+  pot = 58
+  valor = 500000
+  partidas = 1
+  minutos = 92
+  id_fonte = "879868"
+
+  [[clubes.jogadores]]
+  nome = "Vittorio Magni"
+  pos = "FB"
+  idade = 20
+  ovr = 48
+  pot = 60
+  valor = 750000
+  partidas = 1
+  minutos = 53
+  id_fonte = "1058396"
+
+  [[clubes.jogadores]]
+  nome = "Enea Casadei"
+  pos = "MF"
+  idade = 18
+  ovr = 40
+  pot = 50
+  valor = 100000
+  id_fonte = "1312591"
+
+  [[clubes.jogadores]]
+  nome = "Filippo Bertaccini"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 55
+  valor = 300000
+  partidas = 1
+  minutos = 7
+  id_fonte = "1296424"
+
+  [[clubes.jogadores]]
+  nome = "Luca Ferretti"
+  pos = "GK"
+  idade = 22
+  ovr = 40
+  pot = 49
+  valor = 50000
+  id_fonte = "667905"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Casadei"
+  pos = "MF"
+  idade = 17
+  ovr = 40
+  pot = 52
+  valor = 150000
+  id_fonte = "1312597"
+
+  [[clubes.jogadores]]
+  nome = "Niccolò Fontana"
+  pos = "GK"
+  idade = 18
+  ovr = 40
+  pot = 52
+  valor = 100000
+  id_fonte = "1202384"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Mazzi"
+  pos = "GK"
+  idade = 17
+  ovr = 40
+  pot = 56
+  valor = 200000
+  id_fonte = "1206709"
+
+[[clubes]]
+nome = "Calcio Padova"
+forca = 61.8
+valor_elenco = 26950000
+cores = ["#ED1C24", "#FEFBFB"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Dellavalle"
+  pos = "CB"
+  idade = 22
+  ovr = 65
+  pot = 67
+  valor = 2500000
+  partidas = 6
+  minutos = 540
+  id_fonte = "704825"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Sorrentino"
+  pos = "GK"
+  idade = 24
+  ovr = 65
+  pot = 66
+  valor = 1500000
+  partidas = 6
+  minutos = 540
+  id_fonte = "542588"
+
+  [[clubes.jogadores]]
+  nome = "Marco Pompetti"
+  pos = "DM"
+  idade = 26
+  ovr = 65
+  pot = 65
+  valor = 2000000
+  partidas = 4
+  minutos = 350
+  gols = 1
+  id_fonte = "459991"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Lovato"
+  pos = "CB"
+  idade = 26
+  ovr = 65
+  pot = 66
+  valor = 1800000
+  partidas = 4
+  minutos = 387
+  id_fonte = "459655"
+
+  [[clubes.jogadores]]
+  nome = "Emanuele Zuelli"
+  pos = "MF"
+  idade = 24
+  ovr = 63
+  pot = 65
+  valor = 2000000
+  partidas = 6
+  minutos = 534
+  id_fonte = "477556"
+
+  [[clubes.jogadores]]
+  nome = "Luca Zanimacchia"
+  pos = "WG"
+  idade = 28
+  ovr = 62
+  pot = 62
+  valor = 1400000
+  partidas = 2
+  minutos = 152
+  id_fonte = "407265"
+
+  [[clubes.jogadores]]
+  nome = "Carlo Faedo"
+  pos = "CB"
+  idade = 27
+  ovr = 60
+  pot = 60
+  valor = 750000
+  partidas = 26
+  minutos = 2317
+  gols = 2
+  id_fonte = "903414"
+
+  [[clubes.jogadores]]
+  nome = "Luca Moro"
+  pos = "FW"
+  idade = 25
+  ovr = 60
+  pot = 62
+  valor = 1800000
+  partidas = 3
+  minutos = 311
+  id_fonte = "600936"
+
+  [[clubes.jogadores]]
+  nome = "Gianluca Caprari"
+  pos = "FW"
+  idade = 33
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 3
+  minutos = 286
+  gols = 1
+  id_fonte = "146752"
+
+  [[clubes.jogadores]]
+  nome = "Lorenzo Carissoni"
+  pos = "FB"
+  idade = 29
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 5
+  minutos = 471
+  id_fonte = "381794"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Bortolussi"
+  pos = "FW"
+  idade = 30
+  ovr = 59
+  pot = 59
+  valor = 750000
+  partidas = 1
+  minutos = 116
+  gols = 10
+  id_fonte = "269870"
+
+  [[clubes.jogadores]]
+  nome = "Papu Gómez"
+  pos = "WG"
+  idade = 38
+  ovr = 59
+  pot = 59
+  valor = 500000
+  partidas = 6
+  minutos = 565
+  id_fonte = "20005"
+
+  [[clubes.jogadores]]
+  nome = "Filippo Sgarbi"
+  pos = "CB"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 2
+  minutos = 157
+  gols = 4
+  id_fonte = "394920"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Lasagna"
+  pos = "FW"
+  idade = 34
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 3
+  minutos = 235
+  gols = 6
+  id_fonte = "131951"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Cocchi"
+  pos = "FB"
+  idade = 19
+  ovr = 58
+  pot = 66
+  valor = 2500000
+  partidas = 3
+  minutos = 294
+  id_fonte = "988987"
+
+  [[clubes.jogadores]]
+  nome = "Gabriele Artistico"
+  pos = "FW"
+  idade = 24
+  ovr = 57
+  pot = 63
+  valor = 2000000
+  id_fonte = "604239"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Varas"
+  pos = "MF"
+  idade = 33
+  ovr = 57
+  pot = 57
+  valor = 300000
+  partidas = 1
+  minutos = 125
+  gols = 2
+  id_fonte = "354133"
+
+  [[clubes.jogadores]]
+  nome = "Pietro Fusi"
+  pos = "MF"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 500000
+  partidas = 4
+  minutos = 404
+  gols = 1
+  id_fonte = "395118"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Capelli"
+  pos = "AM"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 500000
+  partidas = 2
+  minutos = 162
+  gols = 2
+  id_fonte = "425239"
+
+  [[clubes.jogadores]]
+  nome = "Antonio Barreca"
+  pos = "FB"
+  idade = 31
+  ovr = 56
+  pot = 56
+  valor = 300000
+  partidas = 20
+  minutos = 1834
+  id_fonte = "241889"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Di Mariano"
+  pos = "WG"
+  idade = 30
+  ovr = 55
+  pot = 55
+  valor = 400000
+  partidas = 1
+  minutos = 134
+  gols = 1
+  id_fonte = "238950"
+
+  [[clubes.jogadores]]
+  nome = "Cristian Buonaiuto"
+  pos = "WG"
+  idade = 33
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 11
+  minutos = 971
+  gols = 1
+  id_fonte = "187384"
+
+  [[clubes.jogadores]]
+  nome = "Enrico Silletti"
+  pos = "CB"
+  idade = 28
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 1
+  minutos = 13
+  id_fonte = "355033"
+
+  [[clubes.jogadores]]
+  nome = "Nicolas Galazzi"
+  pos = "AM"
+  idade = 25
+  ovr = 54
+  pot = 58
+  valor = 750000
+  partidas = 1
+  minutos = 51
+  gols = 1
+  id_fonte = "524428"
+
+  [[clubes.jogadores]]
+  nome = "Christian Pastina"
+  pos = "CB"
+  idade = 25
+  ovr = 53
+  pot = 54
+  valor = 300000
+  partidas = 5
+  minutos = 461
+  gols = 1
+  id_fonte = "476624"
+
+  [[clubes.jogadores]]
+  nome = "Giovanni Giunti"
+  pos = "MF"
+  idade = 21
+  ovr = 50
+  pot = 60
+  valor = 1000000
+  partidas = 2
+  minutos = 136
+  id_fonte = "925505"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Seghetti"
+  pos = "FW"
+  idade = 22
+  ovr = 45
+  pot = 53
+  valor = 400000
+  partidas = 1
+  minutos = 81
+  gols = 3
+  id_fonte = "913461"
+
+  [[clubes.jogadores]]
+  nome = "Louis Mouquet"
+  pos = "GK"
+  idade = 22
+  ovr = 41
+  pot = 51
+  valor = 150000
+  id_fonte = "810067"
+
+  [[clubes.jogadores]]
+  nome = "Diego Marcolini"
+  pos = "DM"
+  idade = 21
+  ovr = 40
+  pot = 49
+  valor = 150000
+  id_fonte = "884227"
+
+  [[clubes.jogadores]]
+  nome = "Simone Scaglia"
+  pos = "GK"
+  idade = 22
+  ovr = 40
+  pot = 49
+  valor = 100000
+  id_fonte = "650989"
+
+[[clubes]]
+nome = "Südtirol"
+forca = 61.1
+valor_elenco = 24580000
+cores = ["#940511", "#FDFDFD"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Giorgini"
+  pos = "CB"
+  idade = 24
+  ovr = 67
+  pot = 69
+  valor = 2000000
+  partidas = 6
+  minutos = 495
+  gols = 1
+  id_fonte = "691235"
+
+  [[clubes.jogadores]]
+  nome = "Fabio Rispoli"
+  pos = "MF"
+  idade = 19
+  ovr = 66
+  pot = 72
+  valor = 4500000
+  partidas = 4
+  minutos = 390
+  gols = 1
+  id_fonte = "981136"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Plizzari"
+  pos = "GK"
+  idade = 26
+  ovr = 65
+  pot = 66
+  valor = 900000
+  partidas = 7
+  minutos = 630
+  id_fonte = "357991"
+
+  [[clubes.jogadores]]
+  nome = "Hamza El Kaouakibi"
+  pos = "FB"
+  idade = 28
+  ovr = 62
+  pot = 62
+  valor = 650000
+  partidas = 29
+  minutos = 2615
+  gols = 1
+  id_fonte = "395089"
+
+  [[clubes.jogadores]]
+  nome = "Simone Davi"
+  pos = "FB"
+  idade = 27
+  ovr = 62
+  pot = 62
+  valor = 700000
+  partidas = 2
+  minutos = 218
+  gols = 1
+  id_fonte = "611197"
+
+  [[clubes.jogadores]]
+  nome = "Simone Tronchin"
+  pos = "MF"
+  idade = 23
+  ovr = 62
+  pot = 64
+  valor = 1200000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "685509"
+
+  [[clubes.jogadores]]
+  nome = "Marco Varnier"
+  pos = "CB"
+  idade = 28
+  ovr = 61
+  pot = 61
+  valor = 500000
+  id_fonte = "362981"
+
+  [[clubes.jogadores]]
+  nome = "Aljosa Vasic"
+  pos = "MF"
+  idade = 24
+  ovr = 60
+  pot = 63
+  valor = 1000000
+  partidas = 3
+  minutos = 300
+  id_fonte = "615897"
+
+  [[clubes.jogadores]]
+  nome = "Bjarki Bjarkason"
+  pos = "AM"
+  idade = 26
+  ovr = 60
+  pot = 61
+  valor = 700000
+  partidas = 5
+  minutos = 457
+  id_fonte = "566613"
+
+  [[clubes.jogadores]]
+  nome = "Davide Veroli"
+  pos = "CB"
+  idade = 23
+  ovr = 60
+  pot = 63
+  valor = 800000
+  partidas = 5
+  minutos = 412
+  id_fonte = "705097"
+
+  [[clubes.jogadores]]
+  nome = "Giacomo Stabile"
+  pos = "CB"
+  idade = 21
+  ovr = 60
+  pot = 65
+  valor = 1200000
+  partidas = 4
+  minutos = 342
+  id_fonte = "936503"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Zeroli"
+  pos = "MF"
+  idade = 21
+  ovr = 60
+  pot = 70
+  valor = 3300000
+  partidas = 1
+  minutos = 120
+  id_fonte = "883349"
+
+  [[clubes.jogadores]]
+  nome = "Alvin Okoro"
+  pos = "FW"
+  idade = 21
+  ovr = 58
+  pot = 65
+  valor = 2000000
+  partidas = 2
+  minutos = 225
+  gols = 1
+  id_fonte = "816861"
+
+  [[clubes.jogadores]]
+  nome = "Fabian Tait"
+  pos = "MF"
+  idade = 33
+  ovr = 58
+  pot = 58
+  valor = 250000
+  partidas = 1
+  minutos = 105
+  gols = 1
+  id_fonte = "331395"
+
+  [[clubes.jogadores]]
+  nome = "Salvatore Molina"
+  pos = "AM"
+  idade = 34
+  ovr = 58
+  pot = 58
+  valor = 250000
+  partidas = 6
+  minutos = 512
+  id_fonte = "163582"
+
+  [[clubes.jogadores]]
+  nome = "Niklas Pyyhtiä"
+  pos = "MF"
+  idade = 22
+  ovr = 57
+  pot = 64
+  valor = 1300000
+  partidas = 2
+  minutos = 135
+  gols = 1
+  id_fonte = "679754"
+
+  [[clubes.jogadores]]
+  nome = "Vasco Lopes"
+  pos = "WG"
+  idade = 27
+  ovr = 56
+  pot = 57
+  valor = 400000
+  partidas = 4
+  minutos = 405
+  gols = 1
+  id_fonte = "632857"
+
+  [[clubes.jogadores]]
+  nome = "Federico Davi"
+  pos = "FB"
+  idade = 24
+  ovr = 53
+  pot = 57
+  valor = 300000
+  partidas = 2
+  minutos = 138
+  id_fonte = "795496"
+
+  [[clubes.jogadores]]
+  nome = "Riccardo Stivanello"
+  pos = "CB"
+  idade = 22
+  ovr = 53
+  pot = 55
+  valor = 225000
+  partidas = 6
+  minutos = 540
+  id_fonte = "818882"
+
+  [[clubes.jogadores]]
+  nome = "Rareș Burnete"
+  pos = "FW"
+  idade = 22
+  ovr = 52
+  pot = 57
+  valor = 500000
+  partidas = 3
+  minutos = 301
+  gols = 1
+  id_fonte = "731525"
+
+  [[clubes.jogadores]]
+  nome = "Lorenzo Anghelè"
+  pos = "FW"
+  idade = 21
+  ovr = 48
+  pot = 58
+  valor = 600000
+  partidas = 1
+  minutos = 106
+  id_fonte = "925848"
+
+  [[clubes.jogadores]]
+  nome = "Kenny Mixtur"
+  pos = "FW"
+  idade = 22
+  ovr = 44
+  pot = 51
+  valor = 200000
+  partidas = 2
+  minutos = 161
+  gols = 3
+  id_fonte = "816093"
+
+  [[clubes.jogadores]]
+  nome = "Rok Vadjunec"
+  pos = "GK"
+  idade = 20
+  ovr = 43
+  pot = 57
+  valor = 250000
+  id_fonte = "1069495"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Pellini"
+  pos = "CB"
+  idade = 19
+  ovr = 42
+  pot = 57
+  valor = 300000
+  partidas = 1
+  minutos = 73
+  id_fonte = "1242353"
+
+  [[clubes.jogadores]]
+  nome = "Dhirar Brik"
+  pos = "DM"
+  idade = 18
+  ovr = 40
+  pot = 56
+  valor = 300000
+  partidas = 1
+  minutos = 90
+  id_fonte = "1168046"
+
+  [[clubes.jogadores]]
+  nome = "Elias Schrott"
+  pos = "DM"
+  idade = 17
+  ovr = 40
+  pot = 55
+  valor = 250000
+  partidas = 1
+  minutos = 4
+  id_fonte = "1310269"
+
+[[clubes]]
+nome = "Carrarese Calcio 1908"
+forca = 60.4
+valor_elenco = 22350000
+cores = ["#007AC2", "#FEF101"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Fabio Abiuso"
+  pos = "FW"
+  idade = 23
+  ovr = 64
+  pot = 65
+  valor = 2000000
+  partidas = 5
+  minutos = 472
+  gols = 1
+  id_fonte = "817150"
+
+  [[clubes.jogadores]]
+  nome = "Jonas Rouhi"
+  pos = "AM"
+  idade = 22
+  ovr = 64
+  pot = 66
+  valor = 2000000
+  partidas = 6
+  minutos = 499
+  gols = 1
+  id_fonte = "741090"
+
+  [[clubes.jogadores]]
+  nome = "Fabio Andrea Ruggeri"
+  pos = "CB"
+  idade = 21
+  ovr = 63
+  pot = 65
+  valor = 1200000
+  partidas = 6
+  minutos = 506
+  gols = 1
+  id_fonte = "748720"
+
+  [[clubes.jogadores]]
+  nome = "Filippo Oliana"
+  pos = "CB"
+  idade = 27
+  ovr = 63
+  pot = 64
+  valor = 750000
+  partidas = 6
+  minutos = 531
+  id_fonte = "393607"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Schiavi"
+  pos = "DM"
+  idade = 31
+  ovr = 62
+  pot = 62
+  valor = 450000
+  partidas = 3
+  minutos = 304
+  gols = 6
+  id_fonte = "293367"
+
+  [[clubes.jogadores]]
+  nome = "Semuel Pizzignacco"
+  pos = "GK"
+  idade = 25
+  ovr = 61
+  pot = 63
+  valor = 600000
+  partidas = 3
+  minutos = 270
+  id_fonte = "537171"
+
+  [[clubes.jogadores]]
+  nome = "Colin Dagba"
+  pos = "AM"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 500000
+  partidas = 1
+  minutos = 68
+  id_fonte = "460629"
+
+  [[clubes.jogadores]]
+  nome = "Gabriele Parlanti"
+  pos = "MF"
+  idade = 22
+  ovr = 59
+  pot = 62
+  valor = 750000
+  partidas = 5
+  minutos = 434
+  id_fonte = "899819"
+
+  [[clubes.jogadores]]
+  nome = "Filippo Reale"
+  pos = "CB"
+  idade = 20
+  ovr = 58
+  pot = 63
+  valor = 750000
+  partidas = 5
+  minutos = 425
+  id_fonte = "1053217"
+
+  [[clubes.jogadores]]
+  nome = "Luka Topalović"
+  pos = "MF"
+  idade = 20
+  ovr = 58
+  pot = 68
+  valor = 3000000
+  partidas = 2
+  minutos = 178
+  id_fonte = "991744"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Finotto"
+  pos = "FW"
+  idade = 33
+  ovr = 58
+  pot = 58
+  valor = 200000
+  partidas = 4
+  minutos = 44
+  gols = 4
+  id_fonte = "284604"
+
+  [[clubes.jogadores]]
+  nome = "Moustapha Cissé"
+  pos = "FW"
+  idade = 23
+  ovr = 57
+  pot = 60
+  valor = 600000
+  partidas = 4
+  minutos = 395
+  id_fonte = "988862"
+
+  [[clubes.jogadores]]
+  nome = "Jacopo Martini"
+  pos = "MF"
+  idade = 21
+  ovr = 56
+  pot = 64
+  valor = 1200000
+  partidas = 2
+  minutos = 215
+  id_fonte = "745418"
+
+  [[clubes.jogadores]]
+  nome = "Matthias Braunöder"
+  pos = "MF"
+  idade = 24
+  ovr = 56
+  pot = 62
+  valor = 750000
+  partidas = 2
+  minutos = 32
+  id_fonte = "488052"
+
+  [[clubes.jogadores]]
+  nome = "Niccolò Belloni"
+  pos = "AM"
+  idade = 32
+  ovr = 56
+  pot = 56
+  valor = 150000
+  partidas = 3
+  minutos = 284
+  id_fonte = "240190"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Rubino"
+  pos = "AM"
+  idade = 19
+  ovr = 56
+  pot = 67
+  valor = 2500000
+  partidas = 2
+  minutos = 148
+  gols = 2
+  id_fonte = "866247"
+
+  [[clubes.jogadores]]
+  nome = "Nicholas Bonfanti"
+  pos = "FW"
+  idade = 24
+  ovr = 55
+  pot = 61
+  valor = 800000
+  partidas = 1
+  minutos = 3
+  id_fonte = "553513"
+
+  [[clubes.jogadores]]
+  nome = "Nicola Ravaglia"
+  pos = "GK"
+  idade = 37
+  ovr = 55
+  pot = 55
+  valor = 50000
+  id_fonte = "42796"
+
+  [[clubes.jogadores]]
+  nome = "Lorenzo Romani"
+  pos = "CB"
+  idade = 21
+  ovr = 54
+  pot = 60
+  valor = 400000
+  partidas = 4
+  minutos = 354
+  id_fonte = "899542"
+
+  [[clubes.jogadores]]
+  nome = "Gonçalo Esteves"
+  pos = "FB"
+  idade = 22
+  ovr = 51
+  pot = 61
+  valor = 500000
+  id_fonte = "726721"
+
+  [[clubes.jogadores]]
+  nome = "Stefano Mazzini"
+  pos = "GK"
+  idade = 27
+  ovr = 51
+  pot = 52
+  valor = 50000
+  id_fonte = "346528"
+
+  [[clubes.jogadores]]
+  nome = "Yanis Khafi"
+  pos = "MF"
+  idade = 20
+  ovr = 51
+  pot = 62
+  valor = 800000
+  partidas = 2
+  minutos = 149
+  id_fonte = "1053151"
+
+  [[clubes.jogadores]]
+  nome = "David Vujevic"
+  pos = "CB"
+  idade = 19
+  ovr = 49
+  pot = 65
+  valor = 1200000
+  id_fonte = "1016904"
+
+  [[clubes.jogadores]]
+  nome = "Giovanni Garofani"
+  pos = "GK"
+  idade = 23
+  ovr = 49
+  pot = 53
+  valor = 75000
+  partidas = 3
+  minutos = 270
+  id_fonte = "564792"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Guercio"
+  pos = "FB"
+  idade = 21
+  ovr = 49
+  pot = 60
+  valor = 400000
+  partidas = 1
+  minutos = 84
+  id_fonte = "717900"
+
+  [[clubes.jogadores]]
+  nome = "Nicolò Cudrig"
+  pos = "AM"
+  idade = 24
+  ovr = 47
+  pot = 53
+  valor = 125000
+  partidas = 1
+  minutos = 48
+  id_fonte = "487844"
+
+  [[clubes.jogadores]]
+  nome = "Giacomo Marconi"
+  pos = "FW"
+  idade = 21
+  ovr = 43
+  pot = 52
+  valor = 125000
+  partidas = 2
+  minutos = 175
+  id_fonte = "724110"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Macchioni"
+  pos = "CB"
+  idade = 20
+  ovr = 41
+  pot = 55
+  valor = 150000
+  id_fonte = "984373"
+
+  [[clubes.jogadores]]
+  nome = "Giulio Baroncelli"
+  pos = "MF"
+  idade = 17
+  ovr = 40
+  pot = 52
+  valor = 100000
+  partidas = 1
+  minutos = 14
+  id_fonte = "1311375"
+
+  [[clubes.jogadores]]
+  nome = "Giulio Cianti"
+  pos = "CB"
+  idade = 17
+  ovr = 40
+  pot = 53
+  valor = 100000
+  id_fonte = "1455208"
+
+  [[clubes.jogadores]]
+  nome = "Pietro Pinelli"
+  pos = "DM"
+  idade = 20
+  ovr = 40
+  pot = 51
+  valor = 75000
+  partidas = 2
+  minutos = 29
+  gols = 1
+  id_fonte = "1056287"
+
+[[clubes]]
+nome = "Catanzaro"
+forca = 60.1
+valor_elenco = 21700000
+cores = ["#F4DF5D", "#73715C"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Matias Antonini"
+  pos = "CB"
+  idade = 28
+  ovr = 64
+  pot = 64
+  valor = 1500000
+  partidas = 6
+  minutos = 508
+  gols = 3
+  id_fonte = "403718"
+
+  [[clubes.jogadores]]
+  nome = "Mehdi Dorval"
+  pos = "FB"
+  idade = 25
+  ovr = 62
+  pot = 64
+  valor = 1800000
+  partidas = 4
+  minutos = 356
+  id_fonte = "784575"
+
+  [[clubes.jogadores]]
+  nome = "Marco Imperiale"
+  pos = "CB"
+  idade = 27
+  ovr = 61
+  pot = 62
+  valor = 1000000
+  partidas = 2
+  minutos = 153
+  id_fonte = "475149"
+
+  [[clubes.jogadores]]
+  nome = "Mirko Pigliacelli"
+  pos = "GK"
+  idade = 33
+  ovr = 61
+  pot = 61
+  valor = 400000
+  partidas = 6
+  minutos = 540
+  id_fonte = "165893"
+
+  [[clubes.jogadores]]
+  nome = "Pietro Iemmello"
+  pos = "FW"
+  idade = 34
+  ovr = 61
+  pot = 61
+  valor = 700000
+  partidas = 6
+  minutos = 514
+  gols = 3
+  id_fonte = "62735"
+
+  [[clubes.jogadores]]
+  nome = "Marco Ruggero"
+  pos = "CB"
+  idade = 26
+  ovr = 60
+  pot = 61
+  valor = 900000
+  partidas = 5
+  minutos = 459
+  id_fonte = "471497"
+
+  [[clubes.jogadores]]
+  nome = "Federico Di Francesco"
+  pos = "WG"
+  idade = 32
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 3
+  minutos = 25
+  gols = 1
+  id_fonte = "38607"
+
+  [[clubes.jogadores]]
+  nome = "Gabriele Alesi"
+  pos = "AM"
+  idade = 22
+  ovr = 59
+  pot = 61
+  valor = 1400000
+  partidas = 6
+  minutos = 521
+  gols = 3
+  id_fonte = "651000"
+
+  [[clubes.jogadores]]
+  nome = "Jacopo Petriccione"
+  pos = "DM"
+  idade = 31
+  ovr = 59
+  pot = 59
+  valor = 500000
+  partidas = 6
+  minutos = 532
+  gols = 2
+  id_fonte = "218067"
+
+  [[clubes.jogadores]]
+  nome = "Antonio Candela"
+  pos = "FB"
+  idade = 26
+  ovr = 58
+  pot = 59
+  valor = 700000
+  partidas = 3
+  minutos = 307
+  id_fonte = "392881"
+
+  [[clubes.jogadores]]
+  nome = "Nicola Mosti"
+  pos = "AM"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 600000
+  partidas = 5
+  minutos = 478
+  id_fonte = "302497"
+
+  [[clubes.jogadores]]
+  nome = "Simone Pafundi"
+  pos = "AM"
+  idade = 20
+  ovr = 58
+  pot = 67
+  valor = 4500000
+  partidas = 3
+  minutos = 247
+  gols = 1
+  id_fonte = "876400"
+
+  [[clubes.jogadores]]
+  nome = "Nicolò Buso"
+  pos = "FW"
+  idade = 26
+  ovr = 56
+  pot = 58
+  valor = 800000
+  partidas = 1
+  minutos = 17
+  gols = 1
+  id_fonte = "408293"
+
+  [[clubes.jogadores]]
+  nome = "Ruggero Frosinini"
+  pos = "FB"
+  idade = 25
+  ovr = 55
+  pot = 58
+  valor = 500000
+  partidas = 1
+  minutos = 66
+  gols = 2
+  id_fonte = "797893"
+
+  [[clubes.jogadores]]
+  nome = "Samuel Giovane"
+  pos = "MF"
+  idade = 23
+  ovr = 54
+  pot = 61
+  valor = 1200000
+  partidas = 1
+  minutos = 111
+  id_fonte = "567470"
+
+  [[clubes.jogadores]]
+  nome = "Bruno Verrengia"
+  pos = "CB"
+  idade = 23
+  ovr = 53
+  pot = 56
+  valor = 400000
+  partidas = 4
+  minutos = 370
+  gols = 1
+  id_fonte = "811242"
+
+  [[clubes.jogadores]]
+  nome = "Emanuele Pecorino"
+  pos = "FW"
+  idade = 25
+  ovr = 53
+  pot = 56
+  valor = 600000
+  partidas = 1
+  minutos = 117
+  id_fonte = "658729"
+
+  [[clubes.jogadores]]
+  nome = "Marco D'Alessandro"
+  pos = "WG"
+  idade = 35
+  ovr = 53
+  pot = 53
+  valor = 150000
+  partidas = 1
+  minutos = 129
+  gols = 1
+  id_fonte = "99232"
+
+  [[clubes.jogadores]]
+  nome = "N'Dri Koffi"
+  pos = "FW"
+  idade = 24
+  ovr = 52
+  pot = 54
+  valor = 400000
+  partidas = 4
+  minutos = 355
+  gols = 1
+  id_fonte = "798927"
+
+  [[clubes.jogadores]]
+  nome = "Christian Marietta"
+  pos = "GK"
+  idade = 24
+  ovr = 50
+  pot = 56
+  valor = 250000
+  partidas = 1
+  minutos = 90
+  id_fonte = "691978"
+
+  [[clubes.jogadores]]
+  nome = "Andrej Pogacar"
+  pos = "AM"
+  idade = 24
+  ovr = 49
+  pot = 55
+  valor = 400000
+  id_fonte = "801075"
+
+  [[clubes.jogadores]]
+  nome = "Niccolò Postiglione"
+  pos = "CB"
+  idade = 21
+  ovr = 46
+  pot = 58
+  valor = 600000
+  id_fonte = "901027"
+
+  [[clubes.jogadores]]
+  nome = "Federico Cassa"
+  pos = "AM"
+  idade = 20
+  ovr = 43
+  pot = 57
+  valor = 700000
+  id_fonte = "1048147"
+
+  [[clubes.jogadores]]
+  nome = "Franky Tchaouna"
+  pos = "MF"
+  idade = 21
+  ovr = 42
+  pot = 53
+  valor = 250000
+  partidas = 1
+  minutos = 93
+  id_fonte = "1571727"
+
+  [[clubes.jogadores]]
+  nome = "Alejo Garnica"
+  pos = "WG"
+  idade = 22
+  ovr = 40
+  pot = 48
+  valor = 125000
+  partidas = 2
+  minutos = 16
+  id_fonte = "800660"
+
+  [[clubes.jogadores]]
+  nome = "Edoardo Borrelli"
+  pos = "GK"
+  idade = 22
+  ovr = 40
+  pot = 47
+  valor = 50000
+  id_fonte = "902633"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Reita"
+  pos = "FW"
+  idade = 17
+  ovr = 40
+  pot = 49
+  valor = 152166
+  id_fonte = "1232347"
+
+  [[clubes.jogadores]]
+  nome = "Franck Tchaouna"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 48
+  valor = 125000
+  id_fonte = "1166095"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Arditi"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 51
+  valor = 250000
+  partidas = 2
+  minutos = 17
+  id_fonte = "1010782"
+
+  [[clubes.jogadores]]
+  nome = "Solomon Loubao"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 52
+  valor = 300000
+  id_fonte = "1144614"
+
+[[clubes]]
+nome = "Empoli"
+forca = 58.8
+valor_elenco = 18350000
+cores = ["#135195", "#7D96B3"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Stiven Shpendi"
+  pos = "FW"
+  idade = 23
+  ovr = 67
+  pot = 69
+  valor = 3800000
+  partidas = 4
+  minutos = 368
+  gols = 1
+  id_fonte = "931567"
+
+  [[clubes.jogadores]]
+  nome = "Jacopo Seghetti"
+  pos = "GK"
+  idade = 21
+  ovr = 61
+  pot = 64
+  valor = 800000
+  partidas = 6
+  minutos = 540
+  id_fonte = "935777"
+
+  [[clubes.jogadores]]
+  nome = "Marco Curto"
+  pos = "CB"
+  idade = 27
+  ovr = 61
+  pot = 61
+  valor = 600000
+  partidas = 4
+  minutos = 405
+  id_fonte = "315857"
+
+  [[clubes.jogadores]]
+  nome = "Samuele Perisan"
+  pos = "GK"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 400000
+  partidas = 1
+  minutos = 90
+  id_fonte = "301240"
+
+  [[clubes.jogadores]]
+  nome = "Filippo Bandinelli"
+  pos = "MF"
+  idade = 31
+  ovr = 60
+  pot = 60
+  valor = 400000
+  partidas = 1
+  minutos = 46
+  id_fonte = "240934"
+
+  [[clubes.jogadores]]
+  nome = "Gerard Yepes"
+  pos = "DM"
+  idade = 24
+  ovr = 60
+  pot = 62
+  valor = 750000
+  partidas = 5
+  minutos = 490
+  gols = 1
+  id_fonte = "624436"
+
+  [[clubes.jogadores]]
+  nome = "Joseph Ceesay"
+  pos = "AM"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 4
+  minutos = 344
+  gols = 3
+  id_fonte = "364278"
+
+  [[clubes.jogadores]]
+  nome = "Niccolò Corrado"
+  pos = "AM"
+  idade = 26
+  ovr = 60
+  pot = 61
+  valor = 800000
+  partidas = 4
+  minutos = 356
+  id_fonte = "444662"
+
+  [[clubes.jogadores]]
+  nome = "Duccio Degli Innocenti"
+  pos = "DM"
+  idade = 23
+  ovr = 59
+  pot = 64
+  valor = 1200000
+  partidas = 1
+  minutos = 8
+  id_fonte = "616169"
+
+  [[clubes.jogadores]]
+  nome = "Edoardo Saporiti"
+  pos = "AM"
+  idade = 25
+  ovr = 59
+  pot = 60
+  valor = 700000
+  partidas = 6
+  minutos = 515
+  gols = 2
+  id_fonte = "534133"
+
+  [[clubes.jogadores]]
+  nome = "Simone Romagnoli"
+  pos = "CB"
+  idade = 36
+  ovr = 59
+  pot = 59
+  valor = 200000
+  partidas = 2
+  minutos = 161
+  id_fonte = "88706"
+
+  [[clubes.jogadores]]
+  nome = "Cristian Căuz"
+  pos = "CB"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 300000
+  partidas = 5
+  minutos = 472
+  id_fonte = "283421"
+
+  [[clubes.jogadores]]
+  nome = "Luca Magnino"
+  pos = "MF"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 6
+  minutos = 539
+  gols = 1
+  id_fonte = "297444"
+
+  [[clubes.jogadores]]
+  nome = "Filippo Distefano"
+  pos = "FW"
+  idade = 23
+  ovr = 57
+  pot = 62
+  valor = 1200000
+  partidas = 3
+  minutos = 255
+  id_fonte = "669915"
+
+  [[clubes.jogadores]]
+  nome = "Karim Zedadka"
+  pos = "AM"
+  idade = 26
+  ovr = 56
+  pot = 57
+  valor = 400000
+  partidas = 3
+  minutos = 249
+  id_fonte = "612065"
+
+  [[clubes.jogadores]]
+  nome = "Bogdan Popov"
+  pos = "FW"
+  idade = 19
+  ovr = 55
+  pot = 67
+  valor = 2800000
+  partidas = 2
+  minutos = 173
+  gols = 1
+  id_fonte = "1198243"
+
+  [[clubes.jogadores]]
+  nome = "Edoardo Biondini"
+  pos = "MF"
+  idade = 17
+  ovr = 54
+  pot = 65
+  valor = 1500000
+  partidas = 3
+  minutos = 305
+  id_fonte = "1225933"
+
+  [[clubes.jogadores]]
+  nome = "Luca Belardinelli"
+  pos = "MF"
+  idade = 25
+  ovr = 54
+  pot = 57
+  valor = 400000
+  partidas = 1
+  minutos = 66
+  id_fonte = "467994"
+
+  [[clubes.jogadores]]
+  nome = "Gabriele Indragoli"
+  pos = "CB"
+  idade = 22
+  ovr = 47
+  pot = 57
+  valor = 300000
+  partidas = 1
+  minutos = 31
+  id_fonte = "814438"
+
+  [[clubes.jogadores]]
+  nome = "Emiliano Filippis"
+  pos = "GK"
+  idade = 22
+  ovr = 46
+  pot = 56
+  valor = 200000
+  id_fonte = "821678"
+
+  [[clubes.jogadores]]
+  nome = "Lapo Deli"
+  pos = "DM"
+  idade = 20
+  ovr = 41
+  pot = 55
+  valor = 250000
+  partidas = 3
+  minutos = 33
+  id_fonte = "1057839"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Egan"
+  pos = "AM"
+  idade = 18
+  ovr = 40
+  pot = 48
+  valor = 50000
+  partidas = 4
+  minutos = 373
+  id_fonte = "1138971"
+
+  [[clubes.jogadores]]
+  nome = "Salvatore Monaco"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 54
+  valor = 300000
+  partidas = 1
+  minutos = 59
+  id_fonte = "1046452"
+
+[[clubes]]
+nome = "Benevento Calcio"
+forca = 58.1
+valor_elenco = 16750000
+cores = ["#FEF507", "#E51623"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "David Okereke"
+  pos = "FW"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 1400000
+  partidas = 2
+  minutos = 218
+  gols = 1
+  id_fonte = "413605"
+
+  [[clubes.jogadores]]
+  nome = "Gianmarco Vannucchi"
+  pos = "GK"
+  idade = 31
+  ovr = 60
+  pot = 60
+  valor = 550000
+  partidas = 6
+  minutos = 540
+  id_fonte = "240157"
+
+  [[clubes.jogadores]]
+  nome = "Stefano Scognamillo"
+  pos = "CB"
+  idade = 32
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "142990"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Sernicola"
+  pos = "FB"
+  idade = 29
+  ovr = 59
+  pot = 59
+  valor = 700000
+  partidas = 5
+  minutos = 444
+  id_fonte = "340707"
+
+  [[clubes.jogadores]]
+  nome = "Luca Caldirola"
+  pos = "CB"
+  idade = 35
+  ovr = 58
+  pot = 58
+  valor = 300000
+  partidas = 3
+  minutos = 263
+  id_fonte = "88680"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Maita"
+  pos = "MF"
+  idade = 32
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "167470"
+
+  [[clubes.jogadores]]
+  nome = "Pietro Beruatto"
+  pos = "FB"
+  idade = 27
+  ovr = 58
+  pot = 58
+  valor = 700000
+  partidas = 4
+  minutos = 382
+  id_fonte = "381370"
+
+  [[clubes.jogadores]]
+  nome = "Simone Verdi"
+  pos = "AM"
+  idade = 34
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 1
+  minutos = 69
+  id_fonte = "130360"
+
+  [[clubes.jogadores]]
+  nome = "Davide Lamesta"
+  pos = "WG"
+  idade = 26
+  ovr = 57
+  pot = 58
+  valor = 900000
+  partidas = 6
+  minutos = 565
+  gols = 2
+  id_fonte = "689090"
+
+  [[clubes.jogadores]]
+  nome = "Edoardo Pierozzi"
+  pos = "FB"
+  idade = 25
+  ovr = 56
+  pot = 57
+  valor = 550000
+  partidas = 4
+  minutos = 399
+  gols = 1
+  id_fonte = "534083"
+
+  [[clubes.jogadores]]
+  nome = "Luigi Cherubini"
+  pos = "WG"
+  idade = 22
+  ovr = 56
+  pot = 63
+  valor = 3000000
+  partidas = 2
+  minutos = 195
+  id_fonte = "721227"
+
+  [[clubes.jogadores]]
+  nome = "Christian Kouan"
+  pos = "MF"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 500000
+  partidas = 4
+  minutos = 346
+  id_fonte = "529885"
+
+  [[clubes.jogadores]]
+  nome = "Antonio Prisco"
+  pos = "DM"
+  idade = 22
+  ovr = 54
+  pot = 56
+  valor = 550000
+  partidas = 4
+  minutos = 364
+  gols = 2
+  id_fonte = "721731"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Salvemini"
+  pos = "FW"
+  idade = 29
+  ovr = 54
+  pot = 54
+  valor = 400000
+  partidas = 7
+  minutos = 614
+  gols = 4
+  id_fonte = "254997"
+
+  [[clubes.jogadores]]
+  nome = "Giacomo Ricci"
+  pos = "FB"
+  idade = 30
+  ovr = 54
+  pot = 54
+  valor = 225000
+  partidas = 9
+  minutos = 841
+  gols = 1
+  id_fonte = "261056"
+
+  [[clubes.jogadores]]
+  nome = "Marco Tumminello"
+  pos = "FW"
+  idade = 27
+  ovr = 54
+  pot = 55
+  valor = 500000
+  partidas = 2
+  minutos = 137
+  gols = 11
+  id_fonte = "315850"
+
+  [[clubes.jogadores]]
+  nome = "Raffaele Celia"
+  pos = "FB"
+  idade = 27
+  ovr = 53
+  pot = 54
+  valor = 300000
+  partidas = 2
+  minutos = 221
+  id_fonte = "195057"
+
+  [[clubes.jogadores]]
+  nome = "Pietro Saio"
+  pos = "CB"
+  idade = 23
+  ovr = 52
+  pot = 54
+  valor = 300000
+  partidas = 4
+  minutos = 381
+  gols = 1
+  id_fonte = "708070"
+
+  [[clubes.jogadores]]
+  nome = "Christian Dalle Mura"
+  pos = "CB"
+  idade = 24
+  ovr = 51
+  pot = 57
+  valor = 500000
+  partidas = 1
+  minutos = 64
+  id_fonte = "487829"
+
+  [[clubes.jogadores]]
+  nome = "Guglielmo Mignani"
+  pos = "FW"
+  idade = 24
+  ovr = 50
+  pot = 54
+  valor = 450000
+  partidas = 4
+  minutos = 36
+  gols = 10
+  id_fonte = "707785"
+
+  [[clubes.jogadores]]
+  nome = "Pier Luigi Simonetti"
+  pos = "AM"
+  idade = 25
+  ovr = 49
+  pot = 53
+  valor = 300000
+  partidas = 7
+  minutos = 614
+  gols = 5
+  id_fonte = "504530"
+
+  [[clubes.jogadores]]
+  nome = "Angelo Talia"
+  pos = "MF"
+  idade = 23
+  ovr = 48
+  pot = 54
+  valor = 350000
+  partidas = 1
+  minutos = 130
+  gols = 1
+  id_fonte = "705288"
+
+  [[clubes.jogadores]]
+  nome = "Antonis Siatounis"
+  pos = "MF"
+  idade = 24
+  ovr = 48
+  pot = 52
+  valor = 250000
+  partidas = 2
+  minutos = 175
+  id_fonte = "554397"
+
+  [[clubes.jogadores]]
+  nome = "Emanuele Schimmenti"
+  pos = "WG"
+  idade = 24
+  ovr = 47
+  pot = 53
+  valor = 350000
+  partidas = 2
+  minutos = 20
+  id_fonte = "854589"
+
+  [[clubes.jogadores]]
+  nome = "Raffaele Romano"
+  pos = "CB"
+  idade = 21
+  ovr = 45
+  pot = 53
+  valor = 275000
+  partidas = 1
+  minutos = 28
+  gols = 1
+  id_fonte = "934202"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Mannini"
+  pos = "AM"
+  idade = 20
+  ovr = 44
+  pot = 58
+  valor = 1000000
+  partidas = 1
+  minutos = 16
+  id_fonte = "803005"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Esposito"
+  pos = "GK"
+  idade = 21
+  ovr = 41
+  pot = 52
+  valor = 150000
+  partidas = 1
+  minutos = 90
+  id_fonte = "895560"
+
+  [[clubes.jogadores]]
+  nome = "Alioune Sylla"
+  pos = "GK"
+  idade = 23
+  ovr = 40
+  pot = 43
+  valor = 25000
+  id_fonte = "1261762"
+
+  [[clubes.jogadores]]
+  nome = "Logan"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 43
+  valor = 50000
+  id_fonte = "1500924"
+
+  [[clubes.jogadores]]
+  nome = "Marco Giugliano"
+  pos = "FW"
+  idade = 17
+  ovr = 40
+  pot = 53
+  valor = 400000
+  partidas = 1
+  minutos = 111
+  id_fonte = "1382832"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Del Gaudio"
+  pos = "MF"
+  idade = 18
+  ovr = 40
+  pot = 46
+  valor = 75000
+  partidas = 1
+  minutos = 1
+  id_fonte = "1375418"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Donatiello"
+  pos = "MF"
+  idade = 20
+  ovr = 40
+  pot = 44
+  valor = 50000
+  partidas = 2
+  minutos = 42
+  id_fonte = "1056043"
+
+  [[clubes.jogadores]]
+  nome = "Vincenzo Battista"
+  pos = "WG"
+  idade = 18
+  ovr = 40
+  pot = 48
+  valor = 150000
+  partidas = 1
+  minutos = 35
+  id_fonte = "1346385"
+
+[[clubes]]
+nome = "Juve Stabia"
+forca = 57.0
+valor_elenco = 14430000
+cores = ["#F8C932", "#19172D"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Marco Bellich"
+  pos = "CB"
+  idade = 27
+  ovr = 63
+  pot = 63
+  valor = 1200000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "391710"
+
+  [[clubes.jogadores]]
+  nome = "Nicola Pietrangeli"
+  pos = "CB"
+  idade = 26
+  ovr = 62
+  pot = 64
+  valor = 1300000
+  partidas = 2
+  minutos = 165
+  id_fonte = "457468"
+
+  [[clubes.jogadores]]
+  nome = "Antonio Di Nardo"
+  pos = "FW"
+  idade = 27
+  ovr = 59
+  pot = 60
+  valor = 1000000
+  partidas = 3
+  minutos = 234
+  gols = 3
+  id_fonte = "347656"
+
+  [[clubes.jogadores]]
+  nome = "Nermin Karić"
+  pos = "MF"
+  idade = 27
+  ovr = 59
+  pot = 60
+  valor = 800000
+  partidas = 3
+  minutos = 293
+  id_fonte = "393236"
+
+  [[clubes.jogadores]]
+  nome = "Davide Buglio"
+  pos = "MF"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 600000
+  partidas = 4
+  minutos = 394
+  id_fonte = "385379"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Ricciardi"
+  pos = "FB"
+  idade = 26
+  ovr = 58
+  pot = 59
+  valor = 600000
+  partidas = 4
+  minutos = 360
+  id_fonte = "457672"
+
+  [[clubes.jogadores]]
+  nome = "Christian Pierobon"
+  pos = "MF"
+  idade = 24
+  ovr = 57
+  pot = 58
+  valor = 700000
+  partidas = 6
+  minutos = 516
+  gols = 1
+  id_fonte = "554433"
+
+  [[clubes.jogadores]]
+  nome = "Fabio Maistro"
+  pos = "MF"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 1
+  minutos = 87
+  gols = 2
+  id_fonte = "398031"
+
+  [[clubes.jogadores]]
+  nome = "Giuseppe Sibilli"
+  pos = "AM"
+  idade = 30
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 1
+  minutos = 73
+  id_fonte = "424275"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Candellone"
+  pos = "FW"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 500000
+  partidas = 5
+  minutos = 412
+  gols = 1
+  id_fonte = "342341"
+
+  [[clubes.jogadores]]
+  nome = "Paolo Vismara"
+  pos = "GK"
+  idade = 23
+  ovr = 55
+  pot = 63
+  valor = 900000
+  id_fonte = "650256"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Maggioni"
+  pos = "FB"
+  idade = 25
+  ovr = 55
+  pot = 57
+  valor = 500000
+  partidas = 2
+  minutos = 185
+  id_fonte = "497693"
+
+  [[clubes.jogadores]]
+  nome = "Davide Bettella"
+  pos = "CB"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 300000
+  partidas = 3
+  minutos = 285
+  id_fonte = "357995"
+
+  [[clubes.jogadores]]
+  nome = "Pietro Boer"
+  pos = "GK"
+  idade = 24
+  ovr = 54
+  pot = 55
+  valor = 250000
+  partidas = 6
+  minutos = 540
+  id_fonte = "581604"
+
+  [[clubes.jogadores]]
+  nome = "Federico Artioli"
+  pos = "DM"
+  idade = 25
+  ovr = 53
+  pot = 56
+  valor = 400000
+  partidas = 2
+  minutos = 146
+  id_fonte = "497312"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Piscopo"
+  pos = "AM"
+  idade = 28
+  ovr = 53
+  pot = 53
+  valor = 300000
+  partidas = 3
+  minutos = 270
+  id_fonte = "395739"
+
+  [[clubes.jogadores]]
+  nome = "Justin Kumi"
+  pos = "MF"
+  idade = 22
+  ovr = 52
+  pot = 61
+  valor = 1200000
+  partidas = 1
+  minutos = 51
+  id_fonte = "808559"
+
+  [[clubes.jogadores]]
+  nome = "Terrence Douglas"
+  pos = "FB"
+  idade = 25
+  ovr = 52
+  pot = 55
+  valor = 325000
+  partidas = 1
+  minutos = 126
+  id_fonte = "477250"
+
+  [[clubes.jogadores]]
+  nome = "Thomas Battistella"
+  pos = "MF"
+  idade = 25
+  ovr = 51
+  pot = 53
+  valor = 300000
+  partidas = 2
+  minutos = 217
+  id_fonte = "473871"
+
+  [[clubes.jogadores]]
+  nome = "Giulio Scuderi"
+  pos = "FB"
+  idade = 20
+  ovr = 47
+  pot = 52
+  valor = 225000
+  partidas = 5
+  minutos = 414
+  id_fonte = "1054169"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Baldi"
+  pos = "FB"
+  idade = 24
+  ovr = 47
+  pot = 52
+  valor = 200000
+  partidas = 1
+  minutos = 90
+  id_fonte = "860639"
+
+  [[clubes.jogadores]]
+  nome = "Ante Vukovic"
+  pos = "GK"
+  idade = 22
+  ovr = 46
+  pot = 56
+  valor = 300000
+  id_fonte = "921561"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Signorini"
+  pos = "GK"
+  idade = 27
+  ovr = 45
+  pot = 46
+  valor = 50000
+  id_fonte = "385397"
+
+  [[clubes.jogadores]]
+  nome = "Nicola Patanè"
+  pos = "WG"
+  idade = 22
+  ovr = 45
+  pot = 47
+  valor = 150000
+  partidas = 5
+  minutos = 466
+  id_fonte = "815539"
+
+  [[clubes.jogadores]]
+  nome = "Luigi Caccavo"
+  pos = "FW"
+  idade = 22
+  ovr = 43
+  pot = 53
+  valor = 400000
+  partidas = 1
+  minutos = 13
+  id_fonte = "815787"
+
+  [[clubes.jogadores]]
+  nome = "Saná Fernandes"
+  pos = "WG"
+  idade = 20
+  ovr = 42
+  pot = 55
+  valor = 500000
+  partidas = 1
+  minutos = 57
+  id_fonte = "1026255"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Perin"
+  pos = "MF"
+  idade = 18
+  ovr = 40
+  pot = 48
+  valor = 150000
+  id_fonte = "1186975"
+
+  [[clubes.jogadores]]
+  nome = "Edoardo Lonardo"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 49
+  valor = 200000
+  id_fonte = "1172235"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Gallea"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 52
+  valor = 200000
+  id_fonte = "887650"
+
+  [[clubes.jogadores]]
+  nome = "Romeo Sandrucci"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 43
+  valor = 75000
+  partidas = 1
+  minutos = 5
+  id_fonte = "1188613"
+
+[[clubes]]
+nome = "LR Vicenza"
+forca = 56.0
+valor_elenco = 12700000
+cores = ["#FC010B", "#8B0106"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Riccardo Marchizza"
+  pos = "CB"
+  idade = 28
+  ovr = 61
+  pot = 61
+  valor = 1000000
+  partidas = 3
+  minutos = 270
+  id_fonte = "297645"
+
+  [[clubes.jogadores]]
+  nome = "Riccardo Gagno"
+  pos = "GK"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 6
+  minutos = 540
+  id_fonte = "337360"
+
+  [[clubes.jogadores]]
+  nome = "Maxime Leverbe"
+  pos = "CB"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 550000
+  partidas = 3
+  minutos = 260
+  gols = 2
+  id_fonte = "451310"
+
+  [[clubes.jogadores]]
+  nome = "Silvio Merkaj"
+  pos = "FW"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 900000
+  partidas = 3
+  minutos = 270
+  gols = 1
+  id_fonte = "460842"
+
+  [[clubes.jogadores]]
+  nome = "Filippo Costa"
+  pos = "FB"
+  idade = 31
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 4
+  minutos = 387
+  gols = 2
+  id_fonte = "197743"
+
+  [[clubes.jogadores]]
+  nome = "Giuseppe Cuomo"
+  pos = "CB"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 550000
+  partidas = 6
+  minutos = 507
+  gols = 1
+  id_fonte = "365565"
+
+  [[clubes.jogadores]]
+  nome = "Marco Carraro"
+  pos = "DM"
+  idade = 28
+  ovr = 55
+  pot = 55
+  valor = 500000
+  partidas = 4
+  minutos = 377
+  id_fonte = "297630"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Bellemo"
+  pos = "MF"
+  idade = 31
+  ovr = 54
+  pot = 54
+  valor = 400000
+  partidas = 1
+  minutos = 73
+  id_fonte = "241052"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Valoti"
+  pos = "MF"
+  idade = 33
+  ovr = 54
+  pot = 54
+  valor = 300000
+  partidas = 3
+  minutos = 262
+  id_fonte = "167741"
+
+  [[clubes.jogadores]]
+  nome = "Nicolò Brighenti"
+  pos = "CB"
+  idade = 37
+  ovr = 54
+  pot = 54
+  valor = 200000
+  partidas = 3
+  minutos = 247
+  id_fonte = "109110"
+
+  [[clubes.jogadores]]
+  nome = "Thomas Sandon"
+  pos = "CB"
+  idade = 23
+  ovr = 54
+  pot = 56
+  valor = 600000
+  partidas = 3
+  minutos = 270
+  gols = 1
+  id_fonte = "818134"
+
+  [[clubes.jogadores]]
+  nome = "Claudio Morra"
+  pos = "FW"
+  idade = 31
+  ovr = 53
+  pot = 53
+  valor = 450000
+  partidas = 2
+  minutos = 182
+  gols = 1
+  id_fonte = "214635"
+
+  [[clubes.jogadores]]
+  nome = "Gabriele Moncini"
+  pos = "FW"
+  idade = 30
+  ovr = 53
+  pot = 53
+  valor = 500000
+  partidas = 3
+  minutos = 261
+  gols = 2
+  id_fonte = "238977"
+
+  [[clubes.jogadores]]
+  nome = "Lorenzo Caferri"
+  pos = "FB"
+  idade = 27
+  ovr = 53
+  pot = 53
+  valor = 400000
+  partidas = 5
+  minutos = 407
+  gols = 8
+  id_fonte = "686592"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Corazza"
+  pos = "AM"
+  idade = 22
+  ovr = 53
+  pot = 60
+  valor = 1500000
+  partidas = 2
+  minutos = 153
+  gols = 1
+  id_fonte = "818880"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Papetti"
+  pos = "CB"
+  idade = 24
+  ovr = 52
+  pot = 58
+  valor = 750000
+  partidas = 1
+  minutos = 21
+  id_fonte = "503619"
+
+  [[clubes.jogadores]]
+  nome = "Loris Zonta"
+  pos = "MF"
+  idade = 29
+  ovr = 52
+  pot = 52
+  valor = 350000
+  partidas = 4
+  minutos = 385
+  gols = 4
+  id_fonte = "377043"
+
+  [[clubes.jogadores]]
+  nome = "Nicola Rauti"
+  pos = "FW"
+  idade = 26
+  ovr = 50
+  pot = 51
+  valor = 450000
+  partidas = 2
+  minutos = 166
+  gols = 1
+  id_fonte = "417896"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Pietrelli"
+  pos = "AM"
+  idade = 23
+  ovr = 47
+  pot = 53
+  valor = 600000
+  partidas = 1
+  minutos = 133
+  gols = 1
+  id_fonte = "704122"
+
+  [[clubes.jogadores]]
+  nome = "Armand Rada"
+  pos = "DM"
+  idade = 27
+  ovr = 47
+  pot = 48
+  valor = 200000
+  partidas = 13
+  minutos = 1133
+  gols = 5
+  id_fonte = "408333"
+
+  [[clubes.jogadores]]
+  nome = "Frank Tsadjout"
+  pos = "FW"
+  idade = 27
+  ovr = 47
+  pot = 48
+  valor = 300000
+  id_fonte = "392545"
+
+  [[clubes.jogadores]]
+  nome = "Raul Talarico"
+  pos = "MF"
+  idade = 24
+  ovr = 43
+  pot = 45
+  valor = 175000
+  partidas = 2
+  minutos = 148
+  gols = 1
+  id_fonte = "818138"
+
+  [[clubes.jogadores]]
+  nome = "Filippo Alessio"
+  pos = "FW"
+  idade = 21
+  ovr = 42
+  pot = 48
+  valor = 350000
+  partidas = 3
+  minutos = 313
+  gols = 1
+  id_fonte = "830243"
+
+  [[clubes.jogadores]]
+  nome = "Giulio Pellizzari"
+  pos = "MF"
+  idade = 22
+  ovr = 42
+  pot = 47
+  valor = 250000
+  partidas = 3
+  minutos = 308
+  gols = 2
+  id_fonte = "816764"
+
+  [[clubes.jogadores]]
+  nome = "Elia Tantalocchi"
+  pos = "GK"
+  idade = 22
+  ovr = 40
+  pot = 49
+  valor = 200000
+  id_fonte = "818703"
+
+  [[clubes.jogadores]]
+  nome = "Fabrizio Bagheria"
+  pos = "GK"
+  idade = 25
+  ovr = 40
+  pot = 41
+  valor = 50000
+  id_fonte = "537548"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Vescovi"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 46
+  valor = 175000
+  partidas = 8
+  minutos = 712
+  id_fonte = "936184"
+
+[[clubes]]
+nome = "Ascoli Calcio"
+forca = 56.0
+valor_elenco = 12700000
+cores = ["#5E0A12", "#FEFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Brunori"
+  pos = "FW"
+  idade = 31
+  ovr = 63
+  pot = 63
+  valor = 1800000
+  partidas = 1
+  minutos = 130
+  gols = 1
+  id_fonte = "188889"
+
+  [[clubes.jogadores]]
+  nome = "Federico Gattoni"
+  pos = "CB"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 800000
+  partidas = 2
+  minutos = 4
+  id_fonte = "660735"
+
+  [[clubes.jogadores]]
+  nome = "Abdoul Guiebre"
+  pos = "FB"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 500000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "507351"
+
+  [[clubes.jogadores]]
+  nome = "Marcos Curado"
+  pos = "CB"
+  idade = 31
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "334371"
+
+  [[clubes.jogadores]]
+  nome = "Samuele Damiani"
+  pos = "DM"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 500000
+  partidas = 6
+  minutos = 514
+  gols = 1
+  id_fonte = "390117"
+
+  [[clubes.jogadores]]
+  nome = "Samuele Vitale"
+  pos = "GK"
+  idade = 24
+  ovr = 56
+  pot = 58
+  valor = 500000
+  partidas = 7
+  minutos = 630
+  id_fonte = "502475"
+
+  [[clubes.jogadores]]
+  nome = "Gabriele Gori"
+  pos = "FW"
+  idade = 27
+  ovr = 55
+  pot = 55
+  valor = 600000
+  partidas = 2
+  minutos = 211
+  gols = 2
+  id_fonte = "315859"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Milanese"
+  pos = "MF"
+  idade = 24
+  ovr = 55
+  pot = 56
+  valor = 600000
+  partidas = 6
+  minutos = 543
+  gols = 1
+  id_fonte = "538569"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Ricci"
+  pos = "DM"
+  idade = 32
+  ovr = 54
+  pot = 54
+  valor = 250000
+  id_fonte = "198087"
+
+  [[clubes.jogadores]]
+  nome = "Sergiu Perciun"
+  pos = "AM"
+  idade = 20
+  ovr = 54
+  pot = 60
+  valor = 1500000
+  partidas = 4
+  minutos = 365
+  id_fonte = "980632"
+
+  [[clubes.jogadores]]
+  nome = "Gennaro Acampora"
+  pos = "MF"
+  idade = 32
+  ovr = 53
+  pot = 53
+  valor = 250000
+  partidas = 2
+  minutos = 143
+  id_fonte = "230826"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Alagna"
+  pos = "FB"
+  idade = 24
+  ovr = 53
+  pot = 54
+  valor = 400000
+  partidas = 41
+  minutos = 3660
+  id_fonte = "706933"
+
+  [[clubes.jogadores]]
+  nome = "Simone D'Uffizi"
+  pos = "WG"
+  idade = 22
+  ovr = 52
+  pot = 54
+  valor = 600000
+  partidas = 7
+  minutos = 586
+  gols = 1
+  id_fonte = "884065"
+
+  [[clubes.jogadores]]
+  nome = "Giovanni Corradini"
+  pos = "DM"
+  idade = 23
+  ovr = 51
+  pot = 52
+  valor = 300000
+  partidas = 6
+  minutos = 566
+  gols = 1
+  id_fonte = "566927"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Nicoletti"
+  pos = "CB"
+  idade = 27
+  ovr = 51
+  pot = 51
+  valor = 200000
+  partidas = 1
+  minutos = 97
+  gols = 1
+  id_fonte = "318058"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Oliveri"
+  pos = "AM"
+  idade = 23
+  ovr = 50
+  pot = 56
+  valor = 750000
+  partidas = 1
+  minutos = 115
+  id_fonte = "663939"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Silipo"
+  pos = "WG"
+  idade = 25
+  ovr = 50
+  pot = 51
+  valor = 300000
+  partidas = 6
+  minutos = 501
+  gols = 4
+  id_fonte = "536451"
+
+  [[clubes.jogadores]]
+  nome = "Nicholas Rizzo"
+  pos = "CB"
+  idade = 26
+  ovr = 50
+  pot = 51
+  valor = 200000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "421869"
+
+  [[clubes.jogadores]]
+  nome = "Damiano Menna"
+  pos = "CB"
+  idade = 31
+  ovr = 49
+  pot = 49
+  valor = 100000
+  partidas = 2
+  minutos = 163
+  id_fonte = "406094"
+
+  [[clubes.jogadores]]
+  nome = "Gian Marco Crespi"
+  pos = "GK"
+  idade = 25
+  ovr = 48
+  pot = 52
+  valor = 200000
+  id_fonte = "504825"
+
+  [[clubes.jogadores]]
+  nome = "Don Bolsius"
+  pos = "WG"
+  idade = 27
+  ovr = 46
+  pot = 47
+  valor = 150000
+  partidas = 2
+  minutos = 206
+  id_fonte = "430798"
+
+  [[clubes.jogadores]]
+  nome = "Giacomo De Pieri"
+  pos = "WG"
+  idade = 19
+  ovr = 46
+  pot = 59
+  valor = 1300000
+  partidas = 2
+  minutos = 151
+  id_fonte = "930767"
+
+  [[clubes.jogadores]]
+  nome = "Mohammed Amine Chakir"
+  pos = "FW"
+  idade = 25
+  ovr = 46
+  pot = 48
+  valor = 200000
+  partidas = 4
+  minutos = 353
+  gols = 6
+  id_fonte = "552437"
+
+  [[clubes.jogadores]]
+  nome = "Luca Lo Scalzo"
+  pos = "MF"
+  idade = 19
+  ovr = 40
+  pot = 49
+  valor = 200000
+  partidas = 1
+  minutos = 22
+  id_fonte = "1056257"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Raffaelli"
+  pos = "GK"
+  idade = 21
+  ovr = 40
+  pot = 46
+  valor = 75000
+  id_fonte = "744622"
+
+  [[clubes.jogadores]]
+  nome = "Rok Bržan"
+  pos = "GK"
+  idade = 22
+  ovr = 40
+  pot = 41
+  valor = 25000
+  id_fonte = "708193"
+
+[[clubes]]
+nome = "Arezzo"
+forca = 55.7
+valor_elenco = 12200000
+cores = ["#4B1111", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Julián Illanes"
+  pos = "CB"
+  idade = 29
+  ovr = 62
+  pot = 62
+  valor = 1000000
+  partidas = 5
+  minutos = 490
+  id_fonte = "441264"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Nunziante"
+  pos = "GK"
+  idade = 19
+  ovr = 61
+  pot = 65
+  valor = 1800000
+  partidas = 7
+  minutos = 630
+  id_fonte = "956588"
+
+  [[clubes.jogadores]]
+  nome = "Emiliano Pattarello"
+  pos = "WG"
+  idade = 27
+  ovr = 58
+  pot = 58
+  valor = 1000000
+  partidas = 2
+  minutos = 155
+  gols = 13
+  id_fonte = "387060"
+
+  [[clubes.jogadores]]
+  nome = "Camillo Tavernelli"
+  pos = "WG"
+  idade = 27
+  ovr = 55
+  pot = 56
+  valor = 700000
+  partidas = 4
+  minutos = 402
+  gols = 2
+  id_fonte = "410655"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Mancuso"
+  pos = "FW"
+  idade = 34
+  ovr = 55
+  pot = 55
+  valor = 350000
+  partidas = 2
+  minutos = 40
+  gols = 1
+  id_fonte = "160344"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Gilli"
+  pos = "CB"
+  idade = 29
+  ovr = 55
+  pot = 55
+  valor = 400000
+  partidas = 7
+  minutos = 592
+  id_fonte = "337130"
+
+  [[clubes.jogadores]]
+  nome = "Alberto Cerri"
+  pos = "FW"
+  idade = 30
+  ovr = 54
+  pot = 54
+  valor = 500000
+  partidas = 2
+  minutos = 201
+  id_fonte = "197751"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Cagnano"
+  pos = "FB"
+  idade = 28
+  ovr = 54
+  pot = 54
+  valor = 350000
+  partidas = 1
+  minutos = 75
+  id_fonte = "418884"
+
+  [[clubes.jogadores]]
+  nome = "Luca Chierico"
+  pos = "MF"
+  idade = 24
+  ovr = 54
+  pot = 55
+  valor = 600000
+  partidas = 2
+  minutos = 160
+  gols = 4
+  id_fonte = "536452"
+
+  [[clubes.jogadores]]
+  nome = "Marco Chiosa"
+  pos = "CB"
+  idade = 32
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 32
+  minutos = 2864
+  id_fonte = "163549"
+
+  [[clubes.jogadores]]
+  nome = "Pietro Cianci"
+  pos = "FW"
+  idade = 30
+  ovr = 54
+  pot = 54
+  valor = 500000
+  partidas = 4
+  minutos = 326
+  gols = 2
+  id_fonte = "285754"
+
+  [[clubes.jogadores]]
+  nome = "Samuele Righetti"
+  pos = "FB"
+  idade = 24
+  ovr = 54
+  pot = 55
+  valor = 500000
+  partidas = 7
+  minutos = 600
+  id_fonte = "475134"
+
+  [[clubes.jogadores]]
+  nome = "Mauro Coppolaro"
+  pos = "CB"
+  idade = 29
+  ovr = 53
+  pot = 53
+  valor = 300000
+  partidas = 3
+  minutos = 266
+  id_fonte = "250921"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Seculin"
+  pos = "GK"
+  idade = 36
+  ovr = 52
+  pot = 52
+  valor = 100000
+  id_fonte = "85380"
+
+  [[clubes.jogadores]]
+  nome = "Artur Ioniță"
+  pos = "MF"
+  idade = 36
+  ovr = 52
+  pot = 52
+  valor = 175000
+  partidas = 7
+  minutos = 628
+  gols = 1
+  id_fonte = "98888"
+
+  [[clubes.jogadores]]
+  nome = "Filippo De Col"
+  pos = "FB"
+  idade = 32
+  ovr = 52
+  pot = 52
+  valor = 200000
+  partidas = 18
+  minutos = 1647
+  gols = 1
+  id_fonte = "240803"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Arena"
+  pos = "WG"
+  idade = 26
+  ovr = 51
+  pot = 51
+  valor = 400000
+  partidas = 4
+  minutos = 402
+  gols = 1
+  id_fonte = "678645"
+
+  [[clubes.jogadores]]
+  nome = "Eklu Shaka Mawuli"
+  pos = "MF"
+  idade = 28
+  ovr = 51
+  pot = 51
+  valor = 300000
+  partidas = 2
+  minutos = 171
+  gols = 2
+  id_fonte = "457681"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Renzi"
+  pos = "FB"
+  idade = 22
+  ovr = 49
+  pot = 51
+  valor = 300000
+  partidas = 6
+  minutos = 540
+  gols = 2
+  id_fonte = "709500"
+
+  [[clubes.jogadores]]
+  nome = "Marco Olivieri"
+  pos = "FW"
+  idade = 27
+  ovr = 49
+  pot = 50
+  valor = 350000
+  partidas = 1
+  minutos = 134
+  id_fonte = "346562"
+
+  [[clubes.jogadores]]
+  nome = "Luca Trombini"
+  pos = "GK"
+  idade = 25
+  ovr = 48
+  pot = 51
+  valor = 200000
+  partidas = 5
+  minutos = 445
+  id_fonte = "490699"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Sala"
+  pos = "MF"
+  idade = 21
+  ovr = 44
+  pot = 47
+  valor = 200000
+  partidas = 5
+  minutos = 463
+  id_fonte = "935510"
+
+  [[clubes.jogadores]]
+  nome = "Gennaro Iaccarino"
+  pos = "MF"
+  idade = 23
+  ovr = 43
+  pot = 47
+  valor = 200000
+  partidas = 3
+  minutos = 260
+  gols = 1
+  id_fonte = "703240"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Leone"
+  pos = "MF"
+  idade = 21
+  ovr = 43
+  pot = 55
+  valor = 600000
+  partidas = 2
+  minutos = 14
+  id_fonte = "724068"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Viviani"
+  pos = "DM"
+  idade = 26
+  ovr = 43
+  pot = 43
+  valor = 100000
+  partidas = 2
+  minutos = 184
+  id_fonte = "403845"
+
+  [[clubes.jogadores]]
+  nome = "Aleandro Manes"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 41
+  valor = 75000
+  id_fonte = "1099949"
+
+  [[clubes.jogadores]]
+  nome = "Davide Mancini"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 250000
+  id_fonte = "882912"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Șerban"
+  pos = "GK"
+  idade = 18
+  ovr = 40
+  pot = 50
+  valor = 200000
+  id_fonte = "1477745"
+
+  [[clubes.jogadores]]
+  nome = "Marlon Mena Martinez"
+  pos = "FB"
+  idade = 19
+  ovr = 40
+  pot = 51
+  valor = 300000
+  id_fonte = "934974"
+
+[[clubes]]
+nome = "ACDV Entella Chiaveri"
+forca = 54.7
+valor_elenco = 10730000
+cores = ["#6EB4DF", "#020303"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Stefano Di Mario"
+  pos = "AM"
+  idade = 21
+  ovr = 59
+  pot = 62
+  valor = 2000000
+  partidas = 5
+  minutos = 493
+  gols = 1
+  id_fonte = "821038"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Tiritiello"
+  pos = "CB"
+  idade = 31
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 5
+  minutos = 446
+  gols = 1
+  id_fonte = "248695"
+
+  [[clubes.jogadores]]
+  nome = "Niccolò Squizzato"
+  pos = "DM"
+  idade = 24
+  ovr = 57
+  pot = 59
+  valor = 900000
+  partidas = 5
+  minutos = 435
+  id_fonte = "487838"
+
+  [[clubes.jogadores]]
+  nome = "Andrea Franzoni"
+  pos = "AM"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 600000
+  partidas = 6
+  minutos = 534
+  gols = 2
+  id_fonte = "432105"
+
+  [[clubes.jogadores]]
+  nome = "Luca Parodi"
+  pos = "CB"
+  idade = 31
+  ovr = 56
+  pot = 56
+  valor = 350000
+  partidas = 6
+  minutos = 525
+  gols = 1
+  id_fonte = "256688"
+
+  [[clubes.jogadores]]
+  nome = "Simone Colombi"
+  pos = "GK"
+  idade = 35
+  ovr = 56
+  pot = 56
+  valor = 200000
+  partidas = 30
+  minutos = 2740
+  id_fonte = "57285"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Benedetti"
+  pos = "MF"
+  idade = 26
+  ovr = 55
+  pot = 57
+  valor = 700000
+  partidas = 3
+  minutos = 234
+  id_fonte = "423615"
+
+  [[clubes.jogadores]]
+  nome = "Bernat Guiu"
+  pos = "FW"
+  idade = 26
+  ovr = 53
+  pot = 53
+  valor = 500000
+  partidas = 6
+  minutos = 508
+  gols = 2
+  id_fonte = "632482"
+
+  [[clubes.jogadores]]
+  nome = "Federico Del Frate"
+  pos = "GK"
+  idade = 30
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 6
+  minutos = 540
+  id_fonte = "397241"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Mezzoni"
+  pos = "AM"
+  idade = 26
+  ovr = 53
+  pot = 54
+  valor = 500000
+  partidas = 1
+  minutos = 90
+  id_fonte = "395190"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Marconi"
+  pos = "CB"
+  idade = 36
+  ovr = 53
+  pot = 53
+  valor = 150000
+  partidas = 2
+  minutos = 189
+  gols = 3
+  id_fonte = "41780"
+
+  [[clubes.jogadores]]
+  nome = "Luigi Cuppone"
+  pos = "FW"
+  idade = 29
+  ovr = 53
+  pot = 53
+  valor = 450000
+  partidas = 3
+  minutos = 292
+  gols = 1
+  id_fonte = "352704"
+
+  [[clubes.jogadores]]
+  nome = "Davide Bariti"
+  pos = "AM"
+  idade = 35
+  ovr = 52
+  pot = 52
+  valor = 175000
+  partidas = 17
+  minutos = 1532
+  gols = 1
+  id_fonte = "120458"
+
+  [[clubes.jogadores]]
+  nome = "Luca Vignali"
+  pos = "AM"
+  idade = 30
+  ovr = 52
+  pot = 52
+  valor = 300000
+  partidas = 2
+  minutos = 217
+  id_fonte = "287367"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Alborghetti"
+  pos = "FB"
+  idade = 27
+  ovr = 52
+  pot = 53
+  valor = 300000
+  partidas = 6
+  minutos = 529
+  gols = 1
+  id_fonte = "404860"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Felippe"
+  pos = "DM"
+  idade = 26
+  ovr = 51
+  pot = 53
+  valor = 350000
+  partidas = 1
+  minutos = 98
+  id_fonte = "538063"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Forte"
+  pos = "FW"
+  idade = 33
+  ovr = 50
+  pot = 50
+  valor = 175000
+  partidas = 4
+  minutos = 316
+  id_fonte = "164534"
+
+  [[clubes.jogadores]]
+  nome = "Marwane Kritta"
+  pos = "AM"
+  idade = 24
+  ovr = 47
+  pot = 53
+  valor = 450000
+  partidas = 2
+  minutos = 33
+  id_fonte = "717885"
+
+  [[clubes.jogadores]]
+  nome = "Riccardo Turicchia"
+  pos = "AM"
+  idade = 23
+  ovr = 46
+  pot = 53
+  valor = 500000
+  partidas = 2
+  minutos = 222
+  id_fonte = "650249"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Tirelli"
+  pos = "FW"
+  idade = 24
+  ovr = 44
+  pot = 49
+  valor = 250000
+  partidas = 1
+  minutos = 99
+  gols = 1
+  id_fonte = "660190"
+
+  [[clubes.jogadores]]
+  nome = "Giacomo Corona"
+  pos = "FW"
+  idade = 22
+  ovr = 43
+  pot = 52
+  valor = 450000
+  partidas = 1
+  minutos = 58
+  gols = 1
+  id_fonte = "909894"
+
+  [[clubes.jogadores]]
+  nome = "Nicolas Previtali"
+  pos = "FB"
+  idade = 21
+  ovr = 41
+  pot = 51
+  valor = 250000
+  partidas = 1
+  minutos = 133
+  id_fonte = "1049728"
+
+  [[clubes.jogadores]]
+  nome = "Edoardo Torrielli"
+  pos = "GK"
+  idade = 20
+  ovr = 40
+  pot = 48
+  valor = 125000
+  id_fonte = "1188773"
+
+  [[clubes.jogadores]]
+  nome = "Gabriele Costa"
+  pos = "MF"
+  idade = 21
+  ovr = 40
+  pot = 42
+  valor = 75000
+  id_fonte = "819083"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Motolese"
+  pos = "CB"
+  idade = 22
+  ovr = 40
+  pot = 50
+  valor = 200000
+  id_fonte = "659420"
+
+  [[clubes.jogadores]]
+  nome = "Mattia Valori"
+  pos = "MF"
+  idade = 21
+  ovr = 40
+  pot = 47
+  valor = 150000
+  partidas = 1
+  minutos = 2
+  id_fonte = "1189072"
+
+  [[clubes.jogadores]]
+  nome = "Tommaso Annoni"
+  pos = "MF"
+  idade = 18
+  ovr = 40
+  pot = 40
+  valor = 25000
+  partidas = 2
+  minutos = 170
+  id_fonte = "1318487"
+

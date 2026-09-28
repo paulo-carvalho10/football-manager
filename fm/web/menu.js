@@ -192,7 +192,7 @@ function desenharCopas() {
     const ativo = NOVA.paises.has(n.pais);
     return `<h3 style="margin:.2rem 0 .5rem">${bandeira(n)} ${escapar(n.nome)}</h3>
       <div class="lista-simples" style="margin-bottom:1rem">${(cat.copas[n.pais] || []).map((c) =>
-        `<div class="item ${ativo ? "ok" : "inativo"}">${ativo ? icone("check") : icone("cadeado")}
+        `<div class="item ${ativo ? "ok" : "inativo"}">${ativo ? icone("check") : '<span class="dica" style="width:1.1rem;text-align:center">—</span>'}
           <span>${escapar(c)}</span></div>`).join("")}</div>`;
   }).join("");
   $("#lista-copas").innerHTML = blocos +

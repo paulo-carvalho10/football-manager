@@ -37,6 +37,12 @@ SAVES_DIR = Path(__file__).resolve().parent.parent / "saves"
 COPAS_POR_PAIS = {
     "BRA": ("copa_do_brasil", "libertadores", "sudamericana"),
     "ESP": ("champions", "europa_league"),
+    "ENG": ("champions", "europa_league"),
+    "ITA": ("champions", "europa_league"),
+    "GER": ("champions", "europa_league"),
+    "FRA": ("champions", "europa_league"),
+    "POR": ("champions", "europa_league"),
+    "ARG": ("libertadores", "sudamericana"),
 }
 COPAS = COPAS_POR_PAIS["BRA"]
 
@@ -135,7 +141,11 @@ class Carreira:
             rng = self.streams.get("calendario", self.temporada, lid)
             ids = list(world_ids := self.world.leagues[lid].club_ids)
             rng.shuffle(ids)                      # sorteio da tabela a cada temporada
-            self.calendarios[nome] = round_robin(ids, legs=2)
+            # turno e returno, salvo quando a liga diz outra coisa (a Argentina, com 30 e
+            # 36 clubes, joga turno unico: senao seriam 58 e 70 rodadas)
+            fases = load_league(nome).get("formato", {}).get("fases", [{}])
+            voltas = int(fases[0].get("voltas", 2)) if fases else 2
+            self.calendarios[nome] = round_robin(ids, legs=voltas)
             self.resultados[nome] = []
             assert world_ids is not None
         self.data = 0

@@ -123,7 +123,13 @@ def baixar(pack: str = "brasil_serie_a", delay: float = 0.4) -> dict[str, Path]:
 # importador ja guardou em cache. PNG com fundo transparente, 130 px de altura.
 URL_TM = "https://tmssl.akamaized.net/images/wappen/head/{id}.png"
 CODIGO_TM = {"brasil_serie_a": "BRA1", "brasil_serie_b": "BRA2",
-             "espanha_primera": "ES1", "espanha_segunda": "ES2"}
+             "espanha_primera": "ES1", "espanha_segunda": "ES2",
+             "inglaterra_premier": "GB1", "inglaterra_championship": "GB2",
+             "italia_serie_a": "IT1", "italia_serie_b": "IT2",
+             "alemanha_bundesliga": "L1", "alemanha_2_bundesliga": "L2",
+             "franca_ligue_1": "FR1", "franca_ligue_2": "FR2",
+             "portugal_liga": "PO1", "portugal_liga_2": "PO2",
+             "argentina_primera": "ARG1", "argentina_nacional": "ARG2"}
 INDICE = ESCUDOS_DIR / "indice.json"
 
 

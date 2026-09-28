@@ -1,0 +1,37 @@
+# Serie B (ITA), clubes e jogadores reais. Criada em 28/09/2026 para a versao completa.
+# Segunda divisao italiana: a mais empatada das ligas importadas.
+id     = "ita_2_real"
+nome   = "Serie B"
+pais   = "ITA"
+tier   = 2
+codigo = "IT2"   # competicao na fonte
+clubes = 20
+
+pack        = "italia_serie_b"
+pack_offset = 0
+
+[estilo]
+gols_base = 1.08
+mando     = 0.30
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 3, descem = 0 }
+
+# Faixas escritas de memoria, ordem de grandeza -- como as da Serie B. Re-derivar com as
+# tabelas reais antes de tratar como fonte.
+[alvos]
+zero_a_zero_pct           = [9.0, 14.0]
+gols_por_jogo             = [2.15, 2.60]
+empate_pct                = [28.0, 36.0]
+vitoria_casa_pct          = [39.0, 47.0]
+vitoria_fora_pct          = [21.0, 29.0]
+margem_3_ou_mais_pct      = [7.5, 13.0]
+margem_4_ou_mais_pct      = [1.5, 5.0]
+cinco_ou_mais_gols_pct    = [5.5, 11.0]
+pontos_do_campeao         = [66.0, 82.0]
+pontos_do_lanterna        = [22.0, 38.0]
+melhor_elenco_campeao_pct = [12.0, 50.0]
+
+# O nivel desta liga em relacao as outras NAO esta aqui: ele sai de
+# fm.ratings.forca_mundial, pelo valor de elenco de todas as competicoes importadas juntas.

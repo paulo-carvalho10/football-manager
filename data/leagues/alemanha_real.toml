@@ -1,0 +1,37 @@
+# Bundesliga (GER), clubes e jogadores reais. Criada em 28/09/2026 para a versao completa.
+# A liga de mais gols da Europa, com um favorito recorrente.
+id     = "ger_1_real"
+nome   = "Bundesliga"
+pais   = "GER"
+tier   = 1
+codigo = "L1"   # competicao na fonte
+clubes = 18
+
+pack        = "alemanha_bundesliga"
+pack_offset = 0
+
+[estilo]
+gols_base = 1.45
+mando     = 0.24
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 0, descem = 2 }
+
+# Faixas escritas de memoria, ordem de grandeza -- como as da Serie B. Re-derivar com as
+# tabelas reais antes de tratar como fonte.
+[alvos]
+zero_a_zero_pct           = [4.0, 8.0]
+gols_por_jogo             = [2.85, 3.35]
+empate_pct                = [19.0, 25.0]
+vitoria_casa_pct          = [41.0, 48.0]
+vitoria_fora_pct          = [29.0, 36.0]
+margem_3_ou_mais_pct      = [16.0, 23.0]
+margem_4_ou_mais_pct      = [6.0, 11.0]
+cinco_ou_mais_gols_pct    = [15.0, 22.0]
+pontos_do_campeao         = [70.0, 90.0]
+pontos_do_lanterna        = [14.0, 30.0]
+melhor_elenco_campeao_pct = [45.0, 85.0]
+
+# O nivel desta liga em relacao as outras NAO esta aqui: ele sai de
+# fm.ratings.forca_mundial, pelo valor de elenco de todas as competicoes importadas juntas.

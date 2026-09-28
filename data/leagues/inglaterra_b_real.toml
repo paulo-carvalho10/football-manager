@@ -1,0 +1,37 @@
+# Championship (ENG), clubes e jogadores reais. Criada em 28/09/2026 para a versao completa.
+# 24 clubes e 46 rodadas: o campeao soma muito ponto, mas a liga e parelha.
+id     = "eng_2_real"
+nome   = "Championship"
+pais   = "ENG"
+tier   = 2
+codigo = "GB2"   # competicao na fonte
+clubes = 24
+
+pack        = "inglaterra_championship"
+pack_offset = 0
+
+[estilo]
+gols_base = 1.20
+mando     = 0.26
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 3, descem = 0 }
+
+# Faixas escritas de memoria, ordem de grandeza -- como as da Serie B. Re-derivar com as
+# tabelas reais antes de tratar como fonte.
+[alvos]
+zero_a_zero_pct           = [6.0, 10.0]
+gols_por_jogo             = [2.35, 2.80]
+empate_pct                = [24.0, 31.0]
+vitoria_casa_pct          = [41.0, 47.0]
+vitoria_fora_pct          = [26.0, 32.0]
+margem_3_ou_mais_pct      = [8.5, 14.0]
+margem_4_ou_mais_pct      = [2.5, 6.0]
+cinco_ou_mais_gols_pct    = [7.0, 12.0]
+pontos_do_campeao         = [84.0, 100.0]
+pontos_do_lanterna        = [20.0, 42.0]
+melhor_elenco_campeao_pct = [10.0, 45.0]
+
+# O nivel desta liga em relacao as outras NAO esta aqui: ele sai de
+# fm.ratings.forca_mundial, pelo valor de elenco de todas as competicoes importadas juntas.

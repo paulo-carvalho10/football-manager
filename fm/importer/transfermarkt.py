@@ -22,13 +22,29 @@ COMPETICOES = {
     "bra_b": ("campeonato-brasileiro-serie-b", "BRA2", "BRA"),
     "esp_1": ("laliga", "ES1", "ESP"),
     "esp_2": ("laliga2", "ES2", "ESP"),
+    # as ligas da versao completa (28/09/2026). Todas ja estavam no cache desde a
+    # importacao das 59 ligas; faltava transforma-las em pack.
+    "eng_1": ("premier-league", "GB1", "ENG"),
+    "eng_2": ("championship", "GB2", "ENG"),
+    "ita_1": ("serie-a", "IT1", "ITA"),
+    "ita_2": ("serie-b", "IT2", "ITA"),
+    "ger_1": ("bundesliga", "L1", "GER"),
+    "ger_2": ("2-bundesliga", "L2", "GER"),
+    "fra_1": ("ligue-1", "FR1", "FRA"),
+    "fra_2": ("ligue-2", "FR2", "FRA"),
+    "por_1": ("liga-portugal", "PO1", "POR"),
+    "por_2": ("liga-portugal-2", "PO2", "POR"),
+    "arg_1": ("liga-profesional-de-futbol", "ARG1", "ARG"),
+    "arg_2": ("primera-nacional", "ARG2", "ARG"),
 }
 
 # Temporada de onde tirar minutos jogados. As ligas nao estao no mesmo ponto do calendario:
 # em setembro de 2026 o Brasileirao (ano civil) ja tinha 30 a 45 jogos, e as europeias
 # (agosto a maio) tinham 5 rodadas. Cinco rodadas nao dizem nada sobre quem e titular,
 # entao para a Europa usa-se a temporada ANTERIOR, ja completa.
-TEMPORADA_STATS = {"esp_1": "2025", "esp_2": "2025"}
+TEMPORADA_STATS = {c: "2025" for c in ("esp_1", "esp_2", "eng_1", "eng_2", "ita_1", "ita_2",
+                                        "ger_1", "ger_2", "fra_1", "fra_2", "por_1", "por_2")}
+# A Argentina joga no ano civil, como o Brasil: em setembro a temporada atual ja diz tudo.
 
 # Siglas de tipo de clube que nao fazem parte do nome. "Real" NAO entra: Real Madrid,
 # Real Betis e Real Sociedad sao nomes de verdade.

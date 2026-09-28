@@ -254,9 +254,11 @@ def generate_league(world: World, cfg: dict, streams: Streams, *, next_id: list[
     rng = streams.get("generate", cfg["id"])
 
     do_pack = league_clubs(cfg)
-    roots = list(CLUB_ROOTS[country])
+    # nomes de clube inventados so fazem falta em liga SEM pack; os paises da versao
+    # completa so existem com pack e nao tem toponimos proprios
+    roots = list(CLUB_ROOTS.get(country) or CLUB_ROOTS["BRA"])
     rng.shuffle(roots)
-    patterns = CLUB_PATTERNS[country]
+    patterns = CLUB_PATTERNS.get(country) or CLUB_PATTERNS["BRA"]
 
     league = League(id=cfg["id"], name=cfg["nome"], country=country,
                     tier=int(cfg.get("tier", 1)), codigo=cfg.get("codigo"))

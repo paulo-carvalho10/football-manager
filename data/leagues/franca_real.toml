@@ -1,0 +1,37 @@
+# Ligue 1 (FRA), clubes e jogadores reais. Criada em 28/09/2026 para a versao completa.
+# Um clube muito acima dos outros em valor de elenco: o titulo concentra.
+id     = "fra_1_real"
+nome   = "Ligue 1"
+pais   = "FRA"
+tier   = 1
+codigo = "FR1"   # competicao na fonte
+clubes = 18
+
+pack        = "franca_ligue_1"
+pack_offset = 0
+
+[estilo]
+gols_base = 1.33
+mando     = 0.26
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 0, descem = 2 }
+
+# Faixas escritas de memoria, ordem de grandeza -- como as da Serie B. Re-derivar com as
+# tabelas reais antes de tratar como fonte.
+[alvos]
+zero_a_zero_pct           = [5.5, 9.5]
+gols_por_jogo             = [2.55, 3.05]
+empate_pct                = [21.0, 27.0]
+vitoria_casa_pct          = [41.0, 48.0]
+vitoria_fora_pct          = [27.0, 34.0]
+margem_3_ou_mais_pct      = [13.0, 19.0]
+margem_4_ou_mais_pct      = [4.0, 9.0]
+cinco_ou_mais_gols_pct    = [10.0, 16.0]
+pontos_do_campeao         = [70.0, 90.0]
+pontos_do_lanterna        = [14.0, 30.0]
+melhor_elenco_campeao_pct = [50.0, 88.0]
+
+# O nivel desta liga em relacao as outras NAO esta aqui: ele sai de
+# fm.ratings.forca_mundial, pelo valor de elenco de todas as competicoes importadas juntas.

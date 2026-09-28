@@ -1,0 +1,5446 @@
+# FR2 -- GERADO por fm.importer. Nao editar a mao: rode o importador.
+#
+# Fonte: Transfermarkt (clube, posicao, idade, valor de mercado, jogos, minutos).
+# ovr e pot sao DERIVADOS por fm/ratings.py a partir desses campos. Sao estimativa, nao
+# rating oficial de ninguem, e a conta esta documentada no modulo.
+#
+# forca do clube = nivel_da_liga + 4.0 * z(ln(valor de elenco) dentro da liga).
+# O NIVEL da liga sai do valor medio de elenco na escala global de todas as competicoes
+# importadas, com o melhor clube do mundo ancorado em 90 -- fazer z so por liga apagava a
+# diferenca entre divisoes e o lanterna da Serie B saia mais forte que o da Serie A.
+# O BETA e proprio desta liga e foi ajustado contra os [alvos] do arquivo dela.
+verificado = false
+fonte = "Transfermarkt FR2 (valores de mercado); ovr/pot derivados por fm.ratings"
+
+[[clubes]]
+nome = "Saint-Étienne"
+forca = 67.6
+valor_elenco = 73300000
+cores = ["#1D995B", "#FEFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Zuriko Davitashvili"
+  pos = "WG"
+  idade = 25
+  ovr = 71
+  pot = 72
+  valor = 12000000
+  partidas = 4
+  minutos = 392
+  gols = 1
+  id_fonte = "427572"
+
+  [[clubes.jogadores]]
+  nome = "Gautier Larsonneur"
+  pos = "GK"
+  idade = 29
+  ovr = 70
+  pot = 70
+  valor = 3000000
+  partidas = 7
+  minutos = 630
+  id_fonte = "357047"
+
+  [[clubes.jogadores]]
+  nome = "Kévin Pedro"
+  pos = "FB"
+  idade = 20
+  ovr = 69
+  pot = 72
+  valor = 10000000
+  partidas = 7
+  minutos = 597
+  gols = 1
+  id_fonte = "955263"
+
+  [[clubes.jogadores]]
+  nome = "Augustine Boakye"
+  pos = "AM"
+  idade = 25
+  ovr = 68
+  pot = 69
+  valor = 6000000
+  partidas = 6
+  minutos = 553
+  gols = 4
+  id_fonte = "579263"
+
+  [[clubes.jogadores]]
+  nome = "Julien Le Cardinal"
+  pos = "CB"
+  idade = 29
+  ovr = 68
+  pot = 68
+  valor = 2500000
+  partidas = 7
+  minutos = 626
+  gols = 1
+  id_fonte = "794349"
+
+  [[clubes.jogadores]]
+  nome = "Irvin Cardona"
+  pos = "FW"
+  idade = 29
+  ovr = 67
+  pot = 67
+  valor = 3000000
+  partidas = 6
+  minutos = 521
+  gols = 4
+  id_fonte = "342226"
+
+  [[clubes.jogadores]]
+  nome = "Maxime Bernauer"
+  pos = "CB"
+  idade = 28
+  ovr = 66
+  pot = 66
+  valor = 2000000
+  partidas = 6
+  minutos = 566
+  gols = 1
+  id_fonte = "324819"
+
+  [[clubes.jogadores]]
+  nome = "Sohaib Naïr"
+  pos = "CB"
+  idade = 24
+  ovr = 66
+  pot = 68
+  valor = 3000000
+  partidas = 7
+  minutos = 630
+  id_fonte = "966312"
+
+  [[clubes.jogadores]]
+  nome = "Thierno Ballo"
+  pos = "WG"
+  idade = 24
+  ovr = 66
+  pot = 69
+  valor = 6000000
+  partidas = 5
+  minutos = 430
+  gols = 4
+  id_fonte = "406608"
+
+  [[clubes.jogadores]]
+  nome = "Áron Csongvai"
+  pos = "DM"
+  idade = 25
+  ovr = 66
+  pot = 67
+  valor = 3000000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "719926"
+
+  [[clubes.jogadores]]
+  nome = "Tamar Svetlin"
+  pos = "DM"
+  idade = 25
+  ovr = 65
+  pot = 67
+  valor = 3000000
+  partidas = 4
+  minutos = 376
+  id_fonte = "469695"
+
+  [[clubes.jogadores]]
+  nome = "Ben Old"
+  pos = "FB"
+  idade = 24
+  ovr = 64
+  pot = 65
+  valor = 1800000
+  partidas = 2
+  minutos = 183
+  gols = 5
+  id_fonte = "617021"
+
+  [[clubes.jogadores]]
+  nome = "Mahmoud Jaber"
+  pos = "DM"
+  idade = 26
+  ovr = 64
+  pot = 65
+  valor = 1800000
+  partidas = 1
+  minutos = 25
+  gols = 1
+  id_fonte = "467151"
+
+  [[clubes.jogadores]]
+  nome = "Jakob Breum"
+  pos = "AM"
+  idade = 22
+  ovr = 63
+  pot = 68
+  valor = 5000000
+  partidas = 4
+  minutos = 338
+  gols = 2
+  id_fonte = "657957"
+
+  [[clubes.jogadores]]
+  nome = "João Ferreira"
+  pos = "FB"
+  idade = 25
+  ovr = 63
+  pot = 66
+  valor = 2000000
+  partidas = 2
+  minutos = 146
+  gols = 2
+  id_fonte = "481623"
+
+  [[clubes.jogadores]]
+  nome = "Chico Lamba"
+  pos = "CB"
+  idade = 23
+  ovr = 62
+  pot = 68
+  valor = 3000000
+  partidas = 1
+  minutos = 4
+  id_fonte = "744186"
+
+  [[clubes.jogadores]]
+  nome = "Joshua Duffus"
+  pos = "FW"
+  idade = 21
+  ovr = 56
+  pot = 65
+  valor = 2500000
+  partidas = 2
+  minutos = 172
+  gols = 1
+  id_fonte = "867700"
+
+  [[clubes.jogadores]]
+  nome = "Mamour Ndiaye"
+  pos = "GK"
+  idade = 20
+  ovr = 51
+  pot = 65
+  valor = 1200000
+  id_fonte = "1111044"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Lavallée"
+  pos = "GK"
+  idade = 23
+  ovr = 49
+  pot = 57
+  valor = 200000
+  id_fonte = "654408"
+
+  [[clubes.jogadores]]
+  nome = "Nadir El Jamali"
+  pos = "AM"
+  idade = 19
+  ovr = 48
+  pot = 60
+  valor = 800000
+  partidas = 2
+  minutos = 14
+  gols = 2
+  id_fonte = "1202299"
+
+  [[clubes.jogadores]]
+  nome = "Paul Eymard"
+  pos = "MF"
+  idade = 18
+  ovr = 43
+  pot = 59
+  valor = 500000
+  partidas = 4
+  minutos = 390
+  gols = 2
+  id_fonte = "1227102"
+
+  [[clubes.jogadores]]
+  nome = "Adam Baallal"
+  pos = "MF"
+  idade = 19
+  ovr = 40
+  pot = 55
+  valor = 200000
+  partidas = 4
+  minutos = 30
+  id_fonte = "1180811"
+
+  [[clubes.jogadores]]
+  nome = "Lassana Traoré"
+  pos = "FB"
+  idade = 19
+  ovr = 40
+  pot = 53
+  valor = 100000
+  partidas = 1
+  minutos = 5
+  id_fonte = "1133751"
+
+  [[clubes.jogadores]]
+  nome = "Marten-Chris Paalberg"
+  pos = "FW"
+  idade = 17
+  ovr = 40
+  pot = 59
+  valor = 700000
+  id_fonte = "1044395"
+
+[[clubes]]
+nome = "Stade Reims"
+forca = 66.8
+valor_elenco = 63250000
+cores = ["#E80000", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Sergio Akieme"
+  pos = "FB"
+  idade = 28
+  ovr = 70
+  pot = 70
+  valor = 4000000
+  partidas = 1
+  minutos = 23
+  gols = 1
+  id_fonte = "355627"
+
+  [[clubes.jogadores]]
+  nome = "Samuel Kotto"
+  pos = "CB"
+  idade = 23
+  ovr = 69
+  pot = 70
+  valor = 5000000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "863900"
+
+  [[clubes.jogadores]]
+  nome = "Daouda Guindo"
+  pos = "FB"
+  idade = 23
+  ovr = 68
+  pot = 70
+  valor = 4500000
+  partidas = 7
+  minutos = 630
+  id_fonte = "671590"
+
+  [[clubes.jogadores]]
+  nome = "Joseph Okumu"
+  pos = "CB"
+  idade = 29
+  ovr = 68
+  pot = 68
+  valor = 2500000
+  partidas = 1
+  minutos = 11
+  id_fonte = "453376"
+
+  [[clubes.jogadores]]
+  nome = "Martial Tia"
+  pos = "AM"
+  idade = 19
+  ovr = 68
+  pot = 72
+  valor = 10000000
+  partidas = 6
+  minutos = 544
+  gols = 1
+  id_fonte = "1132634"
+
+  [[clubes.jogadores]]
+  nome = "Mory Gbane"
+  pos = "DM"
+  idade = 25
+  ovr = 68
+  pot = 69
+  valor = 4000000
+  partidas = 1
+  minutos = 59
+  gols = 3
+  id_fonte = "717585"
+
+  [[clubes.jogadores]]
+  nome = "Théo Leoni"
+  pos = "MF"
+  idade = 26
+  ovr = 68
+  pot = 69
+  valor = 4000000
+  partidas = 6
+  minutos = 565
+  gols = 2
+  id_fonte = "418071"
+
+  [[clubes.jogadores]]
+  nome = "Elie N'Tamon"
+  pos = "CB"
+  idade = 22
+  ovr = 67
+  pot = 69
+  valor = 4000000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "668966"
+
+  [[clubes.jogadores]]
+  nome = "Yaya Fofana"
+  pos = "MF"
+  idade = 22
+  ovr = 67
+  pot = 69
+  valor = 5000000
+  partidas = 6
+  minutos = 569
+  gols = 5
+  id_fonte = "1044893"
+
+  [[clubes.jogadores]]
+  nome = "Tom Ritzy Hülsmann"
+  pos = "GK"
+  idade = 22
+  ovr = 66
+  pot = 68
+  valor = 2500000
+  partidas = 7
+  minutos = 630
+  id_fonte = "639582"
+
+  [[clubes.jogadores]]
+  nome = "Sambou Soumano"
+  pos = "FW"
+  idade = 25
+  ovr = 65
+  pot = 67
+  valor = 3500000
+  partidas = 4
+  minutos = 385
+  gols = 1
+  id_fonte = "704270"
+
+  [[clubes.jogadores]]
+  nome = "Mohamed Daramy"
+  pos = "WG"
+  idade = 24
+  ovr = 64
+  pot = 66
+  valor = 3000000
+  partidas = 5
+  minutos = 445
+  gols = 5
+  id_fonte = "574385"
+
+  [[clubes.jogadores]]
+  nome = "Youssef El Kachati"
+  pos = "FW"
+  idade = 26
+  ovr = 60
+  pot = 62
+  valor = 1000000
+  partidas = 3
+  minutos = 259
+  gols = 2
+  id_fonte = "444380"
+
+  [[clubes.jogadores]]
+  nome = "Amine Salama"
+  pos = "FW"
+  idade = 26
+  ovr = 59
+  pot = 61
+  valor = 800000
+  partidas = 10
+  minutos = 856
+  gols = 3
+  id_fonte = "980576"
+
+  [[clubes.jogadores]]
+  nome = "Alexis Sauvage"
+  pos = "GK"
+  idade = 34
+  ovr = 58
+  pot = 58
+  valor = 100000
+  id_fonte = "191188"
+
+  [[clubes.jogadores]]
+  nome = "Armel Zohouri"
+  pos = "FB"
+  idade = 25
+  ovr = 57
+  pot = 60
+  valor = 500000
+  partidas = 3
+  minutos = 231
+  id_fonte = "819419"
+
+  [[clubes.jogadores]]
+  nome = "Hafiz Umar Ibrahim"
+  pos = "FW"
+  idade = 20
+  ovr = 57
+  pot = 66
+  valor = 3000000
+  partidas = 12
+  minutos = 1084
+  gols = 6
+  id_fonte = "1237306"
+
+  [[clubes.jogadores]]
+  nome = "Jean-Tryfose Mambuku"
+  pos = "FB"
+  idade = 18
+  ovr = 57
+  pot = 64
+  valor = 1500000
+  partidas = 5
+  minutos = 440
+  id_fonte = "1141520"
+
+  [[clubes.jogadores]]
+  nome = "Edin Omeragic"
+  pos = "GK"
+  idade = 24
+  ovr = 55
+  pot = 61
+  valor = 400000
+  id_fonte = "507391"
+
+  [[clubes.jogadores]]
+  nome = "John Patrick"
+  pos = "MF"
+  idade = 22
+  ovr = 54
+  pot = 61
+  valor = 800000
+  partidas = 1
+  minutos = 96
+  id_fonte = "841121"
+
+  [[clubes.jogadores]]
+  nome = "John Otomewo"
+  pos = "DM"
+  idade = 19
+  ovr = 53
+  pot = 66
+  valor = 2000000
+  partidas = 2
+  minutos = 160
+  id_fonte = "1489152"
+
+  [[clubes.jogadores]]
+  nome = "Maël Debondt"
+  pos = "FB"
+  idade = 19
+  ovr = 43
+  pot = 59
+  valor = 448461
+  partidas = 1
+  minutos = 45
+  id_fonte = "981400"
+
+  [[clubes.jogadores]]
+  nome = "Aleksandr Guboglo"
+  pos = "FB"
+  idade = 19
+  ovr = 42
+  pot = 58
+  valor = 350000
+  id_fonte = "1108459"
+
+  [[clubes.jogadores]]
+  nome = "Tidiane Diarrassouba"
+  pos = "WG"
+  idade = 18
+  ovr = 41
+  pot = 58
+  valor = 500000
+  partidas = 2
+  minutos = 29
+  id_fonte = "1297264"
+
+  [[clubes.jogadores]]
+  nome = "Arone Gadou"
+  pos = "FW"
+  idade = 17
+  ovr = 40
+  pot = 56
+  valor = 300000
+  partidas = 1
+  minutos = 65
+  id_fonte = "1297664"
+
+  [[clubes.jogadores]]
+  nome = "Lenny Sylla"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 55
+  valor = 249615
+  id_fonte = "1108696"
+
+[[clubes]]
+nome = "Nantes"
+forca = 66.7
+valor_elenco = 62680000
+cores = ["#FDD605", "#141414"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Johann Lepenant"
+  pos = "DM"
+  idade = 23
+  ovr = 70
+  pot = 71
+  valor = 6000000
+  partidas = 5
+  minutos = 438
+  id_fonte = "585973"
+
+  [[clubes.jogadores]]
+  nome = "Kelvin Amian"
+  pos = "FB"
+  idade = 28
+  ovr = 68
+  pot = 68
+  valor = 2000000
+  partidas = 5
+  minutos = 477
+  id_fonte = "344072"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Perrin"
+  pos = "CB"
+  idade = 27
+  ovr = 68
+  pot = 68
+  valor = 2000000
+  partidas = 7
+  minutos = 630
+  id_fonte = "352392"
+
+  [[clubes.jogadores]]
+  nome = "Tylel Tati"
+  pos = "CB"
+  idade = 18
+  ovr = 68
+  pot = 75
+  valor = 15000000
+  partidas = 2
+  minutos = 180
+  id_fonte = "1241207"
+
+  [[clubes.jogadores]]
+  nome = "Ibrahima Sissoko"
+  pos = "DM"
+  idade = 28
+  ovr = 67
+  pot = 67
+  valor = 1800000
+  partidas = 5
+  minutos = 448
+  id_fonte = "372712"
+
+  [[clubes.jogadores]]
+  nome = "Maxime Dupé"
+  pos = "GK"
+  idade = 33
+  ovr = 67
+  pot = 67
+  valor = 700000
+  partidas = 7
+  minutos = 630
+  id_fonte = "127188"
+
+  [[clubes.jogadores]]
+  nome = "Amin Cherni"
+  pos = "FB"
+  idade = 25
+  ovr = 66
+  pot = 70
+  valor = 3500000
+  partidas = 1
+  minutos = 67
+  id_fonte = "782935"
+
+  [[clubes.jogadores]]
+  nome = "Mathieu Cafaro"
+  pos = "WG"
+  idade = 29
+  ovr = 66
+  pot = 66
+  valor = 1500000
+  partidas = 5
+  minutos = 436
+  id_fonte = "399383"
+
+  [[clubes.jogadores]]
+  nome = "Saïdou Sow"
+  pos = "CB"
+  idade = 24
+  ovr = 66
+  pot = 69
+  valor = 2500000
+  partidas = 5
+  minutos = 450
+  id_fonte = "807128"
+
+  [[clubes.jogadores]]
+  nome = "Balthazar Pierret"
+  pos = "DM"
+  idade = 26
+  ovr = 65
+  pot = 66
+  valor = 1500000
+  partidas = 2
+  minutos = 177
+  id_fonte = "642002"
+
+  [[clubes.jogadores]]
+  nome = "Fabien Centonze"
+  pos = "FB"
+  idade = 30
+  ovr = 65
+  pot = 65
+  valor = 900000
+  partidas = 9
+  minutos = 823
+  gols = 4
+  id_fonte = "384859"
+
+  [[clubes.jogadores]]
+  nome = "Fodé Doucouré"
+  pos = "FB"
+  idade = 25
+  ovr = 65
+  pot = 68
+  valor = 2000000
+  partidas = 2
+  minutos = 225
+  id_fonte = "798925"
+
+  [[clubes.jogadores]]
+  nome = "Frédéric Guilbert"
+  pos = "FB"
+  idade = 31
+  ovr = 65
+  pot = 65
+  valor = 800000
+  partidas = 5
+  minutos = 493
+  id_fonte = "354352"
+
+  [[clubes.jogadores]]
+  nome = "Ignatius Ganago"
+  pos = "FW"
+  idade = 27
+  ovr = 65
+  pot = 66
+  valor = 1800000
+  partidas = 3
+  minutos = 284
+  gols = 1
+  id_fonte = "531949"
+
+  [[clubes.jogadores]]
+  nome = "Patrik Carlgren"
+  pos = "GK"
+  idade = 34
+  ovr = 65
+  pot = 65
+  valor = 400000
+  partidas = 3
+  minutos = 271
+  id_fonte = "190280"
+
+  [[clubes.jogadores]]
+  nome = "Ryad Hachem"
+  pos = "MF"
+  idade = 28
+  ovr = 65
+  pot = 65
+  valor = 1000000
+  partidas = 3
+  minutos = 257
+  id_fonte = "796883"
+
+  [[clubes.jogadores]]
+  nome = "Dehmaine Tabibou"
+  pos = "MF"
+  idade = 21
+  ovr = 64
+  pot = 70
+  valor = 5000000
+  partidas = 3
+  minutos = 277
+  gols = 1
+  id_fonte = "1004619"
+
+  [[clubes.jogadores]]
+  nome = "Killian Corredor"
+  pos = "FW"
+  idade = 25
+  ovr = 64
+  pot = 67
+  valor = 2800000
+  partidas = 2
+  minutos = 225
+  gols = 2
+  id_fonte = "853491"
+
+  [[clubes.jogadores]]
+  nome = "Louis Leroux"
+  pos = "AM"
+  idade = 20
+  ovr = 64
+  pot = 71
+  valor = 7000000
+  partidas = 2
+  minutos = 139
+  gols = 1
+  id_fonte = "1119456"
+
+  [[clubes.jogadores]]
+  nome = "Thomas Robinet"
+  pos = "FW"
+  idade = 30
+  ovr = 64
+  pot = 64
+  valor = 1000000
+  partidas = 3
+  minutos = 270
+  gols = 1
+  id_fonte = "290615"
+
+  [[clubes.jogadores]]
+  nome = "Wilitty Younoussa"
+  pos = "MF"
+  idade = 25
+  ovr = 61
+  pot = 64
+  valor = 900000
+  partidas = 3
+  minutos = 257
+  gols = 2
+  id_fonte = "804934"
+
+  [[clubes.jogadores]]
+  nome = "Antoine Joujou"
+  pos = "WG"
+  idade = 23
+  ovr = 59
+  pot = 66
+  valor = 2000000
+  partidas = 1
+  minutos = 59
+  gols = 1
+  id_fonte = "1028162"
+
+  [[clubes.jogadores]]
+  nome = "Lamine Diack"
+  pos = "DM"
+  idade = 25
+  ovr = 56
+  pot = 60
+  valor = 300000
+  id_fonte = "649024"
+
+  [[clubes.jogadores]]
+  nome = "Sacha Ziani"
+  pos = "DM"
+  idade = 23
+  ovr = 50
+  pot = 58
+  valor = 196428
+  id_fonte = "855159"
+
+  [[clubes.jogadores]]
+  nome = "Sékou Doucouré"
+  pos = "CB"
+  idade = 21
+  ovr = 45
+  pot = 57
+  valor = 150000
+  partidas = 1
+  minutos = 67
+  id_fonte = "825438"
+
+  [[clubes.jogadores]]
+  nome = "Alexis Mirbach"
+  pos = "GK"
+  idade = 21
+  ovr = 42
+  pot = 54
+  valor = 50000
+  id_fonte = "928873"
+
+  [[clubes.jogadores]]
+  nome = "Malang Gomes"
+  pos = "DM"
+  idade = 21
+  ovr = 42
+  pot = 54
+  valor = 75000
+  partidas = 1
+  minutos = 2
+  id_fonte = "1004608"
+
+  [[clubes.jogadores]]
+  nome = "Yanel Zézé"
+  pos = "GK"
+  idade = 18
+  ovr = 41
+  pot = 59
+  valor = 196428
+  id_fonte = "1227109"
+
+[[clubes]]
+nome = "Metz"
+forca = 65.0
+valor_elenco = 46000000
+cores = ["#731013", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Believe Munongo"
+  pos = "MF"
+  idade = 16
+  ovr = 72
+  pot = 72
+  valor = 10000000
+  partidas = 5
+  minutos = 482
+  id_fonte = "1297673"
+
+  [[clubes.jogadores]]
+  nome = "Pape Moussa Fall"
+  pos = "FW"
+  idade = 22
+  ovr = 69
+  pot = 71
+  valor = 9000000
+  partidas = 6
+  minutos = 572
+  gols = 5
+  id_fonte = "1176295"
+
+  [[clubes.jogadores]]
+  nome = "Jonathan Fischer"
+  pos = "GK"
+  idade = 24
+  ovr = 67
+  pot = 68
+  valor = 2000000
+  partidas = 6
+  minutos = 540
+  id_fonte = "542452"
+
+  [[clubes.jogadores]]
+  nome = "Jessy Deminguet"
+  pos = "MF"
+  idade = 28
+  ovr = 66
+  pot = 66
+  valor = 2000000
+  partidas = 6
+  minutos = 577
+  gols = 2
+  id_fonte = "539232"
+
+  [[clubes.jogadores]]
+  nome = "Téji Savanier"
+  pos = "AM"
+  idade = 34
+  ovr = 66
+  pot = 66
+  valor = 1000000
+  partidas = 4
+  minutos = 322
+  gols = 1
+  id_fonte = "127156"
+
+  [[clubes.jogadores]]
+  nome = "Florian Miguel"
+  pos = "FB"
+  idade = 30
+  ovr = 65
+  pot = 65
+  valor = 1000000
+  partidas = 6
+  minutos = 534
+  id_fonte = "347594"
+
+  [[clubes.jogadores]]
+  nome = "Jean Ruiz"
+  pos = "CB"
+  idade = 28
+  ovr = 65
+  pot = 65
+  valor = 1200000
+  partidas = 4
+  minutos = 398
+  id_fonte = "345067"
+
+  [[clubes.jogadores]]
+  nome = "Nampalys Mendy"
+  pos = "DM"
+  idade = 34
+  ovr = 65
+  pot = 65
+  valor = 700000
+  partidas = 1
+  minutos = 133
+  id_fonte = "111051"
+
+  [[clubes.jogadores]]
+  nome = "Cristian Devenish"
+  pos = "CB"
+  idade = 25
+  ovr = 64
+  pot = 65
+  valor = 1200000
+  partidas = 7
+  minutos = 630
+  id_fonte = "726697"
+
+  [[clubes.jogadores]]
+  nome = "Pape Sy"
+  pos = "GK"
+  idade = 29
+  ovr = 64
+  pot = 64
+  valor = 600000
+  partidas = 1
+  minutos = 90
+  id_fonte = "568728"
+
+  [[clubes.jogadores]]
+  nome = "Alpha Touré"
+  pos = "DM"
+  idade = 20
+  ovr = 63
+  pot = 69
+  valor = 4000000
+  partidas = 19
+  minutos = 1695
+  id_fonte = "1178489"
+
+  [[clubes.jogadores]]
+  nome = "Bouna Sarr"
+  pos = "FB"
+  idade = 34
+  ovr = 62
+  pot = 62
+  valor = 350000
+  partidas = 5
+  minutos = 450
+  id_fonte = "190685"
+
+  [[clubes.jogadores]]
+  nome = "Giorgi Abuashvili"
+  pos = "WG"
+  idade = 23
+  ovr = 62
+  pot = 64
+  valor = 1500000
+  partidas = 6
+  minutos = 559
+  gols = 1
+  id_fonte = "677057"
+
+  [[clubes.jogadores]]
+  nome = "Maxime Colin"
+  pos = "FB"
+  idade = 34
+  ovr = 61
+  pot = 61
+  valor = 250000
+  partidas = 2
+  minutos = 186
+  id_fonte = "156618"
+
+  [[clubes.jogadores]]
+  nome = "Michel Mboula"
+  pos = "CB"
+  idade = 23
+  ovr = 58
+  pot = 63
+  valor = 900000
+  partidas = 2
+  minutos = 139
+  id_fonte = "1038308"
+
+  [[clubes.jogadores]]
+  nome = "Nathan Mbala"
+  pos = "FW"
+  idade = 18
+  ovr = 57
+  pot = 68
+  valor = 4500000
+  partidas = 3
+  minutos = 273
+  gols = 2
+  id_fonte = "1307004"
+
+  [[clubes.jogadores]]
+  nome = "Idris Mohamed"
+  pos = "CB"
+  idade = 22
+  ovr = 54
+  pot = 61
+  valor = 500000
+  partidas = 3
+  minutos = 260
+  id_fonte = "1086466"
+
+  [[clubes.jogadores]]
+  nome = "Jahyann Pandore"
+  pos = "WG"
+  idade = 18
+  ovr = 52
+  pot = 61
+  valor = 1000000
+  partidas = 4
+  minutos = 336
+  gols = 1
+  id_fonte = "1306999"
+
+  [[clubes.jogadores]]
+  nome = "Morgan Bokele"
+  pos = "WG"
+  idade = 22
+  ovr = 52
+  pot = 61
+  valor = 900000
+  partidas = 1
+  minutos = 8
+  id_fonte = "838562"
+
+  [[clubes.jogadores]]
+  nome = "Ibou Sané"
+  pos = "FW"
+  idade = 21
+  ovr = 51
+  pot = 60
+  valor = 800000
+  partidas = 1
+  minutos = 91
+  gols = 2
+  id_fonte = "1111776"
+
+  [[clubes.jogadores]]
+  nome = "Édouard Soumah-Abbad"
+  pos = "WG"
+  idade = 23
+  ovr = 51
+  pot = 59
+  valor = 500000
+  id_fonte = "931671"
+
+  [[clubes.jogadores]]
+  nome = "Ousmane Ba"
+  pos = "GK"
+  idade = 24
+  ovr = 50
+  pot = 55
+  valor = 100000
+  partidas = 2
+  minutos = 180
+  id_fonte = "666975"
+
+  [[clubes.jogadores]]
+  nome = "Hamza Kadamani"
+  pos = "WG"
+  idade = 17
+  ovr = 46
+  pot = 61
+  valor = 1000000
+  partidas = 2
+  minutos = 146
+  id_fonte = "1339869"
+
+  [[clubes.jogadores]]
+  nome = "Alassane Sy"
+  pos = "DM"
+  idade = 21
+  ovr = 45
+  pot = 57
+  valor = 250000
+  id_fonte = "1179104"
+
+  [[clubes.jogadores]]
+  nome = "Abdourahmane Mbodji"
+  pos = "FW"
+  idade = 18
+  ovr = 42
+  pot = 60
+  valor = 700000
+  partidas = 1
+  minutos = 18
+  gols = 1
+  id_fonte = "1392157"
+
+  [[clubes.jogadores]]
+  nome = "Joseph Mangondo"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 51
+  valor = 50000
+  id_fonte = "1101719"
+
+[[clubes]]
+nome = "Montpellier HSC"
+forca = 63.1
+valor_elenco = 33150000
+cores = ["#D5895C", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Lacine Megnan-Pave"
+  pos = "FW"
+  idade = 16
+  ovr = 66
+  pot = 66
+  valor = 5000000
+  partidas = 4
+  minutos = 369
+  gols = 1
+  id_fonte = "1408622"
+
+  [[clubes.jogadores]]
+  nome = "Simon Ngapandouetnbu"
+  pos = "GK"
+  idade = 23
+  ovr = 66
+  pot = 67
+  valor = 3000000
+  partidas = 7
+  minutos = 630
+  id_fonte = "696600"
+
+  [[clubes.jogadores]]
+  nome = "Yanis Zouaoui"
+  pos = "FB"
+  idade = 28
+  ovr = 66
+  pot = 66
+  valor = 2500000
+  partidas = 1
+  minutos = 90
+  id_fonte = "691841"
+
+  [[clubes.jogadores]]
+  nome = "Alpha Sissoko"
+  pos = "FB"
+  idade = 29
+  ovr = 64
+  pot = 64
+  valor = 1200000
+  id_fonte = "594992"
+
+  [[clubes.jogadores]]
+  nome = "Julien Laporte"
+  pos = "CB"
+  idade = 32
+  ovr = 63
+  pot = 63
+  valor = 800000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "386057"
+
+  [[clubes.jogadores]]
+  nome = "Nicolas Pays"
+  pos = "WG"
+  idade = 23
+  ovr = 63
+  pot = 65
+  valor = 3000000
+  partidas = 7
+  minutos = 622
+  gols = 1
+  id_fonte = "1093482"
+
+  [[clubes.jogadores]]
+  nome = "Daylam Meddah"
+  pos = "DM"
+  idade = 23
+  ovr = 62
+  pot = 65
+  valor = 2000000
+  partidas = 5
+  minutos = 450
+  gols = 1
+  id_fonte = "768439"
+
+  [[clubes.jogadores]]
+  nome = "Théo Chennahi"
+  pos = "MF"
+  idade = 21
+  ovr = 62
+  pot = 65
+  valor = 2500000
+  partidas = 3
+  minutos = 314
+  gols = 1
+  id_fonte = "1019950"
+
+  [[clubes.jogadores]]
+  nome = "Théo Sainte-Luce"
+  pos = "FB"
+  idade = 27
+  ovr = 62
+  pot = 63
+  valor = 1000000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "537127"
+
+  [[clubes.jogadores]]
+  nome = "Florian Tardieu"
+  pos = "MF"
+  idade = 34
+  ovr = 61
+  pot = 61
+  valor = 400000
+  partidas = 5
+  minutos = 450
+  id_fonte = "212804"
+
+  [[clubes.jogadores]]
+  nome = "Yaël Mouanga"
+  pos = "CB"
+  idade = 21
+  ovr = 61
+  pot = 66
+  valor = 3000000
+  partidas = 5
+  minutos = 438
+  id_fonte = "970364"
+
+  [[clubes.jogadores]]
+  nome = "Everson Jr"
+  pos = "DM"
+  idade = 22
+  ovr = 59
+  pot = 62
+  valor = 1000000
+  partidas = 22
+  minutos = 2021
+  gols = 1
+  id_fonte = "919236"
+
+  [[clubes.jogadores]]
+  nome = "Mamadou Camara"
+  pos = "FW"
+  idade = 25
+  ovr = 59
+  pot = 62
+  valor = 1200000
+  partidas = 3
+  minutos = 276
+  id_fonte = "857148"
+
+  [[clubes.jogadores]]
+  nome = "Mathieu Michel"
+  pos = "GK"
+  idade = 35
+  ovr = 58
+  pot = 58
+  valor = 100000
+  partidas = 5
+  minutos = 450
+  id_fonte = "193142"
+
+  [[clubes.jogadores]]
+  nome = "Nordan Mukiele"
+  pos = "WG"
+  idade = 20
+  ovr = 58
+  pot = 62
+  valor = 1500000
+  partidas = 6
+  minutos = 512
+  gols = 1
+  id_fonte = "986285"
+
+  [[clubes.jogadores]]
+  nome = "Naoufel El Hannach"
+  pos = "FB"
+  idade = 19
+  ovr = 56
+  pot = 63
+  valor = 1500000
+  partidas = 5
+  minutos = 406
+  id_fonte = "1053148"
+
+  [[clubes.jogadores]]
+  nome = "Yassine Benhattab"
+  pos = "WG"
+  idade = 23
+  ovr = 55
+  pot = 63
+  valor = 2000000
+  id_fonte = "796589"
+
+  [[clubes.jogadores]]
+  nome = "Jérémy Hatchi"
+  pos = "WG"
+  idade = 21
+  ovr = 48
+  pot = 60
+  valor = 700000
+  partidas = 2
+  minutos = 22
+  id_fonte = "981760"
+
+  [[clubes.jogadores]]
+  nome = "Nabil Homssa"
+  pos = "MF"
+  idade = 24
+  ovr = 48
+  pot = 54
+  valor = 100000
+  partidas = 1
+  minutos = 64
+  id_fonte = "805861"
+
+  [[clubes.jogadores]]
+  nome = "Axel Guéguin"
+  pos = "WG"
+  idade = 21
+  ovr = 45
+  pot = 56
+  valor = 250000
+  partidas = 2
+  minutos = 211
+  gols = 1
+  id_fonte = "981977"
+
+  [[clubes.jogadores]]
+  nome = "Grégory Ayem"
+  pos = "AM"
+  idade = 20
+  ovr = 42
+  pot = 53
+  valor = 100000
+  partidas = 2
+  minutos = 157
+  id_fonte = "1058139"
+
+  [[clubes.jogadores]]
+  nome = "Viktor Dzodic"
+  pos = "GK"
+  idade = 19
+  ovr = 42
+  pot = 56
+  valor = 150000
+  partidas = 3
+  minutos = 270
+  id_fonte = "989106"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Kamdem"
+  pos = "GK"
+  idade = 20
+  ovr = 41
+  pot = 55
+  valor = 88611
+  id_fonte = "1248796"
+
+  [[clubes.jogadores]]
+  nome = "Yvan Djemba Mbappé"
+  pos = "DM"
+  idade = 21
+  ovr = 41
+  pot = 53
+  valor = 88611
+  id_fonte = "1190851"
+
+  [[clubes.jogadores]]
+  nome = "Daryll Benlahlou"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 52
+  valor = 100000
+  partidas = 1
+  minutos = 85
+  id_fonte = "1196628"
+
+  [[clubes.jogadores]]
+  nome = "Oscar Etoundi"
+  pos = "FB"
+  idade = 18
+  ovr = 40
+  pot = 53
+  valor = 88611
+  id_fonte = "1388874"
+
+  [[clubes.jogadores]]
+  nome = "Wilfried Ndollo"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 51
+  valor = 50000
+  id_fonte = "1203026"
+
+[[clubes]]
+nome = "Clermont Foot 63"
+forca = 59.4
+valor_elenco = 16900000
+cores = ["#012D6A", "#C70C46"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Andy Pelmard"
+  pos = "CB"
+  idade = 26
+  ovr = 64
+  pot = 66
+  valor = 2000000
+  partidas = 3
+  minutos = 231
+  id_fonte = "494236"
+
+  [[clubes.jogadores]]
+  nome = "Ivan M'Bahia"
+  pos = "CB"
+  idade = 21
+  ovr = 63
+  pot = 66
+  valor = 2000000
+  partidas = 4
+  minutos = 324
+  gols = 2
+  id_fonte = "1247360"
+
+  [[clubes.jogadores]]
+  nome = "Yoann Salmier"
+  pos = "CB"
+  idade = 33
+  ovr = 63
+  pot = 63
+  valor = 600000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "351843"
+
+  [[clubes.jogadores]]
+  nome = "Théo Guivarch"
+  pos = "GK"
+  idade = 30
+  ovr = 62
+  pot = 62
+  valor = 500000
+  partidas = 7
+  minutos = 630
+  id_fonte = "358505"
+
+  [[clubes.jogadores]]
+  nome = "Abdellah Baallal"
+  pos = "MF"
+  idade = 21
+  ovr = 61
+  pot = 64
+  valor = 1800000
+  partidas = 2
+  minutos = 180
+  gols = 1
+  id_fonte = "1028125"
+
+  [[clubes.jogadores]]
+  nome = "Junior Sambia"
+  pos = "FB"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 500000
+  partidas = 4
+  minutos = 316
+  id_fonte = "335147"
+
+  [[clubes.jogadores]]
+  nome = "Rominigue Kouamé"
+  pos = "MF"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 1
+  minutos = 96
+  id_fonte = "277635"
+
+  [[clubes.jogadores]]
+  nome = "Vital Nsimba"
+  pos = "FB"
+  idade = 33
+  ovr = 59
+  pot = 59
+  valor = 300000
+  partidas = 7
+  minutos = 623
+  id_fonte = "203761"
+
+  [[clubes.jogadores]]
+  nome = "Ethan Kena Kabeya"
+  pos = "CB"
+  idade = 20
+  ovr = 58
+  pot = 60
+  valor = 700000
+  partidas = 7
+  minutos = 630
+  id_fonte = "1176227"
+
+  [[clubes.jogadores]]
+  nome = "Florian Bianchini"
+  pos = "WG"
+  idade = 25
+  ovr = 58
+  pot = 61
+  valor = 1000000
+  partidas = 2
+  minutos = 186
+  id_fonte = "715923"
+
+  [[clubes.jogadores]]
+  nome = "Ibrahim Coulibaly"
+  pos = "FB"
+  idade = 20
+  ovr = 58
+  pot = 62
+  valor = 1000000
+  partidas = 3
+  minutos = 306
+  id_fonte = "1079183"
+
+  [[clubes.jogadores]]
+  nome = "Kenji-Van Boto"
+  pos = "FB"
+  idade = 30
+  ovr = 57
+  pot = 57
+  valor = 250000
+  partidas = 9
+  minutos = 807
+  id_fonte = "229012"
+
+  [[clubes.jogadores]]
+  nome = "Adrien Hunou"
+  pos = "FW"
+  idade = 32
+  ovr = 56
+  pot = 56
+  valor = 250000
+  partidas = 4
+  minutos = 322
+  gols = 1
+  id_fonte = "203507"
+
+  [[clubes.jogadores]]
+  nome = "Jean Grillot"
+  pos = "DM"
+  idade = 20
+  ovr = 55
+  pot = 58
+  valor = 500000
+  partidas = 7
+  minutos = 630
+  id_fonte = "1119868"
+
+  [[clubes.jogadores]]
+  nome = "Maïdine Douane"
+  pos = "WG"
+  idade = 24
+  ovr = 52
+  pot = 57
+  valor = 500000
+  partidas = 1
+  minutos = 82
+  id_fonte = "512690"
+
+  [[clubes.jogadores]]
+  nome = "Allan Ackra"
+  pos = "MF"
+  idade = 22
+  ovr = 51
+  pot = 58
+  valor = 500000
+  partidas = 1
+  minutos = 111
+  gols = 1
+  id_fonte = "978027"
+
+  [[clubes.jogadores]]
+  nome = "El Hadj Koné"
+  pos = "FB"
+  idade = 20
+  ovr = 51
+  pot = 61
+  valor = 800000
+  partidas = 3
+  minutos = 235
+  id_fonte = "1119423"
+
+  [[clubes.jogadores]]
+  nome = "Enzo Cantero"
+  pos = "WG"
+  idade = 21
+  ovr = 50
+  pot = 59
+  valor = 800000
+  partidas = 1
+  minutos = 76
+  gols = 1
+  id_fonte = "1081092"
+
+  [[clubes.jogadores]]
+  nome = "Luís Semedo"
+  pos = "FW"
+  idade = 23
+  ovr = 50
+  pot = 58
+  valor = 600000
+  id_fonte = "840687"
+
+  [[clubes.jogadores]]
+  nome = "Massamba N'Diaye"
+  pos = "GK"
+  idade = 24
+  ovr = 50
+  pot = 56
+  valor = 200000
+  partidas = 2
+  minutos = 180
+  id_fonte = "916497"
+
+  [[clubes.jogadores]]
+  nome = "Ousmane Diop"
+  pos = "WG"
+  idade = 21
+  ovr = 50
+  pot = 56
+  valor = 400000
+  partidas = 4
+  minutos = 377
+  gols = 1
+  id_fonte = "1185046"
+
+  [[clubes.jogadores]]
+  nome = "Christ Okou"
+  pos = "FW"
+  idade = 20
+  ovr = 49
+  pot = 55
+  valor = 400000
+  partidas = 4
+  minutos = 404
+  gols = 1
+  id_fonte = "1162374"
+
+  [[clubes.jogadores]]
+  nome = "Julien Astic"
+  pos = "DM"
+  idade = 21
+  ovr = 45
+  pot = 55
+  valor = 250000
+  partidas = 2
+  minutos = 147
+  gols = 1
+  id_fonte = "986733"
+
+  [[clubes.jogadores]]
+  nome = "Mohamed-Amine Bouchenna"
+  pos = "WG"
+  idade = 20
+  ovr = 44
+  pot = 53
+  valor = 250000
+  partidas = 3
+  minutos = 230
+  id_fonte = "955360"
+
+  [[clubes.jogadores]]
+  nome = "Yuliwes Bellache"
+  pos = "MF"
+  idade = 23
+  ovr = 41
+  pot = 49
+  valor = 75000
+  partidas = 2
+  minutos = 169
+  gols = 1
+  id_fonte = "1020544"
+
+  [[clubes.jogadores]]
+  nome = "Arthur Saintorens"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 49
+  valor = 100000
+  partidas = 1
+  minutos = 89
+  id_fonte = "1200640"
+
+  [[clubes.jogadores]]
+  nome = "Matys Donavin"
+  pos = "CB"
+  idade = 19
+  ovr = 40
+  pot = 46
+  valor = 25000
+  partidas = 1
+  minutos = 73
+  id_fonte = "1047098"
+
+[[clubes]]
+nome = "Nancy-Lorraine"
+forca = 59.1
+valor_elenco = 16000000
+cores = ["#E10916", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Enzo Basilio"
+  pos = "GK"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 500000
+  partidas = 7
+  minutos = 630
+  id_fonte = "242716"
+
+  [[clubes.jogadores]]
+  nome = "Enzo Tacafred"
+  pos = "FB"
+  idade = 21
+  ovr = 61
+  pot = 63
+  valor = 1800000
+  partidas = 7
+  minutos = 627
+  gols = 2
+  id_fonte = "1133052"
+
+  [[clubes.jogadores]]
+  nome = "Elydjah Mendy"
+  pos = "CB"
+  idade = 26
+  ovr = 60
+  pot = 61
+  valor = 900000
+  partidas = 5
+  minutos = 482
+  gols = 2
+  id_fonte = "602549"
+
+  [[clubes.jogadores]]
+  nome = "Jérémy Gélin"
+  pos = "DM"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 800000
+  partidas = 1
+  minutos = 65
+  gols = 1
+  id_fonte = "288237"
+
+  [[clubes.jogadores]]
+  nome = "Logan Ndenbe"
+  pos = "FB"
+  idade = 26
+  ovr = 60
+  pot = 61
+  valor = 1000000
+  partidas = 3
+  minutos = 229
+  id_fonte = "481634"
+
+  [[clubes.jogadores]]
+  nome = "Nehemiah Fernandez"
+  pos = "CB"
+  idade = 21
+  ovr = 59
+  pot = 62
+  valor = 1200000
+  partidas = 7
+  minutos = 602
+  gols = 2
+  id_fonte = "743495"
+
+  [[clubes.jogadores]]
+  nome = "Walid Bouabdeli"
+  pos = "AM"
+  idade = 26
+  ovr = 59
+  pot = 59
+  valor = 900000
+  partidas = 7
+  minutos = 612
+  gols = 2
+  id_fonte = "958487"
+
+  [[clubes.jogadores]]
+  nome = "Pape Meïssa Ba"
+  pos = "FW"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 700000
+  partidas = 2
+  minutos = 145
+  gols = 2
+  id_fonte = "693637"
+
+  [[clubes.jogadores]]
+  nome = "Zakaria Fdaouch"
+  pos = "WG"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 700000
+  partidas = 5
+  minutos = 473
+  gols = 5
+  id_fonte = "777150"
+
+  [[clubes.jogadores]]
+  nome = "Ilyes Housni"
+  pos = "FW"
+  idade = 21
+  ovr = 56
+  pot = 59
+  valor = 1000000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "825437"
+
+  [[clubes.jogadores]]
+  nome = "Kouroufia Kébé"
+  pos = "DM"
+  idade = 20
+  ovr = 56
+  pot = 59
+  valor = 800000
+  partidas = 7
+  minutos = 624
+  id_fonte = "1144493"
+
+  [[clubes.jogadores]]
+  nome = "Nicolas Saint-Ruf"
+  pos = "CB"
+  idade = 33
+  ovr = 56
+  pot = 56
+  valor = 200000
+  partidas = 22
+  minutos = 1945
+  gols = 6
+  id_fonte = "170962"
+
+  [[clubes.jogadores]]
+  nome = "Nordine Kandil"
+  pos = "WG"
+  idade = 24
+  ovr = 55
+  pot = 59
+  valor = 1000000
+  partidas = 3
+  minutos = 279
+  gols = 1
+  id_fonte = "891379"
+
+  [[clubes.jogadores]]
+  nome = "Yannis Nahounou"
+  pos = "CB"
+  idade = 22
+  ovr = 55
+  pot = 59
+  valor = 700000
+  partidas = 5
+  minutos = 450
+  gols = 1
+  id_fonte = "904707"
+
+  [[clubes.jogadores]]
+  nome = "Adrian Dabasse"
+  pos = "FW"
+  idade = 33
+  ovr = 54
+  pot = 54
+  valor = 200000
+  partidas = 1
+  minutos = 80
+  gols = 2
+  id_fonte = "198410"
+
+  [[clubes.jogadores]]
+  nome = "Mamadou Fofana"
+  pos = "MF"
+  idade = 26
+  ovr = 53
+  pot = 55
+  valor = 300000
+  partidas = 2
+  minutos = 158
+  id_fonte = "563734"
+
+  [[clubes.jogadores]]
+  nome = "Geoffrey Lembet"
+  pos = "GK"
+  idade = 37
+  ovr = 52
+  pot = 52
+  valor = 50000
+  partidas = 5
+  minutos = 413
+  id_fonte = "72414"
+
+  [[clubes.jogadores]]
+  nome = "Thierno Baldé"
+  pos = "FB"
+  idade = 24
+  ovr = 51
+  pot = 56
+  valor = 400000
+  partidas = 1
+  minutos = 13
+  id_fonte = "709482"
+
+  [[clubes.jogadores]]
+  nome = "Ylan El Hadary"
+  pos = "WG"
+  idade = 20
+  ovr = 47
+  pot = 57
+  valor = 700000
+  partidas = 2
+  minutos = 197
+  id_fonte = "1146314"
+
+  [[clubes.jogadores]]
+  nome = "Issam Bouaoune"
+  pos = "MF"
+  idade = 23
+  ovr = 46
+  pot = 54
+  valor = 300000
+  id_fonte = "905952"
+
+  [[clubes.jogadores]]
+  nome = "Noam Obougou"
+  pos = "FW"
+  idade = 20
+  ovr = 46
+  pot = 58
+  valor = 1000000
+  partidas = 1
+  minutos = 100
+  id_fonte = "1162654"
+
+  [[clubes.jogadores]]
+  nome = "Hugo Barbier"
+  pos = "DM"
+  idade = 22
+  ovr = 44
+  pot = 53
+  valor = 200000
+  partidas = 5
+  minutos = 473
+  id_fonte = "1020189"
+
+  [[clubes.jogadores]]
+  nome = "Sidi Cissé"
+  pos = "WG"
+  idade = 23
+  ovr = 42
+  pot = 50
+  valor = 150000
+  partidas = 2
+  minutos = 2
+  id_fonte = "911991"
+
+  [[clubes.jogadores]]
+  nome = "Chafik El Hansar"
+  pos = "MF"
+  idade = 21
+  ovr = 40
+  pot = 45
+  valor = 50000
+  partidas = 1
+  minutos = 94
+  gols = 1
+  id_fonte = "1146250"
+
+  [[clubes.jogadores]]
+  nome = "Héliohdino Tavares"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 49
+  valor = 100000
+  partidas = 1
+  minutos = 108
+  id_fonte = "990790"
+
+  [[clubes.jogadores]]
+  nome = "Joël-Emmanuel Coulibaly"
+  pos = "MF"
+  idade = 19
+  ovr = 40
+  pot = 47
+  valor = 67833
+  id_fonte = "1106861"
+
+  [[clubes.jogadores]]
+  nome = "Kenzo Noël"
+  pos = "GK"
+  idade = 20
+  ovr = 40
+  pot = 51
+  valor = 100000
+  partidas = 3
+  minutos = 251
+  id_fonte = "1171182"
+
+  [[clubes.jogadores]]
+  nome = "Yanis Delaveau"
+  pos = "MF"
+  idade = 20
+  ovr = 40
+  pot = 47
+  valor = 67833
+  id_fonte = "1134101"
+
+  [[clubes.jogadores]]
+  nome = "Yanis Kouini"
+  pos = "GK"
+  idade = 22
+  ovr = 40
+  pot = 49
+  valor = 67833
+  id_fonte = "860047"
+
+  [[clubes.jogadores]]
+  nome = "Zakaria Ztouti"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 52
+  valor = 250000
+  partidas = 1
+  minutos = 4
+  gols = 2
+  id_fonte = "1215725"
+
+[[clubes]]
+nome = "Red Star"
+forca = 59.0
+valor_elenco = 15730000
+cores = ["#084033", "#991A18"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Gaëtan Poussin"
+  pos = "GK"
+  idade = 27
+  ovr = 65
+  pot = 65
+  valor = 1200000
+  partidas = 7
+  minutos = 630
+  id_fonte = "344591"
+
+  [[clubes.jogadores]]
+  nome = "Dylan Durivaux"
+  pos = "CB"
+  idade = 25
+  ovr = 63
+  pot = 64
+  valor = 1500000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "756171"
+
+  [[clubes.jogadores]]
+  nome = "Bradley Danger"
+  pos = "CB"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 700000
+  partidas = 2
+  minutos = 219
+  gols = 2
+  id_fonte = "324798"
+
+  [[clubes.jogadores]]
+  nome = "Damien Durand"
+  pos = "WG"
+  idade = 31
+  ovr = 60
+  pot = 60
+  valor = 800000
+  partidas = 6
+  minutos = 552
+  gols = 4
+  id_fonte = "792328"
+
+  [[clubes.jogadores]]
+  nome = "Kévin Cabral"
+  pos = "FW"
+  idade = 27
+  ovr = 60
+  pot = 60
+  valor = 1200000
+  partidas = 6
+  minutos = 560
+  gols = 1
+  id_fonte = "460632"
+
+  [[clubes.jogadores]]
+  nome = "Saîf-Eddine Khaoui"
+  pos = "AM"
+  idade = 31
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 5
+  minutos = 420
+  gols = 1
+  id_fonte = "270411"
+
+  [[clubes.jogadores]]
+  nome = "Théo Magnin"
+  pos = "FB"
+  idade = 23
+  ovr = 59
+  pot = 61
+  valor = 1000000
+  partidas = 6
+  minutos = 562
+  id_fonte = "539808"
+
+  [[clubes.jogadores]]
+  nome = "Elyaz Zidane"
+  pos = "CB"
+  idade = 20
+  ovr = 58
+  pot = 61
+  valor = 1000000
+  partidas = 6
+  minutos = 540
+  id_fonte = "362744"
+
+  [[clubes.jogadores]]
+  nome = "Matthieu Huard"
+  pos = "FB"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 7
+  minutos = 595
+  gols = 1
+  id_fonte = "588997"
+
+  [[clubes.jogadores]]
+  nome = "Pierre Lemonnier"
+  pos = "CB"
+  idade = 33
+  ovr = 58
+  pot = 58
+  valor = 300000
+  partidas = 25
+  minutos = 2264
+  gols = 1
+  id_fonte = "170477"
+
+  [[clubes.jogadores]]
+  nome = "Jovany Ikanga"
+  pos = "FW"
+  idade = 24
+  ovr = 57
+  pot = 60
+  valor = 1200000
+  partidas = 3
+  minutos = 279
+  gols = 2
+  id_fonte = "921852"
+
+  [[clubes.jogadores]]
+  nome = "Kemo Cissé"
+  pos = "WG"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 500000
+  partidas = 5
+  minutos = 427
+  gols = 1
+  id_fonte = "806494"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Buta"
+  pos = "FB"
+  idade = 24
+  ovr = 56
+  pot = 61
+  valor = 1000000
+  partidas = 1
+  minutos = 45
+  id_fonte = "653415"
+
+  [[clubes.jogadores]]
+  nome = "Mouez Hassen"
+  pos = "GK"
+  idade = 31
+  ovr = 56
+  pot = 56
+  valor = 200000
+  id_fonte = "215677"
+
+  [[clubes.jogadores]]
+  nome = "Islamdine Halifa"
+  pos = "DM"
+  idade = 21
+  ovr = 55
+  pot = 58
+  valor = 700000
+  partidas = 6
+  minutos = 544
+  id_fonte = "902629"
+
+  [[clubes.jogadores]]
+  nome = "Godson Kyeremeh"
+  pos = "WG"
+  idade = 26
+  ovr = 53
+  pot = 55
+  valor = 500000
+  partidas = 1
+  minutos = 104
+  id_fonte = "651973"
+
+  [[clubes.jogadores]]
+  nome = "Samuel Renel"
+  pos = "MF"
+  idade = 24
+  ovr = 52
+  pot = 56
+  valor = 500000
+  partidas = 3
+  minutos = 232
+  gols = 1
+  id_fonte = "722739"
+
+  [[clubes.jogadores]]
+  nome = "Guillaume Trani"
+  pos = "AM"
+  idade = 28
+  ovr = 50
+  pot = 50
+  valor = 200000
+  partidas = 2
+  minutos = 26
+  gols = 2
+  id_fonte = "802012"
+
+  [[clubes.jogadores]]
+  nome = "Mahamadou Diawara"
+  pos = "MF"
+  idade = 21
+  ovr = 49
+  pot = 60
+  valor = 1000000
+  partidas = 1
+  minutos = 53
+  id_fonte = "1053147"
+
+  [[clubes.jogadores]]
+  nome = "Josué Escartin"
+  pos = "CB"
+  idade = 23
+  ovr = 48
+  pot = 54
+  valor = 300000
+  partidas = 1
+  minutos = 92
+  gols = 2
+  id_fonte = "862972"
+
+  [[clubes.jogadores]]
+  nome = "Cheick Konaté"
+  pos = "DM"
+  idade = 21
+  ovr = 40
+  pot = 46
+  valor = 100000
+  partidas = 1
+  minutos = 108
+  id_fonte = "1436293"
+
+  [[clubes.jogadores]]
+  nome = "Côme Bianay Balcot"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 51
+  valor = 200000
+  partidas = 1
+  minutos = 23
+  id_fonte = "1059298"
+
+  [[clubes.jogadores]]
+  nome = "Idrissa Sabaly"
+  pos = "DM"
+  idade = 18
+  ovr = 40
+  pot = 50
+  valor = 200000
+  partidas = 1
+  minutos = 60
+  id_fonte = "1262768"
+
+  [[clubes.jogadores]]
+  nome = "Ilija Despotovic"
+  pos = "FW"
+  idade = 18
+  ovr = 40
+  pot = 50
+  valor = 250000
+  id_fonte = "1138272"
+
+  [[clubes.jogadores]]
+  nome = "Yanis Benchaouch"
+  pos = "GK"
+  idade = 20
+  ovr = 40
+  pot = 47
+  valor = 75000
+  id_fonte = "975331"
+
+[[clubes]]
+nome = "Rodez AF"
+forca = 58.5
+valor_elenco = 14580000
+cores = ["#F9C300", "#B80726"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Quentin Braat"
+  pos = "GK"
+  idade = 29
+  ovr = 64
+  pot = 64
+  valor = 1200000
+  partidas = 1
+  minutos = 90
+  id_fonte = "390942"
+
+  [[clubes.jogadores]]
+  nome = "Jordan Mendes"
+  pos = "DM"
+  idade = 22
+  ovr = 62
+  pot = 64
+  valor = 2000000
+  partidas = 7
+  minutos = 630
+  id_fonte = "1138156"
+
+  [[clubes.jogadores]]
+  nome = "Mathis Magnin"
+  pos = "CB"
+  idade = 24
+  ovr = 62
+  pot = 63
+  valor = 1500000
+  partidas = 7
+  minutos = 630
+  gols = 2
+  id_fonte = "537825"
+
+  [[clubes.jogadores]]
+  nome = "Raphaël Lipinski"
+  pos = "CB"
+  idade = 24
+  ovr = 62
+  pot = 63
+  valor = 1500000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "913323"
+
+  [[clubes.jogadores]]
+  nome = "Evan's Jean-Lambert"
+  pos = "FB"
+  idade = 27
+  ovr = 61
+  pot = 61
+  valor = 1000000
+  partidas = 4
+  minutos = 403
+  gols = 1
+  id_fonte = "543720"
+
+  [[clubes.jogadores]]
+  nome = "Loni Laurent"
+  pos = "CB"
+  idade = 25
+  ovr = 59
+  pot = 60
+  valor = 800000
+  partidas = 7
+  minutos = 615
+  id_fonte = "961647"
+
+  [[clubes.jogadores]]
+  nome = "Marco Essimi"
+  pos = "WG"
+  idade = 27
+  ovr = 57
+  pot = 58
+  valor = 800000
+  partidas = 1
+  minutos = 3
+  id_fonte = "628697"
+
+  [[clubes.jogadores]]
+  nome = "Damjan Pavlovic"
+  pos = "DM"
+  idade = 25
+  ovr = 55
+  pot = 57
+  valor = 500000
+  partidas = 3
+  minutos = 302
+  id_fonte = "409511"
+
+  [[clubes.jogadores]]
+  nome = "Octave Joly"
+  pos = "MF"
+  idade = 24
+  ovr = 55
+  pot = 58
+  valor = 600000
+  partidas = 2
+  minutos = 217
+  gols = 2
+  id_fonte = "981090"
+
+  [[clubes.jogadores]]
+  nome = "Antonin Cartillier"
+  pos = "DM"
+  idade = 22
+  ovr = 54
+  pot = 57
+  valor = 500000
+  partidas = 6
+  minutos = 527
+  id_fonte = "774772"
+
+  [[clubes.jogadores]]
+  nome = "Kenny Nagera"
+  pos = "FW"
+  idade = 24
+  ovr = 54
+  pot = 56
+  valor = 600000
+  partidas = 3
+  minutos = 274
+  gols = 4
+  id_fonte = "618416"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Margueron"
+  pos = "GK"
+  idade = 25
+  ovr = 53
+  pot = 55
+  valor = 200000
+  partidas = 5
+  minutos = 450
+  id_fonte = "618463"
+
+  [[clubes.jogadores]]
+  nome = "Ryan Ponti"
+  pos = "AM"
+  idade = 28
+  ovr = 53
+  pot = 53
+  valor = 250000
+  partidas = 3
+  minutos = 226
+  gols = 1
+  id_fonte = "737481"
+
+  [[clubes.jogadores]]
+  nome = "Corentin Issanchou"
+  pos = "FB"
+  idade = 21
+  ovr = 52
+  pot = 56
+  valor = 400000
+  partidas = 5
+  minutos = 460
+  gols = 2
+  id_fonte = "1143458"
+
+  [[clubes.jogadores]]
+  nome = "Kelian Nsona"
+  pos = "WG"
+  idade = 24
+  ovr = 51
+  pot = 57
+  valor = 600000
+  partidas = 1
+  minutos = 78
+  id_fonte = "569368"
+
+  [[clubes.jogadores]]
+  nome = "Mathis Touho"
+  pos = "WG"
+  idade = 21
+  ovr = 51
+  pot = 55
+  valor = 500000
+  partidas = 5
+  minutos = 480
+  id_fonte = "1004829"
+
+  [[clubes.jogadores]]
+  nome = "Nachon Nsingi"
+  pos = "FW"
+  idade = 25
+  ovr = 50
+  pot = 53
+  valor = 300000
+  partidas = 1
+  minutos = 102
+  id_fonte = "707802"
+
+  [[clubes.jogadores]]
+  nome = "Steven Luyambula"
+  pos = "FB"
+  idade = 23
+  ovr = 50
+  pot = 56
+  valor = 400000
+  partidas = 2
+  minutos = 145
+  id_fonte = "693360"
+
+  [[clubes.jogadores]]
+  nome = "Mathis Saka"
+  pos = "AM"
+  idade = 20
+  ovr = 46
+  pot = 56
+  valor = 500000
+  partidas = 1
+  minutos = 126
+  gols = 1
+  id_fonte = "986310"
+
+  [[clubes.jogadores]]
+  nome = "Hermann Tebily"
+  pos = "FW"
+  idade = 24
+  ovr = 43
+  pot = 48
+  valor = 100000
+  partidas = 5
+  minutos = 14
+  id_fonte = "726566"
+
+  [[clubes.jogadores]]
+  nome = "Mohamed Sylla"
+  pos = "CB"
+  idade = 22
+  ovr = 43
+  pot = 53
+  valor = 200000
+  id_fonte = "988248"
+
+  [[clubes.jogadores]]
+  nome = "Enzo Crombez"
+  pos = "GK"
+  idade = 23
+  ovr = 41
+  pot = 48
+  valor = 50000
+  partidas = 1
+  minutos = 90
+  id_fonte = "947911"
+
+  [[clubes.jogadores]]
+  nome = "Cheick Doumbia"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 48
+  valor = 75000
+  id_fonte = "918302"
+
+  [[clubes.jogadores]]
+  nome = "Dylan Vangi"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 110000
+  partidas = 1
+  minutos = 1
+  id_fonte = "923810"
+
+  [[clubes.jogadores]]
+  nome = "Yanis Dahalani"
+  pos = "MF"
+  idade = 21
+  ovr = 40
+  pot = 48
+  valor = 90199
+  id_fonte = "1143328"
+
+[[clubes]]
+nome = "USL Dunkerque"
+forca = 58.1
+valor_elenco = 13600000
+cores = ["#111F31", "#CAB18D"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Victor Mayela"
+  pos = "CB"
+  idade = 22
+  ovr = 62
+  pot = 65
+  valor = 2000000
+  partidas = 4
+  minutos = 386
+  gols = 1
+  id_fonte = "950727"
+
+  [[clubes.jogadores]]
+  nome = "M'Baye Niang"
+  pos = "FW"
+  idade = 31
+  ovr = 60
+  pot = 60
+  valor = 800000
+  id_fonte = "157501"
+
+  [[clubes.jogadores]]
+  nome = "Maxence Prévot"
+  pos = "GK"
+  idade = 29
+  ovr = 59
+  pot = 59
+  valor = 400000
+  partidas = 3
+  minutos = 300
+  id_fonte = "394903"
+
+  [[clubes.jogadores]]
+  nome = "Allan Linguet"
+  pos = "FB"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 600000
+  partidas = 7
+  minutos = 630
+  id_fonte = "635486"
+
+  [[clubes.jogadores]]
+  nome = "Egor Prutsev"
+  pos = "AM"
+  idade = 23
+  ovr = 58
+  pot = 62
+  valor = 1500000
+  partidas = 5
+  minutos = 416
+  gols = 2
+  id_fonte = "685742"
+
+  [[clubes.jogadores]]
+  nome = "Steven Nzonzi"
+  pos = "DM"
+  idade = 37
+  ovr = 58
+  pot = 58
+  valor = 300000
+  partidas = 2
+  minutos = 22
+  id_fonte = "73734"
+
+  [[clubes.jogadores]]
+  nome = "Felipe Abner"
+  pos = "FB"
+  idade = 30
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 9
+  minutos = 785
+  id_fonte = "273455"
+
+  [[clubes.jogadores]]
+  nome = "Jordan Morel"
+  pos = "MF"
+  idade = 23
+  ovr = 57
+  pot = 59
+  valor = 800000
+  partidas = 6
+  minutos = 522
+  id_fonte = "904663"
+
+  [[clubes.jogadores]]
+  nome = "Khalil Ayari"
+  pos = "WG"
+  idade = 21
+  ovr = 57
+  pot = 63
+  valor = 2000000
+  partidas = 4
+  minutos = 370
+  gols = 1
+  id_fonte = "1198342"
+
+  [[clubes.jogadores]]
+  nome = "Lenny Vallier"
+  pos = "FB"
+  idade = 27
+  ovr = 57
+  pot = 57
+  valor = 500000
+  partidas = 5
+  minutos = 438
+  id_fonte = "371148"
+
+  [[clubes.jogadores]]
+  nome = "Gaëtan Robail"
+  pos = "WG"
+  idade = 32
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 1
+  minutos = 62
+  id_fonte = "495489"
+
+  [[clubes.jogadores]]
+  nome = "Opa Sangante"
+  pos = "CB"
+  idade = 35
+  ovr = 56
+  pot = 56
+  valor = 200000
+  partidas = 7
+  minutos = 627
+  gols = 1
+  id_fonte = "352448"
+
+  [[clubes.jogadores]]
+  nome = "Adrien Lebeau"
+  pos = "AM"
+  idade = 27
+  ovr = 55
+  pot = 56
+  valor = 500000
+  partidas = 5
+  minutos = 489
+  gols = 1
+  id_fonte = "395674"
+
+  [[clubes.jogadores]]
+  nome = "Moha Ramos"
+  pos = "GK"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 275000
+  partidas = 4
+  minutos = 327
+  id_fonte = "495602"
+
+  [[clubes.jogadores]]
+  nome = "Bram Lagae"
+  pos = "CB"
+  idade = 22
+  ovr = 54
+  pot = 58
+  valor = 600000
+  partidas = 5
+  minutos = 442
+  id_fonte = "654986"
+
+  [[clubes.jogadores]]
+  nome = "Théna Massock"
+  pos = "DM"
+  idade = 19
+  ovr = 50
+  pot = 56
+  valor = 500000
+  partidas = 5
+  minutos = 441
+  gols = 1
+  id_fonte = "1216075"
+
+  [[clubes.jogadores]]
+  nome = "Alex Daho"
+  pos = "WG"
+  idade = 22
+  ovr = 46
+  pot = 53
+  valor = 400000
+  partidas = 3
+  minutos = 231
+  id_fonte = "1074926"
+
+  [[clubes.jogadores]]
+  nome = "Ousmane Touré"
+  pos = "CB"
+  idade = 21
+  ovr = 46
+  pot = 57
+  valor = 500000
+  partidas = 2
+  minutos = 42
+  id_fonte = "990732"
+
+  [[clubes.jogadores]]
+  nome = "Souleymane Keita"
+  pos = "WG"
+  idade = 20
+  ovr = 45
+  pot = 53
+  valor = 400000
+  partidas = 4
+  minutos = 327
+  gols = 2
+  id_fonte = "1176027"
+
+  [[clubes.jogadores]]
+  nome = "Enzo Mayilla"
+  pos = "FW"
+  idade = 20
+  ovr = 41
+  pot = 52
+  valor = 350000
+  partidas = 2
+  minutos = 154
+  id_fonte = "1080176"
+
+  [[clubes.jogadores]]
+  nome = "Maedine Makhloufi"
+  pos = "FB"
+  idade = 21
+  ovr = 41
+  pot = 52
+  valor = 250000
+  partidas = 2
+  minutos = 220
+  gols = 1
+  id_fonte = "1052285"
+
+  [[clubes.jogadores]]
+  nome = "Arthylio Nadé"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 45
+  valor = 121634
+  id_fonte = "1307001"
+
+  [[clubes.jogadores]]
+  nome = "Franck Atoen"
+  pos = "DM"
+  idade = 20
+  ovr = 40
+  pot = 46
+  valor = 100000
+  partidas = 3
+  minutos = 24
+  id_fonte = "1435403"
+
+  [[clubes.jogadores]]
+  nome = "Lenny Dziki Loussilaho"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 47
+  valor = 100000
+  partidas = 1
+  minutos = 133
+  id_fonte = "1162409"
+
+  [[clubes.jogadores]]
+  nome = "Mouhamed Sissokho"
+  pos = "GK"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 121634
+  id_fonte = "1401765"
+
+  [[clubes.jogadores]]
+  nome = "Pape Malick Dieng"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 48
+  valor = 188269
+  partidas = 2
+  minutos = 33
+  id_fonte = "1545997"
+
+[[clubes]]
+nome = "Grenoble Foot 38"
+forca = 57.8
+valor_elenco = 12830000
+cores = ["#014898", "#FEFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Yohann Magnin"
+  pos = "DM"
+  idade = 29
+  ovr = 62
+  pot = 62
+  valor = 1000000
+  partidas = 7
+  minutos = 619
+  id_fonte = "594997"
+
+  [[clubes.jogadores]]
+  nome = "Clément Vidal"
+  pos = "CB"
+  idade = 26
+  ovr = 61
+  pot = 62
+  valor = 1000000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "569388"
+
+  [[clubes.jogadores]]
+  nome = "Matthéo Xantippe"
+  pos = "FB"
+  idade = 24
+  ovr = 61
+  pot = 62
+  valor = 1200000
+  partidas = 7
+  minutos = 626
+  gols = 1
+  id_fonte = "744936"
+
+  [[clubes.jogadores]]
+  nome = "Yvann Maçon"
+  pos = "FB"
+  idade = 27
+  ovr = 60
+  pot = 60
+  valor = 800000
+  partidas = 1
+  minutos = 54
+  id_fonte = "580747"
+
+  [[clubes.jogadores]]
+  nome = "Mael Corboz"
+  pos = "MF"
+  idade = 32
+  ovr = 59
+  pot = 59
+  valor = 450000
+  partidas = 3
+  minutos = 245
+  id_fonte = "413859"
+
+  [[clubes.jogadores]]
+  nome = "Nesta Zahui"
+  pos = "FB"
+  idade = 23
+  ovr = 59
+  pot = 60
+  valor = 900000
+  partidas = 7
+  minutos = 626
+  gols = 1
+  id_fonte = "825592"
+
+  [[clubes.jogadores]]
+  nome = "Alexandre Olliero"
+  pos = "GK"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 300000
+  partidas = 7
+  minutos = 630
+  id_fonte = "395602"
+
+  [[clubes.jogadores]]
+  nome = "Zé Leite"
+  pos = "WG"
+  idade = 27
+  ovr = 56
+  pot = 57
+  valor = 600000
+  id_fonte = "468338"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Bernadou"
+  pos = "MF"
+  idade = 25
+  ovr = 55
+  pot = 57
+  valor = 500000
+  partidas = 5
+  minutos = 427
+  gols = 1
+  id_fonte = "536480"
+
+  [[clubes.jogadores]]
+  nome = "Baptiste Mouazan"
+  pos = "MF"
+  idade = 24
+  ovr = 54
+  pot = 56
+  valor = 500000
+  partidas = 5
+  minutos = 461
+  gols = 1
+  id_fonte = "804548"
+
+  [[clubes.jogadores]]
+  nome = "Bobby Allain"
+  pos = "GK"
+  idade = 34
+  ovr = 54
+  pot = 54
+  valor = 100000
+  partidas = 7
+  minutos = 646
+  id_fonte = "314862"
+
+  [[clubes.jogadores]]
+  nome = "Christ-Owen Kouassi"
+  pos = "FB"
+  idade = 23
+  ovr = 54
+  pot = 62
+  valor = 1200000
+  partidas = 1
+  minutos = 4
+  id_fonte = "1057563"
+
+  [[clubes.jogadores]]
+  nome = "Moussa Djitté"
+  pos = "FW"
+  idade = 26
+  ovr = 53
+  pot = 54
+  valor = 400000
+  partidas = 2
+  minutos = 8
+  gols = 4
+  id_fonte = "591796"
+
+  [[clubes.jogadores]]
+  nome = "Samba Diba"
+  pos = "DM"
+  idade = 22
+  ovr = 53
+  pot = 58
+  valor = 600000
+  partidas = 4
+  minutos = 396
+  gols = 2
+  id_fonte = "1026014"
+
+  [[clubes.jogadores]]
+  nome = "Ugo Bonnet"
+  pos = "FW"
+  idade = 33
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 3
+  minutos = 245
+  gols = 1
+  id_fonte = "525114"
+
+  [[clubes.jogadores]]
+  nome = "Jean-Guy Akpa Akpro"
+  pos = "WG"
+  idade = 21
+  ovr = 50
+  pot = 54
+  valor = 400000
+  partidas = 5
+  minutos = 486
+  id_fonte = "1128099"
+
+  [[clubes.jogadores]]
+  nome = "Farouq Limouri"
+  pos = "CB"
+  idade = 23
+  ovr = 48
+  pot = 55
+  valor = 300000
+  partidas = 1
+  minutos = 90
+  id_fonte = "621733"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Cerri"
+  pos = "FW"
+  idade = 23
+  ovr = 48
+  pot = 55
+  valor = 500000
+  partidas = 1
+  minutos = 121
+  id_fonte = "672830"
+
+  [[clubes.jogadores]]
+  nome = "Aurélien Pelon"
+  pos = "CB"
+  idade = 22
+  ovr = 47
+  pot = 52
+  valor = 200000
+  partidas = 4
+  minutos = 360
+  id_fonte = "918268"
+
+  [[clubes.jogadores]]
+  nome = "Dillon Hoogewerf"
+  pos = "WG"
+  idade = 23
+  ovr = 46
+  pot = 53
+  valor = 375000
+  partidas = 3
+  minutos = 22
+  id_fonte = "559321"
+
+  [[clubes.jogadores]]
+  nome = "Kyliann Fofana"
+  pos = "FW"
+  idade = 20
+  ovr = 46
+  pot = 52
+  valor = 300000
+  partidas = 5
+  minutos = 420
+  gols = 1
+  id_fonte = "1130508"
+
+  [[clubes.jogadores]]
+  nome = "Théo Borne"
+  pos = "GK"
+  idade = 24
+  ovr = 46
+  pot = 52
+  valor = 150000
+  id_fonte = "920218"
+
+  [[clubes.jogadores]]
+  nome = "Arthur Lallias"
+  pos = "FW"
+  idade = 23
+  ovr = 44
+  pot = 51
+  valor = 250000
+  partidas = 1
+  minutos = 1
+  id_fonte = "978197"
+
+  [[clubes.jogadores]]
+  nome = "Ange Loïc N'Gatta"
+  pos = "FB"
+  idade = 22
+  ovr = 40
+  pot = 48
+  valor = 100000
+  partidas = 2
+  minutos = 203
+  id_fonte = "855215"
+
+  [[clubes.jogadores]]
+  nome = "Jules Mouton"
+  pos = "DM"
+  idade = 21
+  ovr = 40
+  pot = 48
+  valor = 100000
+  partidas = 3
+  minutos = 40
+  id_fonte = "1052286"
+
+  [[clubes.jogadores]]
+  nome = "Manny Allegret"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 46
+  valor = 91666
+  id_fonte = "1200702"
+
+  [[clubes.jogadores]]
+  nome = "Mohamed Bechikh"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 46
+  valor = 100000
+  partidas = 1
+  minutos = 1
+  id_fonte = "886503"
+
+  [[clubes.jogadores]]
+  nome = "Owen Martinez-Jullien"
+  pos = "MF"
+  idade = 21
+  ovr = 40
+  pot = 47
+  valor = 91666
+  id_fonte = "1004385"
+
+  [[clubes.jogadores]]
+  nome = "Romain Da Silva"
+  pos = "DM"
+  idade = 22
+  ovr = 40
+  pot = 47
+  valor = 91666
+  id_fonte = "765503"
+
+  [[clubes.jogadores]]
+  nome = "Sakhalou Niakaté"
+  pos = "FB"
+  idade = 20
+  ovr = 40
+  pot = 54
+  valor = 300000
+  partidas = 2
+  minutos = 5
+  id_fonte = "1177162"
+
+[[clubes]]
+nome = "EA Guingamp"
+forca = 57.5
+valor_elenco = 12050000
+cores = ["#E10E17", "#010101"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Amine Hemia"
+  pos = "AM"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 1500000
+  partidas = 3
+  minutos = 234
+  gols = 3
+  id_fonte = "903161"
+
+  [[clubes.jogadores]]
+  nome = "Dylan Louiserre"
+  pos = "DM"
+  idade = 31
+  ovr = 62
+  pot = 62
+  valor = 900000
+  partidas = 6
+  minutos = 580
+  gols = 2
+  id_fonte = "291415"
+
+  [[clubes.jogadores]]
+  nome = "Donatien Gomis"
+  pos = "CB"
+  idade = 31
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 5
+  minutos = 486
+  gols = 2
+  id_fonte = "562576"
+
+  [[clubes.jogadores]]
+  nome = "Adrián Ortolá"
+  pos = "GK"
+  idade = 33
+  ovr = 59
+  pot = 59
+  valor = 300000
+  partidas = 7
+  minutos = 630
+  id_fonte = "142033"
+
+  [[clubes.jogadores]]
+  nome = "Albin Demouchy"
+  pos = "CB"
+  idade = 24
+  ovr = 59
+  pot = 60
+  valor = 800000
+  partidas = 7
+  minutos = 603
+  gols = 1
+  id_fonte = "814930"
+
+  [[clubes.jogadores]]
+  nome = "Tom Ducrocq"
+  pos = "DM"
+  idade = 27
+  ovr = 59
+  pot = 60
+  valor = 800000
+  partidas = 4
+  minutos = 339
+  id_fonte = "652128"
+
+  [[clubes.jogadores]]
+  nome = "Teddy Averlant"
+  pos = "AM"
+  idade = 26
+  ovr = 58
+  pot = 59
+  valor = 900000
+  partidas = 6
+  minutos = 497
+  id_fonte = "809180"
+
+  [[clubes.jogadores]]
+  nome = "Erwin Koffi"
+  pos = "FB"
+  idade = 31
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 6
+  minutos = 517
+  gols = 1
+  id_fonte = "341942"
+
+  [[clubes.jogadores]]
+  nome = "Stanislas Kielt"
+  pos = "FW"
+  idade = 24
+  ovr = 55
+  pot = 57
+  valor = 800000
+  partidas = 6
+  minutos = 518
+  gols = 2
+  id_fonte = "940263"
+
+  [[clubes.jogadores]]
+  nome = "Brandon Bokangu"
+  pos = "FW"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 600000
+  partidas = 2
+  minutos = 144
+  gols = 2
+  id_fonte = "864769"
+
+  [[clubes.jogadores]]
+  nome = "Tuomas Ollila"
+  pos = "FB"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 400000
+  partidas = 2
+  minutos = 203
+  id_fonte = "433887"
+
+  [[clubes.jogadores]]
+  nome = "Florent Sanchez"
+  pos = "MF"
+  idade = 23
+  ovr = 53
+  pot = 58
+  valor = 800000
+  partidas = 3
+  minutos = 294
+  id_fonte = "607225"
+
+  [[clubes.jogadores]]
+  nome = "Teddy Bartouche-Selbonne"
+  pos = "GK"
+  idade = 29
+  ovr = 52
+  pot = 52
+  valor = 150000
+  partidas = 15
+  minutos = 1352
+  id_fonte = "629587"
+
+  [[clubes.jogadores]]
+  nome = "Jeovanni Dianganga"
+  pos = "CB"
+  idade = 26
+  ovr = 51
+  pot = 52
+  valor = 250000
+  partidas = 2
+  minutos = 144
+  id_fonte = "392992"
+
+  [[clubes.jogadores]]
+  nome = "Samir Ben Brahim"
+  pos = "AM"
+  idade = 23
+  ovr = 51
+  pot = 54
+  valor = 500000
+  partidas = 5
+  minutos = 433
+  gols = 1
+  id_fonte = "1101862"
+
+  [[clubes.jogadores]]
+  nome = "Tanguy Ahile"
+  pos = "DM"
+  idade = 22
+  ovr = 51
+  pot = 56
+  valor = 500000
+  partidas = 5
+  minutos = 410
+  gols = 1
+  id_fonte = "1084972"
+
+  [[clubes.jogadores]]
+  nome = "Gautier Ott"
+  pos = "WG"
+  idade = 24
+  ovr = 50
+  pot = 54
+  valor = 500000
+  partidas = 13
+  minutos = 1207
+  id_fonte = "744932"
+
+  [[clubes.jogadores]]
+  nome = "Darly N'Landu"
+  pos = "MF"
+  idade = 26
+  ovr = 49
+  pot = 51
+  valor = 250000
+  partidas = 6
+  minutos = 530
+  gols = 2
+  id_fonte = "434226"
+
+  [[clubes.jogadores]]
+  nome = "Amadou Samoura"
+  pos = "WG"
+  idade = 22
+  ovr = 44
+  pot = 52
+  valor = 400000
+  partidas = 1
+  minutos = 110
+  gols = 3
+  id_fonte = "770372"
+
+  [[clubes.jogadores]]
+  nome = "Vimoj Muntu Wa Mungu"
+  pos = "FB"
+  idade = 21
+  ovr = 44
+  pot = 52
+  valor = 300000
+  partidas = 3
+  minutos = 237
+  id_fonte = "810086"
+
+  [[clubes.jogadores]]
+  nome = "Jérémie Matumona"
+  pos = "FB"
+  idade = 20
+  ovr = 43
+  pot = 52
+  valor = 300000
+  partidas = 3
+  minutos = 232
+  id_fonte = "1169161"
+
+  [[clubes.jogadores]]
+  nome = "Idriss Planeix"
+  pos = "CB"
+  idade = 19
+  ovr = 40
+  pot = 48
+  valor = 143846
+  id_fonte = "1166832"
+
+  [[clubes.jogadores]]
+  nome = "Jasser Chamakh"
+  pos = "AM"
+  idade = 23
+  ovr = 40
+  pot = 44
+  valor = 100000
+  partidas = 2
+  minutos = 170
+  id_fonte = "1048659"
+
+  [[clubes.jogadores]]
+  nome = "Joël Matondo"
+  pos = "MF"
+  idade = 21
+  ovr = 40
+  pot = 47
+  valor = 143846
+  id_fonte = "988242"
+
+  [[clubes.jogadores]]
+  nome = "Noah Marec"
+  pos = "GK"
+  idade = 22
+  ovr = 40
+  pot = 50
+  valor = 143846
+  id_fonte = "1004498"
+
+  [[clubes.jogadores]]
+  nome = "Zayon Chtaï-Telamio"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 45
+  valor = 143846
+  id_fonte = "1077658"
+
+[[clubes]]
+nome = "Pau"
+forca = 57.0
+valor_elenco = 11150000
+cores = ["#171B3E", "#B8A958"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Jessy Benet"
+  pos = "MF"
+  idade = 31
+  ovr = 62
+  pot = 62
+  valor = 900000
+  partidas = 7
+  minutos = 618
+  gols = 1
+  id_fonte = "332047"
+
+  [[clubes.jogadores]]
+  nome = "Tom Pouilly"
+  pos = "FB"
+  idade = 23
+  ovr = 60
+  pot = 62
+  valor = 1200000
+  partidas = 7
+  minutos = 609
+  gols = 3
+  id_fonte = "917817"
+
+  [[clubes.jogadores]]
+  nome = "Akim Abdallah"
+  pos = "FB"
+  idade = 29
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 3
+  minutos = 306
+  id_fonte = "483460"
+
+  [[clubes.jogadores]]
+  nome = "Gaëtan Paquiez"
+  pos = "CB"
+  idade = 32
+  ovr = 58
+  pot = 58
+  valor = 350000
+  partidas = 6
+  minutos = 562
+  id_fonte = "412092"
+
+  [[clubes.jogadores]]
+  nome = "Anthony Briançon"
+  pos = "CB"
+  idade = 31
+  ovr = 57
+  pot = 57
+  valor = 350000
+  partidas = 4
+  minutos = 331
+  id_fonte = "190338"
+
+  [[clubes.jogadores]]
+  nome = "Axel Bamba"
+  pos = "CB"
+  idade = 27
+  ovr = 57
+  pot = 58
+  valor = 500000
+  partidas = 5
+  minutos = 418
+  id_fonte = "545487"
+
+  [[clubes.jogadores]]
+  nome = "Bilal Brahimi"
+  pos = "WG"
+  idade = 26
+  ovr = 57
+  pot = 59
+  valor = 1000000
+  partidas = 2
+  minutos = 31
+  id_fonte = "789094"
+
+  [[clubes.jogadores]]
+  nome = "Brice Maubleu"
+  pos = "GK"
+  idade = 36
+  ovr = 56
+  pot = 56
+  valor = 150000
+  partidas = 7
+  minutos = 630
+  id_fonte = "78047"
+
+  [[clubes.jogadores]]
+  nome = "Esteban Salles"
+  pos = "GK"
+  idade = 32
+  ovr = 56
+  pot = 56
+  valor = 200000
+  partidas = 11
+  minutos = 969
+  id_fonte = "323253"
+
+  [[clubes.jogadores]]
+  nome = "Babacar Leye"
+  pos = "FW"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 600000
+  partidas = 4
+  minutos = 385
+  gols = 3
+  id_fonte = "796867"
+
+  [[clubes.jogadores]]
+  nome = "Lorenzo Rajot"
+  pos = "MF"
+  idade = 28
+  ovr = 55
+  pot = 55
+  valor = 350000
+  partidas = 4
+  minutos = 348
+  gols = 1
+  id_fonte = "509044"
+
+  [[clubes.jogadores]]
+  nome = "Cheikh Fall"
+  pos = "MF"
+  idade = 22
+  ovr = 54
+  pot = 57
+  valor = 600000
+  partidas = 6
+  minutos = 509
+  gols = 4
+  id_fonte = "1080215"
+
+  [[clubes.jogadores]]
+  nome = "Hacène Benali"
+  pos = "FW"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 500000
+  partidas = 5
+  minutos = 447
+  id_fonte = "676187"
+
+  [[clubes.jogadores]]
+  nome = "Quentin Daubin"
+  pos = "MF"
+  idade = 31
+  ovr = 54
+  pot = 54
+  valor = 250000
+  id_fonte = "407624"
+
+  [[clubes.jogadores]]
+  nome = "Mathys Tourraine"
+  pos = "FB"
+  idade = 25
+  ovr = 53
+  pot = 57
+  valor = 500000
+  partidas = 1
+  minutos = 68
+  id_fonte = "536506"
+
+  [[clubes.jogadores]]
+  nome = "Axel Dodote"
+  pos = "CB"
+  idade = 19
+  ovr = 51
+  pot = 57
+  valor = 500000
+  partidas = 5
+  minutos = 472
+  id_fonte = "1207431"
+
+  [[clubes.jogadores]]
+  nome = "Jérémy Sebas"
+  pos = "FW"
+  idade = 23
+  ovr = 47
+  pot = 54
+  valor = 500000
+  partidas = 1
+  minutos = 93
+  id_fonte = "999229"
+
+  [[clubes.jogadores]]
+  nome = "Alexis Lefebvre"
+  pos = "WG"
+  idade = 23
+  ovr = 46
+  pot = 51
+  valor = 300000
+  partidas = 2
+  minutos = 190
+  id_fonte = "857154"
+
+  [[clubes.jogadores]]
+  nome = "Luan Gadegbeku"
+  pos = "MF"
+  idade = 19
+  ovr = 45
+  pot = 58
+  valor = 800000
+  partidas = 1
+  minutos = 123
+  id_fonte = "1075584"
+
+  [[clubes.jogadores]]
+  nome = "Souleymane Basse"
+  pos = "FB"
+  idade = 22
+  ovr = 44
+  pot = 52
+  valor = 250000
+  partidas = 2
+  minutos = 144
+  id_fonte = "1111045"
+
+  [[clubes.jogadores]]
+  nome = "Kyllian Gasnier"
+  pos = "AM"
+  idade = 24
+  ovr = 43
+  pot = 48
+  valor = 150000
+  partidas = 1
+  minutos = 45
+  id_fonte = "711981"
+
+  [[clubes.jogadores]]
+  nome = "Rony Mimb Baheng"
+  pos = "CB"
+  idade = 21
+  ovr = 42
+  pot = 54
+  valor = 300000
+  partidas = 1
+  minutos = 8
+  id_fonte = "1203035"
+
+  [[clubes.jogadores]]
+  nome = "Royce Openda"
+  pos = "WG"
+  idade = 24
+  ovr = 42
+  pot = 45
+  valor = 100000
+  partidas = 1
+  minutos = 45
+  id_fonte = "934838"
+
+  [[clubes.jogadores]]
+  nome = "Abdoulaye Mbaye"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 44
+  valor = 100000
+  partidas = 1
+  minutos = 46
+  gols = 1
+  id_fonte = "1498913"
+
+  [[clubes.jogadores]]
+  nome = "Maxime Adam"
+  pos = "GK"
+  idade = 23
+  ovr = 40
+  pot = 45
+  valor = 55000
+  id_fonte = "1018332"
+
+  [[clubes.jogadores]]
+  nome = "Tom Saettel"
+  pos = "WG"
+  idade = 21
+  ovr = 40
+  pot = 45
+  valor = 100000
+  partidas = 2
+  minutos = 193
+  id_fonte = "886502"
+
+[[clubes]]
+nome = "Stade Lavallois"
+forca = 56.4
+valor_elenco = 9930000
+cores = ["#EC6507", "#0A0909"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Francis Coquelin"
+  pos = "DM"
+  idade = 35
+  ovr = 62
+  pot = 62
+  valor = 500000
+  partidas = 2
+  minutos = 37
+  id_fonte = "74869"
+
+  [[clubes.jogadores]]
+  nome = "Sam Sanna"
+  pos = "DM"
+  idade = 27
+  ovr = 60
+  pot = 60
+  valor = 800000
+  partidas = 7
+  minutos = 608
+  gols = 1
+  id_fonte = "694549"
+
+  [[clubes.jogadores]]
+  nome = "Aboubacar Lô"
+  pos = "CB"
+  idade = 26
+  ovr = 59
+  pot = 60
+  valor = 700000
+  partidas = 5
+  minutos = 483
+  id_fonte = "739076"
+
+  [[clubes.jogadores]]
+  nome = "William Bianda"
+  pos = "CB"
+  idade = 26
+  ovr = 59
+  pot = 60
+  valor = 700000
+  partidas = 6
+  minutos = 578
+  gols = 1
+  id_fonte = "427197"
+
+  [[clubes.jogadores]]
+  nome = "Jules Gaudin"
+  pos = "FB"
+  idade = 26
+  ovr = 58
+  pot = 58
+  valor = 600000
+  partidas = 6
+  minutos = 539
+  id_fonte = "413111"
+
+  [[clubes.jogadores]]
+  nome = "Teddy Bouriaud"
+  pos = "DM"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 1
+  minutos = 65
+  id_fonte = "272618"
+
+  [[clubes.jogadores]]
+  nome = "Mamadou Samassa"
+  pos = "GK"
+  idade = 36
+  ovr = 56
+  pot = 56
+  valor = 150000
+  partidas = 7
+  minutos = 630
+  id_fonte = "72422"
+
+  [[clubes.jogadores]]
+  nome = "Esteban Mouton"
+  pos = "FB"
+  idade = 23
+  ovr = 55
+  pot = 58
+  valor = 600000
+  partidas = 6
+  minutos = 504
+  id_fonte = "1149302"
+
+  [[clubes.jogadores]]
+  nome = "Julien Maggiotti"
+  pos = "MF"
+  idade = 31
+  ovr = 55
+  pot = 55
+  valor = 300000
+  partidas = 3
+  minutos = 259
+  gols = 1
+  id_fonte = "781808"
+
+  [[clubes.jogadores]]
+  nome = "Mattéo Commaret"
+  pos = "CB"
+  idade = 24
+  ovr = 54
+  pot = 57
+  valor = 500000
+  partidas = 14
+  minutos = 1261
+  id_fonte = "836761"
+
+  [[clubes.jogadores]]
+  nome = "Cyril Mandouki"
+  pos = "DM"
+  idade = 35
+  ovr = 53
+  pot = 53
+  valor = 150000
+  partidas = 6
+  minutos = 518
+  gols = 1
+  id_fonte = "412086"
+
+  [[clubes.jogadores]]
+  nome = "Sidi Bane"
+  pos = "CB"
+  idade = 22
+  ovr = 53
+  pot = 60
+  valor = 800000
+  partidas = 1
+  minutos = 109
+  id_fonte = "1000828"
+
+  [[clubes.jogadores]]
+  nome = "Abou Kanté"
+  pos = "FW"
+  idade = 32
+  ovr = 52
+  pot = 52
+  valor = 250000
+  partidas = 3
+  minutos = 260
+  gols = 1
+  id_fonte = "315095"
+
+  [[clubes.jogadores]]
+  nome = "Corentin Fatou"
+  pos = "FW"
+  idade = 27
+  ovr = 51
+  pot = 52
+  valor = 350000
+  partidas = 2
+  minutos = 34
+  id_fonte = "471583"
+
+  [[clubes.jogadores]]
+  nome = "Hermann Esmel"
+  pos = "DM"
+  idade = 27
+  ovr = 51
+  pot = 52
+  valor = 250000
+  id_fonte = "737777"
+
+  [[clubes.jogadores]]
+  nome = "Layousse Samb"
+  pos = "FB"
+  idade = 25
+  ovr = 51
+  pot = 53
+  valor = 300000
+  partidas = 1
+  minutos = 105
+  gols = 2
+  id_fonte = "1270173"
+
+  [[clubes.jogadores]]
+  nome = "Maxime Hautbois"
+  pos = "GK"
+  idade = 35
+  ovr = 51
+  pot = 51
+  valor = 75000
+  partidas = 6
+  minutos = 540
+  id_fonte = "141364"
+
+  [[clubes.jogadores]]
+  nome = "Mathys Houdayer"
+  pos = "FW"
+  idade = 21
+  ovr = 50
+  pot = 54
+  valor = 600000
+  partidas = 5
+  minutos = 462
+  gols = 2
+  id_fonte = "939977"
+
+  [[clubes.jogadores]]
+  nome = "Ethan Clavreul"
+  pos = "WG"
+  idade = 20
+  ovr = 48
+  pot = 55
+  valor = 600000
+  partidas = 4
+  minutos = 398
+  gols = 2
+  id_fonte = "1166734"
+
+  [[clubes.jogadores]]
+  nome = "Chafik Gourichy"
+  pos = "AM"
+  idade = 25
+  ovr = 45
+  pot = 48
+  valor = 200000
+  partidas = 2
+  minutos = 168
+  id_fonte = "877234"
+
+  [[clubes.jogadores]]
+  nome = "Trévis Dago"
+  pos = "FW"
+  idade = 21
+  ovr = 43
+  pot = 51
+  valor = 350000
+  partidas = 3
+  minutos = 262
+  gols = 1
+  id_fonte = "984697"
+
+  [[clubes.jogadores]]
+  nome = "Alessio Beaudouin"
+  pos = "DM"
+  idade = 21
+  ovr = 42
+  pot = 51
+  valor = 250000
+  partidas = 2
+  minutos = 221
+  id_fonte = "1165753"
+
+  [[clubes.jogadores]]
+  nome = "Alpha Diallo"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 43
+  valor = 100000
+  partidas = 1
+  minutos = 13
+  id_fonte = "1047099"
+
+  [[clubes.jogadores]]
+  nome = "Mamadou Sidibé"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 200000
+  partidas = 2
+  minutos = 140
+  id_fonte = "1147351"
+
+  [[clubes.jogadores]]
+  nome = "Yanis Court"
+  pos = "AM"
+  idade = 17
+  ovr = 40
+  pot = 42
+  valor = 100000
+  partidas = 2
+  minutos = 143
+  id_fonte = "1334280"
+
+[[clubes]]
+nome = "Sochaux-Montbéliard"
+forca = 56.4
+valor_elenco = 9900000
+cores = ["#FDE11D", "#1A367C"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Alexandre Pierre"
+  pos = "GK"
+  idade = 25
+  ovr = 58
+  pot = 59
+  valor = 500000
+  partidas = 26
+  minutos = 2295
+  id_fonte = "838947"
+
+  [[clubes.jogadores]]
+  nome = "Élie N'Gatta"
+  pos = "CB"
+  idade = 20
+  ovr = 58
+  pot = 61
+  valor = 1000000
+  partidas = 7
+  minutos = 630
+  id_fonte = "1171934"
+
+  [[clubes.jogadores]]
+  nome = "Arthur Vitelli"
+  pos = "CB"
+  idade = 26
+  ovr = 57
+  pot = 57
+  valor = 500000
+  partidas = 1
+  minutos = 118
+  id_fonte = "918871"
+
+  [[clubes.jogadores]]
+  nome = "Julien Masson"
+  pos = "DM"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 500000
+  partidas = 6
+  minutos = 527
+  gols = 1
+  id_fonte = "494315"
+
+  [[clubes.jogadores]]
+  nome = "Louicius Deedson"
+  pos = "WG"
+  idade = 25
+  ovr = 57
+  pot = 60
+  valor = 1200000
+  partidas = 1
+  minutos = 94
+  id_fonte = "646108"
+
+  [[clubes.jogadores]]
+  nome = "Benjamin Gomel"
+  pos = "WG"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 600000
+  partidas = 4
+  minutos = 318
+  gols = 1
+  id_fonte = "566371"
+
+  [[clubes.jogadores]]
+  nome = "Mehdi Jeannin"
+  pos = "GK"
+  idade = 35
+  ovr = 56
+  pot = 56
+  valor = 150000
+  partidas = 7
+  minutos = 630
+  id_fonte = "191882"
+
+  [[clubes.jogadores]]
+  nome = "Yohan Demoncy"
+  pos = "MF"
+  idade = 30
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 1
+  minutos = 109
+  id_fonte = "289435"
+
+  [[clubes.jogadores]]
+  nome = "Kapit Djoco"
+  pos = "FW"
+  idade = 31
+  ovr = 55
+  pot = 55
+  valor = 400000
+  partidas = 3
+  minutos = 286
+  gols = 14
+  id_fonte = "412091"
+
+  [[clubes.jogadores]]
+  nome = "Saad Agouzoul"
+  pos = "CB"
+  idade = 29
+  ovr = 55
+  pot = 55
+  valor = 300000
+  partidas = 2
+  minutos = 220
+  id_fonte = "556865"
+
+  [[clubes.jogadores]]
+  nome = "Victor Lobry"
+  pos = "AM"
+  idade = 31
+  ovr = 55
+  pot = 55
+  valor = 350000
+  partidas = 3
+  minutos = 226
+  id_fonte = "592358"
+
+  [[clubes.jogadores]]
+  nome = "Bendjaloud Youssouf"
+  pos = "FB"
+  idade = 32
+  ovr = 54
+  pot = 54
+  valor = 200000
+  partidas = 4
+  minutos = 394
+  gols = 1
+  id_fonte = "315075"
+
+  [[clubes.jogadores]]
+  nome = "Boubacar Fofana"
+  pos = "WG"
+  idade = 28
+  ovr = 54
+  pot = 54
+  valor = 400000
+  partidas = 4
+  minutos = 318
+  gols = 1
+  id_fonte = "563098"
+
+  [[clubes.jogadores]]
+  nome = "Dalangunypole Gomis"
+  pos = "CB"
+  idade = 22
+  ovr = 54
+  pot = 59
+  valor = 700000
+  partidas = 4
+  minutos = 370
+  id_fonte = "974995"
+
+  [[clubes.jogadores]]
+  nome = "Dylan Tavares"
+  pos = "FB"
+  idade = 30
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 4
+  minutos = 331
+  id_fonte = "321930"
+
+  [[clubes.jogadores]]
+  nome = "Jonathan Mexique"
+  pos = "MF"
+  idade = 31
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 3
+  minutos = 308
+  gols = 1
+  id_fonte = "182823"
+
+  [[clubes.jogadores]]
+  nome = "Mathieu Peybernes"
+  pos = "CB"
+  idade = 35
+  ovr = 54
+  pot = 54
+  valor = 150000
+  partidas = 6
+  minutos = 512
+  gols = 3
+  id_fonte = "111026"
+
+  [[clubes.jogadores]]
+  nome = "Landry Nomel"
+  pos = "WG"
+  idade = 29
+  ovr = 53
+  pot = 53
+  valor = 350000
+  partidas = 4
+  minutos = 404
+  id_fonte = "562578"
+
+  [[clubes.jogadores]]
+  nome = "Samy Baghdadi"
+  pos = "FW"
+  idade = 29
+  ovr = 53
+  pot = 53
+  valor = 350000
+  partidas = 4
+  minutos = 393
+  gols = 1
+  id_fonte = "511454"
+
+  [[clubes.jogadores]]
+  nome = "Mathis Clairicia"
+  pos = "FW"
+  idade = 24
+  ovr = 50
+  pot = 53
+  valor = 400000
+  partidas = 4
+  minutos = 361
+  gols = 1
+  id_fonte = "969153"
+
+  [[clubes.jogadores]]
+  nome = "Ethan Cortes"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 42
+  valor = 82500
+  id_fonte = "1201859"
+
+  [[clubes.jogadores]]
+  nome = "Honoré Bayanginisa"
+  pos = "DM"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 200000
+  partidas = 4
+  minutos = 324
+  gols = 3
+  id_fonte = "1321676"
+
+  [[clubes.jogadores]]
+  nome = "Julien Vetro"
+  pos = "WG"
+  idade = 22
+  ovr = 40
+  pot = 47
+  valor = 150000
+  partidas = 6
+  minutos = 566
+  gols = 1
+  id_fonte = "1038067"
+
+  [[clubes.jogadores]]
+  nome = "Marie-Gaël Mukanya"
+  pos = "FW"
+  idade = 23
+  ovr = 40
+  pot = 43
+  valor = 82500
+  id_fonte = "991502"
+
+  [[clubes.jogadores]]
+  nome = "Noa Kotto Kotto Mouyema"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 44
+  valor = 100000
+  partidas = 3
+  minutos = 23
+  id_fonte = "1006410"
+
+[[clubes]]
+nome = "Annecy"
+forca = 56.3
+valor_elenco = 9800000
+cores = ["#E40613", "#FDF8F8"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Julien Kouadio"
+  pos = "CB"
+  idade = 27
+  ovr = 62
+  pot = 62
+  valor = 1000000
+  partidas = 7
+  minutos = 630
+  id_fonte = "808846"
+
+  [[clubes.jogadores]]
+  nome = "Florian Escales"
+  pos = "GK"
+  idade = 30
+  ovr = 61
+  pot = 61
+  valor = 500000
+  partidas = 7
+  minutos = 630
+  id_fonte = "222636"
+
+  [[clubes.jogadores]]
+  nome = "Clément Billemaz"
+  pos = "AM"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 1000000
+  partidas = 5
+  minutos = 437
+  gols = 1
+  id_fonte = "579205"
+
+  [[clubes.jogadores]]
+  nome = "François Lajugie"
+  pos = "CB"
+  idade = 30
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 1
+  minutos = 97
+  gols = 4
+  id_fonte = "374039"
+
+  [[clubes.jogadores]]
+  nome = "Thibault Delphis"
+  pos = "CB"
+  idade = 23
+  ovr = 57
+  pot = 59
+  valor = 700000
+  partidas = 7
+  minutos = 630
+  id_fonte = "1063470"
+
+  [[clubes.jogadores]]
+  nome = "Mattéo Veillon"
+  pos = "CB"
+  idade = 24
+  ovr = 55
+  pot = 57
+  valor = 500000
+  partidas = 6
+  minutos = 552
+  gols = 1
+  id_fonte = "830649"
+
+  [[clubes.jogadores]]
+  nome = "Paul Venot"
+  pos = "MF"
+  idade = 24
+  ovr = 55
+  pot = 57
+  valor = 600000
+  partidas = 5
+  minutos = 430
+  gols = 1
+  id_fonte = "804859"
+
+  [[clubes.jogadores]]
+  nome = "Thibault Rambaud"
+  pos = "FW"
+  idade = 29
+  ovr = 55
+  pot = 55
+  valor = 500000
+  partidas = 4
+  minutos = 330
+  gols = 2
+  id_fonte = "689146"
+
+  [[clubes.jogadores]]
+  nome = "Antoine Larose"
+  pos = "WG"
+  idade = 33
+  ovr = 53
+  pot = 53
+  valor = 250000
+  partidas = 4
+  minutos = 392
+  gols = 1
+  id_fonte = "775330"
+
+  [[clubes.jogadores]]
+  nome = "Moïse Sahi Dion"
+  pos = "FW"
+  idade = 24
+  ovr = 53
+  pot = 57
+  valor = 800000
+  partidas = 3
+  minutos = 239
+  gols = 1
+  id_fonte = "880330"
+
+  [[clubes.jogadores]]
+  nome = "Mohamed Koné"
+  pos = "MF"
+  idade = 19
+  ovr = 51
+  pot = 56
+  valor = 600000
+  partidas = 5
+  minutos = 476
+  id_fonte = "1287035"
+
+  [[clubes.jogadores]]
+  nome = "Thomas Callens"
+  pos = "GK"
+  idade = 28
+  ovr = 51
+  pot = 51
+  valor = 150000
+  partidas = 7
+  minutos = 630
+  id_fonte = "593315"
+
+  [[clubes.jogadores]]
+  nome = "Ahmed Kashi"
+  pos = "DM"
+  idade = 37
+  ovr = 50
+  pot = 50
+  valor = 100000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "73120"
+
+  [[clubes.jogadores]]
+  nome = "Kadan Young"
+  pos = "WG"
+  idade = 20
+  ovr = 47
+  pot = 53
+  valor = 500000
+  partidas = 4
+  minutos = 381
+  gols = 1
+  id_fonte = "887433"
+
+  [[clubes.jogadores]]
+  nome = "Alexis Casadei"
+  pos = "MF"
+  idade = 21
+  ovr = 45
+  pot = 53
+  valor = 400000
+  partidas = 1
+  minutos = 29
+  gols = 2
+  id_fonte = "1004483"
+
+  [[clubes.jogadores]]
+  nome = "Zépiqueno Redmond"
+  pos = "FW"
+  idade = 20
+  ovr = 44
+  pot = 53
+  valor = 500000
+  partidas = 3
+  minutos = 250
+  id_fonte = "765972"
+
+  [[clubes.jogadores]]
+  nome = "Jonathan Do Marcolino"
+  pos = "CB"
+  idade = 20
+  ovr = 42
+  pot = 53
+  valor = 300000
+  partidas = 2
+  minutos = 196
+  id_fonte = "1119839"
+
+  [[clubes.jogadores]]
+  nome = "Adam Yahi"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 46
+  valor = 199629
+  partidas = 2
+  minutos = 14
+  id_fonte = "1384923"
+
+  [[clubes.jogadores]]
+  nome = "Alan Mondesir"
+  pos = "WG"
+  idade = 22
+  ovr = 40
+  pot = 44
+  valor = 143611
+  id_fonte = "1133428"
+
+  [[clubes.jogadores]]
+  nome = "David Oduro"
+  pos = "FB"
+  idade = 20
+  ovr = 40
+  pot = 49
+  valor = 200000
+  id_fonte = "1051724"
+
+  [[clubes.jogadores]]
+  nome = "Esteban Marre"
+  pos = "FB"
+  idade = 22
+  ovr = 40
+  pot = 47
+  valor = 143611
+  id_fonte = "1156312"
+
+  [[clubes.jogadores]]
+  nome = "Esteban Riou"
+  pos = "CB"
+  idade = 19
+  ovr = 40
+  pot = 47
+  valor = 143611
+  id_fonte = "1322127"
+
+  [[clubes.jogadores]]
+  nome = "Kilyan Jusseron-Veniere"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 47
+  valor = 200000
+  partidas = 1
+  minutos = 114
+  gols = 1
+  id_fonte = "1273127"
+
+  [[clubes.jogadores]]
+  nome = "Matéo Gonzalez"
+  pos = "GK"
+  idade = 21
+  ovr = 40
+  pot = 49
+  valor = 143611
+  id_fonte = "1004376"
+
+  [[clubes.jogadores]]
+  nome = "Pascal Mozie"
+  pos = "DM"
+  idade = 18
+  ovr = 40
+  pot = 57
+  valor = 600000
+  partidas = 1
+  minutos = 65
+  id_fonte = "1163767"
+
+  [[clubes.jogadores]]
+  nome = "Sacha Lima"
+  pos = "CB"
+  idade = 22
+  ovr = 40
+  pot = 48
+  valor = 162962
+  partidas = 1
+  minutos = 4
+  id_fonte = "1299146"
+
+  [[clubes.jogadores]]
+  nome = "Souleymane Fofana"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 45
+  valor = 143611
+  id_fonte = "1378526"
+
+[[clubes]]
+nome = "US Boulogne"
+forca = 56.2
+valor_elenco = 9600000
+cores = ["#CF1721", "#1C1C1A"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Blondy Nna Noukeu"
+  pos = "GK"
+  idade = 25
+  ovr = 61
+  pot = 62
+  valor = 900000
+  partidas = 7
+  minutos = 630
+  id_fonte = "696892"
+
+  [[clubes.jogadores]]
+  nome = "Julien Boyer"
+  pos = "FB"
+  idade = 28
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 5
+  minutos = 448
+  gols = 2
+  id_fonte = "590629"
+
+  [[clubes.jogadores]]
+  nome = "Nolan Binet"
+  pos = "DM"
+  idade = 22
+  ovr = 59
+  pot = 61
+  valor = 1200000
+  partidas = 6
+  minutos = 546
+  gols = 1
+  id_fonte = "915842"
+
+  [[clubes.jogadores]]
+  nome = "Abdel Hbouch"
+  pos = "AM"
+  idade = 27
+  ovr = 57
+  pot = 57
+  valor = 600000
+  partidas = 7
+  minutos = 593
+  gols = 1
+  id_fonte = "660042"
+
+  [[clubes.jogadores]]
+  nome = "Jonas Martin"
+  pos = "DM"
+  idade = 36
+  ovr = 57
+  pot = 57
+  valor = 250000
+  partidas = 4
+  minutos = 398
+  id_fonte = "127142"
+
+  [[clubes.jogadores]]
+  nome = "Théo Brusco"
+  pos = "CB"
+  idade = 26
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 6
+  minutos = 514
+  id_fonte = "681284"
+
+  [[clubes.jogadores]]
+  nome = "Adrien Pinot"
+  pos = "CB"
+  idade = 25
+  ovr = 55
+  pot = 56
+  valor = 400000
+  partidas = 1
+  minutos = 111
+  gols = 3
+  id_fonte = "858935"
+
+  [[clubes.jogadores]]
+  nome = "Antoine Kerriou"
+  pos = "CB"
+  idade = 23
+  ovr = 55
+  pot = 57
+  valor = 500000
+  partidas = 7
+  minutos = 630
+  id_fonte = "975431"
+
+  [[clubes.jogadores]]
+  nome = "Aurélien Platret"
+  pos = "AM"
+  idade = 23
+  ovr = 55
+  pot = 57
+  valor = 700000
+  partidas = 5
+  minutos = 486
+  gols = 2
+  id_fonte = "745201"
+
+  [[clubes.jogadores]]
+  nome = "Joffrey Bultel"
+  pos = "DM"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 400000
+  partidas = 5
+  minutos = 470
+  gols = 1
+  id_fonte = "740471"
+
+  [[clubes.jogadores]]
+  nome = "Théo Epailly"
+  pos = "WG"
+  idade = 27
+  ovr = 55
+  pot = 55
+  valor = 500000
+  partidas = 4
+  minutos = 395
+  gols = 1
+  id_fonte = "395514"
+
+  [[clubes.jogadores]]
+  nome = "Benjamin Bešić"
+  pos = "FW"
+  idade = 24
+  ovr = 53
+  pot = 55
+  valor = 500000
+  partidas = 5
+  minutos = 467
+  id_fonte = "700437"
+
+  [[clubes.jogadores]]
+  nome = "Mathieu Mion"
+  pos = "FB"
+  idade = 26
+  ovr = 53
+  pot = 54
+  valor = 300000
+  partidas = 2
+  minutos = 182
+  id_fonte = "668201"
+
+  [[clubes.jogadores]]
+  nome = "Sonny Duflos"
+  pos = "MF"
+  idade = 31
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 1
+  minutos = 8
+  id_fonte = "660499"
+
+  [[clubes.jogadores]]
+  nome = "Demba Thiam"
+  pos = "FB"
+  idade = 36
+  ovr = 52
+  pot = 52
+  valor = 100000
+  partidas = 7
+  minutos = 630
+  id_fonte = "137970"
+
+  [[clubes.jogadores]]
+  nome = "Noah Fatar"
+  pos = "WG"
+  idade = 24
+  ovr = 52
+  pot = 55
+  valor = 500000
+  partidas = 2
+  minutos = 139
+  gols = 3
+  id_fonte = "707225"
+
+  [[clubes.jogadores]]
+  nome = "Ibrahim Koné"
+  pos = "GK"
+  idade = 36
+  ovr = 50
+  pot = 50
+  valor = 50000
+  partidas = 9
+  minutos = 796
+  id_fonte = "70348"
+
+  [[clubes.jogadores]]
+  nome = "Xavier Lenogue"
+  pos = "GK"
+  idade = 29
+  ovr = 50
+  pot = 50
+  valor = 80384
+  partidas = 1
+  minutos = 90
+  id_fonte = "334045"
+
+  [[clubes.jogadores]]
+  nome = "Martin Lecolier"
+  pos = "FW"
+  idade = 23
+  ovr = 49
+  pot = 55
+  valor = 500000
+  partidas = 11
+  minutos = 977
+  gols = 3
+  id_fonte = "937992"
+
+  [[clubes.jogadores]]
+  nome = "Zoran Moco"
+  pos = "FB"
+  idade = 23
+  ovr = 49
+  pot = 56
+  valor = 400000
+  partidas = 5
+  minutos = 423
+  id_fonte = "936500"
+
+  [[clubes.jogadores]]
+  nome = "Ludéric Etonde"
+  pos = "FW"
+  idade = 26
+  ovr = 44
+  pot = 46
+  valor = 100000
+  partidas = 3
+  minutos = 23
+  id_fonte = "750502"
+
+  [[clubes.jogadores]]
+  nome = "Louis Siliadin"
+  pos = "FB"
+  idade = 24
+  ovr = 41
+  pot = 47
+  valor = 75000
+  partidas = 2
+  minutos = 177
+  id_fonte = "1060303"
+
+  [[clubes.jogadores]]
+  nome = "Aymane Nassiri"
+  pos = "WG"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 200000
+  partidas = 1
+  minutos = 86
+  id_fonte = "1183708"
+
+  [[clubes.jogadores]]
+  nome = "Jonathan Kapenga"
+  pos = "CB"
+  idade = 22
+  ovr = 40
+  pot = 48
+  valor = 100000
+  partidas = 1
+  minutos = 14
+  id_fonte = "1005072"
+
+  [[clubes.jogadores]]
+  nome = "Oscar Lenne"
+  pos = "FB"
+  idade = 20
+  ovr = 40
+  pot = 48
+  valor = 100000
+  partidas = 1
+  minutos = 14
+  id_fonte = "1006412"
+
+  [[clubes.jogadores]]
+  nome = "Sohan Paillard"
+  pos = "AM"
+  idade = 22
+  ovr = 40
+  pot = 41
+  valor = 25000
+  partidas = 2
+  minutos = 7
+  id_fonte = "954514"
+
+[[clubes]]
+nome = "Dijon FCO"
+forca = 55.2
+valor_elenco = 8000000
+cores = ["#D3082B", "#E57084"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Brandon Ndezi"
+  pos = "MF"
+  idade = 26
+  ovr = 59
+  pot = 59
+  valor = 700000
+  partidas = 6
+  minutos = 578
+  id_fonte = "660026"
+
+  [[clubes.jogadores]]
+  nome = "Paul Bellon"
+  pos = "DM"
+  idade = 26
+  ovr = 58
+  pot = 59
+  valor = 600000
+  partidas = 4
+  minutos = 383
+  id_fonte = "804550"
+
+  [[clubes.jogadores]]
+  nome = "Waly Diouf"
+  pos = "CB"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 1
+  minutos = 126
+  gols = 1
+  id_fonte = "490414"
+
+  [[clubes.jogadores]]
+  nome = "Adel Lembezat"
+  pos = "AM"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 500000
+  partidas = 4
+  minutos = 335
+  gols = 1
+  id_fonte = "770799"
+
+  [[clubes.jogadores]]
+  nome = "Lenny Lacroix"
+  pos = "CB"
+  idade = 23
+  ovr = 56
+  pot = 58
+  valor = 500000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "620315"
+
+  [[clubes.jogadores]]
+  nome = "Moussa Faty"
+  pos = "FB"
+  idade = 26
+  ovr = 56
+  pot = 57
+  valor = 400000
+  partidas = 4
+  minutos = 397
+  id_fonte = "807654"
+
+  [[clubes.jogadores]]
+  nome = "Tom Meynadier"
+  pos = "FB"
+  idade = 26
+  ovr = 56
+  pot = 58
+  valor = 500000
+  id_fonte = "863038"
+
+  [[clubes.jogadores]]
+  nome = "Paul Delecroix"
+  pos = "GK"
+  idade = 37
+  ovr = 55
+  pot = 55
+  valor = 100000
+  partidas = 6
+  minutos = 540
+  id_fonte = "81543"
+
+  [[clubes.jogadores]]
+  nome = "Samy Chouchane"
+  pos = "MF"
+  idade = 23
+  ovr = 55
+  pot = 58
+  valor = 600000
+  partidas = 5
+  minutos = 472
+  gols = 3
+  id_fonte = "756591"
+
+  [[clubes.jogadores]]
+  nome = "Yanis Barka"
+  pos = "FW"
+  idade = 28
+  ovr = 55
+  pot = 55
+  valor = 400000
+  partidas = 2
+  minutos = 210
+  gols = 10
+  id_fonte = "510258"
+
+  [[clubes.jogadores]]
+  nome = "Jordan Marié"
+  pos = "MF"
+  idade = 34
+  ovr = 54
+  pot = 54
+  valor = 150000
+  partidas = 4
+  minutos = 399
+  gols = 1
+  id_fonte = "231025"
+
+  [[clubes.jogadores]]
+  nome = "Michaël Barreto"
+  pos = "AM"
+  idade = 35
+  ovr = 54
+  pot = 54
+  valor = 150000
+  partidas = 3
+  minutos = 288
+  gols = 4
+  id_fonte = "149518"
+
+  [[clubes.jogadores]]
+  nome = "Quentin Bernard"
+  pos = "CB"
+  idade = 37
+  ovr = 53
+  pot = 53
+  valor = 100000
+  partidas = 6
+  minutos = 573
+  gols = 1
+  id_fonte = "98262"
+
+  [[clubes.jogadores]]
+  nome = "Ben-Chayeel Hamada"
+  pos = "MF"
+  idade = 23
+  ovr = 52
+  pot = 55
+  valor = 400000
+  partidas = 3
+  minutos = 296
+  gols = 5
+  id_fonte = "929841"
+
+  [[clubes.jogadores]]
+  nome = "Hugo Vargas-Ríos"
+  pos = "MF"
+  idade = 31
+  ovr = 52
+  pot = 52
+  valor = 150000
+  partidas = 4
+  minutos = 42
+  gols = 1
+  id_fonte = "281926"
+
+  [[clubes.jogadores]]
+  nome = "Ismaïl Bouleghcha"
+  pos = "FB"
+  idade = 23
+  ovr = 51
+  pot = 56
+  valor = 400000
+  partidas = 3
+  minutos = 270
+  id_fonte = "707246"
+
+  [[clubes.jogadores]]
+  nome = "Julio Tavarès"
+  pos = "FW"
+  idade = 37
+  ovr = 49
+  pot = 49
+  valor = 75000
+  partidas = 2
+  minutos = 160
+  gols = 3
+  id_fonte = "216426"
+
+  [[clubes.jogadores]]
+  nome = "Alexis Ntamack"
+  pos = "FW"
+  idade = 22
+  ovr = 48
+  pot = 54
+  valor = 400000
+  partidas = 4
+  minutos = 323
+  gols = 7
+  id_fonte = "743532"
+
+  [[clubes.jogadores]]
+  nome = "Tyris Dong"
+  pos = "FW"
+  idade = 17
+  ovr = 45
+  pot = 55
+  valor = 500000
+  partidas = 4
+  minutos = 371
+  gols = 1
+  id_fonte = "1339047"
+
+  [[clubes.jogadores]]
+  nome = "Ylan Aka"
+  pos = "FB"
+  idade = 19
+  ovr = 44
+  pot = 54
+  valor = 300000
+  partidas = 3
+  minutos = 252
+  id_fonte = "1176595"
+
+  [[clubes.jogadores]]
+  nome = "Ange Lago"
+  pos = "FW"
+  idade = 21
+  ovr = 43
+  pot = 52
+  valor = 300000
+  partidas = 2
+  minutos = 193
+  gols = 1
+  id_fonte = "1117771"
+
+  [[clubes.jogadores]]
+  nome = "Abdelmajid Djae"
+  pos = "WG"
+  idade = 21
+  ovr = 40
+  pot = 46
+  valor = 100000
+  id_fonte = "1119906"
+
+  [[clubes.jogadores]]
+  nome = "Anass Benyahya"
+  pos = "CB"
+  idade = 22
+  ovr = 40
+  pot = 45
+  valor = 55000
+  id_fonte = "974900"
+
+  [[clubes.jogadores]]
+  nome = "Axel Bargain"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 45
+  valor = 55000
+  id_fonte = "1166450"
+
+  [[clubes.jogadores]]
+  nome = "César Obongo"
+  pos = "FB"
+  idade = 20
+  ovr = 40
+  pot = 50
+  valor = 150000
+  partidas = 8
+  minutos = 690
+  gols = 1
+  id_fonte = "1094399"
+
+  [[clubes.jogadores]]
+  nome = "Florian Rombogouera"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 41
+  valor = 25000
+  partidas = 2
+  minutos = 174
+  gols = 1
+  id_fonte = "1172638"
+
+  [[clubes.jogadores]]
+  nome = "Ylann Marie-Rose"
+  pos = "GK"
+  idade = 18
+  ovr = 40
+  pot = 50
+  valor = 100000
+  partidas = 1
+  minutos = 90
+  id_fonte = "1371249"
+

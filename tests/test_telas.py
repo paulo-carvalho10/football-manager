@@ -33,13 +33,16 @@ def test_o_menu_abre_sem_carreira(vazio):
     json.dumps(m)
 
 
-def test_o_catalogo_so_libera_brasil_e_espanha():
+def test_o_catalogo_libera_as_oito_ligas_e_cada_uma_tem_pack():
+    """Liberadas em 28/09/2026. Liga liberada sem pack quebraria a criacao de carreira."""
+    from fm.config import load_league
+    from fm.pack import load_pack
     cat = telas.catalogo()
-    livres = {n["pais"] for n in cat["nacionais"] if n["livre"]}
-    assert livres == {"BRA", "ESP"}
+    assert {n["pais"] for n in cat["nacionais"] if n["livre"]} == {
+        "BRA", "ESP", "ENG", "ITA", "GER", "FRA", "POR", "ARG"}
     for n in cat["nacionais"]:
-        if not n["livre"]:
-            assert all(liga["id"] is None for liga in n["ligas"]), "liga bloqueada com pack"
+        for liga in n["ligas"]:
+            assert load_pack(load_league(liga["id"])["pack"]).clubes
 
 
 def test_liga_bloqueada_nao_entra_pela_api(vazio):

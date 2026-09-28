@@ -1,0 +1,37 @@
+# 2. Bundesliga (GER), clubes e jogadores reais. Criada em 28/09/2026 para a versao completa.
+# Segunda divisao aberta como a primeira, e muito equilibrada.
+id     = "ger_2_real"
+nome   = "2. Bundesliga"
+pais   = "GER"
+tier   = 2
+codigo = "L2"   # competicao na fonte
+clubes = 18
+
+pack        = "alemanha_2_bundesliga"
+pack_offset = 0
+
+[estilo]
+gols_base = 1.36
+mando     = 0.24
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 2, descem = 0 }
+
+# Faixas escritas de memoria, ordem de grandeza -- como as da Serie B. Re-derivar com as
+# tabelas reais antes de tratar como fonte.
+[alvos]
+zero_a_zero_pct           = [4.5, 8.5]
+gols_por_jogo             = [2.65, 3.15]
+empate_pct                = [21.0, 28.0]
+vitoria_casa_pct          = [40.0, 47.0]
+vitoria_fora_pct          = [27.0, 34.0]
+margem_3_ou_mais_pct      = [12.0, 18.0]
+margem_4_ou_mais_pct      = [4.0, 8.5]
+cinco_ou_mais_gols_pct    = [11.0, 17.0]
+pontos_do_campeao         = [58.0, 72.0]
+pontos_do_lanterna        = [20.0, 36.0]
+melhor_elenco_campeao_pct = [12.0, 50.0]
+
+# O nivel desta liga em relacao as outras NAO esta aqui: ele sai de
+# fm.ratings.forca_mundial, pelo valor de elenco de todas as competicoes importadas juntas.

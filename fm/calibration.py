@@ -50,17 +50,23 @@ class Metric:
 
 def measure(
     ratings: list[float] | None = None, *, seasons: int = 1000, seed: int = 2026,
-    style: Style | None = None, mentality: Mentality = Mentality.NORMAL,
+    style: Style | None = None, mentality: Mentality = Mentality.NORMAL, voltas: int = 2,
 ) -> dict[str, float]:
-    """Roda `seasons` temporadas no caminho rapido e devolve as metricas agregadas."""
+    """Roda `seasons` temporadas no caminho rapido e devolve as metricas agregadas.
+
+    `voltas=1` e turno unico (a Argentina, com 30 e 36 clubes): cada par joga uma vez.
+    """
     ratings = list(ratings or REFERENCE_RATINGS)
     style = style or DEFAULT_STYLE
     n = len(ratings)
     rng = np.random.default_rng(seed)
     r = np.array(ratings, dtype=float)
     iu, ju = np.triu_indices(n, 1)
-    home = np.concatenate([iu, ju])          # returno duplo: todo par joga nos dois mandos
-    away = np.concatenate([ju, iu])
+    if voltas == 1:
+        home, away = iu, ju                  # turno unico: cada par joga uma vez
+    else:
+        home = np.concatenate([iu, ju])      # returno duplo: todo par joga nos dois mandos
+        away = np.concatenate([ju, iu])
     rh, ra = r[home], r[away]
 
     tot_goals = tot_matches = 0

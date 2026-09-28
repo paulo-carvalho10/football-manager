@@ -1,0 +1,40 @@
+# Serie A (ITA), clubes e jogadores reais. Criada em 28/09/2026 para a versao completa.
+# Mais fechada que a Premier; empata mais.
+id     = "ita_1_real"
+nome   = "Serie A"
+pais   = "ITA"
+tier   = 1
+codigo = "IT1"   # competicao na fonte
+clubes = 20
+
+pack        = "italia_serie_a"
+pack_offset = 0
+
+[estilo]
+gols_base = 1.27
+mando     = 0.26
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 0, descem = 3 }
+
+# Faixas escritas de memoria, ordem de grandeza -- como as da Serie B. Re-derivar com as
+# tabelas reais antes de tratar como fonte.
+# O campeao aqui soma um pouco menos que o real porque o espalhamento (beta) desta liga
+# e limitado de proposito: com beta alto o topo passava do Real Madrid e distorcia a
+# Champions. Comparacao ENTRE ligas vale mais que acertar o campeao na casa decimal.
+[alvos]
+zero_a_zero_pct           = [6.0, 10.0]
+gols_por_jogo             = [2.45, 2.90]
+empate_pct                = [22.0, 29.0]
+vitoria_casa_pct          = [40.0, 47.0]
+vitoria_fora_pct          = [27.0, 34.0]
+margem_3_ou_mais_pct      = [11.0, 17.0]
+margem_4_ou_mais_pct      = [3.5, 7.5]
+cinco_ou_mais_gols_pct    = [9.0, 14.0]
+pontos_do_campeao         = [74.0, 92.0]
+pontos_do_lanterna        = [17.0, 34.0]
+melhor_elenco_campeao_pct = [25.0, 65.0]
+
+# O nivel desta liga em relacao as outras NAO esta aqui: ele sai de
+# fm.ratings.forca_mundial, pelo valor de elenco de todas as competicoes importadas juntas.

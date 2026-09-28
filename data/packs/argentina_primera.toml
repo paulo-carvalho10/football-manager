@@ -1,0 +1,10230 @@
+# ARG1 -- GERADO por fm.importer. Nao editar a mao: rode o importador.
+#
+# Fonte: Transfermarkt (clube, posicao, idade, valor de mercado, jogos, minutos).
+# ovr e pot sao DERIVADOS por fm/ratings.py a partir desses campos. Sao estimativa, nao
+# rating oficial de ninguem, e a conta esta documentada no modulo.
+#
+# forca do clube = nivel_da_liga + 3.5 * z(ln(valor de elenco) dentro da liga).
+# O NIVEL da liga sai do valor medio de elenco na escala global de todas as competicoes
+# importadas, com o melhor clube do mundo ancorado em 90 -- fazer z so por liga apagava a
+# diferenca entre divisoes e o lanterna da Serie B saia mais forte que o da Serie A.
+# O BETA e proprio desta liga e foi ajustado contra os [alvos] do arquivo dela.
+verificado = false
+fonte = "Transfermarkt ARG1 (valores de mercado); ovr/pot derivados por fm.ratings"
+
+[[clubes]]
+nome = "River Plate"
+forca = 69.6
+valor_elenco = 124500000
+cores = ["#E30613", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Beltrán"
+  pos = "GK"
+  idade = 21
+  ovr = 72
+  pot = 74
+  valor = 11000000
+  partidas = 39
+  minutos = 3491
+  id_fonte = "1138089"
+
+  [[clubes.jogadores]]
+  nome = "Thiago Almada"
+  pos = "AM"
+  idade = 25
+  ovr = 71
+  pot = 74
+  valor = 20000000
+  partidas = 6
+  minutos = 568
+  gols = 2
+  id_fonte = "576028"
+
+  [[clubes.jogadores]]
+  nome = "Ángel Correa"
+  pos = "FW"
+  idade = 31
+  ovr = 71
+  pot = 71
+  valor = 8000000
+  partidas = 10
+  minutos = 883
+  gols = 3
+  id_fonte = "266807"
+
+  [[clubes.jogadores]]
+  nome = "Aníbal Moreno"
+  pos = "DM"
+  idade = 27
+  ovr = 70
+  pot = 71
+  valor = 7000000
+  partidas = 30
+  minutos = 2689
+  id_fonte = "642758"
+
+  [[clubes.jogadores]]
+  nome = "Francisco Ortega"
+  pos = "FB"
+  idade = 27
+  ovr = 70
+  pot = 71
+  valor = 7000000
+  partidas = 3
+  minutos = 296
+  id_fonte = "553663"
+
+  [[clubes.jogadores]]
+  nome = "Mauro Arambarri"
+  pos = "MF"
+  idade = 30
+  ovr = 70
+  pot = 70
+  valor = 6000000
+  partidas = 2
+  minutos = 212
+  id_fonte = "290249"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Montiel"
+  pos = "FB"
+  idade = 29
+  ovr = 69
+  pot = 69
+  valor = 4500000
+  partidas = 28
+  minutos = 2476
+  gols = 6
+  id_fonte = "402733"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Martínez Quarta"
+  pos = "CB"
+  idade = 30
+  ovr = 69
+  pot = 69
+  valor = 3800000
+  partidas = 35
+  minutos = 3174
+  gols = 3
+  id_fonte = "373373"
+
+  [[clubes.jogadores]]
+  nome = "Fausto Vera"
+  pos = "DM"
+  idade = 26
+  ovr = 68
+  pot = 68
+  valor = 4500000
+  partidas = 25
+  minutos = 2291
+  gols = 1
+  id_fonte = "491701"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Rivero"
+  pos = "CB"
+  idade = 22
+  ovr = 68
+  pot = 70
+  valor = 6000000
+  partidas = 25
+  minutos = 2261
+  gols = 1
+  id_fonte = "1261395"
+
+  [[clubes.jogadores]]
+  nome = "Sebastián Driussi"
+  pos = "FW"
+  idade = 30
+  ovr = 68
+  pot = 68
+  valor = 4500000
+  partidas = 17
+  minutos = 1508
+  gols = 9
+  id_fonte = "294853"
+
+  [[clubes.jogadores]]
+  nome = "Giovanni González"
+  pos = "FB"
+  idade = 32
+  ovr = 67
+  pot = 67
+  valor = 2000000
+  partidas = 3
+  minutos = 240
+  id_fonte = "339699"
+
+  [[clubes.jogadores]]
+  nome = "Rafael Santos Borré"
+  pos = "FW"
+  idade = 31
+  ovr = 67
+  pot = 67
+  valor = 3500000
+  partidas = 5
+  minutos = 451
+  gols = 1
+  id_fonte = "323831"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Beltrán"
+  pos = "FW"
+  idade = 25
+  ovr = 66
+  pot = 69
+  valor = 8000000
+  partidas = 6
+  minutos = 555
+  id_fonte = "628366"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Galván"
+  pos = "AM"
+  idade = 26
+  ovr = 66
+  pot = 67
+  valor = 4000000
+  partidas = 30
+  minutos = 2700
+  gols = 6
+  id_fonte = "893850"
+
+  [[clubes.jogadores]]
+  nome = "Juan Carlos Portillo"
+  pos = "CB"
+  idade = 26
+  ovr = 65
+  pot = 67
+  valor = 3200000
+  partidas = 1
+  minutos = 7
+  id_fonte = "830842"
+
+  [[clubes.jogadores]]
+  nome = "Marcos Acuña"
+  pos = "FB"
+  idade = 34
+  ovr = 65
+  pot = 65
+  valor = 1000000
+  partidas = 20
+  minutos = 1818
+  gols = 1
+  id_fonte = "60410"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Otamendi"
+  pos = "CB"
+  idade = 38
+  ovr = 65
+  pot = 65
+  valor = 1000000
+  partidas = 12
+  minutos = 1080
+  id_fonte = "54781"
+
+  [[clubes.jogadores]]
+  nome = "Ezequiel Centurión"
+  pos = "GK"
+  idade = 29
+  ovr = 64
+  pot = 64
+  valor = 1200000
+  id_fonte = "626917"
+
+  [[clubes.jogadores]]
+  nome = "Tobías Andrada"
+  pos = "MF"
+  idade = 19
+  ovr = 59
+  pot = 71
+  valor = 10000000
+  partidas = 7
+  minutos = 671
+  gols = 1
+  id_fonte = "1384266"
+
+  [[clubes.jogadores]]
+  nome = "Tobías Ramírez"
+  pos = "CB"
+  idade = 19
+  ovr = 51
+  pot = 67
+  valor = 3500000
+  partidas = 1
+  minutos = 45
+  id_fonte = "1000684"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Ruberto"
+  pos = "FW"
+  idade = 20
+  ovr = 49
+  pot = 61
+  valor = 1700000
+  partidas = 3
+  minutos = 229
+  id_fonte = "1000688"
+
+  [[clubes.jogadores]]
+  nome = "Juan Cruz Meza"
+  pos = "AM"
+  idade = 18
+  ovr = 49
+  pot = 62
+  valor = 1800000
+  partidas = 8
+  minutos = 710
+  id_fonte = "1231221"
+
+  [[clubes.jogadores]]
+  nome = "Facundo González"
+  pos = "CB"
+  idade = 20
+  ovr = 44
+  pot = 55
+  valor = 300000
+  partidas = 6
+  minutos = 510
+  id_fonte = "1000666"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Pereyra"
+  pos = "MF"
+  idade = 18
+  ovr = 42
+  pot = 58
+  valor = 700000
+  partidas = 3
+  minutos = 265
+  gols = 1
+  id_fonte = "1264645"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Silva"
+  pos = "DM"
+  idade = 19
+  ovr = 41
+  pot = 55
+  valor = 300000
+  partidas = 4
+  minutos = 393
+  gols = 1
+  id_fonte = "1418875"
+
+[[clubes]]
+nome = "Boca Juniors"
+forca = 69.0
+valor_elenco = 111530000
+cores = ["#01418A", "#EFBA05"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Leandro Paredes"
+  pos = "DM"
+  idade = 32
+  ovr = 71
+  pot = 71
+  valor = 5000000
+  partidas = 29
+  minutos = 2600
+  gols = 3
+  id_fonte = "166237"
+
+  [[clubes.jogadores]]
+  nome = "Ayrton Costa"
+  pos = "CB"
+  idade = 27
+  ovr = 70
+  pot = 70
+  valor = 5000000
+  partidas = 25
+  minutos = 2280
+  id_fonte = "842910"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Ascacíbar"
+  pos = "DM"
+  idade = 29
+  ovr = 70
+  pot = 70
+  valor = 5500000
+  partidas = 29
+  minutos = 2585
+  gols = 8
+  id_fonte = "423436"
+
+  [[clubes.jogadores]]
+  nome = "Sebastián Villa"
+  pos = "WG"
+  idade = 30
+  ovr = 70
+  pot = 70
+  valor = 6000000
+  partidas = 9
+  minutos = 784
+  gols = 1
+  id_fonte = "493000"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Di Lollo"
+  pos = "CB"
+  idade = 22
+  ovr = 69
+  pot = 71
+  valor = 7000000
+  partidas = 30
+  minutos = 2742
+  gols = 2
+  id_fonte = "1019744"
+
+  [[clubes.jogadores]]
+  nome = "Milton Delgado"
+  pos = "DM"
+  idade = 21
+  ovr = 69
+  pot = 72
+  valor = 10000000
+  partidas = 30
+  minutos = 2692
+  gols = 1
+  id_fonte = "1236677"
+
+  [[clubes.jogadores]]
+  nome = "Álvaro Montero"
+  pos = "GK"
+  idade = 31
+  ovr = 69
+  pot = 69
+  valor = 2500000
+  partidas = 16
+  minutos = 1440
+  id_fonte = "292985"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Blanco"
+  pos = "FB"
+  idade = 27
+  ovr = 68
+  pot = 68
+  valor = 4000000
+  partidas = 36
+  minutos = 3234
+  gols = 1
+  id_fonte = "831161"
+
+  [[clubes.jogadores]]
+  nome = "Leandro Lozano"
+  pos = "FB"
+  idade = 27
+  ovr = 68
+  pot = 68
+  valor = 4000000
+  partidas = 10
+  minutos = 895
+  gols = 2
+  id_fonte = "665101"
+
+  [[clubes.jogadores]]
+  nome = "Miguel Merentiel"
+  pos = "FW"
+  idade = 30
+  ovr = 68
+  pot = 68
+  valor = 4500000
+  partidas = 28
+  minutos = 2516
+  gols = 12
+  id_fonte = "481367"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Aranda"
+  pos = "AM"
+  idade = 19
+  ovr = 68
+  pot = 72
+  valor = 12000000
+  partidas = 23
+  minutos = 2066
+  gols = 1
+  id_fonte = "1322355"
+
+  [[clubes.jogadores]]
+  nome = "Adam Bareiro"
+  pos = "FW"
+  idade = 30
+  ovr = 67
+  pot = 67
+  valor = 3500000
+  partidas = 11
+  minutos = 979
+  gols = 6
+  id_fonte = "514120"
+
+  [[clubes.jogadores]]
+  nome = "Malcom Braida"
+  pos = "FB"
+  idade = 29
+  ovr = 67
+  pot = 67
+  valor = 2500000
+  partidas = 9
+  minutos = 799
+  id_fonte = "552185"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Belmonte"
+  pos = "DM"
+  idade = 28
+  ovr = 67
+  pot = 67
+  valor = 3000000
+  partidas = 14
+  minutos = 1246
+  gols = 1
+  id_fonte = "483446"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Marchesín"
+  pos = "GK"
+  idade = 38
+  ovr = 64
+  pot = 64
+  valor = 500000
+  partidas = 12
+  minutos = 1084
+  id_fonte = "54534"
+
+  [[clubes.jogadores]]
+  nome = "Carlos Palacios"
+  pos = "AM"
+  idade = 26
+  ovr = 64
+  pot = 66
+  valor = 3000000
+  partidas = 2
+  minutos = 158
+  id_fonte = "571219"
+
+  [[clubes.jogadores]]
+  nome = "Marco Pellegrino"
+  pos = "CB"
+  idade = 24
+  ovr = 64
+  pot = 68
+  valor = 3500000
+  partidas = 11
+  minutos = 1005
+  id_fonte = "776303"
+
+  [[clubes.jogadores]]
+  nome = "Milton Giménez"
+  pos = "FW"
+  idade = 30
+  ovr = 64
+  pot = 64
+  valor = 2000000
+  partidas = 7
+  minutos = 634
+  gols = 4
+  id_fonte = "730779"
+
+  [[clubes.jogadores]]
+  nome = "Enner Valencia"
+  pos = "FW"
+  idade = 36
+  ovr = 63
+  pot = 63
+  valor = 1000000
+  partidas = 3
+  minutos = 276
+  gols = 1
+  id_fonte = "139503"
+
+  [[clubes.jogadores]]
+  nome = "Williams Alarcón"
+  pos = "MF"
+  idade = 25
+  ovr = 63
+  pot = 66
+  valor = 2800000
+  partidas = 6
+  minutos = 569
+  id_fonte = "599552"
+
+  [[clubes.jogadores]]
+  nome = "Alan Velasco"
+  pos = "WG"
+  idade = 24
+  ovr = 62
+  pot = 65
+  valor = 2800000
+  partidas = 12
+  minutos = 1099
+  gols = 6
+  id_fonte = "661154"
+
+  [[clubes.jogadores]]
+  nome = "Leandro Brey"
+  pos = "GK"
+  idade = 24
+  ovr = 62
+  pot = 65
+  valor = 1500000
+  partidas = 14
+  minutos = 1220
+  id_fonte = "982633"
+
+  [[clubes.jogadores]]
+  nome = "Rodrigo Battaglia"
+  pos = "DM"
+  idade = 35
+  ovr = 62
+  pot = 62
+  valor = 500000
+  id_fonte = "89297"
+
+  [[clubes.jogadores]]
+  nome = "Leonel Flores"
+  pos = "WG"
+  idade = 19
+  ovr = 61
+  pot = 69
+  valor = 8000000
+  partidas = 13
+  minutos = 1167
+  gols = 2
+  id_fonte = "1291699"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Herrera"
+  pos = "CB"
+  idade = 20
+  ovr = 58
+  pot = 69
+  valor = 5000000
+  partidas = 5
+  minutos = 484
+  id_fonte = "1291698"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Figal"
+  pos = "CB"
+  idade = 32
+  ovr = 58
+  pot = 58
+  valor = 250000
+  partidas = 12
+  minutos = 1108
+  id_fonte = "334055"
+
+  [[clubes.jogadores]]
+  nome = "Ángel Romero"
+  pos = "WG"
+  idade = 34
+  ovr = 58
+  pot = 58
+  valor = 300000
+  partidas = 7
+  minutos = 593
+  gols = 3
+  id_fonte = "262262"
+
+  [[clubes.jogadores]]
+  nome = "Dylan Gorosito"
+  pos = "FB"
+  idade = 20
+  ovr = 57
+  pot = 67
+  valor = 3500000
+  partidas = 7
+  minutos = 638
+  id_fonte = "1000669"
+
+  [[clubes.jogadores]]
+  nome = "Juan Ramírez"
+  pos = "MF"
+  idade = 33
+  ovr = 55
+  pot = 55
+  valor = 150000
+  id_fonte = "190756"
+
+  [[clubes.jogadores]]
+  nome = "Javier García"
+  pos = "GK"
+  idade = 39
+  ovr = 54
+  pot = 54
+  valor = 25000
+  partidas = 1
+  minutos = 66
+  id_fonte = "7966"
+
+  [[clubes.jogadores]]
+  nome = "Camilo Rey Domenech"
+  pos = "DM"
+  idade = 20
+  ovr = 50
+  pot = 62
+  valor = 1200000
+  partidas = 4
+  minutos = 356
+  id_fonte = "1000671"
+
+  [[clubes.jogadores]]
+  nome = "Matías Satas"
+  pos = "CB"
+  idade = 18
+  ovr = 44
+  pot = 61
+  valor = 1000000
+  partidas = 1
+  minutos = 91
+  id_fonte = "1243852"
+
+[[clubes]]
+nome = "Rosario Central"
+forca = 66.0
+valor_elenco = 63000000
+cores = ["#F4DA45", "#0D4365"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Franco Ibarra"
+  pos = "DM"
+  idade = 25
+  ovr = 68
+  pot = 69
+  valor = 6000000
+  partidas = 34
+  minutos = 3052
+  id_fonte = "741685"
+
+  [[clubes.jogadores]]
+  nome = "Conan Ledesma"
+  pos = "GK"
+  idade = 33
+  ovr = 67
+  pot = 67
+  valor = 1500000
+  partidas = 32
+  minutos = 2910
+  id_fonte = "284342"
+
+  [[clubes.jogadores]]
+  nome = "Emanuel Coronel"
+  pos = "FB"
+  idade = 29
+  ovr = 67
+  pot = 67
+  valor = 2700000
+  partidas = 26
+  minutos = 2384
+  id_fonte = "565194"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Ovando"
+  pos = "CB"
+  idade = 19
+  ovr = 67
+  pot = 70
+  valor = 9000000
+  partidas = 33
+  minutos = 2973
+  gols = 4
+  id_fonte = "1297993"
+
+  [[clubes.jogadores]]
+  nome = "Jáminton Campaz"
+  pos = "WG"
+  idade = 26
+  ovr = 67
+  pot = 67
+  valor = 5500000
+  partidas = 22
+  minutos = 1985
+  gols = 3
+  id_fonte = "491553"
+
+  [[clubes.jogadores]]
+  nome = "Gastón Ávila"
+  pos = "CB"
+  idade = 24
+  ovr = 66
+  pot = 67
+  valor = 3500000
+  partidas = 29
+  minutos = 2639
+  gols = 3
+  id_fonte = "748601"
+
+  [[clubes.jogadores]]
+  nome = "Vicente Pizarro"
+  pos = "DM"
+  idade = 23
+  ovr = 66
+  pot = 67
+  valor = 4500000
+  partidas = 34
+  minutos = 3015
+  gols = 2
+  id_fonte = "662740"
+
+  [[clubes.jogadores]]
+  nome = "Ángel Di María"
+  pos = "WG"
+  idade = 38
+  ovr = 66
+  pot = 66
+  valor = 1800000
+  partidas = 29
+  minutos = 2573
+  gols = 10
+  id_fonte = "45320"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Sández"
+  pos = "FB"
+  idade = 25
+  ovr = 65
+  pot = 66
+  valor = 2500000
+  partidas = 27
+  minutos = 2393
+  id_fonte = "847023"
+
+  [[clubes.jogadores]]
+  nome = "Alexis Soto"
+  pos = "FB"
+  idade = 32
+  ovr = 65
+  pot = 65
+  valor = 1200000
+  partidas = 15
+  minutos = 1324
+  gols = 1
+  id_fonte = "409272"
+
+  [[clubes.jogadores]]
+  nome = "Enzo Copetti"
+  pos = "FW"
+  idade = 30
+  ovr = 65
+  pot = 65
+  valor = 2200000
+  partidas = 22
+  minutos = 1954
+  gols = 7
+  id_fonte = "504254"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Mallo"
+  pos = "CB"
+  idade = 31
+  ovr = 64
+  pot = 64
+  valor = 1000000
+  partidas = 11
+  minutos = 972
+  id_fonte = "347193"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Badaloni"
+  pos = "FW"
+  idade = 26
+  ovr = 64
+  pot = 66
+  valor = 4000000
+  partidas = 3
+  minutos = 290
+  id_fonte = "568546"
+
+  [[clubes.jogadores]]
+  nome = "Alan Rodríguez"
+  pos = "MF"
+  idade = 26
+  ovr = 63
+  pot = 65
+  valor = 2300000
+  partidas = 5
+  minutos = 439
+  gols = 1
+  id_fonte = "465817"
+
+  [[clubes.jogadores]]
+  nome = "Federico Navarro"
+  pos = "DM"
+  idade = 26
+  ovr = 63
+  pot = 65
+  valor = 2000000
+  partidas = 8
+  minutos = 720
+  id_fonte = "632131"
+
+  [[clubes.jogadores]]
+  nome = "Axel Werner"
+  pos = "GK"
+  idade = 30
+  ovr = 61
+  pot = 61
+  valor = 400000
+  partidas = 2
+  minutos = 180
+  id_fonte = "236734"
+
+  [[clubes.jogadores]]
+  nome = "Franco Cervi"
+  pos = "WG"
+  idade = 32
+  ovr = 61
+  pot = 61
+  valor = 600000
+  partidas = 1
+  minutos = 19
+  id_fonte = "341110"
+
+  [[clubes.jogadores]]
+  nome = "Juan Cruz Komar"
+  pos = "CB"
+  idade = 30
+  ovr = 61
+  pot = 61
+  valor = 500000
+  id_fonte = "319691"
+
+  [[clubes.jogadores]]
+  nome = "Julián Fernández"
+  pos = "WG"
+  idade = 22
+  ovr = 61
+  pot = 66
+  valor = 3800000
+  partidas = 14
+  minutos = 1300
+  gols = 3
+  id_fonte = "984053"
+
+  [[clubes.jogadores]]
+  nome = "Pol Fernández"
+  pos = "MF"
+  idade = 34
+  ovr = 60
+  pot = 60
+  valor = 350000
+  partidas = 10
+  minutos = 941
+  id_fonte = "220647"
+
+  [[clubes.jogadores]]
+  nome = "Sebastián Zaracho"
+  pos = "CB"
+  idade = 27
+  ovr = 60
+  pot = 61
+  valor = 600000
+  partidas = 1
+  minutos = 91
+  id_fonte = "750754"
+
+  [[clubes.jogadores]]
+  nome = "Giovanni Cantizano"
+  pos = "WG"
+  idade = 19
+  ovr = 54
+  pot = 65
+  valor = 3500000
+  partidas = 9
+  minutos = 769
+  gols = 1
+  id_fonte = "1213079"
+
+  [[clubes.jogadores]]
+  nome = "Gaspar Duarte"
+  pos = "WG"
+  idade = 23
+  ovr = 52
+  pot = 59
+  valor = 650000
+  partidas = 5
+  minutos = 424
+  id_fonte = "1297988"
+
+  [[clubes.jogadores]]
+  nome = "Juan Giménez"
+  pos = "CB"
+  idade = 20
+  ovr = 51
+  pot = 65
+  valor = 2000000
+  partidas = 1
+  minutos = 59
+  id_fonte = "1000686"
+
+  [[clubes.jogadores]]
+  nome = "Marco Ruben"
+  pos = "FW"
+  idade = 39
+  ovr = 51
+  pot = 51
+  valor = 25000
+  partidas = 2
+  minutos = 150
+  gols = 1
+  id_fonte = "30825"
+
+  [[clubes.jogadores]]
+  nome = "Ulises Ciccioli"
+  pos = "FB"
+  idade = 23
+  ovr = 51
+  pot = 59
+  valor = 400000
+  id_fonte = "917826"
+
+  [[clubes.jogadores]]
+  nome = "Damián Fernández"
+  pos = "GK"
+  idade = 22
+  ovr = 45
+  pot = 55
+  valor = 115500
+  id_fonte = "1297991"
+
+  [[clubes.jogadores]]
+  nome = "Luca Raffin"
+  pos = "CB"
+  idade = 20
+  ovr = 42
+  pot = 55
+  valor = 150000
+  partidas = 2
+  minutos = 210
+  id_fonte = "1186213"
+
+  [[clubes.jogadores]]
+  nome = "Elías Verón"
+  pos = "FB"
+  idade = 19
+  ovr = 40
+  pot = 53
+  valor = 100000
+  partidas = 4
+  minutos = 389
+  gols = 1
+  id_fonte = "1428253"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Segovia"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 55
+  valor = 225000
+  partidas = 1
+  minutos = 78
+  id_fonte = "1197922"
+
+[[clubes]]
+nome = "Racing Club"
+forca = 65.9
+valor_elenco = 62130000
+cores = ["#029DDD", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Cambeses"
+  pos = "GK"
+  idade = 29
+  ovr = 70
+  pot = 70
+  valor = 5000000
+  partidas = 35
+  minutos = 3180
+  id_fonte = "435001"
+
+  [[clubes.jogadores]]
+  nome = "Gastón Lodico"
+  pos = "MF"
+  idade = 28
+  ovr = 67
+  pot = 67
+  valor = 3800000
+  partidas = 4
+  minutos = 393
+  id_fonte = "563878"
+
+  [[clubes.jogadores]]
+  nome = "Marco Di Césare"
+  pos = "CB"
+  idade = 24
+  ovr = 67
+  pot = 68
+  valor = 5000000
+  partidas = 18
+  minutos = 1629
+  gols = 2
+  id_fonte = "839029"
+
+  [[clubes.jogadores]]
+  nome = "Adrián Martínez"
+  pos = "FW"
+  idade = 34
+  ovr = 66
+  pot = 66
+  valor = 2000000
+  partidas = 26
+  minutos = 2376
+  gols = 10
+  id_fonte = "598769"
+
+  [[clubes.jogadores]]
+  nome = "Matías Zaracho"
+  pos = "AM"
+  idade = 28
+  ovr = 66
+  pot = 66
+  valor = 3500000
+  partidas = 16
+  minutos = 1422
+  gols = 3
+  id_fonte = "480774"
+
+  [[clubes.jogadores]]
+  nome = "Nazareno Colombo"
+  pos = "CB"
+  idade = 27
+  ovr = 66
+  pot = 66
+  valor = 2800000
+  partidas = 12
+  minutos = 1068
+  gols = 1
+  id_fonte = "688207"
+
+  [[clubes.jogadores]]
+  nome = "Ezequiel Cannavo"
+  pos = "FB"
+  idade = 24
+  ovr = 65
+  pot = 66
+  valor = 3000000
+  partidas = 25
+  minutos = 2283
+  gols = 1
+  id_fonte = "844791"
+
+  [[clubes.jogadores]]
+  nome = "Matko Miljevic"
+  pos = "AM"
+  idade = 25
+  ovr = 65
+  pot = 66
+  valor = 4000000
+  partidas = 17
+  minutos = 1524
+  gols = 4
+  id_fonte = "632797"
+
+  [[clubes.jogadores]]
+  nome = "Matías Pérez"
+  pos = "CB"
+  idade = 27
+  ovr = 65
+  pot = 66
+  valor = 2700000
+  partidas = 2
+  minutos = 180
+  id_fonte = "744416"
+
+  [[clubes.jogadores]]
+  nome = "Ulises Ortegoza"
+  pos = "DM"
+  idade = 29
+  ovr = 65
+  pot = 65
+  valor = 1800000
+  partidas = 8
+  minutos = 760
+  gols = 1
+  id_fonte = "654814"
+
+  [[clubes.jogadores]]
+  nome = "Duván Vergara"
+  pos = "WG"
+  idade = 30
+  ovr = 64
+  pot = 64
+  valor = 1800000
+  partidas = 9
+  minutos = 805
+  gols = 4
+  id_fonte = "413658"
+
+  [[clubes.jogadores]]
+  nome = "Matías Tagliamonte"
+  pos = "GK"
+  idade = 28
+  ovr = 64
+  pot = 64
+  valor = 1200000
+  partidas = 2
+  minutos = 180
+  id_fonte = "552638"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Conechny"
+  pos = "WG"
+  idade = 28
+  ovr = 64
+  pot = 64
+  valor = 2500000
+  partidas = 19
+  minutos = 1681
+  gols = 4
+  id_fonte = "401571"
+
+  [[clubes.jogadores]]
+  nome = "Alfonso Espino"
+  pos = "FB"
+  idade = 34
+  ovr = 62
+  pot = 62
+  valor = 600000
+  partidas = 3
+  minutos = 249
+  id_fonte = "311044"
+
+  [[clubes.jogadores]]
+  nome = "Juan Barinaga"
+  pos = "FB"
+  idade = 25
+  ovr = 62
+  pot = 66
+  valor = 2800000
+  partidas = 1
+  minutos = 46
+  id_fonte = "701491"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Díaz"
+  pos = "FW"
+  idade = 28
+  ovr = 62
+  pot = 62
+  valor = 1500000
+  partidas = 6
+  minutos = 560
+  id_fonte = "720294"
+
+  [[clubes.jogadores]]
+  nome = "Matías Kranevitter"
+  pos = "DM"
+  idade = 33
+  ovr = 62
+  pot = 62
+  valor = 600000
+  partidas = 3
+  minutos = 284
+  id_fonte = "240900"
+
+  [[clubes.jogadores]]
+  nome = "Leonel Pérez"
+  pos = "DM"
+  idade = 22
+  ovr = 61
+  pot = 68
+  valor = 5500000
+  partidas = 6
+  minutos = 556
+  gols = 1
+  id_fonte = "839031"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Rodríguez"
+  pos = "AM"
+  idade = 24
+  ovr = 58
+  pot = 61
+  valor = 1200000
+  partidas = 13
+  minutos = 1200
+  gols = 1
+  id_fonte = "881014"
+
+  [[clubes.jogadores]]
+  nome = "Adrián Fernández"
+  pos = "AM"
+  idade = 25
+  ovr = 57
+  pot = 59
+  valor = 700000
+  partidas = 12
+  minutos = 1112
+  gols = 2
+  id_fonte = "877208"
+
+  [[clubes.jogadores]]
+  nome = "Valentín Carboni"
+  pos = "AM"
+  idade = 21
+  ovr = 57
+  pot = 68
+  valor = 7000000
+  partidas = 2
+  minutos = 204
+  id_fonte = "787618"
+
+  [[clubes.jogadores]]
+  nome = "Marcos Rojo"
+  pos = "CB"
+  idade = 36
+  ovr = 56
+  pot = 56
+  valor = 125000
+  partidas = 18
+  minutos = 1632
+  gols = 2
+  id_fonte = "93176"
+
+  [[clubes.jogadores]]
+  nome = "Elías Torres"
+  pos = "FW"
+  idade = 25
+  ovr = 55
+  pot = 59
+  valor = 850000
+  partidas = 2
+  minutos = 157
+  id_fonte = "1014363"
+
+  [[clubes.jogadores]]
+  nome = "Alan Forneris"
+  pos = "DM"
+  idade = 21
+  ovr = 49
+  pot = 59
+  valor = 600000
+  partidas = 5
+  minutos = 424
+  id_fonte = "1240382"
+
+  [[clubes.jogadores]]
+  nome = "Mateo Martínez"
+  pos = "CB"
+  idade = 18
+  ovr = 46
+  pot = 60
+  valor = 800000
+  partidas = 5
+  minutos = 434
+  id_fonte = "1231193"
+
+  [[clubes.jogadores]]
+  nome = "Francisco Gómez"
+  pos = "GK"
+  idade = 22
+  ovr = 45
+  pot = 55
+  valor = 151724
+  id_fonte = "997500"
+
+  [[clubes.jogadores]]
+  nome = "Leandro Córdoba"
+  pos = "WG"
+  idade = 21
+  ovr = 43
+  pot = 55
+  valor = 300000
+  id_fonte = "1515981"
+
+  [[clubes.jogadores]]
+  nome = "Alejandro Tello"
+  pos = "AM"
+  idade = 18
+  ovr = 42
+  pot = 56
+  valor = 400000
+  partidas = 6
+  minutos = 512
+  id_fonte = "1231222"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Escudero"
+  pos = "CB"
+  idade = 19
+  ovr = 40
+  pot = 51
+  valor = 50000
+  partidas = 4
+  minutos = 364
+  gols = 1
+  id_fonte = "1119049"
+
+[[clubes]]
+nome = "Club Estudiantes de La Plata"
+forca = 65.2
+valor_elenco = 54650000
+cores = ["#E51814", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Palacios"
+  pos = "CB"
+  idade = 23
+  ovr = 68
+  pot = 70
+  valor = 8000000
+  partidas = 27
+  minutos = 2439
+  gols = 1
+  id_fonte = "993645"
+
+  [[clubes.jogadores]]
+  nome = "Eric Meza"
+  pos = "FB"
+  idade = 27
+  ovr = 66
+  pot = 66
+  valor = 2500000
+  partidas = 27
+  minutos = 2400
+  id_fonte = "830857"
+
+  [[clubes.jogadores]]
+  nome = "Eros Mancuso"
+  pos = "FB"
+  idade = 27
+  ovr = 66
+  pot = 66
+  valor = 2800000
+  partidas = 16
+  minutos = 1449
+  gols = 1
+  id_fonte = "888545"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Arzamendia"
+  pos = "FB"
+  idade = 28
+  ovr = 66
+  pot = 66
+  valor = 2300000
+  id_fonte = "520947"
+
+  [[clubes.jogadores]]
+  nome = "Edwuin Cetré"
+  pos = "WG"
+  idade = 28
+  ovr = 65
+  pot = 65
+  valor = 3000000
+  partidas = 15
+  minutos = 1350
+  id_fonte = "470390"
+
+  [[clubes.jogadores]]
+  nome = "Fernando Muslera"
+  pos = "GK"
+  idade = 40
+  ovr = 65
+  pot = 65
+  valor = 700000
+  partidas = 30
+  minutos = 2655
+  id_fonte = "58088"
+
+  [[clubes.jogadores]]
+  nome = "Jalil Elías"
+  pos = "DM"
+  idade = 30
+  ovr = 65
+  pot = 65
+  valor = 1800000
+  partidas = 1
+  minutos = 101
+  id_fonte = "376859"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Núñez"
+  pos = "CB"
+  idade = 26
+  ovr = 65
+  pot = 65
+  valor = 2000000
+  partidas = 24
+  minutos = 2151
+  gols = 1
+  id_fonte = "959208"
+
+  [[clubes.jogadores]]
+  nome = "Tiago Palacios"
+  pos = "WG"
+  idade = 25
+  ovr = 65
+  pot = 66
+  valor = 4500000
+  partidas = 19
+  minutos = 1687
+  gols = 8
+  id_fonte = "755457"
+
+  [[clubes.jogadores]]
+  nome = "Alexis Castro"
+  pos = "MF"
+  idade = 31
+  ovr = 64
+  pot = 64
+  valor = 1200000
+  partidas = 22
+  minutos = 1944
+  gols = 7
+  id_fonte = "364602"
+
+  [[clubes.jogadores]]
+  nome = "Ezequiel Piovi"
+  pos = "DM"
+  idade = 34
+  ovr = 64
+  pot = 64
+  valor = 800000
+  partidas = 31
+  minutos = 2755
+  gols = 1
+  id_fonte = "487346"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Neves"
+  pos = "DM"
+  idade = 29
+  ovr = 64
+  pot = 64
+  valor = 1300000
+  partidas = 16
+  minutos = 1404
+  id_fonte = "454181"
+
+  [[clubes.jogadores]]
+  nome = "Gastón Benedetti"
+  pos = "FB"
+  idade = 25
+  ovr = 64
+  pot = 65
+  valor = 2000000
+  partidas = 29
+  minutos = 2581
+  id_fonte = "843156"
+
+  [[clubes.jogadores]]
+  nome = "Joaquín Correa"
+  pos = "FW"
+  idade = 32
+  ovr = 64
+  pot = 64
+  valor = 1500000
+  partidas = 7
+  minutos = 589
+  gols = 1
+  id_fonte = "227081"
+
+  [[clubes.jogadores]]
+  nome = "Leandro González Pírez"
+  pos = "CB"
+  idade = 34
+  ovr = 61
+  pot = 61
+  valor = 350000
+  partidas = 27
+  minutos = 2414
+  gols = 2
+  id_fonte = "113130"
+
+  [[clubes.jogadores]]
+  nome = "Adolfo Gaich"
+  pos = "FW"
+  idade = 27
+  ovr = 60
+  pot = 61
+  valor = 1000000
+  partidas = 9
+  minutos = 792
+  gols = 4
+  id_fonte = "608469"
+
+  [[clubes.jogadores]]
+  nome = "Baltasar Rodríguez"
+  pos = "AM"
+  idade = 23
+  ovr = 60
+  pot = 66
+  valor = 4000000
+  partidas = 6
+  minutos = 551
+  gols = 1
+  id_fonte = "1015246"
+
+  [[clubes.jogadores]]
+  nome = "Brian Aguirre"
+  pos = "WG"
+  idade = 23
+  ovr = 60
+  pot = 65
+  valor = 3000000
+  partidas = 9
+  minutos = 841
+  gols = 1
+  id_fonte = "668549"
+
+  [[clubes.jogadores]]
+  nome = "Joaquín Tobio Burgos"
+  pos = "WG"
+  idade = 21
+  ovr = 60
+  pot = 65
+  valor = 3200000
+  partidas = 16
+  minutos = 1424
+  gols = 2
+  id_fonte = "1298369"
+
+  [[clubes.jogadores]]
+  nome = "Fabricio Pérez"
+  pos = "WG"
+  idade = 20
+  ovr = 59
+  pot = 65
+  valor = 3500000
+  partidas = 16
+  minutos = 1432
+  gols = 3
+  id_fonte = "1298374"
+
+  [[clubes.jogadores]]
+  nome = "Guido Carrillo"
+  pos = "FW"
+  idade = 35
+  ovr = 59
+  pot = 59
+  valor = 300000
+  partidas = 27
+  minutos = 2435
+  gols = 9
+  id_fonte = "184672"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Alario"
+  pos = "FW"
+  idade = 33
+  ovr = 58
+  pot = 58
+  valor = 250000
+  partidas = 4
+  minutos = 348
+  gols = 1
+  id_fonte = "193782"
+
+  [[clubes.jogadores]]
+  nome = "Fabricio Iacovich"
+  pos = "GK"
+  idade = 24
+  ovr = 57
+  pot = 61
+  valor = 500000
+  partidas = 10
+  minutos = 945
+  id_fonte = "1050051"
+
+  [[clubes.jogadores]]
+  nome = "Miguel Monsalve"
+  pos = "AM"
+  idade = 22
+  ovr = 56
+  pot = 66
+  valor = 3500000
+  id_fonte = "828045"
+
+  [[clubes.jogadores]]
+  nome = "Bautista Kociubinski"
+  pos = "MF"
+  idade = 25
+  ovr = 54
+  pot = 58
+  valor = 350000
+  partidas = 1
+  minutos = 8
+  id_fonte = "830318"
+
+  [[clubes.jogadores]]
+  nome = "José Sosa"
+  pos = "AM"
+  idade = 41
+  ovr = 53
+  pot = 53
+  valor = 50000
+  partidas = 5
+  minutos = 462
+  id_fonte = "20137"
+
+  [[clubes.jogadores]]
+  nome = "Ramiro Funes Mori"
+  pos = "CB"
+  idade = 35
+  ovr = 52
+  pot = 52
+  valor = 25000
+  partidas = 5
+  minutos = 447
+  id_fonte = "11111"
+
+  [[clubes.jogadores]]
+  nome = "Valente Pierani"
+  pos = "CB"
+  idade = 20
+  ovr = 43
+  pot = 56
+  valor = 200000
+  partidas = 2
+  minutos = 220
+  id_fonte = "1000685"
+
+  [[clubes.jogadores]]
+  nome = "Rodrigo Borzone"
+  pos = "GK"
+  idade = 21
+  ovr = 42
+  pot = 54
+  valor = 93500
+  id_fonte = "1181926"
+
+  [[clubes.jogadores]]
+  nome = "Joaquín Pereyra"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 25000
+  partidas = 3
+  minutos = 296
+  id_fonte = "1243110"
+
+[[clubes]]
+nome = "Independiente Rivadavia"
+forca = 63.8
+valor_elenco = 41630000
+cores = ["#101246", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Sheyko Studer"
+  pos = "CB"
+  idade = 23
+  ovr = 67
+  pot = 68
+  valor = 6000000
+  partidas = 31
+  minutos = 2794
+  gols = 2
+  id_fonte = "1190390"
+
+  [[clubes.jogadores]]
+  nome = "Matías Fernández"
+  pos = "AM"
+  idade = 25
+  ovr = 66
+  pot = 66
+  valor = 5000000
+  partidas = 30
+  minutos = 2711
+  gols = 3
+  id_fonte = "707153"
+
+  [[clubes.jogadores]]
+  nome = "Álex Arce"
+  pos = "FW"
+  idade = 31
+  ovr = 66
+  pot = 66
+  valor = 3500000
+  partidas = 23
+  minutos = 2058
+  gols = 20
+  id_fonte = "970518"
+
+  [[clubes.jogadores]]
+  nome = "Maximiliano Salas"
+  pos = "FW"
+  idade = 28
+  ovr = 65
+  pot = 65
+  valor = 4000000
+  partidas = 8
+  minutos = 718
+  id_fonte = "442231"
+
+  [[clubes.jogadores]]
+  nome = "José Florentín"
+  pos = "MF"
+  idade = 30
+  ovr = 64
+  pot = 64
+  valor = 2200000
+  partidas = 35
+  minutos = 3142
+  gols = 7
+  id_fonte = "741965"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Bolcato"
+  pos = "GK"
+  idade = 22
+  ovr = 64
+  pot = 66
+  valor = 3000000
+  partidas = 37
+  minutos = 3316
+  id_fonte = "1301353"
+
+  [[clubes.jogadores]]
+  nome = "Fabrizio Sartori"
+  pos = "FW"
+  idade = 24
+  ovr = 63
+  pot = 64
+  valor = 3500000
+  partidas = 25
+  minutos = 2251
+  gols = 9
+  id_fonte = "978970"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Ríos"
+  pos = "AM"
+  idade = 27
+  ovr = 63
+  pot = 63
+  valor = 2000000
+  partidas = 20
+  minutos = 1808
+  gols = 5
+  id_fonte = "907834"
+
+  [[clubes.jogadores]]
+  nome = "Iván Villalba"
+  pos = "CB"
+  idade = 31
+  ovr = 62
+  pot = 62
+  valor = 800000
+  partidas = 26
+  minutos = 2380
+  id_fonte = "312562"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Bottari"
+  pos = "MF"
+  idade = 25
+  ovr = 62
+  pot = 63
+  valor = 1800000
+  partidas = 27
+  minutos = 2396
+  id_fonte = "840860"
+
+  [[clubes.jogadores]]
+  nome = "Leonard Costa"
+  pos = "CB"
+  idade = 28
+  ovr = 61
+  pot = 61
+  valor = 1000000
+  partidas = 29
+  minutos = 2651
+  gols = 1
+  id_fonte = "800720"
+
+  [[clubes.jogadores]]
+  nome = "Alejo Osella"
+  pos = "CB"
+  idade = 25
+  ovr = 60
+  pot = 62
+  valor = 1200000
+  partidas = 15
+  minutos = 1390
+  gols = 4
+  id_fonte = "990550"
+
+  [[clubes.jogadores]]
+  nome = "Luciano Gómez"
+  pos = "FB"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 700000
+  partidas = 16
+  minutos = 1417
+  gols = 2
+  id_fonte = "423705"
+
+  [[clubes.jogadores]]
+  nome = "Ramiro Macagno"
+  pos = "GK"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 450000
+  partidas = 1
+  minutos = 14
+  id_fonte = "401913"
+
+  [[clubes.jogadores]]
+  nome = "Juan Elordi"
+  pos = "FB"
+  idade = 32
+  ovr = 59
+  pot = 59
+  valor = 400000
+  partidas = 27
+  minutos = 2401
+  gols = 1
+  id_fonte = "728602"
+
+  [[clubes.jogadores]]
+  nome = "Leonel Bucca"
+  pos = "DM"
+  idade = 27
+  ovr = 59
+  pot = 59
+  valor = 700000
+  partidas = 11
+  minutos = 1020
+  gols = 5
+  id_fonte = "830841"
+
+  [[clubes.jogadores]]
+  nome = "Alex Vigo"
+  pos = "FB"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 600000
+  partidas = 4
+  minutos = 389
+  id_fonte = "648520"
+
+  [[clubes.jogadores]]
+  nome = "Rodrigo Atencio"
+  pos = "WG"
+  idade = 24
+  ovr = 58
+  pot = 62
+  valor = 2000000
+  partidas = 11
+  minutos = 965
+  id_fonte = "1013922"
+
+  [[clubes.jogadores]]
+  nome = "Stefano Moreyra"
+  pos = "DM"
+  idade = 25
+  ovr = 55
+  pot = 58
+  valor = 600000
+  partidas = 2
+  minutos = 145
+  id_fonte = "830855"
+
+  [[clubes.jogadores]]
+  nome = "Diego Crego"
+  pos = "WG"
+  idade = 29
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 5
+  minutos = 450
+  gols = 1
+  id_fonte = "1110580"
+
+  [[clubes.jogadores]]
+  nome = "Ezequiel Bonifacio"
+  pos = "FB"
+  idade = 32
+  ovr = 53
+  pot = 53
+  valor = 100000
+  partidas = 14
+  minutos = 1293
+  id_fonte = "334224"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Vázquez"
+  pos = "DM"
+  idade = 25
+  ovr = 51
+  pot = 54
+  valor = 225000
+  partidas = 3
+  minutos = 311
+  id_fonte = "1064181"
+
+  [[clubes.jogadores]]
+  nome = "Victorio Ramis"
+  pos = "FW"
+  idade = 32
+  ovr = 51
+  pot = 51
+  valor = 100000
+  partidas = 1
+  minutos = 69
+  id_fonte = "381065"
+
+  [[clubes.jogadores]]
+  nome = "Emmanuel Gómez Riga"
+  pos = "GK"
+  idade = 25
+  ovr = 49
+  pot = 53
+  valor = 100000
+  partidas = 2
+  minutos = 180
+  id_fonte = "987126"
+
+  [[clubes.jogadores]]
+  nome = "Luis Sequeira"
+  pos = "AM"
+  idade = 23
+  ovr = 49
+  pot = 57
+  valor = 500000
+  partidas = 3
+  minutos = 240
+  id_fonte = "668550"
+
+  [[clubes.jogadores]]
+  nome = "Alessandro Riep"
+  pos = "WG"
+  idade = 23
+  ovr = 48
+  pot = 55
+  valor = 350000
+  partidas = 3
+  minutos = 253
+  id_fonte = "912306"
+
+  [[clubes.jogadores]]
+  nome = "Luis Díaz"
+  pos = "WG"
+  idade = 22
+  ovr = 47
+  pot = 57
+  valor = 550000
+  partidas = 1
+  minutos = 48
+  id_fonte = "926365"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Cena"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 49
+  valor = 55000
+  id_fonte = "1377146"
+
+[[clubes]]
+nome = "San Lorenzo de Almagro"
+forca = 63.5
+valor_elenco = 39750000
+cores = ["#00264A", "#F81829"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Gastón Hernández"
+  pos = "CB"
+  idade = 28
+  ovr = 68
+  pot = 68
+  valor = 3500000
+  partidas = 9
+  minutos = 799
+  id_fonte = "665277"
+
+  [[clubes.jogadores]]
+  nome = "Alexis Cuello"
+  pos = "FW"
+  idade = 26
+  ovr = 67
+  pot = 67
+  valor = 5000000
+  partidas = 32
+  minutos = 2868
+  gols = 7
+  id_fonte = "636783"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Tripichio"
+  pos = "DM"
+  idade = 30
+  ovr = 66
+  pot = 66
+  valor = 2000000
+  partidas = 33
+  minutos = 2944
+  gols = 1
+  id_fonte = "275614"
+
+  [[clubes.jogadores]]
+  nome = "Rodrigo Auzmendi"
+  pos = "FW"
+  idade = 25
+  ovr = 65
+  pot = 66
+  valor = 3800000
+  partidas = 22
+  minutos = 1974
+  gols = 8
+  id_fonte = "690727"
+
+  [[clubes.jogadores]]
+  nome = "Ezequiel Herrera"
+  pos = "FB"
+  idade = 23
+  ovr = 64
+  pot = 66
+  valor = 2500000
+  partidas = 30
+  minutos = 2705
+  gols = 1
+  id_fonte = "966316"
+
+  [[clubes.jogadores]]
+  nome = "Danilo Arboleda"
+  pos = "CB"
+  idade = 31
+  ovr = 63
+  pot = 63
+  valor = 800000
+  partidas = 7
+  minutos = 630
+  id_fonte = "364586"
+
+  [[clubes.jogadores]]
+  nome = "Matías Reali"
+  pos = "WG"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 1500000
+  partidas = 12
+  minutos = 1043
+  gols = 2
+  id_fonte = "984692"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Abrego"
+  pos = "MF"
+  idade = 26
+  ovr = 61
+  pot = 62
+  valor = 1200000
+  partidas = 8
+  minutos = 761
+  id_fonte = "836493"
+
+  [[clubes.jogadores]]
+  nome = "Gustavo del Prete"
+  pos = "FW"
+  idade = 30
+  ovr = 61
+  pot = 61
+  valor = 900000
+  partidas = 1
+  minutos = 117
+  id_fonte = "671951"
+
+  [[clubes.jogadores]]
+  nome = "José Devecchi"
+  pos = "GK"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 400000
+  partidas = 8
+  minutos = 747
+  id_fonte = "282684"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Insaurralde"
+  pos = "MF"
+  idade = 27
+  ovr = 61
+  pot = 62
+  valor = 1000000
+  partidas = 16
+  minutos = 1399
+  gols = 1
+  id_fonte = "627237"
+
+  [[clubes.jogadores]]
+  nome = "Emiliano Amor"
+  pos = "CB"
+  idade = 31
+  ovr = 60
+  pot = 60
+  valor = 450000
+  partidas = 8
+  minutos = 720
+  id_fonte = "348273"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Altamirano"
+  pos = "GK"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 375000
+  partidas = 1
+  minutos = 90
+  id_fonte = "362358"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Gulli"
+  pos = "AM"
+  idade = 20
+  ovr = 60
+  pot = 64
+  valor = 2500000
+  partidas = 18
+  minutos = 1610
+  id_fonte = "1296404"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Perruzzi"
+  pos = "DM"
+  idade = 21
+  ovr = 60
+  pot = 65
+  valor = 2500000
+  partidas = 16
+  minutos = 1422
+  id_fonte = "1296409"
+
+  [[clubes.jogadores]]
+  nome = "Mathías De Ritis"
+  pos = "FB"
+  idade = 23
+  ovr = 60
+  pot = 62
+  valor = 1000000
+  partidas = 21
+  minutos = 1906
+  gols = 1
+  id_fonte = "981054"
+
+  [[clubes.jogadores]]
+  nome = "Nahuel Barrios"
+  pos = "WG"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 900000
+  partidas = 8
+  minutos = 756
+  id_fonte = "503377"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Farías"
+  pos = "AM"
+  idade = 24
+  ovr = 59
+  pot = 65
+  valor = 2500000
+  partidas = 2
+  minutos = 222
+  gols = 1
+  id_fonte = "728221"
+
+  [[clubes.jogadores]]
+  nome = "Martín Río"
+  pos = "MF"
+  idade = 25
+  ovr = 59
+  pot = 63
+  valor = 1500000
+  partidas = 1
+  minutos = 79
+  id_fonte = "816843"
+
+  [[clubes.jogadores]]
+  nome = "Diego Herazo"
+  pos = "FW"
+  idade = 30
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 2
+  minutos = 181
+  gols = 1
+  id_fonte = "384580"
+
+  [[clubes.jogadores]]
+  nome = "Guzmán Corujo"
+  pos = "CB"
+  idade = 30
+  ovr = 56
+  pot = 56
+  valor = 200000
+  partidas = 6
+  minutos = 557
+  gols = 1
+  id_fonte = "486210"
+
+  [[clubes.jogadores]]
+  nome = "Teo Rodríguez Pagano"
+  pos = "FB"
+  idade = 20
+  ovr = 56
+  pot = 63
+  valor = 1500000
+  partidas = 13
+  minutos = 1158
+  id_fonte = "1282698"
+
+  [[clubes.jogadores]]
+  nome = "Ezequiel Cerutti"
+  pos = "WG"
+  idade = 34
+  ovr = 55
+  pot = 55
+  valor = 150000
+  partidas = 5
+  minutos = 432
+  id_fonte = "267882"
+
+  [[clubes.jogadores]]
+  nome = "Juan Pablo Álvarez"
+  pos = "WG"
+  idade = 30
+  ovr = 55
+  pot = 55
+  valor = 250000
+  partidas = 3
+  minutos = 257
+  id_fonte = "534615"
+
+  [[clubes.jogadores]]
+  nome = "Franco Lorenzon"
+  pos = "CB"
+  idade = 25
+  ovr = 52
+  pot = 56
+  valor = 225000
+  partidas = 4
+  minutos = 315
+  id_fonte = "987198"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Herrera"
+  pos = "CB"
+  idade = 22
+  ovr = 51
+  pot = 61
+  valor = 900000
+  id_fonte = "1250374"
+
+  [[clubes.jogadores]]
+  nome = "Mauricio Cardillo"
+  pos = "MF"
+  idade = 23
+  ovr = 51
+  pot = 58
+  valor = 450000
+  partidas = 4
+  minutos = 331
+  id_fonte = "1115518"
+
+  [[clubes.jogadores]]
+  nome = "Mateo Clemente"
+  pos = "GK"
+  idade = 24
+  ovr = 48
+  pot = 53
+  valor = 105147
+  id_fonte = "987849"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Ladstatter"
+  pos = "WG"
+  idade = 21
+  ovr = 47
+  pot = 56
+  valor = 400000
+  partidas = 6
+  minutos = 574
+  id_fonte = "1296393"
+
+  [[clubes.jogadores]]
+  nome = "Juan Rattalino"
+  pos = "MF"
+  idade = 22
+  ovr = 46
+  pot = 54
+  valor = 200000
+  partidas = 5
+  minutos = 418
+  id_fonte = "1296399"
+
+  [[clubes.jogadores]]
+  nome = "Alejo Córdoba"
+  pos = "CB"
+  idade = 22
+  ovr = 45
+  pot = 53
+  valor = 125000
+  partidas = 5
+  minutos = 450
+  id_fonte = "1296391"
+
+  [[clubes.jogadores]]
+  nome = "Nahuel Arias"
+  pos = "FB"
+  idade = 21
+  ovr = 45
+  pot = 56
+  valor = 300000
+  partidas = 1
+  minutos = 53
+  id_fonte = "1131419"
+
+  [[clubes.jogadores]]
+  nome = "Branco Salinardi"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 54
+  valor = 300000
+  id_fonte = "1296408"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Alassia"
+  pos = "MF"
+  idade = 22
+  ovr = 40
+  pot = 48
+  valor = 25000
+  partidas = 1
+  minutos = 90
+  id_fonte = "868501"
+
+[[clubes]]
+nome = "Vélez Sarsfield"
+forca = 63.5
+valor_elenco = 39700000
+cores = ["#0462A8", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Marchiori"
+  pos = "GK"
+  idade = 31
+  ovr = 67
+  pot = 67
+  valor = 2000000
+  partidas = 13
+  minutos = 1170
+  id_fonte = "596909"
+
+  [[clubes.jogadores]]
+  nome = "Diego Valdés"
+  pos = "AM"
+  idade = 32
+  ovr = 66
+  pot = 66
+  valor = 2800000
+  partidas = 10
+  minutos = 898
+  gols = 4
+  id_fonte = "249776"
+
+  [[clubes.jogadores]]
+  nome = "Emanuel Mammana"
+  pos = "CB"
+  idade = 30
+  ovr = 66
+  pot = 66
+  valor = 2500000
+  partidas = 19
+  minutos = 1728
+  id_fonte = "275512"
+
+  [[clubes.jogadores]]
+  nome = "Ronaldo Martínez"
+  pos = "FW"
+  idade = 30
+  ovr = 66
+  pot = 66
+  valor = 4000000
+  partidas = 3
+  minutos = 314
+  gols = 4
+  id_fonte = "567736"
+
+  [[clubes.jogadores]]
+  nome = "Joaquín García"
+  pos = "FB"
+  idade = 25
+  ovr = 65
+  pot = 66
+  valor = 3000000
+  partidas = 25
+  minutos = 2239
+  gols = 2
+  id_fonte = "829433"
+
+  [[clubes.jogadores]]
+  nome = "Claudio Baeza"
+  pos = "DM"
+  idade = 32
+  ovr = 64
+  pot = 64
+  valor = 1200000
+  partidas = 15
+  minutos = 1345
+  id_fonte = "248346"
+
+  [[clubes.jogadores]]
+  nome = "Elías Gómez"
+  pos = "FB"
+  idade = 32
+  ovr = 64
+  pot = 64
+  valor = 1200000
+  partidas = 29
+  minutos = 2578
+  id_fonte = "302139"
+
+  [[clubes.jogadores]]
+  nome = "Lisandro Magallán"
+  pos = "CB"
+  idade = 32
+  ovr = 64
+  pot = 64
+  valor = 1000000
+  partidas = 23
+  minutos = 2037
+  id_fonte = "66736"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Robertone"
+  pos = "MF"
+  idade = 29
+  ovr = 64
+  pot = 64
+  valor = 2000000
+  partidas = 17
+  minutos = 1567
+  gols = 1
+  id_fonte = "457221"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Lanzini"
+  pos = "AM"
+  idade = 33
+  ovr = 63
+  pot = 63
+  valor = 900000
+  partidas = 26
+  minutos = 2302
+  gols = 6
+  id_fonte = "135853"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Sanguinetti"
+  pos = "GK"
+  idade = 25
+  ovr = 62
+  pot = 66
+  valor = 2500000
+  id_fonte = "870032"
+
+  [[clubes.jogadores]]
+  nome = "Matías Pellegrini"
+  pos = "WG"
+  idade = 26
+  ovr = 62
+  pot = 62
+  valor = 1700000
+  partidas = 19
+  minutos = 1708
+  gols = 3
+  id_fonte = "606267"
+
+  [[clubes.jogadores]]
+  nome = "Thiago Silvero"
+  pos = "CB"
+  idade = 20
+  ovr = 61
+  pot = 67
+  valor = 5000000
+  partidas = 14
+  minutos = 1274
+  gols = 1
+  id_fonte = "1285238"
+
+  [[clubes.jogadores]]
+  nome = "Rodrigo Aliendro"
+  pos = "MF"
+  idade = 35
+  ovr = 60
+  pot = 60
+  valor = 325000
+  partidas = 21
+  minutos = 1914
+  gols = 1
+  id_fonte = "424045"
+
+  [[clubes.jogadores]]
+  nome = "Jano Gordon"
+  pos = "FB"
+  idade = 22
+  ovr = 53
+  pot = 62
+  valor = 1000000
+  partidas = 3
+  minutos = 259
+  gols = 1
+  id_fonte = "1285237"
+
+  [[clubes.jogadores]]
+  nome = "Dilan Godoy"
+  pos = "WG"
+  idade = 20
+  ovr = 51
+  pot = 59
+  valor = 700000
+  partidas = 11
+  minutos = 1022
+  gols = 2
+  id_fonte = "1379348"
+
+  [[clubes.jogadores]]
+  nome = "Simón Escobar"
+  pos = "FB"
+  idade = 17
+  ovr = 50
+  pot = 66
+  valor = 4000000
+  partidas = 5
+  minutos = 461
+  id_fonte = "1310741"
+
+  [[clubes.jogadores]]
+  nome = "Álex Verón"
+  pos = "WG"
+  idade = 17
+  ovr = 45
+  pot = 61
+  valor = 1500000
+  partidas = 5
+  minutos = 418
+  id_fonte = "1231224"
+
+  [[clubes.jogadores]]
+  nome = "Luca Feler"
+  pos = "AM"
+  idade = 18
+  ovr = 43
+  pot = 59
+  valor = 700000
+  partidas = 2
+  minutos = 184
+  id_fonte = "1516245"
+
+  [[clubes.jogadores]]
+  nome = "Joaquín Vaquero"
+  pos = "FB"
+  idade = 23
+  ovr = 42
+  pot = 50
+  valor = 25000
+  id_fonte = "1290990"
+
+  [[clubes.jogadores]]
+  nome = "Thiago Aguirre"
+  pos = "FW"
+  idade = 17
+  ovr = 42
+  pot = 60
+  valor = 1000000
+  partidas = 2
+  minutos = 215
+  gols = 1
+  id_fonte = "1456581"
+
+  [[clubes.jogadores]]
+  nome = "Juan Cruz Policella"
+  pos = "WG"
+  idade = 17
+  ovr = 40
+  pot = 58
+  valor = 500000
+  partidas = 2
+  minutos = 208
+  gols = 1
+  id_fonte = "1264647"
+
+  [[clubes.jogadores]]
+  nome = "Leo Cristaldo"
+  pos = "CB"
+  idade = 17
+  ovr = 40
+  pot = 57
+  valor = 244200
+  id_fonte = "1307323"
+
+  [[clubes.jogadores]]
+  nome = "Matías Arias"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 50
+  valor = 50000
+  partidas = 1
+  minutos = 134
+  id_fonte = "1379347"
+
+  [[clubes.jogadores]]
+  nome = "Álvaro Busso"
+  pos = "GK"
+  idade = 19
+  ovr = 40
+  pot = 54
+  valor = 100000
+  id_fonte = "1291030"
+
+[[clubes]]
+nome = "Club Atlético Tigre"
+forca = 63.4
+valor_elenco = 38950000
+cores = ["#004B8F", "#D4042E"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Felipe Zenobio"
+  pos = "GK"
+  idade = 26
+  ovr = 68
+  pot = 68
+  valor = 3500000
+  partidas = 36
+  minutos = 3240
+  id_fonte = "826527"
+
+  [[clubes.jogadores]]
+  nome = "Alan Barrionuevo"
+  pos = "CB"
+  idade = 29
+  ovr = 65
+  pot = 65
+  valor = 1800000
+  partidas = 36
+  minutos = 3237
+  gols = 3
+  id_fonte = "865491"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Russo"
+  pos = "FW"
+  idade = 25
+  ovr = 65
+  pot = 66
+  valor = 4000000
+  partidas = 34
+  minutos = 3096
+  gols = 11
+  id_fonte = "833130"
+
+  [[clubes.jogadores]]
+  nome = "Bruno Leyes"
+  pos = "DM"
+  idade = 24
+  ovr = 64
+  pot = 65
+  valor = 2300000
+  partidas = 23
+  minutos = 2057
+  id_fonte = "910641"
+
+  [[clubes.jogadores]]
+  nome = "Jabes Saralegui"
+  pos = "MF"
+  idade = 23
+  ovr = 64
+  pot = 66
+  valor = 3000000
+  partidas = 22
+  minutos = 1990
+  gols = 1
+  id_fonte = "1174943"
+
+  [[clubes.jogadores]]
+  nome = "Mauro Méndez"
+  pos = "FW"
+  idade = 27
+  ovr = 63
+  pot = 64
+  valor = 2200000
+  partidas = 5
+  minutos = 435
+  gols = 1
+  id_fonte = "675468"
+
+  [[clubes.jogadores]]
+  nome = "Santiago López"
+  pos = "WG"
+  idade = 20
+  ovr = 63
+  pot = 66
+  valor = 4000000
+  partidas = 26
+  minutos = 2361
+  gols = 2
+  id_fonte = "1000687"
+
+  [[clubes.jogadores]]
+  nome = "Nahuel Banegas"
+  pos = "FB"
+  idade = 29
+  ovr = 62
+  pot = 62
+  valor = 750000
+  partidas = 15
+  minutos = 1388
+  id_fonte = "697041"
+
+  [[clubes.jogadores]]
+  nome = "Federico Álvarez"
+  pos = "FB"
+  idade = 32
+  ovr = 61
+  pot = 61
+  valor = 500000
+  partidas = 23
+  minutos = 2041
+  id_fonte = "289117"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Martínez"
+  pos = "AM"
+  idade = 33
+  ovr = 61
+  pot = 61
+  valor = 500000
+  partidas = 10
+  minutos = 903
+  gols = 3
+  id_fonte = "281405"
+
+  [[clubes.jogadores]]
+  nome = "Martín Garay"
+  pos = "FB"
+  idade = 27
+  ovr = 61
+  pot = 62
+  valor = 800000
+  partidas = 22
+  minutos = 1995
+  gols = 2
+  id_fonte = "696730"
+
+  [[clubes.jogadores]]
+  nome = "Valentín Moreno"
+  pos = "FB"
+  idade = 23
+  ovr = 61
+  pot = 63
+  valor = 1300000
+  partidas = 23
+  minutos = 2103
+  gols = 1
+  id_fonte = "1238749"
+
+  [[clubes.jogadores]]
+  nome = "Guillermo Soto"
+  pos = "FB"
+  idade = 32
+  ovr = 60
+  pot = 60
+  valor = 300000
+  partidas = 6
+  minutos = 502
+  id_fonte = "534909"
+
+  [[clubes.jogadores]]
+  nome = "Joaquín Laso"
+  pos = "CB"
+  idade = 36
+  ovr = 59
+  pot = 59
+  valor = 200000
+  partidas = 23
+  minutos = 2104
+  id_fonte = "360797"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Morales"
+  pos = "GK"
+  idade = 26
+  ovr = 59
+  pot = 61
+  valor = 550000
+  partidas = 1
+  minutos = 90
+  id_fonte = "576023"
+
+  [[clubes.jogadores]]
+  nome = "Ramón Arias"
+  pos = "CB"
+  idade = 34
+  ovr = 59
+  pot = 59
+  valor = 200000
+  partidas = 8
+  minutos = 740
+  gols = 1
+  id_fonte = "131095"
+
+  [[clubes.jogadores]]
+  nome = "Santiago González"
+  pos = "MF"
+  idade = 23
+  ovr = 59
+  pot = 65
+  valor = 2300000
+  partidas = 7
+  minutos = 643
+  id_fonte = "1249779"
+
+  [[clubes.jogadores]]
+  nome = "Alfio Oviedo"
+  pos = "FW"
+  idade = 30
+  ovr = 57
+  pot = 57
+  valor = 300000
+  partidas = 6
+  minutos = 578
+  gols = 1
+  id_fonte = "518354"
+
+  [[clubes.jogadores]]
+  nome = "Tiago Serrago"
+  pos = "AM"
+  idade = 22
+  ovr = 57
+  pot = 63
+  valor = 1700000
+  partidas = 12
+  minutos = 1084
+  gols = 1
+  id_fonte = "1231128"
+
+  [[clubes.jogadores]]
+  nome = "Sebastián Medina"
+  pos = "AM"
+  idade = 26
+  ovr = 56
+  pot = 58
+  valor = 350000
+  partidas = 4
+  minutos = 378
+  id_fonte = "840774"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Requena"
+  pos = "CB"
+  idade = 23
+  ovr = 55
+  pot = 63
+  valor = 1200000
+  partidas = 1
+  minutos = 82
+  id_fonte = "1120902"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Dubersarsky"
+  pos = "MF"
+  idade = 21
+  ovr = 51
+  pot = 63
+  valor = 1500000
+  partidas = 1
+  minutos = 5
+  id_fonte = "1207586"
+
+  [[clubes.jogadores]]
+  nome = "Ian Subiabre"
+  pos = "WG"
+  idade = 19
+  ovr = 50
+  pot = 65
+  valor = 3500000
+  partidas = 2
+  minutos = 146
+  id_fonte = "1074969"
+
+  [[clubes.jogadores]]
+  nome = "Simón Rivero"
+  pos = "MF"
+  idade = 23
+  ovr = 49
+  pot = 57
+  valor = 300000
+  id_fonte = "912009"
+
+  [[clubes.jogadores]]
+  nome = "Jerónimo Dómina"
+  pos = "FW"
+  idade = 20
+  ovr = 48
+  pot = 62
+  valor = 1500000
+  partidas = 1
+  minutos = 53
+  gols = 1
+  id_fonte = "1103986"
+
+  [[clubes.jogadores]]
+  nome = "Juan Villalba"
+  pos = "FB"
+  idade = 20
+  ovr = 48
+  pot = 57
+  valor = 300000
+  partidas = 9
+  minutos = 785
+  id_fonte = "1005800"
+
+  [[clubes.jogadores]]
+  nome = "Luciano Minniti"
+  pos = "FB"
+  idade = 20
+  ovr = 40
+  pot = 54
+  valor = 110000
+  id_fonte = "1322847"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Fernández"
+  pos = "WG"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 50000
+  partidas = 1
+  minutos = 127
+  id_fonte = "1322217"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Fernández"
+  pos = "CB"
+  idade = 22
+  ovr = 40
+  pot = 49
+  valor = 25000
+  id_fonte = "1153735"
+
+  [[clubes.jogadores]]
+  nome = "Ángelo Marchese"
+  pos = "FB"
+  idade = 22
+  ovr = 40
+  pot = 49
+  valor = 25000
+  id_fonte = "1264276"
+
+[[clubes]]
+nome = "Talleres"
+forca = 63.1
+valor_elenco = 36950000
+cores = ["#042859", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Ezequiel Unsain"
+  pos = "GK"
+  idade = 31
+  ovr = 66
+  pot = 66
+  valor = 2000000
+  partidas = 10
+  minutos = 900
+  id_fonte = "337600"
+
+  [[clubes.jogadores]]
+  nome = "Franco Cristaldo"
+  pos = "AM"
+  idade = 30
+  ovr = 66
+  pot = 66
+  valor = 3500000
+  partidas = 16
+  minutos = 1445
+  gols = 1
+  id_fonte = "332259"
+
+  [[clubes.jogadores]]
+  nome = "Matías Galarza"
+  pos = "DM"
+  idade = 24
+  ovr = 66
+  pot = 67
+  valor = 5500000
+  partidas = 25
+  minutos = 2240
+  id_fonte = "909737"
+
+  [[clubes.jogadores]]
+  nome = "Rick"
+  pos = "WG"
+  idade = 27
+  ovr = 64
+  pot = 64
+  valor = 2500000
+  partidas = 21
+  minutos = 1846
+  gols = 4
+  id_fonte = "645955"
+
+  [[clubes.jogadores]]
+  nome = "Federico Fattori"
+  pos = "DM"
+  idade = 34
+  ovr = 63
+  pot = 63
+  valor = 600000
+  partidas = 6
+  minutos = 567
+  id_fonte = "357956"
+
+  [[clubes.jogadores]]
+  nome = "Augusto Schott"
+  pos = "FB"
+  idade = 26
+  ovr = 62
+  pot = 63
+  valor = 1200000
+  partidas = 26
+  minutos = 2324
+  gols = 3
+  id_fonte = "670566"
+
+  [[clubes.jogadores]]
+  nome = "Diego Valoyes"
+  pos = "WG"
+  idade = 30
+  ovr = 62
+  pot = 62
+  valor = 1200000
+  partidas = 4
+  minutos = 337
+  id_fonte = "413983"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Báez"
+  pos = "FB"
+  idade = 31
+  ovr = 62
+  pot = 62
+  valor = 600000
+  partidas = 14
+  minutos = 1218
+  id_fonte = "376858"
+
+  [[clubes.jogadores]]
+  nome = "Matías Catalán"
+  pos = "CB"
+  idade = 34
+  ovr = 62
+  pot = 62
+  valor = 500000
+  partidas = 21
+  minutos = 1909
+  id_fonte = "237051"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Fernández"
+  pos = "CB"
+  idade = 21
+  ovr = 62
+  pot = 66
+  valor = 4500000
+  partidas = 18
+  minutos = 1601
+  gols = 1
+  id_fonte = "1106217"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Álvarez"
+  pos = "FW"
+  idade = 25
+  ovr = 60
+  pot = 63
+  valor = 2000000
+  partidas = 4
+  minutos = 324
+  gols = 2
+  id_fonte = "812625"
+
+  [[clubes.jogadores]]
+  nome = "Juan Sforza"
+  pos = "DM"
+  idade = 24
+  ovr = 60
+  pot = 63
+  valor = 1300000
+  partidas = 15
+  minutos = 1341
+  id_fonte = "659264"
+
+  [[clubes.jogadores]]
+  nome = "Román Riquelme"
+  pos = "CB"
+  idade = 24
+  ovr = 59
+  pot = 64
+  valor = 1700000
+  partidas = 6
+  minutos = 513
+  id_fonte = "909736"
+
+  [[clubes.jogadores]]
+  nome = "Alexandro Maidana"
+  pos = "FB"
+  idade = 21
+  ovr = 58
+  pot = 65
+  valor = 2500000
+  partidas = 12
+  minutos = 1066
+  gols = 3
+  id_fonte = "1371519"
+
+  [[clubes.jogadores]]
+  nome = "Valentín Depietri"
+  pos = "WG"
+  idade = 25
+  ovr = 57
+  pot = 59
+  valor = 500000
+  partidas = 12
+  minutos = 1089
+  gols = 5
+  id_fonte = "697056"
+
+  [[clubes.jogadores]]
+  nome = "Valentín Fascendini"
+  pos = "CB"
+  idade = 23
+  ovr = 57
+  pot = 63
+  valor = 1300000
+  partidas = 7
+  minutos = 643
+  id_fonte = "1149559"
+
+  [[clubes.jogadores]]
+  nome = "Mateo Cáceres"
+  pos = "MF"
+  idade = 23
+  ovr = 54
+  pot = 60
+  valor = 500000
+  partidas = 9
+  minutos = 774
+  id_fonte = "907835"
+
+  [[clubes.jogadores]]
+  nome = "Giovanni Baroni"
+  pos = "AM"
+  idade = 17
+  ovr = 51
+  pot = 64
+  valor = 2500000
+  partidas = 10
+  minutos = 926
+  gols = 1
+  id_fonte = "1265841"
+
+  [[clubes.jogadores]]
+  nome = "Valentín Dávila"
+  pos = "FW"
+  idade = 19
+  ovr = 51
+  pot = 62
+  valor = 1500000
+  partidas = 9
+  minutos = 774
+  gols = 4
+  id_fonte = "1280274"
+
+  [[clubes.jogadores]]
+  nome = "Timoteo Chamorro"
+  pos = "FB"
+  idade = 20
+  ovr = 49
+  pot = 59
+  valor = 400000
+  partidas = 6
+  minutos = 575
+  id_fonte = "1296330"
+
+  [[clubes.jogadores]]
+  nome = "Santino Barbi"
+  pos = "GK"
+  idade = 21
+  ovr = 46
+  pot = 58
+  valor = 200000
+  id_fonte = "1197308"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Olmos"
+  pos = "FB"
+  idade = 21
+  ovr = 44
+  pot = 56
+  valor = 150000
+  id_fonte = "1126741"
+
+  [[clubes.jogadores]]
+  nome = "Jeremías Gallard"
+  pos = "AM"
+  idade = 22
+  ovr = 41
+  pot = 51
+  valor = 25000
+  id_fonte = "1271301"
+
+  [[clubes.jogadores]]
+  nome = "Bruno Trey"
+  pos = "DM"
+  idade = 20
+  ovr = 40
+  pot = 51
+  valor = 25000
+  partidas = 1
+  minutos = 29
+  id_fonte = "1296310"
+
+  [[clubes.jogadores]]
+  nome = "Emiliano Chiavassa"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 50
+  valor = 25000
+  partidas = 2
+  minutos = 150
+  id_fonte = "1296331"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Nuccio"
+  pos = "CB"
+  idade = 19
+  ovr = 40
+  pot = 54
+  valor = 66000
+  id_fonte = "1429844"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Alastra"
+  pos = "WG"
+  idade = 18
+  ovr = 40
+  pot = 52
+  valor = 50000
+  id_fonte = "1378149"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Ortiz"
+  pos = "AM"
+  idade = 18
+  ovr = 40
+  pot = 54
+  valor = 100000
+  partidas = 1
+  minutos = 91
+  id_fonte = "1241455"
+
+  [[clubes.jogadores]]
+  nome = "Matías Gómez"
+  pos = "MF"
+  idade = 20
+  ovr = 40
+  pot = 54
+  valor = 75000
+  partidas = 1
+  minutos = 82
+  id_fonte = "1150517"
+
+  [[clubes.jogadores]]
+  nome = "Thiago Baroni"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 54
+  valor = 66000
+  id_fonte = "1516248"
+
+[[clubes]]
+nome = "Lanús"
+forca = 63.1
+valor_elenco = 36950000
+cores = ["#AB2A3E", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Nahuel Losada"
+  pos = "GK"
+  idade = 33
+  ovr = 68
+  pot = 68
+  valor = 3000000
+  partidas = 36
+  minutos = 3270
+  id_fonte = "323918"
+
+  [[clubes.jogadores]]
+  nome = "Marcelino Moreno"
+  pos = "AM"
+  idade = 31
+  ovr = 66
+  pot = 66
+  valor = 4000000
+  partidas = 13
+  minutos = 1143
+  gols = 5
+  id_fonte = "456617"
+
+  [[clubes.jogadores]]
+  nome = "Sasha Marcich"
+  pos = "FB"
+  idade = 28
+  ovr = 66
+  pot = 66
+  valor = 3000000
+  partidas = 37
+  minutos = 3298
+  gols = 1
+  id_fonte = "867621"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Cardozo"
+  pos = "DM"
+  idade = 29
+  ovr = 65
+  pot = 65
+  valor = 2500000
+  partidas = 33
+  minutos = 2958
+  gols = 1
+  id_fonte = "469762"
+
+  [[clubes.jogadores]]
+  nome = "José Canale"
+  pos = "CB"
+  idade = 30
+  ovr = 65
+  pot = 65
+  valor = 2200000
+  partidas = 29
+  minutos = 2587
+  gols = 1
+  id_fonte = "402627"
+
+  [[clubes.jogadores]]
+  nome = "Franco Petroli"
+  pos = "GK"
+  idade = 28
+  ovr = 64
+  pot = 64
+  valor = 1500000
+  partidas = 3
+  minutos = 270
+  id_fonte = "401587"
+
+  [[clubes.jogadores]]
+  nome = "Felipe Peña Biafore"
+  pos = "DM"
+  idade = 25
+  ovr = 63
+  pot = 64
+  valor = 2200000
+  partidas = 20
+  minutos = 1804
+  gols = 3
+  id_fonte = "894194"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Guidara"
+  pos = "FB"
+  idade = 30
+  ovr = 63
+  pot = 63
+  valor = 1200000
+  partidas = 29
+  minutos = 2601
+  id_fonte = "355900"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Medina"
+  pos = "DM"
+  idade = 19
+  ovr = 62
+  pot = 66
+  valor = 4000000
+  partidas = 20
+  minutos = 1840
+  gols = 1
+  id_fonte = "1294453"
+
+  [[clubes.jogadores]]
+  nome = "Eduardo Salvio"
+  pos = "WG"
+  idade = 36
+  ovr = 62
+  pot = 62
+  valor = 750000
+  partidas = 29
+  minutos = 2642
+  gols = 2
+  id_fonte = "84535"
+
+  [[clubes.jogadores]]
+  nome = "Ramiro Carrera"
+  pos = "AM"
+  idade = 32
+  ovr = 62
+  pot = 62
+  valor = 1000000
+  partidas = 24
+  minutos = 2172
+  gols = 3
+  id_fonte = "282283"
+
+  [[clubes.jogadores]]
+  nome = "Carlos Izquierdoz"
+  pos = "CB"
+  idade = 37
+  ovr = 61
+  pot = 61
+  valor = 375000
+  partidas = 35
+  minutos = 3133
+  gols = 3
+  id_fonte = "116968"
+
+  [[clubes.jogadores]]
+  nome = "Matías Sepúlveda"
+  pos = "AM"
+  idade = 27
+  ovr = 61
+  pot = 62
+  valor = 1200000
+  partidas = 14
+  minutos = 1246
+  id_fonte = "511436"
+
+  [[clubes.jogadores]]
+  nome = "Ronaldo Dejesús"
+  pos = "CB"
+  idade = 25
+  ovr = 61
+  pot = 63
+  valor = 1300000
+  partidas = 14
+  minutos = 1282
+  id_fonte = "847074"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Pérez"
+  pos = "CB"
+  idade = 25
+  ovr = 60
+  pot = 63
+  valor = 1200000
+  partidas = 11
+  minutos = 996
+  id_fonte = "799594"
+
+  [[clubes.jogadores]]
+  nome = "Raúl Loaiza"
+  pos = "DM"
+  idade = 32
+  ovr = 60
+  pot = 60
+  valor = 400000
+  id_fonte = "260898"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Morgantini"
+  pos = "FB"
+  idade = 32
+  ovr = 58
+  pot = 58
+  valor = 200000
+  partidas = 3
+  minutos = 246
+  id_fonte = "615253"
+
+  [[clubes.jogadores]]
+  nome = "Allan Wlk"
+  pos = "FW"
+  idade = 23
+  ovr = 57
+  pot = 63
+  valor = 2500000
+  partidas = 7
+  minutos = 620
+  gols = 3
+  id_fonte = "1065388"
+
+  [[clubes.jogadores]]
+  nome = "Yoshan Valois"
+  pos = "FW"
+  idade = 21
+  ovr = 57
+  pot = 64
+  valor = 3000000
+  partidas = 12
+  minutos = 1116
+  gols = 5
+  id_fonte = "1258292"
+
+  [[clubes.jogadores]]
+  nome = "Franco Watson"
+  pos = "AM"
+  idade = 24
+  ovr = 56
+  pot = 59
+  valor = 600000
+  partidas = 10
+  minutos = 938
+  gols = 1
+  id_fonte = "654733"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Besozzi"
+  pos = "WG"
+  idade = 23
+  ovr = 53
+  pot = 57
+  valor = 350000
+  partidas = 12
+  minutos = 1104
+  gols = 1
+  id_fonte = "829381"
+
+  [[clubes.jogadores]]
+  nome = "Octavio Ontivero"
+  pos = "FB"
+  idade = 20
+  ovr = 42
+  pot = 56
+  valor = 175000
+  id_fonte = "1000668"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Sánchez"
+  pos = "MF"
+  idade = 21
+  ovr = 41
+  pot = 52
+  valor = 50000
+  partidas = 2
+  minutos = 203
+  id_fonte = "1240378"
+
+  [[clubes.jogadores]]
+  nome = "Luciano Romero"
+  pos = "CB"
+  idade = 20
+  ovr = 41
+  pot = 55
+  valor = 100000
+  partidas = 1
+  minutos = 80
+  id_fonte = "1005803"
+
+  [[clubes.jogadores]]
+  nome = "Benjamín Acosta"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 51
+  valor = 50000
+  partidas = 1
+  minutos = 64
+  id_fonte = "1119045"
+
+  [[clubes.jogadores]]
+  nome = "Jeremías Chavero"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 52
+  valor = 75000
+  id_fonte = "1299458"
+
+  [[clubes.jogadores]]
+  nome = "Thiago Laplace"
+  pos = "MF"
+  idade = 20
+  ovr = 40
+  pot = 50
+  valor = 25000
+  partidas = 2
+  minutos = 13
+  id_fonte = "1197918"
+
+[[clubes]]
+nome = "AA Argentinos Juniors"
+forca = 63.0
+valor_elenco = 36200000
+cores = ["#00569B", "#842B48"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Francisco Álvarez"
+  pos = "CB"
+  idade = 26
+  ovr = 68
+  pot = 68
+  valor = 5500000
+  partidas = 30
+  minutos = 2729
+  gols = 3
+  id_fonte = "565766"
+
+  [[clubes.jogadores]]
+  nome = "Brayan Cortés"
+  pos = "GK"
+  idade = 31
+  ovr = 67
+  pot = 67
+  valor = 2000000
+  partidas = 33
+  minutos = 2940
+  id_fonte = "248352"
+
+  [[clubes.jogadores]]
+  nome = "Hernán López Muñoz"
+  pos = "AM"
+  idade = 26
+  ovr = 66
+  pot = 67
+  valor = 5000000
+  partidas = 19
+  minutos = 1706
+  gols = 4
+  id_fonte = "665309"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Gutiérrez"
+  pos = "DM"
+  idade = 29
+  ovr = 66
+  pot = 66
+  valor = 2500000
+  partidas = 9
+  minutos = 812
+  id_fonte = "554799"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Molina"
+  pos = "FW"
+  idade = 31
+  ovr = 65
+  pot = 65
+  valor = 2500000
+  partidas = 23
+  minutos = 2069
+  gols = 5
+  id_fonte = "429591"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Oroz"
+  pos = "AM"
+  idade = 32
+  ovr = 63
+  pot = 63
+  valor = 1000000
+  partidas = 26
+  minutos = 2329
+  gols = 2
+  id_fonte = "332250"
+
+  [[clubes.jogadores]]
+  nome = "Matías Giménez"
+  pos = "FW"
+  idade = 27
+  ovr = 61
+  pot = 62
+  valor = 1500000
+  partidas = 2
+  minutos = 181
+  gols = 1
+  id_fonte = "656112"
+
+  [[clubes.jogadores]]
+  nome = "Gastón Verón"
+  pos = "FW"
+  idade = 25
+  ovr = 60
+  pot = 63
+  valor = 1800000
+  partidas = 7
+  minutos = 631
+  gols = 4
+  id_fonte = "564001"
+
+  [[clubes.jogadores]]
+  nome = "Érik Godoy"
+  pos = "CB"
+  idade = 33
+  ovr = 60
+  pot = 60
+  valor = 300000
+  partidas = 9
+  minutos = 822
+  gols = 1
+  id_fonte = "225479"
+
+  [[clubes.jogadores]]
+  nome = "Claudio Bravo"
+  pos = "FB"
+  idade = 29
+  ovr = 59
+  pot = 59
+  valor = 400000
+  partidas = 4
+  minutos = 404
+  id_fonte = "441408"
+
+  [[clubes.jogadores]]
+  nome = "Sebastián Prieto"
+  pos = "FB"
+  idade = 33
+  ovr = 59
+  pot = 59
+  valor = 275000
+  partidas = 26
+  minutos = 2360
+  gols = 2
+  id_fonte = "613708"
+
+  [[clubes.jogadores]]
+  nome = "Franco Paredes"
+  pos = "CB"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 350000
+  partidas = 2
+  minutos = 198
+  id_fonte = "749016"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Florentín"
+  pos = "AM"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 500000
+  partidas = 3
+  minutos = 298
+  id_fonte = "675341"
+
+  [[clubes.jogadores]]
+  nome = "Emiliano Viveros"
+  pos = "WG"
+  idade = 23
+  ovr = 55
+  pot = 60
+  valor = 800000
+  partidas = 12
+  minutos = 1079
+  gols = 1
+  id_fonte = "907313"
+
+  [[clubes.jogadores]]
+  nome = "Franco Vázquez"
+  pos = "CB"
+  idade = 21
+  ovr = 55
+  pot = 63
+  valor = 1500000
+  partidas = 8
+  minutos = 720
+  id_fonte = "1240379"
+
+  [[clubes.jogadores]]
+  nome = "Joaquín Gho"
+  pos = "AM"
+  idade = 23
+  ovr = 55
+  pot = 63
+  valor = 1800000
+  id_fonte = "842589"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Coronel"
+  pos = "FB"
+  idade = 22
+  ovr = 55
+  pot = 60
+  valor = 600000
+  partidas = 13
+  minutos = 1213
+  id_fonte = "1198369"
+
+  [[clubes.jogadores]]
+  nome = "Federico Mancuello"
+  pos = "MF"
+  idade = 37
+  ovr = 53
+  pot = 53
+  valor = 50000
+  id_fonte = "96313"
+
+  [[clubes.jogadores]]
+  nome = "Luciano Sánchez"
+  pos = "FB"
+  idade = 32
+  ovr = 53
+  pot = 53
+  valor = 50000
+  id_fonte = "444495"
+
+  [[clubes.jogadores]]
+  nome = "Mateo Mendoza"
+  pos = "CB"
+  idade = 21
+  ovr = 53
+  pot = 65
+  valor = 2500000
+  id_fonte = "1103933"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Jainikoski"
+  pos = "FW"
+  idade = 18
+  ovr = 52
+  pot = 63
+  valor = 2500000
+  partidas = 10
+  minutos = 900
+  gols = 1
+  id_fonte = "1310744"
+
+  [[clubes.jogadores]]
+  nome = "Diego Porcel"
+  pos = "FW"
+  idade = 21
+  ovr = 51
+  pot = 59
+  valor = 800000
+  partidas = 9
+  minutos = 804
+  gols = 2
+  id_fonte = "1269429"
+
+  [[clubes.jogadores]]
+  nome = "Alan Núñez"
+  pos = "FB"
+  idade = 21
+  ovr = 50
+  pot = 62
+  valor = 1000000
+  id_fonte = "912703"
+
+  [[clubes.jogadores]]
+  nome = "Gino Infantino"
+  pos = "MF"
+  idade = 23
+  ovr = 50
+  pot = 57
+  valor = 350000
+  partidas = 1
+  minutos = 51
+  id_fonte = "831162"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Siri"
+  pos = "GK"
+  idade = 23
+  ovr = 50
+  pot = 58
+  valor = 250000
+  id_fonte = "1225292"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Mangiaut"
+  pos = "GK"
+  idade = 22
+  ovr = 46
+  pot = 56
+  valor = 163281
+  id_fonte = "1298341"
+
+  [[clubes.jogadores]]
+  nome = "Alan Alcaraz"
+  pos = "FW"
+  idade = 17
+  ovr = 40
+  pot = 54
+  valor = 200000
+  partidas = 1
+  minutos = 75
+  id_fonte = "1309716"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Carrizo"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 47
+  valor = 25000
+  partidas = 3
+  minutos = 26
+  id_fonte = "1401625"
+
+  [[clubes.jogadores]]
+  nome = "Gastón Bouhier"
+  pos = "AM"
+  idade = 17
+  ovr = 40
+  pot = 54
+  valor = 163281
+  id_fonte = "1352891"
+
+  [[clubes.jogadores]]
+  nome = "Ryoga Kida"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 52
+  valor = 100000
+  partidas = 1
+  minutos = 89
+  gols = 1
+  id_fonte = "916601"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Silveira"
+  pos = "FB"
+  idade = 18
+  ovr = 40
+  pot = 55
+  valor = 163281
+  id_fonte = "1310739"
+
+  [[clubes.jogadores]]
+  nome = "Santino Gianini"
+  pos = "CB"
+  idade = 17
+  ovr = 40
+  pot = 51
+  valor = 50000
+  partidas = 1
+  minutos = 71
+  id_fonte = "1428950"
+
+[[clubes]]
+nome = "Newell's Old Boys"
+forca = 63.0
+valor_elenco = 35980000
+cores = ["#C00811", "#000000"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Giannetti"
+  pos = "CB"
+  idade = 32
+  ovr = 65
+  pot = 65
+  valor = 1200000
+  partidas = 9
+  minutos = 830
+  id_fonte = "225963"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Solari"
+  pos = "WG"
+  idade = 28
+  ovr = 65
+  pot = 65
+  valor = 2700000
+  partidas = 3
+  minutos = 233
+  gols = 1
+  id_fonte = "866059"
+
+  [[clubes.jogadores]]
+  nome = "Luca Regiardo"
+  pos = "DM"
+  idade = 19
+  ovr = 64
+  pot = 67
+  valor = 4000000
+  partidas = 22
+  minutos = 1945
+  gols = 1
+  id_fonte = "1328380"
+
+  [[clubes.jogadores]]
+  nome = "Walter Mazzantti"
+  pos = "WG"
+  idade = 30
+  ovr = 64
+  pot = 64
+  valor = 2200000
+  partidas = 17
+  minutos = 1543
+  gols = 2
+  id_fonte = "477458"
+
+  [[clubes.jogadores]]
+  nome = "Josué Reinatti"
+  pos = "GK"
+  idade = 23
+  ovr = 63
+  pot = 67
+  valor = 2500000
+  partidas = 15
+  minutos = 1350
+  id_fonte = "1229028"
+
+  [[clubes.jogadores]]
+  nome = "Matías Cóccaro"
+  pos = "FW"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 2000000
+  partidas = 14
+  minutos = 1240
+  gols = 6
+  id_fonte = "454625"
+
+  [[clubes.jogadores]]
+  nome = "Oscar Salomón"
+  pos = "CB"
+  idade = 27
+  ovr = 62
+  pot = 63
+  valor = 1200000
+  partidas = 6
+  minutos = 577
+  gols = 2
+  id_fonte = "698323"
+
+  [[clubes.jogadores]]
+  nome = "Rodrigo Herrera"
+  pos = "DM"
+  idade = 26
+  ovr = 62
+  pot = 63
+  valor = 1500000
+  partidas = 16
+  minutos = 1410
+  id_fonte = "842141"
+
+  [[clubes.jogadores]]
+  nome = "Saúl Salcedo"
+  pos = "CB"
+  idade = 29
+  ovr = 62
+  pot = 62
+  valor = 1000000
+  partidas = 14
+  minutos = 1260
+  id_fonte = "353035"
+
+  [[clubes.jogadores]]
+  nome = "Bruno Cabrera"
+  pos = "CB"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 700000
+  partidas = 9
+  minutos = 815
+  gols = 1
+  id_fonte = "840764"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Guch"
+  pos = "AM"
+  idade = 19
+  ovr = 61
+  pot = 65
+  valor = 3500000
+  partidas = 19
+  minutos = 1731
+  gols = 2
+  id_fonte = "1377866"
+
+  [[clubes.jogadores]]
+  nome = "Franco Escobar"
+  pos = "FB"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 600000
+  partidas = 5
+  minutos = 431
+  id_fonte = "338169"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Ramírez"
+  pos = "FW"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 1200000
+  partidas = 9
+  minutos = 768
+  gols = 4
+  id_fonte = "402079"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Carrizo"
+  pos = "CB"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 800000
+  partidas = 5
+  minutos = 426
+  id_fonte = "522204"
+
+  [[clubes.jogadores]]
+  nome = "Martín Ortega"
+  pos = "FB"
+  idade = 27
+  ovr = 61
+  pot = 62
+  valor = 1000000
+  partidas = 9
+  minutos = 800
+  id_fonte = "663118"
+
+  [[clubes.jogadores]]
+  nome = "Mateo García"
+  pos = "WG"
+  idade = 30
+  ovr = 61
+  pot = 61
+  valor = 1000000
+  partidas = 1
+  minutos = 103
+  id_fonte = "441287"
+
+  [[clubes.jogadores]]
+  nome = "Alejo Montero"
+  pos = "FB"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 600000
+  id_fonte = "649998"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Arias"
+  pos = "GK"
+  idade = 39
+  ovr = 59
+  pot = 59
+  valor = 200000
+  partidas = 7
+  minutos = 613
+  id_fonte = "54330"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Goitea"
+  pos = "CB"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 300000
+  partidas = 12
+  minutos = 1061
+  id_fonte = "840768"
+
+  [[clubes.jogadores]]
+  nome = "Jeronimo Russo"
+  pos = "FB"
+  idade = 21
+  ovr = 56
+  pot = 61
+  valor = 1000000
+  partidas = 15
+  minutos = 1366
+  gols = 1
+  id_fonte = "1139402"
+
+  [[clubes.jogadores]]
+  nome = "Alan Soñora"
+  pos = "AM"
+  idade = 28
+  ovr = 55
+  pot = 55
+  valor = 300000
+  partidas = 1
+  minutos = 50
+  gols = 1
+  id_fonte = "688779"
+
+  [[clubes.jogadores]]
+  nome = "Ian Glavinovich"
+  pos = "CB"
+  idade = 24
+  ovr = 55
+  pot = 61
+  valor = 900000
+  id_fonte = "1027881"
+
+  [[clubes.jogadores]]
+  nome = "Walter Núñez"
+  pos = "WG"
+  idade = 23
+  ovr = 54
+  pot = 59
+  valor = 900000
+  partidas = 11
+  minutos = 968
+  gols = 1
+  id_fonte = "1020838"
+
+  [[clubes.jogadores]]
+  nome = "Jerónimo Gómez Mattar"
+  pos = "AM"
+  idade = 18
+  ovr = 53
+  pot = 63
+  valor = 2000000
+  partidas = 12
+  minutos = 1084
+  id_fonte = "1241453"
+
+  [[clubes.jogadores]]
+  nome = "Valentino Acuña"
+  pos = "DM"
+  idade = 20
+  ovr = 51
+  pot = 63
+  valor = 1500000
+  partidas = 4
+  minutos = 341
+  id_fonte = "1074966"
+
+  [[clubes.jogadores]]
+  nome = "David Sotelo"
+  pos = "MF"
+  idade = 23
+  ovr = 47
+  pot = 53
+  valor = 200000
+  partidas = 5
+  minutos = 483
+  id_fonte = "1061839"
+
+  [[clubes.jogadores]]
+  nome = "Marcelo Esponda"
+  pos = "DM"
+  idade = 23
+  ovr = 47
+  pot = 54
+  valor = 225000
+  partidas = 2
+  minutos = 200
+  id_fonte = "978973"
+
+  [[clubes.jogadores]]
+  nome = "Martín Luciano"
+  pos = "FB"
+  idade = 23
+  ovr = 45
+  pot = 51
+  valor = 100000
+  partidas = 6
+  minutos = 504
+  id_fonte = "883670"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Gómez"
+  pos = "MF"
+  idade = 22
+  ovr = 42
+  pot = 52
+  valor = 150000
+  partidas = 3
+  minutos = 26
+  id_fonte = "1225293"
+
+  [[clubes.jogadores]]
+  nome = "Thomas Rios"
+  pos = "WG"
+  idade = 20
+  ovr = 42
+  pot = 54
+  valor = 300000
+  partidas = 5
+  minutos = 418
+  id_fonte = "1454724"
+
+  [[clubes.jogadores]]
+  nome = "Fabricio Tirado"
+  pos = "AM"
+  idade = 22
+  ovr = 40
+  pot = 48
+  valor = 50000
+  id_fonte = "1248383"
+
+  [[clubes.jogadores]]
+  nome = "Francisco Scarpeccio"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 51
+  valor = 150000
+  partidas = 3
+  minutos = 270
+  gols = 1
+  id_fonte = "1329650"
+
+[[clubes]]
+nome = "Club Atlético Platense"
+forca = 62.7
+valor_elenco = 34230000
+cores = ["#4C2203", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Juan Pablo Cozzani"
+  pos = "GK"
+  idade = 27
+  ovr = 68
+  pot = 69
+  valor = 3500000
+  partidas = 14
+  minutos = 1260
+  id_fonte = "570470"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Vázquez"
+  pos = "CB"
+  idade = 29
+  ovr = 66
+  pot = 66
+  valor = 2500000
+  partidas = 28
+  minutos = 2493
+  gols = 1
+  id_fonte = "552635"
+
+  [[clubes.jogadores]]
+  nome = "Guido Mainero"
+  pos = "WG"
+  idade = 31
+  ovr = 64
+  pot = 64
+  valor = 2000000
+  partidas = 28
+  minutos = 2537
+  gols = 4
+  id_fonte = "441270"
+
+  [[clubes.jogadores]]
+  nome = "Franco Zapiola"
+  pos = "AM"
+  idade = 25
+  ovr = 63
+  pot = 64
+  valor = 2500000
+  partidas = 24
+  minutos = 2166
+  gols = 5
+  id_fonte = "909349"
+
+  [[clubes.jogadores]]
+  nome = "Juan Ignacio Saborido"
+  pos = "FB"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 1500000
+  partidas = 24
+  minutos = 2174
+  id_fonte = "866094"
+
+  [[clubes.jogadores]]
+  nome = "Gastón Togni"
+  pos = "WG"
+  idade = 29
+  ovr = 62
+  pot = 62
+  valor = 1700000
+  partidas = 5
+  minutos = 444
+  id_fonte = "503342"
+
+  [[clubes.jogadores]]
+  nome = "Maximiliano Amarfil"
+  pos = "DM"
+  idade = 24
+  ovr = 62
+  pot = 64
+  valor = 2000000
+  partidas = 18
+  minutos = 1591
+  id_fonte = "990429"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Silva"
+  pos = "FB"
+  idade = 23
+  ovr = 62
+  pot = 64
+  valor = 2000000
+  partidas = 29
+  minutos = 2605
+  gols = 1
+  id_fonte = "984072"
+
+  [[clubes.jogadores]]
+  nome = "Iván Gómez"
+  pos = "DM"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 1000000
+  partidas = 15
+  minutos = 1312
+  id_fonte = "459318"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Heredia"
+  pos = "AM"
+  idade = 30
+  ovr = 61
+  pot = 61
+  valor = 1000000
+  partidas = 11
+  minutos = 969
+  id_fonte = "538367"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás López"
+  pos = "FW"
+  idade = 32
+  ovr = 60
+  pot = 60
+  valor = 800000
+  partidas = 3
+  minutos = 243
+  id_fonte = "185593"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Retamar"
+  pos = "WG"
+  idade = 27
+  ovr = 60
+  pot = 60
+  valor = 1200000
+  partidas = 20
+  minutos = 1843
+  gols = 3
+  id_fonte = "991849"
+
+  [[clubes.jogadores]]
+  nome = "Brian Bustos"
+  pos = "GK"
+  idade = 30
+  ovr = 59
+  pot = 59
+  valor = 375000
+  id_fonte = "660734"
+
+  [[clubes.jogadores]]
+  nome = "Eugenio Raggio"
+  pos = "CB"
+  idade = 25
+  ovr = 58
+  pot = 61
+  valor = 1000000
+  partidas = 10
+  minutos = 925
+  id_fonte = "1108130"
+
+  [[clubes.jogadores]]
+  nome = "Martín Barrios"
+  pos = "MF"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 750000
+  partidas = 19
+  minutos = 1717
+  id_fonte = "565981"
+
+  [[clubes.jogadores]]
+  nome = "Pablo Ferreira"
+  pos = "MF"
+  idade = 21
+  ovr = 58
+  pot = 63
+  valor = 2000000
+  partidas = 17
+  minutos = 1536
+  id_fonte = "1006239"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Lencina"
+  pos = "FW"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 600000
+  partidas = 10
+  minutos = 899
+  gols = 1
+  id_fonte = "660338"
+
+  [[clubes.jogadores]]
+  nome = "Victor Cuesta"
+  pos = "CB"
+  idade = 37
+  ovr = 57
+  pot = 57
+  valor = 200000
+  partidas = 26
+  minutos = 2340
+  gols = 1
+  id_fonte = "104326"
+
+  [[clubes.jogadores]]
+  nome = "Augusto Lotti"
+  pos = "FW"
+  idade = 30
+  ovr = 56
+  pot = 56
+  valor = 500000
+  partidas = 4
+  minutos = 355
+  gols = 3
+  id_fonte = "406296"
+
+  [[clubes.jogadores]]
+  nome = "Bautista Merlini"
+  pos = "WG"
+  idade = 31
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 13
+  minutos = 1136
+  gols = 2
+  id_fonte = "431737"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Sumavil"
+  pos = "GK"
+  idade = 26
+  ovr = 56
+  pot = 58
+  valor = 400000
+  partidas = 3
+  minutos = 270
+  id_fonte = "923940"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Lagos"
+  pos = "FB"
+  idade = 24
+  ovr = 55
+  pot = 57
+  valor = 500000
+  partidas = 15
+  minutos = 1392
+  gols = 1
+  id_fonte = "698551"
+
+  [[clubes.jogadores]]
+  nome = "Bruno Sepúlveda"
+  pos = "FW"
+  idade = 34
+  ovr = 55
+  pot = 55
+  valor = 225000
+  partidas = 3
+  minutos = 278
+  gols = 1
+  id_fonte = "690718"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Goñi"
+  pos = "CB"
+  idade = 28
+  ovr = 55
+  pot = 55
+  valor = 300000
+  id_fonte = "594104"
+
+  [[clubes.jogadores]]
+  nome = "Juan Carlos Gauto"
+  pos = "WG"
+  idade = 22
+  ovr = 55
+  pot = 58
+  valor = 1000000
+  partidas = 17
+  minutos = 1536
+  id_fonte = "847283"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Nasif"
+  pos = "FW"
+  idade = 22
+  ovr = 52
+  pot = 59
+  valor = 1200000
+  partidas = 9
+  minutos = 773
+  gols = 3
+  id_fonte = "1291055"
+
+  [[clubes.jogadores]]
+  nome = "Héctor Bobadilla"
+  pos = "FW"
+  idade = 25
+  ovr = 51
+  pot = 55
+  valor = 450000
+  partidas = 1
+  minutos = 102
+  gols = 1
+  id_fonte = "905417"
+
+  [[clubes.jogadores]]
+  nome = "Luciano Giménez"
+  pos = "FW"
+  idade = 26
+  ovr = 51
+  pot = 53
+  valor = 300000
+  partidas = 4
+  minutos = 405
+  gols = 2
+  id_fonte = "985755"
+
+  [[clubes.jogadores]]
+  nome = "Mateo Mendía"
+  pos = "CB"
+  idade = 22
+  ovr = 51
+  pot = 55
+  valor = 300000
+  partidas = 16
+  minutos = 1416
+  gols = 1
+  id_fonte = "1197773"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Quirós"
+  pos = "CB"
+  idade = 23
+  ovr = 51
+  pot = 58
+  valor = 600000
+  partidas = 3
+  minutos = 298
+  id_fonte = "961786"
+
+  [[clubes.jogadores]]
+  nome = "Fabricio López"
+  pos = "FB"
+  idade = 23
+  ovr = 48
+  pot = 56
+  valor = 400000
+  id_fonte = "1123346"
+
+  [[clubes.jogadores]]
+  nome = "Felipe Bussio"
+  pos = "DM"
+  idade = 22
+  ovr = 48
+  pot = 55
+  valor = 400000
+  partidas = 6
+  minutos = 581
+  id_fonte = "1285240"
+
+  [[clubes.jogadores]]
+  nome = "Celías Ingenthron"
+  pos = "FB"
+  idade = 18
+  ovr = 40
+  pot = 50
+  valor = 125000
+  partidas = 5
+  minutos = 471
+  id_fonte = "1305389"
+
+  [[clubes.jogadores]]
+  nome = "Franco Minerva"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 53
+  valor = 350000
+  partidas = 2
+  minutos = 31
+  id_fonte = "1268653"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Tucker"
+  pos = "WG"
+  idade = 21
+  ovr = 40
+  pot = 46
+  valor = 50000
+  partidas = 2
+  minutos = 171
+  id_fonte = "1207136"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Dalmasso"
+  pos = "MF"
+  idade = 22
+  ovr = 40
+  pot = 48
+  valor = 100000
+  partidas = 3
+  minutos = 226
+  id_fonte = "1236679"
+
+[[clubes]]
+nome = "Independiente"
+forca = 62.5
+valor_elenco = 32780000
+cores = ["#E2001A", "#FDFDFD"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Mele"
+  pos = "GK"
+  idade = 29
+  ovr = 66
+  pot = 66
+  valor = 2000000
+  partidas = 1
+  minutos = 90
+  id_fonte = "320739"
+
+  [[clubes.jogadores]]
+  nome = "Rodrigo Rey"
+  pos = "GK"
+  idade = 35
+  ovr = 65
+  pot = 65
+  valor = 1000000
+  partidas = 28
+  minutos = 2520
+  id_fonte = "166591"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Arias"
+  pos = "FB"
+  idade = 34
+  ovr = 65
+  pot = 65
+  valor = 1200000
+  partidas = 16
+  minutos = 1446
+  id_fonte = "120443"
+
+  [[clubes.jogadores]]
+  nome = "Matías Abaldo"
+  pos = "WG"
+  idade = 22
+  ovr = 64
+  pot = 66
+  valor = 5000000
+  partidas = 23
+  minutos = 2027
+  gols = 5
+  id_fonte = "928647"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Montiel"
+  pos = "WG"
+  idade = 25
+  ovr = 64
+  pot = 65
+  valor = 4000000
+  partidas = 19
+  minutos = 1679
+  gols = 5
+  id_fonte = "974336"
+
+  [[clubes.jogadores]]
+  nome = "Sebastián Valdez"
+  pos = "CB"
+  idade = 30
+  ovr = 64
+  pot = 64
+  valor = 1500000
+  partidas = 16
+  minutos = 1416
+  id_fonte = "538374"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Zabala"
+  pos = "FB"
+  idade = 27
+  ovr = 63
+  pot = 64
+  valor = 1800000
+  partidas = 24
+  minutos = 2173
+  id_fonte = "660140"
+
+  [[clubes.jogadores]]
+  nome = "Franco Calderón"
+  pos = "CB"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 1200000
+  partidas = 1
+  minutos = 4
+  id_fonte = "667616"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Godoy"
+  pos = "FB"
+  idade = 31
+  ovr = 63
+  pot = 63
+  valor = 1000000
+  partidas = 14
+  minutos = 1237
+  gols = 1
+  id_fonte = "369556"
+
+  [[clubes.jogadores]]
+  nome = "Chimy Ávila"
+  pos = "FW"
+  idade = 32
+  ovr = 62
+  pot = 62
+  valor = 1000000
+  partidas = 1
+  minutos = 132
+  id_fonte = "167721"
+
+  [[clubes.jogadores]]
+  nome = "Iván Marcone"
+  pos = "DM"
+  idade = 36
+  ovr = 61
+  pot = 61
+  valor = 400000
+  partidas = 26
+  minutos = 2352
+  gols = 1
+  id_fonte = "90451"
+
+  [[clubes.jogadores]]
+  nome = "Iván Morales"
+  pos = "FW"
+  idade = 27
+  ovr = 61
+  pot = 62
+  valor = 1500000
+  partidas = 1
+  minutos = 71
+  id_fonte = "461608"
+
+  [[clubes.jogadores]]
+  nome = "Luciano Cabral"
+  pos = "AM"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 750000
+  partidas = 4
+  minutos = 376
+  gols = 2
+  id_fonte = "322610"
+
+  [[clubes.jogadores]]
+  nome = "Maximiliano Meza"
+  pos = "WG"
+  idade = 33
+  ovr = 61
+  pot = 61
+  valor = 700000
+  partidas = 5
+  minutos = 451
+  gols = 1
+  id_fonte = "282476"
+
+  [[clubes.jogadores]]
+  nome = "Juan Fedorco"
+  pos = "CB"
+  idade = 25
+  ovr = 59
+  pot = 60
+  valor = 700000
+  partidas = 16
+  minutos = 1421
+  gols = 1
+  id_fonte = "997070"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Millán"
+  pos = "AM"
+  idade = 21
+  ovr = 57
+  pot = 63
+  valor = 2500000
+  partidas = 13
+  minutos = 1152
+  gols = 3
+  id_fonte = "1240381"
+
+  [[clubes.jogadores]]
+  nome = "Mateo Pérez Curci"
+  pos = "AM"
+  idade = 20
+  ovr = 57
+  pot = 63
+  valor = 2500000
+  partidas = 15
+  minutos = 1364
+  id_fonte = "1298516"
+
+  [[clubes.jogadores]]
+  nome = "David Martínez"
+  pos = "DM"
+  idade = 22
+  ovr = 52
+  pot = 62
+  valor = 1200000
+  partidas = 1
+  minutos = 101
+  id_fonte = "1123368"
+
+  [[clubes.jogadores]]
+  nome = "Joaquín Blázquez"
+  pos = "GK"
+  idade = 25
+  ovr = 52
+  pot = 56
+  valor = 150000
+  partidas = 1
+  minutos = 90
+  id_fonte = "668996"
+
+  [[clubes.jogadores]]
+  nome = "Imanol Machuca"
+  pos = "WG"
+  idade = 26
+  ovr = 48
+  pot = 50
+  valor = 65576
+  id_fonte = "829968"
+
+  [[clubes.jogadores]]
+  nome = "Juan Miguel Arrayago"
+  pos = "CB"
+  idade = 17
+  ovr = 48
+  pot = 64
+  valor = 2000000
+  partidas = 6
+  minutos = 556
+  gols = 1
+  id_fonte = "1533085"
+
+  [[clubes.jogadores]]
+  nome = "Rodrigo Márquez"
+  pos = "WG"
+  idade = 24
+  ovr = 46
+  pot = 52
+  valor = 100000
+  id_fonte = "909735"
+
+  [[clubes.jogadores]]
+  nome = "Josias Palais"
+  pos = "AM"
+  idade = 20
+  ovr = 43
+  pot = 56
+  valor = 300000
+  partidas = 3
+  minutos = 298
+  id_fonte = "1298503"
+
+  [[clubes.jogadores]]
+  nome = "Jonathan De Irastorza"
+  pos = "FB"
+  idade = 21
+  ovr = 42
+  pot = 54
+  valor = 125000
+  id_fonte = "1240380"
+
+  [[clubes.jogadores]]
+  nome = "Felipe Tempone"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 51
+  valor = 100000
+  partidas = 3
+  minutos = 285
+  gols = 1
+  id_fonte = "1377262"
+
+  [[clubes.jogadores]]
+  nome = "Joel Medina"
+  pos = "MF"
+  idade = 19
+  ovr = 40
+  pot = 50
+  valor = 50000
+  partidas = 1
+  minutos = 22
+  id_fonte = "1298534"
+
+[[clubes]]
+nome = "Defensa y Justicia"
+forca = 61.9
+valor_elenco = 29550000
+cores = ["#FDE102", "#01722E"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Matías Borgogno"
+  pos = "GK"
+  idade = 28
+  ovr = 67
+  pot = 67
+  valor = 2800000
+  partidas = 10
+  minutos = 900
+  id_fonte = "592427"
+
+  [[clubes.jogadores]]
+  nome = "Aarón Molinas"
+  pos = "AM"
+  idade = 26
+  ovr = 64
+  pot = 65
+  valor = 3200000
+  partidas = 16
+  minutos = 1440
+  gols = 4
+  id_fonte = "575999"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Sosa"
+  pos = "MF"
+  idade = 21
+  ovr = 64
+  pot = 66
+  valor = 4000000
+  partidas = 24
+  minutos = 2202
+  id_fonte = "1253317"
+
+  [[clubes.jogadores]]
+  nome = "Damián Fernández"
+  pos = "CB"
+  idade = 25
+  ovr = 63
+  pot = 64
+  valor = 1800000
+  partidas = 20
+  minutos = 1840
+  gols = 1
+  id_fonte = "706562"
+
+  [[clubes.jogadores]]
+  nome = "David Martínez"
+  pos = "CB"
+  idade = 28
+  ovr = 62
+  pot = 62
+  valor = 900000
+  partidas = 20
+  minutos = 1833
+  gols = 1
+  id_fonte = "401576"
+
+  [[clubes.jogadores]]
+  nome = "Domingo Blanco"
+  pos = "WG"
+  idade = 31
+  ovr = 62
+  pot = 62
+  valor = 1000000
+  partidas = 2
+  minutos = 219
+  id_fonte = "285127"
+
+  [[clubes.jogadores]]
+  nome = "Juan Gutiérrez"
+  pos = "WG"
+  idade = 24
+  ovr = 62
+  pot = 63
+  valor = 2000000
+  partidas = 26
+  minutos = 2352
+  gols = 4
+  id_fonte = "581321"
+
+  [[clubes.jogadores]]
+  nome = "Ayrton Portillo"
+  pos = "FB"
+  idade = 26
+  ovr = 61
+  pot = 62
+  valor = 1000000
+  partidas = 13
+  minutos = 1173
+  gols = 3
+  id_fonte = "841207"
+
+  [[clubes.jogadores]]
+  nome = "César Pérez"
+  pos = "MF"
+  idade = 23
+  ovr = 61
+  pot = 65
+  valor = 3000000
+  partidas = 12
+  minutos = 1119
+  gols = 1
+  id_fonte = "662746"
+
+  [[clubes.jogadores]]
+  nome = "Éver Banega"
+  pos = "MF"
+  idade = 38
+  ovr = 60
+  pot = 60
+  valor = 400000
+  partidas = 5
+  minutos = 414
+  id_fonte = "12249"
+
+  [[clubes.jogadores]]
+  nome = "David Barbona"
+  pos = "AM"
+  idade = 31
+  ovr = 59
+  pot = 59
+  valor = 450000
+  partidas = 13
+  minutos = 1131
+  gols = 4
+  id_fonte = "356089"
+
+  [[clubes.jogadores]]
+  nome = "Fernando Román"
+  pos = "FB"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 450000
+  partidas = 7
+  minutos = 665
+  gols = 1
+  id_fonte = "836251"
+
+  [[clubes.jogadores]]
+  nome = "Julián López"
+  pos = "DM"
+  idade = 26
+  ovr = 58
+  pot = 60
+  valor = 650000
+  partidas = 4
+  minutos = 339
+  id_fonte = "625203"
+
+  [[clubes.jogadores]]
+  nome = "Leandro Fernández"
+  pos = "FW"
+  idade = 35
+  ovr = 58
+  pot = 58
+  valor = 300000
+  partidas = 9
+  minutos = 796
+  gols = 4
+  id_fonte = "131840"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Souto"
+  pos = "FB"
+  idade = 27
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 18
+  minutos = 1663
+  gols = 1
+  id_fonte = "699689"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Amadé"
+  pos = "GK"
+  idade = 26
+  ovr = 56
+  pot = 58
+  valor = 300000
+  partidas = 1
+  minutos = 90
+  id_fonte = "844790"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Altamira"
+  pos = "WG"
+  idade = 25
+  ovr = 54
+  pot = 58
+  valor = 550000
+  partidas = 2
+  minutos = 161
+  id_fonte = "923459"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Hausch"
+  pos = "WG"
+  idade = 23
+  ovr = 52
+  pot = 56
+  valor = 400000
+  partidas = 12
+  minutos = 1123
+  gols = 2
+  id_fonte = "668514"
+
+  [[clubes.jogadores]]
+  nome = "Tiziano Perrotta"
+  pos = "FW"
+  idade = 19
+  ovr = 50
+  pot = 64
+  valor = 3500000
+  partidas = 3
+  minutos = 267
+  id_fonte = "1324736"
+
+  [[clubes.jogadores]]
+  nome = "Ezequiel Burdín"
+  pos = "CB"
+  idade = 21
+  ovr = 49
+  pot = 61
+  valor = 800000
+  partidas = 3
+  minutos = 10
+  id_fonte = "1054439"
+
+  [[clubes.jogadores]]
+  nome = "Samuel Lucero"
+  pos = "CB"
+  idade = 21
+  ovr = 47
+  pot = 56
+  valor = 250000
+  partidas = 7
+  minutos = 642
+  id_fonte = "1068089"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Palavecino"
+  pos = "AM"
+  idade = 23
+  ovr = 45
+  pot = 53
+  valor = 150000
+  id_fonte = "912504"
+
+  [[clubes.jogadores]]
+  nome = "Máximo Rodríguez"
+  pos = "FB"
+  idade = 21
+  ovr = 43
+  pot = 54
+  valor = 150000
+  partidas = 3
+  minutos = 304
+  id_fonte = "1307242"
+
+  [[clubes.jogadores]]
+  nome = "Valentín Loza"
+  pos = "FB"
+  idade = 19
+  ovr = 42
+  pot = 54
+  valor = 175000
+  partidas = 6
+  minutos = 508
+  id_fonte = "1337257"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Pérez"
+  pos = "FW"
+  idade = 20
+  ovr = 41
+  pot = 55
+  valor = 300000
+  partidas = 1
+  minutos = 54
+  gols = 1
+  id_fonte = "1142432"
+
+  [[clubes.jogadores]]
+  nome = "Demián Domínguez"
+  pos = "FB"
+  idade = 20
+  ovr = 40
+  pot = 47
+  valor = 25000
+  partidas = 1
+  minutos = 21
+  id_fonte = "1290950"
+
+  [[clubes.jogadores]]
+  nome = "Jeremías Lucco"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 53
+  valor = 150000
+  partidas = 3
+  minutos = 271
+  gols = 1
+  id_fonte = "1173444"
+
+  [[clubes.jogadores]]
+  nome = "Mateo Aguiar"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 54
+  valor = 225000
+  partidas = 2
+  minutos = 151
+  id_fonte = "1253294"
+
+  [[clubes.jogadores]]
+  nome = "Maximiliano Porcel"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 50
+  valor = 75000
+  partidas = 1
+  minutos = 100
+  id_fonte = "1074965"
+
+  [[clubes.jogadores]]
+  nome = "Nazareno Roselli"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 54
+  valor = 150000
+  partidas = 4
+  minutos = 26
+  id_fonte = "1263453"
+
+[[clubes]]
+nome = "Club de Gimnasia y Esgrima La Plata"
+forca = 61.8
+valor_elenco = 28800000
+cores = ["#1C5A71", "#A2B193"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Nelson Insfrán"
+  pos = "GK"
+  idade = 31
+  ovr = 66
+  pot = 66
+  valor = 2000000
+  partidas = 27
+  minutos = 2458
+  id_fonte = "660280"
+
+  [[clubes.jogadores]]
+  nome = "Marcelo Torres"
+  pos = "FW"
+  idade = 28
+  ovr = 64
+  pot = 64
+  valor = 2800000
+  partidas = 18
+  minutos = 1657
+  gols = 9
+  id_fonte = "480778"
+
+  [[clubes.jogadores]]
+  nome = "Alexis Steimbach"
+  pos = "FB"
+  idade = 24
+  ovr = 63
+  pot = 64
+  valor = 2200000
+  partidas = 23
+  minutos = 2081
+  gols = 2
+  id_fonte = "1046802"
+
+  [[clubes.jogadores]]
+  nome = "Enzo Martínez"
+  pos = "CB"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 1500000
+  partidas = 27
+  minutos = 2395
+  gols = 2
+  id_fonte = "578737"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Barros Schelotto"
+  pos = "DM"
+  idade = 20
+  ovr = 63
+  pot = 67
+  valor = 6000000
+  partidas = 18
+  minutos = 1628
+  gols = 4
+  id_fonte = "1123309"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Auzmendi"
+  pos = "FW"
+  idade = 29
+  ovr = 62
+  pot = 62
+  valor = 1800000
+  partidas = 19
+  minutos = 1738
+  gols = 7
+  id_fonte = "732442"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Miramón"
+  pos = "DM"
+  idade = 23
+  ovr = 62
+  pot = 64
+  valor = 2500000
+  partidas = 20
+  minutos = 1807
+  gols = 1
+  id_fonte = "836518"
+
+  [[clubes.jogadores]]
+  nome = "Pedro Silva Torrejón"
+  pos = "FB"
+  idade = 29
+  ovr = 62
+  pot = 62
+  valor = 1200000
+  partidas = 29
+  minutos = 2612
+  gols = 1
+  id_fonte = "438927"
+
+  [[clubes.jogadores]]
+  nome = "Renzo Giampaoli"
+  pos = "CB"
+  idade = 26
+  ovr = 62
+  pot = 63
+  valor = 1500000
+  partidas = 19
+  minutos = 1672
+  gols = 1
+  id_fonte = "838405"
+
+  [[clubes.jogadores]]
+  nome = "Harlen Castillo"
+  pos = "GK"
+  idade = 33
+  ovr = 60
+  pot = 60
+  valor = 350000
+  partidas = 1
+  minutos = 90
+  id_fonte = "652707"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Panaro"
+  pos = "WG"
+  idade = 23
+  ovr = 57
+  pot = 61
+  valor = 1800000
+  partidas = 10
+  minutos = 940
+  gols = 1
+  id_fonte = "836252"
+
+  [[clubes.jogadores]]
+  nome = "Nacho Fernández"
+  pos = "AM"
+  idade = 36
+  ovr = 57
+  pot = 57
+  valor = 225000
+  partidas = 27
+  minutos = 2390
+  gols = 3
+  id_fonte = "50669"
+
+  [[clubes.jogadores]]
+  nome = "Bautista Barros Schelotto"
+  pos = "FB"
+  idade = 26
+  ovr = 56
+  pot = 57
+  valor = 350000
+  partidas = 10
+  minutos = 914
+  gols = 1
+  id_fonte = "852761"
+
+  [[clubes.jogadores]]
+  nome = "Germán Conti"
+  pos = "CB"
+  idade = 32
+  ovr = 56
+  pot = 56
+  valor = 150000
+  partidas = 11
+  minutos = 961
+  gols = 1
+  id_fonte = "284321"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Janson"
+  pos = "WG"
+  idade = 32
+  ovr = 55
+  pot = 55
+  valor = 200000
+  partidas = 4
+  minutos = 379
+  id_fonte = "238448"
+
+  [[clubes.jogadores]]
+  nome = "Matías Melluso"
+  pos = "FB"
+  idade = 28
+  ovr = 55
+  pot = 55
+  valor = 200000
+  partidas = 2
+  minutos = 138
+  id_fonte = "564216"
+
+  [[clubes.jogadores]]
+  nome = "Augusto Max"
+  pos = "MF"
+  idade = 34
+  ovr = 54
+  pot = 54
+  valor = 100000
+  partidas = 18
+  minutos = 1598
+  id_fonte = "149770"
+
+  [[clubes.jogadores]]
+  nome = "Franco Torres"
+  pos = "WG"
+  idade = 27
+  ovr = 54
+  pot = 55
+  valor = 300000
+  partidas = 9
+  minutos = 793
+  gols = 4
+  id_fonte = "909789"
+
+  [[clubes.jogadores]]
+  nome = "Mateo Seoane"
+  pos = "DM"
+  idade = 22
+  ovr = 54
+  pot = 59
+  valor = 700000
+  partidas = 13
+  minutos = 1140
+  gols = 1
+  id_fonte = "850433"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Errecalde"
+  pos = "CB"
+  idade = 26
+  ovr = 53
+  pot = 55
+  valor = 175000
+  partidas = 3
+  minutos = 230
+  id_fonte = "909170"
+
+  [[clubes.jogadores]]
+  nome = "Maximiliano Zalazar"
+  pos = "WG"
+  idade = 25
+  ovr = 53
+  pot = 56
+  valor = 375000
+  partidas = 7
+  minutos = 594
+  gols = 2
+  id_fonte = "757175"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Colazo"
+  pos = "FW"
+  idade = 25
+  ovr = 52
+  pot = 55
+  valor = 350000
+  partidas = 4
+  minutos = 391
+  gols = 2
+  id_fonte = "842808"
+
+  [[clubes.jogadores]]
+  nome = "Ivo Mammini"
+  pos = "FW"
+  idade = 23
+  ovr = 46
+  pot = 54
+  valor = 250000
+  id_fonte = "748065"
+
+  [[clubes.jogadores]]
+  nome = "Juan Cortazzo"
+  pos = "CB"
+  idade = 20
+  ovr = 46
+  pot = 57
+  valor = 400000
+  partidas = 5
+  minutos = 446
+  id_fonte = "1224924"
+
+  [[clubes.jogadores]]
+  nome = "Jeremías Merlo"
+  pos = "WG"
+  idade = 20
+  ovr = 45
+  pot = 58
+  valor = 700000
+  partidas = 3
+  minutos = 230
+  id_fonte = "1283982"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Di Biasi"
+  pos = "DM"
+  idade = 21
+  ovr = 44
+  pot = 56
+  valor = 300000
+  id_fonte = "1305326"
+
+  [[clubes.jogadores]]
+  nome = "Juan Pérez"
+  pos = "AM"
+  idade = 22
+  ovr = 43
+  pot = 52
+  valor = 150000
+  partidas = 2
+  minutos = 205
+  id_fonte = "1087316"
+
+  [[clubes.jogadores]]
+  nome = "Fabricio Corbalán"
+  pos = "FB"
+  idade = 22
+  ovr = 41
+  pot = 51
+  valor = 75000
+  id_fonte = "1283981"
+
+  [[clubes.jogadores]]
+  nome = "Julián Kadijevic"
+  pos = "GK"
+  idade = 22
+  ovr = 41
+  pot = 50
+  valor = 50000
+  partidas = 2
+  minutos = 152
+  id_fonte = "1085432"
+
+  [[clubes.jogadores]]
+  nome = "Leandro Mamut"
+  pos = "AM"
+  idade = 22
+  ovr = 40
+  pot = 48
+  valor = 50000
+  id_fonte = "865201"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Villarreal"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 48
+  valor = 50000
+  partidas = 1
+  minutos = 51
+  id_fonte = "1305339"
+
+[[clubes]]
+nome = "Belgrano"
+forca = 61.6
+valor_elenco = 27630000
+cores = ["#029ADA", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Thiago Cardozo"
+  pos = "GK"
+  idade = 30
+  ovr = 65
+  pot = 65
+  valor = 3200000
+  partidas = 32
+  minutos = 2910
+  id_fonte = "294843"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Zelarayán"
+  pos = "AM"
+  idade = 34
+  ovr = 64
+  pot = 64
+  valor = 2800000
+  partidas = 25
+  minutos = 2252
+  gols = 4
+  id_fonte = "230030"
+
+  [[clubes.jogadores]]
+  nome = "Adrián Sánchez"
+  pos = "MF"
+  idade = 27
+  ovr = 63
+  pot = 63
+  valor = 3000000
+  partidas = 27
+  minutos = 2460
+  gols = 1
+  id_fonte = "744279"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Fernández"
+  pos = "FW"
+  idade = 30
+  ovr = 63
+  pot = 63
+  valor = 3000000
+  partidas = 18
+  minutos = 1645
+  gols = 6
+  id_fonte = "333921"
+
+  [[clubes.jogadores]]
+  nome = "Francisco González Metilli"
+  pos = "AM"
+  idade = 29
+  ovr = 62
+  pot = 62
+  valor = 2000000
+  partidas = 13
+  minutos = 1186
+  gols = 5
+  id_fonte = "442679"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Longo"
+  pos = "DM"
+  idade = 28
+  ovr = 62
+  pot = 62
+  valor = 2000000
+  partidas = 11
+  minutos = 973
+  id_fonte = "697065"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Morales"
+  pos = "CB"
+  idade = 35
+  ovr = 61
+  pot = 61
+  valor = 600000
+  partidas = 29
+  minutos = 2625
+  gols = 1
+  id_fonte = "457061"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Passerini"
+  pos = "FW"
+  idade = 32
+  ovr = 61
+  pot = 61
+  valor = 1500000
+  partidas = 14
+  minutos = 1280
+  gols = 4
+  id_fonte = "334586"
+
+  [[clubes.jogadores]]
+  nome = "Alexis Maldonado"
+  pos = "CB"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 1000000
+  partidas = 19
+  minutos = 1754
+  id_fonte = "444100"
+
+  [[clubes.jogadores]]
+  nome = "Emiliano Rigoni"
+  pos = "WG"
+  idade = 33
+  ovr = 60
+  pot = 60
+  valor = 1000000
+  partidas = 27
+  minutos = 2419
+  gols = 4
+  id_fonte = "282544"
+
+  [[clubes.jogadores]]
+  nome = "Franco Vázquez"
+  pos = "AM"
+  idade = 37
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 23
+  minutos = 2086
+  gols = 2
+  id_fonte = "76163"
+
+  [[clubes.jogadores]]
+  nome = "Alcides Benítez"
+  pos = "FB"
+  idade = 24
+  ovr = 59
+  pot = 61
+  valor = 1500000
+  partidas = 18
+  minutos = 1601
+  id_fonte = "980793"
+
+  [[clubes.jogadores]]
+  nome = "Federico Ricca"
+  pos = "CB"
+  idade = 31
+  ovr = 59
+  pot = 59
+  valor = 550000
+  partidas = 11
+  minutos = 1032
+  id_fonte = "285322"
+
+  [[clubes.jogadores]]
+  nome = "Lisandro López"
+  pos = "CB"
+  idade = 37
+  ovr = 59
+  pot = 59
+  valor = 300000
+  partidas = 24
+  minutos = 2204
+  gols = 1
+  id_fonte = "125019"
+
+  [[clubes.jogadores]]
+  nome = "Adrián Spörle"
+  pos = "FB"
+  idade = 31
+  ovr = 57
+  pot = 57
+  valor = 300000
+  partidas = 21
+  minutos = 1919
+  id_fonte = "440371"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Vicentini"
+  pos = "GK"
+  idade = 36
+  ovr = 55
+  pot = 55
+  valor = 75000
+  partidas = 1
+  minutos = 90
+  id_fonte = "239697"
+
+  [[clubes.jogadores]]
+  nome = "Ramiro Hernandes"
+  pos = "AM"
+  idade = 21
+  ovr = 55
+  pot = 61
+  valor = 2000000
+  partidas = 14
+  minutos = 1239
+  gols = 3
+  id_fonte = "1273494"
+
+  [[clubes.jogadores]]
+  nome = "Juan Velázquez"
+  pos = "AM"
+  idade = 21
+  ovr = 54
+  pot = 60
+  valor = 1700000
+  partidas = 12
+  minutos = 1107
+  id_fonte = "1264273"
+
+  [[clubes.jogadores]]
+  nome = "Álvaro Ocampo"
+  pos = "CB"
+  idade = 22
+  ovr = 44
+  pot = 52
+  valor = 75000
+  partidas = 6
+  minutos = 520
+  id_fonte = "1322673"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Falcón"
+  pos = "FB"
+  idade = 21
+  ovr = 43
+  pot = 53
+  valor = 100000
+  partidas = 6
+  minutos = 531
+  id_fonte = "1379586"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Gutiérrez"
+  pos = "FW"
+  idade = 20
+  ovr = 43
+  pot = 54
+  valor = 250000
+  partidas = 6
+  minutos = 571
+  gols = 4
+  id_fonte = "1293765"
+
+  [[clubes.jogadores]]
+  nome = "Matías Daniele"
+  pos = "GK"
+  idade = 22
+  ovr = 41
+  pot = 51
+  valor = 37950
+  id_fonte = "1225348"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Melano"
+  pos = "WG"
+  idade = 22
+  ovr = 40
+  pot = 49
+  valor = 37950
+  id_fonte = "1377439"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Zelarayán"
+  pos = "AM"
+  idade = 22
+  ovr = 40
+  pot = 48
+  valor = 25000
+  partidas = 4
+  minutos = 36
+  id_fonte = "1292347"
+
+  [[clubes.jogadores]]
+  nome = "Ramiro Tulián"
+  pos = "AM"
+  idade = 18
+  ovr = 40
+  pot = 50
+  valor = 50000
+  partidas = 1
+  minutos = 67
+  gols = 1
+  id_fonte = "1377440"
+
+[[clubes]]
+nome = "Huracán"
+forca = 60.8
+valor_elenco = 24000000
+cores = ["#F10A00", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "César Ibáñez"
+  pos = "FB"
+  idade = 27
+  ovr = 64
+  pot = 64
+  valor = 2500000
+  partidas = 24
+  minutos = 2121
+  id_fonte = "674391"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Blondel"
+  pos = "FB"
+  idade = 30
+  ovr = 63
+  pot = 63
+  valor = 1500000
+  partidas = 21
+  minutos = 1914
+  gols = 3
+  id_fonte = "503348"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Waller"
+  pos = "AM"
+  idade = 29
+  ovr = 62
+  pot = 62
+  valor = 1500000
+  partidas = 21
+  minutos = 1896
+  gols = 2
+  id_fonte = "322696"
+
+  [[clubes.jogadores]]
+  nome = "Jordy Caicedo"
+  pos = "FW"
+  idade = 28
+  ovr = 62
+  pot = 62
+  valor = 2000000
+  partidas = 24
+  minutos = 2163
+  gols = 13
+  id_fonte = "360412"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Pussetto"
+  pos = "FW"
+  idade = 30
+  ovr = 61
+  pot = 61
+  valor = 1300000
+  partidas = 2
+  minutos = 207
+  gols = 1
+  id_fonte = "283528"
+
+  [[clubes.jogadores]]
+  nome = "Óscar Cortés"
+  pos = "WG"
+  idade = 22
+  ovr = 61
+  pot = 63
+  valor = 3000000
+  partidas = 24
+  minutos = 2128
+  gols = 3
+  id_fonte = "975689"
+
+  [[clubes.jogadores]]
+  nome = "Federico Vera"
+  pos = "FB"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 750000
+  partidas = 5
+  minutos = 450
+  id_fonte = "829967"
+
+  [[clubes.jogadores]]
+  nome = "Hernán Galíndez"
+  pos = "GK"
+  idade = 39
+  ovr = 60
+  pot = 60
+  valor = 300000
+  partidas = 28
+  minutos = 2490
+  id_fonte = "77127"
+
+  [[clubes.jogadores]]
+  nome = "Juan Bisanz"
+  pos = "WG"
+  idade = 25
+  ovr = 59
+  pot = 61
+  valor = 1500000
+  partidas = 14
+  minutos = 1248
+  gols = 2
+  id_fonte = "866061"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Gil"
+  pos = "MF"
+  idade = 35
+  ovr = 59
+  pot = 59
+  valor = 375000
+  partidas = 23
+  minutos = 2075
+  gols = 1
+  id_fonte = "125907"
+
+  [[clubes.jogadores]]
+  nome = "Máximo Palazzo"
+  pos = "CB"
+  idade = 21
+  ovr = 59
+  pot = 63
+  valor = 2000000
+  partidas = 17
+  minutos = 1513
+  id_fonte = "1225847"
+
+  [[clubes.jogadores]]
+  nome = "Rodrigo Fernández Cedrés"
+  pos = "DM"
+  idade = 30
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 7
+  minutos = 625
+  id_fonte = "458047"
+
+  [[clubes.jogadores]]
+  nome = "Óscar Romero"
+  pos = "AM"
+  idade = 34
+  ovr = 59
+  pot = 59
+  valor = 450000
+  partidas = 9
+  minutos = 792
+  gols = 3
+  id_fonte = "217886"
+
+  [[clubes.jogadores]]
+  nome = "Emmanuel Ojeda"
+  pos = "DM"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 600000
+  partidas = 16
+  minutos = 1430
+  id_fonte = "471657"
+
+  [[clubes.jogadores]]
+  nome = "Hugo Nervo"
+  pos = "CB"
+  idade = 35
+  ovr = 58
+  pot = 58
+  valor = 225000
+  partidas = 12
+  minutos = 1056
+  gols = 1
+  id_fonte = "107503"
+
+  [[clubes.jogadores]]
+  nome = "Sebastián Meza"
+  pos = "GK"
+  idade = 26
+  ovr = 57
+  pot = 59
+  valor = 450000
+  partidas = 3
+  minutos = 270
+  id_fonte = "839030"
+
+  [[clubes.jogadores]]
+  nome = "Bruno Barticciotto"
+  pos = "FW"
+  idade = 25
+  ovr = 56
+  pot = 60
+  valor = 1500000
+  partidas = 2
+  minutos = 45
+  id_fonte = "737920"
+
+  [[clubes.jogadores]]
+  nome = "Fabio Pereyra"
+  pos = "CB"
+  idade = 36
+  ovr = 56
+  pot = 56
+  valor = 150000
+  partidas = 21
+  minutos = 1929
+  id_fonte = "610248"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Kalinger"
+  pos = "AM"
+  idade = 21
+  ovr = 53
+  pot = 61
+  valor = 1500000
+  partidas = 11
+  minutos = 960
+  id_fonte = "1299661"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Campo"
+  pos = "FB"
+  idade = 21
+  ovr = 48
+  pot = 55
+  valor = 300000
+  partidas = 11
+  minutos = 958
+  gols = 1
+  id_fonte = "1225538"
+
+  [[clubes.jogadores]]
+  nome = "Leandro Lescano"
+  pos = "FB"
+  idade = 23
+  ovr = 46
+  pot = 53
+  valor = 175000
+  partidas = 3
+  minutos = 305
+  id_fonte = "1174823"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Luján"
+  pos = "AM"
+  idade = 24
+  ovr = 45
+  pot = 50
+  valor = 100000
+  id_fonte = "1005166"
+
+  [[clubes.jogadores]]
+  nome = "Thaiel Peralta"
+  pos = "AM"
+  idade = 18
+  ovr = 45
+  pot = 59
+  valor = 1000000
+  partidas = 6
+  minutos = 577
+  gols = 2
+  id_fonte = "1299761"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Zabala"
+  pos = "CB"
+  idade = 23
+  ovr = 43
+  pot = 51
+  valor = 100000
+  id_fonte = "1203749"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Mora"
+  pos = "DM"
+  idade = 21
+  ovr = 40
+  pot = 46
+  valor = 25000
+  partidas = 3
+  minutos = 238
+  id_fonte = "1299759"
+
+  [[clubes.jogadores]]
+  nome = "Nazareno Durán"
+  pos = "GK"
+  idade = 22
+  ovr = 40
+  pot = 49
+  valor = 55000
+  id_fonte = "1157436"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Uribe"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 49
+  valor = 100000
+  partidas = 1
+  minutos = 92
+  id_fonte = "1299767"
+
+[[clubes]]
+nome = "Gimnasia y Esgrima (Mendoza)"
+forca = 60.4
+valor_elenco = 21930000
+cores = ["#FFFFFF", "#020303"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Matías Vargas"
+  pos = "WG"
+  idade = 29
+  ovr = 67
+  pot = 67
+  valor = 3500000
+  partidas = 2
+  minutos = 176
+  id_fonte = "376211"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Módica"
+  pos = "FW"
+  idade = 23
+  ovr = 66
+  pot = 68
+  valor = 5500000
+  partidas = 17
+  minutos = 1566
+  gols = 12
+  id_fonte = "1184570"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Lencioni"
+  pos = "WG"
+  idade = 25
+  ovr = 66
+  pot = 67
+  valor = 3500000
+  partidas = 23
+  minutos = 2100
+  gols = 4
+  id_fonte = "888761"
+
+  [[clubes.jogadores]]
+  nome = "Ulises Sánchez"
+  pos = "WG"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 1300000
+  partidas = 10
+  minutos = 919
+  id_fonte = "724220"
+
+  [[clubes.jogadores]]
+  nome = "Imanol González"
+  pos = "CB"
+  idade = 28
+  ovr = 62
+  pot = 62
+  valor = 700000
+  partidas = 6
+  minutos = 578
+  id_fonte = "426529"
+
+  [[clubes.jogadores]]
+  nome = "Matías Recalde"
+  pos = "FB"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 600000
+  partidas = 16
+  minutos = 1440
+  id_fonte = "870219"
+
+  [[clubes.jogadores]]
+  nome = "Diego Mondino"
+  pos = "CB"
+  idade = 31
+  ovr = 59
+  pot = 59
+  valor = 300000
+  partidas = 18
+  minutos = 1598
+  id_fonte = "279793"
+
+  [[clubes.jogadores]]
+  nome = "Germán Guiffrey"
+  pos = "CB"
+  idade = 28
+  ovr = 59
+  pot = 59
+  valor = 400000
+  partidas = 2
+  minutos = 162
+  id_fonte = "610616"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Rodríguez"
+  pos = "FW"
+  idade = 29
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 8
+  minutos = 709
+  gols = 1
+  id_fonte = "439437"
+
+  [[clubes.jogadores]]
+  nome = "Esteban Fernández"
+  pos = "AM"
+  idade = 24
+  ovr = 58
+  pot = 61
+  valor = 1000000
+  partidas = 12
+  minutos = 1073
+  gols = 2
+  id_fonte = "908102"
+
+  [[clubes.jogadores]]
+  nome = "Fermín Antonini"
+  pos = "DM"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 300000
+  partidas = 17
+  minutos = 1543
+  id_fonte = "433926"
+
+  [[clubes.jogadores]]
+  nome = "Luciano Paredes"
+  pos = "FB"
+  idade = 24
+  ovr = 57
+  pot = 59
+  valor = 450000
+  partidas = 17
+  minutos = 1492
+  gols = 1
+  id_fonte = "1108415"
+
+  [[clubes.jogadores]]
+  nome = "Juan Franco"
+  pos = "FB"
+  idade = 34
+  ovr = 56
+  pot = 56
+  valor = 125000
+  partidas = 7
+  minutos = 650
+  id_fonte = "331245"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Petruchi"
+  pos = "GK"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 150000
+  partidas = 3
+  minutos = 270
+  id_fonte = "667653"
+
+  [[clubes.jogadores]]
+  nome = "Blas Armoa"
+  pos = "WG"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 350000
+  partidas = 4
+  minutos = 320
+  gols = 1
+  id_fonte = "491603"
+
+  [[clubes.jogadores]]
+  nome = "César Rigamonti"
+  pos = "GK"
+  idade = 39
+  ovr = 54
+  pot = 54
+  valor = 50000
+  partidas = 24
+  minutos = 2160
+  id_fonte = "76159"
+
+  [[clubes.jogadores]]
+  nome = "Ezequiel Muñoz"
+  pos = "CB"
+  idade = 35
+  ovr = 54
+  pot = 54
+  valor = 75000
+  partidas = 23
+  minutos = 2105
+  gols = 2
+  id_fonte = "75127"
+
+  [[clubes.jogadores]]
+  nome = "Brian Andrada"
+  pos = "WG"
+  idade = 29
+  ovr = 53
+  pot = 53
+  valor = 150000
+  partidas = 4
+  minutos = 403
+  id_fonte = "361467"
+
+  [[clubes.jogadores]]
+  nome = "Franco Saavedra"
+  pos = "FB"
+  idade = 23
+  ovr = 53
+  pot = 58
+  valor = 350000
+  partidas = 11
+  minutos = 1030
+  id_fonte = "992528"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Sabatini"
+  pos = "WG"
+  idade = 27
+  ovr = 53
+  pot = 53
+  valor = 175000
+  partidas = 9
+  minutos = 801
+  gols = 1
+  id_fonte = "847934"
+
+  [[clubes.jogadores]]
+  nome = "Nahuel Barboza"
+  pos = "MF"
+  idade = 27
+  ovr = 53
+  pot = 54
+  valor = 150000
+  partidas = 8
+  minutos = 739
+  id_fonte = "1105937"
+
+  [[clubes.jogadores]]
+  nome = "Ismael Cortéz"
+  pos = "FB"
+  idade = 26
+  ovr = 52
+  pot = 53
+  valor = 125000
+  partidas = 4
+  minutos = 366
+  id_fonte = "945274"
+
+  [[clubes.jogadores]]
+  nome = "Luciano Cingolani"
+  pos = "WG"
+  idade = 25
+  ovr = 52
+  pot = 55
+  valor = 250000
+  partidas = 10
+  minutos = 884
+  gols = 2
+  id_fonte = "847293"
+
+  [[clubes.jogadores]]
+  nome = "Tomás O'Connor"
+  pos = "MF"
+  idade = 22
+  ovr = 52
+  pot = 60
+  valor = 700000
+  partidas = 5
+  minutos = 479
+  id_fonte = "1027880"
+
+  [[clubes.jogadores]]
+  nome = "Julián Ceballos"
+  pos = "MF"
+  idade = 22
+  ovr = 51
+  pot = 58
+  valor = 450000
+  partidas = 8
+  minutos = 726
+  id_fonte = "1149569"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Ortiz"
+  pos = "MF"
+  idade = 26
+  ovr = 51
+  pot = 53
+  valor = 125000
+  partidas = 2
+  minutos = 38
+  id_fonte = "639384"
+
+  [[clubes.jogadores]]
+  nome = "Valentino Simoni"
+  pos = "FW"
+  idade = 22
+  ovr = 49
+  pot = 56
+  valor = 350000
+  partidas = 8
+  minutos = 712
+  gols = 1
+  id_fonte = "1182161"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Romano"
+  pos = "FW"
+  idade = 26
+  ovr = 48
+  pot = 50
+  valor = 100000
+  partidas = 1
+  minutos = 21
+  id_fonte = "624095"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Carrera"
+  pos = "CB"
+  idade = 23
+  ovr = 45
+  pot = 51
+  valor = 75000
+  partidas = 7
+  minutos = 605
+  id_fonte = "1225789"
+
+  [[clubes.jogadores]]
+  nome = "Gerónimo Patritti"
+  pos = "CB"
+  idade = 23
+  ovr = 40
+  pot = 46
+  valor = 25000
+  partidas = 1
+  minutos = 11
+  id_fonte = "1512081"
+
+[[clubes]]
+nome = "Barracas Central"
+forca = 60.1
+valor_elenco = 20750000
+cores = ["#EC171F", "#FEFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Rodrigo Insúa"
+  pos = "FB"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 2000000
+  partidas = 31
+  minutos = 2778
+  gols = 3
+  id_fonte = "721235"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Jappert"
+  pos = "CB"
+  idade = 22
+  ovr = 62
+  pot = 64
+  valor = 3200000
+  partidas = 19
+  minutos = 1686
+  gols = 1
+  id_fonte = "1020837"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Bruera"
+  pos = "FW"
+  idade = 27
+  ovr = 61
+  pot = 61
+  valor = 1800000
+  partidas = 21
+  minutos = 1848
+  gols = 3
+  id_fonte = "538880"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Maroni"
+  pos = "AM"
+  idade = 27
+  ovr = 61
+  pot = 62
+  valor = 2000000
+  partidas = 13
+  minutos = 1132
+  gols = 2
+  id_fonte = "441385"
+
+  [[clubes.jogadores]]
+  nome = "Juan Espínola"
+  pos = "GK"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 700000
+  partidas = 10
+  minutos = 910
+  id_fonte = "532557"
+
+  [[clubes.jogadores]]
+  nome = "Marcelo Miño"
+  pos = "GK"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 800000
+  partidas = 25
+  minutos = 2240
+  id_fonte = "508135"
+
+  [[clubes.jogadores]]
+  nome = "Iván Tapia"
+  pos = "AM"
+  idade = 27
+  ovr = 60
+  pot = 60
+  valor = 1200000
+  partidas = 29
+  minutos = 2612
+  gols = 3
+  id_fonte = "697405"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Capraro"
+  pos = "CB"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 750000
+  partidas = 17
+  minutos = 1553
+  id_fonte = "992818"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Demartini"
+  pos = "CB"
+  idade = 26
+  ovr = 60
+  pot = 60
+  valor = 1000000
+  partidas = 26
+  minutos = 2316
+  gols = 1
+  id_fonte = "537257"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Porra"
+  pos = "AM"
+  idade = 22
+  ovr = 60
+  pot = 62
+  valor = 2500000
+  partidas = 29
+  minutos = 2566
+  gols = 1
+  id_fonte = "856593"
+
+  [[clubes.jogadores]]
+  nome = "Jhonatan Candia"
+  pos = "FW"
+  idade = 31
+  ovr = 58
+  pot = 58
+  valor = 700000
+  partidas = 16
+  minutos = 1416
+  gols = 1
+  id_fonte = "259917"
+
+  [[clubes.jogadores]]
+  nome = "Elías Pereyra"
+  pos = "FB"
+  idade = 27
+  ovr = 56
+  pot = 57
+  valor = 400000
+  partidas = 4
+  minutos = 331
+  id_fonte = "576027"
+
+  [[clubes.jogadores]]
+  nome = "Esteban Rolón"
+  pos = "DM"
+  idade = 31
+  ovr = 56
+  pot = 56
+  valor = 275000
+  partidas = 3
+  minutos = 244
+  id_fonte = "399887"
+
+  [[clubes.jogadores]]
+  nome = "Rodrigo Bogarín"
+  pos = "AM"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 350000
+  partidas = 6
+  minutos = 501
+  gols = 1
+  id_fonte = "418859"
+
+  [[clubes.jogadores]]
+  nome = "Yonatthan Rak"
+  pos = "CB"
+  idade = 33
+  ovr = 56
+  pot = 56
+  valor = 200000
+  partidas = 11
+  minutos = 968
+  id_fonte = "227781"
+
+  [[clubes.jogadores]]
+  nome = "Fernando Tobio"
+  pos = "CB"
+  idade = 36
+  ovr = 55
+  pot = 55
+  valor = 125000
+  partidas = 23
+  minutos = 2057
+  gols = 2
+  id_fonte = "69802"
+
+  [[clubes.jogadores]]
+  nome = "Gastón Campi"
+  pos = "CB"
+  idade = 35
+  ovr = 55
+  pot = 55
+  valor = 125000
+  partidas = 10
+  minutos = 863
+  id_fonte = "292174"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Orsini"
+  pos = "FW"
+  idade = 32
+  ovr = 55
+  pot = 55
+  valor = 250000
+  partidas = 1
+  minutos = 15
+  id_fonte = "289149"
+
+  [[clubes.jogadores]]
+  nome = "Damián Martínez"
+  pos = "FB"
+  idade = 36
+  ovr = 54
+  pot = 54
+  valor = 100000
+  partidas = 14
+  minutos = 1223
+  gols = 2
+  id_fonte = "107282"
+
+  [[clubes.jogadores]]
+  nome = "Yeison Gordillo"
+  pos = "DM"
+  idade = 34
+  ovr = 54
+  pot = 54
+  valor = 100000
+  id_fonte = "147670"
+
+  [[clubes.jogadores]]
+  nome = "Dardo Miloc"
+  pos = "DM"
+  idade = 35
+  ovr = 53
+  pot = 53
+  valor = 75000
+  partidas = 26
+  minutos = 2358
+  id_fonte = "118375"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Morales"
+  pos = "FW"
+  idade = 23
+  ovr = 53
+  pot = 58
+  valor = 900000
+  partidas = 10
+  minutos = 933
+  gols = 3
+  id_fonte = "1064936"
+
+  [[clubes.jogadores]]
+  nome = "Juan Barbieri"
+  pos = "FW"
+  idade = 30
+  ovr = 53
+  pot = 53
+  valor = 175000
+  partidas = 3
+  minutos = 25
+  id_fonte = "984675"
+
+  [[clubes.jogadores]]
+  nome = "Norberto Briasco"
+  pos = "WG"
+  idade = 30
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 16
+  minutos = 1439
+  gols = 1
+  id_fonte = "457218"
+
+  [[clubes.jogadores]]
+  nome = "Rafael Barrios"
+  pos = "FB"
+  idade = 33
+  ovr = 52
+  pot = 52
+  valor = 75000
+  partidas = 15
+  minutos = 1328
+  id_fonte = "334057"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Gamba"
+  pos = "FW"
+  idade = 39
+  ovr = 50
+  pot = 50
+  valor = 50000
+  partidas = 2
+  minutos = 173
+  gols = 1
+  id_fonte = "125906"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Duarte"
+  pos = "AM"
+  idade = 25
+  ovr = 49
+  pot = 53
+  valor = 200000
+  partidas = 2
+  minutos = 152
+  id_fonte = "891804"
+
+  [[clubes.jogadores]]
+  nome = "Carlos Arce"
+  pos = "DM"
+  idade = 36
+  ovr = 48
+  pot = 48
+  valor = 25000
+  partidas = 1
+  minutos = 3
+  id_fonte = "697402"
+
+  [[clubes.jogadores]]
+  nome = "Iván Guaraz"
+  pos = "MF"
+  idade = 21
+  ovr = 44
+  pot = 54
+  valor = 250000
+  partidas = 6
+  minutos = 546
+  id_fonte = "1306829"
+
+  [[clubes.jogadores]]
+  nome = "Maximiliano Puig"
+  pos = "MF"
+  idade = 26
+  ovr = 44
+  pot = 45
+  valor = 25000
+  partidas = 5
+  minutos = 37
+  id_fonte = "888453"
+
+  [[clubes.jogadores]]
+  nome = "Enzo Taborda"
+  pos = "WG"
+  idade = 21
+  ovr = 40
+  pot = 49
+  valor = 100000
+  partidas = 3
+  minutos = 302
+  id_fonte = "1298505"
+
+  [[clubes.jogadores]]
+  nome = "Juan Pablo Insúa"
+  pos = "GK"
+  idade = 21
+  ovr = 40
+  pot = 48
+  valor = 41250
+  id_fonte = "1307273"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Lavezzi"
+  pos = "AM"
+  idade = 21
+  ovr = 40
+  pot = 46
+  valor = 41250
+  id_fonte = "1322309"
+
+  [[clubes.jogadores]]
+  nome = "Wilfredo Rivera"
+  pos = "FW"
+  idade = 22
+  ovr = 40
+  pot = 49
+  valor = 100000
+  id_fonte = "750537"
+
+[[clubes]]
+nome = "Instituto ACC"
+forca = 60.0
+valor_elenco = 20430000
+cores = ["#C23531", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Alex Luna"
+  pos = "AM"
+  idade = 22
+  ovr = 64
+  pot = 66
+  valor = 6000000
+  partidas = 23
+  minutos = 2071
+  gols = 7
+  id_fonte = "843126"
+
+  [[clubes.jogadores]]
+  nome = "Fernando Alarcón"
+  pos = "CB"
+  idade = 32
+  ovr = 63
+  pot = 63
+  valor = 1300000
+  partidas = 23
+  minutos = 2086
+  gols = 2
+  id_fonte = "376853"
+
+  [[clubes.jogadores]]
+  nome = "Marcos Ledesma"
+  pos = "GK"
+  idade = 30
+  ovr = 62
+  pot = 62
+  valor = 1000000
+  partidas = 11
+  minutos = 990
+  id_fonte = "344421"
+
+  [[clubes.jogadores]]
+  nome = "Giuliano Cerato"
+  pos = "FB"
+  idade = 28
+  ovr = 61
+  pot = 61
+  valor = 1200000
+  partidas = 29
+  minutos = 2567
+  gols = 6
+  id_fonte = "971423"
+
+  [[clubes.jogadores]]
+  nome = "Diego Sosa"
+  pos = "FB"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 800000
+  partidas = 28
+  minutos = 2541
+  gols = 1
+  id_fonte = "464365"
+
+  [[clubes.jogadores]]
+  nome = "Leonel Mosevich"
+  pos = "CB"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 750000
+  partidas = 29
+  minutos = 2610
+  gols = 2
+  id_fonte = "407517"
+
+  [[clubes.jogadores]]
+  nome = "Franco Moyano"
+  pos = "MF"
+  idade = 29
+  ovr = 59
+  pot = 59
+  valor = 700000
+  partidas = 1
+  minutos = 129
+  id_fonte = "480764"
+
+  [[clubes.jogadores]]
+  nome = "Jhon Córdoba"
+  pos = "WG"
+  idade = 26
+  ovr = 59
+  pot = 59
+  valor = 1200000
+  partidas = 18
+  minutos = 1629
+  gols = 2
+  id_fonte = "628879"
+
+  [[clubes.jogadores]]
+  nome = "Jonatan Galván"
+  pos = "CB"
+  idade = 34
+  ovr = 59
+  pot = 59
+  valor = 325000
+  partidas = 22
+  minutos = 1973
+  id_fonte = "216730"
+
+  [[clubes.jogadores]]
+  nome = "Gustavo Abregú"
+  pos = "DM"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 600000
+  partidas = 24
+  minutos = 2180
+  id_fonte = "486030"
+
+  [[clubes.jogadores]]
+  nome = "Juan Ignacio Méndez"
+  pos = "DM"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 9
+  minutos = 852
+  id_fonte = "508134"
+
+  [[clubes.jogadores]]
+  nome = "Matías Tissera"
+  pos = "FW"
+  idade = 30
+  ovr = 57
+  pot = 57
+  valor = 600000
+  partidas = 11
+  minutos = 950
+  gols = 3
+  id_fonte = "503001"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Suárez"
+  pos = "FW"
+  idade = 32
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 2
+  minutos = 173
+  gols = 1
+  id_fonte = "702259"
+
+  [[clubes.jogadores]]
+  nome = "Hernán de la Fuente"
+  pos = "FB"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 300000
+  partidas = 1
+  minutos = 78
+  gols = 1
+  id_fonte = "552628"
+
+  [[clubes.jogadores]]
+  nome = "Jonás Acevedo"
+  pos = "WG"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 450000
+  partidas = 3
+  minutos = 243
+  id_fonte = "538530"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Sanseviero"
+  pos = "WG"
+  idade = 26
+  ovr = 55
+  pot = 57
+  valor = 650000
+  partidas = 1
+  minutos = 23
+  id_fonte = "970866"
+
+  [[clubes.jogadores]]
+  nome = "Andrés Meli"
+  pos = "FB"
+  idade = 26
+  ovr = 54
+  pot = 56
+  valor = 350000
+  id_fonte = "935331"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Guerra"
+  pos = "FW"
+  idade = 27
+  ovr = 54
+  pot = 55
+  valor = 400000
+  partidas = 8
+  minutos = 712
+  gols = 1
+  id_fonte = "534037"
+
+  [[clubes.jogadores]]
+  nome = "Matías Gallardo"
+  pos = "AM"
+  idade = 22
+  ovr = 53
+  pot = 59
+  valor = 1000000
+  partidas = 11
+  minutos = 963
+  gols = 1
+  id_fonte = "990785"
+
+  [[clubes.jogadores]]
+  nome = "Wílder Viera"
+  pos = "MF"
+  idade = 24
+  ovr = 52
+  pot = 58
+  valor = 750000
+  id_fonte = "661223"
+
+  [[clubes.jogadores]]
+  nome = "Matías Fonseca"
+  pos = "FW"
+  idade = 25
+  ovr = 51
+  pot = 54
+  valor = 350000
+  partidas = 7
+  minutos = 593
+  gols = 1
+  id_fonte = "538919"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Massaccesi"
+  pos = "CB"
+  idade = 24
+  ovr = 49
+  pot = 53
+  valor = 200000
+  partidas = 6
+  minutos = 566
+  id_fonte = "1221014"
+
+  [[clubes.jogadores]]
+  nome = "Jeremías Lázaro"
+  pos = "AM"
+  idade = 22
+  ovr = 45
+  pot = 52
+  valor = 200000
+  partidas = 9
+  minutos = 847
+  gols = 2
+  id_fonte = "1227286"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Bravo"
+  pos = "CB"
+  idade = 25
+  ovr = 44
+  pot = 48
+  valor = 50000
+  partidas = 1
+  minutos = 106
+  id_fonte = "868503"
+
+  [[clubes.jogadores]]
+  nome = "Emanuel Sittaro"
+  pos = "GK"
+  idade = 26
+  ovr = 44
+  pot = 46
+  valor = 25000
+  partidas = 1
+  minutos = 90
+  id_fonte = "717685"
+
+  [[clubes.jogadores]]
+  nome = "Joaquín Medina"
+  pos = "DM"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 110000
+  id_fonte = "1322189"
+
+  [[clubes.jogadores]]
+  nome = "Lorenzo Albarracín"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 44
+  valor = 25000
+  id_fonte = "1295877"
+
+  [[clubes.jogadores]]
+  nome = "Luca Rafaelli"
+  pos = "WG"
+  idade = 18
+  ovr = 40
+  pot = 54
+  valor = 400000
+  partidas = 3
+  minutos = 263
+  gols = 1
+  id_fonte = "1402952"
+
+[[clubes]]
+nome = "Unión (Santa Fé)"
+forca = 59.7
+valor_elenco = 19480000
+cores = ["#EC171F", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Matías Mansilla"
+  pos = "GK"
+  idade = 30
+  ovr = 65
+  pot = 65
+  valor = 2500000
+  partidas = 30
+  minutos = 2700
+  id_fonte = "731722"
+
+  [[clubes.jogadores]]
+  nome = "Juan Pablo Ludueña"
+  pos = "CB"
+  idade = 23
+  ovr = 62
+  pot = 63
+  valor = 2500000
+  partidas = 28
+  minutos = 2493
+  gols = 1
+  id_fonte = "1103988"
+
+  [[clubes.jogadores]]
+  nome = "Julián Palacios"
+  pos = "AM"
+  idade = 27
+  ovr = 62
+  pot = 62
+  valor = 2500000
+  partidas = 24
+  minutos = 2185
+  gols = 3
+  id_fonte = "728262"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Vargas"
+  pos = "FB"
+  idade = 21
+  ovr = 62
+  pot = 64
+  valor = 3500000
+  partidas = 22
+  minutos = 1974
+  id_fonte = "1159650"
+
+  [[clubes.jogadores]]
+  nome = "Juan Pintado"
+  pos = "FB"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 1000000
+  partidas = 6
+  minutos = 547
+  id_fonte = "410456"
+
+  [[clubes.jogadores]]
+  nome = "Marcelo Estigarribia"
+  pos = "FW"
+  idade = 31
+  ovr = 60
+  pot = 60
+  valor = 1000000
+  partidas = 21
+  minutos = 1895
+  gols = 5
+  id_fonte = "610266"
+
+  [[clubes.jogadores]]
+  nome = "Brahian Cuello"
+  pos = "AM"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 700000
+  partidas = 14
+  minutos = 1278
+  gols = 4
+  id_fonte = "494219"
+
+  [[clubes.jogadores]]
+  nome = "Eric Ramírez"
+  pos = "FW"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 600000
+  partidas = 1
+  minutos = 117
+  gols = 2
+  id_fonte = "364945"
+
+  [[clubes.jogadores]]
+  nome = "Bruno Pittón"
+  pos = "FB"
+  idade = 33
+  ovr = 57
+  pot = 57
+  valor = 250000
+  partidas = 6
+  minutos = 537
+  id_fonte = "395216"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Malcorra"
+  pos = "AM"
+  idade = 39
+  ovr = 57
+  pot = 57
+  valor = 250000
+  partidas = 6
+  minutos = 535
+  gols = 1
+  id_fonte = "87518"
+
+  [[clubes.jogadores]]
+  nome = "Franco Fragapane"
+  pos = "WG"
+  idade = 33
+  ovr = 56
+  pot = 56
+  valor = 300000
+  partidas = 2
+  minutos = 195
+  id_fonte = "226005"
+
+  [[clubes.jogadores]]
+  nome = "Cristian Tarragona"
+  pos = "FW"
+  idade = 35
+  ovr = 55
+  pot = 55
+  valor = 200000
+  partidas = 28
+  minutos = 2538
+  gols = 16
+  id_fonte = "422698"
+
+  [[clubes.jogadores]]
+  nome = "Mauro Luna Diale"
+  pos = "AM"
+  idade = 27
+  ovr = 55
+  pot = 56
+  valor = 450000
+  partidas = 3
+  minutos = 289
+  id_fonte = "653266"
+
+  [[clubes.jogadores]]
+  nome = "Augusto Solari"
+  pos = "AM"
+  idade = 34
+  ovr = 54
+  pot = 54
+  valor = 125000
+  partidas = 3
+  minutos = 260
+  id_fonte = "282694"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Menossi"
+  pos = "MF"
+  idade = 34
+  ovr = 54
+  pot = 54
+  valor = 125000
+  partidas = 12
+  minutos = 1052
+  gols = 4
+  id_fonte = "225481"
+
+  [[clubes.jogadores]]
+  nome = "Matías Rocha"
+  pos = "CB"
+  idade = 25
+  ovr = 53
+  pot = 57
+  valor = 400000
+  partidas = 1
+  minutos = 91
+  id_fonte = "821824"
+
+  [[clubes.jogadores]]
+  nome = "Joaquín Mosqueira"
+  pos = "DM"
+  idade = 21
+  ovr = 50
+  pot = 60
+  valor = 1200000
+  partidas = 4
+  minutos = 331
+  gols = 1
+  id_fonte = "1118712"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Ayala"
+  pos = "FB"
+  idade = 19
+  ovr = 47
+  pot = 59
+  valor = 800000
+  partidas = 7
+  minutos = 661
+  id_fonte = "1305781"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Meuli"
+  pos = "GK"
+  idade = 25
+  ovr = 46
+  pot = 50
+  valor = 51826
+  id_fonte = "1118707"
+
+  [[clubes.jogadores]]
+  nome = "Tobías Rubio"
+  pos = "FB"
+  idade = 22
+  ovr = 45
+  pot = 55
+  valor = 300000
+  id_fonte = "849534"
+
+  [[clubes.jogadores]]
+  nome = "Emilio Giaccone"
+  pos = "MF"
+  idade = 21
+  ovr = 44
+  pot = 53
+  valor = 200000
+  partidas = 5
+  minutos = 467
+  id_fonte = "1305779"
+
+  [[clubes.jogadores]]
+  nome = "Federico Gomes Gerth"
+  pos = "GK"
+  idade = 22
+  ovr = 43
+  pot = 53
+  valor = 100000
+  id_fonte = "826528"
+
+  [[clubes.jogadores]]
+  nome = "Misael Aguirre"
+  pos = "WG"
+  idade = 18
+  ovr = 41
+  pot = 54
+  valor = 350000
+  partidas = 6
+  minutos = 566
+  gols = 1
+  id_fonte = "1322306"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Grella"
+  pos = "AM"
+  idade = 21
+  ovr = 40
+  pot = 45
+  valor = 25000
+  partidas = 1
+  minutos = 75
+  id_fonte = "1305778"
+
+  [[clubes.jogadores]]
+  nome = "Tomas Fagioli"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 75000
+  partidas = 4
+  minutos = 360
+  id_fonte = "1408856"
+
+  [[clubes.jogadores]]
+  nome = "Valentín Cerrudo"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 45
+  valor = 25000
+  partidas = 2
+  minutos = 25
+  id_fonte = "1161766"
+
+[[clubes]]
+nome = "Club Atlético Tucumán"
+forca = 59.1
+valor_elenco = 17350000
+cores = ["#6BA7D9", "#FEFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Luis Ingolotti"
+  pos = "GK"
+  idade = 26
+  ovr = 64
+  pot = 64
+  valor = 2000000
+  partidas = 29
+  minutos = 2610
+  id_fonte = "552636"
+
+  [[clubes.jogadores]]
+  nome = "Clever Ferreira"
+  pos = "CB"
+  idade = 23
+  ovr = 62
+  pot = 64
+  valor = 2500000
+  partidas = 21
+  minutos = 1913
+  gols = 4
+  id_fonte = "1244188"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Laméndola"
+  pos = "WG"
+  idade = 27
+  ovr = 60
+  pot = 61
+  valor = 1500000
+  partidas = 24
+  minutos = 2156
+  gols = 4
+  id_fonte = "756809"
+
+  [[clubes.jogadores]]
+  nome = "Renzo Tesuri"
+  pos = "AM"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 1000000
+  partidas = 26
+  minutos = 2300
+  gols = 3
+  id_fonte = "457666"
+
+  [[clubes.jogadores]]
+  nome = "Ezequiel Ham"
+  pos = "MF"
+  idade = 32
+  ovr = 59
+  pot = 59
+  valor = 500000
+  partidas = 9
+  minutos = 840
+  id_fonte = "321612"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Ortiz"
+  pos = "DM"
+  idade = 26
+  ovr = 59
+  pot = 60
+  valor = 1000000
+  partidas = 10
+  minutos = 860
+  id_fonte = "984079"
+
+  [[clubes.jogadores]]
+  nome = "Gastón Suso"
+  pos = "CB"
+  idade = 35
+  ovr = 58
+  pot = 58
+  valor = 275000
+  partidas = 17
+  minutos = 1508
+  id_fonte = "469776"
+
+  [[clubes.jogadores]]
+  nome = "Juan Infante"
+  pos = "FB"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 3
+  minutos = 294
+  id_fonte = "615255"
+
+  [[clubes.jogadores]]
+  nome = "Julián Fernández"
+  pos = "DM"
+  idade = 31
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 3
+  minutos = 231
+  id_fonte = "275319"
+
+  [[clubes.jogadores]]
+  nome = "Leandro Díaz"
+  pos = "FW"
+  idade = 34
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 21
+  minutos = 1860
+  gols = 8
+  id_fonte = "140214"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Durso"
+  pos = "GK"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 500000
+  partidas = 1
+  minutos = 90
+  id_fonte = "534625"
+
+  [[clubes.jogadores]]
+  nome = "Gianluca Ferrari"
+  pos = "CB"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 350000
+  partidas = 9
+  minutos = 811
+  id_fonte = "340507"
+
+  [[clubes.jogadores]]
+  nome = "Juan Gabriel Rodríguez"
+  pos = "CB"
+  idade = 32
+  ovr = 57
+  pot = 57
+  valor = 250000
+  id_fonte = "189448"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Godoy"
+  pos = "AM"
+  idade = 23
+  ovr = 57
+  pot = 60
+  valor = 1200000
+  partidas = 18
+  minutos = 1597
+  gols = 2
+  id_fonte = "1098440"
+
+  [[clubes.jogadores]]
+  nome = "Martín Benítez"
+  pos = "AM"
+  idade = 32
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 1
+  minutos = 94
+  gols = 1
+  id_fonte = "189418"
+
+  [[clubes.jogadores]]
+  nome = "Maximiliano Villa"
+  pos = "FB"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 375000
+  partidas = 17
+  minutos = 1492
+  gols = 1
+  id_fonte = "521234"
+
+  [[clubes.jogadores]]
+  nome = "Franco Nicola"
+  pos = "WG"
+  idade = 24
+  ovr = 56
+  pot = 57
+  valor = 650000
+  partidas = 21
+  minutos = 1885
+  gols = 3
+  id_fonte = "1015626"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Galván"
+  pos = "FB"
+  idade = 24
+  ovr = 56
+  pot = 57
+  valor = 500000
+  partidas = 21
+  minutos = 1854
+  id_fonte = "863140"
+
+  [[clubes.jogadores]]
+  nome = "Leonel Di Plácido"
+  pos = "FB"
+  idade = 32
+  ovr = 56
+  pot = 56
+  valor = 200000
+  partidas = 15
+  minutos = 1367
+  id_fonte = "322843"
+
+  [[clubes.jogadores]]
+  nome = "Luciano Vallejo"
+  pos = "CB"
+  idade = 22
+  ovr = 56
+  pot = 60
+  valor = 900000
+  partidas = 17
+  minutos = 1509
+  gols = 1
+  id_fonte = "1327411"
+
+  [[clubes.jogadores]]
+  nome = "Leonel Vega"
+  pos = "DM"
+  idade = 22
+  ovr = 55
+  pot = 60
+  valor = 1000000
+  partidas = 15
+  minutos = 1320
+  id_fonte = "1224637"
+
+  [[clubes.jogadores]]
+  nome = "Alexis Canelo"
+  pos = "FW"
+  idade = 34
+  ovr = 54
+  pot = 54
+  valor = 150000
+  partidas = 1
+  minutos = 113
+  gols = 1
+  id_fonte = "249789"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Compagnucci"
+  pos = "AM"
+  idade = 35
+  ovr = 54
+  pot = 54
+  valor = 125000
+  partidas = 5
+  minutos = 409
+  id_fonte = "538608"
+
+  [[clubes.jogadores]]
+  nome = "Ramiro Ruiz Rodríguez"
+  pos = "FW"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 400000
+  partidas = 6
+  minutos = 565
+  gols = 1
+  id_fonte = "633048"
+
+  [[clubes.jogadores]]
+  nome = "Patricio Albornoz"
+  pos = "GK"
+  idade = 26
+  ovr = 49
+  pot = 51
+  valor = 58104
+  id_fonte = "1068088"
+
+  [[clubes.jogadores]]
+  nome = "Moisés Brandán"
+  pos = "FB"
+  idade = 26
+  ovr = 48
+  pot = 50
+  valor = 75000
+  id_fonte = "908390"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Brondo"
+  pos = "FW"
+  idade = 24
+  ovr = 45
+  pot = 45
+  valor = 25000
+  partidas = 4
+  minutos = 369
+  gols = 1
+  id_fonte = "1103930"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Abeldaño"
+  pos = "FW"
+  idade = 21
+  ovr = 43
+  pot = 53
+  valor = 225000
+  partidas = 6
+  minutos = 576
+  gols = 1
+  id_fonte = "1327450"
+
+  [[clubes.jogadores]]
+  nome = "Ezequiel Godoy"
+  pos = "MF"
+  idade = 22
+  ovr = 40
+  pot = 48
+  valor = 58104
+  id_fonte = "668511"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Pimienta"
+  pos = "WG"
+  idade = 23
+  ovr = 40
+  pot = 44
+  valor = 25000
+  partidas = 2
+  minutos = 13
+  id_fonte = "1162321"
+
+  [[clubes.jogadores]]
+  nome = "Ramiro Paunero"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 46
+  valor = 25000
+  partidas = 1
+  minutos = 70
+  id_fonte = "1306601"
+
+[[clubes]]
+nome = "Sarmiento (Junín)"
+forca = 58.9
+valor_elenco = 16750000
+cores = ["#045D28", "#FEFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Junior Marabel"
+  pos = "FW"
+  idade = 28
+  ovr = 66
+  pot = 66
+  valor = 3000000
+  partidas = 24
+  minutos = 2125
+  gols = 13
+  id_fonte = "567737"
+
+  [[clubes.jogadores]]
+  nome = "Cristian Zabala"
+  pos = "MF"
+  idade = 28
+  ovr = 61
+  pot = 61
+  valor = 900000
+  partidas = 26
+  minutos = 2354
+  gols = 1
+  id_fonte = "613095"
+
+  [[clubes.jogadores]]
+  nome = "Julián Mavilla"
+  pos = "AM"
+  idade = 26
+  ovr = 60
+  pot = 62
+  valor = 1300000
+  partidas = 7
+  minutos = 655
+  gols = 3
+  id_fonte = "1144681"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Nadruz"
+  pos = "DM"
+  idade = 30
+  ovr = 59
+  pot = 59
+  valor = 500000
+  partidas = 1
+  minutos = 1
+  id_fonte = "445283"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Suárez"
+  pos = "CB"
+  idade = 31
+  ovr = 59
+  pot = 59
+  valor = 400000
+  partidas = 15
+  minutos = 1364
+  gols = 1
+  id_fonte = "322190"
+
+  [[clubes.jogadores]]
+  nome = "Mauricio Martínez"
+  pos = "DM"
+  idade = 33
+  ovr = 59
+  pot = 59
+  valor = 375000
+  partidas = 18
+  minutos = 1612
+  gols = 2
+  id_fonte = "309388"
+
+  [[clubes.jogadores]]
+  nome = "Renzo Orihuela"
+  pos = "CB"
+  idade = 25
+  ovr = 59
+  pot = 61
+  valor = 800000
+  partidas = 16
+  minutos = 1485
+  gols = 1
+  id_fonte = "737892"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Salle"
+  pos = "AM"
+  idade = 22
+  ovr = 59
+  pot = 61
+  valor = 1200000
+  partidas = 21
+  minutos = 1848
+  id_fonte = "1108153"
+
+  [[clubes.jogadores]]
+  nome = "Thyago Ayala"
+  pos = "GK"
+  idade = 25
+  ovr = 59
+  pot = 61
+  valor = 700000
+  partidas = 9
+  minutos = 810
+  id_fonte = "1157864"
+
+  [[clubes.jogadores]]
+  nome = "Carlos Villalba"
+  pos = "DM"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 450000
+  partidas = 6
+  minutos = 577
+  gols = 1
+  id_fonte = "652968"
+
+  [[clubes.jogadores]]
+  nome = "Iván Arboleda"
+  pos = "GK"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 300000
+  partidas = 2
+  minutos = 180
+  id_fonte = "260740"
+
+  [[clubes.jogadores]]
+  nome = "Jonathan Herrera"
+  pos = "FW"
+  idade = 35
+  ovr = 57
+  pot = 57
+  valor = 300000
+  partidas = 7
+  minutos = 625
+  gols = 1
+  id_fonte = "485880"
+
+  [[clubes.jogadores]]
+  nome = "Manuel García"
+  pos = "DM"
+  idade = 27
+  ovr = 57
+  pot = 58
+  valor = 500000
+  partidas = 11
+  minutos = 995
+  id_fonte = "869941"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Díaz"
+  pos = "FB"
+  idade = 26
+  ovr = 56
+  pot = 58
+  valor = 450000
+  partidas = 6
+  minutos = 501
+  id_fonte = "906940"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Pasquini"
+  pos = "FB"
+  idade = 35
+  ovr = 56
+  pot = 56
+  valor = 150000
+  partidas = 9
+  minutos = 790
+  gols = 1
+  id_fonte = "270987"
+
+  [[clubes.jogadores]]
+  nome = "Thiago Santamaría"
+  pos = "FB"
+  idade = 23
+  ovr = 56
+  pot = 60
+  valor = 800000
+  partidas = 13
+  minutos = 1193
+  id_fonte = "1225290"
+
+  [[clubes.jogadores]]
+  nome = "Gastón González"
+  pos = "WG"
+  idade = 25
+  ovr = 55
+  pot = 59
+  valor = 900000
+  partidas = 2
+  minutos = 184
+  gols = 1
+  id_fonte = "689052"
+
+  [[clubes.jogadores]]
+  nome = "Julián Contrera"
+  pos = "WG"
+  idade = 23
+  ovr = 53
+  pot = 56
+  valor = 500000
+  partidas = 17
+  minutos = 1488
+  id_fonte = "978967"
+
+  [[clubes.jogadores]]
+  nome = "Gastón Arturia"
+  pos = "CB"
+  idade = 26
+  ovr = 52
+  pot = 54
+  valor = 200000
+  partidas = 6
+  minutos = 503
+  id_fonte = "971529"
+
+  [[clubes.jogadores]]
+  nome = "Juan Manuel Insaurralde"
+  pos = "CB"
+  idade = 41
+  ovr = 52
+  pot = 52
+  valor = 75000
+  partidas = 24
+  minutos = 2138
+  id_fonte = "65072"
+
+  [[clubes.jogadores]]
+  nome = "Pablo Magnin"
+  pos = "FW"
+  idade = 36
+  ovr = 52
+  pot = 52
+  valor = 100000
+  partidas = 4
+  minutos = 375
+  gols = 2
+  id_fonte = "144236"
+
+  [[clubes.jogadores]]
+  nome = "Yair Arismendi"
+  pos = "WG"
+  idade = 28
+  ovr = 51
+  pot = 51
+  valor = 175000
+  partidas = 7
+  minutos = 596
+  id_fonte = "440006"
+
+  [[clubes.jogadores]]
+  nome = "Diego Churín"
+  pos = "FW"
+  idade = 36
+  ovr = 50
+  pot = 50
+  valor = 75000
+  partidas = 10
+  minutos = 914
+  gols = 2
+  id_fonte = "68747"
+
+  [[clubes.jogadores]]
+  nome = "Juan Manuel Cabrera"
+  pos = "FB"
+  idade = 26
+  ovr = 50
+  pot = 52
+  valor = 150000
+  partidas = 4
+  minutos = 361
+  id_fonte = "1029002"
+
+  [[clubes.jogadores]]
+  nome = "Elián Giménez"
+  pos = "DM"
+  idade = 22
+  ovr = 47
+  pot = 56
+  valor = 400000
+  partidas = 3
+  minutos = 251
+  id_fonte = "1290521"
+
+  [[clubes.jogadores]]
+  nome = "Joel Godoy"
+  pos = "FB"
+  idade = 21
+  ovr = 46
+  pot = 58
+  valor = 600000
+  id_fonte = "1270723"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Seyral"
+  pos = "CB"
+  idade = 21
+  ovr = 44
+  pot = 52
+  valor = 150000
+  partidas = 9
+  minutos = 809
+  id_fonte = "1263525"
+
+  [[clubes.jogadores]]
+  nome = "Jhon Rentería"
+  pos = "WG"
+  idade = 20
+  ovr = 44
+  pot = 56
+  valor = 500000
+  partidas = 5
+  minutos = 467
+  id_fonte = "1289854"
+
+  [[clubes.jogadores]]
+  nome = "Ulises Giménez"
+  pos = "CB"
+  idade = 20
+  ovr = 41
+  pot = 54
+  valor = 225000
+  partidas = 2
+  minutos = 200
+  id_fonte = "1005802"
+
+  [[clubes.jogadores]]
+  nome = "Brandon Márquez"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 44
+  valor = 25000
+  partidas = 1
+  minutos = 55
+  id_fonte = "1270722"
+
+  [[clubes.jogadores]]
+  nome = "Jeremías Vallejos"
+  pos = "FB"
+  idade = 23
+  ovr = 40
+  pot = 46
+  valor = 50000
+  id_fonte = "1227611"
+
+  [[clubes.jogadores]]
+  nome = "Osmar Giménez"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 56
+  valor = 500000
+  id_fonte = "1226344"
+
+[[clubes]]
+nome = "Banfield"
+forca = 57.2
+valor_elenco = 12100000
+cores = ["#017828", "#FEFEFD"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Abraham"
+  pos = "FB"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 1500000
+  partidas = 28
+  minutos = 2543
+  id_fonte = "985269"
+
+  [[clubes.jogadores]]
+  nome = "Santiago López García"
+  pos = "AM"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 1800000
+  partidas = 28
+  minutos = 2562
+  gols = 2
+  id_fonte = "654813"
+
+  [[clubes.jogadores]]
+  nome = "Diego Rodríguez"
+  pos = "GK"
+  idade = 37
+  ovr = 59
+  pot = 59
+  valor = 200000
+  partidas = 5
+  minutos = 450
+  id_fonte = "90800"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Pais"
+  pos = "MF"
+  idade = 26
+  ovr = 59
+  pot = 60
+  valor = 800000
+  partidas = 16
+  minutos = 1444
+  id_fonte = "491702"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Meriano"
+  pos = "CB"
+  idade = 25
+  ovr = 59
+  pot = 60
+  valor = 700000
+  partidas = 22
+  minutos = 1968
+  id_fonte = "941511"
+
+  [[clubes.jogadores]]
+  nome = "Adrián Balboa"
+  pos = "FW"
+  idade = 32
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 3
+  minutos = 257
+  id_fonte = "252209"
+
+  [[clubes.jogadores]]
+  nome = "Neyder Moreno"
+  pos = "AM"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 450000
+  partidas = 3
+  minutos = 284
+  gols = 1
+  id_fonte = "571908"
+
+  [[clubes.jogadores]]
+  nome = "Gino Santilli"
+  pos = "GK"
+  idade = 24
+  ovr = 56
+  pot = 62
+  valor = 800000
+  partidas = 2
+  minutos = 180
+  id_fonte = "881009"
+
+  [[clubes.jogadores]]
+  nome = "Nehuén Paz"
+  pos = "CB"
+  idade = 33
+  ovr = 56
+  pot = 56
+  valor = 175000
+  id_fonte = "284724"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Ríos"
+  pos = "DM"
+  idade = 25
+  ovr = 54
+  pot = 57
+  valor = 450000
+  partidas = 3
+  minutos = 300
+  id_fonte = "878220"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Adoryán"
+  pos = "AM"
+  idade = 25
+  ovr = 53
+  pot = 55
+  valor = 350000
+  partidas = 15
+  minutos = 1365
+  gols = 2
+  id_fonte = "1115868"
+
+  [[clubes.jogadores]]
+  nome = "Juan Luis Alfaro"
+  pos = "FB"
+  idade = 26
+  ovr = 52
+  pot = 54
+  valor = 200000
+  partidas = 3
+  minutos = 270
+  id_fonte = "997374"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Gómez"
+  pos = "AM"
+  idade = 23
+  ovr = 52
+  pot = 56
+  valor = 400000
+  partidas = 14
+  minutos = 1296
+  gols = 5
+  id_fonte = "1232512"
+
+  [[clubes.jogadores]]
+  nome = "Renzo Malanca"
+  pos = "CB"
+  idade = 23
+  ovr = 52
+  pot = 59
+  valor = 650000
+  partidas = 2
+  minutos = 225
+  id_fonte = "746958"
+
+  [[clubes.jogadores]]
+  nome = "Alexander Machado"
+  pos = "FW"
+  idade = 24
+  ovr = 51
+  pot = 55
+  valor = 400000
+  partidas = 7
+  minutos = 634
+  gols = 2
+  id_fonte = "657755"
+
+  [[clubes.jogadores]]
+  nome = "David Zalazar"
+  pos = "WG"
+  idade = 24
+  ovr = 51
+  pot = 54
+  valor = 300000
+  partidas = 14
+  minutos = 1241
+  gols = 2
+  id_fonte = "983867"
+
+  [[clubes.jogadores]]
+  nome = "Federico Anselmo"
+  pos = "FW"
+  idade = 32
+  ovr = 51
+  pot = 51
+  valor = 100000
+  partidas = 2
+  minutos = 186
+  gols = 1
+  id_fonte = "343163"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Villegas"
+  pos = "MF"
+  idade = 22
+  ovr = 50
+  pot = 55
+  valor = 325000
+  partidas = 12
+  minutos = 1063
+  id_fonte = "883411"
+
+  [[clubes.jogadores]]
+  nome = "Thomas Rodríguez"
+  pos = "WG"
+  idade = 30
+  ovr = 50
+  pot = 50
+  valor = 100000
+  partidas = 3
+  minutos = 27
+  id_fonte = "402581"
+
+  [[clubes.jogadores]]
+  nome = "Favio Álvarez"
+  pos = "AM"
+  idade = 33
+  ovr = 49
+  pot = 49
+  valor = 50000
+  partidas = 3
+  minutos = 269
+  id_fonte = "280149"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Cano"
+  pos = "FB"
+  idade = 24
+  ovr = 49
+  pot = 55
+  valor = 250000
+  partidas = 2
+  minutos = 216
+  id_fonte = "677957"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Esquivel"
+  pos = "MF"
+  idade = 22
+  ovr = 49
+  pot = 55
+  valor = 350000
+  partidas = 11
+  minutos = 958
+  id_fonte = "1301391"
+
+  [[clubes.jogadores]]
+  nome = "Brandon Oviedo"
+  pos = "CB"
+  idade = 21
+  ovr = 48
+  pot = 56
+  valor = 300000
+  partidas = 10
+  minutos = 874
+  id_fonte = "1322606"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Daniele"
+  pos = "CB"
+  idade = 20
+  ovr = 46
+  pot = 54
+  valor = 225000
+  partidas = 11
+  minutos = 954
+  id_fonte = "1281969"
+
+  [[clubes.jogadores]]
+  nome = "Manuel Arteaga"
+  pos = "AM"
+  idade = 27
+  ovr = 45
+  pot = 46
+  valor = 44354
+  id_fonte = "850381"
+
+  [[clubes.jogadores]]
+  nome = "Lisandro Piñero"
+  pos = "WG"
+  idade = 19
+  ovr = 44
+  pot = 55
+  valor = 400000
+  partidas = 9
+  minutos = 808
+  id_fonte = "1301427"
+
+  [[clubes.jogadores]]
+  nome = "Federico Medina"
+  pos = "WG"
+  idade = 22
+  ovr = 43
+  pot = 52
+  valor = 200000
+  partidas = 4
+  minutos = 359
+  id_fonte = "1228198"
+
+  [[clubes.jogadores]]
+  nome = "Joaquín Molina"
+  pos = "GK"
+  idade = 22
+  ovr = 40
+  pot = 48
+  valor = 44354
+  id_fonte = "1301444"
+
+  [[clubes.jogadores]]
+  nome = "Juan Iribarren"
+  pos = "FB"
+  idade = 23
+  ovr = 40
+  pot = 47
+  valor = 50000
+  id_fonte = "1232511"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Palavecino"
+  pos = "MF"
+  idade = 22
+  ovr = 40
+  pot = 43
+  valor = 25000
+  partidas = 1
+  minutos = 83
+  id_fonte = "1073555"
+
+  [[clubes.jogadores]]
+  nome = "Matías Hernández"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 45
+  valor = 50000
+  partidas = 3
+  minutos = 270
+  gols = 1
+  id_fonte = "1029496"
+
+[[clubes]]
+nome = "Club Deportivo Riestra"
+forca = 56.8
+valor_elenco = 11190000
+cores = ["#FFFFFF", "#1C1A1C"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Arce"
+  pos = "GK"
+  idade = 34
+  ovr = 62
+  pot = 62
+  valor = 800000
+  partidas = 33
+  minutos = 2970
+  id_fonte = "131206"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Miño"
+  pos = "CB"
+  idade = 26
+  ovr = 58
+  pot = 58
+  valor = 900000
+  partidas = 26
+  minutos = 2367
+  id_fonte = "865442"
+
+  [[clubes.jogadores]]
+  nome = "Alexander Díaz"
+  pos = "FW"
+  idade = 26
+  ovr = 57
+  pot = 58
+  valor = 1200000
+  partidas = 17
+  minutos = 1491
+  gols = 3
+  id_fonte = "618986"
+
+  [[clubes.jogadores]]
+  nome = "Antony Alonso"
+  pos = "FW"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 1000000
+  partidas = 23
+  minutos = 2087
+  gols = 4
+  id_fonte = "844800"
+
+  [[clubes.jogadores]]
+  nome = "Cristian Paz"
+  pos = "CB"
+  idade = 31
+  ovr = 57
+  pot = 57
+  valor = 500000
+  partidas = 28
+  minutos = 2550
+  id_fonte = "357338"
+
+  [[clubes.jogadores]]
+  nome = "Pedro Ramírez"
+  pos = "FB"
+  idade = 26
+  ovr = 57
+  pot = 58
+  valor = 800000
+  partidas = 17
+  minutos = 1533
+  gols = 1
+  id_fonte = "832088"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Watson"
+  pos = "DM"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 600000
+  partidas = 20
+  minutos = 1773
+  id_fonte = "697045"
+
+  [[clubes.jogadores]]
+  nome = "Pablo Monje"
+  pos = "MF"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 600000
+  partidas = 22
+  minutos = 2000
+  id_fonte = "992605"
+
+  [[clubes.jogadores]]
+  nome = "Juan Randazzo"
+  pos = "CB"
+  idade = 31
+  ovr = 55
+  pot = 55
+  valor = 300000
+  partidas = 17
+  minutos = 1561
+  gols = 3
+  id_fonte = "283398"
+
+  [[clubes.jogadores]]
+  nome = "Mariano Bracamonte"
+  pos = "FB"
+  idade = 27
+  ovr = 55
+  pot = 55
+  valor = 500000
+  partidas = 18
+  minutos = 1607
+  gols = 1
+  id_fonte = "662756"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Sansotre"
+  pos = "FB"
+  idade = 33
+  ovr = 55
+  pot = 55
+  valor = 300000
+  partidas = 26
+  minutos = 2312
+  id_fonte = "441341"
+
+  [[clubes.jogadores]]
+  nome = "Yonatan Goitía"
+  pos = "DM"
+  idade = 32
+  ovr = 55
+  pot = 55
+  valor = 325000
+  partidas = 21
+  minutos = 1889
+  id_fonte = "553854"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Graneros"
+  pos = "FW"
+  idade = 30
+  ovr = 54
+  pot = 54
+  valor = 450000
+  partidas = 1
+  minutos = 100
+  id_fonte = "851121"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Benegas"
+  pos = "FW"
+  idade = 30
+  ovr = 54
+  pot = 54
+  valor = 450000
+  partidas = 12
+  minutos = 1110
+  gols = 2
+  id_fonte = "438926"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Gariglio"
+  pos = "CB"
+  idade = 28
+  ovr = 53
+  pot = 53
+  valor = 275000
+  partidas = 6
+  minutos = 554
+  id_fonte = "830848"
+
+  [[clubes.jogadores]]
+  nome = "Marino Arzamendia"
+  pos = "GK"
+  idade = 28
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 2
+  minutos = 180
+  id_fonte = "480417"
+
+  [[clubes.jogadores]]
+  nome = "Milton Céliz"
+  pos = "MF"
+  idade = 34
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 11
+  minutos = 966
+  gols = 1
+  id_fonte = "260652"
+
+  [[clubes.jogadores]]
+  nome = "Carlos Quintana"
+  pos = "CB"
+  idade = 38
+  ovr = 50
+  pot = 50
+  valor = 75000
+  partidas = 7
+  minutos = 620
+  id_fonte = "54596"
+
+  [[clubes.jogadores]]
+  nome = "Braian Sánchez"
+  pos = "AM"
+  idade = 33
+  ovr = 49
+  pot = 49
+  valor = 100000
+  partidas = 5
+  minutos = 465
+  gols = 1
+  id_fonte = "540163"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Obredor"
+  pos = "WG"
+  idade = 29
+  ovr = 49
+  pot = 49
+  valor = 175000
+  partidas = 11
+  minutos = 1025
+  id_fonte = "1118715"
+
+  [[clubes.jogadores]]
+  nome = "Rodrigo Gallo"
+  pos = "FB"
+  idade = 25
+  ovr = 49
+  pot = 52
+  valor = 250000
+  partidas = 8
+  minutos = 759
+  id_fonte = "852747"
+
+  [[clubes.jogadores]]
+  nome = "Eric Tovo"
+  pos = "CB"
+  idade = 34
+  ovr = 48
+  pot = 48
+  valor = 50000
+  partidas = 1
+  minutos = 61
+  id_fonte = "697418"
+
+  [[clubes.jogadores]]
+  nome = "Iván López"
+  pos = "GK"
+  idade = 30
+  ovr = 47
+  pot = 47
+  valor = 55000
+  partidas = 1
+  minutos = 90
+  id_fonte = "486236"
+
+  [[clubes.jogadores]]
+  nome = "Tomás González"
+  pos = "FW"
+  idade = 23
+  ovr = 47
+  pot = 53
+  valor = 500000
+  partidas = 6
+  minutos = 579
+  gols = 3
+  id_fonte = "989579"
+
+  [[clubes.jogadores]]
+  nome = "Ángel Almada"
+  pos = "WG"
+  idade = 26
+  ovr = 47
+  pot = 49
+  valor = 200000
+  partidas = 2
+  minutos = 45
+  id_fonte = "996005"
+
+  [[clubes.jogadores]]
+  nome = "Ángel Stringa"
+  pos = "WG"
+  idade = 30
+  ovr = 47
+  pot = 47
+  valor = 100000
+  partidas = 6
+  minutos = 534
+  gols = 2
+  id_fonte = "988734"
+
+  [[clubes.jogadores]]
+  nome = "Mauro Smarra"
+  pos = "AM"
+  idade = 27
+  ovr = 46
+  pot = 46
+  valor = 100000
+  partidas = 5
+  minutos = 414
+  id_fonte = "1169692"
+
+  [[clubes.jogadores]]
+  nome = "Yeison Murillo"
+  pos = "CB"
+  idade = 36
+  ovr = 45
+  pot = 45
+  valor = 25000
+  id_fonte = "439088"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Flores"
+  pos = "FW"
+  idade = 24
+  ovr = 44
+  pot = 49
+  valor = 200000
+  partidas = 4
+  minutos = 394
+  id_fonte = "900895"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Bravo"
+  pos = "AM"
+  idade = 36
+  ovr = 43
+  pot = 43
+  valor = 25000
+  id_fonte = "464349"
+
+  [[clubes.jogadores]]
+  nome = "Thiago Lauro"
+  pos = "AM"
+  idade = 21
+  ovr = 40
+  pot = 40
+  valor = 10000
+  partidas = 1
+  minutos = 45
+  id_fonte = "1246521"
+
+[[clubes]]
+nome = "Central Córdoba (SdE)"
+forca = 56.2
+valor_elenco = 9980000
+cores = ["#000000", "#FEFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Alejandro Maciel"
+  pos = "CB"
+  idade = 29
+  ovr = 59
+  pot = 59
+  valor = 900000
+  partidas = 25
+  minutos = 2250
+  gols = 1
+  id_fonte = "535033"
+
+  [[clubes.jogadores]]
+  nome = "Lucas González"
+  pos = "MF"
+  idade = 26
+  ovr = 59
+  pot = 59
+  valor = 1300000
+  partidas = 18
+  minutos = 1627
+  id_fonte = "688778"
+
+  [[clubes.jogadores]]
+  nome = "Matías Vera"
+  pos = "DM"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 700000
+  partidas = 24
+  minutos = 2177
+  gols = 1
+  id_fonte = "368801"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Mansilla"
+  pos = "CB"
+  idade = 27
+  ovr = 57
+  pot = 57
+  valor = 600000
+  partidas = 21
+  minutos = 1854
+  gols = 1
+  id_fonte = "833783"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Moyano"
+  pos = "FB"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 600000
+  partidas = 20
+  minutos = 1779
+  id_fonte = "568551"
+
+  [[clubes.jogadores]]
+  nome = "Alan Aguerre"
+  pos = "GK"
+  idade = 36
+  ovr = 56
+  pot = 56
+  valor = 175000
+  partidas = 24
+  minutos = 2119
+  id_fonte = "269784"
+
+  [[clubes.jogadores]]
+  nome = "Fernando Juárez"
+  pos = "MF"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 600000
+  partidas = 4
+  minutos = 343
+  id_fonte = "439627"
+
+  [[clubes.jogadores]]
+  nome = "Marco Iacobellis"
+  pos = "AM"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 700000
+  partidas = 13
+  minutos = 1146
+  gols = 2
+  id_fonte = "699886"
+
+  [[clubes.jogadores]]
+  nome = "Michael Santos"
+  pos = "FW"
+  idade = 33
+  ovr = 55
+  pot = 55
+  valor = 350000
+  partidas = 17
+  minutos = 1562
+  gols = 7
+  id_fonte = "178107"
+
+  [[clubes.jogadores]]
+  nome = "Diego Barrera"
+  pos = "WG"
+  idade = 22
+  ovr = 54
+  pot = 56
+  valor = 800000
+  partidas = 21
+  minutos = 1892
+  gols = 3
+  id_fonte = "1103406"
+
+  [[clubes.jogadores]]
+  nome = "Felipe Aguilar"
+  pos = "CB"
+  idade = 33
+  ovr = 54
+  pot = 54
+  valor = 200000
+  id_fonte = "260377"
+
+  [[clubes.jogadores]]
+  nome = "Fernando Martínez"
+  pos = "FB"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 400000
+  partidas = 17
+  minutos = 1495
+  gols = 1
+  id_fonte = "880025"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Sequeira"
+  pos = "WG"
+  idade = 31
+  ovr = 54
+  pot = 54
+  valor = 350000
+  partidas = 4
+  minutos = 329
+  gols = 1
+  id_fonte = "384761"
+
+  [[clubes.jogadores]]
+  nome = "Darío Cáceres"
+  pos = "FB"
+  idade = 28
+  ovr = 52
+  pot = 52
+  valor = 200000
+  partidas = 6
+  minutos = 518
+  id_fonte = "567663"
+
+  [[clubes.jogadores]]
+  nome = "Horacio Tijanovich"
+  pos = "WG"
+  idade = 30
+  ovr = 52
+  pot = 52
+  valor = 250000
+  partidas = 12
+  minutos = 1079
+  id_fonte = "380974"
+
+  [[clubes.jogadores]]
+  nome = "Ezequiel Naya"
+  pos = "FW"
+  idade = 25
+  ovr = 50
+  pot = 53
+  valor = 400000
+  partidas = 12
+  minutos = 1064
+  gols = 2
+  id_fonte = "909314"
+
+  [[clubes.jogadores]]
+  nome = "José Gómez"
+  pos = "FB"
+  idade = 26
+  ovr = 48
+  pot = 50
+  valor = 150000
+  partidas = 1
+  minutos = 113
+  id_fonte = "953947"
+
+  [[clubes.jogadores]]
+  nome = "Juan Pablo Pignani"
+  pos = "CB"
+  idade = 25
+  ovr = 47
+  pot = 49
+  valor = 125000
+  partidas = 8
+  minutos = 692
+  id_fonte = "984882"
+
+  [[clubes.jogadores]]
+  nome = "Tiago Cravero"
+  pos = "DM"
+  idade = 23
+  ovr = 47
+  pot = 52
+  valor = 250000
+  partidas = 10
+  minutos = 866
+  id_fonte = "891681"
+
+  [[clubes.jogadores]]
+  nome = "Yuri Casermeiro"
+  pos = "CB"
+  idade = 24
+  ovr = 46
+  pot = 51
+  valor = 175000
+  partidas = 7
+  minutos = 656
+  id_fonte = "1130336"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Varaldo"
+  pos = "FW"
+  idade = 24
+  ovr = 45
+  pot = 50
+  valor = 250000
+  partidas = 5
+  minutos = 437
+  id_fonte = "718206"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Marchi"
+  pos = "FB"
+  idade = 30
+  ovr = 43
+  pot = 43
+  valor = 25000
+  partidas = 5
+  minutos = 412
+  id_fonte = "642521"
+
+  [[clubes.jogadores]]
+  nome = "Juan Cardozo"
+  pos = "MF"
+  idade = 22
+  ovr = 42
+  pot = 50
+  valor = 200000
+  partidas = 6
+  minutos = 520
+  id_fonte = "912696"
+
+  [[clubes.jogadores]]
+  nome = "Javier Vallejos"
+  pos = "GK"
+  idade = 23
+  ovr = 41
+  pot = 48
+  valor = 75000
+  partidas = 3
+  minutos = 311
+  id_fonte = "1157296"
+
+  [[clubes.jogadores]]
+  nome = "Alan Daian Laprida"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 46
+  valor = 100000
+  partidas = 5
+  minutos = 413
+  id_fonte = "1322290"
+
+  [[clubes.jogadores]]
+  nome = "Joaquín Flores"
+  pos = "WG"
+  idade = 21
+  ovr = 40
+  pot = 43
+  valor = 50000
+  partidas = 2
+  minutos = 146
+  id_fonte = "1203752"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Bernabéu"
+  pos = "CB"
+  idade = 22
+  ovr = 40
+  pot = 42
+  valor = 27500
+  id_fonte = "1170351"
+
+  [[clubes.jogadores]]
+  nome = "Martín Cuitiño"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 43
+  valor = 50000
+  partidas = 1
+  minutos = 116
+  gols = 1
+  id_fonte = "1518691"
+
+[[clubes]]
+nome = "Aldosivi"
+forca = 56.2
+valor_elenco = 9980000
+cores = ["#009C4E", "#232021"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Andrés Vombergar"
+  pos = "FW"
+  idade = 31
+  ovr = 63
+  pot = 63
+  valor = 2000000
+  partidas = 7
+  minutos = 601
+  gols = 4
+  id_fonte = "486926"
+
+  [[clubes.jogadores]]
+  nome = "Braian Cufré"
+  pos = "FB"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 1000000
+  partidas = 3
+  minutos = 270
+  id_fonte = "401521"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Acosta"
+  pos = "GK"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 600000
+  partidas = 8
+  minutos = 720
+  id_fonte = "296799"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Zalazar"
+  pos = "CB"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 800000
+  partidas = 20
+  minutos = 1814
+  id_fonte = "471640"
+
+  [[clubes.jogadores]]
+  nome = "Ignacio Chicco"
+  pos = "GK"
+  idade = 30
+  ovr = 56
+  pot = 56
+  valor = 250000
+  partidas = 6
+  minutos = 540
+  id_fonte = "503329"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Linares"
+  pos = "DM"
+  idade = 30
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 2
+  minutos = 170
+  id_fonte = "534616"
+
+  [[clubes.jogadores]]
+  nome = "Néstor Breitenbruch"
+  pos = "CB"
+  idade = 31
+  ovr = 55
+  pot = 55
+  valor = 250000
+  partidas = 10
+  minutos = 925
+  id_fonte = "334056"
+
+  [[clubes.jogadores]]
+  nome = "Joaquín Pombo"
+  pos = "CB"
+  idade = 25
+  ovr = 54
+  pot = 56
+  valor = 450000
+  partidas = 12
+  minutos = 1035
+  gols = 1
+  id_fonte = "849258"
+
+  [[clubes.jogadores]]
+  nome = "Rodrigo González"
+  pos = "FB"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 375000
+  partidas = 16
+  minutos = 1465
+  id_fonte = "659589"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Rodríguez"
+  pos = "FB"
+  idade = 32
+  ovr = 53
+  pot = 53
+  valor = 175000
+  partidas = 8
+  minutos = 722
+  id_fonte = "171593"
+
+  [[clubes.jogadores]]
+  nome = "Tomás Fernández"
+  pos = "WG"
+  idade = 28
+  ovr = 53
+  pot = 53
+  valor = 325000
+  partidas = 12
+  minutos = 1037
+  gols = 6
+  id_fonte = "613364"
+
+  [[clubes.jogadores]]
+  nome = "Federico Gino"
+  pos = "MF"
+  idade = 33
+  ovr = 52
+  pot = 52
+  valor = 150000
+  partidas = 12
+  minutos = 1053
+  gols = 2
+  id_fonte = "273130"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Castro"
+  pos = "AM"
+  idade = 37
+  ovr = 52
+  pot = 52
+  valor = 125000
+  partidas = 10
+  minutos = 905
+  gols = 1
+  id_fonte = "105892"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Cordero"
+  pos = "FW"
+  idade = 27
+  ovr = 52
+  pot = 52
+  valor = 300000
+  partidas = 16
+  minutos = 1414
+  gols = 3
+  id_fonte = "652948"
+
+  [[clubes.jogadores]]
+  nome = "Sebastián Moyano"
+  pos = "GK"
+  idade = 36
+  ovr = 52
+  pot = 52
+  valor = 75000
+  id_fonte = "148789"
+
+  [[clubes.jogadores]]
+  nome = "Elías López"
+  pos = "FB"
+  idade = 26
+  ovr = 51
+  pot = 52
+  valor = 225000
+  partidas = 6
+  minutos = 576
+  id_fonte = "491691"
+
+  [[clubes.jogadores]]
+  nome = "Alan Sosa"
+  pos = "WG"
+  idade = 23
+  ovr = 49
+  pot = 54
+  valor = 450000
+  partidas = 12
+  minutos = 1105
+  gols = 2
+  id_fonte = "1103941"
+
+  [[clubes.jogadores]]
+  nome = "Leonardo Sigali"
+  pos = "CB"
+  idade = 39
+  ovr = 49
+  pot = 49
+  valor = 50000
+  partidas = 3
+  minutos = 290
+  id_fonte = "54570"
+
+  [[clubes.jogadores]]
+  nome = "Matías Godoy"
+  pos = "WG"
+  idade = 24
+  ovr = 49
+  pot = 54
+  valor = 450000
+  partidas = 6
+  minutos = 580
+  id_fonte = "582168"
+
+  [[clubes.jogadores]]
+  nome = "Natanael Guzmán"
+  pos = "WG"
+  idade = 27
+  ovr = 49
+  pot = 49
+  valor = 175000
+  partidas = 6
+  minutos = 514
+  id_fonte = "741105"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Moya"
+  pos = "CB"
+  idade = 23
+  ovr = 49
+  pot = 54
+  valor = 300000
+  partidas = 12
+  minutos = 1049
+  gols = 1
+  id_fonte = "885621"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Palavecino"
+  pos = "WG"
+  idade = 23
+  ovr = 47
+  pot = 51
+  valor = 250000
+  partidas = 13
+  minutos = 1206
+  id_fonte = "943969"
+
+  [[clubes.jogadores]]
+  nome = "Francisco Perruzzi"
+  pos = "MF"
+  idade = 25
+  ovr = 47
+  pot = 51
+  valor = 200000
+  partidas = 2
+  minutos = 149
+  id_fonte = "963139"
+
+  [[clubes.jogadores]]
+  nome = "Nico Gaitán"
+  pos = "AM"
+  idade = 38
+  ovr = 47
+  pot = 47
+  valor = 50000
+  partidas = 6
+  minutos = 543
+  gols = 1
+  id_fonte = "75442"
+
+  [[clubes.jogadores]]
+  nome = "Andrés Chávez"
+  pos = "FW"
+  idade = 35
+  ovr = 46
+  pot = 46
+  valor = 50000
+  partidas = 2
+  minutos = 170
+  id_fonte = "193768"
+
+  [[clubes.jogadores]]
+  nome = "Roberto Bochi"
+  pos = "DM"
+  idade = 39
+  ovr = 45
+  pot = 45
+  valor = 25000
+  partidas = 8
+  minutos = 675
+  id_fonte = "267387"
+
+  [[clubes.jogadores]]
+  nome = "Martín García"
+  pos = "MF"
+  idade = 21
+  ovr = 42
+  pot = 49
+  valor = 150000
+  partidas = 12
+  minutos = 1066
+  id_fonte = "1282681"
+
+  [[clubes.jogadores]]
+  nome = "Bautista Dadín"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 50
+  valor = 250000
+  partidas = 3
+  minutos = 282
+  id_fonte = "1000691"
+
+  [[clubes.jogadores]]
+  nome = "Federico Laurelli"
+  pos = "CB"
+  idade = 22
+  ovr = 40
+  pot = 41
+  valor = 25000
+  partidas = 4
+  minutos = 331
+  id_fonte = "1059224"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Chávez"
+  pos = "AM"
+  idade = 25
+  ovr = 40
+  pot = 43
+  valor = 50000
+  id_fonte = "566712"
+
+[[clubes]]
+nome = "AA Estudiantes (Río Cuarto)"
+forca = 54.7
+valor_elenco = 7600000
+cores = ["#008CD2", "#1E2123"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Bruera"
+  pos = "GK"
+  idade = 28
+  ovr = 62
+  pot = 62
+  valor = 900000
+  partidas = 9
+  minutos = 810
+  id_fonte = "469761"
+
+  [[clubes.jogadores]]
+  nome = "Alejandro Cabrera"
+  pos = "DM"
+  idade = 33
+  ovr = 56
+  pot = 56
+  valor = 250000
+  partidas = 13
+  minutos = 1162
+  id_fonte = "671895"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Alanís"
+  pos = "AM"
+  idade = 32
+  ovr = 56
+  pot = 56
+  valor = 350000
+  partidas = 18
+  minutos = 1592
+  gols = 2
+  id_fonte = "342149"
+
+  [[clubes.jogadores]]
+  nome = "Siro Rosané"
+  pos = "DM"
+  idade = 26
+  ovr = 56
+  pot = 57
+  valor = 600000
+  partidas = 11
+  minutos = 987
+  id_fonte = "836253"
+
+  [[clubes.jogadores]]
+  nome = "Mateo Bajamich"
+  pos = "FW"
+  idade = 27
+  ovr = 55
+  pot = 56
+  valor = 600000
+  partidas = 11
+  minutos = 988
+  gols = 1
+  id_fonte = "610228"
+
+  [[clubes.jogadores]]
+  nome = "Tomás González"
+  pos = "AM"
+  idade = 27
+  ovr = 55
+  pot = 55
+  valor = 450000
+  partidas = 21
+  minutos = 1851
+  id_fonte = "1117221"
+
+  [[clubes.jogadores]]
+  nome = "Facundo Cobos"
+  pos = "FB"
+  idade = 33
+  ovr = 54
+  pot = 54
+  valor = 150000
+  partidas = 8
+  minutos = 764
+  gols = 1
+  id_fonte = "440146"
+
+  [[clubes.jogadores]]
+  nome = "Francisco Romero"
+  pos = "MF"
+  idade = 27
+  ovr = 54
+  pot = 54
+  valor = 350000
+  partidas = 13
+  minutos = 1163
+  id_fonte = "426533"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo Maffini"
+  pos = "CB"
+  idade = 33
+  ovr = 54
+  pot = 54
+  valor = 150000
+  partidas = 21
+  minutos = 1890
+  id_fonte = "844242"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Talpone"
+  pos = "AM"
+  idade = 30
+  ovr = 54
+  pot = 54
+  valor = 275000
+  partidas = 13
+  minutos = 1133
+  id_fonte = "440865"
+
+  [[clubes.jogadores]]
+  nome = "Juan Antonini"
+  pos = "CB"
+  idade = 27
+  ovr = 53
+  pot = 54
+  valor = 250000
+  partidas = 14
+  minutos = 1223
+  id_fonte = "667375"
+
+  [[clubes.jogadores]]
+  nome = "Martín Garnerone"
+  pos = "FW"
+  idade = 27
+  ovr = 53
+  pot = 53
+  valor = 350000
+  partidas = 11
+  minutos = 1004
+  gols = 2
+  id_fonte = "724219"
+
+  [[clubes.jogadores]]
+  nome = "Matías Ruiz Díaz"
+  pos = "FB"
+  idade = 30
+  ovr = 53
+  pot = 53
+  valor = 175000
+  partidas = 3
+  minutos = 270
+  id_fonte = "535029"
+
+  [[clubes.jogadores]]
+  nome = "Raúl Lozano"
+  pos = "FB"
+  idade = 29
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 7
+  minutos = 630
+  id_fonte = "613093"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Lastra"
+  pos = "GK"
+  idade = 25
+  ovr = 52
+  pot = 54
+  valor = 200000
+  partidas = 13
+  minutos = 1170
+  id_fonte = "911960"
+
+  [[clubes.jogadores]]
+  nome = "Lucas González"
+  pos = "FW"
+  idade = 29
+  ovr = 51
+  pot = 51
+  valor = 200000
+  partidas = 1
+  minutos = 99
+  id_fonte = "660198"
+
+  [[clubes.jogadores]]
+  nome = "Yeison Moreno"
+  pos = "FW"
+  idade = 29
+  ovr = 51
+  pot = 51
+  valor = 200000
+  partidas = 3
+  minutos = 307
+  id_fonte = "655431"
+
+  [[clubes.jogadores]]
+  nome = "Juan Garro"
+  pos = "WG"
+  idade = 33
+  ovr = 50
+  pot = 50
+  valor = 100000
+  partidas = 2
+  minutos = 197
+  id_fonte = "174042"
+
+  [[clubes.jogadores]]
+  nome = "Matías Valenti"
+  pos = "CB"
+  idade = 24
+  ovr = 50
+  pot = 52
+  valor = 200000
+  partidas = 18
+  minutos = 1580
+  id_fonte = "1214798"
+
+  [[clubes.jogadores]]
+  nome = "Agustín Quiroga"
+  pos = "CB"
+  idade = 24
+  ovr = 49
+  pot = 54
+  valor = 300000
+  partidas = 4
+  minutos = 360
+  id_fonte = "1126191"
+
+  [[clubes.jogadores]]
+  nome = "Gonzalo González"
+  pos = "FB"
+  idade = 23
+  ovr = 49
+  pot = 54
+  valor = 325000
+  partidas = 9
+  minutos = 774
+  id_fonte = "1029299"
+
+  [[clubes.jogadores]]
+  nome = "Ibrahim Hesar"
+  pos = "WG"
+  idade = 32
+  ovr = 49
+  pot = 49
+  valor = 100000
+  partidas = 6
+  minutos = 565
+  gols = 1
+  id_fonte = "695346"
+
+  [[clubes.jogadores]]
+  nome = "Mauro Valiente"
+  pos = "WG"
+  idade = 26
+  ovr = 49
+  pot = 50
+  valor = 175000
+  partidas = 12
+  minutos = 1097
+  gols = 1
+  id_fonte = "621403"
+
+  [[clubes.jogadores]]
+  nome = "Sergio Ojeda"
+  pos = "CB"
+  idade = 34
+  ovr = 49
+  pot = 49
+  valor = 50000
+  partidas = 14
+  minutos = 1294
+  gols = 1
+  id_fonte = "261240"
+
+  [[clubes.jogadores]]
+  nome = "Javier Ferreira"
+  pos = "FW"
+  idade = 34
+  ovr = 47
+  pot = 47
+  valor = 50000
+  partidas = 7
+  minutos = 620
+  id_fonte = "635107"
+
+  [[clubes.jogadores]]
+  nome = "Fernando Rodríguez"
+  pos = "FB"
+  idade = 25
+  ovr = 44
+  pot = 47
+  valor = 75000
+  partidas = 6
+  minutos = 510
+  id_fonte = "951909"
+
+  [[clubes.jogadores]]
+  nome = "Ramón Ábila"
+  pos = "FW"
+  idade = 36
+  ovr = 43
+  pot = 43
+  valor = 25000
+  partidas = 2
+  minutos = 191
+  id_fonte = "88049"
+
+  [[clubes.jogadores]]
+  nome = "Juan Chala"
+  pos = "WG"
+  idade = 22
+  ovr = 42
+  pot = 52
+  valor = 300000
+  partidas = 2
+  minutos = 30
+  id_fonte = "1289809"
+
+  [[clubes.jogadores]]
+  nome = "Valentín Fenoglio"
+  pos = "FB"
+  idade = 22
+  ovr = 42
+  pot = 52
+  valor = 200000
+  id_fonte = "1145392"
+
+  [[clubes.jogadores]]
+  nome = "Francesco Lo Celso"
+  pos = "AM"
+  idade = 26
+  ovr = 40
+  pot = 40
+  valor = 25000
+  partidas = 1
+  minutos = 90
+  id_fonte = "642757"
+
+  [[clubes.jogadores]]
+  nome = "Francisco Gualtieri"
+  pos = "GK"
+  idade = 23
+  ovr = 40
+  pot = 43
+  valor = 27500
+  id_fonte = "1015898"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Baños"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 42
+  valor = 27500
+  id_fonte = "1230924"
+
+  [[clubes.jogadores]]
+  nome = "Mauro Molina"
+  pos = "FW"
+  idade = 27
+  ovr = 40
+  pot = 40
+  valor = 25000
+  id_fonte = "556050"
+

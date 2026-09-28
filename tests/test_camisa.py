@@ -163,7 +163,9 @@ def test_as_cores_de_um_pais_nao_vazam_para_outro():
     # procurados pelo nome em qualquer divisao, e so o escopo das cores nao bastava
     assert "Athletic-MG" in brasileiras
     assert "Athletic Club" not in brasileiras
-    assert "Athletic Club" not in espanholas
+    # desde 28/09/2026 a Espanha tem cores (geradas): o Athletic dela e o Bilbao, vermelho
+    # e branco -- nunca o preto e amarelo do Athletic-MG
+    assert espanholas["Athletic Club"]["primaria"] != brasileiras["Athletic-MG"]["primaria"]
 
 
 def test_reaplicar_cores_nao_toca_nos_jogadores(tmp_path):

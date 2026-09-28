@@ -91,7 +91,9 @@ def test_o_mundo_nao_derrete_em_vinte_temporadas(vinte_temporadas):
     assert abs(deriva) < 0.25, (
         f"o nivel do mundo deriva {deriva:+.2f} pontos por temporada: "
         f"{st.mean(inicio):.1f} -> {st.mean(fim):.1f}")
-    assert 78 <= max(fim) <= 88, f"melhor onze do Brasil em {max(fim):.1f}"
+    # 74, nao 78: desde 28/09/2026 o mundo importado tem a Europa inteira, e a escala e
+    # global -- o melhor do Brasil comeca perto de 77 porque a Premier League esta na regua
+    assert 74 <= max(fim) <= 88, f"melhor onze do Brasil em {max(fim):.1f}"
 
 
 def test_a_liga_nao_achata_nem_explode(vinte_em_qualquer_piramide):

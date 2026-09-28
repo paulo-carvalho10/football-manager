@@ -1,0 +1,37 @@
+# Liga Profesional (ARG), clubes e jogadores reais. Criada em 28/09/2026 para a versao completa.
+# TURNO UNICO de 29 rodadas. O formato real (Apertura e Clausura em duas zonas com mata-mata) nao existe no motor; turno unico e o mais proximo que cabe numa temporada. Pouco gol, muito empate, mando forte.
+id     = "arg_1_real"
+nome   = "Liga Profesional"
+pais   = "ARG"
+tier   = 1
+codigo = "ARG1"   # competicao na fonte
+clubes = 30
+
+pack        = "argentina_primera"
+pack_offset = 0
+
+[estilo]
+gols_base = 1.05
+mando     = 0.28
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 1 } ]
+acesso = { sobem = 0, descem = 2 }
+
+# Faixas escritas de memoria, ordem de grandeza -- como as da Serie B. Re-derivar com as
+# tabelas reais antes de tratar como fonte.
+[alvos]
+zero_a_zero_pct           = [9.5, 14.5]
+gols_por_jogo             = [1.95, 2.40]
+empate_pct                = [27.0, 36.0]
+vitoria_casa_pct          = [41.0, 49.0]
+vitoria_fora_pct          = [19.0, 27.0]
+margem_3_ou_mais_pct      = [5.5, 11.0]
+margem_4_ou_mais_pct      = [1.5, 4.0]
+cinco_ou_mais_gols_pct    = [3.0, 8.0]
+pontos_do_campeao         = [50.0, 66.0]
+pontos_do_lanterna        = [12.0, 26.0]
+melhor_elenco_campeao_pct = [10.0, 45.0]
+
+# O nivel desta liga em relacao as outras NAO esta aqui: ele sai de
+# fm.ratings.forca_mundial, pelo valor de elenco de todas as competicoes importadas juntas.

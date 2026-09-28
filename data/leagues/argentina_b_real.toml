@@ -1,0 +1,37 @@
+# Primera Nacional (ARG), clubes e jogadores reais. Criada em 28/09/2026 para a versao completa.
+# TURNO UNICO de 35 rodadas: na vida real sao duas zonas de 18 com final. A liga mais travada do mundo importado.
+id     = "arg_2_real"
+nome   = "Primera Nacional"
+pais   = "ARG"
+tier   = 2
+codigo = "ARG2"   # competicao na fonte
+clubes = 36
+
+pack        = "argentina_nacional"
+pack_offset = 0
+
+[estilo]
+gols_base = 0.98
+mando     = 0.32
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 1 } ]
+acesso = { sobem = 2, descem = 0 }
+
+# Faixas escritas de memoria, ordem de grandeza -- como as da Serie B. Re-derivar com as
+# tabelas reais antes de tratar como fonte.
+[alvos]
+zero_a_zero_pct           = [11.0, 16.0]
+gols_por_jogo             = [1.75, 2.25]
+empate_pct                = [29.0, 38.0]
+vitoria_casa_pct          = [41.0, 50.0]
+vitoria_fora_pct          = [17.0, 25.0]
+margem_3_ou_mais_pct      = [4.5, 9.5]
+margem_4_ou_mais_pct      = [1.0, 3.5]
+cinco_ou_mais_gols_pct    = [2.0, 6.5]
+pontos_do_campeao         = [58.0, 76.0]
+pontos_do_lanterna        = [16.0, 32.0]
+melhor_elenco_campeao_pct = [8.0, 40.0]
+
+# O nivel desta liga em relacao as outras NAO esta aqui: ele sai de
+# fm.ratings.forca_mundial, pelo valor de elenco de todas as competicoes importadas juntas.

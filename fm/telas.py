@@ -13,26 +13,26 @@ from fm.config import load_league
 VERSAO = "0.11"
 
 # ------------------------------------------------------------------ catalogo de ligas
-# A versao base traz Brasil e Espanha; o resto aparece bloqueado. As ligas bloqueadas
-# NAO existem no motor ainda -- nao ha pack delas. O cadeado e a vitrine da versao
-# completa, e o texto nao promete data.
+# As oito ligas nacionais estao liberadas desde 28/09/2026 (decisao do Paulo: o cadeado da
+# versao completa volta quando existir a versao paga de verdade). O campo `livre` continua
+# aqui para isso.
 NACIONAIS = [
     {"pais": "BRA", "nome": "Brasil", "cores": ["#009c3b", "#ffdf00"], "livre": True,
      "ligas": [("brasil_real", "Série A"), ("brasil_b_real", "Série B")]},
     {"pais": "ESP", "nome": "Espanha", "cores": ["#aa151b", "#f1bf00"], "livre": True,
      "ligas": [("espanha_real", "LaLiga"), ("espanha_b_real", "LaLiga 2")]},
-    {"pais": "ENG", "nome": "Inglaterra", "cores": ["#ffffff", "#cf142b"], "livre": False,
-     "ligas": [(None, "Premier League"), (None, "Championship")]},
-    {"pais": "ITA", "nome": "Itália", "cores": ["#009246", "#ce2b37"], "livre": False,
-     "ligas": [(None, "Serie A"), (None, "Serie B")]},
-    {"pais": "GER", "nome": "Alemanha", "cores": ["#000000", "#dd0000"], "livre": False,
-     "ligas": [(None, "Bundesliga"), (None, "2. Bundesliga")]},
-    {"pais": "FRA", "nome": "França", "cores": ["#0055a4", "#ef4135"], "livre": False,
-     "ligas": [(None, "Ligue 1"), (None, "Ligue 2")]},
-    {"pais": "POR", "nome": "Portugal", "cores": ["#006600", "#ff0000"], "livre": False,
-     "ligas": [(None, "Liga Portugal"), (None, "Liga Portugal 2")]},
-    {"pais": "ARG", "nome": "Argentina", "cores": ["#75aadb", "#ffffff"], "livre": False,
-     "ligas": [(None, "Liga Profesional"), (None, "Primera Nacional")]},
+    {"pais": "ENG", "nome": "Inglaterra", "cores": ["#ffffff", "#cf142b"], "livre": True,
+     "ligas": [("inglaterra_real", "Premier League"), ("inglaterra_b_real", "Championship")]},
+    {"pais": "ITA", "nome": "Itália", "cores": ["#009246", "#ce2b37"], "livre": True,
+     "ligas": [("italia_real", "Serie A"), ("italia_b_real", "Serie B")]},
+    {"pais": "GER", "nome": "Alemanha", "cores": ["#000000", "#dd0000"], "livre": True,
+     "ligas": [("alemanha_real", "Bundesliga"), ("alemanha_b_real", "2. Bundesliga")]},
+    {"pais": "FRA", "nome": "França", "cores": ["#0055a4", "#ef4135"], "livre": True,
+     "ligas": [("franca_real", "Ligue 1"), ("franca_b_real", "Ligue 2")]},
+    {"pais": "POR", "nome": "Portugal", "cores": ["#006600", "#ff0000"], "livre": True,
+     "ligas": [("portugal_real", "Liga Portugal"), ("portugal_b_real", "Liga Portugal 2")]},
+    {"pais": "ARG", "nome": "Argentina", "cores": ["#75aadb", "#ffffff"], "livre": True,
+     "ligas": [("argentina_real", "Liga Profesional"), ("argentina_b_real", "Primera Nacional")]},
 ]
 # Estaduais nao existem no motor. Nao sao "premium": sao trabalho por fazer.
 ESTADUAIS = ["Paulista", "Carioca", "Mineiro", "Gaúcho", "Paranaense", "Baiano",
@@ -40,6 +40,12 @@ ESTADUAIS = ["Paulista", "Carioca", "Mineiro", "Gaúcho", "Paranaense", "Baiano"
 COPAS_POR_PAIS = {
     "BRA": ["Copa do Brasil", "Copa Libertadores", "Copa Sul-Americana"],
     "ESP": ["Liga dos Campeões", "Liga Europa"],
+    "ENG": ["Liga dos Campeões", "Liga Europa"],
+    "ITA": ["Liga dos Campeões", "Liga Europa"],
+    "GER": ["Liga dos Campeões", "Liga Europa"],
+    "FRA": ["Liga dos Campeões", "Liga Europa"],
+    "POR": ["Liga dos Campeões", "Liga Europa"],
+    "ARG": ["Copa Libertadores", "Copa Sul-Americana"],
 }
 
 
