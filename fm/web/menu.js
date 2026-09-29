@@ -81,8 +81,6 @@ function janelaDeConfiguracoes() {
       ${seg("perguntarPenalti", [[true, "Sim"], [false, "Não, usar a ordem"]])}</label>
     <label class="campo"><span>Pausar em expulsão</span>
       ${seg("pausarNaExpulsao", [[true, "Sim"], [false, "Não"]])}</label>
-    <label class="campo"><span>Cartões amarelos na central da rodada</span>
-      ${seg("mostrarAmarelos", [[true, "Mostrar"], [false, "Esconder"]])}</label>
     <p class="nota-honesta">As preferências ficam neste navegador; não entram no save da carreira.</p>
   </div>`;
   const p = abrirJanela({titulo: "Configurações", corpo, estreita: true,

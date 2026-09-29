@@ -752,8 +752,11 @@ input:focus, select:focus { border-color: var(--ouro); }
 .aviso { border: 1px solid #7a2a1f; background: rgba(236,90,68,.12); border-radius: var(--raio); padding: .8rem 1rem; margin-bottom: 1rem; }
 .aviso b { color: var(--ruim); display: block; margin-bottom: .2rem; }
 .nota-honesta { font-size: .74rem; color: var(--texto-3); border-left: 2px solid var(--linha-2); padding-left: .6rem; margin-top: .6rem; line-height: 1.45; }
-.toast {
+#toasts {
   position: fixed; bottom: 3rem; left: 50%; transform: translateX(-50%); z-index: 40;
+  display: flex; flex-direction: column; align-items: center; gap: .4rem; pointer-events: none;
+}
+.toast {
   background: var(--preto); border: 1px solid var(--ouro-2); color: var(--texto);
   padding: .7rem 1.2rem; border-radius: var(--raio); box-shadow: var(--sombra); font-size: .9rem;
   animation: entra .2s ease-out;
@@ -842,12 +845,6 @@ input:focus, select:focus { border-color: var(--ouro); }
 .jogo-c .t.casa { justify-content: flex-end; }
 .jogo-c .linha b { text-align: center; font-family: var(--fonte-numero); background: var(--preto); border-radius: 4px; padding: .1em 0; }
 .jogo-c.pisca .linha b { background: var(--ouro); color: #1b1503; }
-.lances-c { display: grid; gap: .1rem; margin-top: .25rem; font-size: .7rem; color: var(--texto-2); }
-.lances-c .l { display: flex; align-items: center; gap: .3rem; }
-.lances-c .l.casa { flex-direction: row-reverse; justify-content: flex-start; padding-right: calc(50% + 1.8rem); }
-.lances-c .l.fora { padding-left: calc(50% + 1.8rem); }
-.lances-c .m { font-family: var(--fonte-numero); color: var(--texto); }
-.lances-c .cartao { width: .5rem; height: .7rem; }
 
 .escolha-penalti tr:has(input:checked) { background: var(--ouro-fundo); }
 .escolha-penalti label { cursor: pointer; }

@@ -495,20 +495,14 @@ function novidadesDaRodada() {
 function centralDaRodada() {
   const s = VIVO.s;
   const [gc, gf] = $("#v-gols").textContent.split("×").map((x) => +x);
-  const amarelos = config().mostrarAmarelos;
-  const ic = {gol: "⚽", vermelho: '<span class="cartao vm"></span>', amarelo: '<span class="cartao am"></span>', substituicao: "⇅",
-              lesao: '<span class="ic-lesao">✚</span>'};
-  const lance = (l) => `<div class="l ${l.lado}"><span class="m">${l.minuto}'</span>${ic[l.tipo]}
-    <span>${escapar(l.tipo === "substituicao" ? `${l.entra} ▸ ${l.nome}` : l.nome)}</span></div>`;
   const agora = Date.now();
+  // so os placares: quem marcou aparece no aviso que sobe na hora do gol
   const jogo = (j, meu) => {
-    const vis = j.lances.filter((l) => l.tipo !== "amarelo" || amarelos);
     const piscando = (VIVO.flash[`${j.casa.id}:${j.fora.id}`] || 0) > agora;
     return `<div class="jogo-c ${meu ? "meu" : ""} ${piscando ? "pisca" : ""}">
       <div class="linha"><span class="t casa"><span class="nm">${escapar(j.casa.nome)}</span>${escudo(j.casa, "1.2rem")}</span>
         <b>${j.gols_casa} - ${j.gols_fora}</b>
-        <span class="t">${escudo(j.fora, "1.2rem")}<span class="nm">${escapar(j.fora.nome)}</span></span></div>
-      ${vis.length ? `<div class="lances-c">${vis.map(lance).join("")}</div>` : ""}</div>`;
+        <span class="t">${escudo(j.fora, "1.2rem")}<span class="nm">${escapar(j.fora.nome)}</span></span></div></div>`;
   };
   const minha = {casa: s.casa, fora: s.fora, gols_casa: gc, gols_fora: gf, lances: []};
   const outros = jogosDaRodada();

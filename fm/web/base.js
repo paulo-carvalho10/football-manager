@@ -274,10 +274,17 @@ function fecharJanela() {
 }
 
 function avisar(texto, ms = 2600) {
+  // numa pilha: dois gols no mesmo minuto em campos diferentes nao saem um sobre o outro
+  let pilha = document.getElementById("toasts");
+  if (!pilha) {
+    pilha = document.createElement("div");
+    pilha.id = "toasts";
+    document.body.appendChild(pilha);
+  }
   const t = document.createElement("div");
   t.className = "toast";
   t.textContent = texto;
-  document.body.appendChild(t);
+  pilha.appendChild(t);
   setTimeout(() => t.remove(), ms);
 }
 
@@ -311,7 +318,7 @@ document.addEventListener("keydown", (ev) => {
  * carreira. */
 
 const CONFIG_PADRAO = {velocidade: "1x", pausarNoGol: true, pausarNoIntervalo: true,
-                       perguntarPenalti: true, pausarNaExpulsao: true, mostrarAmarelos: false};
+                       perguntarPenalti: true, pausarNaExpulsao: true};
 // as velocidades antigas (lenta/normal/rapida/turbo) viram as novas
 const VELOCIDADE_ANTIGA = {lenta: "1x", normal: "1x", rapida: "2x", turbo: "4x"};
 function config() {
