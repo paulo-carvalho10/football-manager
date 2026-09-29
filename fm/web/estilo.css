@@ -525,7 +525,7 @@ input:focus, select:focus { border-color: var(--ouro); }
 .t-calendario { grid-template-columns: minmax(0, 1fr) 21rem; gap: .8rem; }
 .t-financas { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .8rem; }
 .t-mensagens { grid-template-columns: 25rem minmax(0, 1fr); gap: .8rem; }
-.t-treinador { grid-template-columns: 22rem minmax(0, 1fr); gap: .8rem; }
+.t-treinador { grid-template-columns: 20rem minmax(0, 1.2fr) minmax(0, 1fr); gap: .8rem; }
 .t-destaques { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: .8rem; }
 .coluna { display: flex; flex-direction: column; gap: .8rem; min-height: 0; min-width: 0; }
 .coluna > .painel { flex: 1 1 auto; }
@@ -880,3 +880,19 @@ input:focus, select:focus { border-color: var(--ouro); }
 .lado-c.caiu { opacity: .45; }
 .jogos-c { font-size: .66rem; color: var(--texto-3); text-align: right; border-top: 1px solid rgba(33,80,58,.45); margin-top: .15rem; padding-top: .1rem; }
 .poupados { font-size: .7rem; }
+
+/* premiacoes e convites */
+.bola-de-ouro h3 { color: var(--ouro); letter-spacing: .08em; text-transform: uppercase; font-size: .82rem; margin: 0 0 .5rem; }
+.podio { display: grid; grid-template-columns: 1fr 1.15fr 1fr; gap: .5rem; align-items: end; margin-bottom: .6rem; }
+.degrau { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .15rem;
+  border: 1px solid var(--linha); border-radius: 8px; padding: .55rem .4rem; background: rgba(0,0,0,.25); }
+.degrau.d1 { order: 2; border-color: var(--ouro-2); background: var(--ouro-fundo); padding: .9rem .4rem; }
+.degrau.d2 { order: 1; }
+.degrau.d3 { order: 3; }
+.degrau.meu b { color: var(--ouro); }
+.degrau .medalha { font-size: 1.5rem; }
+.selecao-do-ano { font-size: .76rem; margin-top: .35rem; line-height: 1.5; }
+.selecao-do-ano .meu { color: var(--ouro); font-weight: 700; }
+.convites { display: grid; gap: .5rem; }
+.convite { display: flex; align-items: center; gap: .8rem; border: 1px solid var(--linha); border-radius: 8px; padding: .6rem .8rem; }
+.convite .info { flex: 1; display: flex; flex-direction: column; gap: .1rem; }

@@ -130,6 +130,16 @@ class Carreira:
     # o onze que o usuario ESCOLHEU, guardado enquanto a data corre com o reserva no lugar
     # do suspenso -- depois da data ele volta, e o suspenso volta sozinho quando cumprir
     _onze_pretendido: list[int] = field(default_factory=list)
+    # Os tecnicos do mundo (fm.tecnicos), o usuario com id 0. Gerados pela seed e
+    # atualizados na virada: nao vao ao save, o replay refaz.
+    tecnicos: dict = field(default_factory=dict)
+    # clubes que chamam o usuario agora (na virada ou depois de uma demissao) e as vagas
+    # que a IA preenche na proxima data
+    convites: list[int] = field(default_factory=list)
+    vagas: list[int] = field(default_factory=list)
+    premios: dict = field(default_factory=dict)          # {temporada: premios do ano}
+    # o clube em que a carreira COMECOU: o replay parte dele, e as trocas sao acoes
+    clube_inicial: int | None = None
 
     @classmethod
     def nova(cls, ligas: list[str] | str, clube: str, seed: int = 2027) -> Carreira:
@@ -148,9 +158,15 @@ class Carreira:
         return c
 
     def _montar(self, world: World, streams: Streams) -> None:
+        from fm.tecnicos import gerar
         self.world = world
         self.streams = streams
+        if self.clube_inicial is None:
+            self.clube_inicial = self.clube_id
         self._novo_calendario()
+        self.tecnicos = gerar(world, {self._id(n) for n in self.ligas},
+                              streams.get("tecnicos"), self.temporada, self.clube_id,
+                              self.treinador)
 
     def _novo_calendario(self) -> None:
         self.calendarios = {}
@@ -314,10 +330,137 @@ class Carreira:
         if motivo and not self.aprovacao.demitido:
             self.aprovacao.demitido = True
             self.aprovacao.motivo = motivo
+            self._ao_ser_demitido(meio_do_ano=True)
+
+    def _ao_ser_demitido(self, meio_do_ano: bool) -> None:
+        """A demissao nao encerra a carreira: a reputacao cai e aparecem convites. No meio
+        do ano quem chama sao os clubes em crise (o tecnico deles sai para o usuario
+        entrar); na virada, as vagas que a IA abriu."""
+        from fm import tecnicos as tec
+        eu = self.tecnicos.get(tec.USUARIO)
+        if eu is None:
+            return
+        tec.ajustar(eu, tec.DEMISSAO)
+        eu.clube = None
+        if self.clube_id not in self.vagas:
+            self.vagas.append(self.clube_id)
+        if meio_do_ano:
+            candidatos = self._clubes_em_crise()
+            self.convites = tec.convites(self.world, self.tecnicos, candidatos, None, True,
+                                         self._clubes_da_ultima_divisao())
+
+    def _clubes_em_crise(self) -> list[int]:
+        """Os 40% de baixo de cada tabela, com tecnico do computador."""
+        fora = []
+        for nome in self.ligas:
+            tabela = self.tabela(nome)
+            corte = int(len(tabela) * 0.6)
+            fora += [ln.club_id for ln in tabela[corte:] if ln.club_id != self.clube_id]
+        return fora
+
+    def _clubes_da_ultima_divisao(self) -> list[int]:
+        ultima = max(self.ligas, key=lambda n: int(load_league(n).get("tier", 1)))
+        return list(self.world.leagues[self._id(ultima)].club_ids)
+
+    def _assumir(self, clube: int) -> None:
+        """O usuario troca de clube. O tecnico que estava la fica desempregado; o clube
+        que ele deixou ganha tecnico da IA na proxima data."""
+        from fm import tecnicos as tec
+        antigo = self.clube_id
+        outro = tec.do_clube(self.tecnicos, clube)
+        if outro is not None and not outro.usuario:
+            outro.clube = None
+        eu = self.tecnicos[tec.USUARIO]
+        eu.clube = clube
+        eu.passagens.append([self.temporada, self.world.clubs[clube].name])
+        if antigo != clube and antigo not in self.vagas:
+            self.vagas.append(antigo)
+        self.vagas = [v for v in self.vagas if v != clube]
+        for x in (antigo, clube):
+            self.world.escalacao_fixa.pop(x, None)
+            self.world.formacao_fixa.pop(x, None)
+        self.clube_id = clube
+        self.decisoes.pop(self._chave(), None)
+        self.funcoes, self.observados, self._onze_pretendido = {}, [], []
+        self.boletim_medico = {}
+        for prop in self.propostas:
+            if prop.status == "pendente":
+                prop.status = "expirada"
+        # diretoria nova, meta nova, clima zerado
+        self.aprovacao = None
+        self._nova_meta()
+        self.convites = []
 
     @property
     def demitido(self) -> bool:
         return bool(self.aprovacao and self.aprovacao.demitido)
+
+    # ---------------------------------------------------------------- premios e tecnicos
+
+    def _copas_ganhas(self) -> dict[int, list[str]]:
+        fora: dict[int, list[str]] = {}
+        for nome, a in self.copas.items():
+            if a.campeao is not None:
+                fora.setdefault(a.campeao, []).append(nome)
+        return fora
+
+    def _premios_e_desempenho(self, tabelas: dict, cfgs: dict) -> tuple[dict, dict]:
+        """Chamado na virada, ANTES do acesso e do mercado: os premios sao do ano que
+        acabou, com os clubes de agora."""
+        from fm import premios as pr
+        from fm import tecnicos as tec
+        from fm.telas import nome_da_liga
+        tiers = {n: int(cfgs[n].get("tier", 1)) for n in self.ligas}
+        dados = tec.desempenho(tabelas, tiers, self.valor_de_elenco)
+        ligas = {n: {"nome": nome_da_liga(n), "tier": tiers[n],
+                     "clubes": set(self.world.leagues[self._id(n)].club_ids),
+                     "rodadas": self.rodadas_da_liga(n)} for n in self.ligas}
+        campeoes = {n: t[0].club_id for n, t in tabelas.items() if t}
+        for t in self.tecnicos.values():
+            t.variacao = 0.0                 # a variacao mostrada e a DESTE ano
+        do_ano: dict[str, int | None] = {}
+        for n in self.ligas:
+            melhor = max((d for d in dados.values() if d.liga == n),
+                         key=lambda d: (d.saldo, -d.final), default=None)
+            t = tec.do_clube(self.tecnicos, melhor.clube) if melhor else None
+            do_ano[n] = t.id if t else None
+            if t is not None:
+                tec.ajustar(t, tec.TECNICO_DO_ANO)
+        premios = pr.calcular(self.world, self.temporada, self.estatisticas,
+                              self.estatisticas_por_comp, ligas, campeoes,
+                              self._copas_ganhas(), do_ano)
+        pr.aplicar_moral(self.world, premios)
+        self.premios[self.temporada] = premios
+        return premios, dados
+
+    def _atualizar_tecnicos(self, dados: dict, mudancas, cfgs: dict) -> None:
+        from fm import tecnicos as tec
+        from fm.telas import nome_da_liga
+        for m in mudancas:
+            if m.clube in dados:
+                dados[m.clube].subiu = m.subiu
+                dados[m.clube].caiu = not m.subiu
+        nomes_das_copas = {k: a.torneio.nome for k, a in self.copas.items()}
+        # a variacao anterior (o premio de tecnico do ano) entra na conta do ano
+        bonus = {t.id: t.variacao for t in self.tecnicos.values()}
+        tec.atualizar_reputacoes(self.tecnicos, dados, self._copas_ganhas(), nomes_das_copas,
+                                 {n: nome_da_liga(n) for n in self.ligas}, self.temporada)
+        for t in self.tecnicos.values():
+            t.variacao = round(t.variacao + bonus.get(t.id, 0.0), 1)
+
+    def _mercado_de_tecnicos(self, dados: dict) -> None:
+        """Fim da virada: a IA demite, o usuario (se demitido) perde reputacao, e as vagas
+        viram convites para ele."""
+        from fm import tecnicos as tec
+        self.vagas = tec.demissoes_da_ia(self.tecnicos, dados)
+        demitido = self.demitido
+        if demitido:
+            self._ao_ser_demitido(meio_do_ano=False)
+        # o clube que acabou de demitir o usuario nao o chama de volta
+        candidatos = [v for v in self.vagas if not (demitido and v == self.clube_id)]
+        reserva = [k for k in self._clubes_da_ultima_divisao() if k != self.clube_id]
+        self.convites = tec.convites(self.world, self.tecnicos, candidatos,
+                                     None if demitido else self.clube_id, demitido, reserva)
 
     def _titulos_de_copa(self) -> dict[str, list[int]]:
         """Campeao e vice de cada copa, na ordem em que as regras de vaga esperam."""
@@ -508,6 +651,14 @@ class Carreira:
         """
         if self.acabou:
             raise RuntimeError("a temporada acabou; chame virar_o_ano()")
+        # convite nao respondido caduca quando a bola rola; a IA ocupa as vagas que sobraram
+        if not self.demitido:
+            self.convites = []
+        if self.vagas:
+            from fm.tecnicos import preencher_vagas
+            preencher_vagas(self.world, self.tecnicos, self.vagas, self.streams,
+                            self.temporada)
+            self.vagas = []
         # proposta sem resposta ate o apito da proxima data caduca
         for prop in self.propostas:
             if prop.status == "pendente":
@@ -860,6 +1011,13 @@ class Carreira:
         tipo = acao.get("tipo")
         w = self.world
         resultado: dict
+        if tipo == "assumir":
+            clube = int(acao["clube"])
+            if clube not in self.convites:
+                return {"erro": "esse clube nao esta mais chamando"}
+            self._assumir(clube)
+            self.acoes.append({**acao, "temporada": self.temporada, "data": self.data})
+            return {"ok": True, "mensagem": f"Voce e o novo tecnico do {w.clubs[clube].name}."}
         if tipo == "compra":
             pid = int(acao["jogador"])
             p = w.players.get(pid)
@@ -1190,11 +1348,13 @@ class Carreira:
         # vem -- e a cascata de vagas que ja estava escrita nos arquivos de torneio, agora
         # alimentada pela temporada de verdade em vez da forca desenhada.
         titulos = self._titulos_de_copa()
+        premios_do_ano, dados = self._premios_e_desempenho(tabelas, cfgs)
         premios_de_copa = self._premiar_copas()
         balancos = fechar_o_ano(self.world, tabelas, cfgs, extras=premios_de_copa,
                                 jogos_extras=self._jogos_de_copa(),
                                 valores=self.valor_de_elenco)
         mudancas = acesso_e_rebaixamento(self.world, self.ligas, tabelas, cfgs)
+        self._atualizar_tecnicos(dados, mudancas, cfgs)
         rng = self.streams.get("virada", self.temporada)
         # o alvo de elenco e o tamanho ANTES das aposentadorias: cada clube repoe o que
         # perdeu e mantem a propria dimensao, em vez de convergir todo mundo para o mesmo
@@ -1305,6 +1465,9 @@ class Carreira:
             self.aprovacao.motivo = motivo
         resumo["demitido"] = self.aprovacao.demitido
         resumo["motivo_da_demissao"] = self.aprovacao.motivo
+        resumo["premios"] = premios_do_ano
+        self._mercado_de_tecnicos(dados)
+        resumo["convites"] = list(self.convites)
 
         self.tabelas_do_ano_anterior = self._tabelas_para_classificacao(tabelas, titulos)
         self.exportados = {}
@@ -1316,6 +1479,7 @@ class Carreira:
         destino = SAVES_DIR / f"{nome}.json"
         destino.write_text(json.dumps({
             "seed": self.seed, "ligas": self.ligas, "clube_id": self.clube_id,
+            "clube_inicial": self.clube_inicial,
             "temporada_inicial": self.temporada - len(self.historico),
             # `data`, nao `rodada`: a temporada anda por datas, e uma delas pode ser
             # copa. Guardar a rodada da liga perderia os jogos de copa no replay.
@@ -1341,11 +1505,14 @@ class Carreira:
             # os packs foram refeitos depois do save: o mesmo seed gera outro mundo
             raise ValueError("o save e de uma versao antiga do jogo e o clube dele nao "
                              "existe mais neste mundo -- comece uma carreira nova")
-        c = cls(seed=d["seed"], ligas=list(d["ligas"]), clube_id=d["clube_id"],
+        # o replay parte do clube em que a carreira comecou; as trocas vem nas acoes
+        c = cls(seed=d["seed"], ligas=list(d["ligas"]),
+                clube_id=d.get("clube_inicial") or d["clube_id"],
                 temporada=d["temporada_inicial"])
         c.decisoes = {k: Decisao(**v) for k, v in d["decisoes"].items()}
         c.na_partida = d.get("na_partida", {})
         c.treinador = d.get("treinador", c.treinador)
+        c.clube_inicial = c.clube_id
         c.funcoes = d.get("funcoes", {})
         c.observados = d.get("observados", [])
         c._montar(world, streams)

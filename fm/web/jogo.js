@@ -33,6 +33,7 @@ async function abrirJogo(tela) {
   }));
   await recarregarEstado();
   await irPara(tela || PARAMS.get("tela") || telaAtual);
+  if (PARAMS.get("convites") && ESTADO.convites.length) janelaDeConvites(ESTADO.convites, ESTADO.demitido);
 }
 
 async function recarregarEstado() {
@@ -63,7 +64,7 @@ async function irPara(nome) {
 /* ------------------------------------------------------------------ topo */
 
 function textoDoProximo(e) {
-  if (e.demitido) return {rotulo: "Fim da linha", texto: "Você foi demitido", botao: "Menu"};
+  if (e.demitido) return {rotulo: "Você foi demitido", texto: `${e.convites.length} clube(s) chamando`, botao: "Ver convites ›"};
   if (e.acabou) return {rotulo: "Temporada encerrada", texto: "Balanço, acesso e mercado", botao: "Encerrar ano ›"};
   const p = e.proximo;
   if (p && p.tipo === "liga") {
@@ -874,8 +875,9 @@ TELAS.mensagens = async function () {
 /* ================================================================== TREINADOR */
 
 TELAS.treinador = async function () {
-  const t = await api.get("/api/treinador");
+  const [t, rk] = await Promise.all([api.get("/api/treinador"), api.get("/api/tecnicos")]);
   const n = t.total;
+  const rep = rk.reputacao;
   $("#tela-treinador").innerHTML = `
     <div class="coluna">
       <div class="painel fixo"><div class="corpo" style="text-align:center">
@@ -883,6 +885,9 @@ TELAS.treinador = async function () {
           <div class="rosto" style="width:5.5rem;height:5.5rem">${icone("pessoa", 'style="width:3rem;height:3rem"')}</div>
           <b style="font-size:1.3rem">${escapar(t.nome)}</b>
           <span class="dica">Treinador do ${escapar(t.clube)} · ${t.temporadas}ª temporada</span></div>
+        <div class="kpis" style="margin-top:.8rem">
+          <div class="kpi-c destaque"><span>Reputação</span><b>${String(rep.valor).replace(".", ",")}</b></div>
+          <div class="kpi-c"><span>Ranking</span><b>${rep.posicao}º</b></div></div>
         <div class="confianca" style="margin-top:1rem;text-align:left">${trilho("Diretoria", t.diretoria)}${trilho("Torcida", t.torcida)}</div>
         <p class="clima" style="text-align:left">Ambiente: <b>${escapar(clima(t.clima))}</b></p>
       </div></div>
@@ -917,6 +922,19 @@ TELAS.treinador = async function () {
               <td class="n">${a.numeros.empates ?? "—"}</td><td class="n">${a.numeros.derrotas ?? "—"}</td>
               <td>${a.subiu ? '<span class="bom">acesso</span>' : a.caiu ? '<span class="ruim">rebaixado</span>' : ""}</td></tr>`).join("")}
           </tbody></table></div></div>
+    </div>
+    <div class="coluna">
+      <div class="painel"><div class="cab"><h2>Ranking de técnicos</h2><span class="dica">reputação</span></div>
+        <div class="corpo sem-margem" style="overflow:auto"><table class="grade compacta">
+          <thead><tr><th class="n">#</th><th>Técnico</th><th>Clube</th><th class="n">Rep.</th><th class="n">Ano</th><th class="n">Tít.</th></tr></thead>
+          <tbody>${rk.ranking.map((x) => `<tr class="${x.usuario ? "eu" : ""}"><td class="n">${x.posicao}</td>
+            <td><b>${escapar(x.nome)}</b> <span class="dica">${x.idade}</span></td>
+            <td>${x.clube ? `<div class="nome-celula">${escudo(x.clube, "1.1rem")}<span>${escapar(x.clube.nome)}</span></div>` : '<span class="dica">sem clube</span>'}</td>
+            <td class="n"><b>${String(x.reputacao).replace(".", ",")}</b></td>
+            <td class="n ${x.variacao > 0 ? "bom" : x.variacao < 0 ? "ruim" : "dica"}">${x.variacao > 0 ? "+" : ""}${String(x.variacao).replace(".", ",")}</td>
+            <td class="n">${x.titulos || ""}</td></tr>`).join("")}</tbody></table></div>
+        <div class="pe"><span class="dica">A reputação anda na virada: o que você fez com o elenco que tinha, títulos, acesso e queda.
+          É ela que faz clubes maiores te chamarem.</span></div></div>
     </div>`;
 };
 
@@ -981,11 +999,92 @@ async function encerrarAno() {
       ${r.vendas.map((t) => `<tr><td class="ruim">sai</td><td>${escapar(t.nome)} (${t.overall})</td><td>${escapar(t.para)}</td><td class="n">${dinheiro(t.preco)}</td></tr>`).join("")}
       </tbody></table></div>`;
   }
+  corpo += blocoDeReputacao(r.reputacao_tecnico);
   corpo += `<p class="dica">${r.aposentaram} aposentadorias no mundo, ${r.revelados} garotos subiram da base, ${r.transferencias} transferências.</p>`;
   await abrirJanela({titulo: `Fim da temporada ${r.temporada}`, corpo,
-                     botoes: [{rotulo: r.demitido ? "Voltar ao menu" : `Começar ${r.temporada + 1}`, primario: true}]});
-  if (r.demitido) return irParaModo("menu");
+                     botoes: [{rotulo: "Premiações ›", primario: true}]});
+  if (r.premios) await janelaDePremios(r.premios);
+  if (r.convites.length || r.demitido) {
+    const assumiu = await janelaDeConvites(r.convites, r.demitido);
+    if (!assumiu && r.demitido) return irParaModo("menu");
+  }
   irPara(telaAtual);
+}
+
+function blocoDeReputacao(rep) {
+  if (!rep || rep.valor === undefined) return "";
+  const v = rep.variacao || 0;
+  return `<div class="secao"><h3>Sua reputação</h3><div class="kpis">
+    <div class="kpi-c destaque"><span>Reputação</span><b>${String(rep.valor).replace(".", ",")}</b></div>
+    <div class="kpi-c"><span>No ano</span><b class="${v > 0 ? "bom" : v < 0 ? "ruim" : ""}">${v > 0 ? "+" : ""}${String(v).replace(".", ",")}</b></div>
+    <div class="kpi-c"><span>Ranking</span><b>${rep.posicao}º de ${rep.de}</b></div></div></div>`;
+}
+
+/* ------------------------------------------------------------------ premiacoes */
+
+function linhaDePremio(rotulo, x, extra) {
+  if (!x) return "";
+  const meu = x.clube === ESTADO.clube.id;
+  return `<tr class="${meu ? "eu" : ""}"><td class="dica">${rotulo}</td><td>${pos(x.posicao)} <b>${escapar(x.nome)}</b></td>
+    <td class="dica">${escapar(x.clube_nome)}</td><td class="n">${extra(x)}</td></tr>`;
+}
+
+function htmlDePremios(p) {
+  const media = (x) => `nota ${x.media.toFixed(2).replace(".", ",")}`;
+  const podio = p.bola_de_ouro.map((x, i) => `<div class="degrau d${i + 1} ${x.clube === ESTADO.clube.id ? "meu" : ""}">
+      <span class="medalha">${["🥇", "🥈", "🥉"][i]}</span><b>${escapar(x.nome)}</b>
+      <span class="dica">${escapar(x.clube_nome)} · ${media(x)} · ${x.gols} gols</span></div>`).join("");
+  const ligas = Object.values(p.ligas).map((d) => `<div class="secao"><h3>${escapar(d.nome)}</h3>
+      <table class="grade compacta"><tbody>
+        ${linhaDePremio("Craque da liga", d.craque, media)}
+        ${linhaDePremio("Artilheiro", d.artilheiro, (x) => `${x.gols} gols`)}
+        ${linhaDePremio("Garçom", d.garcom, (x) => `${x.assistencias} assist.`)}
+        ${linhaDePremio("Melhor goleiro", d.goleiro, media)}
+        ${linhaDePremio("Revelação", d.revelacao, (x) => `${x.idade} anos · ${media(x)}`)}
+        ${d.tecnico ? `<tr class="${d.tecnico.usuario ? "eu" : ""}"><td class="dica">Técnico do ano</td>
+          <td colspan="3"><b>${escapar(d.tecnico.nome)}</b>${d.tecnico.usuario ? ' <span class="chip ouro">você</span>' : ""}</td></tr>` : ""}
+      </tbody></table>
+      ${d.selecao.length ? `<div class="selecao-do-ano"><span class="dica">Seleção do ano:</span>
+        ${d.selecao.map((x) => `<span class="${x.clube === ESTADO.clube.id ? "meu" : ""}">${escapar(x.nome)}</span>`).join(" · ")}</div>` : ""}
+    </div>`).join("");
+  return `<div class="bola-de-ouro"><h3>Bola de Ouro ${p.temporada}</h3><div class="podio">${podio}</div></div>${ligas}
+    <p class="nota-honesta">Pela média das notas do ano (mínimo de jogos), com um pouco a mais para quem ganhou título.
+      Premiado ganha moral.</p>`;
+}
+
+function janelaDePremios(p) {
+  return abrirJanela({titulo: `Premiações ${p.temporada}`, corpo: htmlDePremios(p),
+                     botoes: [{rotulo: "Continuar ›", primario: true}]});
+}
+
+/* ------------------------------------------------------------------ convites
+ * Demitido, escolher um convite e obrigatorio (ou volta ao menu). Empregado, da para
+ * ficar. Aceitar e uma acao do save: o replay refaz a troca no mesmo ponto. */
+
+async function janelaDeConvites(convites, obrigatorio) {
+  const corpo = `${obrigatorio ? `<div class="aviso"><b>Você foi demitido</b>${escapar(ESTADO.motivo || "")}</div>` : ""}
+    <p class="dica">${convites.length ? "Clubes que querem você no comando:" : "Nenhum clube chamou."}</p>
+    <div class="convites">${convites.map((k) => `<div class="convite">
+      ${escudo(k.clube, "2.6rem")}<div class="info"><b>${escapar(k.clube.nome)}</b>
+        <span class="dica">${escapar(k.liga)}${k.posicao ? ` · ${k.posicao}º na tabela` : ""} · tradição ${k.reputacao}</span>
+        ${k.tecnico_atual ? `<span class="dica">demite ${escapar(k.tecnico_atual)} para você assumir</span>` : ""}</div>
+      <button class="btn primario" data-assumir="${k.clube.id}">Assumir</button></div>`).join("")}</div>`;
+  let escolhido = null;
+  const promessa = abrirJanela({titulo: obrigatorio ? "Convites" : "Propostas de outros clubes", corpo,
+    botoes: [{rotulo: obrigatorio ? "Voltar ao menu" : `Ficar no ${escapar(ESTADO.clube.nome)}`, valor: null}]});
+  $$("[data-assumir]").forEach((b) => b.addEventListener("click", async () => {
+    const r = await api.post("/api/assumir", {clube: +b.dataset.assumir});
+    if (r.erro) return avisar(r.erro);
+    escolhido = r;
+    fecharJanela();
+  }));
+  await promessa;
+  if (!escolhido) return false;
+  aplicarEstado(escolhido.estado);
+  onzeLocal = null;
+  avisar(escolhido.mensagem);
+  irPara("elenco");
+  return true;
 }
 
 /* ================================================================== JOGAR */
@@ -993,10 +1092,9 @@ async function encerrarAno() {
 async function jogar() {
   const e = ESTADO;
   if (e.demitido) {
-    await abrirJanela({titulo: "Fim da linha", estreita: true,
-      corpo: `<div class="aviso"><b>Você foi demitido</b>${escapar(e.motivo)}</div>`,
-      botoes: [{rotulo: "Voltar ao menu", primario: true}]});
-    return irParaModo("menu");
+    const assumiu = await janelaDeConvites(e.convites, true);
+    if (!assumiu) irParaModo("menu");
+    return;
   }
   if (e.acabou) return encerrarAno();
   if (!onzeIgual() && onzeLocal) await mandarOnze();
@@ -1047,7 +1145,8 @@ TELAS.destaques = async function () {
   const qa = new URLSearchParams();
   if (DEST.comp) qa.set("comp", DEST.comp);
   if (DEST.temporada) qa.set("temporada", DEST.temporada);
-  const [s, a] = await Promise.all([api.get(`/api/selecao?${qs}`), api.get(`/api/artilharia?${qa}`)]);
+  const [s, a, pr] = await Promise.all([api.get(`/api/selecao?${qs}`), api.get(`/api/artilharia?${qa}`),
+                                        api.get(`/api/premios${DEST.anoPremio ? `?temporada=${DEST.anoPremio}` : ""}`)]);
   DEST.liga = s.liga;
   DEST.comp = a.competicao;
   DEST.temporada = a.temporada;
@@ -1102,6 +1201,11 @@ TELAS.destaques = async function () {
           `<tr><td class="n">${x.temporada}</td><td>${escapar(x.competicao)}</td><td><b>${escapar(x.nome)}</b>
             <span class="dica">${escapar(x.clube)}</span></td><td class="n"><b>${x.gols}</b></td></tr>`).join("")
           || '<tr><td class="vazio">A galeria começa quando a primeira temporada terminar.</td></tr>'}</tbody></table></div></div>
+      <div class="painel fixo">
+        <div class="cab"><h2>Premiações</h2>${pr.temporadas.length ? `<select id="premio-ano" style="width:auto">${pr.temporadas.map((t) =>
+          `<option value="${t}" ${t === pr.temporada ? "selected" : ""}>${t}</option>`).join("")}</select>` : ""}</div>
+        <div class="corpo" style="max-height:22rem;overflow:auto">${pr.premios ? htmlDePremios(pr.premios)
+          : '<div class="vazio">A Bola de Ouro e os prêmios de cada liga saem no fim da primeira temporada.</div>'}</div></div>
     </div>`;
 
   $$("[data-sliga]").forEach((b) => b.addEventListener("click", () => { DEST.liga = b.dataset.sliga; DEST.rodada = null; TELAS.destaques(); }));
@@ -1109,4 +1213,5 @@ TELAS.destaques = async function () {
   $("#rod-prox").addEventListener("click", () => { DEST.rodada = s.rodadas[i + 1]; TELAS.destaques(); });
   $$("[data-comp]").forEach((b) => b.addEventListener("click", () => { DEST.comp = b.dataset.comp; TELAS.destaques(); }));
   $("#art-temporada").addEventListener("change", (ev) => { DEST.temporada = +ev.target.value; DEST.comp = null; TELAS.destaques(); });
+  $("#premio-ano")?.addEventListener("change", (ev) => { DEST.anoPremio = +ev.target.value; TELAS.destaques(); });
 };

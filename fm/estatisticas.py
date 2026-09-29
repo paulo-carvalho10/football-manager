@@ -37,6 +37,17 @@ class Linha:
     assistencias: int = 0
     amarelos: int = 0
     vermelhos: int = 0
+    # a soma das notas de cada jogo e quantas: a media e o que as premiacoes do ano leem
+    nota_total: float = 0.0
+    notas: int = 0
+
+    @property
+    def media(self) -> float:
+        return self.nota_total / self.notas if self.notas else 0.0
+
+    def dar_nota(self, nota: float) -> None:
+        self.nota_total += nota
+        self.notas += 1
 
 
 @dataclass(slots=True)
@@ -80,8 +91,12 @@ def _cadernos(est) -> list[Estatisticas]:
 
 def registrar_partida_detalhada(est, world: World, partida) -> None:
     """Os eventos ja dizem quem fez e quem deu: aqui e' so somar."""
+    from fm.notas import notas_da_partida
+    notas = notas_da_partida(world, partida)
     for caderno in _cadernos(est):
         _somar_detalhada(caderno, world, partida)
+        for pid, nota in notas.items():
+            caderno.linha(pid).dar_nota(nota)
 
 
 def _somar_detalhada(est: Estatisticas, world: World, partida) -> None:
@@ -118,19 +133,35 @@ def registrar_resultado(est, world: World, r: Result,
         for pid in onze:
             for c in cadernos:
                 c.linha(pid).jogos += 1
-        if not gols:
-            continue
-        p_gol = _pesos(world, onze, PESO_DO_GOL)
-        marcadores = rng.choice(onze, size=int(gols), p=p_gol / p_gol.sum())
-        p_ass = _pesos(world, onze, PESO_DA_ASSISTENCIA)
-        for autor in marcadores:
-            for c in cadernos:
-                c.linha(int(autor)).gols += 1
-            if rng.random() < CHANCE_DE_ASSISTENCIA:
-                # quem assiste nao pode ser quem marcou
-                sem_autor = p_ass.copy()
-                sem_autor[onze.index(int(autor))] = 0.0
-                if sem_autor.sum() > 0:
-                    quem = rng.choice(onze, p=sem_autor / sem_autor.sum())
-                    for c in cadernos:
-                        c.linha(int(quem)).assistencias += 1
+        feitos: dict[int, list[int]] = {pid: [0, 0] for pid in onze}   # gols, assist.
+        if gols:
+            p_gol = _pesos(world, onze, PESO_DO_GOL)
+            marcadores = rng.choice(onze, size=int(gols), p=p_gol / p_gol.sum())
+            p_ass = _pesos(world, onze, PESO_DA_ASSISTENCIA)
+            for autor in marcadores:
+                feitos[int(autor)][0] += 1
+                for c in cadernos:
+                    c.linha(int(autor)).gols += 1
+                if rng.random() < CHANCE_DE_ASSISTENCIA:
+                    # quem assiste nao pode ser quem marcou
+                    sem_autor = p_ass.copy()
+                    sem_autor[onze.index(int(autor))] = 0.0
+                    if sem_autor.sum() > 0:
+                        quem = rng.choice(onze, p=sem_autor / sem_autor.sum())
+                        feitos[int(quem)][1] += 1
+                        for c in cadernos:
+                            c.linha(int(quem)).assistencias += 1
+        _notas_estimadas(cadernos, world, r, clube, feitos)
+
+
+def _notas_estimadas(cadernos, world: World, r: Result, clube: int,
+                     feitos: dict[int, list[int]]) -> None:
+    """A nota de cada titular de um jogo do motor rapido (fm.notas.nota_estimada), com o
+    que ele fez NESTE jogo."""
+    from fm.notas import nota_estimada
+    meus, deles = ((r.goals_home, r.goals_away) if clube == r.home
+                   else (r.goals_away, r.goals_home))
+    for pid, (g, a) in feitos.items():
+        nota = nota_estimada(world.players[pid], meus, deles, g, a)
+        for c in cadernos:
+            c.linha(pid).dar_nota(nota)

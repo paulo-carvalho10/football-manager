@@ -137,12 +137,23 @@ def _coerencia(lances: list[Lance]) -> None:
 
 
 def registrar(cadernos: list, world: World, r, lances: list[Lance]) -> None:
-    """Soma os lances na estatistica: jogo para os onze, gol, assistencia e cartao."""
+    """Soma os lances na estatistica: jogo e nota para os onze, gol, assistencia e
+    cartao."""
+    from fm.estatisticas import _notas_estimadas
     for clube in (r.home, r.away):
         if clube in world.clubs:
+            feitos: dict[int, list[int]] = {}
             for p in world.best_xi(clube):
+                feitos[p.id] = [0, 0]
                 for c in cadernos:
                     c.linha(p.id).jogos += 1
+            for x in lances:
+                if x.tipo == "gol" and x.clube == clube:
+                    if x.jogador in feitos:
+                        feitos[x.jogador][0] += 1
+                    if x.segundo in feitos:
+                        feitos[x.segundo][1] += 1
+            _notas_estimadas(cadernos, world, r, clube, feitos)
     for x in lances:
         if x.jogador is None:
             continue

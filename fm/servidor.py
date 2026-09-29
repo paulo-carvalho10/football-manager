@@ -247,6 +247,8 @@ def estado(jogo: Jogo) -> dict:
             "no_onze": [c.world.players[i].name for i in onze if i in suspensos_prox],
         },
         "onze": list(c.escalacao_atual()),
+        "reputacao_tecnico": _reputacao(c),
+        "convites": [_convite(c, k) for k in c.convites],
         "lesionados": [c.world.players[i].name for i in c.lesionados_do_clube()],
         # os meus que estao jogando em outro clube ate o fim do ano
         "emprestados": [{"id": p.id, "nome": p.name, "posicao": p.position,
@@ -381,6 +383,9 @@ def virar_o_ano(jogo: Jogo) -> dict:
         "subi": resumo["subi"], "cai": resumo["cai"],
         "promovidos": resumo["promovidos"], "rebaixados": resumo["rebaixados"],
         "clima": resumo.get("clima", {}),
+        "premios": _premios_json(c, resumo.get("premios")),
+        "reputacao_tecnico": _reputacao(c),
+        "convites": [_convite(c, k) for k in resumo.get("convites", [])],
         "demitido": resumo.get("demitido", False),
         "motivo": resumo.get("motivo_da_demissao", ""),
         "balanco": asdict(resumo["balanco"]) if resumo.get("balanco") else None,
@@ -854,6 +859,85 @@ def tabela_da_competicao(jogo: Jogo, q: dict) -> dict:
     return telas.classificacao(c, comp, clube)
 
 
+# ------------------------------------------------------------------ tecnicos e premios
+
+def _nome_do_tecnico(c: Carreira, t) -> str:
+    return c.treinador if t.usuario else t.nome     # o nome do usuario e o do menu
+
+
+def _reputacao(c: Carreira) -> dict:
+    from fm import tecnicos as tec
+    eu = c.tecnicos.get(tec.USUARIO)
+    if eu is None:
+        return {}
+    ordem = tec.ranking(c.tecnicos)
+    return {"valor": round(eu.reputacao, 1), "variacao": eu.variacao,
+            "posicao": ordem.index(eu) + 1, "de": len(ordem)}
+
+
+def _convite(c: Carreira, clube: int) -> dict:
+    """Um clube que chama o usuario, com o que pesa na escolha."""
+    from fm import tecnicos as tec
+    k = c.world.clubs[clube]
+    liga = next((n for n in c.ligas if c._id(n) == k.league_id), c.liga)
+    tabela = c.tabela(liga)
+    pos = next((i for i, ln in enumerate(tabela, 1) if ln.club_id == clube), None)
+    jogou = bool(tabela) and tabela[0].played > 0
+    atual = tec.do_clube(c.tecnicos, clube)
+    return {"clube": _clube(c, clube), "liga": _nome_da_liga(liga),
+            "reputacao": k.reputation, "posicao": pos if jogou else None,
+            "tecnico_atual": atual.nome if atual and not atual.usuario else None,
+            "caixa": k.balance}
+
+
+def tecnicos(jogo: Jogo) -> dict:
+    """O ranking mundial de tecnicos: os 40 primeiros, e o usuario onde estiver."""
+    from fm import tecnicos as tec
+    c = jogo.c
+    ordem = tec.ranking(c.tecnicos)
+    linhas = []
+    for i, t in enumerate(ordem, 1):
+        if i > 40 and not t.usuario:
+            continue
+        linhas.append({"posicao": i, "nome": _nome_do_tecnico(c, t), "usuario": t.usuario,
+                       "clube": _clube(c, t.clube) if t.clube in c.world.clubs else None,
+                       "reputacao": round(t.reputacao, 1), "variacao": t.variacao,
+                       "titulos": len(t.titulos), "idade": t.idade(c.temporada)})
+    eu = c.tecnicos.get(tec.USUARIO)
+    return {"ranking": linhas, "meus_titulos": eu.titulos if eu else [],
+            "passagens": eu.passagens if eu else [], "reputacao": _reputacao(c)}
+
+
+def _premios_json(c: Carreira, p: dict | None) -> dict | None:
+    """Os premios com os tecnicos pelo nome (os jogadores ja vem com nome e clube do
+    dia em que ganharam)."""
+    if not p:
+        return None
+    ligas = {}
+    for chave, d in p["ligas"].items():
+        t = c.tecnicos.get(d["tecnico"]) if d.get("tecnico") is not None else None
+        ligas[chave] = {**d, "tecnico": None if t is None else {
+            "nome": _nome_do_tecnico(c, t), "usuario": t.usuario}}
+    return {"temporada": p["temporada"], "bola_de_ouro": p["bola_de_ouro"], "ligas": ligas,
+            "meu_clube": c.clube_id}
+
+
+def premios(jogo: Jogo, temporada: int | None) -> dict:
+    c = jogo.c
+    anos = sorted(c.premios, reverse=True)
+    escolhido = temporada if temporada in c.premios else (anos[0] if anos else None)
+    return {"temporadas": anos, "temporada": escolhido,
+            "premios": _premios_json(c, c.premios.get(escolhido)) if escolhido else None}
+
+
+def assumir(jogo: Jogo, corpo: dict) -> dict:
+    feito = jogo.c.executar({"tipo": "assumir", "clube": int(corpo.get("clube", 0))})
+    if "erro" in feito:
+        return {"erro": feito["erro"]}
+    jogo.pos_jogo = None
+    return {"ok": True, "mensagem": feito["mensagem"], "estado": estado(jogo)}
+
+
 def _inteiro(q: dict, chave: str) -> int | None:
     try:
         return int(q.get(chave, [""])[0])
@@ -872,6 +956,8 @@ ROTAS_GET = {
     "/api/renovacao": lambda jogo, q: renovacao_info(jogo, _inteiro(q, "jogador")),
     "/api/contrato": lambda jogo, q: contrato_info(jogo, _inteiro(q, "jogador")),
     "/api/emprestimo": lambda jogo, q: emprestimo_info(jogo, _inteiro(q, "jogador")),
+    "/api/tecnicos": lambda jogo, q: tecnicos(jogo),
+    "/api/premios": lambda jogo, q: premios(jogo, _inteiro(q, "temporada")),
     "/api/negocios": lambda jogo, q: {"negociacoes": jogo.negociacoes[::-1],
                                       "movimentos": jogo.c.movimentos[::-1]},
     "/api/mensagens": lambda jogo, q: {
@@ -904,6 +990,7 @@ ROTAS_POST = {
     "/api/contrato": contratar,
     "/api/renovacao": renovar,
     "/api/emprestimo": emprestar,
+    "/api/assumir": assumir,
     "/api/propostas": responder_proposta,
     "/api/lida": lambda jogo, corpo: (jogo.lidas.update(corpo.get("ids", [])),
                                       {"ok": True})[1],
