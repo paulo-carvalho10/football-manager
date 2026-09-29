@@ -1,0 +1,1267 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tabela Crível</title>
+  <meta name="description" content="Demonstração interativa do motor de simulação de futebol football-manager: simule temporadas completas e rode o portão de calibração no navegador.">
+  <meta name="author" content="Paulo Carvalho">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tabela Crível — football-manager">
+  <meta property="og:description" content="Demonstração interativa do motor de simulação de futebol football-manager: simule temporadas completas e rode o portão de calibração no navegador.">
+  <meta property="og:url" content="https://paulo-carvalho10.github.io/football-manager/">
+  <meta name="twitter:card" content="summary">
+
+  <style>
+    /* reset mínimo: o mesmo que o host do artifact fornecia */
+    :root {
+      color-scheme: light;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    img { max-width: 100%; }
+    [hidden] { display: none !important; }
+  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+
+<style>
+:root {
+  color-scheme: light;
+  --paper:      #eff1f5;
+  --surface:    #ffffff;
+  --surface-2:  #f6f8fb;
+  --ink:        #101720;
+  --ink-2:      #4c5766;
+  --ink-3:      #818b99;
+  --line:       #dde2ea;
+  --line-soft:  #e9edf3;
+  --accent:     #2a78d6;
+  --accent-dim: #d7e5f8;
+  --good:       #0ca30c;
+  --good-dim:   #d9f0d9;
+  --critical:   #d03b3b;
+  --critical-dim: #f7dede;
+  --band:       #cfe0f6;
+
+  --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --body:    'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper:      #0b0e12;
+    --surface:    #141922;
+    --surface-2:  #1b212b;
+    --ink:        #eef1f6;
+    --ink-2:      #a4aebd;
+    --ink-3:      #737d8b;
+    --line:       #242b36;
+    --line-soft:  #1e242e;
+    --accent:     #3987e5;
+    --accent-dim: #17304f;
+    --good:       #0ca30c;
+    --good-dim:   #113d11;
+    --critical:   #d03b3b;
+    --critical-dim: #401919;
+    --band:       #1d3a5e;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper:      #0b0e12;
+  --surface:    #141922;
+  --surface-2:  #1b212b;
+  --ink:        #eef1f6;
+  --ink-2:      #a4aebd;
+  --ink-3:      #737d8b;
+  --line:       #242b36;
+  --line-soft:  #1e242e;
+  --accent:     #3987e5;
+  --accent-dim: #17304f;
+  --good:       #0ca30c;
+  --good-dim:   #113d11;
+  --critical:   #d03b3b;
+  --critical-dim: #401919;
+  --band:       #1d3a5e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-inline: 20px;
+  padding-block: 0 72px;
+}
+
+/* ---------- header ---------- */
+
+.masthead {
+  padding-block: 56px 36px;
+  border-bottom: 1px solid var(--line);
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 18px;
+}
+h1 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.1rem, 6.4vw, 3.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+.standfirst {
+  font-size: clamp(1.02rem, 2.4vw, 1.18rem);
+  color: var(--ink-2);
+  max-width: 60ch;
+  margin: 0 0 26px;
+}
+.standfirst strong { color: var(--ink); font-weight: 600; }
+
+.repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 7px 13px;
+  background: var(--surface);
+}
+.repo-link:hover { border-color: var(--accent); }
+
+/* ---------- sections ---------- */
+
+section { padding-block: 46px; border-bottom: 1px solid var(--line); }
+section:last-of-type { border-bottom: 0; }
+
+h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.35rem, 3.4vw, 1.75rem);
+  letter-spacing: -0.018em;
+  margin: 0 0 10px;
+  text-wrap: balance;
+}
+.lede { color: var(--ink-2); max-width: 66ch; margin: 0 0 26px; }
+p { margin: 0 0 16px; }
+p:last-child { margin-bottom: 0; }
+
+/* ---------- controls ---------- */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 14px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin-bottom: 22px;
+}
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+select, input[type="number"] {
+  font-family: var(--body);
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 10px;
+  min-height: 40px;
+}
+input[type="number"] { font-family: var(--mono); width: 104px; }
+select { min-width: 190px; }
+select:focus-visible, input:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 0 18px;
+  min-height: 40px;
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.08); }
+button[disabled] { opacity: 0.55; cursor: progress; }
+button.ghost {
+  color: var(--accent);
+  background: var(--surface-2);
+  border-color: var(--line);
+}
+
+/* ---------- league table ---------- */
+
+.scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+table.tabela {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+table.tabela th {
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-align: right;
+  padding: 11px 9px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+  white-space: nowrap;
+}
+table.tabela th.pos, table.tabela th.clube { text-align: left; }
+table.tabela td {
+  padding: 8px 9px;
+  text-align: right;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+table.tabela tr:last-child td { border-bottom: 0; }
+td.pos { text-align: left; width: 46px; color: var(--ink-3); }
+td.clube {
+  text-align: left;
+  font-family: var(--body);
+  font-size: 15px;
+  color: var(--ink);
+  width: 100%;
+}
+td.pts { color: var(--ink); font-weight: 700; }
+tr.campeao td { background: var(--accent-dim); }
+tr.campeao td.clube { font-weight: 600; }
+tr.rebaixado td.pos { color: var(--critical); }
+.marca {
+  display: inline-block;
+  width: 13px;
+  font-weight: 700;
+}
+.marca.t { color: var(--accent); }
+.marca.r { color: var(--critical); }
+
+.legenda {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.resumo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.resumo div { display: flex; flex-direction: column; gap: 2px; }
+.resumo dt {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.resumo dd {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 21px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- calibration gate ---------- */
+
+.metricas {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.metrica {
+  display: grid;
+  grid-template-columns: 1fr 74px 148px 92px 62px;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 15px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.metrica:last-child { border-bottom: 0; }
+.metrica .nome { font-size: 14.5px; color: var(--ink); }
+.metrica .valor {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--ink);
+}
+.metrica .alvo {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+  text-align: right;
+}
+
+.faixa {
+  position: relative;
+  height: 20px;
+  background: var(--surface-2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.faixa .banda {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--band);
+}
+.faixa .agulha {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  width: 3px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: var(--ink);
+}
+.faixa .agulha.fora { background: var(--critical); }
+
+.selo {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  justify-self: start;
+}
+.selo.ok { color: var(--good); background: var(--good-dim); }
+.selo.falha { color: var(--critical); background: var(--critical-dim); }
+
+.veredito {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 16px;
+}
+.veredito .conta {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/* ---------- chart ---------- */
+
+.grafico {
+  margin-top: 26px;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.grafico h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0 0 3px;
+  color: var(--ink);
+}
+.grafico .sub {
+  font-size: 13px;
+  color: var(--ink-3);
+  margin: 0 0 18px;
+}
+.barras { display: flex; flex-direction: column; gap: 7px; }
+.barra-linha {
+  display: grid;
+  grid-template-columns: minmax(96px, 168px) 1fr 52px;
+  align-items: center;
+  gap: 11px;
+}
+.barra-linha .rotulo {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.barra-trilho { height: 17px; position: relative; }
+.barra-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 0 4px 4px 0;
+  min-width: 2px;
+  transition: width 0.28s ease;
+}
+.barra-linha .pct {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+.barra-linha:hover .rotulo, .barra-linha:hover .pct { color: var(--ink); }
+
+/* ---------- engine / code ---------- */
+
+pre.formula {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px;
+  margin: 0 0 22px;
+  overflow-x: auto;
+}
+pre.formula .c { color: var(--ink-3); }
+pre.formula .k { color: var(--accent); font-weight: 700; }
+
+.notas { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(258px, 1fr)); }
+.nota {
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+}
+.nota h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 14.5px;
+  margin: 0 0 7px;
+  color: var(--ink);
+}
+.nota p { font-size: 14.5px; color: var(--ink-2); margin: 0; }
+
+/* ---------- comparison table ---------- */
+
+table.comparativo {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+table.comparativo th {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-align: right;
+  padding: 11px 12px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+table.comparativo th:first-child { text-align: left; }
+table.comparativo td {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--ink-2);
+}
+table.comparativo td:first-child {
+  text-align: left;
+  font-family: var(--body);
+  font-size: 15px;
+  color: var(--ink);
+}
+table.comparativo tr:last-child td { border-bottom: 0; }
+
+/* ---------- footnote ---------- */
+
+.ressalva {
+  margin-top: 30px;
+  padding: 18px 20px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.ressalva h3 {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 9px;
+}
+.ressalva p { font-size: 14px; color: var(--ink-2); margin: 0 0 10px; }
+.ressalva p:last-child { margin-bottom: 0; }
+
+footer {
+  padding-block: 34px 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  align-items: center;
+}
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 620px) {
+  .metrica {
+    grid-template-columns: 1fr 70px;
+    grid-template-areas: "nome valor" "faixa faixa" "alvo selo";
+    gap: 7px 12px;
+  }
+  .metrica .nome  { grid-area: nome; }
+  .metrica .valor { grid-area: valor; }
+  .metrica .faixa { grid-area: faixa; }
+  .metrica .alvo  { grid-area: alvo; text-align: left; }
+  .metrica .selo  { grid-area: selo; justify-self: end; }
+  .controls { gap: 12px; }
+  .field, select, input[type="number"], button { width: 100%; }
+  .field { flex: 1 1 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+.acoes { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.tema {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 7px 13px;
+  min-height: 0;
+  cursor: pointer;
+}
+.tema:hover { color: var(--ink); border-color: var(--ink-3); filter: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">football-manager · motor de simulação</p>
+    <h1>A pergunta não é se a interface está bonita. É se a tabela final é crível.</h1>
+    <p class="standfirst">
+      Um motor de carreira escrito em Python que simula temporadas inteiras de futebol com um
+      modelo de Poisson calibrado contra distribuições reais. Abaixo ele roda no seu navegador:
+      simule uma temporada, depois rode <strong>o portão de calibração</strong> — milhares de
+      temporadas medidas contra onze faixas de futebol de verdade.
+    </p>
+    <div class="acoes">
+      <a class="repo-link" href="https://github.com/paulo-carvalho10/football-manager">
+      github.com/paulo-carvalho10/football-manager →
+    </a>
+      <button id="tema" class="tema" type="button" aria-label="Alternar tema claro e escuro">
+        <span aria-hidden="true">◐</span> Tema
+      </button>
+    </div>
+  </header>
+
+  <section>
+    <h2>Simule uma temporada</h2>
+    <p class="lede">
+      Returno duplo, 380 partidas, três pontos por vitória. As forças dos clubes são as do
+      repositório. A mesma semente sempre devolve a mesma temporada — o motor é determinístico.
+    </p>
+
+    <div class="controls">
+      <div class="field">
+        <label for="liga">Liga</label>
+        <select id="liga"></select>
+      </div>
+      <div class="field">
+        <label for="seed">Semente</label>
+        <input type="number" id="seed" value="42" min="1" max="999999" step="1">
+      </div>
+      <button id="btn-temporada">Simular temporada</button>
+      <button id="btn-sorte" class="ghost">Semente aleatória</button>
+    </div>
+
+    <div class="scroll-x">
+      <table class="tabela">
+        <thead>
+          <tr>
+            <th class="pos">#</th>
+            <th class="clube">Clube</th>
+            <th>P</th><th>J</th><th>V</th><th>E</th><th>D</th>
+            <th>GP</th><th>GC</th><th>SG</th><th>Força</th>
+          </tr>
+        </thead>
+        <tbody id="corpo-tabela"></tbody>
+      </table>
+    </div>
+
+    <div class="legenda">
+      <span><span class="marca t">★</span> campeão</span>
+      <span><span class="marca r">▾</span> rebaixado</span>
+      <span>Força = overall do elenco declarado no pack</span>
+    </div>
+
+    <dl class="resumo" id="resumo"></dl>
+  </section>
+
+  <section>
+    <h2>O portão de calibração</h2>
+    <p class="lede">
+      Esta é a peça central do projeto. O motor roda milhares de temporadas e compara onze
+      métricas com faixas de futebol real. Quebrar um alvo é build vermelho. Se o melhor elenco
+      é campeão em 90% das temporadas, o jogo é uma planilha; se é em 10%, é um dado.
+    </p>
+
+    <div class="controls">
+      <div class="field">
+        <label for="n-temporadas">Temporadas</label>
+        <select id="n-temporadas">
+          <option value="100">100</option>
+          <option value="300" selected>300</option>
+          <option value="600">600</option>
+          <option value="1000">1000</option>
+        </select>
+      </div>
+      <button id="btn-calibrar">Rodar o portão</button>
+      <span id="progresso" class="conta" style="font-family:var(--mono);font-size:13px;color:var(--ink-3)"></span>
+    </div>
+
+    <div class="metricas" id="metricas"></div>
+    <div class="veredito" id="veredito" hidden></div>
+
+    <div class="grafico">
+      <h3>Quem levantou a taça</h3>
+      <p class="sub" id="grafico-sub">Rode o portão para ver a distribuição de títulos.</p>
+      <div class="barras" id="barras"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>O motor</h2>
+    <p class="lede">
+      Poisson com diferença de força <em>saturada</em>. Três constantes são o coração do jogo —
+      mexer nelas exige rodar o portão de novo.
+    </p>
+
+<pre class="formula"><span class="c">// fm/match.py — reproduzido linha a linha nesta página</span>
+z            = (ovr_efetivo - <span class="k">68</span>) / <span class="k">20</span>
+d            = tanh((z_casa - z_fora) / <span class="k">1.20</span>)   <span class="c">← a saturação</span>
+lambda_casa  = gols_base * exp(+<span class="k">0.58</span>*d + mando/2)
+lambda_fora  = gols_base * exp(-<span class="k">0.58</span>*d - mando/2)
+gols         ~ Poisson(max(lambda, <span class="k">0.34</span>))     <span class="c">← ninguém é nulo</span></pre>
+
+    <div class="notas">
+      <div class="nota">
+        <h3>A saturação é o que impede o 9-0</h3>
+        <p>
+          Sem o <code>tanh</code>, um gap de 26 pontos de overall gera 22% de partidas com 3+ de
+          margem, contra ~14% no futebol real. A saturação reproduz o que acontece de verdade:
+          time goleando administra o resultado, time perdendo se fecha.
+        </p>
+      </div>
+      <div class="nota">
+        <h3>Não existe ruído anônimo</h3>
+        <p>
+          A versão com mistura Gamma foi testada e o otimizador empurrou a dispersão para zero.
+          Toda a variância vem de causa com nome — desgaste, moral, forma, clássico, mando. O
+          jogador entende “meu time estava morto”; não entende “o multiplicador deu 0,6”.
+        </p>
+      </div>
+      <div class="nota">
+        <h3>O piso mantém o pequeno vivo</h3>
+        <p>
+          O lado fraco nunca cai abaixo de ~0,60 gol esperado. Em 82 contra 56, o pequeno ainda
+          vence 9,3% das vezes e o jogo ainda termina 0-0 em 5%.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>O caráter da liga vem do dado, não do código</h2>
+    <p class="lede">
+      Não existe <code>if country == "BRA"</code> em lugar nenhum. As três ligas rodam com as
+      mesmas constantes de motor. O que muda é a distribuição de força dos clubes, declarada no
+      arquivo da liga — e daí emergem equilíbrio, empates, pontuação do campeão e
+      previsibilidade do título.
+    </p>
+
+    <div class="scroll-x">
+      <table class="comparativo">
+        <thead>
+          <tr>
+            <th>Liga</th><th>Campeão</th><th>Lanterna</th><th>Empate</th>
+            <th>Gols/jogo</th><th>Margem 3+</th><th>Maior é campeão</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Série A</td><td>73,8</td><td>32,1</td><td>25,5%</td><td>2,52</td><td>13,3%</td><td>36,1%</td></tr>
+          <tr><td>Série B</td><td>68,7</td><td>35,2</td><td>26,8%</td><td>2,37</td><td>11,5%</td><td>16,0%</td></tr>
+          <tr><td>La Liga</td><td>79,2</td><td>30,4</td><td>24,6%</td><td>2,61</td><td>14,4%</td><td>41,1%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:20px;color:var(--ink-2);max-width:66ch">
+      O caso mais bonito é a Série B: mesmos parâmetros de motor, elencos quase equivalentes, e o
+      resultado é campeão com 68 pontos e o melhor elenco do papel levando o título em apenas 16%
+      das temporadas. A Série B ser maluca não foi programado — é consequência de a liga ser
+      achatada.
+    </p>
+
+    <div class="ressalva">
+      <h3>Ressalva honesta</h3>
+      <p>
+        Esta página reimplementa <code>fm/match.py</code> em JavaScript para rodar sem instalar
+        nada. O motor real gera elencos completos por clube e usa o overall do onze titular; aqui
+        a força declarada do clube entra direto. Medido em 400 temporadas, a diferença fica dentro
+        do ruído de Monte Carlo: Série A com campeão em 73,7 contra 73,8 do motor real, 2,52
+        gols por jogo nos dois, margem 3+ em 13,3% nos dois.
+      </p>
+      <p>
+        As faixas dos alvos e as forças dos clubes são estimativa editorial marcada
+        <code>verificado = false</code> no repositório, não dado conferido. Re-derivar com as
+        tabelas reais é o primeiro item da lista de pendências.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Paulo Carvalho</span>
+    <a href="https://github.com/paulo-carvalho10/football-manager">github.com/paulo-carvalho10/football-manager</a>
+    <span>Motor em Python + numpy · 2,7 M partidas/s no caminho rápido</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---- constantes do motor: fm/match.py ----
+  var K = 0.58, SAT = 1.20, FLOOR = 0.34, PIVOT = 68.0, SCALE = 20.0;
+
+  // ---- alvos padrao: fm/calibration.py TARGETS ----
+  var ALVOS_PADRAO = {
+    gols_por_jogo: [2.55, 2.80],
+    zero_a_zero_pct: [6.5, 9.5],
+    vitoria_casa_pct: [43.0, 47.5],
+    empate_pct: [23.5, 26.5],
+    vitoria_fora_pct: [27.5, 31.0],
+    margem_3_ou_mais_pct: [11.5, 15.5],
+    margem_4_ou_mais_pct: [3.5, 6.0],
+    cinco_ou_mais_gols_pct: [9.0, 12.5],
+    pontos_do_campeao: [74.0, 81.0],
+    pontos_do_lanterna: [22.0, 31.0],
+    melhor_elenco_campeao_pct: [33.0, 46.0]
+  };
+
+  var ROTULOS = {
+    gols_por_jogo: "Gols por jogo",
+    zero_a_zero_pct: "Partidas 0-0",
+    vitoria_casa_pct: "Vitória em casa",
+    empate_pct: "Empate",
+    vitoria_fora_pct: "Vitória fora",
+    margem_3_ou_mais_pct: "Margem de 3 ou mais",
+    margem_4_ou_mais_pct: "Margem de 4 ou mais",
+    cinco_ou_mais_gols_pct: "Cinco gols ou mais",
+    pontos_do_campeao: "Pontos do campeão",
+    pontos_do_lanterna: "Pontos do lanterna",
+    melhor_elenco_campeao_pct: "Melhor elenco é campeão"
+  };
+  var ORDEM_METRICAS = Object.keys(ALVOS_PADRAO);
+  var PERCENTUAL = {
+    zero_a_zero_pct: 1, vitoria_casa_pct: 1, empate_pct: 1, vitoria_fora_pct: 1,
+    margem_3_ou_mais_pct: 1, margem_4_ou_mais_pct: 1, cinco_ou_mais_gols_pct: 1,
+    melhor_elenco_campeao_pct: 1
+  };
+
+  // ---- dados reais: data/packs/*.toml e data/leagues/*.toml ----
+  var LIGAS = {
+    brasil: {
+      nome: "Brasileirão Série A",
+      gols_base: 1.22,
+      mando: 0.36,
+      descem: 4,
+      alvos: {
+        gols_por_jogo: [2.35, 2.65], empate_pct: [24.5, 30.0],
+        vitoria_casa_pct: [44.0, 50.0], vitoria_fora_pct: [23.5, 29.0],
+        pontos_do_campeao: [70.0, 82.0], pontos_do_lanterna: [22.0, 33.0],
+        melhor_elenco_campeao_pct: [25.0, 45.0]
+      },
+      clubes: [
+        ["Flamengo", 82], ["Palmeiras", 81], ["Cruzeiro", 78], ["Botafogo", 77],
+        ["São Paulo", 76], ["Atlético Mineiro", 75], ["Fluminense", 74],
+        ["Internacional", 74], ["Corinthians", 73], ["Grêmio", 72], ["Bahia", 72],
+        ["Vasco da Gama", 70], ["Red Bull Bragantino", 70], ["Santos", 69],
+        ["Athletico Paranaense", 67], ["Mirassol", 66], ["Vitória", 65],
+        ["Coritiba", 65], ["Chapecoense", 64], ["Remo", 64]
+      ]
+    },
+    brasil_b: {
+      nome: "Brasileirão Série B",
+      gols_base: 1.16,
+      mando: 0.38,
+      descem: 4,
+      alvos: {
+        gols_por_jogo: [2.20, 2.50], empate_pct: [25.0, 32.0],
+        vitoria_casa_pct: [43.0, 50.0], vitoria_fora_pct: [21.5, 29.0],
+        margem_3_ou_mais_pct: [9.0, 14.0], margem_4_ou_mais_pct: [2.5, 5.0],
+        cinco_ou_mais_gols_pct: [7.0, 11.5], pontos_do_campeao: [62.0, 72.0],
+        pontos_do_lanterna: [24.0, 37.0], melhor_elenco_campeao_pct: [8.0, 28.0]
+      },
+      clubes: [
+        ["Fortaleza", 63], ["Ceará", 63], ["Goiás", 62], ["Juventude", 62],
+        ["Sport", 62], ["Cuiabá", 61], ["América Mineiro", 61],
+        ["Atlético Goianiense", 61], ["Criciúma", 60], ["Avaí", 60],
+        ["Novorizontino", 59], ["Operário Ferroviário", 59], ["Paysandu", 58],
+        ["CRB", 58], ["Amazonas", 57], ["Vila Nova", 57], ["Botafogo-SP", 56],
+        ["Volta Redonda", 55], ["Ferroviária", 55], ["Athletic", 54]
+      ]
+    },
+    espanha: {
+      nome: "La Liga",
+      gols_base: 1.26,
+      mando: 0.28,
+      descem: 3,
+      alvos: {
+        gols_por_jogo: [2.45, 2.80], empate_pct: [21.5, 26.5],
+        vitoria_fora_pct: [27.0, 32.0], pontos_do_campeao: [78.0, 92.0],
+        pontos_do_lanterna: [17.0, 33.0], melhor_elenco_campeao_pct: [38.0, 62.0]
+      },
+      clubes: [
+        ["Real Madrid", 88], ["Barcelona", 87], ["Atlético Madrid", 83],
+        ["Athletic Club", 78], ["Villarreal", 77], ["Real Sociedad", 76],
+        ["Real Betis", 75], ["Sevilla", 73], ["Valencia", 72], ["Girona", 71],
+        ["Celta de Vigo", 70], ["Osasuna", 69], ["Rayo Vallecano", 69],
+        ["Mallorca", 68], ["Getafe", 67], ["Alavés", 66], ["Espanyol", 65],
+        ["Las Palmas", 64], ["Elche", 63], ["Leganés", 62]
+      ]
+    }
+  };
+
+  // ---- RNG determinístico: mulberry32 ----
+  function criarRng(semente) {
+    var a = semente >>> 0;
+    return function () {
+      a = (a + 0x6D2B79F5) >>> 0;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function poisson(lam, rnd) {
+    var L = Math.exp(-lam), k = 0, p = 1;
+    do { p *= rnd(); k++; } while (p > L);
+    return k - 1;
+  }
+
+  function lambdas(forcaCasa, forcaFora, golsBase, mando) {
+    var zc = (forcaCasa - PIVOT) / SCALE;
+    var zf = (forcaFora - PIVOT) / SCALE;
+    var d = Math.tanh((zc - zf) / SAT);
+    var adv = mando / 2;
+    return [
+      Math.max(golsBase * Math.exp(K * d + adv), FLOOR),
+      Math.max(golsBase * Math.exp(-K * d - adv), FLOOR)
+    ];
+  }
+
+  function simularTemporada(liga, rnd) {
+    var clubes = liga.clubes, n = clubes.length;
+    var pts = new Int32Array(n), j = new Int32Array(n), v = new Int32Array(n);
+    var e = new Int32Array(n), dd = new Int32Array(n);
+    var gp = new Int32Array(n), gc = new Int32Array(n);
+    var agg = { jogos: 0, gols: 0, zz: 0, casa: 0, emp: 0, fora: 0, m3: 0, m4: 0, c5: 0 };
+
+    for (var i = 0; i < n; i++) {
+      for (var k = 0; k < n; k++) {
+        if (i === k) continue;
+        var lam = lambdas(clubes[i][1], clubes[k][1], liga.gols_base, liga.mando);
+        var gh = poisson(lam[0], rnd), ga = poisson(lam[1], rnd);
+
+        agg.jogos++; agg.gols += gh + ga;
+        gp[i] += gh; gc[i] += ga; gp[k] += ga; gc[k] += gh;
+        j[i]++; j[k]++;
+
+        if (gh === 0 && ga === 0) agg.zz++;
+        if (gh > ga)      { pts[i] += 3; v[i]++; dd[k]++; agg.casa++; }
+        else if (ga > gh) { pts[k] += 3; v[k]++; dd[i]++; agg.fora++; }
+        else              { pts[i]++; pts[k]++; e[i]++; e[k]++; agg.emp++; }
+
+        var m = Math.abs(gh - ga);
+        if (m >= 3) agg.m3++;
+        if (m >= 4) agg.m4++;
+        if (gh + ga >= 5) agg.c5++;
+      }
+    }
+
+    var linhas = [];
+    for (var x = 0; x < n; x++) {
+      linhas.push({
+        idx: x, nome: clubes[x][0], forca: clubes[x][1],
+        pts: pts[x], j: j[x], v: v[x], e: e[x], d: dd[x],
+        gp: gp[x], gc: gc[x], sg: gp[x] - gc[x]
+      });
+    }
+    linhas.sort(function (a, b) {
+      return (b.pts - a.pts) || (b.sg - a.sg) || (b.gp - a.gp);
+    });
+    return { linhas: linhas, agg: agg };
+  }
+
+  // ---- formatação pt-BR ----
+  function num(x, casas) {
+    return x.toFixed(casas).replace(".", ",");
+  }
+
+  // ---- tabela da temporada ----
+  var elLiga = document.getElementById("liga");
+  var elSeed = document.getElementById("seed");
+  var elCorpo = document.getElementById("corpo-tabela");
+  var elResumo = document.getElementById("resumo");
+
+  Object.keys(LIGAS).forEach(function (id) {
+    var o = document.createElement("option");
+    o.value = id;
+    o.textContent = LIGAS[id].nome;
+    elLiga.appendChild(o);
+  });
+
+  function renderTemporada() {
+    var liga = LIGAS[elLiga.value];
+    var semente = Math.max(1, parseInt(elSeed.value, 10) || 42);
+    var r = simularTemporada(liga, criarRng(semente));
+    var n = r.linhas.length;
+
+    elCorpo.textContent = "";
+    r.linhas.forEach(function (linha, i) {
+      var tr = document.createElement("tr");
+      var campeao = i === 0;
+      var rebaixado = i >= n - liga.descem;
+      if (campeao) tr.className = "campeao";
+      if (rebaixado) tr.className = "rebaixado";
+
+      var marca = campeao ? '<span class="marca t">★</span>'
+                : rebaixado ? '<span class="marca r">▾</span>'
+                : '<span class="marca"></span>';
+
+      tr.innerHTML =
+        '<td class="pos">' + marca + (i + 1) + "</td>" +
+        '<td class="clube"></td>' +
+        '<td class="pts">' + linha.pts + "</td>" +
+        "<td>" + linha.j + "</td><td>" + linha.v + "</td>" +
+        "<td>" + linha.e + "</td><td>" + linha.d + "</td>" +
+        "<td>" + linha.gp + "</td><td>" + linha.gc + "</td>" +
+        "<td>" + (linha.sg > 0 ? "+" : "") + linha.sg + "</td>" +
+        "<td>" + linha.forca + "</td>";
+      tr.querySelector("td.clube").textContent = linha.nome;
+      elCorpo.appendChild(tr);
+    });
+
+    var a = r.agg;
+    var itens = [
+      ["Campeão", r.linhas[0].nome],
+      ["Pontos", String(r.linhas[0].pts)],
+      ["Gols por jogo", num(a.gols / a.jogos, 2)],
+      ["Vitória em casa", num((100 * a.casa) / a.jogos, 0) + "%"],
+      ["Empate", num((100 * a.emp) / a.jogos, 0) + "%"],
+      ["Partidas", String(a.jogos)]
+    ];
+    elResumo.textContent = "";
+    itens.forEach(function (par) {
+      var wrap = document.createElement("div");
+      var dt = document.createElement("dt");
+      dt.textContent = par[0];
+      var dd = document.createElement("dd");
+      dd.textContent = par[1];
+      wrap.appendChild(dt);
+      wrap.appendChild(dd);
+      elResumo.appendChild(wrap);
+    });
+  }
+
+  document.getElementById("btn-temporada").addEventListener("click", renderTemporada);
+  elLiga.addEventListener("change", function () { renderTemporada(); limparCalibracao(); });
+  document.getElementById("btn-sorte").addEventListener("click", function () {
+    elSeed.value = String(1 + Math.floor(Math.random() * 999999));
+    renderTemporada();
+  });
+
+  // ---- portão de calibração ----
+  var elMetricas = document.getElementById("metricas");
+  var elVeredito = document.getElementById("veredito");
+  var elBarras = document.getElementById("barras");
+  var elGraficoSub = document.getElementById("grafico-sub");
+  var elProgresso = document.getElementById("progresso");
+  var btnCalibrar = document.getElementById("btn-calibrar");
+  var elN = document.getElementById("n-temporadas");
+
+  function limparCalibracao() {
+    elMetricas.textContent = "";
+    elBarras.textContent = "";
+    elVeredito.hidden = true;
+    elGraficoSub.textContent = "Rode o portão para ver a distribuição de títulos.";
+    elProgresso.textContent = "";
+  }
+
+  function alvosDa(liga) {
+    var out = {};
+    ORDEM_METRICAS.forEach(function (k) { out[k] = ALVOS_PADRAO[k]; });
+    Object.keys(liga.alvos).forEach(function (k) { out[k] = liga.alvos[k]; });
+    return out;
+  }
+
+  function renderMetricas(medido, alvos) {
+    elMetricas.textContent = "";
+    var falhas = 0;
+
+    ORDEM_METRICAS.forEach(function (chave) {
+      var valor = medido[chave];
+      var faixa = alvos[chave];
+      var baixo = faixa[0], alto = faixa[1];
+      var dentro = valor >= baixo && valor <= alto;
+      if (!dentro) falhas++;
+
+      var casas = chave === "gols_por_jogo" ? 2
+                : chave === "pontos_do_campeao" || chave === "pontos_do_lanterna" ? 1 : 1;
+      var sufixo = PERCENTUAL[chave] ? "%" : "";
+
+      // domínio: a faixa alvo com folga, sempre contendo o medido
+      var largura = alto - baixo;
+      var lo = Math.min(baixo - largura * 0.75, valor - largura * 0.3);
+      var hi = Math.max(alto + largura * 0.75, valor + largura * 0.3);
+      var span = hi - lo || 1;
+      var bandaEsq = ((baixo - lo) / span) * 100;
+      var bandaLarg = ((alto - baixo) / span) * 100;
+      var agulha = ((valor - lo) / span) * 100;
+
+      var div = document.createElement("div");
+      div.className = "metrica";
+      div.innerHTML =
+        '<div class="nome"></div>' +
+        '<div class="valor">' + num(valor, casas) + sufixo + "</div>" +
+        '<div class="faixa">' +
+          '<div class="banda" style="left:' + bandaEsq.toFixed(2) + "%;width:" + bandaLarg.toFixed(2) + '%"></div>' +
+          '<div class="agulha' + (dentro ? "" : " fora") + '" style="left:' + agulha.toFixed(2) + '%"></div>' +
+        "</div>" +
+        '<div class="alvo">' + num(baixo, casas) + " – " + num(alto, casas) + sufixo + "</div>" +
+        '<div class="selo ' + (dentro ? "ok" : "falha") + '">' + (dentro ? "ok" : "fora") + "</div>";
+      div.querySelector(".nome").textContent = ROTULOS[chave];
+      div.title = ROTULOS[chave] + ": " + num(valor, casas) + sufixo +
+                  " · alvo " + num(baixo, casas) + " a " + num(alto, casas) + sufixo;
+      elMetricas.appendChild(div);
+    });
+
+    return falhas;
+  }
+
+  function renderBarras(titulos, liga, nTemporadas) {
+    var lista = liga.clubes.map(function (c, i) {
+      return { nome: c[0], forca: c[1], n: titulos[i] };
+    }).filter(function (x) { return x.n > 0; })
+      .sort(function (a, b) { return b.n - a.n; });
+
+    var maior = lista.length ? lista[0].n : 1;
+    elBarras.textContent = "";
+
+    lista.forEach(function (item) {
+      var pct = (100 * item.n) / nTemporadas;
+      var linha = document.createElement("div");
+      linha.className = "barra-linha";
+      linha.innerHTML =
+        '<div class="rotulo"></div>' +
+        '<div class="barra-trilho"><div class="barra-fill" style="width:' +
+          ((100 * item.n) / maior).toFixed(2) + '%"></div></div>' +
+        '<div class="pct">' + num(pct, 1) + "%</div>";
+      linha.querySelector(".rotulo").textContent = item.nome;
+      linha.title = item.nome + " (força " + item.forca + "): " + item.n +
+                    " de " + nTemporadas + " títulos";
+      elBarras.appendChild(linha);
+    });
+
+    var campeoesDistintos = lista.length;
+    elGraficoSub.textContent =
+      campeoesDistintos + " clubes diferentes levantaram a taça em " + nTemporadas +
+      " temporadas · o favorito levou " + num((100 * titulos[0]) / nTemporadas, 1) + "%";
+  }
+
+  function calibrar() {
+    var liga = LIGAS[elLiga.value];
+    var nTemporadas = parseInt(elN.value, 10);
+    var alvos = alvosDa(liga);
+    var rnd = criarRng(Math.max(1, parseInt(elSeed.value, 10) || 42));
+
+    var tot = { jogos: 0, gols: 0, zz: 0, casa: 0, emp: 0, fora: 0, m3: 0, m4: 0, c5: 0 };
+    var somaCampeao = 0, somaLanterna = 0, melhorFoiCampeao = 0;
+    var titulos = new Int32Array(liga.clubes.length);
+    var feitas = 0;
+    var LOTE = 20;
+
+    btnCalibrar.disabled = true;
+    limparCalibracao();
+
+    function lote() {
+      var fim = Math.min(feitas + LOTE, nTemporadas);
+      for (; feitas < fim; feitas++) {
+        var r = simularTemporada(liga, rnd);
+        var a = r.agg;
+        tot.jogos += a.jogos; tot.gols += a.gols; tot.zz += a.zz;
+        tot.casa += a.casa; tot.emp += a.emp; tot.fora += a.fora;
+        tot.m3 += a.m3; tot.m4 += a.m4; tot.c5 += a.c5;
+
+        var campeao = r.linhas[0];
+        somaCampeao += campeao.pts;
+        somaLanterna += r.linhas[r.linhas.length - 1].pts;
+        titulos[campeao.idx]++;
+        if (campeao.idx === 0) melhorFoiCampeao++;
+      }
+
+      elProgresso.textContent = feitas + " / " + nTemporadas + " temporadas";
+
+      if (feitas < nTemporadas) {
+        setTimeout(lote, 0);
+        return;
+      }
+
+      var j = tot.jogos;
+      var medido = {
+        gols_por_jogo: tot.gols / j,
+        zero_a_zero_pct: (100 * tot.zz) / j,
+        vitoria_casa_pct: (100 * tot.casa) / j,
+        empate_pct: (100 * tot.emp) / j,
+        vitoria_fora_pct: (100 * tot.fora) / j,
+        margem_3_ou_mais_pct: (100 * tot.m3) / j,
+        margem_4_ou_mais_pct: (100 * tot.m4) / j,
+        cinco_ou_mais_gols_pct: (100 * tot.c5) / j,
+        pontos_do_campeao: somaCampeao / nTemporadas,
+        pontos_do_lanterna: somaLanterna / nTemporadas,
+        melhor_elenco_campeao_pct: (100 * melhorFoiCampeao) / nTemporadas
+      };
+
+      var falhas = renderMetricas(medido, alvos);
+      renderBarras(titulos, liga, nTemporadas);
+
+      elVeredito.hidden = false;
+      elVeredito.innerHTML =
+        '<span style="color:' + (falhas === 0 ? "var(--good)" : "var(--critical)") + '">' +
+          (falhas === 0 ? "Mundo crível" : falhas + (falhas === 1 ? " alvo quebrado" : " alvos quebrados")) +
+        "</span>" +
+        '<span class="conta">' + j.toLocaleString("pt-BR") + " partidas · " +
+          nTemporadas + " temporadas · " + liga.nome + "</span>";
+
+      elProgresso.textContent = "";
+      btnCalibrar.disabled = false;
+    }
+
+    setTimeout(lote, 0);
+  }
+
+  btnCalibrar.addEventListener("click", calibrar);
+
+
+  // ---- tema: o site autônomo guarda a escolha do visitante ----
+  (function () {
+    var raiz = document.documentElement;
+    var btn = document.getElementById("tema");
+    try {
+      var salvo = localStorage.getItem("fm-tema");
+      if (salvo === "dark" || salvo === "light") raiz.setAttribute("data-theme", salvo);
+    } catch (err) { /* modo privado ou storage bloqueado: segue o tema do sistema */ }
+    btn.addEventListener("click", function () {
+      var escuroAgora = raiz.getAttribute("data-theme") === "dark" ||
+        (!raiz.hasAttribute("data-theme") &&
+         window.matchMedia("(prefers-color-scheme: dark)").matches);
+      var novo = escuroAgora ? "light" : "dark";
+      raiz.setAttribute("data-theme", novo);
+      try { localStorage.setItem("fm-tema", novo); } catch (err) { /* sem persistência */ }
+    });
+  })();
+
+  // estado inicial: a página abre com uma temporada já na tela
+  renderTemporada();
+})();
+</script>
+</body>
+</html>
