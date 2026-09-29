@@ -453,6 +453,7 @@ def classificacao(c: Carreira, liga: str | None, clube_json) -> dict:
 
     zonas = _zonas(cfg, len(tabela))
     return {
+        "tipo": "liga", "competicoes": competicoes(c),
         "liga": nome, "nome": nome_da_liga(nome),
         "ligas": [{"id": n, "nome": nome_da_liga(n)} for n in c.ligas],
         "rodada": min(c.rodada, c.rodadas_da_liga(nome)),
@@ -466,6 +467,134 @@ def classificacao(c: Carreira, liga: str | None, clube_json) -> dict:
                              for x in ataques[:5]],
         **individuais,
     }
+
+
+def competicoes(c: Carreira) -> list[dict]:
+    """O que o seletor da tela de Tabela oferece: as divisoes e as copas do ano."""
+    fora = [{"id": n, "nome": nome_da_liga(n), "tipo": "liga"} for n in c.ligas]
+    fora += [{"id": k, "nome": a.torneio.nome, "tipo": "copa",
+              "minha": c.clube_id in a.ja_entraram or c.clube_id in a.vivos}
+             for k, a in c.copas.items()]
+    return fora
+
+
+def _linhas_curtas(ids: list[int], resultados, c: Carreira, clube_json) -> list[dict]:
+    from fm.table import build_table
+    return [{"posicao": i, "clube": clube_json(ln.club_id), "pontos": ln.points,
+             "jogos": ln.played, "vitorias": ln.wins, "empates": ln.draws,
+             "derrotas": ln.losses, "saldo": ln.goal_diff, "gols_pro": ln.goals_for,
+             "eu": ln.club_id == c.clube_id}
+            for i, ln in enumerate(build_table(ids, resultados), 1)]
+
+
+def _confrontos(fase: dict, c: Carreira, clube_json) -> list[dict]:
+    """Os pares de uma rodada do mata-mata, com ida, volta e agregado."""
+    fora = []
+    for casa, visita in fase["pares"]:
+        jogos = [r for r in fase["resultados"] if {r.home, r.away} == {casa, visita}]
+        a = sum(r.goals_home if r.home == casa else r.goals_away for r in jogos)
+        b = sum(r.goals_home if r.home == visita else r.goals_away for r in jogos)
+        vencedor = None
+        if len(jogos) >= fase["maos"]:
+            # a mesma regra de fm.copa._apurar_mata_mata: empate fica com o mandante da
+            # ida, ou com o visitante quando a copa diz isso
+            vencedor = casa if a > b else visita if b > a else (
+                visita if fase["visitante_avanca_empate"] else casa)
+        fora.append({
+            "casa": clube_json(casa), "fora": clube_json(visita),
+            "jogos": [{"mandante": clube_json(r.home)["nome"], "gols_casa": r.goals_home,
+                       "gols_fora": r.goals_away} for r in jogos],
+            "agregado": [a, b] if jogos else None, "vencedor": vencedor,
+            "meu": c.clube_id in (casa, visita)})
+    return fora
+
+
+LETRAS = "ABCDEFGHIJKLMNOP"
+
+
+def _fase_json(fase: dict, c: Carreira, clube_json, em_curso: bool) -> dict:
+    base = {"tipo": fase["tipo"], "nome": fase["nome"], "em_curso": em_curso}
+    if fase["tipo"] == "grupos":
+        return {**base, "avancam": fase["avancam"], "grupos": [
+            {"nome": f"Grupo {LETRAS[i]}" if i < len(LETRAS) else f"Grupo {i + 1}",
+             "linhas": _linhas_curtas(g, [r for r in fase["resultados"]
+                                          if r.home in g and r.away in g], c, clube_json)}
+            for i, g in enumerate(fase["grupos"])]}
+    if fase["tipo"] == "liga":
+        return {**base, "avancam": fase["avancam"],
+                "linhas": _linhas_curtas(fase["clubes"], fase["resultados"], c, clube_json)}
+    return {**base, "confrontos": _confrontos(fase, c, clube_json),
+            "poupados": [clube_json(k) for k in fase["poupados"]],
+            "abre": fase.get("abre", False)}
+
+
+def _rodadas_que_faltam(a, agora: dict | None) -> list[str]:
+    """Os nomes das rodadas de mata-mata ainda por sortear, para o chaveamento ter as
+    colunas vazias. Segue o formato do arquivo: grupos passam `avancam` por grupo, o
+    playoff poupa os `isentos`, e a fase "todas" vai dividindo ate a final. Clube que so
+    entra numa fase adiante (a Serie A na Copa do Brasil) nao da para prever: a conta
+    para ai.
+
+    `agora` None: nenhuma rodada em curso. Os vivos sao os de agora e a proxima rodada e
+    a da fase `a.fase` -- que ja aponta para a seguinte quando a anterior acabou."""
+    from fm.copa import nome_da_rodada
+    fases = a.torneio.fases
+    i = a.fase
+    if agora is None:
+        vivos = len(a.vivos)
+    elif agora["tipo"] == "grupos":
+        vivos, i = len(agora["grupos"]) * agora["avancam"], i + 1
+    elif agora["tipo"] == "liga":
+        vivos, i = agora["avancam"], i + 1
+    else:
+        vivos = len(agora["pares"]) + len(agora["poupados"])
+        if str(fases[i].get("rodadas", "todas")) == "1":
+            i += 1
+    nomes = []
+    for j, fase in enumerate(fases[i:], start=i):
+        # quem entra na fase EM CURSO ja entrou; numa fase adiante, a conta nao fecha
+        if fase.get("tipo") != "knockout" or (j > a.fase and fase.get("entram")):
+            break
+        isentos = min(int(fase.get("isentos", 0)), vivos)   # mundo pequeno: menos clubes
+        rodadas = fase.get("rodadas", "todas")
+        if str(rodadas) == "1":
+            nomes.append(nome_da_rodada(fase.get("nome", ""), rodadas, vivos, 0))
+            vivos = isentos + (vivos - isentos) // 2 + (vivos - isentos) % 2
+            continue
+        while vivos > 1:
+            nomes.append(nome_da_rodada(fase.get("nome", ""), rodadas, vivos, len(nomes)))
+            vivos = vivos // 2 + vivos % 2
+    return nomes
+
+
+def copa(c: Carreira, chave: str, clube_json) -> dict:
+    """Uma copa inteira: as fases encerradas, a em curso e as que ainda vem."""
+    from fm.copa import foto_da_fase
+    a = c.copas[chave]
+    fases = [_fase_json(f, c, clube_json, False) for f in a.historico]
+    agora = foto_da_fase(a)
+    # a fase em curso so aparece com jogo marcado (pendentes): antes do sorteio nao ha o
+    # que mostrar, e quando a rodada acaba ela ja foi para o historico
+    restantes: list[str] = []
+    if agora is not None and not a.acabou and a.pendentes:
+        fases.append(_fase_json(agora, c, clube_json, True))
+        restantes = _rodadas_que_faltam(a, agora)
+    elif a.historico and not a.acabou:
+        # entre duas datas: o proximo mata-mata so e sorteado no dia do jogo
+        restantes = _rodadas_que_faltam(a, None)
+    individuais = []
+    est = c.estatisticas_por_comp.get(chave)
+    if est is not None:
+        for x in est.artilheiros(c.world, 10):
+            p = c.world.players.get(x.jogador)
+            if p is not None and p.club_id in c.world.clubs:
+                individuais.append({"nome": p.name, "clube": clube_json(p.club_id)["nome"],
+                                    "gols": x.gols, "meu": p.club_id == c.clube_id})
+    return {"tipo": "copa", "id": chave, "nome": a.torneio.nome,
+            "fase_atual": a.nome_da_fase,
+            "campeao": clube_json(a.campeao) if a.campeao in c.world.clubs else None,
+            "fases": fases, "a_sortear": restantes, "artilheiros": individuais,
+            "competicoes": competicoes(c)}
 
 
 def _zonas(cfg: dict, n: int) -> dict:

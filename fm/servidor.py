@@ -841,6 +841,19 @@ def emprestar(jogo: Jogo, corpo: dict) -> dict:
     return {"resultado": "concluida", "mensagem": feito["mensagem"], "estado": estado(jogo)}
 
 
+def tabela_da_competicao(jogo: Jogo, q: dict) -> dict:
+    """`?comp=auto` abre na competicao do proximo jogo; `?comp=<liga ou copa>` escolhe;
+    sem nada (ou `?liga=`) e a tabela da divisao, como sempre foi."""
+    c = jogo.c
+    comp = q.get("comp", q.get("liga", [None]))[0]
+    if comp == "auto":
+        comp = c.competicao_do_proximo() or c.liga
+    clube = lambda cid: _clube(c, cid)  # noqa: E731
+    if comp in c.copas:
+        return telas.copa(c, comp, clube)
+    return telas.classificacao(c, comp, clube)
+
+
 def _inteiro(q: dict, chave: str) -> int | None:
     try:
         return int(q.get(chave, [""])[0])
@@ -864,8 +877,7 @@ ROTAS_GET = {
     "/api/mensagens": lambda jogo, q: {
         "mensagens": telas.mensagens(jogo.c, data_do_jogo(jogo.c), jogo.lidas)},
     "/api/treinador": lambda jogo, q: telas.treinador(jogo.c),
-    "/api/classificacao": lambda jogo, q: telas.classificacao(
-        jogo.c, q.get("liga", [None])[0], lambda cid: _clube(jogo.c, cid)),
+    "/api/classificacao": lambda jogo, q: tabela_da_competicao(jogo, q),
     "/api/partida": lambda jogo, q: partida_atual(jogo),
     "/api/selecao": lambda jogo, q: telas.selecao(
         jogo.c, q.get("liga", [None])[0], _inteiro(q, "rodada"),

@@ -563,11 +563,26 @@ async function mandarTatica(mudanca) {
 
 /* ================================================================== CLASSIFICACAO */
 
-let CLASS = {liga: null, visao: "geral"};
+// comp "auto" = a competicao do proximo jogo. A escolha do usuario vale ate a data andar.
+let CLASS = {comp: "auto", visao: "geral", bloco: null, data: null};
+
+function seletorDeCompeticao(lista, atual) {
+  const grupo = (tipo, rotulo) => {
+    const itens = lista.filter((x) => x.tipo === tipo);
+    return itens.length ? `<optgroup label="${rotulo}">${itens.map((x) =>
+      `<option value="${x.id}" ${x.id === atual ? "selected" : ""}>${escapar(x.nome)}${x.minha ? " ★" : ""}</option>`).join("")}</optgroup>` : "";
+  };
+  return `<select id="sel-comp" class="sel-comp" title="Escolher competição">${grupo("liga", "Ligas")}${grupo("copa", "Copas")}</select>`;
+}
 
 TELAS.classificacao = async function () {
-  const d = await api.get(`/api/classificacao${CLASS.liga ? `?liga=${CLASS.liga}` : ""}`);
-  CLASS.liga = d.liga;
+  if (CLASS.data !== ESTADO.indice_da_data) {
+    Object.assign(CLASS, {comp: PARAMS.get("comp") || "auto",
+                          bloco: PARAMS.get("bloco") ? +PARAMS.get("bloco") : null, data: ESTADO.indice_da_data});
+  }
+  const d = await api.get(`/api/classificacao?comp=${encodeURIComponent(CLASS.comp)}`);
+  if (d.tipo === "copa") return telaDaCopa(d);
+  CLASS.comp = d.liga;
   const z = d.zonas;
   const n = d.linhas.length;
   const zona = (i) => i <= z.continental ? "continental" : i <= z.acesso ? "acesso"
@@ -585,8 +600,8 @@ TELAS.classificacao = async function () {
 
   $("#tela-classificacao").innerHTML = `
     <div class="painel">
-      <div class="cab"><h2>${escapar(d.nome)} · rodada ${d.rodada}/${d.total_de_rodadas}</h2>
-        <div class="abas">${d.ligas.map((l) => `<button data-liga="${l.id}" class="${l.id === d.liga ? "ativo" : ""}">${escapar(l.nome)}</button>`).join("")}</div>
+      <div class="cab">${seletorDeCompeticao(d.competicoes, d.liga)}<h2>rodada ${d.rodada}/${d.total_de_rodadas}</h2>
+        <span class="espaco"></span>
         <div class="segmentado" style="width:15rem">${[["geral", "Geral"], ["casa", "Casa"], ["fora", "Fora"]].map(([k, r]) =>
           `<button data-visao="${k}" class="${k === v ? "ativo" : ""}">${r}</button>`).join("")}</div></div>
       <div class="corpo sem-margem"><table class="grade">
@@ -620,9 +635,114 @@ TELAS.classificacao = async function () {
       ${lista("Piores defesas", d.piores_defesas.slice(0, 3), (x) => `<tr><td>${escapar(x.clube)}</td><td class="n ruim">${x.gols} gc</td></tr>`)}
       ${lista("Copas", copas, (x) => x)}
     </div>`;
-  $$("[data-liga]").forEach((b) => b.addEventListener("click", () => { CLASS.liga = b.dataset.liga; TELAS.classificacao(); }));
+  ligarSeletorDeCompeticao();
   $$("[data-visao]").forEach((b) => b.addEventListener("click", () => { CLASS.visao = b.dataset.visao; TELAS.classificacao(); }));
 };
+
+function ligarSeletorDeCompeticao() {
+  $("#sel-comp").addEventListener("change", (ev) => {
+    CLASS.comp = ev.target.value;
+    CLASS.bloco = null;
+    TELAS.classificacao();
+  });
+}
+
+/* ------------------------------------------------------------------ copas
+ * Uma copa em abas por fase. Fases de mata-mata seguidas viram UM chaveamento, em
+ * colunas (oitavas -> quartas -> semi -> final), com as rodadas ainda por sortear vazias.
+ * Os pares sao sorteados a cada rodada (fm.copa), entao a coluna seguinte so se preenche
+ * depois do sorteio: nao ha arvore fixa para desenhar antes. */
+
+function blocosDaCopa(d) {
+  const blocos = [];
+  for (const f of d.fases) {
+    const ultimo = blocos[blocos.length - 1];
+    // rodadas de mata-mata seguidas ficam juntas, ate uma fase que recebe clubes novos
+    // (a Serie A entrando na Copa do Brasil): ali comeca outro chaveamento
+    if (f.tipo === "mata" && ultimo && ultimo.tipo === "mata" && !f.abre) ultimo.fases.push(f);
+    else blocos.push({tipo: f.tipo, nome: f.nome, fases: [f]});
+  }
+  if (d.a_sortear.length) {
+    const ultimo = blocos[blocos.length - 1];
+    if (ultimo && ultimo.tipo === "mata") ultimo.vazias = d.a_sortear;
+    else blocos.push({tipo: "mata", nome: "Mata-mata", fases: [], vazias: d.a_sortear});
+  }
+  const ultimoMata = blocos.filter((b) => b.tipo === "mata").pop();
+  if (ultimoMata && (ultimoMata.fases.length + (ultimoMata.vazias || []).length) > 1) ultimoMata.nome = "Chaveamento";
+  return blocos;
+}
+
+function miniTabela(linhas, avancam, titulo) {
+  return `<div class="mini-tabela">${titulo ? `<h3>${escapar(titulo)}</h3>` : ""}
+    <table class="grade compacta"><thead><tr><th class="c">#</th><th>Clube</th><th class="n">P</th><th class="n">J</th>
+      <th class="n">V</th><th class="n">SG</th></tr></thead>
+    <tbody>${linhas.map((l) => `<tr class="${l.eu ? "eu" : ""}">
+      <td class="c"><span class="zona ${l.posicao <= avancam ? "acesso" : ""}">${l.posicao}</span></td>
+      <td><div class="nome-celula">${escudo(l.clube, "1.2rem")}<b>${escapar(l.clube.nome)}</b></div></td>
+      <td class="n"><b>${l.pontos}</b></td><td class="n">${l.jogos}</td><td class="n">${l.vitorias}</td>
+      <td class="n">${l.saldo > 0 ? "+" : ""}${l.saldo}</td></tr>`).join("")}</tbody></table></div>`;
+}
+
+function cartaoDeConfronto(x) {
+  const lado = (clube, gols) => {
+    const perdeu = x.vencedor && x.vencedor !== clube.id;
+    return `<div class="lado-c ${x.vencedor === clube.id ? "venceu" : ""} ${perdeu ? "caiu" : ""}">
+      ${escudo(clube, "1.2rem")}<span class="nm">${escapar(clube.nome)}</span><b>${x.agregado ? gols : ""}</b></div>`;
+  };
+  const jogos = x.jogos.length > 1 ? `<div class="jogos-c">${x.jogos.map((j) =>
+    `<span>${j.gols_casa}–${j.gols_fora}</span>`).join(" · ")}</div>` : "";
+  return `<div class="confronto ${x.meu ? "meu" : ""}">${lado(x.casa, x.agregado?.[0])}${lado(x.fora, x.agregado?.[1])}${jogos}</div>`;
+}
+
+function chaveamento(bloco) {
+  const colunas = bloco.fases.map((f) => `<div class="coluna-chave">
+      <h3>${escapar(f.nome)}${f.em_curso ? ' <span class="chip ouro">agora</span>' : ""}</h3>
+      <div class="cartas">${f.confrontos.map(cartaoDeConfronto).join("")}
+        ${f.poupados.length ? `<div class="dica poupados">Direto para a rodada seguinte: ${f.poupados.map((k) => escapar(k.nome)).join(", ")}</div>` : ""}</div>
+    </div>`);
+  const vazias = (bloco.vazias || []).map((nome) => `<div class="coluna-chave vazia">
+      <h3>${escapar(nome)}</h3><div class="cartas"><div class="confronto a-sortear">a sortear</div></div></div>`);
+  return `<div class="chave">${[...colunas, ...vazias].join("")}</div>`;
+}
+
+function telaDaCopa(d) {
+  const blocos = blocosDaCopa(d);
+  if (CLASS.bloco === null || CLASS.bloco >= blocos.length) {
+    // abre na ultima fase que ja teve jogo, nao num chaveamento so com "a sortear"
+    const comJogo = blocos.map((b, i) => (b.fases.length ? i : -1)).filter((i) => i >= 0);
+    CLASS.bloco = comJogo.length ? comJogo[comJogo.length - 1] : Math.max(0, blocos.length - 1);
+  }
+  const b = blocos[CLASS.bloco];
+  let corpo = '<div class="vazio">A competição ainda não começou: os confrontos aparecem depois do sorteio.</div>';
+  if (b && b.tipo === "grupos") {
+    const f = b.fases[0];
+    corpo = `<div class="grade-grupos">${f.grupos.map((g) => miniTabela(g.linhas, f.avancam, g.nome)).join("")}</div>`;
+  } else if (b && b.tipo === "liga") {
+    const f = b.fases[0];
+    corpo = `<div style="padding:.6rem 1rem">${miniTabela(f.linhas, f.avancam)}</div>`;
+  } else if (b) {
+    corpo = chaveamento(b);
+  }
+  $("#tela-classificacao").innerHTML = `
+    <div class="painel">
+      <div class="cab">${seletorDeCompeticao(d.competicoes, d.id)}
+        <h2>${d.campeao ? `Campeão: ${escapar(d.campeao.nome)}` : escapar(d.fase_atual)}</h2>
+        <span class="espaco"></span>
+        ${blocos.length > 1 ? `<div class="abas">${blocos.map((x, i) =>
+          `<button data-bloco="${i}" class="${i === CLASS.bloco ? "ativo" : ""}">${escapar(x.nome)}</button>`).join("")}</div>` : ""}</div>
+      <div class="corpo sem-margem copa-corpo">${corpo}</div>
+      ${b && b.tipo !== "mata" ? `<div class="pe"><span class="linha-flex"><span class="zona acesso">&nbsp;</span>
+        <span class="dica">avança de fase</span></span></div>` : ""}
+    </div>
+    <div class="coluna" style="overflow:auto">
+      <div class="painel fixo"><div class="cab"><h2>Artilharia</h2></div>
+        <div class="corpo sem-margem"><table class="grade compacta"><tbody>${d.artilheiros.slice(0, 8).map((x, i) => `
+          <tr class="${x.meu ? "eu" : ""}"><td class="n">${i + 1}</td><td><b>${escapar(x.nome)}</b><div class="dica">${escapar(x.clube)}</div></td>
+          <td class="n"><b>${x.gols}</b></td></tr>`).join("") || '<tr><td class="vazio">Sem gols ainda.</td></tr>'}</tbody></table></div></div>
+    </div>`;
+  ligarSeletorDeCompeticao();
+  $$("[data-bloco]").forEach((x) => x.addEventListener("click", () => { CLASS.bloco = +x.dataset.bloco; telaDaCopa(d); }));
+}
 
 /* O MERCADO virou a tela de Transferencias: fm/web/transferencias.js */
 

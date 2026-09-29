@@ -858,3 +858,25 @@ input:focus, select:focus { border-color: var(--ouro); }
 .sub-trf { margin: .8rem 1rem .4rem; font-size: .8rem; letter-spacing: .06em; color: var(--texto-2); text-transform: uppercase; }
 .opcao-emp { gap: .6rem; padding: .45rem .6rem; border: 1px solid var(--linha); border-radius: 6px; cursor: pointer; }
 .opcao-emp:has(input:checked) { border-color: var(--ouro-2); background: var(--ouro-fundo); }
+
+/* tabela: seletor de competicao, grupos e chaveamento das copas */
+.sel-comp { background: var(--preto); color: var(--ouro); border: 1px solid var(--ouro-2); border-radius: 6px;
+  font-family: var(--fonte-titulo); font-size: .85rem; letter-spacing: .04em; padding: .35rem .6rem; max-width: 18rem; }
+.copa-corpo { overflow: auto; }
+.grade-grupos { display: grid; grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr)); gap: .9rem; padding: .8rem 1rem; }
+.mini-tabela h3 { font-size: .78rem; letter-spacing: .08em; color: var(--ouro); margin: 0 0 .3rem; text-transform: uppercase; }
+.chave { display: flex; gap: 1.2rem; padding: .9rem 1rem; min-height: 100%; align-items: stretch; }
+.coluna-chave { flex: 0 0 15rem; display: flex; flex-direction: column; }
+.coluna-chave .cartas { flex: 1; display: flex; flex-direction: column; justify-content: space-around; gap: .5rem; }
+.coluna-chave h3 { font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--texto-2); margin: 0 0 .2rem;
+  display: flex; align-items: center; gap: .4rem; }
+.confronto { border: 1px solid var(--linha); border-radius: 6px; background: rgba(0,0,0,.25); padding: .25rem .4rem; }
+.confronto.meu { border-color: var(--ouro-2); background: var(--ouro-fundo); }
+.confronto.a-sortear { color: var(--texto-3); text-align: center; padding: .9rem; border-style: dashed; font-size: .78rem; }
+.lado-c { display: grid; grid-template-columns: auto minmax(0,1fr) 1.6rem; align-items: center; gap: .4rem; font-size: .78rem; padding: .12rem 0; }
+.lado-c .nm { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.lado-c b { text-align: right; font-family: var(--fonte-numero); }
+.lado-c.venceu .nm { font-weight: 700; color: var(--texto); }
+.lado-c.caiu { opacity: .45; }
+.jogos-c { font-size: .66rem; color: var(--texto-3); text-align: right; border-top: 1px solid rgba(33,80,58,.45); margin-top: .15rem; padding-top: .1rem; }
+.poupados { font-size: .7rem; }

@@ -68,6 +68,10 @@ class Andamento:
     # um chegou -- cair nas oitavas tem de pagar mais que cair na primeira fase.
     etapas_vividas: dict[int, int] = field(default_factory=dict)
     etapas_totais: int = 0
+    # as fases ja encerradas, como ficaram: os grupos com os jogos, a fase de liga, cada
+    # rodada do mata-mata com os pares. O resto do Andamento so guarda a fase em curso --
+    # sem isto a tela nao tinha como mostrar os grupos depois que o mata-mata comecava.
+    historico: list[dict] = field(default_factory=list)
 
     @property
     def acabou(self) -> bool:
@@ -176,6 +180,7 @@ def _sortear_confronto(andamento: Andamento, fase: dict,
     poupados, disputam = andamento.vivos[:isentos], list(andamento.vivos[isentos:])
     if len(disputam) < 2:
         andamento.vivos = poupados + disputam
+        andamento.pares, andamento.poupados = [], []   # senao a rodada anterior "repetia"
         return []
 
     if len(disputam) % 2:
@@ -242,6 +247,9 @@ def _encerrar_fase(world: World, andamento: Andamento, rng: np.random.Generator,
     fase = andamento.torneio.fases[andamento.fase]
     tipo = fase.get("tipo")
     andamento.pendentes = []
+    registro = foto_da_fase(andamento)
+    if registro is not None:
+        andamento.historico.append(registro)
 
     if tipo == "groups" and andamento.grupos:
         avancam, passa = int(fase.get("avancam", 2)), []
@@ -283,6 +291,55 @@ def _encerrar_fase(world: World, andamento: Andamento, rng: np.random.Generator,
                 andamento.vice = andamento.vivos[1]
             elif andamento.eliminados_na_fase:
                 andamento.vice = andamento.eliminados_na_fase[-1]
+
+
+def foto_da_fase(andamento: Andamento) -> dict | None:
+    """A fase em curso como ela esta agora: o que a tela desenha e o que o historico
+    guarda quando a fase acaba. Resultados parciais valem (a fase pode estar no meio)."""
+    if andamento.fase >= len(andamento.torneio.fases):
+        return None
+    fase = andamento.torneio.fases[andamento.fase]
+    tipo = fase.get("tipo")
+    nome = fase.get("nome", f"fase {andamento.fase + 1}")
+    resultados = list(andamento.resultados)
+    if tipo == "groups":
+        if not andamento.grupos:
+            return None
+        return {"tipo": "grupos", "nome": nome, "grupos": [list(g) for g in andamento.grupos],
+                "resultados": resultados, "avancam": int(fase.get("avancam", 2))}
+    if tipo in ("liga_suica", "round_robin"):
+        return {"tipo": "liga", "nome": nome, "clubes": list(andamento.vivos),
+                "resultados": resultados,
+                "avancam": int(fase.get("avancam", len(andamento.vivos)))}
+    if tipo == "knockout":
+        if not andamento.pares:
+            return None
+        rodadas = fase.get("rodadas", "todas")
+        clubes = 2 * len(andamento.pares) + len(andamento.poupados)
+        return {"tipo": "mata", "nome": nome_da_rodada(nome, rodadas, clubes,
+                                                       andamento.rodadas_da_fase_feitas),
+                "pares": [list(p) for p in andamento.pares],
+                "poupados": list(andamento.poupados), "resultados": resultados,
+                "maos": int(fase.get("maos", 2)),
+                "visitante_avanca_empate": bool(fase.get("visitante_avanca_empate", False)),
+                # clube novo entrando: a tela comeca um chaveamento novo aqui
+                "abre": bool(fase.get("entram")) and andamento.rodadas_da_fase_feitas == 0}
+    return None
+
+
+# (ate quantos clubes disputam a rodada, nome). Por clubes e nao por pares: num mundo com
+# numero impar de clubes um passa direto, e 5 pares + 1 isento sao oitavas, nao "5 pares".
+NOMES_DO_MATA_MATA = ((2, "Final"), (4, "Semifinal"), (8, "Quartas de final"),
+                      (16, "Oitavas de final"), (32, "16 avos de final"))
+
+
+def nome_da_rodada(nome_da_fase: str, rodadas, clubes: int, feitas: int) -> str:
+    """Fase de uma rodada so ("Playoff") fica com o nome dela; a fase que vai "ate sobrar
+    um" ganha o nome pelo tamanho: oitavas, quartas, semi, final."""
+    if str(rodadas) == "1":
+        return nome_da_fase
+    return next((nome for teto, nome in NOMES_DO_MATA_MATA if clubes <= teto),
+                f"{nome_da_fase} · {feitas + 1}ª rodada")
 
 
 def _apurar_mata_mata(andamento: Andamento, fase: dict,
