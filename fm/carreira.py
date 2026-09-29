@@ -113,6 +113,12 @@ class Carreira:
     selecoes: dict = field(default_factory=dict)
     # cartoes acumulados e suspensoes, por competicao (fm.disciplina)
     disciplina: object | None = None
+    # quem esta machucado e por quantos jogos (fm.lesoes). Como o gancho, nao vai ao
+    # save: o replay refaz as mesmas lesoes.
+    medico: object | None = None
+    # o boletim da ultima data do usuario: [(id, tipo, jogos)] de quem se machucou e
+    # [id] de quem voltou. E o que as mensagens do departamento medico mostram.
+    boletim_medico: dict = field(default_factory=dict)
     # Negocios do usuario (fm.negocios): compra, renovacao, venda e resposta a proposta,
     # cada um com a temporada e a data em que aconteceu. E isto que o save guarda e o
     # replay reaplica no mesmo ponto -- o resto dos negocios e deterministico.
@@ -173,6 +179,9 @@ class Carreira:
         self.selecoes = {}
         from fm.disciplina import Disciplina
         self.disciplina = Disciplina()      # gancho nao atravessa a virada do ano
+        from fm.lesoes import DepartamentoMedico
+        self.medico = DepartamentoMedico()  # a pre-temporada cura todo mundo
+        self.boletim_medico = {}
         self.world.indisponiveis = set()
 
     def _montar_agenda(self) -> None:
@@ -586,6 +595,7 @@ class Carreira:
                 self.world, rs, rodada[nome], minha)
             clubes = {x.home for x in rs} | {x.away for x in rs}
             self._cartoes_da_data(nome, rs, minha, clubes)
+        self._lesoes_da_data(todos, detalhada, jogaram)
 
         self._gastar_energia(jogaram, tatica)
         self._encerrar_desfalques()
@@ -659,7 +669,20 @@ class Carreira:
             substituicoes=self._no_banco(substituicoes, chave, sou_casa),
             papeis=papeis,
             cobradores={self.clube_id: self.cobradores()},
-            penaltis=self._na_marca(chave))
+            penaltis=self._na_marca(chave),
+            bancos={jogo.home: self.banco(jogo.home), jogo.away: self.banco(jogo.away)},
+            max_trocas=MAX_TROCAS)
+
+    def banco(self, clube: int) -> list[int]:
+        """Os reservas relacionados: 12, fora do onze e disponiveis, com o goleiro
+        reserva sempre entre eles -- sem ele, goleiro machucado virava meia no gol. E o
+        banco da tela ao vivo e o de onde sai quem entra no lugar do machucado."""
+        onze = {p.id for p in self.world.best_xi(clube)}
+        livres = [p for p in sorted(self.world.squad(clube), key=lambda p: -p.overall)
+                  if p.id not in onze and p.id not in self.world.indisponiveis]
+        goleiro = next((p for p in livres if p.position == "GK"), None)
+        resto = [p for p in livres if p is not goleiro]
+        return ([goleiro.id] if goleiro else []) + [p.id for p in resto][:12 - bool(goleiro)]
 
     def cobradores(self) -> list[int]:
         return [self.funcoes[k] for k in ("penaltis", "penaltis2", "penaltis3")
@@ -799,6 +822,7 @@ class Carreira:
 
         jogaram = {f.home for f in etapa.fixtures} | {f.away for f in etapa.fixtures}
         self._cartoes_da_data(nome, resultados, detalhada, jogaram)
+        self._lesoes_da_data(resultados, detalhada, jogaram)
         self._gastar_energia(jogaram, tatica)
         self._encerrar_desfalques()
         self._checar_emprego()
@@ -825,7 +849,8 @@ class Carreira:
         """Aplica um negocio do usuario e o grava para o replay.
 
         tipos: compra {jogador, preco, salario, anos}, renovacao {jogador, salario, anos},
-        aceitar {proposta}, recusar {proposta}, contraproposta {proposta, valor}.
+        aceitar {proposta}, recusar {proposta}, contraproposta {proposta, valor},
+        emprestimo_entrada {jogador}, emprestimo_saida {jogador, clube}.
         Revalida tudo aqui, nao so na tela: o save pode ser editado, e a regra tem de valer
         de qualquer caminho.
         """
@@ -858,8 +883,45 @@ class Carreira:
             self._registrar_movimento("entrada", pid, de, valor)
             resultado = {"ok": True, "mensagem": f"{p.name} e o novo reforco do "
                                                  f"{self.clube.name}."}
+        elif tipo == "emprestimo_entrada":
+            pid = int(acao["jogador"])
+            r = neg.avaliar_emprestimo(self, pid)
+            if r["resultado"] != "aceita":
+                return {"erro": r["mensagem"]}
+            p = w.players[pid]
+            if self.clube.balance < r["taxa"]:
+                return {"erro": "caixa insuficiente para a taxa do emprestimo"}
+            if neg.folha_mensal(w, self.clube_id) + p.wage > neg.limite_da_folha(self):
+                return {"erro": "a diretoria veta: a folha passaria do limite"}
+            if len(self.clube.player_ids) >= neg.ELENCO_MAXIMO:
+                return {"erro": f"o elenco ja tem {neg.ELENCO_MAXIMO} jogadores"}
+            dono = p.club_id
+            self.clube.balance -= r["taxa"]
+            w.clubs[dono].balance += r["taxa"]
+            neg.emprestar(w, pid, self.clube_id)
+            self._registrar_movimento("emprestimo_entrada", pid, dono, r["taxa"])
+            resultado = {"ok": True, "mensagem": f"{p.name} chega emprestado do "
+                                                 f"{w.clubs[dono].name} ate o fim da temporada."}
+        elif tipo == "emprestimo_saida":
+            pid, para = int(acao["jogador"]), int(acao["clube"])
+            p = w.players.get(pid)
+            if p is None or p.club_id != self.clube_id:
+                return {"erro": "ele nao esta no seu elenco"}
+            if p.loan_from is not None:
+                return {"erro": f"{p.name} esta emprestado a voce: nao da para repassar"}
+            if len(self.clube.player_ids) <= neg.ELENCO_MINIMO:
+                return {"erro": f"o elenco nao pode ficar com menos de {neg.ELENCO_MINIMO}"}
+            if para not in neg.interessados_no_emprestimo(self, pid):
+                return {"erro": "esse clube nao tem mais interesse"}
+            neg.emprestar(w, pid, para)
+            self._registrar_movimento("emprestimo_saida", pid, para, 0)
+            self._tirar_do_onze(pid)
+            resultado = {"ok": True, "mensagem": f"{p.name} vai jogar emprestado no "
+                                                 f"{w.clubs[para].name} ate o fim da temporada."}
         elif tipo == "renovacao":
             pid = int(acao["jogador"])
+            if w.players[pid].loan_from is not None:
+                return {"erro": "o contrato dele e com o clube dono, nao com voce"}
             r = neg.avaliar_renovacao(self, pid, int(acao["salario"]), int(acao["anos"]))
             if r["resultado"] != "aceita":
                 return {"erro": r["mensagem"]}
@@ -872,7 +934,7 @@ class Carreira:
             if prop is None or prop.status != "pendente":
                 return {"erro": "essa proposta nao esta mais de pe"}
             p = w.players.get(prop.jogador)
-            if p is None or p.club_id != self.clube_id:
+            if p is None or p.club_id != self.clube_id or p.loan_from is not None:
                 prop.status = "expirada"
                 return {"erro": "o jogador nao esta mais no clube"}
             if tipo == "recusar":
@@ -957,6 +1019,8 @@ class Carreira:
         suspensos: set[int] = set()
         for comp in competicoes:
             suspensos |= self.disciplina.suspensos(comp)
+        # o lesionado fica fora em qualquer competicao; a troca na escalacao e a mesma
+        suspensos |= self.medico.fora()
         self.world.indisponiveis = suspensos
         self._onze_pretendido = self.escalacao_atual()
         self.world.escalacao_fixa[self.clube_id] = self._sem_suspensos(
@@ -1008,13 +1072,38 @@ class Carreira:
             lances = self.lances_da_data.get((r.home, r.away), [])
             self.disciplina.registrar(comp, cartoes_dos_lances(lances))
 
+    def _lesoes_da_data(self, resultados, detalhada, clubes: set[int]) -> None:
+        """Primeiro cumpre (quem estava machucado perdeu ESTE jogo), depois registra os
+        machucados de hoje, com a gravidade num stream proprio."""
+        from fm.central import lesionados
+        voltaram = self.medico.cumprir(clubes, self.world)
+        novos: list[int] = []
+        for r in resultados:
+            if detalhada is not None and (r.home, r.away) == (detalhada.casa, detalhada.fora):
+                novos += detalhada.lesionados
+            else:
+                novos += lesionados(self.lances_da_data.get((r.home, r.away), []))
+        novas = self.medico.registrar(novos, self.streams.get("gravidade", self.temporada,
+                                                              self.data))
+        meus = {p.id for p in self.world.squad(self.clube_id)}
+        self.boletim_medico = {
+            "lesoes": [(pid, les.tipo, les.jogos) for pid, les in novas.items() if pid in meus],
+            "voltaram": [pid for pid in voltaram if pid in meus],
+        }
+
+    def lesionados_do_clube(self, clube: int | None = None) -> dict:
+        """{id: Lesao} de quem esta no departamento medico."""
+        ids = {p.id for p in self.world.squad(clube or self.clube_id)}
+        return {pid: les for pid, les in self.medico.lesionados.items() if pid in ids}
+
     def _detalhar(self, resultados) -> None:
         """Gera os lances dos jogos do motor rapido (fm.central). Stream por jogo: a ordem
         em que as divisoes sao jogadas nao muda quem marcou em cada partida."""
         from fm.central import detalhar
         for r in resultados:
             rng = self.streams.get("central", self.temporada, self.data, r.home, r.away)
-            self.lances_da_data[(r.home, r.away)] = detalhar(self.world, r, rng)
+            rng_les = self.streams.get("lesoes", self.temporada, self.data, r.home, r.away)
+            self.lances_da_data[(r.home, r.away)] = detalhar(self.world, r, rng, rng_les)
 
     def _gastar_energia(self, jogaram: set[int], tatica: Tatica) -> None:
         """Energia entre rodadas.
@@ -1103,6 +1192,10 @@ class Carreira:
         # o alvo de elenco e o tamanho ANTES das aposentadorias: cada clube repoe o que
         # perdeu e mantem a propria dimensao, em vez de convergir todo mundo para o mesmo
         alvos = {c.id: len(c.player_ids) for c in self.world.clubs.values()}
+        # os emprestimos acabam antes de tudo: quem volta envelhece, renova ou sai no
+        # clube dono, e a tela de fim de ano nao confunde a volta com garoto da base
+        from fm.negocios import devolver_emprestimos
+        voltas = devolver_emprestimos(self.world)
         antes = {p.id: (p.name, p.overall) for p in self.world.squad(self.clube_id)}
         envelhecimento = envelhecer(self.world, rng, self.temporada)
         from fm.negocios import livres_que_se_aposentam, vencer_contratos
@@ -1172,6 +1265,8 @@ class Carreira:
                 if self.clube_id in a.etapas_vividas},
             "premios_de_copa": premios_de_copa.get(self.clube_id, 0),
             "clima": clima_final,
+            "emprestimos_encerrados": [v for v in voltas
+                                       if self.clube_id in (v["de"], v["para"])],
             "demitido": False,       # preenchido logo abaixo, depois da regua do ano
             "motivo_da_demissao": "",
             "aposentadorias_do_clube": saidas,

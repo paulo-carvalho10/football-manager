@@ -161,11 +161,15 @@ async function desenharResumoJogador() {
         <div class="kpi-c"><span>Energia</span><b style="color:${corDe(j.energia, 85, 70)}">${j.energia}%</b></div>
         <div class="kpi-c"><span>Valor</span><b>${dinheiro(j.valor)}</b></div>
       </div>
+      ${j.lesao ? `<p class="dica"><span class="ic-lesao">✚</span> ${escapar(j.lesao.tipo)} · fora por mais ${j.lesao.jogos} jogo(s)</p>` : ""}
+      ${j.emprestado_de ? `<p class="dica">Emprestado pelo ${escapar(j.emprestado_de)} até o fim da temporada.</p>` : `
       <div class="linha-flex dica">Contrato: ${avisoDeContrato(j)}<span class="espaco"></span>
-        <button class="btn pequeno ${j.vence_em <= 1 ? "primario" : ""}" id="btn-renovar">Renovar</button></div>
+        <button class="btn pequeno" id="btn-emprestar">Emprestar</button>
+        <button class="btn pequeno ${j.vence_em <= 1 ? "primario" : ""}" id="btn-renovar">Renovar</button></div>`}
     </div>`;
   $("#ver-perfil").addEventListener("click", () => abrirPerfil(j.id));
-  $("#btn-renovar").addEventListener("click", () => renovarContrato(j.id));
+  $("#btn-renovar")?.addEventListener("click", () => renovarContrato(j.id));
+  $("#btn-emprestar")?.addEventListener("click", () => emprestarJogador(j.id));
 }
 
 /* ------------------------------------------------------------------ rodape */
@@ -211,9 +215,11 @@ const ORDEM_POS = {GK: 0, DF: 1, MF: 2, FW: 3};
 
 /** SUSPENSO / PENDURADO, sempre na competicao do proximo jogo. */
 function seloGancho(p) {
-  if (p.suspenso) return '<span class="selo-gancho susp" title="Suspenso para o próximo jogo desta competição">SUSPENSO</span>';
-  if (p.pendurado) return '<span class="selo-gancho pend" title="Mais um amarelo e fica fora do jogo seguinte">PENDURADO</span>';
-  return "";
+  const emp = p.emprestado_de ? `<span class="selo-gancho emp" title="Emprestado pelo ${escapar(p.emprestado_de)} até o fim da temporada">EMP</span>` : "";
+  if (p.lesao) return `<span class="selo-gancho les" title="${escapar(p.lesao.tipo)}: fora por mais ${p.lesao.jogos} jogo(s)">✚ ${p.lesao.jogos}J</span>${emp}`;
+  if (p.suspenso) return `<span class="selo-gancho susp" title="Suspenso para o próximo jogo desta competição">SUSPENSO</span>${emp}`;
+  if (p.pendurado) return `<span class="selo-gancho pend" title="Mais um amarelo e fica fora do jogo seguinte">PENDURADO</span>${emp}`;
+  return emp;
 }
 
 function ordenarElenco(lista) {
@@ -330,8 +336,12 @@ async function abrirPerfil(id) {
           </div></div>
       </div>
     </div>`,
-    botoes: meu ? [{rotulo: "Renovar contrato", valor: "renovar"}, {rotulo: "Fechar", primario: true}]
-      : [{rotulo: "Fechar", primario: true}]}).then((r) => { if (r === "renovar") renovarContrato(j.id); });
+    botoes: meu && !j.emprestado_de
+      ? [{rotulo: "Emprestar", valor: "emprestar"}, {rotulo: "Renovar contrato", valor: "renovar"}, {rotulo: "Fechar", primario: true}]
+      : [{rotulo: "Fechar", primario: true}]}).then((r) => {
+    if (r === "renovar") renovarContrato(j.id);
+    if (r === "emprestar") emprestarJogador(j.id);
+  });
 }
 
 /* ================================================================== ESCALACAO E TATICA */

@@ -104,6 +104,10 @@ def avaliar_oferta(c, pid: int, valor: int) -> dict:
     if p.club_id not in c.world.clubs:
         return {"resultado": "aceita", "valor": 0, "livre": True,
                 "mensagem": f"{p.name} esta sem contrato: nao ha clube para negociar."}
+    if p.loan_from is not None:
+        return {"resultado": "recusada", "valor": None, "definitiva": True,
+                "mensagem": f"{p.name} esta emprestado ao {c.world.clubs[p.club_id].name} "
+                            "e volta ao clube dono no fim da temporada."}
     dono = c.world.clubs[p.club_id]
     if len(dono.player_ids) <= ELENCO_MINIMO_PARA_VENDER:
         return {"resultado": "recusada", "valor": None,
@@ -242,7 +246,8 @@ def gerar_propostas(c, rng: np.random.Generator) -> list[Proposta]:
     premio de titular, mais uma folga que so o comprador conhece."""
     if rng.random() >= CHANCE_DE_PROPOSTA_POR_DATA:
         return []
-    meus = [p for p in c.world.squad(c.clube_id) if p.market_value > 0]
+    # o emprestado nao e do usuario: ninguem compra dele
+    meus = [p for p in c.world.squad(c.clube_id) if p.market_value > 0 and p.loan_from is None]
     if len(meus) <= ELENCO_MINIMO:
         return []
     pesos = np.array([p.market_value ** 0.7 for p in meus], dtype=float)
@@ -272,6 +277,94 @@ def responder_contraproposta(prop: Proposta, exigido: int) -> dict:
 
 
 # ---------------------------------------------------------------- fim de contrato
+
+# ---------------------------------------------------------------- emprestimo
+#
+# Um so formato, sem clausula: ate o fim da temporada, quem recebe paga o salario inteiro.
+# Pegar emprestado custa uma taxa (nada para quem tem ate 23 anos, que o dono quer ver
+# jogando); emprestar nao rende taxa -- o ganho e a folha mais leve e o garoto jogando.
+
+TAXA_DE_EMPRESTIMO = 0.08       # do valor de mercado
+IDADE_SEM_TAXA = 23
+INTERESSADOS_MOSTRADOS = 3
+
+
+def taxa_de_emprestimo(c, p) -> int:
+    if p.age(c.temporada) <= IDADE_SEM_TAXA:
+        return 0
+    return _redondo(p.market_value * TAXA_DE_EMPRESTIMO)
+
+
+def avaliar_emprestimo(c, pid: int) -> dict:
+    """O clube dono responde ao pedido de emprestimo do usuario. Nao muda nada no mundo."""
+    w = c.world
+    p = w.players.get(pid)
+    if p is None or p.club_id == c.clube_id:
+        return {"resultado": "erro", "mensagem": "jogador indisponivel"}
+    if p.club_id not in w.clubs:
+        return {"resultado": "erro", "mensagem": f"{p.name} esta sem clube: contrate direto."}
+    dono = w.clubs[p.club_id]
+    if p.loan_from is not None:
+        return {"resultado": "recusada",
+                "mensagem": f"{p.name} ja esta emprestado ao {dono.name}."}
+    if len(dono.player_ids) <= ELENCO_MINIMO_PARA_VENDER:
+        return {"resultado": "recusada",
+                "mensagem": f"O {dono.name} nao libera ninguem: o elenco ja esta curto."}
+    if _titular(w, p):
+        return {"resultado": "recusada",
+                "mensagem": f"{p.name} e titular no {dono.name}: nao emprestam."}
+    taxa = taxa_de_emprestimo(c, p)
+    return {"resultado": "aceita", "taxa": taxa, "salario": p.wage, "ate": c.temporada,
+            "mensagem": (f"O {dono.name} libera {p.name} ate o fim da temporada"
+                         + (f" por R$ {taxa:,} de taxa".replace(",", ".") if taxa
+                            else ", sem taxa")
+                         + ". O salario passa a ser seu.")}
+
+
+def _jogaria(world: World, p, clube: int) -> bool:
+    """Ele entraria no onze de `clube`? Compara com o pior titular do mesmo setor."""
+    rivais = [x.overall for x in world.best_xi(clube) if x.position == p.position]
+    return bool(rivais) and p.overall > min(rivais)
+
+
+def interessados_no_emprestimo(c, pid: int) -> list[int]:
+    """Clubes que pegam o jogador do usuario emprestado: onde ele seria titular, com
+    vaga no elenco. Os mais fortes primeiro -- jogar num time bom e o que o usuario quer
+    para o garoto."""
+    w = c.world
+    p = w.players[pid]
+    candidatos = [k.id for k in w.clubs.values()
+                  if k.id != c.clube_id and len(k.player_ids) < ELENCO_MAXIMO
+                  and _jogaria(w, p, k.id)]
+    candidatos.sort(key=lambda k: (-w.team_rating(k), k))
+    return candidatos[:INTERESSADOS_MOSTRADOS]
+
+
+def emprestar(world: World, pid: int, para: int) -> None:
+    """Muda onde ele joga; o dono continua sendo quem era (`loan_from`)."""
+    p = world.players[pid]
+    world.clubs[p.club_id].player_ids.remove(pid)
+    world.clubs[para].player_ids.append(pid)
+    p.loan_from, p.club_id = p.club_id, para
+
+
+def devolver_emprestimos(world: World) -> list[dict]:
+    """Virada do ano: todo emprestado volta ao dono."""
+    voltas = []
+    for p in world.players.values():
+        if p.loan_from is None:
+            continue
+        dono = p.loan_from
+        p.loan_from = None
+        if dono not in world.clubs:
+            continue                  # o dono sumiu do mundo: ele fica onde esta
+        if p.club_id in world.clubs:
+            world.clubs[p.club_id].player_ids.remove(p.id)
+        voltas.append({"jogador": p.id, "nome": p.name, "de": p.club_id, "para": dono})
+        world.clubs[dono].player_ids.append(p.id)
+        p.club_id = dono
+    return voltas
+
 
 IDADE_QUE_A_IA_NAO_RENOVA = 34
 

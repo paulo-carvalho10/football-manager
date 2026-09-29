@@ -115,8 +115,17 @@ def _jogador(c: Carreira, p, titular: bool) -> dict:
         "contrato": p.contract_until, "moral": p.morale,
         # 0 = acaba ao fim desta temporada; 1 = na seguinte (o aviso do elenco)
         "vence_em": p.contract_until - c.temporada,
+        # emprestado A MIM: o nome do clube dono (volta para la no fim do ano)
+        "emprestado_de": (c.world.clubs[p.loan_from].name
+                          if p.loan_from in c.world.clubs else None),
+        "lesao": _lesao_do(c, p.id),
         **_estatistica_do_jogador(c, p.id),
     }
+
+
+def _lesao_do(c: Carreira, pid: int) -> dict | None:
+    les = c.medico.lesionados.get(pid) if c.medico else None
+    return {"tipo": les.tipo, "jogos": les.jogos} if les else None
 
 
 def _clube(c: Carreira, cid: int) -> dict:
@@ -234,6 +243,13 @@ def estado(jogo: Jogo) -> dict:
             "no_onze": [c.world.players[i].name for i in onze if i in suspensos_prox],
         },
         "onze": list(c.escalacao_atual()),
+        "lesionados": [c.world.players[i].name for i in c.lesionados_do_clube()],
+        # os meus que estao jogando em outro clube ate o fim do ano
+        "emprestados": [{"id": p.id, "nome": p.name, "posicao": p.position,
+                         "overall": p.overall,
+                         "clube": _clube(c, p.club_id)}
+                        for p in c.world.players.values()
+                        if p.loan_from == c.clube_id and p.club_id in c.world.clubs],
         "funcoes": c.funcoes,
         "observados": len(c.observados),
         "nao_lidas": sum(1 for m in telas.mensagens(c, data_do_jogo(c), jogo.lidas)
@@ -438,6 +454,9 @@ def jogador(jogo: Jogo, pid: int) -> dict:
         "valor": p.market_value, "salario": p.wage, "contrato": p.contract_until,
         "energia": p.condition, "moral": p.morale, "forma": p.form,
         "clube": _clube(c, p.club_id) if p.club_id in c.world.clubs else None,
+        "emprestado_de": (c.world.clubs[p.loan_from].name
+                          if p.loan_from in c.world.clubs else None),
+        "lesao": _lesao_do(c, p.id),
         "atributos": {
             "finalizacao": p.finishing, "passe": p.passing, "drible": p.dribbling,
             "marcacao": p.marking, "velocidade": p.pace, "forca": p.strength,
@@ -795,6 +814,35 @@ def renovar(jogo: Jogo, corpo: dict) -> dict:
     return {"resultado": "concluida", "mensagem": feito["mensagem"], "estado": estado(jogo)}
 
 
+def emprestimo_info(jogo: Jogo, pid: int | None) -> dict:
+    """Jogador de fora: a resposta do dono ao pedido. Jogador meu: quem o quer."""
+    from fm import negocios as neg
+    c = jogo.c
+    p = c.world.players.get(pid or 0)
+    if p is None:
+        return {"erro": "jogador nao existe"}
+    if p.club_id == c.clube_id:
+        if p.loan_from is not None:
+            return {"erro": f"{p.name} esta emprestado a voce: nao da para repassar"}
+        return {"sentido": "saida", "jogador": p.id, "nome": p.name,
+                "interessados": [_clube(c, k) for k in neg.interessados_no_emprestimo(c, p.id)]}
+    return {"sentido": "entrada", "jogador": p.id, "nome": p.name,
+            **neg.avaliar_emprestimo(c, p.id), "caixa": neg.resumo_do_caixa(c)}
+
+
+def emprestar(jogo: Jogo, corpo: dict) -> dict:
+    c = jogo.c
+    pid = int(corpo.get("jogador", 0))
+    if corpo.get("clube"):
+        acao = {"tipo": "emprestimo_saida", "jogador": pid, "clube": int(corpo["clube"])}
+    else:
+        acao = {"tipo": "emprestimo_entrada", "jogador": pid}
+    feito = c.executar(acao)
+    if "erro" in feito:
+        return {"resultado": "erro", "mensagem": feito["erro"]}
+    return {"resultado": "concluida", "mensagem": feito["mensagem"], "estado": estado(jogo)}
+
+
 def _inteiro(q: dict, chave: str) -> int | None:
     try:
         return int(q.get(chave, [""])[0])
@@ -812,6 +860,7 @@ ROTAS_GET = {
     "/api/propostas": lambda jogo, q: propostas(jogo),
     "/api/renovacao": lambda jogo, q: renovacao_info(jogo, _inteiro(q, "jogador")),
     "/api/contrato": lambda jogo, q: contrato_info(jogo, _inteiro(q, "jogador")),
+    "/api/emprestimo": lambda jogo, q: emprestimo_info(jogo, _inteiro(q, "jogador")),
     "/api/negocios": lambda jogo, q: {"negociacoes": jogo.negociacoes[::-1],
                                       "movimentos": jogo.c.movimentos[::-1]},
     "/api/mensagens": lambda jogo, q: {
@@ -844,6 +893,7 @@ ROTAS_POST = {
     "/api/oferta": oferta,
     "/api/contrato": contratar,
     "/api/renovacao": renovar,
+    "/api/emprestimo": emprestar,
     "/api/propostas": responder_proposta,
     "/api/lida": lambda jogo, corpo: (jogo.lidas.update(corpo.get("ids", [])),
                                       {"ok": True})[1],

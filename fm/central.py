@@ -20,6 +20,7 @@ import numpy as np
 from fm.disciplina import sortear_cartoes
 from fm.estatisticas import CHANCE_DE_ASSISTENCIA, PESO_DA_ASSISTENCIA, PESO_DO_GOL, _pesos
 from fm.eventos import PESO_DO_BLOCO
+from fm.lesoes import LESOES_POR_TIME, peso_do_desgaste
 from fm.model import World
 
 TROCAS_POR_TIME = (2, 5)          # quantas trocas cada time faz, no intervalo
@@ -29,7 +30,7 @@ JANELA_DE_TROCAS = (46, 88)       # entre que minutos
 @dataclass(slots=True)
 class Lance:
     minuto: int
-    tipo: str               # gol, amarelo, vermelho, substituicao
+    tipo: str               # gol, amarelo, vermelho, substituicao, lesao
     clube: int
     jogador: int | None
     segundo: int | None = None      # assistencia, ou quem entra
@@ -43,8 +44,12 @@ def _minuto(rng: np.random.Generator) -> int:
     return int(bloco * largura + rng.integers(1, largura + 1))
 
 
-def detalhar(world: World, r, rng: np.random.Generator) -> list[Lance]:
-    """Os lances de um jogo do motor rapido, em ordem de minuto. Respeita o placar."""
+def detalhar(world: World, r, rng: np.random.Generator,
+             rng_lesoes: np.random.Generator | None = None) -> list[Lance]:
+    """Os lances de um jogo do motor rapido, em ordem de minuto. Respeita o placar.
+
+    As lesoes saem de `rng_lesoes`, um stream separado: sorteá-las no `rng` mudaria os
+    autores dos gols e os cartoes de todos os saves."""
     lances: list[Lance] = []
     for clube, gols in ((r.home, r.goals_home), (r.away, r.goals_away)):
         if clube not in world.clubs:
@@ -78,9 +83,42 @@ def detalhar(world: World, r, rng: np.random.Generator) -> list[Lance]:
                               rng.choice(banco, size=n, replace=False), strict=True):
             lances.append(Lance(int(rng.integers(*JANELA_DE_TROCAS)), "substituicao", clube,
                                 int(sai), int(entra)))
+    if rng_lesoes is not None:
+        _lesoes(world, r, rng_lesoes, lances)
     _coerencia(lances)
-    lances.sort(key=lambda x: (x.minuto, x.tipo != "gol"))
+    lances.sort(key=lambda x: (x.minuto, {"gol": 0, "lesao": 1}.get(x.tipo, 2)))
     return lances
+
+
+def _lesoes(world: World, r, rng: np.random.Generator, lances: list[Lance]) -> None:
+    """Quem se machuca sai: reaproveita a troca narrativa se ele ja ia sair, senao entra
+    um reserva do mesmo setor no minuto da lesao."""
+    for clube in (r.home, r.away):
+        if clube not in world.clubs:
+            continue
+        onze = [p.id for p in world.best_xi(clube)]
+        n = int(rng.poisson(LESOES_POR_TIME))
+        if not onze or n == 0:
+            continue
+        pesos = np.array([peso_do_desgaste(world.players[i].condition) for i in onze])
+        for quem in rng.choice(onze, size=min(n, len(onze)), replace=False,
+                               p=pesos / pesos.sum()):
+            quem = int(quem)
+            minuto = int(rng.integers(1, 91))
+            troca = next((x for x in lances if x.tipo == "substituicao" and x.jogador == quem), None)
+            if troca is not None:
+                minuto = min(minuto, troca.minuto)
+                troca.minuto = minuto
+            else:
+                usados = {x.segundo for x in lances if x.tipo == "substituicao"}
+                banco = [p for p in sorted(world.squad(clube), key=lambda p: -p.overall)
+                         if p.id not in onze and p.id not in usados
+                         and p.id not in world.indisponiveis]
+                if banco:
+                    setor = world.players[quem].position
+                    entra = next((p for p in banco if p.position == setor), banco[0])
+                    lances.append(Lance(minuto, "substituicao", clube, quem, entra.id))
+            lances.append(Lance(minuto, "lesao", clube, quem))
 
 
 def _coerencia(lances: list[Lance]) -> None:
@@ -118,6 +156,10 @@ def registrar(cadernos: list, world: World, r, lances: list[Lance]) -> None:
                 linha.amarelos += 1
             elif x.tipo == "vermelho":
                 linha.vermelhos += 1
+
+
+def lesionados(lances: list[Lance]) -> list[int]:
+    return [x.jogador for x in lances if x.tipo == "lesao"]
 
 
 def cartoes(lances: list[Lance]) -> list[tuple[int, str]]:

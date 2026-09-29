@@ -250,6 +250,25 @@ function lancesNovos() {
     if (VIVO.suspense && e.minuto === VIVO.suspense.minuto) return;
     VIVO.vistos.add(k);
     if (e.tipo === "vermelho" && config().pausarNaExpulsao && !VIVO.fimVisto) avisarExpulsao(e);
+    // lesao no MEU time antes do ultimo bloco: da tempo de escolher quem entra
+    if (e.tipo === "lesao" && e.lado === s.meu_lado && e.minuto <= 85 && !VIVO.fimVisto) avisarLesao(e);
+  }
+}
+
+async function avisarLesao(e) {
+  VIVO.pausado = true;
+  const nome = nomeDoJogador(e.jogador) || "?";
+  const escolha = await abrirJanela({titulo: "LESÃO", estreita: true, corpo: `
+    <p><span class="ic-lesao">✚</span> <b>${escapar(nome)}</b> sente aos ${e.minuto}' e pede para sair.</p>
+    <p class="dica">Escolha quem entra, ou deixe a comissão técnica colocar o reserva do mesmo setor
+      na parada técnica (${VIVO.s.minuto}'). Sem troca sobrando, o time fica com um a menos.</p>`,
+    botoes: [{rotulo: "Deixar o automático", valor: "auto"},
+             {rotulo: "Escolher substituto ›", primario: true, valor: "subs"}]});
+  VIVO.pausado = false;
+  if (escolha === "subs") {
+    abrirGaveta("subs");
+    subSai = e.jogador;
+    pintarGaveta();
   }
 }
 
@@ -359,7 +378,8 @@ function pintar() {
   pintarLateral(fechado);
 }
 
-const ICONE_LANCE = {gol: "⚽", penalti: "◎", penalti_defendido: "🧤", penalti_fora: "✗", amarelo: '<span class="cartao am" style="width:.72rem;height:1rem"></span>',
+const ICONE_LANCE = {gol: "⚽", penalti: "◎", penalti_defendido: "🧤", penalti_fora: "✗",
+                     lesao: '<span class="ic-lesao">✚</span>', lesao_sem_troca: '<span class="ic-lesao">✚</span>',amarelo: '<span class="cartao am" style="width:.72rem;height:1rem"></span>',
                      vermelho: '<span class="cartao vm" style="width:.72rem;height:1rem"></span>', substituicao: "⇅", defesa: "✋", chute: "↗",
                      escanteio: "⚑", impedimento: "⚐", falta: "!"};
 
@@ -435,7 +455,7 @@ function pintarLateral(fechado) {
     const expulso = j.expulso && vistos.has(j.id);
     return `<div class="j ${j.em_campo && !expulso ? "" : "fora-de-campo"}">${pos(j.posicao)}
       <span class="nm">${escapar(j.nome)}${j.entrou_aos ? ` <span class="dica">(${j.entrou_aos}')</span>` : ""}</span>
-      <span>${j.amarelo && vistos.has(j.id) ? '<span class="cartao am"></span>' : ""}${expulso ? '<span class="cartao vm"></span>' : ""}</span>
+      <span>${j.amarelo && vistos.has(j.id) ? '<span class="cartao am"></span>' : ""}${expulso ? '<span class="cartao vm"></span>' : ""}${j.lesionado && vistos.has(j.id) ? '<span class="ic-lesao">✚</span>' : ""}</span>
       <span class="en">${barra(j.energia, corDe(j.energia, 80, 62))}${j.energia}</span></div>`;
   }).join("")}</div>`;
 }
@@ -476,7 +496,8 @@ function centralDaRodada() {
   const s = VIVO.s;
   const [gc, gf] = $("#v-gols").textContent.split("×").map((x) => +x);
   const amarelos = config().mostrarAmarelos;
-  const ic = {gol: "⚽", vermelho: '<span class="cartao vm"></span>', amarelo: '<span class="cartao am"></span>', substituicao: "⇅"};
+  const ic = {gol: "⚽", vermelho: '<span class="cartao vm"></span>', amarelo: '<span class="cartao am"></span>', substituicao: "⇅",
+              lesao: '<span class="ic-lesao">✚</span>'};
   const lance = (l) => `<div class="l ${l.lado}"><span class="m">${l.minuto}'</span>${ic[l.tipo]}
     <span>${escapar(l.tipo === "substituicao" ? `${l.entra} ▸ ${l.nome}` : l.nome)}</span></div>`;
   const agora = Date.now();
@@ -642,7 +663,7 @@ async function abrirPosJogo() {
   const evs = p.eventos.map((e) => {
     const conteudo = `<b>${escapar(e.texto.replace("GOL! ", ""))}</b>${e.assistencia ? `<small>assist. ${escapar(e.assistencia)}</small>` : ""}`;
     const ic = {gol: "⚽", amarelo: '<span class="cartao am"></span>', vermelho: '<span class="cartao vm"></span>', substituicao: "⇅",
-                penalti_defendido: "🧤", penalti_fora: "✗"}[e.tipo];
+                penalti_defendido: "🧤", penalti_fora: "✗", lesao: '<span class="ic-lesao">✚</span>'}[e.tipo];
     return `<div class="ev ${e.tipo}"><span class="casa">${e.lado === "casa" ? `${conteudo} ${ic}` : ""}</span>
       <span class="m">${e.minuto}'</span><span>${e.lado === "fora" ? `${ic} ${conteudo}` : ""}</span></div>`;
   }).join("") || '<div class="vazio">Sem lances para a súmula.</div>';

@@ -282,6 +282,26 @@ def mensagens(c: Carreira, data_texto: str, lidas: set[str]) -> list[dict]:
                 f"Com mais um amarelo na {nome_comp}, ficam fora do jogo seguinte: "
                 f"{', '.join(pendurados)}.")
 
+    if c.medico is not None:
+        w = c.world
+        for pid, tipo, jogos in c.boletim_medico.get("lesoes", []):
+            if pid in w.players:
+                msg(f"lesao:{c.temporada}:{c.data}:{pid}", "Departamento médico",
+                    f"Lesão: {w.players[pid].name}",
+                    f"{w.players[pid].name} sofreu {tipo} e fica fora por "
+                    f"{jogos} jogo{'s' if jogos > 1 else ''}. Se estiver na escalação, entra "
+                    "o melhor reserva do mesmo setor.", "alerta")
+        voltaram = [w.players[i].name for i in c.boletim_medico.get("voltaram", [])
+                    if i in w.players]
+        if voltaram:
+            msg(f"alta:{c.temporada}:{c.data}", "Departamento médico", "Liberados",
+                f"Recuperados e à disposição: {', '.join(voltaram)}.")
+        ainda = [f"{w.players[i].name} ({les.jogos})"
+                 for i, les in c.lesionados_do_clube().items()]
+        if ainda:
+            msg(f"dm:{c.temporada}:{c.data}", "Departamento médico", "Departamento médico",
+                f"Em tratamento (jogos que ainda perdem): {', '.join(ainda)}.")
+
     cansados = sorted((p for p in c.world.squad(c.clube_id) if p.condition < 70),
                       key=lambda p: p.condition)
     if cansados:
@@ -501,7 +521,7 @@ def pos_jogo(c: Carreira, partida, resultados, competicao: str, tipo: str,
                    if e.tipo == "gol" and e.segundo else None}
                   for e in partida.eventos
                   if e.tipo in ("gol", "amarelo", "vermelho", "substituicao",
-                                "penalti_defendido", "penalti_fora")]
+                                "penalti_defendido", "penalti_fora", "lesao")]
     sc, sf = partida.stats_casa, partida.stats_fora
     melhor = max(notas, key=notas.get) if notas else None
     impacto = (impacto_na_tabela(c.world.clubs[c.clube_id].name, posicao_antes, c.posicao())

@@ -169,15 +169,16 @@ class PartidaAoVivo:
                     "energia": rendimento_em_campo(c.world, p, pid),
                     "amarelo": pid in amarelos, "expulso": pid in expulsos,
                     "saiu": pid in sairam, "entrou_aos": p.entrada[pid] or None,
+                    "lesionado": pid in p.lesionados,
                 })
             return fora
 
         meus_em_campo = p.em_campo_casa if meu_lado == "casa" else p.em_campo_fora
         banco = [{"id": j.id, "nome": j.name, "posicao": j.position,
                   "overall": j.overall, "energia": j.condition}
-                 for j in sorted(c.world.squad(c.clube_id), key=lambda x: -x.overall)
-                 # suspenso nao esta no banco: ele nao foi relacionado para o jogo
-                 if j.id not in p.entrada and j.id not in c.world.indisponiveis][:12]
+                 # o mesmo banco do motor: suspenso e lesionado nao foram relacionados
+                 for j in (nomes[i] for i in c.banco(c.clube_id))
+                 if j.id not in p.entrada]
         feitas = sum(1 for e in p.eventos
                      if e.tipo == "substituicao" and e.clube == c.clube_id)
         sc, sf = p.stats_casa, p.stats_fora

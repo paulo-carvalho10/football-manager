@@ -68,6 +68,8 @@ class Player:
     wage: int = 0
     contract_until: int = 0
     market_value: int = 0
+    # emprestado: o clube DONO (club_id e onde ele joga agora). Volta na virada do ano.
+    loan_from: int | None = None
 
     def age(self, season_year: int) -> int:
         return season_year - self.birth_year

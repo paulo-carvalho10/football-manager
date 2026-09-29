@@ -18,6 +18,7 @@ from dataclasses import dataclass, field
 import numpy as np
 
 from fm.match import Mentality, Style, lambdas
+from fm.lesoes import LESOES_POR_TIME, peso_do_desgaste
 from fm.model import World
 
 # Blocos de 5 minutos. Eram 15, e isso bastava para o terminal, que so pergunta sobre
@@ -130,6 +131,8 @@ class Partida:
     posses: list[float] = field(default_factory=list)
     # {jogador: papel da vaga que ocupa}. Quem nao esta aqui joga pela propria posicao.
     papeis: dict[int, str] = field(default_factory=dict)
+    # quem se machucou nesta partida, na ordem; a gravidade e a carreira que sorteia
+    lesionados: list[int] = field(default_factory=list)
 
     @property
     def placar(self) -> str:
@@ -183,6 +186,7 @@ def simular_partida(
     mult_casa: float = 1.0, mult_fora: float = 1.0,
     substituicoes=None, papeis: dict[int, str] | None = None,
     cobradores: dict[int, list[int]] | None = None, penaltis=None,
+    bancos: dict[int, list[int]] | None = None, max_trocas: int = 5,
 ) -> Partida:
     """Partida minuto a minuto.
 
@@ -200,8 +204,13 @@ def simular_partida(
     f(partida, minuto, clube) -> id do batedor ou None, chamada NO MINUTO do penalti -- e
     por ela que a tela pausa e o treinador escolhe quem bate. None usa a ordem de
     cobradores, e sem ordem, o melhor finalizador em campo.
+
+    `bancos` sao os reservas de cada clube. So servem para a LESAO: quem se machuca e
+    trocado no fim do bloco, se o treinador nao trocou antes (pelo `substituicoes`). Sem
+    reserva ou sem troca sobrando, o time fica com um a menos.
     """
     cobradores = cobradores or {}
+    bancos = {k: list(v) for k, v in (bancos or {}).items()}
     p = Partida(casa=casa, fora=fora,
                 em_campo_casa=list(onze_casa), em_campo_fora=list(onze_fora))
     p.entrada = {pid: 0 for pid in onze_casa + onze_fora}
@@ -239,6 +248,7 @@ def simular_partida(
         for clube_lado in (casa, fora):
             agendar("cartao", clube_lado, int(rng.poisson(AMARELOS_POR_TIME / BLOCOS)))
             agendar("penalti", clube_lado, int(rng.poisson(pen)))
+            agendar("lesao", clube_lado, int(rng.poisson(LESOES_POR_TIME / BLOCOS)))
         # Os lances que nao sao gol saem do MESMO xG do bloco: quem finaliza muito e quem
         # tinha mais chance de marcar. A estatistica ao vivo conta estes lances, entao a
         # tela e a sumula nunca discordam.
@@ -261,6 +271,8 @@ def simular_partida(
             elif tipo == "penalti":
                 _penalti(p, world, rng, clube_lado, em_campo, minuto,
                          cobradores.get(clube_lado, []), penaltis)
+            elif tipo == "lesao":
+                _lesao(p, world, rng, clube_lado, em_campo, minuto)
             else:
                 _lance(p, world, rng, tipo, clube_lado, em_campo, minuto)
 
@@ -289,6 +301,8 @@ def simular_partida(
                         jogador=sai, segundo=entra,
                         texto=f"{world.players[entra].name} entra no lugar de "
                               f"{world.players[sai].name}"))
+        if bloco < BLOCOS - 1:
+            _tirar_lesionados(p, world, bancos, max_trocas)
 
     _fechar_estatisticas(p)
     p.eventos.sort(key=lambda e: e.minuto)
@@ -340,6 +354,44 @@ def _penalti(p: Partida, world, rng, clube: int, em_campo: list[int], minuto: in
     else:
         p.eventos.append(Evento(minuto, "penalti_fora", clube, jogador=escolha,
                                 texto=f"{batedor.name} bate para fora!"))
+
+
+def _lesao(p: Partida, world, rng, clube: int, em_campo: list[int], minuto: int) -> None:
+    """Alguem se machuca. Quem esta mais gasto se machuca mais (fm.lesoes)."""
+    candidatos = [i for i in em_campo if i not in p.lesionados]
+    if not candidatos:
+        return
+    pesos = np.array([peso_do_desgaste(rendimento_em_campo(world, p, i)) for i in candidatos])
+    quem = candidatos[int(rng.choice(len(candidatos), p=pesos / pesos.sum()))]
+    p.lesionados.append(quem)
+    p.eventos.append(Evento(minuto, "lesao", clube, jogador=quem,
+                            texto=f"{world.players[quem].name} sente e pede para sair"))
+
+
+def _tirar_lesionados(p: Partida, world, bancos: dict[int, list[int]],
+                      max_trocas: int) -> None:
+    """Fim do bloco: o machucado que ainda esta em campo sai. Entra o reserva do mesmo
+    setor (ou o melhor sobrando); sem troca disponivel, o time fica com um a menos."""
+    for clube, lista in ((p.casa, p.em_campo_casa), (p.fora, p.em_campo_fora)):
+        for sai in [i for i in p.lesionados if i in lista]:
+            feitas = sum(1 for e in p.eventos if e.tipo == "substituicao" and e.clube == clube)
+            banco = [i for i in bancos.get(clube, []) if i not in p.entrada]
+            if feitas < max_trocas and banco:
+                setor = world.players[sai].position
+                entra = next((i for i in banco if world.players[i].position == setor), banco[0])
+                lista[lista.index(sai)] = entra
+                p.entrada[entra] = p.minuto
+                if sai in p.papeis:
+                    p.papeis[entra] = p.papeis[sai]
+                p.eventos.append(Evento(
+                    p.minuto, "substituicao", clube, jogador=sai, segundo=entra,
+                    texto=f"{world.players[entra].name} entra no lugar de "
+                          f"{world.players[sai].name}, machucado"))
+            else:
+                lista.remove(sai)
+                p.eventos.append(Evento(
+                    p.minuto, "lesao_sem_troca", clube, jogador=sai,
+                    texto=f"{world.players[sai].name} sai machucado e o time fica com um a menos"))
 
 
 def rendimento_em_campo(world: World, partida: Partida, pid: int) -> int:

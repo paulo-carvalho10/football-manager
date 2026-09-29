@@ -321,12 +321,12 @@ def tela_partida(c: Carreira) -> None:
             print("    (nada digno de nota)")
         for e in partida.eventos:
             if e.tipo not in ("gol", "amarelo", "vermelho", "substituicao",
-                              "penalti_defendido", "penalti_fora"):
+                              "penalti_defendido", "penalti_fora", "lesao"):
                 continue      # o lance a lance e da tela ao vivo; a sumula e curta
             lado = c.world.clubs[e.clube].name
             simbolo = {"gol": "GOL", "amarelo": " ! ", "vermelho": "!!!",
                        "substituicao": "<->", "penalti_defendido": "PEN",
-                       "penalti_fora": "PEN"}.get(e.tipo, "   ")
+                       "penalti_fora": "PEN", "lesao": " + "}.get(e.tipo, "   ")
             extra = ""
             if e.tipo == "gol" and e.segundo:
                 extra = f"  (assist. {c.world.players[e.segundo].name})"

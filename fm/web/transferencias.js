@@ -137,11 +137,13 @@ async function detalheTrf() {
     <div class="secao"><h3>Atributos</h3><div class="atributos" style="grid-template-columns:1fr">${attrs}</div></div>
     <div class="form-col" style="gap:.5rem;margin-top:1rem">
       ${j.livre ? '<button class="btn primario bloco" id="acao-principal">Negociar contrato</button>'
-        : '<button class="btn primario bloco" id="acao-principal">Fazer proposta</button>'}
+        : `<button class="btn primario bloco" id="acao-principal">Fazer proposta</button>
+           <button class="btn bloco" id="pedir-emprestimo">Pedir emprestado</button>`}
       <button class="btn ${j.observado ? "" : "azul"} bloco" id="lista">${j.observado ? "Tirar da lista" : "Adicionar à lista"}</button>
       <button class="btn fantasma bloco" onclick="abrirPerfil(${j.id})">Ver perfil completo</button>
     </div></div>`;
   $("#acao-principal").addEventListener("click", () => j.livre ? negociarContrato(j, 0) : fazerProposta(j));
+  $("#pedir-emprestimo")?.addEventListener("click", () => pedirEmprestimo(j));
   $("#lista").addEventListener("click", async () => {
     await api.post("/api/observar", {id: j.id});
     await recarregarEstado();
@@ -282,6 +284,61 @@ async function renovarContrato(pid, sugestao) {
   if (c === "nova") return renovarContrato(pid, r.dica);
 }
 
+/* ------------------------------------------------------------------ emprestimo
+ * Um formato so: ate o fim da temporada, quem recebe paga o salario inteiro. */
+
+async function pedirEmprestimo(j) {
+  const info = await api.get(`/api/emprestimo?jogador=${j.id}`);
+  if (info.erro) return avisar(info.erro);
+  if (info.resultado !== "aceita") {
+    return abrirJanela({titulo: "Empréstimo recusado", estreita: true, corpo: `<p>${escapar(info.mensagem)}</p>`});
+  }
+  const r = await abrirJanela({titulo: `Empréstimo — ${escapar(j.nome)}`, estreita: true, corpo: `
+    <div class="form-col">
+      <p>${escapar(info.mensagem)}</p>
+      <div class="kpis">
+        <div class="kpi-c destaque"><span>Taxa</span><b>${info.taxa ? dinheiro(info.taxa) : "sem taxa"}</b></div>
+        <div class="kpi-c"><span>Salário (você paga)</span><b>${dinheiro(info.salario)}/mês</b></div>
+        <div class="kpi-c"><span>Até</span><b>fim de ${info.ate}</b></div>
+      </div>
+      <p class="nota-honesta">Folha do clube: ${dinheiro(info.caixa.folha)} de ${dinheiro(info.caixa.limite_da_folha)} por mês.
+        Caixa: ${dinheiro(info.caixa.caixa)}. Ele volta ao clube dono na virada do ano.</p>
+    </div>`,
+    botoes: [{rotulo: "Desistir", valor: null}, {rotulo: "Fechar empréstimo", primario: true, valor: "ok"}]});
+  if (r !== "ok") return;
+  const feito = await api.post("/api/emprestimo", {jogador: j.id});
+  if (feito.resultado !== "concluida") return avisar(feito.mensagem);
+  aplicarEstado(feito.estado);
+  avisar(feito.mensagem);
+  return TELAS.transferencias();
+}
+
+async function emprestarJogador(pid) {
+  const info = await api.get(`/api/emprestimo?jogador=${pid}`);
+  if (info.erro) return avisar(info.erro);
+  if (!info.interessados.length) {
+    return abrirJanela({titulo: "Emprestar", estreita: true, corpo: `
+      <p>Nenhum clube tem interesse em <b>${escapar(info.nome)}</b> agora.</p>
+      <p class="dica">Interessam os clubes onde ele seria titular e que têm vaga no elenco.</p>`});
+  }
+  let escolhido = info.interessados[0].id;
+  const r = await abrirJanela({titulo: `Emprestar ${escapar(info.nome)}`, estreita: true, corpo: `
+    <p class="dica">Clubes onde ele seria titular. O clube que recebe paga o salário até o fim da temporada.</p>
+    <div class="form-col">${info.interessados.map((k, i) => `
+      <label class="linha-flex opcao-emp"><input type="radio" name="emp-clube" value="${k.id}" ${i === 0 ? "checked" : ""}>
+        ${escudo(k, "1.6rem")} <b>${escapar(k.nome)}</b></label>`).join("")}</div>`,
+    botoes: [{rotulo: "Cancelar", valor: null}, {rotulo: "Emprestar", primario: true, valor: "ok", acao: () => {
+      const x = document.querySelector("input[name=emp-clube]:checked");
+      if (x) escolhido = +x.value;
+    }}]});
+  if (r !== "ok") return;
+  const feito = await api.post("/api/emprestimo", {jogador: pid, clube: escolhido});
+  if (feito.resultado !== "concluida") return avisar(feito.mensagem);
+  aplicarEstado(feito.estado);
+  avisar(feito.mensagem);
+  return irPara(telaAtual);
+}
+
 /* ------------------------------------------------------------------ propostas recebidas */
 
 /** Chamada depois de cada atualizacao do estado: proposta nova abre a janela sozinha, sem
@@ -380,11 +437,20 @@ async function abaNegociacoes() {
 async function abaHistorico() {
   const {movimentos} = await api.get("/api/negocios");
   $("#trf-corpo").style.gridTemplateColumns = "1fr";
-  $("#trf-corpo").innerHTML = `<div style="overflow:auto"><table class="grade">
+  const SENTIDO = {entrada: ["bom", "▲ chegou", "de "], saida: ["ruim", "▼ saiu", "para "],
+                   emprestimo_entrada: ["bom", "▲ emprestado", "do "], emprestimo_saida: ["ruim", "▼ emprestou", "ao "]};
+  const fora = ESTADO.emprestados || [];
+  $("#trf-corpo").innerHTML = `<div style="overflow:auto">
+    ${fora.length ? `<h3 class="sub-trf">Emprestados até o fim da temporada</h3><table class="grade compacta"><tbody>${fora.map((e) => `
+      <tr><td>${pos(e.posicao)} <b>${escapar(e.nome)}</b></td><td class="n">${e.overall}</td>
+        <td><div class="nome-celula">${escudo(e.clube, "1.2rem")} ${escapar(e.clube.nome)}</div></td>
+        <td class="dica">volta na virada do ano</td></tr>`).join("")}</tbody></table>` : ""}
+    <table class="grade">
     <thead><tr><th class="n">Ano</th><th></th><th>Jogador</th><th class="n">Força</th><th>Clube</th><th class="n">Valor</th></tr></thead>
-    <tbody>${movimentos.map((m) => `<tr><td class="n">${m.temporada}</td>
-      <td class="${m.sentido === "entrada" ? "bom" : "ruim"}">${m.sentido === "entrada" ? "▲ chegou" : "▼ saiu"}</td>
+    <tbody>${movimentos.map((m) => {
+      const [cls, rot, prep] = SENTIDO[m.sentido] || SENTIDO.entrada;
+      return `<tr><td class="n">${m.temporada}</td><td class="${cls}">${rot}</td>
       <td>${pos(m.posicao)} <b>${escapar(m.nome)}</b></td><td class="n">${m.overall}</td>
-      <td>${m.sentido === "entrada" ? "de " : "para "}${escapar(m.clube)}</td><td class="n">${dinheiro(m.valor)}</td></tr>`).join("")
-      || '<tr><td colspan="6" class="vazio">Nenhuma transferência ainda.</td></tr>'}</tbody></table></div>`;
+      <td>${prep}${escapar(m.clube)}</td><td class="n">${m.valor ? dinheiro(m.valor) : "—"}</td></tr>`;
+    }).join("") || '<tr><td colspan="6" class="vazio">Nenhuma transferência ainda.</td></tr>'}</tbody></table></div>`;
 }

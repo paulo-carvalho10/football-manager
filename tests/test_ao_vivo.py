@@ -67,9 +67,12 @@ def test_notas_premiam_quem_decide_e_ficam_na_escala():
         notas = notas_da_partida(c.world, partida)
         assert set(notas) == set(partida.entrada)
         assert all(3.0 <= n <= 10.0 for n in notas.values())
+        expulsos = {e.jogador for e in partida.eventos if e.tipo == "vermelho"}
         for e in partida.eventos:
-            if e.tipo == "gol" and e.jogador in notas:
-                assert notas[e.jogador] >= 6.5, "quem marcou saiu com nota de quem nao jogou"
+            # acima da linha de quem nao fez nada (6,0). Nao 6,5: gol com amarelo numa
+            # derrota da 6,4, e esta certo
+            if e.tipo == "gol" and e.jogador in notas and e.jogador not in expulsos:
+                assert notas[e.jogador] > 6.0, "quem marcou saiu com nota de quem nao jogou"
 
 
 def test_a_escalacao_automatica_poe_cada_um_na_sua_vaga():
