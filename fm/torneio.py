@@ -93,8 +93,11 @@ def clube_convidado(world: World, dados: dict) -> int:
                  designed_strength=forca, color_primary="#333333",
                  color_secondary="#dddddd")
     proximo = [max(world.players, default=0) + 1]
+    # o elenco sai do NOME, por um fluxo estavel. Era `hash(nome)`, e o hash de texto do
+    # Python muda a cada processo: o Bolivar ganhava outro elenco toda vez que o jogo
+    # abria, e o save carregado divergia do jogado a partir da primeira virada do ano
     _build_squad(world, clube, PackClub(nome=dados["nome"], forca=forca), forca,
-                 Streams(hash(dados["nome"]) & 0xFFFF).get("convidado"), proximo,
+                 Streams(0).get("convidado", dados["nome"]), proximo,
                  dados.get("pais_jogadores", "BRA"), world.season_year)
     world.clubs[club_id] = clube
     return club_id
