@@ -45,6 +45,9 @@ class Jogo:
         self.competicao_ao_vivo = ("", "")
         self.pos_jogo: dict | None = None
         self.lidas: set[str] = set()
+        # as ofertas que o usuario fez nesta sessao e a resposta de cada uma: a aba
+        # "Negociacoes". Nao vai para o save -- o save guarda so o que virou negocio.
+        self.negociacoes: list[dict] = []
         self.trava = threading.Lock()
 
 
@@ -109,6 +112,8 @@ def _jogador(c: Carreira, p, titular: bool) -> dict:
         "idade": p.age(c.temporada), "energia": p.condition,
         "salario": p.wage, "valor": p.market_value, "titular": titular,
         "contrato": p.contract_until, "moral": p.morale,
+        # 0 = acaba ao fim desta temporada; 1 = na seguinte (o aviso do elenco)
+        "vence_em": p.contract_until - c.temporada,
         **_estatistica_do_jogador(c, p.id),
     }
 
@@ -233,6 +238,8 @@ def estado(jogo: Jogo) -> dict:
         "nao_lidas": sum(1 for m in telas.mensagens(c, data_do_jogo(c), jogo.lidas)
                          if not m["lida"]),
         "temporadas": len(c.historico) + 1,
+        # a tela abre a janela de "proposta recebida" sozinha quando ha uma aqui
+        "propostas_pendentes": [_proposta_json(c, x) for x in c.propostas_pendentes()],
         "copas": [
             {"id": nome, "nome": a.torneio.nome, "fase": a.nome_da_fase,
              "vivo": a.esta_vivo(c.clube_id), "acabou": a.acabou,
@@ -684,6 +691,102 @@ def pos_jogo(jogo: Jogo) -> dict:
     return jogo.pos_jogo or {"erro": "nenhuma partida jogada ainda"}
 
 
+# ------------------------------------------------------------------ transferencias
+
+def _proposta_json(c: Carreira, prop) -> dict:
+    p = c.world.players.get(prop.jogador)
+    return {"id": prop.id, "status": prop.status, "valor": prop.valor,
+            "temporada": prop.temporada, "clube": _clube(c, prop.clube),
+            "contra_usada": prop.contra_usada,
+            "jogador": None if p is None else {
+                "id": p.id, "nome": p.name, "posicao": p.position, "overall": p.overall,
+                "idade": p.age(c.temporada), "valor": p.market_value}}
+
+
+def propostas(jogo: Jogo) -> dict:
+    c = jogo.c
+    ordem = {"pendente": 0}
+    lista = sorted(c.propostas, key=lambda x: (ordem.get(x.status, 1), -x.temporada, -x.data))
+    return {"propostas": [_proposta_json(c, x) for x in lista]}
+
+
+def responder_proposta(jogo: Jogo, corpo: dict) -> dict:
+    c = jogo.c
+    acao = {"tipo": corpo.get("acao"), "proposta": corpo.get("proposta")}
+    if corpo.get("acao") == "contraproposta":
+        acao["valor"] = int(corpo.get("valor") or 0)
+    r = c.executar(acao)
+    prop = c._proposta(corpo.get("proposta", ""))
+    return {**r, "proposta": _proposta_json(c, prop) if prop else None, "estado": estado(jogo)}
+
+
+def oferta(jogo: Jogo, corpo: dict) -> dict:
+    """O usuario oferece; o clube dono responde. Nao muda o mundo: so a aba Negociacoes."""
+    from fm import negocios as neg
+    c = jogo.c
+    pid, valor = int(corpo.get("jogador", 0)), int(corpo.get("valor") or 0)
+    r = neg.avaliar_oferta(c, pid, valor)
+    p = c.world.players.get(pid)
+    if p is not None and r["resultado"] != "erro":
+        jogo.negociacoes.append({
+            "jogador": pid, "nome": p.name, "posicao": p.position, "overall": p.overall,
+            "clube": _clube(c, p.club_id) if p.club_id in c.world.clubs else None,
+            "oferta": valor, "resultado": r["resultado"], "valor": r.get("valor"),
+            "data": data_do_jogo(c)})
+    return r
+
+
+def contrato_info(jogo: Jogo, pid: int | None) -> dict:
+    from fm import negocios as neg
+    c = jogo.c
+    p = c.world.players.get(pid or 0)
+    if p is None:
+        return {"erro": "jogador nao existe"}
+    return {"jogador": pid, "nome": p.name, "pretendido": neg.salario_pretendido(c, p),
+            "salario_atual": p.wage, "ambicao": neg.recusa_por_ambicao(c, p),
+            "caixa": neg.resumo_do_caixa(c)}
+
+
+def contratar(jogo: Jogo, corpo: dict) -> dict:
+    """Contrato com o jogador depois do clube aceitar. Aceito, o negocio fecha."""
+    from fm import negocios as neg
+    c = jogo.c
+    pid = int(corpo.get("jogador", 0))
+    salario, anos = int(corpo.get("salario") or 0), int(corpo.get("anos") or 3)
+    r = neg.avaliar_contrato(c, pid, salario, anos)
+    if r["resultado"] != "aceita":
+        return r
+    feito = c.executar({"tipo": "compra", "jogador": pid, "preco": int(corpo.get("preco") or 0),
+                        "salario": salario, "anos": anos})
+    if "erro" in feito:
+        return {"resultado": "erro", "mensagem": feito["erro"]}
+    return {"resultado": "concluida", "mensagem": feito["mensagem"], "estado": estado(jogo)}
+
+
+def renovacao_info(jogo: Jogo, pid: int | None) -> dict:
+    from fm import negocios as neg
+    c = jogo.c
+    p = c.world.players.get(pid or 0)
+    if p is None or p.club_id != c.clube_id:
+        return {"erro": "jogador nao e do seu clube"}
+    return {"jogador": pid, "nome": p.name, "contrato": p.contract_until,
+            "salario_atual": p.wage, **neg.interesse_em_renovar(c, p)}
+
+
+def renovar(jogo: Jogo, corpo: dict) -> dict:
+    from fm import negocios as neg
+    c = jogo.c
+    pid = int(corpo.get("jogador", 0))
+    salario, anos = int(corpo.get("salario") or 0), int(corpo.get("anos") or 1)
+    r = neg.avaliar_renovacao(c, pid, salario, anos)
+    if r["resultado"] != "aceita":
+        return r
+    feito = c.executar({"tipo": "renovacao", "jogador": pid, "salario": salario, "anos": anos})
+    if "erro" in feito:
+        return {"resultado": "erro", "mensagem": feito["erro"]}
+    return {"resultado": "concluida", "mensagem": feito["mensagem"], "estado": estado(jogo)}
+
+
 def _inteiro(q: dict, chave: str) -> int | None:
     try:
         return int(q.get(chave, [""])[0])
@@ -698,6 +801,11 @@ ROTAS_GET = {
     "/api/catalogo": lambda jogo, q: telas.catalogo(),
     "/api/clubes": lambda jogo, q: clubes(q),
     "/api/mercado": lambda jogo, q: telas.mercado(jogo.c, q, lambda cid: _clube(jogo.c, cid)),
+    "/api/propostas": lambda jogo, q: propostas(jogo),
+    "/api/renovacao": lambda jogo, q: renovacao_info(jogo, _inteiro(q, "jogador")),
+    "/api/contrato": lambda jogo, q: contrato_info(jogo, _inteiro(q, "jogador")),
+    "/api/negocios": lambda jogo, q: {"negociacoes": jogo.negociacoes[::-1],
+                                      "movimentos": jogo.c.movimentos[::-1]},
     "/api/mensagens": lambda jogo, q: {
         "mensagens": telas.mensagens(jogo.c, data_do_jogo(jogo.c), jogo.lidas)},
     "/api/treinador": lambda jogo, q: telas.treinador(jogo.c),
@@ -725,6 +833,10 @@ ROTAS_POST = {
     "/api/nova": nova,
     "/api/carregar": carregar,
     "/api/observar": lambda jogo, corpo: telas.observar(jogo.c, int(corpo.get("id", 0))),
+    "/api/oferta": oferta,
+    "/api/contrato": contratar,
+    "/api/renovacao": renovar,
+    "/api/propostas": responder_proposta,
     "/api/lida": lambda jogo, corpo: (jogo.lidas.update(corpo.get("ids", [])),
                                       {"ok": True})[1],
     "/api/partida/iniciar": lambda jogo, corpo: partida_iniciar(jogo),

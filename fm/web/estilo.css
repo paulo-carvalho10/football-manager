@@ -819,3 +819,7 @@ input:focus, select:focus { border-color: var(--ouro); }
 .peca.suspenso .camisa-peca { opacity: .45; }
 .peca .selo-gancho { position: absolute; top: -.35rem; left: -.2rem; z-index: 2; }
 .lista-banco tr.suspenso td { opacity: .5; }
+
+/* transferencias: um painel so, com as abas dentro */
+.t-transferencias { grid-template-columns: minmax(0, 1fr); }
+#trf-corpo { grid-template-rows: minmax(0, 1fr); }

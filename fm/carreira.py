@@ -108,6 +108,12 @@ class Carreira:
     selecoes: dict = field(default_factory=dict)
     # cartoes acumulados e suspensoes, por competicao (fm.disciplina)
     disciplina: object | None = None
+    # Negocios do usuario (fm.negocios): compra, renovacao, venda e resposta a proposta,
+    # cada um com a temporada e a data em que aconteceu. E isto que o save guarda e o
+    # replay reaplica no mesmo ponto -- o resto dos negocios e deterministico.
+    acoes: list[dict] = field(default_factory=list)
+    propostas: list = field(default_factory=list)        # recebidas no ano (fm.negocios)
+    movimentos: list[dict] = field(default_factory=list)  # historico de entradas e saidas
     # o onze que o usuario ESCOLHEU, guardado enquanto a data corre com o reserva no lugar
     # do suspenso -- depois da data ele volta, e o suspenso volta sozinho quando cumprir
     _onze_pretendido: list[int] = field(default_factory=list)
@@ -486,6 +492,15 @@ class Carreira:
         """
         if self.acabou:
             raise RuntimeError("a temporada acabou; chame virar_o_ano()")
+        # proposta sem resposta ate o apito da proxima data caduca
+        for prop in self.propostas:
+            if prop.status == "pendente":
+                prop.status = "expirada"
+        saida = self._avancar_data(substituicoes)
+        self._novas_propostas()
+        return saida
+
+    def _avancar_data(self, substituicoes=None) -> tuple[list[Result], Partida | None]:
         while not self.acabou:
             tipo, quem = self.agenda[self.data]
             if tipo == "liga":
@@ -732,6 +747,140 @@ class Carreira:
         self._checar_emprego()
         return resultados, detalhada
 
+    # ---------------------------------------------------------------- negocios
+
+    def _novas_propostas(self) -> None:
+        """Depois de cada data, algum clube pode oferecer por um jogador do usuario.
+        Stream proprio: nada no resto do mundo muda por existir ou nao uma proposta."""
+        from fm.negocios import gerar_propostas
+        if self.acabou or self.demitido:
+            return
+        rng = self.streams.get("propostas", self.temporada, self.data)
+        self.propostas += gerar_propostas(self, rng)
+
+    def propostas_pendentes(self) -> list:
+        return [x for x in self.propostas if x.status == "pendente"]
+
+    def _proposta(self, pid: str):
+        return next((x for x in self.propostas if x.id == pid), None)
+
+    def executar(self, acao: dict) -> dict:
+        """Aplica um negocio do usuario e o grava para o replay.
+
+        tipos: compra {jogador, preco, salario, anos}, renovacao {jogador, salario, anos},
+        aceitar {proposta}, recusar {proposta}, contraproposta {proposta, valor}.
+        Revalida tudo aqui, nao so na tela: o save pode ser editado, e a regra tem de valer
+        de qualquer caminho.
+        """
+        from fm import negocios as neg
+        tipo = acao.get("tipo")
+        w = self.world
+        resultado: dict
+        if tipo == "compra":
+            pid = int(acao["jogador"])
+            p = w.players.get(pid)
+            if p is None or p.club_id == self.clube_id:
+                return {"erro": "jogador indisponivel"}
+            oferta = neg.avaliar_oferta(self, pid, int(acao.get("preco", 0)))
+            if oferta["resultado"] != "aceita":
+                return {"erro": oferta["mensagem"]}
+            valor = int(oferta["valor"])
+            contrato = neg.avaliar_contrato(self, pid, int(acao["salario"]), int(acao["anos"]))
+            if contrato["resultado"] != "aceita":
+                return {"erro": contrato["mensagem"]}
+            if self.clube.balance < valor:
+                return {"erro": "caixa insuficiente para a transferencia"}
+            folha = neg.folha_mensal(w, self.clube_id) + int(acao["salario"])
+            if folha > neg.limite_da_folha(self):
+                return {"erro": "a diretoria veta: a folha passaria do limite"}
+            if len(self.clube.player_ids) >= neg.ELENCO_MAXIMO:
+                return {"erro": f"o elenco ja tem {neg.ELENCO_MAXIMO} jogadores"}
+            de = p.club_id
+            neg.transferir(w, pid, self.clube_id, valor, int(acao["salario"]),
+                           self.temporada + int(acao["anos"]))
+            self._registrar_movimento("entrada", pid, de, valor)
+            resultado = {"ok": True, "mensagem": f"{p.name} e o novo reforco do "
+                                                 f"{self.clube.name}."}
+        elif tipo == "renovacao":
+            pid = int(acao["jogador"])
+            r = neg.avaliar_renovacao(self, pid, int(acao["salario"]), int(acao["anos"]))
+            if r["resultado"] != "aceita":
+                return {"erro": r["mensagem"]}
+            p = w.players[pid]
+            p.wage = int(acao["salario"])
+            p.contract_until = max(p.contract_until, self.temporada) + int(acao["anos"])
+            resultado = {"ok": True, "mensagem": f"{p.name} renovou ate {p.contract_until}."}
+        elif tipo in ("aceitar", "recusar", "contraproposta"):
+            prop = self._proposta(acao.get("proposta", ""))
+            if prop is None or prop.status != "pendente":
+                return {"erro": "essa proposta nao esta mais de pe"}
+            p = w.players.get(prop.jogador)
+            if p is None or p.club_id != self.clube_id:
+                prop.status = "expirada"
+                return {"erro": "o jogador nao esta mais no clube"}
+            if tipo == "recusar":
+                prop.status = "recusada"
+                resultado = {"ok": True, "mensagem": "Proposta recusada."}
+            else:
+                valor = prop.valor
+                if tipo == "contraproposta":
+                    r = neg.responder_contraproposta(prop, int(acao["valor"]))
+                    if r["resultado"] != "aceita":
+                        if r["resultado"] == "recusada":
+                            prop.status = "recusada"
+                            resultado = {"ok": True, "resultado": "recusada", "mensagem":
+                                         f"O {w.clubs[prop.clube].name} recusou e desistiu."}
+                        else:
+                            prop.valor, prop.contra_usada = r["valor"], True
+                            resultado = {"ok": True, "resultado": "nova_proposta",
+                                         "valor": r["valor"], "mensagem":
+                                         f"O {w.clubs[prop.clube].name} fez uma nova "
+                                         f"proposta de R$ {r['valor']:,}.".replace(",", ".")}
+                        self.acoes.append({**acao, "temporada": self.temporada,
+                                           "data": self.data})
+                        return resultado
+                    valor = r["valor"]
+                if len(self.clube.player_ids) <= neg.ELENCO_MINIMO:
+                    return {"erro": f"o elenco nao pode ficar com menos de {neg.ELENCO_MINIMO}"}
+                comprador = prop.clube
+                neg.transferir(w, p.id, comprador, valor,
+                               int(p.wage * 1.15), self.temporada + 4)
+                prop.status, prop.valor = "aceita", valor
+                self._registrar_movimento("saida", p.id, comprador, valor)
+                self._tirar_do_onze(p.id)
+                resultado = {"ok": True, "resultado": "aceita", "mensagem":
+                             f"{p.name} foi vendido ao {w.clubs[comprador].name} por "
+                             f"R$ {valor:,}.".replace(",", ".")}
+        else:
+            return {"erro": f"acao desconhecida {tipo!r}"}
+        self.acoes.append({**acao, "temporada": self.temporada, "data": self.data})
+        return resultado
+
+    def _registrar_movimento(self, sentido: str, pid: int, outro: int | None, valor: int):
+        p = self.world.players[pid]
+        self.movimentos.append({
+            "temporada": self.temporada, "data": self.data, "sentido": sentido,
+            "jogador": pid, "nome": p.name, "posicao": p.position, "overall": p.overall,
+            "clube": self.world.clubs[outro].name if outro in self.world.clubs else "sem clube",
+            "valor": valor})
+
+    def _tirar_do_onze(self, pid: int) -> None:
+        """Quem saiu nao pode continuar escalado: a proxima escalacao volta a automatica."""
+        d = self.decisoes.get(self._chave())
+        if d and pid in d.escalacao:
+            del self.decisoes[self._chave()]
+        if pid in self.world.escalacao_fixa.get(self.clube_id, []):
+            self.world.escalacao_fixa.pop(self.clube_id, None)
+        self.observados = [x for x in self.observados if x != pid]
+        self.funcoes = {k: v for k, v in self.funcoes.items() if v != pid}
+
+    def _aplicar_acoes_do_save(self, acoes: list[dict]) -> None:
+        """Replay: reaplica as acoes gravadas exatamente na data em que foram feitas."""
+        for a in acoes:
+            if a.get("temporada") == self.temporada and a.get("data") == self.data:
+                limpa = {k: v for k, v in a.items() if k not in ("temporada", "data")}
+                self.executar(limpa)
+
     # ---------------------------------------------------------------- o gancho
 
     def competicao_do_proximo(self) -> str | None:
@@ -901,6 +1050,15 @@ class Carreira:
         alvos = {c.id: len(c.player_ids) for c in self.world.clubs.values()}
         antes = {p.id: (p.name, p.overall) for p in self.world.squad(self.clube_id)}
         envelhecimento = envelhecer(self.world, rng, self.temporada)
+        from fm.negocios import livres_que_se_aposentam, vencer_contratos
+        for prop in self.propostas:
+            if prop.status == "pendente":
+                prop.status = "expirada"
+        # contrato vencido acaba ANTES da janela: quem sai de graca ja pode ser disputado.
+        # Stream proprio, para nao mexer no sorteio da janela e da base.
+        contratos = vencer_contratos(self.world, self.temporada + 1, self.clube_id,
+                                     self.streams.get("contratos", self.temporada))
+        aposentados_livres = livres_que_se_aposentam(self.world, self.temporada + 1)
         transferencias = janela(self.world, rng, self.temporada + 1)
         novos = repor_elencos(self.world, rng, self.temporada + 1, alvos=alvos)
 
@@ -963,6 +1121,9 @@ class Carreira:
             "motivo_da_demissao": "",
             "aposentadorias_do_clube": saidas,
             "destaques_do_clube": destaques,
+            "contratos_encerrados": [x for x in contratos if x["do_usuario"]],
+            "livres_aposentados": len(aposentados_livres),
+            "movimentos": list(self.movimentos),
             # os artilheiros de cada competicao do ano ficam guardados: e o que a tela de
             # artilharia mostra das temporadas passadas
             "artilharia": self.artilharia_do_ano(),
@@ -1007,6 +1168,7 @@ class Carreira:
             "treinador": self.treinador,
             "funcoes": self.funcoes,
             "observados": self.observados,
+            "acoes": self.acoes,
         }, indent=2, ensure_ascii=False), encoding="utf-8")
         return destino
 
@@ -1030,14 +1192,20 @@ class Carreira:
         c.funcoes = d.get("funcoes", {})
         c.observados = d.get("observados", [])
         c._montar(world, streams)
+        acoes = d.get("acoes", [])
         # REPLAY: as temporadas sao refeitas com as mesmas decisoes. Se isto divergir, o
-        # determinismo do motor quebrou -- e o save seria a primeira vitima.
+        # determinismo do motor quebrou -- e o save seria a primeira vitima. Os negocios
+        # entram no mesmo ponto em que foram feitos: antes da data seguinte.
         while c.temporada < d["temporada"]:
             while not c.acabou:
+                c._aplicar_acoes_do_save(acoes)
                 c.avancar()
+            c._aplicar_acoes_do_save(acoes)
             c.virar_o_ano()
         while c.data < d.get("data", d.get("rodada", 0)) and not c.acabou:
+            c._aplicar_acoes_do_save(acoes)
             c.avancar()
+        c._aplicar_acoes_do_save(acoes)
         return c
 
 

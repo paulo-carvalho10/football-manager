@@ -9,7 +9,7 @@ const ORDEM_ELENCO = {coluna: "titular", desc: true};
 const ABAS = [
   {id: "elenco", rotulo: "Elenco", icone: "elenco"},
   {id: "escalacao", rotulo: "Escalação", icone: "tatica"},
-  {id: "mercado", rotulo: "Mercado", icone: "mercado"},
+  {id: "transferencias", rotulo: "Transferências", icone: "mercado"},
   {id: "classificacao", rotulo: "Tabela", icone: "tabela"},
   {id: "calendario", rotulo: "Calendário", icone: "calendario"},
   {id: "financas", rotulo: "Finanças", icone: "financas"},
@@ -48,6 +48,8 @@ function aplicarEstado(e) {
   desenharTopo(e);
   desenharLateral(e);
   desenharRodape(e);
+  // proposta nova por um jogador do clube abre a janela sozinha (transferencias.js)
+  if (typeof verificarPropostas === "function") setTimeout(() => verificarPropostas(e), 0);
 }
 
 async function irPara(nome) {
@@ -159,8 +161,11 @@ async function desenharResumoJogador() {
         <div class="kpi-c"><span>Energia</span><b style="color:${corDe(j.energia, 85, 70)}">${j.energia}%</b></div>
         <div class="kpi-c"><span>Valor</span><b>${dinheiro(j.valor)}</b></div>
       </div>
+      <div class="linha-flex dica">Contrato: ${avisoDeContrato(j)}<span class="espaco"></span>
+        <button class="btn pequeno ${j.vence_em <= 1 ? "primario" : ""}" id="btn-renovar">Renovar</button></div>
     </div>`;
   $("#ver-perfil").addEventListener("click", () => abrirPerfil(j.id));
+  $("#btn-renovar").addEventListener("click", () => renovarContrato(j.id));
 }
 
 /* ------------------------------------------------------------------ rodape */
@@ -193,7 +198,15 @@ const COLUNAS_ELENCO = [
   {id: "perfil", rotulo: "Perfil"},
   {id: "idade", rotulo: "Idade", classe: "n"},
   {id: "cartoes", rotulo: "Cartões", classe: "c", valor: (p) => p.amarelos + 3 * p.vermelhos},
+  {id: "contrato", rotulo: "Contrato", classe: "c"},
 ];
+
+/** O aviso de contrato: vermelho acaba nesta temporada, amarelo na proxima. */
+function avisoDeContrato(p) {
+  if (p.vence_em <= 0) return `<span title="Contrato termina ao fim desta temporada: renove ou ele sai de graça">🔴 ${p.contrato}</span>`;
+  if (p.vence_em === 1) return `<span title="Contrato termina ao fim da próxima temporada">🟡 ${p.contrato}</span>`;
+  return `<span class="dica">${p.contrato}</span>`;
+}
 const ORDEM_POS = {GK: 0, DF: 1, MF: 2, FW: 3};
 
 /** SUSPENSO / PENDURADO, sempre na competicao do proximo jogo. */
@@ -248,6 +261,7 @@ TELAS.elenco = function () {
               <td class="n">${p.idade}</td>
               <td class="c">${p.amarelos ? `<span class="cartao am"></span> ${p.amarelos}` : ""}
                 ${p.vermelhos ? ` <span class="cartao vm"></span> ${p.vermelhos}` : ""}</td>
+              <td class="c">${avisoDeContrato(p)}</td>
             </tr>`;
           }).join("")}</tbody>
         </table>
@@ -280,6 +294,7 @@ async function abrirPerfil(id) {
   if (j.erro) return avisar(j.erro);
   const svg = j.clube ? await camisa(j.clube.id, j.posicao === "GK" ? "2" : "1") : "";
   const t = j.temporada;
+  const meu = j.clube && ESTADO && j.clube.id === ESTADO.clube.id;
   const attrs = Object.entries(j.atributos).map(([k, v]) => `
     <div class="attr"><span>${ROTULOS_ATRIBUTOS[k] || k}</span>
       <span class="t"><i style="width:${v}%;background:${corDe(v, 75, 60)}"></i></span><b>${v}</b></div>`).join("");
@@ -314,7 +329,9 @@ async function abrirPerfil(id) {
             <div class="kpi-c"><span>Vermelhos</span><b>${t.vermelhos}</b></div>
           </div></div>
       </div>
-    </div>`});
+    </div>`,
+    botoes: meu ? [{rotulo: "Renovar contrato", valor: "renovar"}, {rotulo: "Fechar", primario: true}]
+      : [{rotulo: "Fechar", primario: true}]}).then((r) => { if (r === "renovar") renovarContrato(j.id); });
 }
 
 /* ================================================================== ESCALACAO E TATICA */
@@ -595,119 +612,7 @@ TELAS.classificacao = async function () {
   $$("[data-visao]").forEach((b) => b.addEventListener("click", () => { CLASS.visao = b.dataset.visao; TELAS.classificacao(); }));
 };
 
-/* ================================================================== MERCADO */
-
-const MERC = {filtros: {pos: "", nome: "", idade_min: "", idade_max: "", ovr_min: "", valor_max: "", liga: "", observados: ""},
-              lista: null, selecionado: null};
-
-TELAS.mercado = async function () {
-  const f = MERC.filtros;
-  const q = new URLSearchParams(Object.entries(f).filter(([, v]) => v !== "")).toString();
-  MERC.lista = await api.get(`/api/mercado?${q}`);
-  if (!MERC.lista.jogadores.some((j) => j.id === MERC.selecionado)) MERC.selecionado = MERC.lista.jogadores[0]?.id ?? null;
-  $("#tela-mercado").innerHTML = `
-    <div class="painel">
-      <div class="cab"><h2>Busca</h2></div>
-      <div class="corpo filtros">
-        <label class="campo"><span>Nome</span><input type="search" data-f="nome" value="${escapar(f.nome)}" placeholder="Jogador"></label>
-        <label class="campo"><span>Posição</span><select data-f="pos"><option value="">Todas</option>${Object.entries(POSICOES_LONGAS).map(([k, v]) =>
-          `<option value="${k}" ${f.pos === k ? "selected" : ""}>${v}</option>`).join("")}</select></label>
-        <div class="campo"><span>Idade</span><div class="campo-duplo">
-          <input type="number" data-f="idade_min" placeholder="mín" value="${f.idade_min}">
-          <input type="number" data-f="idade_max" placeholder="máx" value="${f.idade_max}"></div></div>
-        <label class="campo"><span>OVR mínimo</span><input type="number" data-f="ovr_min" value="${f.ovr_min}" placeholder="ex.: 70"></label>
-        <label class="campo"><span>Valor máximo (R$ mi)</span><input type="number" data-f="valor_max_mi"
-          value="${f.valor_max ? f.valor_max / 1e6 : ""}" placeholder="sem limite"></label>
-        <label class="campo"><span>Liga</span><select data-f="liga"><option value="">Todas</option>${MERC.lista.ligas.map((l) =>
-          `<option value="${l.id}" ${f.liga === l.id ? "selected" : ""}>${escapar(l.nome)}</option>`).join("")}</select></label>
-        <label class="linha-flex"><input type="checkbox" data-f="observados" ${f.observados ? "checked" : ""}
-          style="accent-color:var(--ouro)"> <span>Só a lista de observação (${ESTADO.observados})</span></label>
-        <button class="btn" id="limpar-filtros">Limpar filtros</button>
-      </div>
-    </div>
-    <div class="painel">
-      <div class="cab"><h2>Jogadores</h2><span class="dica">${MERC.lista.total.toLocaleString("pt-BR")} encontrados${MERC.lista.total > 250 ? " · mostrando 250" : ""}</span></div>
-      <div class="corpo sem-margem"><table class="grade" id="grade-mercado">
-        <thead><tr><th>Pos</th><th>Nome</th><th class="n">Idade</th><th class="n">OVR</th><th class="n">Pot</th>
-          <th>Clube</th><th class="n">Valor</th><th class="n">Salário</th><th class="n">Contrato</th><th></th></tr></thead>
-        <tbody>${MERC.lista.jogadores.map((j) => `
-          <tr class="clicavel ${j.id === MERC.selecionado ? "sel" : ""}" data-id="${j.id}">
-            <td>${pos(j.posicao)}</td><td><b>${escapar(j.nome)}</b></td><td class="n">${j.idade}</td>
-            <td class="n">${ovr(j.overall)}</td><td class="n dica">${j.potencial}</td>
-            <td><div class="nome-celula">${escudo(j.clube, "1.3rem")}<span>${escapar(j.clube.nome)}</span></div></td>
-            <td class="n">${dinheiro(j.valor)}</td><td class="n">${dinheiro(j.salario)}</td><td class="n">${j.contrato}</td>
-            <td>${j.observado ? `<span class="ouro" title="observado">${icone("olho", 'style="width:1rem;height:1rem"')}</span>` : ""}</td>
-          </tr>`).join("") || '<tr><td colspan="10" class="vazio">Ninguém com esse perfil.</td></tr>'}</tbody>
-      </table></div>
-    </div>
-    <div class="painel" id="detalhe-mercado"></div>`;
-  let espera = null;
-  $$("[data-f]").forEach((el) => el.addEventListener(el.type === "search" || el.type === "number" ? "input" : "change", () => {
-    clearTimeout(espera);
-    espera = setTimeout(() => {
-      $$("[data-f]").forEach((x) => {
-        if (x.dataset.f === "valor_max_mi") MERC.filtros.valor_max = x.value ? String(Math.round(+x.value * 1e6)) : "";
-        else if (x.type === "checkbox") MERC.filtros[x.dataset.f] = x.checked ? "1" : "";
-        else MERC.filtros[x.dataset.f] = x.value;
-      });
-      TELAS.mercado();
-    }, 280);
-  }));
-  $("#limpar-filtros").addEventListener("click", () => {
-    Object.keys(MERC.filtros).forEach((k) => { MERC.filtros[k] = ""; });
-    TELAS.mercado();
-  });
-  $$("#grade-mercado tbody tr[data-id]").forEach((tr) => {
-    tr.addEventListener("click", () => {
-      MERC.selecionado = +tr.dataset.id;
-      $$("#grade-mercado tbody tr").forEach((x) => x.classList.toggle("sel", x === tr));
-      detalheDoMercado();
-    });
-    tr.addEventListener("dblclick", () => abrirPerfil(+tr.dataset.id));
-  });
-  detalheDoMercado();
-};
-
-async function detalheDoMercado() {
-  const alvo = $("#detalhe-mercado");
-  const j = MERC.lista.jogadores.find((x) => x.id === MERC.selecionado);
-  if (!j) { alvo.innerHTML = '<div class="vazio">Selecione um jogador.</div>'; return; }
-  const p = await api.get(`/api/jogador?id=${j.id}`);
-  const principais = Object.entries(p.atributos).sort((a, b) => b[1] - a[1]).slice(0, 6);
-  alvo.innerHTML = `
-    <div class="cab"><h2>${escapar(j.nome)}</h2></div>
-    <div class="corpo">
-      <div class="linha-flex">${escudo(j.clube, "2.6rem")}<div><b>${escapar(j.clube.nome)}</b>
-        <div class="dica">${escapar(j.liga)}</div></div><span class="espaco"></span>${pos(j.posicao)}${ovr(j.overall)}</div>
-      <div class="kpis" style="margin-top:.9rem">
-        <div class="kpi-c"><span>Idade</span><b>${j.idade}</b></div>
-        <div class="kpi-c"><span>Potencial</span><b>${j.potencial}</b></div>
-        <div class="kpi-c destaque"><span>Valor</span><b>${dinheiro(j.valor)}</b></div>
-        <div class="kpi-c"><span>Salário</span><b>${dinheiro(j.salario)}</b></div>
-        <div class="kpi-c"><span>Contrato</span><b>${j.contrato}</b></div>
-        <div class="kpi-c"><span>Pé</span><b>${j.pe === "E" ? "Esquerdo" : "Direito"}</b></div>
-      </div>
-      <div class="secao"><h3>Pontos fortes</h3><div class="atributos" style="grid-template-columns:1fr">${principais.map(([k, v]) => `
-        <div class="attr"><span>${ROTULOS_ATRIBUTOS[k] || k}</span><span class="t"><i style="width:${v}%;background:${corDe(v, 75, 60)}"></i></span><b>${v}</b></div>`).join("")}</div></div>
-      <div class="secao"><h3>Ações</h3>
-        <div class="form-col" style="gap:.5rem">
-          <button class="btn ${j.observado ? "" : "azul"} bloco" id="observar">${icone("olho")} ${j.observado ? "Deixar de observar" : "Observar"}</button>
-          <div class="campo-duplo">
-            <button class="btn" disabled title="Negociação ainda não existe no motor">Contratar</button>
-            <button class="btn" disabled title="Negociação ainda não existe no motor">Fazer proposta</button>
-            <button class="btn" disabled title="Negociação ainda não existe no motor">Emprestar</button>
-            <button class="btn" onclick="abrirPerfil(${j.id})">Ver perfil</button>
-          </div>
-        </div>
-        <p class="nota-honesta">Proposta, contratação e empréstimo chegam com o mercado interativo. Hoje as
-          transferências acontecem na janela automática da virada do ano.</p></div>
-    </div>`;
-  $("#observar").addEventListener("click", async () => {
-    await api.post("/api/observar", {id: j.id});
-    await recarregarEstado();
-    TELAS.mercado();
-  });
-}
+/* O MERCADO virou a tela de Transferencias: fm/web/transferencias.js */
 
 /* ================================================================== CALENDARIO */
 
@@ -979,7 +884,7 @@ registrarModo("jogo", {
   abrir: (tela) => abrirJogo(tela),
   tecla(ev) {
     if (ev.key === "Enter" && !ev.repeat) { jogar(); ev.preventDefault(); }
-    const atalhos = {"1": "elenco", "2": "escalacao", "3": "mercado", "4": "classificacao",
+    const atalhos = {"1": "elenco", "2": "escalacao", "3": "transferencias", "4": "classificacao",
                      "5": "calendario", "6": "financas", "7": "mensagens", "8": "treinador",
                      "9": "destaques"};
     if (atalhos[ev.key]) irPara(atalhos[ev.key]);

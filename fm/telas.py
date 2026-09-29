@@ -151,22 +151,44 @@ def mercado(c: Carreira, filtros: dict, clube_json) -> dict:
         except (TypeError, ValueError):
             return padrao
 
+    from fm import negocios as neg
+
+    def texto(chave):
+        return filtros.get(chave, [""])[0].strip().lower()
+
     pos = filtros.get("pos", [""])[0]
-    nome = filtros.get("nome", [""])[0].strip().lower()
+    nome = texto("nome")
     liga = filtros.get("liga", [""])[0]
-    so_observados = filtros.get("observados", [""])[0] == "1"
+    nacionalidade = texto("nacionalidade")
+    clube_busca = texto("clube")
+    situacao = filtros.get("situacao", [""])[0]
+    if filtros.get("observados", [""])[0] == "1":
+        situacao = "lista"
     idade_min, idade_max = num("idade_min", 15), num("idade_max", 45)
     ovr_min = num("ovr_min", 0)
     valor_max = num("valor_max", 0)
+    salario_max = num("salario_max", 0)
     ano = c.temporada
     ligas_do_clube = {cid: lg for lg in c.world.leagues.values() for cid in lg.club_ids}
     observados = set(c.observados)
+    # titulares de cada clube: quem NAO esta aqui e o que o clube aceita vender ("a venda")
+    titulares: set[int] = set()
+    if situacao == "a_venda":
+        for cid in c.world.clubs:
+            titulares |= {x.id for x in c.world.best_xi(cid)}
 
     fora = []
     for p in c.world.players.values():
-        if p.club_id == c.clube_id or p.club_id not in c.world.clubs:
+        livre = p.club_id not in c.world.clubs
+        if p.club_id == c.clube_id:
             continue
-        if so_observados and p.id not in observados:
+        if situacao == "lista" and p.id not in observados:
+            continue
+        if situacao == "sem_contrato" and not livre:
+            continue
+        if situacao == "terminando" and (livre or p.contract_until > ano):
+            continue
+        if situacao == "a_venda" and (livre or p.id in titulares):
             continue
         if pos and p.position != pos:
             continue
@@ -175,27 +197,33 @@ def mercado(c: Carreira, filtros: dict, clube_json) -> dict:
             continue
         if valor_max and p.market_value > valor_max:
             continue
+        if salario_max and p.wage > salario_max:
+            continue
         lg = ligas_do_clube.get(p.club_id)
         if liga and (lg is None or lg.id != liga):
             continue
         if nome and nome not in p.name.lower():
             continue
-        fora.append((p, lg, idade))
+        if nacionalidade and nacionalidade not in (p.nationality or "").lower():
+            continue
+        if clube_busca and (livre or clube_busca not in c.world.clubs[p.club_id].name.lower()):
+            continue
+        fora.append((p, lg, idade, livre))
     fora.sort(key=lambda x: -x[0].overall)
-    total = len(fora)
     return {
-        "total": total,
+        "total": len(fora),
+        "caixa": neg.resumo_do_caixa(c),
         "ligas": [{"id": lg.id, "nome": nome_da_liga_por_id(lg.id, lg.name)}
                   for lg in c.world.leagues.values()],
         "jogadores": [
             {"id": p.id, "nome": p.name, "posicao": p.position,
              "detalhe": p.position_detail, "idade": idade, "overall": p.overall,
              "potencial": p.potential, "valor": p.market_value, "salario": p.wage,
-             "contrato": p.contract_until, "pe": p.foot,
-             "clube": clube_json(p.club_id),
+             "contrato": p.contract_until, "pe": p.foot, "nacionalidade": p.nationality,
+             "clube": None if livre else clube_json(p.club_id), "livre": livre,
              "liga": nome_da_liga_por_id(lg.id, lg.name) if lg else "",
              "observado": p.id in observados}
-            for p, lg, idade in fora[:250]],
+            for p, lg, idade, livre in fora[:250]],
     }
 
 
