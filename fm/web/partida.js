@@ -476,18 +476,15 @@ function jogosDaRodada() {
   });
 }
 
-/** Gol em outro campo: a linha pisca e sobe um aviso curto. */
+/** Gol em outro campo: a linha do placar pisca. */
 function novidadesDaRodada() {
   for (const j of jogosDaRodada()) {
     for (const l of j.lances) {
       const k = chaveDaRodada(j, l);
       if (VIVO.vistos.has(k)) continue;
       VIVO.vistos.add(k);
-      if (l.tipo === "gol" && !VIVO.fimVisto) {
-        const clube = l.lado === "casa" ? j.casa : j.fora;
-        VIVO.flash[`${j.casa.id}:${j.fora.id}`] = Date.now() + 4000;
-        avisar(`⚽ ${clube.nome} — ${l.nome} ${l.minuto}'`, 3000);
-      }
+      // so a linha do placar pisca: sem aviso no meio da tela
+      if (l.tipo === "gol" && !VIVO.fimVisto) VIVO.flash[`${j.casa.id}:${j.fora.id}`] = Date.now() + 4000;
     }
   }
 }
@@ -496,7 +493,7 @@ function centralDaRodada() {
   const s = VIVO.s;
   const [gc, gf] = $("#v-gols").textContent.split("×").map((x) => +x);
   const agora = Date.now();
-  // so os placares: quem marcou aparece no aviso que sobe na hora do gol
+  // so os placares: escudo, nome e gols
   const jogo = (j, meu) => {
     const piscando = (VIVO.flash[`${j.casa.id}:${j.fora.id}`] || 0) > agora;
     return `<div class="jogo-c ${meu ? "meu" : ""} ${piscando ? "pisca" : ""}">
