@@ -15,6 +15,8 @@ POR_ASSISTENCIA = 0.6
 POR_FINALIZACAO_NO_ALVO = 0.12
 AMARELO = -0.35
 VERMELHO = -1.6
+PENALTI_PERDIDO = -0.5
+PENALTI_DEFENDIDO = 0.8     # para o goleiro
 VITORIA = 0.35
 DERROTA = -0.35
 # defesa e goleiro respondem pelos gols sofridos; o ataque, nao
@@ -54,6 +56,10 @@ def notas_da_partida(world: World, partida) -> dict[int, float]:
                     nota += AMARELO
                 elif e.tipo == "vermelho":
                     nota += VERMELHO
+                elif e.tipo in ("penalti_defendido", "penalti_fora"):
+                    nota += PENALTI_PERDIDO
+            if e.tipo == "penalti_defendido" and e.segundo == pid:
+                nota += PENALTI_DEFENDIDO
             if e.tipo == "gol" and e.segundo == pid:
                 nota += POR_ASSISTENCIA
         notas[pid] = round(min(10.0, max(3.0, nota)), 1)

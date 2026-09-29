@@ -72,11 +72,17 @@ function janelaDeConfiguracoes() {
     `<button data-v="${v}" class="${String(c[chave]) === String(v) ? "ativo" : ""}">${r}</button>`).join("")}</div>`;
   const corpo = `<div class="form-col">
     <label class="campo"><span>Velocidade da partida ao vivo</span>
-      ${seg("velocidade", [["lenta", "Lenta"], ["normal", "Normal"], ["rapida", "Rápida"], ["turbo", "Turbo"]])}</label>
+      ${seg("velocidade", [["1x", "▶ 1x"], ["2x", "▶▶ 2x"], ["4x", "▶▶▶ 4x"]])}</label>
     <label class="campo"><span>Pausar automaticamente no gol</span>
       ${seg("pausarNoGol", [[true, "Sim"], [false, "Não"]])}</label>
     <label class="campo"><span>Pausar no intervalo</span>
       ${seg("pausarNoIntervalo", [[true, "Sim"], [false, "Não"]])}</label>
+    <label class="campo"><span>Perguntar quem cobra pênaltis</span>
+      ${seg("perguntarPenalti", [[true, "Sim"], [false, "Não, usar a ordem"]])}</label>
+    <label class="campo"><span>Pausar em expulsão</span>
+      ${seg("pausarNaExpulsao", [[true, "Sim"], [false, "Não"]])}</label>
+    <label class="campo"><span>Cartões amarelos na central da rodada</span>
+      ${seg("mostrarAmarelos", [[true, "Mostrar"], [false, "Esconder"]])}</label>
     <p class="nota-honesta">As preferências ficam neste navegador; não entram no save da carreira.</p>
   </div>`;
   const p = abrirJanela({titulo: "Configurações", corpo, estreita: true,

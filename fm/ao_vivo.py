@@ -14,10 +14,8 @@ from __future__ import annotations
 
 import threading
 
-import numpy as np
-
 from fm.carreira import MAX_TROCAS, Carreira
-from fm.eventos import PESO_DO_BLOCO, rendimento_em_campo
+from fm.eventos import chance_de_converter, rendimento_em_campo
 from fm.tatica import Tatica
 
 ESPERA_MAXIMA = 60.0   # segundos; se o motor nao responder nisso, algo quebrou
@@ -34,6 +32,9 @@ class PartidaAoVivo:
         self.tatica = carreira.tatica_atual()
         self._pedido: dict | None = None
         self._ate_o_fim = False
+        # o penalti do meu time esperando o treinador escolher o batedor (ou None)
+        self.penalti: dict | None = None
+        self.perguntar_penalti = True
         self._pronto = threading.Event()
         self._seguir = threading.Event()
         self._thread = threading.Thread(target=self._rodar, daemon=True)
@@ -44,10 +45,13 @@ class PartidaAoVivo:
         self._thread.start()
         self._esperar()
 
-    def seguir(self, trocas=None, tatica: dict | None = None, ate_o_fim: bool = False) -> None:
+    def seguir(self, trocas=None, tatica: dict | None = None, ate_o_fim: bool = False,
+               penalti: int | None = None) -> None:
         if self.acabou:
             return
         self._pedido = {"trocas": [tuple(int(x) for x in t) for t in (trocas or [])]}
+        if penalti is not None:
+            self._pedido["penalti"] = int(penalti)
         if tatica:
             nova = Tatica(**{**self._tatica_dict(), **tatica})
             nova.validar()
@@ -68,7 +72,8 @@ class PartidaAoVivo:
 
     def _rodar(self) -> None:
         try:
-            self.resultado = self.c.avancar(substituicoes=self._no_fim_do_bloco)
+            self.resultado = self.c.avancar(substituicoes=self._no_fim_do_bloco,
+                                            penaltis=self._na_marca)
             if self.resultado[1] is not None:
                 self.partida = self.resultado[1]
         except Exception as e:           # a thread nao pode morrer calada
@@ -86,6 +91,41 @@ class PartidaAoVivo:
         self._seguir.wait()
         pedido, self._pedido = self._pedido, None
         return pedido
+
+    def _na_marca(self, partida, minuto, clube):
+        """Penalti na minha partida. So o do MEU time para o jogo: a tela pergunta quem
+        bate. O do rival nao espera ninguem -- a tela segura o relogio sozinha."""
+        self.partida = partida
+        if clube != self.c.clube_id or self._ate_o_fim or not self.perguntar_penalti:
+            return None
+        self.penalti = {"minuto": minuto}
+        self._seguir.clear()
+        self._pronto.set()
+        self._seguir.wait()
+        self.penalti = None
+        pedido = self._pedido or {}
+        # o que veio junto (trocas, tatica) fica para o fim do bloco
+        escolha = pedido.pop("penalti", None)
+        return escolha
+
+    def _candidatos(self, p) -> list[dict]:
+        em_campo = p.em_campo_casa if p.casa == self.c.clube_id else p.em_campo_fora
+        rival = p.em_campo_fora if p.casa == self.c.clube_id else p.em_campo_casa
+        w = self.c.world
+        goleiro = next((w.players[i] for i in rival if w.players[i].position == "GK"), None)
+        ordem = self.c.cobradores()
+        fora = []
+        for pid in em_campo:
+            j = w.players[pid]
+            fora.append({"id": pid, "nome": j.name, "posicao": j.position,
+                         "finalizacao": j.finishing, "tecnica": j.technique,
+                         "confianca": j.morale,
+                         "chance": round(100 * chance_de_converter(j, goleiro)),
+                         "ordem": ordem.index(pid) + 1 if pid in ordem else None})
+        # a ordem de Taticas primeiro; o goleiro, se alguem quiser, no fim
+        fora.sort(key=lambda x: (x["ordem"] is None, x["ordem"] or 0,
+                                 x["posicao"] == "GK", -x["chance"]))
+        return fora
 
     def _tatica_dict(self) -> dict:
         t = self.tatica
@@ -144,7 +184,10 @@ class PartidaAoVivo:
         return {
             "fim": fim, "minuto": minuto,
             "tempo": "2º tempo" if minuto > 45 else "1º tempo",
-            "intervalo": minuto == 45 and not fim,
+            "intervalo": minuto == 45 and not fim and self.penalti is None,
+            "penalti": ({**self.penalti, "goleiro": self._goleiro_rival(p),
+                         "candidatos": self._candidatos(p)}
+                        if self.penalti is not None and not fim else None),
             "casa": clube_json(p.casa), "fora": clube_json(p.fora),
             "gols_casa": sum(1 for e in eventos if e["tipo"] == "gol" and e["lado"] == "casa"),
             "gols_fora": sum(1 for e in eventos if e["tipo"] == "gol" and e["lado"] == "fora"),
@@ -171,30 +214,35 @@ class PartidaAoVivo:
             "rodada": self._rodada_parcial(minuto, clube_json),
         }
 
-    def _rodada_parcial(self, minuto: int, clube_json) -> list[dict]:
-        """Os outros jogos da data, com o placar ATE este minuto.
+    def _goleiro_rival(self, p) -> str | None:
+        rival = p.em_campo_fora if p.casa == self.c.clube_id else p.em_campo_casa
+        w = self.c.world
+        return next((w.players[i].name for i in rival if w.players[i].position == "GK"), None)
 
-        Os placares finais ja estao decididos pelo motor rapido, que nao tem minuto. O
-        minuto de cada gol e sorteado aqui so para a tela, com a mesma curva do motor
-        detalhado e semente fixa -- recarregar a pagina nao muda nada. E cosmetico: nenhuma
-        regra le estes minutos.
+    def _rodada_parcial(self, minuto: int, clube_json) -> list[dict]:
+        """Os outros jogos da data ATE este minuto: placar, quem marcou, cartoes e trocas.
+
+        Os lances vem de `Carreira.lances_da_data` (fm.central) -- os mesmos que a
+        artilharia e o gancho registram depois. O placar final ja estava decidido pelo
+        motor rapido; a tela so os revela no minuto deles.
         """
         c = self.c
+        nomes = c.world.players
         fora = []
-        pesos = PESO_DO_BLOCO / PESO_DO_BLOCO.sum()
-        largura = 90 // len(pesos)
         for r in c.parciais:
-            rng = np.random.default_rng([c.seed, c.temporada, c.data, r.home, r.away])
-            gols = sorted([("casa", int(b * largura + rng.integers(1, largura + 1)))
-                           for b in rng.choice(len(pesos), r.goals_home, p=pesos)]
-                          + [("fora", int(b * largura + rng.integers(1, largura + 1)))
-                             for b in rng.choice(len(pesos), r.goals_away, p=pesos)],
-                          key=lambda g: g[1])
-            ate = [g for g in gols if g[1] <= minuto]
+            lances = [x for x in c.lances_da_data.get((r.home, r.away), [])
+                      if x.minuto <= minuto]
+            lado = lambda x: "casa" if x.clube == r.home else "fora"
+            gols = [x for x in lances if x.tipo == "gol"]
             fora.append({
-                "casa": clube_json(r.home)["nome"], "fora": clube_json(r.away)["nome"],
-                "gols_casa": sum(1 for g in ate if g[0] == "casa"),
-                "gols_fora": sum(1 for g in ate if g[0] == "fora"),
-                "mudou": bool(ate) and ate[-1][1] > minuto - 5,
+                "casa": clube_json(r.home), "fora": clube_json(r.away),
+                "gols_casa": sum(1 for x in gols if x.clube == r.home),
+                "gols_fora": sum(1 for x in gols if x.clube == r.away),
+                "lances": [{"minuto": x.minuto, "tipo": x.tipo, "lado": lado(x),
+                            "nome": nomes[x.jogador].name if x.jogador in nomes else "?",
+                            "entra": (nomes[x.segundo].name if x.tipo == "substituicao"
+                                      and x.segundo in nomes else None)}
+                           for x in lances],
+                "mudou": bool(gols) and gols[-1].minuto > minuto - 5,
             })
         return fora

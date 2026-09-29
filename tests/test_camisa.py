@@ -189,3 +189,26 @@ def test_reaplicar_cores_nao_toca_nos_jogadores(tmp_path):
     # e e idempotente: rodar duas vezes nao duplica as linhas de cor
     reaplicar_cores([copia])
     assert copia.read_text(encoding="utf-8").count("padrao = ") == depois.count("padrao = ")
+
+
+def test_nenhum_par_de_clubes_divide_o_arquivo_da_camisa():
+    """O arquivo da camisa sai do nome sem acento: "Vitória" (Guimarães) e "Vitoria"
+    (Bahia) caiam no mesmo vitoria-1.svg e um vestia a camisa do outro."""
+    import tomllib
+
+    from fm.importer.camisas import _sem_acento
+    from fm.pack import PACKS_DIR
+
+    from pathlib import Path
+
+    reais = set()
+    for liga in Path("data/leagues").glob("*_real.toml"):
+        with liga.open("rb") as fh:
+            reais.add(tomllib.load(fh)["pack"])
+    donos: dict[str, str] = {}
+    for arq in sorted(PACKS_DIR / f"{nome}.toml" for nome in reais):
+        with arq.open("rb") as fh:
+            for c in tomllib.load(fh).get("clubes", []):
+                slug = _sem_acento(c["nome"]).lower().replace(" ", "-")
+                assert donos.setdefault(slug, c["nome"]) == c["nome"], (
+                    f"{c['nome']!r} ({arq.stem}) e {donos[slug]!r} dividem {slug}-1.svg")

@@ -429,12 +429,14 @@ TELAS.escalacao = async function () {
         <div class="corpo">
           <div class="funcoes">
             <label class="campo"><span>Capitão</span>${opcoesFuncao("capitao")}</label>
-            <label class="campo"><span>Pênaltis</span>${opcoesFuncao("penaltis")}</label>
+            <label class="campo"><span>Pênalti · 1º</span>${opcoesFuncao("penaltis")}</label>
+            <label class="campo"><span>Pênalti · 2º</span>${opcoesFuncao("penaltis2")}</label>
+            <label class="campo"><span>Pênalti · 3º</span>${opcoesFuncao("penaltis3")}</label>
             <label class="campo"><span>Faltas</span>${opcoesFuncao("faltas")}</label>
             <label class="campo"><span>Escanteios</span>${opcoesFuncao("escanteios")}</label>
           </div>
-          <p class="nota-honesta">Ficam salvos na carreira, mas o motor ainda não simula bola parada nem
-            liderança: por enquanto não mudam o resultado.</p>
+          <p class="nota-honesta">Os batedores de pênalti valem na partida: bate o primeiro que estiver em
+            campo. Capitão, faltas e escanteios ficam salvos, mas ainda não mudam o resultado.</p>
         </div>
       </div>
     </div>`;

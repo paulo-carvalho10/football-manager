@@ -12,16 +12,20 @@ const VIVO = {
   relogio: 0, pausado: false, motivo: "", esperando: false,
   fila: [], taticaPendente: null, visiveis: 0, timer: null,
   gaveta: null, aba: "rodada", fimVisto: false, intervaloVisto: false, segurarAte: 0,
+  // o que ja foi mostrado uma vez: penaltis (suspense), expulsoes (pausa), gols da rodada
+  vistos: new Set(), suspense: null, flash: {}, escolhendoPenalti: false,
 };
 
-const VELOCIDADES = {lenta: 900, normal: 420, rapida: 160, turbo: 45};
+// ms por minuto de jogo; o "instantaneo" e o botao que vai direto ao fim
+const VELOCIDADES = {"1x": 420, "2x": 200, "4x": 80};
 
 async function abrirAoVivo() {
   Object.assign(VIVO, {s: null, anterior: null, relogio: 0, pausado: false, motivo: "", esperando: false,
                        fila: [], taticaPendente: null, visiveis: 0, gaveta: null, aba: "rodada",
-                       fimVisto: false, intervaloVisto: false, segurarAte: 0});
+                       fimVisto: false, intervaloVisto: false, segurarAte: 0,
+                       vistos: new Set(), suspense: null, flash: {}, escolhendoPenalti: false});
   $("#ao-vivo").innerHTML = `<div class="carregando">Entrando em campo…</div>`;
-  const s = await api.post("/api/partida/iniciar");
+  const s = await api.post("/api/partida/iniciar", {perguntar_penalti: config().perguntarPenalti});
   if (s.erro) {
     avisar(s.erro);
     if (s.fim_de_temporada) return irParaModo("jogo");
@@ -34,6 +38,7 @@ async function abrirAoVivo() {
   // comeco do bloco atual, nao ao apito inicial
   if (s.minuto > 5) VIVO.relogio = s.fim ? 90 : s.minuto - 5;
   VIVO.intervaloVisto = VIVO.relogio >= 45;
+  marcarComoVisto();
   montarAoVivo();
   pintar();
   tocar();
@@ -77,7 +82,7 @@ function montarAoVivo() {
       <div class="coluna">
         <div class="painel">
           <div class="cab"><div class="abas" id="v-abas">
-            <button data-vaba="rodada">Rodada</button><button data-vaba="meu">Meu time</button><button data-vaba="rival">Adversário</button></div></div>
+            <button data-vaba="rodada">Central</button><button data-vaba="meu">Meu time</button><button data-vaba="rival">Adversário</button></div></div>
           <div class="corpo sem-margem" id="v-lateral"></div>
         </div>
       </div>
@@ -89,10 +94,10 @@ function montarAoVivo() {
       <div class="grupo"><button class="btn" id="v-tatica">${icone("tatica")} Tática</button><span class="tecla">T</span></div>
       <span class="espaco"></span>
       <div class="grupo">${icone("relogio", 'style="width:1rem;height:1rem"')} Velocidade
-        <div class="segmentado" id="v-vel" style="width:17rem">${Object.keys(VELOCIDADES).map((v) =>
-          `<button data-vel="${v}" class="${config().velocidade === v ? "ativo" : ""}">${{lenta: "Lenta", normal: "Normal", rapida: "Rápida", turbo: "Turbo"}[v]}</button>`).join("")}</div></div>
-      <button class="btn" id="v-fim">Ir para o fim ›</button>
-      <button class="btn primario" id="v-sumula" hidden>Ver súmula ›</button>
+        <div class="segmentado velocidades" id="v-vel">${Object.keys(VELOCIDADES).map((v) =>
+          `<button data-vel="${v}" title="${v}" class="${config().velocidade === v ? "ativo" : ""}">${{"1x": "▶", "2x": "▶▶", "4x": "▶▶▶"}[v]}</button>`).join("")}
+          <button id="v-fim" title="Instantâneo: vai direto ao fim">⏭</button></div></div>
+      <button class="btn primario" id="v-sumula" hidden>Continuar ›</button>
     </footer>`;
   $("#v-pausa").addEventListener("click", alternarPausa);
   $("#v-subs").addEventListener("click", () => abrirGaveta("subs"));
@@ -131,6 +136,11 @@ async function passo() {
     if (!VIVO.fimVisto) terminou();
     return;
   }
+  // o motor parou NO penalti do meu time: o treinador escolhe o batedor
+  if (s.penalti) {
+    if (!VIVO.escolhendoPenalti) escolherPenalti();
+    return;
+  }
   // o relogio alcancou o fim do bloco: pede o proximo, levando as decisoes da pausa
   VIVO.esperando = true;
   const corpo = {trocas: VIVO.fila.map((t) => [t.sai.id, t.entra.id])};
@@ -166,7 +176,7 @@ function alternarPausa() {
 }
 
 async function irProFim() {
-  if (VIVO.s.fim) { VIVO.relogio = 90; pintar(); return; }
+  if (VIVO.s.fim) { VIVO.relogio = 90; marcarComoVisto(); pintar(); return; }
   VIVO.esperando = true;
   const corpo = {ate_o_fim: true, trocas: VIVO.fila.map((t) => [t.sai.id, t.entra.id])};
   if (VIVO.taticaPendente) corpo.tatica = VIVO.taticaPendente;
@@ -178,7 +188,9 @@ async function irProFim() {
   VIVO.s = novo;
   VIVO.relogio = 90;
   VIVO.pausado = false;
+  VIVO.suspense = null;
   $("#v-selo").innerHTML = "";
+  marcarComoVisto();      // no instantaneo nada de suspense nem pausa: vai ao resultado
   pintar();
 }
 
@@ -191,7 +203,7 @@ function terminou() {
   const meus = s.meu_lado === "casa" ? s.gols_casa : s.gols_fora;
   const deles = s.meu_lado === "casa" ? s.gols_fora : s.gols_casa;
   const r = meus > deles ? "VITÓRIA" : meus === deles ? "EMPATE" : "DERROTA";
-  $("#v-selo").innerHTML = `<div class="selo">FIM DE JOGO<small>${r} · ENTER para a súmula</small></div>`;
+  $("#v-selo").innerHTML = `<div class="selo">FIM DE JOGO<small>${r}${s.impacto ? `<br>${escapar(s.impacto)}` : ""}<br>ENTER para o resumo</small></div>`;
   $("#v-pausa").hidden = true;
   $("#v-fim").hidden = true;
   $("#v-subs").disabled = true;
@@ -202,11 +214,119 @@ function terminou() {
 /* ------------------------------------------------------------------ pintura */
 
 function eventosVisiveis() {
-  return VIVO.s.eventos.filter((e) => e.minuto <= VIVO.relogio);
+  const vis = VIVO.s.eventos.filter((e) => e.minuto <= VIVO.relogio);
+  // durante o suspense do penalti, o desfecho (gol, defesa, fora) ainda nao aparece
+  const sus = VIVO.suspense;
+  if (sus) {
+    const i = vis.findIndex((e) => e.tipo === "penalti" && e.minuto === sus.minuto && e.jogador === sus.jogador);
+    if (i >= 0) return vis.slice(0, i + 1);
+  }
+  return vis;
+}
+
+const chaveDoLance = (e) => `${e.tipo}:${e.minuto}:${e.jogador}:${e.lado}`;
+
+/** Ao retomar um jogo ou ir ao fim, o que ja passou nao dispara pausa nem suspense. */
+function marcarComoVisto() {
+  for (const e of VIVO.s.eventos.filter((x) => x.minuto <= VIVO.relogio)) VIVO.vistos.add(chaveDoLance(e));
+  for (const j of VIVO.s.rodada || []) {
+    for (const l of j.lances) if (l.minuto <= VIVO.relogio) VIVO.vistos.add(chaveDaRodada(j, l));
+  }
+}
+
+/** Lances que acabam de aparecer e pedem a atencao do treinador: penalti e expulsao. */
+function lancesNovos() {
+  const s = VIVO.s;
+  for (const e of s.eventos.filter((x) => x.minuto <= VIVO.relogio)) {
+    const k = chaveDoLance(e);
+    if (VIVO.vistos.has(k)) continue;
+    if (e.tipo === "penalti") {
+      if (VIVO.suspense) return;        // um de cada vez
+      VIVO.vistos.add(k);
+      comecarSuspense(e);
+      return;
+    }
+    // o desfecho do penalti espera o suspense acabar
+    if (VIVO.suspense && e.minuto === VIVO.suspense.minuto) return;
+    VIVO.vistos.add(k);
+    if (e.tipo === "vermelho" && config().pausarNaExpulsao && !VIVO.fimVisto) avisarExpulsao(e);
+  }
+}
+
+function comecarSuspense(e) {
+  const s = VIVO.s;
+  const meu = e.lado === s.meu_lado;
+  const nome = nomeDoJogador(e.jogador) || "O batedor";
+  const clube = e.lado === "casa" ? s.casa : s.fora;
+  const ms = meu ? 2600 : 2000;
+  VIVO.suspense = {minuto: e.minuto, jogador: e.jogador};
+  VIVO.segurarAte = Date.now() + ms;
+  $("#v-selo").innerHTML = `<div class="selo penalti">PÊNALTI<small>${meu
+    ? `${escapar(nome)} posiciona a bola…` : `${escapar(nome)} (${escapar(clube.nome)}) vai para a cobrança`}</small></div>`;
+  setTimeout(() => {
+    VIVO.suspense = null;
+    const desfecho = VIVO.s.eventos.find((x) => x.minuto === e.minuto && x.jogador === e.jogador
+      && ["gol", "penalti_defendido", "penalti_fora"].includes(x.tipo));
+    const titulo = !desfecho ? "" : desfecho.tipo === "gol" ? "GOOOL!"
+      : desfecho.tipo === "penalti_defendido" ? "DEFENDEU!" : "PRA FORA!";
+    if (titulo && !VIVO.pausado) {
+      $("#v-selo").innerHTML = `<div class="selo penalti">${titulo}<small>${escapar(desfecho.texto)}</small></div>`;
+      VIVO.segurarAte = Date.now() + 1600;
+      setTimeout(() => { if (!VIVO.pausado && !VIVO.fimVisto) $("#v-selo").innerHTML = ""; }, 1600);
+    }
+    pintar();
+  }, ms);
+}
+
+async function avisarExpulsao(e) {
+  const s = VIVO.s;
+  const meu = e.lado === s.meu_lado;
+  const clube = e.lado === "casa" ? s.casa : s.fora;
+  VIVO.pausado = true;
+  const escolha = await abrirJanela({titulo: "EXPULSÃO", estreita: true, corpo: `
+    <p><span class="cartao vm"></span> <b>${escapar(nomeDoJogador(e.jogador) || "?")}</b> (${escapar(clube.nome)}) recebe o vermelho aos ${e.minuto}'.</p>
+    <p class="dica">${meu ? "Seu time fica com um a menos. Vale mexer antes de o jogo seguir." : "O adversário fica com um a menos."}</p>`,
+    botoes: [{rotulo: "Ajustar tática", valor: "tatica"}, {rotulo: "Substituições", valor: "subs"},
+             {rotulo: "Continuar ›", primario: true, valor: "ok"}]});
+  VIVO.pausado = false;
+  if (escolha === "tatica" || escolha === "subs") abrirGaveta(escolha);
+}
+
+async function escolherPenalti() {
+  const s = VIVO.s;
+  const pen = s.penalti;
+  VIVO.escolhendoPenalti = true;
+  const cands = pen.candidatos;
+  let escolhido = cands[0]?.id;
+  // fechar com Esc tambem cobra: com o primeiro da lista, que e o da ordem de Taticas
+  await abrirJanela({titulo: `PÊNALTI PARA O ${escapar(s[s.meu_lado].nome.toUpperCase())}!`, corpo: `
+    <p class="dica">${pen.minuto}' · Quem será o cobrador?${pen.goleiro ? ` No gol, ${escapar(pen.goleiro)}.` : ""}</p>
+    <table class="grade compacta escolha-penalti"><thead><tr><th></th><th>Jogador</th><th class="n">Finalização</th>
+      <th class="n">Técnica</th><th class="n">Confiança</th><th class="n">Chance</th></tr></thead>
+    <tbody>${cands.map((j, i) => `<tr>
+      <td><input type="radio" name="batedor" value="${j.id}" id="bat-${j.id}" ${i === 0 ? "checked" : ""}></td>
+      <td><label for="bat-${j.id}">${pos(j.posicao)} <b>${escapar(j.nome)}</b>${j.ordem ? ` <span class="chip">${j.ordem}º batedor</span>` : ""}</label></td>
+      <td class="n">${j.finalizacao}</td><td class="n">${j.tecnica}</td><td class="n">${j.confianca}</td>
+      <td class="n"><b>${j.chance}%</b></td></tr>`).join("")}</tbody></table>
+    <p class="nota-honesta">A chance é a conta do motor: finalização e técnica do batedor contra os reflexos do goleiro.</p>`,
+    botoes: [{rotulo: "Cobrar ›", primario: true, valor: "ok", acao: () => {
+      const r = document.querySelector("input[name=batedor]:checked");
+      if (r) escolhido = +r.value;
+    }}]});
+  VIVO.esperando = true;
+  const novo = await api.post("/api/partida/seguir", {penalti: escolhido});
+  VIVO.esperando = false;
+  VIVO.escolhendoPenalti = false;
+  if (novo.erro && !novo.minuto) { avisar(novo.erro); return; }
+  VIVO.anterior = VIVO.s;
+  VIVO.s = novo;
+  pintar();
 }
 
 function pintar() {
   const s = VIVO.s;
+  lancesNovos();
+  novidadesDaRodada();
   const vis = eventosVisiveis();
   const gc = vis.filter((e) => e.tipo === "gol" && e.lado === "casa").length;
   const gf = vis.filter((e) => e.tipo === "gol" && e.lado === "fora").length;
@@ -229,7 +349,7 @@ function pintar() {
     prog.insertAdjacentHTML("beforeend",
       `<span class="marca-gol" style="left:${(e.minuto / 90) * 100}%;background:${lado.cor};color:${contraste(lado.cor)}">${e.minuto}</span>`);
   }
-  const falta = s.fim ? "" : `próxima parada técnica: ${s.minuto}'`;
+  const falta = s.fim || s.penalti ? "" : `próxima parada técnica: ${s.minuto}'`;
   $("#v-parada").textContent = falta;
   $("#v-conta").textContent = `${s.trocas_feitas + VIVO.fila.length}/${s.max_trocas}`;
   pintarFeed(vis);
@@ -239,7 +359,7 @@ function pintar() {
   pintarLateral(fechado);
 }
 
-const ICONE_LANCE = {gol: "⚽", amarelo: '<span class="cartao am" style="width:.72rem;height:1rem"></span>',
+const ICONE_LANCE = {gol: "⚽", penalti: "◎", penalti_defendido: "🧤", penalti_fora: "✗", amarelo: '<span class="cartao am" style="width:.72rem;height:1rem"></span>',
                      vermelho: '<span class="cartao vm" style="width:.72rem;height:1rem"></span>', substituicao: "⇅", defesa: "✋", chute: "↗",
                      escanteio: "⚑", impedimento: "⚐", falta: "!"};
 
@@ -263,7 +383,7 @@ function pintarFeed(vis) {
     let sub = `<span class="lado" style="background:${clube.cor}"></span>${escapar(clube.nome)}`;
     if (e.tipo === "gol") {
       const assist = e.segundo ? nomeDoJogador(e.segundo) : null;
-      txt = `GOL! ${escapar(nomeDoJogador(e.jogador) || e.texto.replace("GOL! ", ""))}`;
+      txt = `GOL! ${escapar(nomeDoJogador(e.jogador) || e.texto.replace("GOL! ", ""))}${e.texto.includes("(pênalti)") ? " (pênalti)" : ""}`;
       if (assist) sub += ` · assistência de ${escapar(assist)}`;
     }
     linhas.push(`<div class="lance ${e.tipo}"><span class="min">${e.minuto}'</span>
@@ -304,13 +424,7 @@ function pintarLateral(fechado) {
   $$("[data-vaba]").forEach((b) => b.classList.toggle("ativo", b.dataset.vaba === VIVO.aba));
   const alvo = $("#v-lateral");
   if (VIVO.aba === "rodada") {
-    const minha = {casa: s.casa.nome, fora: s.fora.nome,
-                   gols_casa: +$("#v-gols").textContent.split("×")[0], gols_fora: +$("#v-gols").textContent.split("×")[1], meu: true};
-    const jogos = [minha, ...fechado.rodada];
-    alvo.innerHTML = `<div class="rodada-vivo">${jogos.map((j) => `
-      <div class="jogo ${j.meu ? "meu" : ""} ${j.mudou ? "mudou" : ""}"><span>${escapar(j.casa)}</span>
-        <b>${j.gols_casa} - ${j.gols_fora}</b><span>${escapar(j.fora)}</span></div>`).join("")}</div>
-      <p class="nota-honesta" style="margin:.7rem">Os outros placares são decididos pelo motor rápido; o minuto de cada gol é ilustrativo.</p>`;
+    alvo.innerHTML = centralDaRodada();
     return;
   }
   const meu = s.meu_lado;
@@ -324,6 +438,65 @@ function pintarLateral(fechado) {
       <span>${j.amarelo && vistos.has(j.id) ? '<span class="cartao am"></span>' : ""}${expulso ? '<span class="cartao vm"></span>' : ""}</span>
       <span class="en">${barra(j.energia, corDe(j.energia, 80, 62))}${j.energia}</span></div>`;
   }).join("")}</div>`;
+}
+
+/* ------------------------------------------------------------------ central da rodada
+ * Todos os jogos da data ate o minuto do relogio: placar, quem marcou, expulsoes, trocas
+ * (e amarelos, se a configuracao pedir). Os lances vem do servidor (fm.central) e sao os
+ * mesmos que a artilharia e o gancho registram. */
+
+const chaveDaRodada = (j, l) => `r:${j.casa.id}:${j.fora.id}:${l.tipo}:${l.minuto}:${l.nome}`;
+
+function jogosDaRodada() {
+  return (VIVO.s.rodada || []).map((j) => {
+    const lances = j.lances.filter((l) => l.minuto <= VIVO.relogio);
+    return {...j, lances,
+            gols_casa: lances.filter((l) => l.tipo === "gol" && l.lado === "casa").length,
+            gols_fora: lances.filter((l) => l.tipo === "gol" && l.lado === "fora").length};
+  });
+}
+
+/** Gol em outro campo: a linha pisca e sobe um aviso curto. */
+function novidadesDaRodada() {
+  for (const j of jogosDaRodada()) {
+    for (const l of j.lances) {
+      const k = chaveDaRodada(j, l);
+      if (VIVO.vistos.has(k)) continue;
+      VIVO.vistos.add(k);
+      if (l.tipo === "gol" && !VIVO.fimVisto) {
+        const clube = l.lado === "casa" ? j.casa : j.fora;
+        VIVO.flash[`${j.casa.id}:${j.fora.id}`] = Date.now() + 4000;
+        avisar(`⚽ ${clube.nome} — ${l.nome} ${l.minuto}'`, 3000);
+      }
+    }
+  }
+}
+
+function centralDaRodada() {
+  const s = VIVO.s;
+  const [gc, gf] = $("#v-gols").textContent.split("×").map((x) => +x);
+  const amarelos = config().mostrarAmarelos;
+  const ic = {gol: "⚽", vermelho: '<span class="cartao vm"></span>', amarelo: '<span class="cartao am"></span>', substituicao: "⇅"};
+  const lance = (l) => `<div class="l ${l.lado}"><span class="m">${l.minuto}'</span>${ic[l.tipo]}
+    <span>${escapar(l.tipo === "substituicao" ? `${l.entra} ▸ ${l.nome}` : l.nome)}</span></div>`;
+  const agora = Date.now();
+  const jogo = (j, meu) => {
+    const vis = j.lances.filter((l) => l.tipo !== "amarelo" || amarelos);
+    const piscando = (VIVO.flash[`${j.casa.id}:${j.fora.id}`] || 0) > agora;
+    return `<div class="jogo-c ${meu ? "meu" : ""} ${piscando ? "pisca" : ""}">
+      <div class="linha"><span class="t casa"><span class="nm">${escapar(j.casa.nome)}</span>${escudo(j.casa, "1.2rem")}</span>
+        <b>${j.gols_casa} - ${j.gols_fora}</b>
+        <span class="t">${escudo(j.fora, "1.2rem")}<span class="nm">${escapar(j.fora.nome)}</span></span></div>
+      ${vis.length ? `<div class="lances-c">${vis.map(lance).join("")}</div>` : ""}</div>`;
+  };
+  const minha = {casa: s.casa, fora: s.fora, gols_casa: gc, gols_fora: gf, lances: []};
+  const outros = jogosDaRodada();
+  if (outros.some((j) => (VIVO.flash[`${j.casa.id}:${j.fora.id}`] || 0) > agora)) {
+    clearTimeout(VIVO.timerFlash);
+    VIVO.timerFlash = setTimeout(() => { if (VIVO.aba === "rodada") pintarLateral(); }, 4100);
+  }
+  return `<div class="central-rodada">${jogo(minha, true)}${outros.map((j) => jogo(j, false)).join("")
+    || '<div class="vazio">Nenhum outro jogo nesta data.</div>'}</div>`;
 }
 
 /* ------------------------------------------------------------------ gavetas */
@@ -468,7 +641,8 @@ async function abrirPosJogo() {
     </tbody></table></div></div>`;
   const evs = p.eventos.map((e) => {
     const conteudo = `<b>${escapar(e.texto.replace("GOL! ", ""))}</b>${e.assistencia ? `<small>assist. ${escapar(e.assistencia)}</small>` : ""}`;
-    const ic = {gol: "⚽", amarelo: '<span class="cartao am"></span>', vermelho: '<span class="cartao vm"></span>', substituicao: "⇅"}[e.tipo];
+    const ic = {gol: "⚽", amarelo: '<span class="cartao am"></span>', vermelho: '<span class="cartao vm"></span>', substituicao: "⇅",
+                penalti_defendido: "🧤", penalti_fora: "✗"}[e.tipo];
     return `<div class="ev ${e.tipo}"><span class="casa">${e.lado === "casa" ? `${conteudo} ${ic}` : ""}</span>
       <span class="m">${e.minuto}'</span><span>${e.lado === "fora" ? `${ic} ${conteudo}` : ""}</span></div>`;
   }).join("") || '<div class="vazio">Sem lances para a súmula.</div>';
@@ -500,9 +674,10 @@ async function abrirPosJogo() {
         <div class="corpo sem-margem" id="pos-lateral"></div>
         <div class="pe"><span class="dica">Notas derivadas dos lances e do placar</span></div></div>
     </div>
+    ${p.impacto ? `<div class="impacto-tabela">${escapar(p.impacto)}</div>` : ""}
     <footer class="fluxo-pe"><span class="dica">${escapar(ESTADO.aprovacao.clima ? `Ambiente no clube: ${clima(ESTADO.aprovacao.clima)}` : "")}</span>
       <span class="espaco"></span><button class="btn primario grande" id="pos-continuar">Continuar »</button></footer>`;
-  $("#pos-continuar").addEventListener("click", () => irParaModo("jogo"));
+  $("#pos-continuar").addEventListener("click", () => irParaModo("jogo", "calendario"));
   POS.rodada = p.rodada;
   $$("[data-paba]").forEach((b) => b.addEventListener("click", () => abaDoPosJogo(b.dataset.paba)));
   abaDoPosJogo(PARAMS.get("aba") || "rodada");
@@ -552,7 +727,7 @@ async function abaDoPosJogo(aba) {
 registrarModo("posjogo", {
   elemento: "#pos-jogo", abrir: abrirPosJogo,
   tecla(ev) {
-    if (ev.key === "Enter" || ev.key === " ") { irParaModo("jogo"); ev.preventDefault(); }
+    if (ev.key === "Enter" || ev.key === " ") { irParaModo("jogo", "calendario"); ev.preventDefault(); }
     if (ev.key.toLowerCase() === "t") abaDoPosJogo(POS.aba === "tabela" ? "rodada" : "tabela");
   },
 });

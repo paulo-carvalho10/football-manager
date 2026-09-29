@@ -55,6 +55,9 @@ CHANCE_DE_VERMELHO = 0.035
 # para este fator. Sem isso o volante amarelado continuava sendo sorteado como se nada
 # tivesse acontecido, e saiam 0,42 vermelho por jogo -- o Brasileirao tem perto de 0,28.
 CAUTELA_DO_AMARELADO = 0.3
+# Penalti: perto de 0,28 por jogo no futebol de verdade, 3 em cada 4 convertidos.
+PENALTIS_POR_TIME = 0.14
+CONVERSAO_PENALTI = 0.76
 DESARMES_BASE = 16.0
 FALTAS_BASE = 12.0
 IMPEDIMENTOS_BASE = 2.2
@@ -179,6 +182,7 @@ def simular_partida(
     mentality: Mentality = Mentality.NORMAL,
     mult_casa: float = 1.0, mult_fora: float = 1.0,
     substituicoes=None, papeis: dict[int, str] | None = None,
+    cobradores: dict[int, list[int]] | None = None, penaltis=None,
 ) -> Partida:
     """Partida minuto a minuto.
 
@@ -191,7 +195,13 @@ def simular_partida(
     E por ela que o usuario troca jogador e muda a tatica no meio do jogo -- e por ela que
     a tela ao vivo pausa: enquanto a funcao nao volta, a partida nao anda. Devolver lista
     vazia mantem tudo como esta.
+
+    `cobradores` e a ordem de batedores de penalti de cada clube; `penaltis`, uma funcao
+    f(partida, minuto, clube) -> id do batedor ou None, chamada NO MINUTO do penalti -- e
+    por ela que a tela pausa e o treinador escolhe quem bate. None usa a ordem de
+    cobradores, e sem ordem, o melhor finalizador em campo.
     """
+    cobradores = cobradores or {}
     p = Partida(casa=casa, fora=fora,
                 em_campo_casa=list(onze_casa), em_campo_fora=list(onze_fora))
     p.entrada = {pid: 0 for pid in onze_casa + onze_fora}
@@ -208,8 +218,11 @@ def simular_partida(
         peso = PESO_DO_BLOCO[bloco] / PESO_DO_BLOCO.sum()
         xg_c = float(lc) * mult_casa * peso
         xg_f = float(lf) * mult_fora * peso
-        gc = int(rng.poisson(xg_c))
-        gf = int(rng.poisson(xg_f))
+        # O penalti sai de dentro do xG, nao por cima: o que ele converte em media e
+        # descontado do jogo corrido, e a media de gols continua a do motor calibrado.
+        pen = PENALTIS_POR_TIME / BLOCOS
+        gc = int(rng.poisson(max(0.0, xg_c - pen * CONVERSAO_PENALTI)))
+        gf = int(rng.poisson(max(0.0, xg_f - pen * CONVERSAO_PENALTI)))
 
         # Gols, cartoes e lances do bloco sao sorteados JUNTOS e processados em ordem de
         # minuto. Separados, saiam fora de causalidade: um jogador levava vermelho aos
@@ -225,6 +238,7 @@ def simular_partida(
         agendar("gol", fora, gf)
         for clube_lado in (casa, fora):
             agendar("cartao", clube_lado, int(rng.poisson(AMARELOS_POR_TIME / BLOCOS)))
+            agendar("penalti", clube_lado, int(rng.poisson(pen)))
         # Os lances que nao sao gol saem do MESMO xG do bloco: quem finaliza muito e quem
         # tinha mais chance de marcar. A estatistica ao vivo conta estes lances, entao a
         # tela e a sumula nunca discordam.
@@ -244,6 +258,9 @@ def simular_partida(
                 _marcar(p, world, rng, clube_lado, em_campo, minuto)
             elif tipo == "cartao":
                 _cartao(p, world, rng, clube_lado, em_campo, minuto, amarelados)
+            elif tipo == "penalti":
+                _penalti(p, world, rng, clube_lado, em_campo, minuto,
+                         cobradores.get(clube_lado, []), penaltis)
             else:
                 _lance(p, world, rng, tipo, clube_lado, em_campo, minuto)
 
@@ -276,6 +293,53 @@ def simular_partida(
     _fechar_estatisticas(p)
     p.eventos.sort(key=lambda e: e.minuto)
     return p
+
+
+def chance_de_converter(batedor, goleiro) -> float:
+    """Batedor bom contra goleiro bom: a conta que a tela de escolha mostra."""
+    mira = (batedor.finishing + batedor.technique) / 2
+    reflexo = goleiro.reflexes if goleiro is not None else 60
+    return float(np.clip(CONVERSAO_PENALTI + (mira - 75) * 0.005 - (reflexo - 75) * 0.004,
+                         0.55, 0.93))
+
+
+def _penalti(p: Partida, world, rng, clube: int, em_campo: list[int], minuto: int,
+             ordem: list[int], decidir) -> None:
+    if not em_campo:
+        return
+    escolha = None
+    if decidir is not None:
+        p.minuto = minuto            # a tela mostra a partida parada NESTE minuto
+        escolha = decidir(p, minuto, clube)
+    if escolha not in em_campo:
+        escolha = next((x for x in ordem if x in em_campo), None)
+    if escolha not in em_campo:
+        escolha = max(em_campo, key=lambda i: world.players[i].finishing
+                      + world.players[i].technique)
+    rival = p.em_campo_fora if clube == p.casa else p.em_campo_casa
+    goleiro = next((world.players[i] for i in rival if world.players[i].position == "GK"), None)
+    batedor = world.players[escolha]
+    nome_clube = world.clubs[clube].name
+    p.eventos.append(Evento(minuto, "penalti", clube, jogador=escolha,
+                            texto=f"PÊNALTI para o {nome_clube}! {batedor.name} vai cobrar"))
+    st = p.stats_casa if clube == p.casa else p.stats_fora
+    st.finalizacoes += 1
+    if rng.random() < chance_de_converter(batedor, goleiro):
+        if clube == p.casa:
+            p.gols_casa += 1
+        else:
+            p.gols_fora += 1
+        st.no_gol += 1
+        p.eventos.append(Evento(minuto, "gol", clube, jogador=escolha,
+                                texto=f"GOL! {batedor.name} (pênalti)"))
+    elif rng.random() < 0.6 and goleiro is not None:
+        st.no_gol += 1
+        p.eventos.append(Evento(minuto, "penalti_defendido", clube, jogador=escolha,
+                                segundo=goleiro.id,
+                                texto=f"{goleiro.name} defende o pênalti de {batedor.name}!"))
+    else:
+        p.eventos.append(Evento(minuto, "penalti_fora", clube, jogador=escolha,
+                                texto=f"{batedor.name} bate para fora!"))
 
 
 def rendimento_em_campo(world: World, partida: Partida, pid: int) -> int:

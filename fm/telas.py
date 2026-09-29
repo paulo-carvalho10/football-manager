@@ -459,8 +459,22 @@ def _zonas(cfg: dict, n: int) -> dict:
 
 # ------------------------------------------------------------------ pos-jogo
 
+def impacto_na_tabela(nome: str, antes: int | None, depois: int) -> str:
+    """A frase do fim de jogo: o que o resultado fez com a posicao na tabela."""
+    if antes is None:
+        return f"Com esse resultado, o {nome} abre o campeonato na {depois}ª posição"
+    if depois == 1:
+        return (f"Com esse resultado, o {nome} segue na liderança" if antes == 1
+                else f"Com esse resultado, o {nome} assume a liderança")
+    if depois < antes:
+        return f"Com esse resultado, o {nome} sobe para a {depois}ª posição"
+    if depois > antes:
+        return f"Com esse resultado, o {nome} cai para a {depois}ª posição"
+    return f"Com esse resultado, o {nome} se mantém na {depois}ª posição"
+
+
 def pos_jogo(c: Carreira, partida, resultados, competicao: str, tipo: str,
-             clube_json) -> dict:
+             clube_json, posicao_antes: int | None = None) -> dict:
     """A sumula do pos-jogo: notas, eventos e a rodada inteira."""
     from fm.notas import notas_da_partida
 
@@ -486,11 +500,14 @@ def pos_jogo(c: Carreira, partida, resultados, competicao: str, tipo: str,
                    "assistencia": jogadores[e.segundo].name
                    if e.tipo == "gol" and e.segundo else None}
                   for e in partida.eventos
-                  if e.tipo in ("gol", "amarelo", "vermelho", "substituicao")]
+                  if e.tipo in ("gol", "amarelo", "vermelho", "substituicao",
+                                "penalti_defendido", "penalti_fora")]
     sc, sf = partida.stats_casa, partida.stats_fora
     melhor = max(notas, key=notas.get) if notas else None
+    impacto = (impacto_na_tabela(c.world.clubs[c.clube_id].name, posicao_antes, c.posicao())
+               if tipo == "liga" else None)
     return {
-        "competicao": competicao,
+        "competicao": competicao, "impacto": impacto,
         "casa": clube_json(partida.casa), "fora": clube_json(partida.fora),
         "gols_casa": partida.gols_casa, "gols_fora": partida.gols_fora,
         "time_casa": time(partida.casa), "time_fora": time(partida.fora),

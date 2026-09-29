@@ -310,10 +310,16 @@ document.addEventListener("keydown", (ev) => {
  * Preferencias do jogador neste navegador. Nao entram no save: sao da maquina, nao da
  * carreira. */
 
-const CONFIG_PADRAO = {velocidade: "normal", pausarNoGol: true, pausarNoIntervalo: true};
+const CONFIG_PADRAO = {velocidade: "1x", pausarNoGol: true, pausarNoIntervalo: true,
+                       perguntarPenalti: true, pausarNaExpulsao: true, mostrarAmarelos: false};
+// as velocidades antigas (lenta/normal/rapida/turbo) viram as novas
+const VELOCIDADE_ANTIGA = {lenta: "1x", normal: "1x", rapida: "2x", turbo: "4x"};
 function config() {
-  try { return {...CONFIG_PADRAO, ...JSON.parse(localStorage.getItem("p11-config") || "{}")}; }
-  catch { return {...CONFIG_PADRAO}; }
+  let c;
+  try { c = {...CONFIG_PADRAO, ...JSON.parse(localStorage.getItem("p11-config") || "{}")}; }
+  catch { c = {...CONFIG_PADRAO}; }
+  if (VELOCIDADE_ANTIGA[c.velocidade]) c.velocidade = VELOCIDADE_ANTIGA[c.velocidade];
+  return c;
 }
 function salvarConfig(c) {
   try { localStorage.setItem("p11-config", JSON.stringify(c)); } catch { /* sem storage */ }

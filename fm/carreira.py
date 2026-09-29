@@ -97,9 +97,14 @@ class Carreira:
     # os outros jogos da data, ja resolvidos, enquanto a partida do usuario ainda corre:
     # e o painel "rodada ao vivo"
     parciais: list = field(default_factory=list)
-    # Capitao e cobradores. Guardados e mostrados, mas o motor ainda NAO os le: nao ha
-    # penalti nem bola parada simulados. Ficam no save para valerem quando houver.
+    # os lances (gols com autor e minuto, cartoes, trocas) dos jogos do motor rapido na data
+    # que esta sendo jogada, por (mandante, visitante). E a central da rodada.
+    lances_da_data: dict = field(default_factory=dict)
+    # Capitao e cobradores. Os de penalti (penaltis, penaltis2, penaltis3) o motor le;
+    # capitao, faltas e escanteios ainda nao: nao ha bola parada alem do penalti.
     funcoes: dict[str, int] = field(default_factory=dict)
+    # quem decide o batedor na hora do penalti, so durante um avancar(); nao vai ao save
+    _pedido_de_penalti: object = field(default=None, repr=False, compare=False)
     # a lista de observacao do mercado
     observados: list[int] = field(default_factory=list)
     # um caderno de artilharia por competicao ("brasil_real", "libertadores"...) no ano
@@ -483,7 +488,7 @@ class Carreira:
             raise ValueError(f"o onze precisa de 11 jogadores, vieram {len(jogadores)}")
         self.decisoes[self._chave()] = Decisao(list(jogadores), asdict(tatica))
 
-    def avancar(self, substituicoes=None) -> tuple[list[Result], Partida | None]:
+    def avancar(self, substituicoes=None, penaltis=None) -> tuple[list[Result], Partida | None]:
         """Joga a proxima DATA e para.
 
         Data de liga: uma rodada em todas as divisoes, porque a piramide anda junta -- sem
@@ -496,11 +501,18 @@ class Carreira:
         for prop in self.propostas:
             if prop.status == "pendente":
                 prop.status = "expirada"
-        saida = self._avancar_data(substituicoes)
+        # `penaltis(partida, minuto, clube)` e chamado em todo penalti da minha partida,
+        # dos dois lados (a tela pausa nos dois); so a resposta para o MEU clube vale
+        self._pedido_de_penalti = penaltis
+        try:
+            saida = self._avancar_data(substituicoes)
+        finally:
+            self._pedido_de_penalti = None
         self._novas_propostas()
         return saida
 
     def _avancar_data(self, substituicoes=None) -> tuple[list[Result], Partida | None]:
+        self.lances_da_data = {}      # os da data anterior ficaram ate agora para a tela
         while not self.acabou:
             tipo, quem = self.agenda[self.data]
             if tipo == "liga":
@@ -546,12 +558,14 @@ class Carreira:
                 outras = [f for f in partidas if f is not meu_jogo]
                 r = play_fixtures(outras, ratings, rng, style)
                 self.parciais = list(r)
+                self._detalhar(r)      # a central da rodada ja tem quem marcou e quando
                 detalhada = self._minha_partida(meu_jogo, rng, style, tatica,
                                                 substituicoes)
                 r.append(Result(meu_jogo.home, meu_jogo.away,
                                 detalhada.gols_casa, detalhada.gols_fora, n))
             else:
                 r = play_fixtures(partidas, ratings, rng, style)
+                self._detalhar(r)
 
             self.resultados[nome].extend(r)
             todos.extend(r)
@@ -594,6 +608,7 @@ class Carreira:
         Sem a segunda metade nao existe artilharia de campeonato: os jogos dos outros
         clubes sao resolvidos pelo motor rapido, que devolve so o placar.
         """
+        from fm.central import registrar as registrar_lances
         from fm.estatisticas import registrar_partida_detalhada, registrar_resultado
 
         if self.estatisticas is None:
@@ -614,7 +629,12 @@ class Carreira:
             se_e_minha = detalhada is not None and (r.home, r.away) == (
                 detalhada.casa, detalhada.fora)
             if not se_e_minha:
-                registrar_resultado(cadernos(r), self.world, r, rng)
+                lances = self.lances_da_data.get((r.home, r.away))
+                if lances is not None:
+                    # os mesmos lances que a central da rodada mostrou
+                    registrar_lances(cadernos(r), self.world, r, lances)
+                else:
+                    registrar_resultado(cadernos(r), self.world, r, rng)
         if detalhada is not None:
             minha = next((r for r in resultados
                           if (r.home, r.away) == (detalhada.casa, detalhada.fora)), None)
@@ -637,7 +657,43 @@ class Carreira:
             [p.id for p in self.world.best_xi(jogo.away)],
             rng, style, mult_casa=ma, mult_fora=md,
             substituicoes=self._no_banco(substituicoes, chave, sou_casa),
-            papeis=papeis)
+            papeis=papeis,
+            cobradores={self.clube_id: self.cobradores()},
+            penaltis=self._na_marca(chave))
+
+    def cobradores(self) -> list[int]:
+        return [self.funcoes[k] for k in ("penaltis", "penaltis2", "penaltis3")
+                if k in self.funcoes]
+
+    def _na_marca(self, chave: str):
+        """Quem bate o penalti do meu time: o que a tela escolheu, gravado em `na_partida`
+        para o replay escolher o mesmo. Sem escolha, vale a ordem de cobradores."""
+        pedido = self._pedido_de_penalti
+        gravado = (self.na_partida.get(chave) or {}).get("penaltis", [])
+        if pedido is None and not gravado:
+            return None
+
+        usados: set[int] = set()
+
+        def decidir(partida, minuto, clube):
+            if pedido is None:
+                if clube != self.clube_id:
+                    return None
+                # na ordem gravada: dois penaltis no mesmo minuto nao pegam o mesmo batedor
+                i = next((i for i, (m, _) in enumerate(gravado)
+                          if m == minuto and i not in usados), None)
+                if i is None:
+                    return None
+                usados.add(i)
+                return gravado[i][1]
+            escolha = pedido(partida, minuto, clube)
+            if clube != self.clube_id or escolha is None:
+                return None
+            escolha = int(escolha)
+            reg = self.na_partida.setdefault(chave, {"trocas": [], "taticas": []})
+            reg.setdefault("penaltis", []).append([minuto, escolha])
+            return escolha
+        return decidir
 
     def _no_banco(self, pedido, chave: str, sou_casa: bool):
         """O intermediario entre quem decide (terminal, tela ao vivo ou o save) e o motor.
@@ -732,6 +788,7 @@ class Carreira:
         # os outros primeiro, como na liga: e o que a rodada ao vivo mostra
         outros = play_fixtures(jogos, ratings, rng, t.style, t.mentality)
         self.parciais = list(outros)
+        self._detalhar(outros)
         if meu is not None:
             detalhada = self._minha_partida(meu, rng, t.style, tatica, substituicoes)
             resultados.append(Result(meu.home, meu.away, detalhada.gols_casa,
@@ -938,28 +995,26 @@ class Carreira:
         do motor rapido saem de um stream proprio: sorteia-los no stream da partida
         mudaria os placares de todos os saves.
         """
-        from fm.disciplina import cartoes_da_partida, sortear_cartoes
+        from fm.central import cartoes as cartoes_dos_lances
+        from fm.disciplina import cartoes_da_partida
 
-        rng = self.streams.get("cartoes", self.temporada, self.data, comp)
         self.disciplina.cumprir(comp, clubes, self.world)
         for r in resultados:
             if detalhada is not None and (r.home, r.away) == (detalhada.casa, detalhada.fora):
                 # os da partida detalhada ja entraram nos cadernos pelos eventos
                 self.disciplina.registrar(comp, cartoes_da_partida(detalhada))
                 continue
-            cartoes = []
-            for clube in (r.home, r.away):
-                if clube in self.world.clubs:
-                    onze = [p.id for p in self.world.best_xi(clube)]
-                    cartoes += sortear_cartoes(self.world, onze, rng)
-            for pid, tipo in cartoes:
-                for caderno in (self.estatisticas, self.caderno(comp)):
-                    linha = caderno.linha(pid)
-                    if tipo == "amarelo":
-                        linha.amarelos += 1
-                    else:
-                        linha.vermelhos += 1
-            self.disciplina.registrar(comp, cartoes)
+            # os dos outros jogos vem dos lances da central, que ja os somou nos cadernos
+            lances = self.lances_da_data.get((r.home, r.away), [])
+            self.disciplina.registrar(comp, cartoes_dos_lances(lances))
+
+    def _detalhar(self, resultados) -> None:
+        """Gera os lances dos jogos do motor rapido (fm.central). Stream por jogo: a ordem
+        em que as divisoes sao jogadas nao muda quem marcou em cada partida."""
+        from fm.central import detalhar
+        for r in resultados:
+            rng = self.streams.get("central", self.temporada, self.data, r.home, r.away)
+            self.lances_da_data[(r.home, r.away)] = detalhar(self.world, r, rng)
 
     def _gastar_energia(self, jogaram: set[int], tatica: Tatica) -> None:
         """Energia entre rodadas.

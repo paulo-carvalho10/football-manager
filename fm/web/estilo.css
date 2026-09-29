@@ -823,3 +823,33 @@ input:focus, select:focus { border-color: var(--ouro); }
 /* transferencias: um painel so, com as abas dentro */
 .t-transferencias { grid-template-columns: minmax(0, 1fr); }
 #trf-corpo { grid-template-rows: minmax(0, 1fr); }
+
+/* velocidades da partida ao vivo: ▶ ▶▶ ▶▶▶ ⏭ */
+.segmentado.velocidades { width: auto; }
+.segmentado.velocidades button { min-width: 3.2rem; letter-spacing: -.12em; }
+.selo.penalti { border-color: var(--ouro); font-size: 2rem; }
+
+/* central da rodada: todos os jogos da data, com quem marcou */
+.central-rodada { max-height: 62vh; overflow-y: auto; }
+.jogo-c { padding: .4rem .6rem; border-bottom: 1px solid rgba(33,80,58,.45); transition: background .4s; }
+.jogo-c.meu { background: var(--ouro-fundo); position: sticky; top: 0; z-index: 1; backdrop-filter: blur(4px); }
+.jogo-c.pisca { animation: pisca-gol 1s ease-in-out 3; }
+@keyframes pisca-gol { 50% { background: rgba(243,195,50,.28); } }
+.jogo-c .linha { display: grid; grid-template-columns: minmax(0,1fr) 3.2rem minmax(0,1fr); gap: .45rem; align-items: center; font-size: .8rem; }
+.jogo-c .t { display: flex; align-items: center; gap: .35rem; min-width: 0; }
+.jogo-c .t .nm { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; min-width: 0; }
+.jogo-c .t .escudo, .jogo-c .t svg, .jogo-c .t img { flex: none; }
+.jogo-c .t.casa { justify-content: flex-end; }
+.jogo-c .linha b { text-align: center; font-family: var(--fonte-numero); background: var(--preto); border-radius: 4px; padding: .1em 0; }
+.jogo-c.pisca .linha b { background: var(--ouro); color: #1b1503; }
+.lances-c { display: grid; gap: .1rem; margin-top: .25rem; font-size: .7rem; color: var(--texto-2); }
+.lances-c .l { display: flex; align-items: center; gap: .3rem; }
+.lances-c .l.casa { flex-direction: row-reverse; justify-content: flex-start; padding-right: calc(50% + 1.8rem); }
+.lances-c .l.fora { padding-left: calc(50% + 1.8rem); }
+.lances-c .m { font-family: var(--fonte-numero); color: var(--texto); }
+.lances-c .cartao { width: .5rem; height: .7rem; }
+
+.escolha-penalti tr:has(input:checked) { background: var(--ouro-fundo); }
+.escolha-penalti label { cursor: pointer; }
+.impacto-tabela { margin: 0 1rem .6rem; padding: .6rem 1rem; border: 1px solid var(--ouro-2); border-radius: 8px;
+  background: var(--ouro-fundo); color: var(--ouro); font-family: var(--fonte-titulo); letter-spacing: .04em; text-align: center; }

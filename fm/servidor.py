@@ -42,6 +42,7 @@ class Jogo:
         self.ultimos_resultados: list = []
         self.ultimo_resumo: dict | None = None
         self.ao_vivo = None                 # fm.ao_vivo.PartidaAoVivo, durante o jogo
+        self.posicao_antes: int | None = None   # na tabela, antes da partida ao vivo
         self.competicao_ao_vivo = ("", "")
         self.pos_jogo: dict | None = None
         self.lidas: set[str] = set()
@@ -631,7 +632,7 @@ def _competicao_da_proxima(c: Carreira) -> tuple[str, str]:
     return "", ""
 
 
-def partida_iniciar(jogo: Jogo) -> dict:
+def partida_iniciar(jogo: Jogo, corpo: dict | None = None) -> dict:
     """Comeca a proxima data com a partida do usuario ao vivo."""
     from fm.ao_vivo import PartidaAoVivo
 
@@ -644,7 +645,11 @@ def partida_iniciar(jogo: Jogo) -> dict:
         return {"erro": "a temporada acabou", "fim_de_temporada": True}
     jogo.competicao_ao_vivo = _competicao_da_proxima(c)
     jogo.pos_jogo = None
+    tipo, _, _ = c.proximo_jogo()
+    # a posicao ANTES da rodada, para o fim de jogo dizer se subiu ou caiu
+    jogo.posicao_antes = c.posicao() if tipo == "liga" and c.rodada > 0 else None
     jogo.ao_vivo = PartidaAoVivo(c)
+    jogo.ao_vivo.perguntar_penalti = bool((corpo or {}).get("perguntar_penalti", True))
     jogo.ao_vivo.comecar()
     return partida_atual(jogo)
 
@@ -655,7 +660,7 @@ def partida_seguir(jogo: Jogo, corpo: dict) -> dict:
         return {"erro": "nao ha partida em andamento"}
     try:
         av.seguir(trocas=corpo.get("trocas"), tatica=corpo.get("tatica"),
-                  ate_o_fim=bool(corpo.get("ate_o_fim")))
+                  ate_o_fim=bool(corpo.get("ate_o_fim")), penalti=corpo.get("penalti"))
     except (ValueError, TypeError) as e:
         return {"erro": str(e), **partida_atual(jogo)}
     return partida_atual(jogo)
@@ -682,7 +687,10 @@ def partida_atual(jogo: Jogo) -> dict:
         jogo.ultima_partida, jogo.ultimos_resultados = partida, resultados
         if partida is not None and jogo.pos_jogo is None:
             jogo.pos_jogo = telas.pos_jogo(jogo.c, partida, resultados, competicao, tipo,
-                                           lambda cid: _clube(jogo.c, cid))
+                                           lambda cid: _clube(jogo.c, cid),
+                                           getattr(jogo, "posicao_antes", None))
+        if jogo.pos_jogo is not None:
+            retrato["impacto"] = jogo.pos_jogo.get("impacto")
         retrato["estado"] = estado(jogo)
     return retrato
 
@@ -839,7 +847,7 @@ ROTAS_POST = {
     "/api/propostas": responder_proposta,
     "/api/lida": lambda jogo, corpo: (jogo.lidas.update(corpo.get("ids", [])),
                                       {"ok": True})[1],
-    "/api/partida/iniciar": lambda jogo, corpo: partida_iniciar(jogo),
+    "/api/partida/iniciar": lambda jogo, corpo: partida_iniciar(jogo, corpo),
     "/api/partida/seguir": partida_seguir,
     "/api/avancar": lambda jogo, corpo: avancar(jogo),
     "/api/escalar": escalar,

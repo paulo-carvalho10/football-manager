@@ -12,6 +12,8 @@ from fm.ratings import converter_elenco
 # Mapeamento explicito de proposito: 20 linhas auditaveis valem mais que uma heuristica
 # que um dia troca Athletico por Atletico sem ninguem perceber.
 NOME_PACK = {
+    # "Vitória" sozinho colidia com o Vitória baiano no nome de arquivo da camisa
+    "2420": "Vitória SC",
     "1023": "Palmeiras", "614": "Flamengo", "609": "Cruzeiro", "199": "Corinthians",
     "978": "Vasco da Gama", "537": "Botafogo", "2462": "Fluminense", "10010": "Bahia",
     "221": "Santos", "8793": "Red Bull Bragantino", "330": "Atletico Mineiro",
