@@ -11,10 +11,12 @@ from __future__ import annotations
 
 import json
 from dataclasses import asdict, dataclass, field
+from datetime import date
 from pathlib import Path
 
 import numpy as np
 
+from fm.calendario import dia_da_data
 from fm.competition import Fixture, Result, play_fixtures, round_robin
 from fm.config import load_league, style_of
 from fm.eventos import Partida, simular_partida
@@ -595,7 +597,7 @@ class Carreira:
                 self.world, rs, rodada[nome], minha)
             clubes = {x.home for x in rs} | {x.away for x in rs}
             self._cartoes_da_data(nome, rs, minha, clubes)
-        self._lesoes_da_data(todos, detalhada, jogaram)
+        self._lesoes_da_data(todos, detalhada)
 
         self._gastar_energia(jogaram, tatica)
         self._encerrar_desfalques()
@@ -822,7 +824,7 @@ class Carreira:
 
         jogaram = {f.home for f in etapa.fixtures} | {f.away for f in etapa.fixtures}
         self._cartoes_da_data(nome, resultados, detalhada, jogaram)
-        self._lesoes_da_data(resultados, detalhada, jogaram)
+        self._lesoes_da_data(resultados, detalhada)
         self._gastar_energia(jogaram, tatica)
         self._encerrar_desfalques()
         self._checar_emprego()
@@ -1020,7 +1022,7 @@ class Carreira:
         for comp in competicoes:
             suspensos |= self.disciplina.suspensos(comp)
         # o lesionado fica fora em qualquer competicao; a troca na escalacao e a mesma
-        suspensos |= self.medico.fora()
+        suspensos |= self.medico.fora(self.hoje())
         self.world.indisponiveis = suspensos
         self._onze_pretendido = self.escalacao_atual()
         self.world.escalacao_fixa[self.clube_id] = self._sem_suspensos(
@@ -1072,11 +1074,16 @@ class Carreira:
             lances = self.lances_da_data.get((r.home, r.away), [])
             self.disciplina.registrar(comp, cartoes_dos_lances(lances))
 
-    def _lesoes_da_data(self, resultados, detalhada, clubes: set[int]) -> None:
-        """Primeiro cumpre (quem estava machucado perdeu ESTE jogo), depois registra os
-        machucados de hoje, com a gravidade num stream proprio."""
+    def hoje(self) -> date:
+        """O dia da proxima data da agenda (fm.calendario). E o "hoje" do lobby."""
+        return dia_da_data(self.temporada, self.data)
+
+    def _lesoes_da_data(self, resultados, detalhada) -> None:
+        """Registra os machucados de hoje (gravidade num stream proprio) e da alta a quem
+        ja pode jogar na data seguinte. Chamada ANTES de `self.data` andar."""
         from fm.central import lesionados
-        voltaram = self.medico.cumprir(clubes, self.world)
+        hoje = self.hoje()
+        voltaram = self.medico.dar_alta(dia_da_data(self.temporada, self.data + 1))
         novos: list[int] = []
         for r in resultados:
             if detalhada is not None and (r.home, r.away) == (detalhada.casa, detalhada.fora):
@@ -1084,10 +1091,10 @@ class Carreira:
             else:
                 novos += lesionados(self.lances_da_data.get((r.home, r.away), []))
         novas = self.medico.registrar(novos, self.streams.get("gravidade", self.temporada,
-                                                              self.data))
+                                                              self.data), hoje)
         meus = {p.id for p in self.world.squad(self.clube_id)}
         self.boletim_medico = {
-            "lesoes": [(pid, les.tipo, les.jogos) for pid, les in novas.items() if pid in meus],
+            "lesoes": [(pid, les.tipo, les.dias) for pid, les in novas.items() if pid in meus],
             "voltaram": [pid for pid in voltaram if pid in meus],
         }
 

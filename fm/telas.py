@@ -284,23 +284,27 @@ def mensagens(c: Carreira, data_texto: str, lidas: set[str]) -> list[dict]:
 
     if c.medico is not None:
         w = c.world
-        for pid, tipo, jogos in c.boletim_medico.get("lesoes", []):
-            if pid in w.players:
+        hoje = c.hoje()
+        for pid, tipo, dias in c.boletim_medico.get("lesoes", []):
+            les = c.medico.lesionados.get(pid)
+            if pid in w.players and les is not None:
                 msg(f"lesao:{c.temporada}:{c.data}:{pid}", "Departamento médico",
                     f"Lesão: {w.players[pid].name}",
-                    f"{w.players[pid].name} sofreu {tipo} e fica fora por "
-                    f"{jogos} jogo{'s' if jogos > 1 else ''}. Se estiver na escalação, entra "
-                    "o melhor reserva do mesmo setor.", "alerta")
+                    f"{w.players[pid].name} sofreu {tipo}: tempo de recuperação de cerca de "
+                    f"{dias} dias, volta a partir de {les.volta.strftime('%d/%m')}. Até lá, "
+                    "se estiver na escalação, entra o melhor reserva do mesmo setor.", "alerta")
         voltaram = [w.players[i].name for i in c.boletim_medico.get("voltaram", [])
                     if i in w.players]
         if voltaram:
             msg(f"alta:{c.temporada}:{c.data}", "Departamento médico", "Liberados",
                 f"Recuperados e à disposição: {', '.join(voltaram)}.")
-        ainda = [f"{w.players[i].name} ({les.jogos})"
-                 for i, les in c.lesionados_do_clube().items()]
+        ainda = [f"{w.players[i].name} (volta {les.volta.strftime('%d/%m')}, "
+                 f"{les.dias_restantes(hoje)} dias)"
+                 for i, les in sorted(c.lesionados_do_clube().items(),
+                                      key=lambda x: x[1].volta)]
         if ainda:
             msg(f"dm:{c.temporada}:{c.data}", "Departamento médico", "Departamento médico",
-                f"Em tratamento (jogos que ainda perdem): {', '.join(ainda)}.")
+                f"Em tratamento: {', '.join(ainda)}.")
 
     cansados = sorted((p for p in c.world.squad(c.clube_id) if p.condition < 70),
                       key=lambda p: p.condition)

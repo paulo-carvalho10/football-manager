@@ -21,6 +21,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from fm import telas
+from fm.calendario import dia_da_data, texto
 from fm.carreira import Carreira, saves_disponiveis
 from fm.tatica import ESTILOS, FORMACOES, MARCACOES, VAGAS, Tatica, arrumar_no_campo
 
@@ -125,7 +126,10 @@ def _jogador(c: Carreira, p, titular: bool) -> dict:
 
 def _lesao_do(c: Carreira, pid: int) -> dict | None:
     les = c.medico.lesionados.get(pid) if c.medico else None
-    return {"tipo": les.tipo, "jogos": les.jogos} if les else None
+    if les is None:
+        return None
+    return {"tipo": les.tipo, "dias": les.dias_restantes(c.hoje()),
+            "volta": les.volta.strftime("%d/%m")}
 
 
 def _clube(c: Carreira, cid: int) -> dict:
@@ -416,17 +420,9 @@ def camisa_svg(jogo: Jogo, clube_id: int, numero: str = "1") -> str:
 
 # --------------------------------------------------------------------- telas novas
 
-# O motor conta RODADAS, nao dias. A data e derivada para dar o clima de temporada que um
-# manager tem -- e cosmetica, e nenhuma regra depende dela.
-INICIO_DA_TEMPORADA = (4, 6)        # a temporada abre em 6 de abril
-DIAS_POR_DATA = 4
-
-
 def data_do_jogo(c: Carreira) -> str:
-    from datetime import date, timedelta
-    mes, dia = INICIO_DA_TEMPORADA
-    return (date(c.temporada, mes, dia)
-            + timedelta(days=c.data * DIAS_POR_DATA)).strftime("%d/%m/%Y")
+    """O dia de hoje na carreira (fm.calendario): o da proxima data da agenda."""
+    return texto(c.hoje())
 
 
 def _estatistica_do_jogador(c: Carreira, pid: int) -> dict:
@@ -571,11 +567,13 @@ def calendario(jogo: Jogo) -> dict:
                 outro = f.away if f.home == c.clube_id else f.home
                 rival = {"nome": _clube(c, outro)["nome"], "casa": f.home == c.clube_id}
             linhas.append({"ordem": i, "tipo": "liga", "competicao": c.liga,
+                           "dia": texto(dia_da_data(c.temporada, i)),
                            "rodada": rodada, "rival": rival,
                            "resultado": jogados.get(rodada), "passou": i < c.data})
         else:
             a = c.copas.get(quem)
             linhas.append({"ordem": i, "tipo": "copa",
+                           "dia": texto(dia_da_data(c.temporada, i)),
                            "competicao": a.torneio.nome if a else quem,
                            "rodada": None, "rival": None,
                            "resultado": None, "passou": i < c.data})

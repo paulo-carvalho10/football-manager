@@ -161,7 +161,7 @@ async function desenharResumoJogador() {
         <div class="kpi-c"><span>Energia</span><b style="color:${corDe(j.energia, 85, 70)}">${j.energia}%</b></div>
         <div class="kpi-c"><span>Valor</span><b>${dinheiro(j.valor)}</b></div>
       </div>
-      ${j.lesao ? `<p class="dica"><span class="ic-lesao">✚</span> ${escapar(j.lesao.tipo)} · fora por mais ${j.lesao.jogos} jogo(s)</p>` : ""}
+      ${j.lesao ? `<p class="dica"><span class="ic-lesao">✚</span> ${escapar(j.lesao.tipo)} · ${j.lesao.dias} dias · volta ${j.lesao.volta}</p>` : ""}
       ${j.emprestado_de ? `<p class="dica">Emprestado pelo ${escapar(j.emprestado_de)} até o fim da temporada.</p>` : `
       <div class="linha-flex dica">Contrato: ${avisoDeContrato(j)}<span class="espaco"></span>
         <button class="btn pequeno" id="btn-emprestar">Emprestar</button>
@@ -216,7 +216,7 @@ const ORDEM_POS = {GK: 0, DF: 1, MF: 2, FW: 3};
 /** SUSPENSO / PENDURADO, sempre na competicao do proximo jogo. */
 function seloGancho(p) {
   const emp = p.emprestado_de ? `<span class="selo-gancho emp" title="Emprestado pelo ${escapar(p.emprestado_de)} até o fim da temporada">EMP</span>` : "";
-  if (p.lesao) return `<span class="selo-gancho les" title="${escapar(p.lesao.tipo)}: fora por mais ${p.lesao.jogos} jogo(s)">✚ ${p.lesao.jogos}J</span>${emp}`;
+  if (p.lesao) return `<span class="selo-gancho les" title="${escapar(p.lesao.tipo)}: volta a partir de ${p.lesao.volta}">✚ ${p.lesao.dias}d</span>${emp}`;
   if (p.suspenso) return `<span class="selo-gancho susp" title="Suspenso para o próximo jogo desta competição">SUSPENSO</span>${emp}`;
   if (p.pendurado) return `<span class="selo-gancho pend" title="Mais um amarelo e fica fora do jogo seguinte">PENDURADO</span>${emp}`;
   return emp;
@@ -640,7 +640,7 @@ TELAS.calendario = async function () {
           const r = d.resultado;
           const res = r ? `<span class="forma"><i class="${r.resultado}">${r.resultado}</i></span> <b class="num">${r.gols_casa} x ${r.gols_fora}</b>` : "";
           return `<tr class="${d.ordem === cal.atual ? "eu" : ""} ${d.passou ? "reserva" : ""}">
-            <td class="n">${d.ordem + 1}</td><td class="num">${dataDaAgenda(d.ordem)}</td>
+            <td class="n">${d.ordem + 1}</td><td class="num">${d.dia.slice(0, 5)}</td>
             <td>${d.tipo === "copa" ? `<span class="chip ouro">${escapar(d.competicao)}</span>` : `${escapar(ESTADO.liga_nome)} · ${d.rodada}ª rodada`}</td>
             <td>${d.rival ? `<b>${escapar(d.rival.nome)}</b>` : '<span class="dica">conforme o chaveamento</span>'}</td>
             <td class="c">${d.rival ? (d.rival.casa ? "Casa" : "Fora") : ""}</td>
@@ -663,12 +663,6 @@ TELAS.calendario = async function () {
     </div>`;
   $("#grade-cal tr.eu")?.scrollIntoView({block: "center"});
 };
-
-function dataDaAgenda(ordem) {
-  // a mesma regra do servidor: a temporada abre em 6 de abril e cada data anda 4 dias
-  const d = new Date(ESTADO.temporada, 3, 6 + ordem * 4);
-  return d.toLocaleDateString("pt-BR", {day: "2-digit", month: "2-digit"});
-}
 
 /* ================================================================== FINANCAS */
 

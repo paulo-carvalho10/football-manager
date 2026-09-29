@@ -1,9 +1,12 @@
-"""Lesao: quem se machuca sai de campo, fica fora por alguns jogos do clube e volta."""
+"""Lesao: quem se machuca sai de campo, fica fora alguns dias do calendario e volta."""
 
 from __future__ import annotations
 
+from datetime import timedelta
+
 import numpy as np
 
+from fm.calendario import DIAS_POR_DATA, dia_da_data
 from fm.carreira import Carreira
 from fm.eventos import simular_partida
 from fm.lesoes import DepartamentoMedico, Lesao
@@ -48,16 +51,16 @@ def test_sem_banco_o_time_fica_com_um_a_menos():
     raise AssertionError("nenhuma lesao em 150 jogos")
 
 
-def test_lesao_so_conta_jogo_do_clube_do_lesionado():
-    c = Carreira.nova("brasil_real", "Santos", seed=4)
-    pid = c.escalacao_atual()[5]
+def test_a_lesao_conta_dias_do_calendario():
+    """Fora enquanto o dia da data for antes da volta; joga no proprio dia da volta."""
     med = DepartamentoMedico()
-    med.lesionados[pid] = Lesao("lesão muscular", 2, 2)
-    med.cumprir({-1}, c.world)                       # outro clube jogou
-    assert med.lesionados[pid].jogos == 2
-    med.cumprir({c.clube_id}, c.world)
-    assert med.cumprir({c.clube_id}, c.world) == [pid]
-    assert pid not in med.fora()
+    hoje = dia_da_data(2027, 10)
+    med.lesionados[7] = Lesao("lesão muscular", hoje + timedelta(days=10), 10)
+    datas_fora = [i for i in range(10, 20) if 7 in med.fora(dia_da_data(2027, i))]
+    # 10 dias com uma data a cada DIAS_POR_DATA: fora nesta e nas datas antes da volta
+    assert datas_fora == list(range(10, 10 + -(-10 // DIAS_POR_DATA)))
+    assert med.dar_alta(hoje + timedelta(days=9)) == []
+    assert med.dar_alta(hoje + timedelta(days=10)) == [7]
 
 
 def test_o_lesionado_fica_fora_do_meu_onze_e_volta_depois():
@@ -65,15 +68,16 @@ def test_o_lesionado_fica_fora_do_meu_onze_e_volta_depois():
     onze = c.escalacao_atual()
     machucado = onze[7]
     c.escalar(onze)
-    c.medico.lesionados[machucado] = Lesao("entorse no tornozelo", 1, 1)
+    # volta no dia da data seguinte: perde so esta
+    c.medico.lesionados[machucado] = Lesao("pancada", dia_da_data(c.temporada, c.data + 1), 4)
     _, partida = c.avancar()
     assert partida is not None
     assert machucado not in partida.entrada          # nem titular, nem banco
-    assert machucado not in c.medico.fora()          # cumpriu o jogo
+    assert machucado not in c.medico.fora(c.hoje())  # liberado
     _, partida = c.avancar()
     while partida is None:
         _, partida = c.avancar()
-    assert machucado in partida.entrada or machucado in c.medico.fora()
+    assert machucado in partida.entrada or machucado in c.medico.lesionados
 
 
 def test_o_save_refaz_as_mesmas_lesoes(tmp_path, monkeypatch):
@@ -85,5 +89,5 @@ def test_o_save_refaz_as_mesmas_lesoes(tmp_path, monkeypatch):
     assert c.medico.lesionados, "nenhuma lesao em 12 datas: a taxa mudou?"
     c.salvar("lesoes")
     d = Carreira.carregar("lesoes")
-    assert {k: (v.tipo, v.jogos) for k, v in d.medico.lesionados.items()} == \
-           {k: (v.tipo, v.jogos) for k, v in c.medico.lesionados.items()}
+    assert {k: (v.tipo, v.volta) for k, v in d.medico.lesionados.items()} == \
+           {k: (v.tipo, v.volta) for k, v in c.medico.lesionados.items()}
