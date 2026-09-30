@@ -91,3 +91,60 @@ def test_o_save_refaz_as_mesmas_lesoes(tmp_path, monkeypatch):
     d = Carreira.carregar("lesoes")
     assert {k: (v.tipo, v.volta) for k, v in d.medico.lesionados.items()} == \
            {k: (v.tipo, v.volta) for k, v in c.medico.lesionados.items()}
+
+
+def _reserva_lesionado(seed=4):
+    c = Carreira.nova("brasil_real", "Santos", seed=seed)
+    onze = c.escalacao_atual()
+    reserva = next(p.id for p in sorted(c.world.squad(c.clube_id), key=lambda p: -p.overall)
+                   if p.id not in onze)
+    c.medico.lesionados[reserva] = Lesao("lesão muscular", c.hoje() + timedelta(days=20), 20)
+    return c, reserva
+
+
+def test_lesionado_nao_entra_nem_como_substituto():
+    """O mesmo buraco que o suspenso tinha: fora do onze, mas aceito como troca."""
+    c, reserva = _reserva_lesionado()
+
+    def pedido(partida, minuto):
+        meus = partida.em_campo_casa if partida.casa == c.clube_id else partida.em_campo_fora
+        return {"trocas": [(meus[5], reserva)]} if minuto == 45 else None
+
+    _, partida = c.avancar(substituicoes=pedido)
+    assert reserva not in partida.entrada, "o lesionado entrou como substituto"
+
+
+def test_o_banco_ao_vivo_nao_mostra_o_lesionado():
+    from fm.ao_vivo import PartidaAoVivo
+    c, reserva = _reserva_lesionado()
+    av = PartidaAoVivo(c)
+    av.comecar()
+    r = av.retrato(lambda cid: {"id": cid, "nome": c.world.clubs[cid].name})
+    assert reserva not in [j["id"] for j in r["banco"]]
+    av.seguir(ate_o_fim=True)
+
+
+def test_quem_se_machuca_na_partida_nao_volta_a_campo():
+    """Machucou, saiu: pedir para ele entrar de novo no bloco seguinte nao pode valer."""
+    c = Carreira.nova("brasil_real", "Santos", seed=4)
+    pedidos = []
+
+    def pedido(partida, minuto):
+        meus = partida.em_campo_casa if partida.casa == c.clube_id else partida.em_campo_fora
+        fora = [i for i in partida.lesionados
+                if c.world.players[i].club_id == c.clube_id and i not in meus]
+        if fora:
+            pedidos.append(fora[0])
+            return {"trocas": [(meus[3], fora[0])]}
+        return None
+
+    import fm.eventos as ev
+    antes = ev.LESOES_POR_TIME
+    ev.LESOES_POR_TIME = 4.0                   # lesao cedo e certa, so neste teste
+    try:
+        _, partida = c.avancar(substituicoes=pedido)
+    finally:
+        ev.LESOES_POR_TIME = antes
+    assert pedidos, "ninguem do meu time se machucou antes do fim"
+    for pid in pedidos:
+        assert pid not in partida.em_campo_casa + partida.em_campo_fora
