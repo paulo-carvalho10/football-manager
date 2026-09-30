@@ -213,7 +213,18 @@ class PartidaAoVivo:
             "trocas_feitas": feitas, "max_trocas": MAX_TROCAS,
             "tatica": self._tatica_dict(),
             "rodada": self._rodada_parcial(minuto, clube_json),
+            "disputa": self._disputa(p, lado) if fim and p.disputa else None,
         }
+
+    def _disputa(self, p, lado) -> dict:
+        """A disputa de penaltis na ordem das cobrancas, para a tela revelar uma a uma."""
+        d = p.disputa
+        nomes = self.c.world.players
+        return {"primeiro": lado(d["primeiro"]), "vencedor": lado(d["vencedor"]),
+                "gols_casa": d["gols"][p.casa], "gols_fora": d["gols"][p.fora],
+                "cobrancas": [{"lado": lado(x["clube"]), "convertido": x["convertido"],
+                               "nome": nomes[x["jogador"]].name if x["jogador"] in nomes else "?"}
+                              for x in d["cobrancas"]]}
 
     def _goleiro_rival(self, p) -> str | None:
         rival = p.em_campo_fora if p.casa == self.c.clube_id else p.em_campo_casa

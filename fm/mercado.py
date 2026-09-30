@@ -95,7 +95,8 @@ def preco(world: World, jogador, temporada: int) -> int:
     return int(pedida)
 
 
-def _disponiveis(world: World, travados: set[int]) -> dict[str, list[tuple]]:
+def _disponiveis(world: World, travados: set[int],
+                 clubes: set[int] | None = None) -> dict[str, list[tuple]]:
     """Quem cada clube deixa sair: o que sobra da hierarquia, por posicao.
 
     Titular ninguem poe a venda. Quem esta atras dele na fila, sim -- e e por isso que o
@@ -103,6 +104,8 @@ def _disponiveis(world: World, travados: set[int]) -> dict[str, list[tuple]]:
     """
     lista: dict[str, list[tuple]] = {}
     for clube in world.clubs.values():
+        if clubes is not None and clube.id not in clubes:
+            continue
         elenco = [i for i in clube.player_ids if i in world.players]
         if len(elenco) <= ELENCO_MINIMO_PARA_VENDER:
             continue
@@ -139,17 +142,25 @@ def _endividados(world: World) -> dict[int, int]:
     return {c.id: -c.balance for c in world.clubs.values() if c.balance < 0}
 
 
-def janela(world: World, rng: np.random.Generator, temporada: int) -> list[Transferencia]:
-    """Uma janela inteira. Determinista dado o rng -- o save depende disso."""
+def janela(world: World, rng: np.random.Generator, temporada: int,
+           clubes: set[int] | None = None) -> list[Transferencia]:
+    """Uma janela inteira. Determinista dado o rng -- o save depende disso.
+
+    `clubes`: quem participa (compra e vende). A carreira passa os clubes das ligas que
+    ela joga: as ligas de fora (fm.carreira.LIGAS_DA_CONFEDERACAO) sao pano de fundo. Com
+    elas na janela, os grandes compravam os melhores de la, os de la repunham com garotos
+    novos, e o mundo ganhava talento de graca todo ano -- +0,27 de overall por temporada
+    nos titulares da Serie A em 20 anos."""
     feitas: list[Transferencia] = []
-    niveis = {c.id: world.team_rating(c.id) for c in world.clubs.values() if c.player_ids}
+    niveis = {c.id: world.team_rating(c.id) for c in world.clubs.values()
+              if c.player_ids and (clubes is None or c.id in clubes)}
     # REGRESSAO: sem isto o mesmo jogador era comprado numa rodada de mercado e revendido na
     # seguinte, dentro da MESMA janela -- Natanael saiu do Atletico para o Santos e do
     # Santos para o Bahia no mesmo dia, pelo mesmo preco.
     travados: set[int] = set()
 
     for _ in range(RODADAS_DE_MERCADO):
-        oferta = _disponiveis(world, travados)
+        oferta = _disponiveis(world, travados, clubes)
         devem = _endividados(world)
         vendidos_por_clube: dict[int, int] = {}
         ordem = list(niveis)

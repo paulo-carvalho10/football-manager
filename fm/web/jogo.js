@@ -176,7 +176,7 @@ async function desenharResumoJogador() {
         <div class="kpi-c"><span>Energia</span><b style="color:${corDe(j.energia, 85, 70)}">${j.energia}%</b></div>
         <div class="kpi-c"><span>Valor</span><b>${dinheiro(j.valor)}</b></div>
       </div>
-      ${j.lesao ? `<p class="dica"><span class="ic-lesao">✚</span> ${escapar(j.lesao.tipo)} · ${j.lesao.dias} dias · volta ${j.lesao.volta}</p>` : ""}
+      ${j.lesao ? `<p class="dica"><span class="ic-lesao">✚</span> ${escapar(j.lesao.tipo)} · ${j.lesao.dias} dia${j.lesao.dias === 1 ? "" : "s"} · volta ${j.lesao.volta}</p>` : ""}
       ${j.emprestado_de ? `<p class="dica">Emprestado pelo ${escapar(j.emprestado_de)} até o fim da temporada.</p>` : `
       <div class="linha-flex dica">Contrato: ${avisoDeContrato(j)}<span class="espaco"></span>
         <button class="btn pequeno" id="btn-emprestar">Emprestar</button>
@@ -704,8 +704,9 @@ function cartaoDeConfronto(x) {
     return `<div class="lado-c ${x.vencedor === clube.id ? "venceu" : ""} ${perdeu ? "caiu" : ""}">
       ${escudo(clube, "1.2rem")}<span class="nm">${escapar(clube.nome)}</span><b>${x.agregado ? gols : ""}</b></div>`;
   };
-  const jogos = x.jogos.length > 1 ? `<div class="jogos-c">${x.jogos.map((j) =>
-    `<span>${j.gols_casa}–${j.gols_fora}</span>`).join(" · ")}</div>` : "";
+  const pen = x.penaltis ? `<span class="pen-c">pên. ${x.penaltis[0]}–${x.penaltis[1]}</span>` : "";
+  const jogos = x.jogos.length > 1 || pen ? `<div class="jogos-c">${x.jogos.length > 1 ? x.jogos.map((j) =>
+    `<span>${j.gols_casa}–${j.gols_fora}</span>`).join(" · ") : ""}${pen}</div>` : "";
   return `<div class="confronto ${x.meu ? "meu" : ""}">${lado(x.casa, x.agregado?.[0])}${lado(x.fora, x.agregado?.[1])}${jogos}</div>`;
 }
 
@@ -777,7 +778,8 @@ TELAS.calendario = async function () {
           return `<tr class="${d.ordem === cal.atual ? "eu" : ""} ${d.passou ? "reserva" : ""}">
             <td class="n">${d.ordem + 1}</td><td class="num">${d.dia.slice(0, 5)}</td>
             <td>${d.tipo === "copa" ? `<span class="chip ouro">${escapar(d.competicao)}</span>` : `${escapar(ESTADO.liga_nome)} · ${d.rodada}ª rodada`}</td>
-            <td>${d.rival ? `<b>${escapar(d.rival.nome)}</b>` : '<span class="dica">conforme o chaveamento</span>'}</td>
+            <td>${d.rival ? `<div class="nome-celula">${escudo(d.rival.clube, "1.3rem")}<b>${escapar(d.rival.nome)}</b></div>`
+              : `<span class="dica">${d.passou && d.tipo === "copa" ? "sem jogo do clube" : "conforme o chaveamento"}</span>`}</td>
             <td class="c">${d.rival ? (d.rival.casa ? "Casa" : "Fora") : ""}</td>
             <td class="c">${res}</td></tr>`;
         }).join("")}</tbody></table></div>
@@ -792,9 +794,11 @@ TELAS.calendario = async function () {
           <div class="kpi-c"><span>Gols</span><b>${c.gols_pro}:${c.gols_contra}</b></div>
         </div></div></div>
       <div class="painel"><div class="cab"><h2>Últimos jogos</h2></div>
-        <div class="corpo sem-margem"><table class="grade compacta"><tbody>${ini.ultimos.map((r) => `
-          <tr><td>${forma([r.resultado])}</td><td>${escapar(r.casa)}</td><td class="n"><b>${r.gols_casa} x ${r.gols_fora}</b></td>
-          <td>${escapar(r.fora)}</td></tr>`).join("") || '<tr><td class="vazio">Nenhum jogo ainda.</td></tr>'}</tbody></table></div></div>
+        <div class="corpo sem-margem"><table class="grade compacta ultimos-jogos"><tbody>${ini.ultimos.map((r) => `
+          <tr><td>${forma([r.resultado])}</td>
+          <td><div class="nome-celula" style="justify-content:flex-end"><span class="nm">${escapar(r.casa)}</span>${escudo(r.clube_casa, "1.2rem")}</div></td>
+          <td class="n"><b>${r.gols_casa} x ${r.gols_fora}</b></td>
+          <td><div class="nome-celula">${escudo(r.clube_fora, "1.2rem")}<span class="nm">${escapar(r.fora)}</span></div></td></tr>`).join("") || '<tr><td class="vazio">Nenhum jogo ainda.</td></tr>'}</tbody></table></div></div>
     </div>`;
   $("#grade-cal tr.eu")?.scrollIntoView({block: "center"});
 };

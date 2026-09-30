@@ -299,7 +299,7 @@ def mensagens(c: Carreira, data_texto: str, lidas: set[str]) -> list[dict]:
             msg(f"alta:{c.temporada}:{c.data}", "Departamento médico", "Liberados",
                 f"Recuperados e à disposição: {', '.join(voltaram)}.")
         ainda = [f"{w.players[i].name} (volta {les.volta.strftime('%d/%m')}, "
-                 f"{les.dias_restantes(hoje)} dias)"
+                 f"{les.dias_restantes(hoje)} dia{'s' if les.dias_restantes(hoje) != 1 else ''})"
                  for i, les in sorted(c.lesionados_do_clube().items(),
                                       key=lambda x: x[1].volta)]
         if ainda:
@@ -494,17 +494,23 @@ def _confrontos(fase: dict, c: Carreira, clube_json) -> list[dict]:
         jogos = [r for r in fase["resultados"] if {r.home, r.away} == {casa, visita}]
         a = sum(r.goals_home if r.home == casa else r.goals_away for r in jogos)
         b = sum(r.goals_home if r.home == visita else r.goals_away for r in jogos)
-        vencedor = None
+        vencedor, penaltis = None, None
+        disputa = fase.get("disputas", {}).get(f"{casa}-{visita}")
         if len(jogos) >= fase["maos"]:
-            # a mesma regra de fm.copa._apurar_mata_mata: empate fica com o mandante da
-            # ida, ou com o visitante quando a copa diz isso
-            vencedor = casa if a > b else visita if b > a else (
-                visita if fase["visitante_avanca_empate"] else casa)
+            # a mesma regra de fm.copa._apurar_mata_mata: empate vai para os penaltis, ou
+            # fica com o visitante quando a fase diz isso
+            if a != b:
+                vencedor = casa if a > b else visita
+            elif fase["visitante_avanca_empate"]:
+                vencedor = visita
+            elif disputa:
+                vencedor, penaltis = disputa["vencedor"], disputa["gols"]
         fora.append({
             "casa": clube_json(casa), "fora": clube_json(visita),
             "jogos": [{"mandante": clube_json(r.home)["nome"], "gols_casa": r.goals_home,
                        "gols_fora": r.goals_away} for r in jogos],
             "agregado": [a, b] if jogos else None, "vencedor": vencedor,
+            "penaltis": penaltis,
             "meu": c.clube_id in (casa, visita)})
     return fora
 
@@ -666,8 +672,17 @@ def pos_jogo(c: Carreira, partida, resultados, competicao: str, tipo: str,
     melhor = max(notas, key=notas.get) if notas else None
     impacto = (impacto_na_tabela(c.world.clubs[c.clube_id].name, posicao_antes, c.posicao())
                if tipo == "liga" else None)
+    disputa = None
+    if partida.disputa:
+        d = partida.disputa
+        disputa = {"gols_casa": d["gols"][partida.casa], "gols_fora": d["gols"][partida.fora],
+                   "vencedor": d["vencedor"],
+                   "cobrancas": [{"lado": "casa" if x["clube"] == partida.casa else "fora",
+                                  "nome": jogadores[x["jogador"]].name
+                                  if x["jogador"] in jogadores else "?",
+                                  "convertido": x["convertido"]} for x in d["cobrancas"]]}
     return {
-        "competicao": competicao, "impacto": impacto,
+        "competicao": competicao, "impacto": impacto, "disputa": disputa,
         "casa": clube_json(partida.casa), "fora": clube_json(partida.fora),
         "gols_casa": partida.gols_casa, "gols_fora": partida.gols_fora,
         "time_casa": time(partida.casa), "time_fora": time(partida.fora),

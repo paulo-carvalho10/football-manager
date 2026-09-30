@@ -72,6 +72,10 @@ class Andamento:
     # rodada do mata-mata com os pares. O resto do Andamento so guarda a fase em curso --
     # sem isto a tela nao tinha como mostrar os grupos depois que o mata-mata comecava.
     historico: list[dict] = field(default_factory=list)
+    # as disputas de penaltis da rodada de mata-mata em curso, por par (mandante da ida,
+    # visitante): a do usuario vem pronta da carreira (acompanhada cobranca a cobranca);
+    # as outras sao simuladas na apuracao
+    disputas: dict = field(default_factory=dict)
 
     @property
     def acabou(self) -> bool:
@@ -250,9 +254,14 @@ def _encerrar_fase(world: World, andamento: Andamento, rng: np.random.Generator,
     fase = andamento.torneio.fases[andamento.fase]
     tipo = fase.get("tipo")
     andamento.pendentes = []
+    if tipo == "knockout":
+        # apura ANTES da foto: e na apuracao que saem as disputas de penaltis, e o
+        # chaveamento mostra o placar delas
+        _apurar_mata_mata(andamento, fase, exportados, world, rng)
     registro = foto_da_fase(andamento)
     if registro is not None:
         andamento.historico.append(registro)
+    andamento.disputas = {}
 
     if tipo == "groups" and andamento.grupos:
         avancam, passa = int(fase.get("avancam", 2)), []
@@ -276,7 +285,6 @@ def _encerrar_fase(world: World, andamento: Andamento, rng: np.random.Generator,
         andamento.vivos = passa
 
     elif tipo == "knockout":
-        _apurar_mata_mata(andamento, fase, exportados)
         andamento.rodadas_da_fase_feitas += 1
         pedido = fase.get("rodadas", "todas")
         repete = (len(andamento.vivos) > 1 if pedido == "todas"
@@ -325,6 +333,9 @@ def foto_da_fase(andamento: Andamento) -> dict | None:
                 "poupados": list(andamento.poupados), "resultados": resultados,
                 "maos": int(fase.get("maos", 2)),
                 "visitante_avanca_empate": bool(fase.get("visitante_avanca_empate", False)),
+                "disputas": {f"{a}-{b}": {"gols": [d["gols"][a], d["gols"][b]],
+                                          "vencedor": d["vencedor"]}
+                             for (a, b), d in andamento.disputas.items()},
                 # clube novo entrando: a tela comeca um chaveamento novo aqui
                 "abre": bool(fase.get("entram")) and andamento.rodadas_da_fase_feitas == 0}
     return None
@@ -346,7 +357,9 @@ def nome_da_rodada(nome_da_fase: str, rodadas, clubes: int, feitas: int) -> str:
 
 
 def _apurar_mata_mata(andamento: Andamento, fase: dict,
-                      exportados: dict[str, list[int]] | None) -> None:
+                      exportados: dict[str, list[int]] | None,
+                      world: World | None = None,
+                      rng: np.random.Generator | None = None) -> None:
     pares, poupados = andamento.pares, andamento.poupados
     if not pares:
         return
@@ -363,8 +376,22 @@ def _apurar_mata_mata(andamento: Andamento, fase: dict,
             ganhou, perdeu = casa, fora
         elif b > a:
             ganhou, perdeu = fora, casa
+        elif visitante:
+            # a regra de fases iniciais da Copa do Brasil: jogo unico, empate e do visitante
+            ganhou, perdeu = fora, casa
         else:
-            ganhou, perdeu = (fora, casa) if visitante else (casa, fora)
+            # empate no agregado: penaltis. O do usuario ja foi disputado na carreira;
+            # os outros saem aqui, com os onze de cada clube
+            chave = (int(casa), int(fora))
+            if chave not in andamento.disputas and world is not None and rng is not None:
+                from fm.disputa import vencedor_rapido
+                andamento.disputas[chave] = vencedor_rapido(world, int(casa), int(fora), rng)
+            d = andamento.disputas.get(chave)
+            if d is not None:
+                ganhou = d["vencedor"]
+                perdeu = fora if ganhou == casa else casa
+            else:
+                ganhou, perdeu = casa, fora
         vencedores.append(int(ganhou))
         perdedores.append(int(perdeu))
 

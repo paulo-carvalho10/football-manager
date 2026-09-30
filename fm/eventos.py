@@ -133,6 +133,9 @@ class Partida:
     papeis: dict[int, str] = field(default_factory=dict)
     # quem se machucou nesta partida, na ordem; a gravidade e a carreira que sorteia
     lesionados: list[int] = field(default_factory=list)
+    # a disputa de penaltis depois do apito (fm.disputa), quando o mata-mata empatou no
+    # agregado. Quem decide que ela existe e a carreira, que sabe o placar da ida
+    disputa: dict | None = None
 
     @property
     def placar(self) -> str:

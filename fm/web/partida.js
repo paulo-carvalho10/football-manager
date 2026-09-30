@@ -23,7 +23,8 @@ async function abrirAoVivo() {
   Object.assign(VIVO, {s: null, anterior: null, relogio: 0, pausado: false, motivo: "", esperando: false,
                        fila: [], taticaPendente: null, visiveis: 0, gaveta: null, aba: "rodada",
                        fimVisto: false, intervaloVisto: false, segurarAte: 0,
-                       vistos: new Set(), suspense: null, flash: {}, escolhendoPenalti: false});
+                       vistos: new Set(), suspense: null, flash: {}, escolhendoPenalti: false,
+                       emDisputa: false, disputaVista: false});
   $("#ao-vivo").innerHTML = `<div class="carregando">Entrando em campo…</div>`;
   const s = await api.post("/api/partida/iniciar", {perguntar_penalti: config().perguntarPenalti});
   if (s.erro) {
@@ -43,6 +44,7 @@ async function abrirAoVivo() {
   pintar();
   tocar();
   if (PARAMS.get("gaveta")) abrirGaveta(PARAMS.get("gaveta"));
+  if (PARAMS.get("irfim")) irProFim();          // atalho de foto: o fim e a disputa
 }
 
 async function dataSemJogo(s) {
@@ -133,7 +135,10 @@ async function passo() {
     return;
   }
   if (s.fim) {
-    if (!VIVO.fimVisto) terminou();
+    if (VIVO.fimVisto || VIVO.emDisputa) return;
+    // empate no agregado: a disputa de penaltis antes do fim de jogo
+    if (s.disputa && !VIVO.disputaVista) return disputaDePenaltis(s);
+    terminou();
     return;
   }
   // o motor parou NO penalti do meu time: o treinador escolhe o batedor
@@ -194,6 +199,54 @@ async function irProFim() {
   pintar();
 }
 
+/* ------------------------------------------------------------------ disputa de penaltis
+ * O resultado ja saiu do servidor; a tela revela cobranca a cobranca, no ritmo da
+ * velocidade escolhida. */
+
+const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function disputaDePenaltis(s) {
+  VIVO.emDisputa = true;
+  const ritmo = {"1x": 1, "2x": 0.55, "4x": 0.3}[config().velocidade] || 1;
+  const d = s.disputa;
+  const bolas = {casa: [], fora: []};
+  const clube = (l) => (l === "casa" ? s.casa : s.fora);
+  const painel = document.createElement("div");
+  painel.className = "disputa";
+  $("#ao-vivo").appendChild(painel);
+  const linha = (l) => {
+    const n = Math.max(5, bolas.casa.length, bolas.fora.length);
+    const cel = Array.from({length: n}, (_, i) => {
+      const b = bolas[l][i];
+      return `<span class="bola ${b === undefined ? "" : b ? "gol" : "erro"}"></span>`;
+    }).join("");
+    const g = bolas[l].filter(Boolean).length;
+    return `<div class="linha-d">${escudo(clube(l), "1.8rem")}<b class="nm">${escapar(clube(l).nome)}</b>
+      <span class="bolas">${cel}</span><b class="placar-d">${g}</b></div>`;
+  };
+  const pintarDisputa = (msg, classe = "") => {
+    painel.innerHTML = `<h2>DISPUTA DE PÊNALTIS</h2>${linha("casa")}${linha("fora")}
+      <div class="msg-d ${classe}">${msg}</div>`;
+  };
+  pintarDisputa(`${escapar(clube(d.primeiro).nome)} começa batendo`);
+  await espera(1400 * ritmo);
+  for (const k of d.cobrancas) {
+    pintarDisputa(`${escapar(k.nome)} <span class="dica">(${escapar(clube(k.lado).nome)})</span> vai para a cobrança…`);
+    await espera(1300 * ritmo);
+    bolas[k.lado].push(k.convertido);
+    pintarDisputa(k.convertido ? "GOL!" : "PERDEU!", k.convertido ? "gol" : "erro");
+    await espera(1000 * ritmo);
+  }
+  pintarDisputa(`${escapar(clube(d.vencedor).nome)} vence nos pênaltis por
+    ${Math.max(d.gols_casa, d.gols_fora)} × ${Math.min(d.gols_casa, d.gols_fora)}`, "fim");
+  $("#v-relogio").innerHTML += `<small class="pen">pên. ${d.gols_casa} × ${d.gols_fora}</small>`;
+  await espera(2600 * ritmo);
+  painel.remove();
+  VIVO.disputaVista = true;
+  VIVO.emDisputa = false;
+  terminou();
+}
+
 function terminou() {
   VIVO.fimVisto = true;
   clearInterval(VIVO.timer);
@@ -202,7 +255,11 @@ function terminou() {
   const s = VIVO.s;
   const meus = s.meu_lado === "casa" ? s.gols_casa : s.gols_fora;
   const deles = s.meu_lado === "casa" ? s.gols_fora : s.gols_casa;
-  const r = meus > deles ? "VITÓRIA" : meus === deles ? "EMPATE" : "DERROTA";
+  let r = meus > deles ? "VITÓRIA" : meus === deles ? "EMPATE" : "DERROTA";
+  if (s.disputa) {
+    const meu = s.disputa.vencedor === s.meu_lado;
+    r = `${meu ? "CLASSIFICADO" : "ELIMINADO"} nos pênaltis (${s.disputa.gols_casa} × ${s.disputa.gols_fora})`;
+  }
   $("#v-selo").innerHTML = `<div class="selo">FIM DE JOGO<small>${r}${s.impacto ? `<br>${escapar(s.impacto)}` : ""}<br>ENTER para o resumo</small></div>`;
   $("#v-pausa").hidden = true;
   $("#v-fim").hidden = true;
@@ -383,11 +440,18 @@ const ICONE_LANCE = {gol: "⚽", penalti: "◎", penalti_defendido: "🧤", pena
                      vermelho: '<span class="cartao vm" style="width:.72rem;height:1rem"></span>', substituicao: "⇅", defesa: "✋", chute: "↗",
                      escanteio: "⚑", impedimento: "⚐", falta: "!"};
 
-function pintarFeed(vis) {
+// o lance a lance mostra so o que muda o jogo; finalizacao, escanteio, falta e impedimento
+// ficam nas estatisticas
+const TIPOS_DO_FEED = new Set(["gol", "amarelo", "vermelho", "substituicao", "lesao",
+                               "lesao_sem_troca", "penalti_defendido", "penalti_fora"]);
+
+function pintarFeed(todos) {
   const s = VIVO.s;
   const feed = $("#v-feed");
-  if (vis.length === VIVO.visiveis && feed.childElementCount) return;
-  VIVO.visiveis = vis.length;
+  const vis = todos.filter((e) => TIPOS_DO_FEED.has(e.tipo));
+  const chave = `${vis.length}:${VIVO.relogio > 45}`;
+  if (chave === VIVO.visiveis && feed.childElementCount) return;
+  VIVO.visiveis = chave;
   const nomeDoLado = (l) => (l === "casa" ? s.casa : s.fora);
   const linhas = [];
   linhas.push(`<div class="lance marco"><span class="min">0'</span><span class="ic">${icone("apito")}</span>
@@ -408,6 +472,10 @@ function pintarFeed(vis) {
     }
     linhas.push(`<div class="lance ${e.tipo}"><span class="min">${e.minuto}'</span>
       <span class="ic">${ICONE_LANCE[e.tipo] ?? ""}</span><span class="txt">${txt}<small>${sub}</small></span></div>`);
+  }
+  // com a lista enxuta, o 2o tempo pode comecar sem nenhum lance ainda
+  if (!intervalo && VIVO.relogio > 45) {
+    linhas.push(`<div class="lance marco"><span class="min">45'</span><span class="ic">${icone("apito")}</span><span class="txt">Intervalo · começa o 2º tempo</span></div>`);
   }
   if (VIVO.relogio >= 90 && s.fim) {
     linhas.push(`<div class="lance marco"><span class="min">90'</span><span class="ic">${icone("apito")}</span><span class="txt">Fim de jogo</span></div>`);
@@ -643,7 +711,8 @@ async function abrirPosJogo() {
   const meuLado = p.casa.id === ESTADO.clube.id ? "casa" : "fora";
   const meus = meuLado === "casa" ? p.gols_casa : p.gols_fora;
   const deles = meuLado === "casa" ? p.gols_fora : p.gols_casa;
-  const res = meus > deles ? ["VITÓRIA", "bom"] : meus === deles ? ["EMPATE", "medio"] : ["DERROTA", "ruim"];
+  let res = meus > deles ? ["VITÓRIA", "bom"] : meus === deles ? ["EMPATE", "medio"] : ["DERROTA", "ruim"];
+  if (p.disputa) res = p.disputa.vencedor === ESTADO.clube.id ? ["CLASSIFICADO NOS PÊNALTIS", "bom"] : ["ELIMINADO NOS PÊNALTIS", "ruim"];
   const time = (lista, titulo) => `<div class="painel"><div class="cab"><h2>${escapar(titulo)}</h2></div>
     <div class="corpo sem-margem"><table class="grade compacta"><tbody>${lista.map((j) => `
       <tr class="${j.entrou_aos ? "reserva" : ""}"><td>${pos(j.posicao)}</td>
@@ -651,13 +720,17 @@ async function abrirPosJogo() {
           ${"⚽".repeat(j.gols)}${j.amarelo ? ' <span class="cartao am"></span>' : ""}${j.vermelho ? ' <span class="cartao vm"></span>' : ""}</td>
         <td class="n"><span class="nota ${classeNota(j.nota)}">${j.nota.toFixed(1).replace(".", ",")}</span></td></tr>`).join("")}
     </tbody></table></div></div>`;
+  const cobrancas = p.disputa ? `<div class="ev disputa-pos"><span class="casa">${p.disputa.cobrancas
+      .filter((k) => k.lado === "casa").map((k) => `${escapar(k.nome)} ${k.convertido ? "⚽" : "✗"}`).join("<br>")}</span>
+    <span class="m">pên.</span><span>${p.disputa.cobrancas.filter((k) => k.lado === "fora")
+      .map((k) => `${k.convertido ? "⚽" : "✗"} ${escapar(k.nome)}`).join("<br>")}</span></div>` : "";
   const evs = p.eventos.map((e) => {
     const conteudo = `<b>${escapar(e.texto.replace("GOL! ", ""))}</b>${e.assistencia ? `<small>assist. ${escapar(e.assistencia)}</small>` : ""}`;
     const ic = {gol: "⚽", amarelo: '<span class="cartao am"></span>', vermelho: '<span class="cartao vm"></span>', substituicao: "⇅",
                 penalti_defendido: "🧤", penalti_fora: "✗", lesao: '<span class="ic-lesao">✚</span>'}[e.tipo];
     return `<div class="ev ${e.tipo}"><span class="casa">${e.lado === "casa" ? `${conteudo} ${ic}` : ""}</span>
       <span class="m">${e.minuto}'</span><span>${e.lado === "fora" ? `${ic} ${conteudo}` : ""}</span></div>`;
-  }).join("") || '<div class="vazio">Sem lances para a súmula.</div>';
+  }).join("") + cobrancas || '<div class="vazio">Sem lances para a súmula.</div>';
   const [cc, cf] = coresDosLados(meuLado);
   const cmp = p.estatisticas.map(([nome, a, b, suf]) => {
     const tot = (a + b) || 1;
@@ -669,7 +742,8 @@ async function abrirPosJogo() {
     <header class="pos-cab">
       <div class="time casa">${escudo(p.casa, "3.6rem")}<h2>${escapar(p.casa.nome)}</h2></div>
       <div class="placar"><small>${escapar(p.competicao)}</small>${p.gols_casa} × ${p.gols_fora}
-        <span class="res ${res[1]}">${res[0]}</span></div>
+        <span class="res ${res[1]}">${res[0]}</span>
+        ${p.disputa ? `<span class="pen-pos">pênaltis ${p.disputa.gols_casa} × ${p.disputa.gols_fora}</span>` : ""}</div>
       <div class="time fora">${escudo(p.fora, "3.6rem")}<h2>${escapar(p.fora.nome)}</h2></div>
     </header>
     <div class="pos-corpo">

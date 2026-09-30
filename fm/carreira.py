@@ -154,6 +154,9 @@ class Carreira:
     clube_inicial: int | None = None
     # ligas no mundo sem calendario (LIGAS_DA_CONFEDERACAO): derivadas, nao vao ao save
     ligas_de_fora: list[str] = field(default_factory=list)
+    # o jogo do usuario em cada data do ano: {data: Result}. O calendario e os ultimos
+    # jogos leem daqui -- em ordem, e com as copas, que a tabela da liga nao tem
+    jogos_do_usuario: dict = field(default_factory=dict)
 
     @classmethod
     def nova(cls, ligas: list[str] | str, clube: str, seed: int = 2027) -> Carreira:
@@ -199,6 +202,7 @@ class Carreira:
             self.resultados[nome] = []
             assert world_ids is not None
         self.data = 0
+        self.jogos_do_usuario = {}
         self._montar_agenda()
         # o valor de elenco do INICIO do ano e o que paga a receita: sem congelar, comprar
         # jogador aumentaria o faturamento do mesmo ano e o clube rico viraria bola de neve
@@ -509,6 +513,38 @@ class Carreira:
                 fora[r.away] = fora.get(r.away, 0) + 1
         return fora
 
+    def _penaltis_se_empatou(self, andamento, partida: Partida) -> None:
+        """O jogo decisivo do usuario no mata-mata (a volta, ou o jogo unico) terminou com
+        o agregado empatado: disputa de penaltis com quem terminou em campo. Fica na
+        partida (a tela acompanha cobranca a cobranca) e no andamento (a apuracao usa)."""
+        from fm.disputa import disputar
+        t = andamento.torneio
+        if andamento.fase >= len(t.fases):
+            return
+        fase = t.fases[andamento.fase]
+        if fase.get("tipo") != "knockout" or fase.get("visitante_avanca_empate"):
+            return
+        par = next((tuple(p) for p in andamento.pares
+                    if {partida.casa, partida.fora} == set(p)), None)
+        if par is None:
+            return
+        jogos = [r for r in andamento.resultados if {r.home, r.away} == set(par)]
+        if len(jogos) + 1 < int(fase.get("maos", 2)):
+            return                                  # e a ida: ainda falta a volta
+        gols = {par[0]: 0, par[1]: 0}
+        for r in jogos:
+            gols[r.home] += r.goals_home
+            gols[r.away] += r.goals_away
+        gols[partida.casa] += partida.gols_casa
+        gols[partida.fora] += partida.gols_fora
+        if gols[par[0]] != gols[par[1]]:
+            return
+        rng = self.streams.get("disputa", self.temporada, self.data)
+        partida.disputa = disputar(self.world, partida.casa, partida.fora,
+                                   partida.em_campo_casa, partida.em_campo_fora, rng,
+                                   {self.clube_id: self.cobradores()})
+        andamento.disputas[(int(par[0]), int(par[1]))] = partida.disputa
+
     def _repassar_exportados(self, andamento) -> None:
         """Quem um torneio mandou para outro (o eliminado da terceira fase da Libertadores
         vai para a Sul-Americana, o 3o do grupo para o playoff dela) entra na lista de
@@ -817,6 +853,7 @@ class Carreira:
                                                 substituicoes)
                 r.append(Result(meu_jogo.home, meu_jogo.away,
                                 detalhada.gols_casa, detalhada.gols_fora, n))
+                self.jogos_do_usuario[self.data] = r[-1]
             else:
                 r = play_fixtures(partidas, ratings, rng, style)
                 self._detalhar(r)
@@ -1062,8 +1099,10 @@ class Carreira:
         self._detalhar(outros)
         if meu is not None:
             detalhada = self._minha_partida(meu, rng, t.style, tatica, substituicoes)
+            self._penaltis_se_empatou(andamento, detalhada)
             resultados.append(Result(meu.home, meu.away, detalhada.gols_casa,
                                      detalhada.gols_fora, meu.matchday))
+            self.jogos_do_usuario[self.data] = resultados[-1]
         resultados += outros
         registrar(self.world, andamento, resultados, rng, self.exportados)
         self._somar_estatisticas(resultados, detalhada, rng, nome)
@@ -1472,7 +1511,9 @@ class Carreira:
         contratos = vencer_contratos(self.world, self.temporada + 1, self.clube_id,
                                      self.streams.get("contratos", self.temporada))
         aposentados_livres = livres_que_se_aposentam(self.world, self.temporada + 1)
-        transferencias = janela(self.world, rng, self.temporada + 1)
+        # so as ligas que a carreira joga: as de fora sao pano de fundo (fm.mercado.janela)
+        da_carreira = {k for n in self.ligas for k in self.world.leagues[self._id(n)].club_ids}
+        transferencias = janela(self.world, rng, self.temporada + 1, da_carreira)
         novos = repor_elencos(self.world, rng, self.temporada + 1, alvos=alvos)
 
         # o que mudou no elenco do usuario -- e isto que a tela de fim de ano mostra

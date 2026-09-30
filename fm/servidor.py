@@ -478,6 +478,7 @@ def _resultado_curto(c: Carreira, r) -> dict:
     meus = r.goals_home if eu_em_casa else r.goals_away
     deles = r.goals_away if eu_em_casa else r.goals_home
     return {"casa": _clube(c, r.home)["nome"], "fora": _clube(c, r.away)["nome"],
+            "clube_casa": _clube(c, r.home), "clube_fora": _clube(c, r.away),
             "gols_casa": r.goals_home, "gols_fora": r.goals_away,
             "resultado": "V" if meus > deles else "E" if meus == deles else "D"}
 
@@ -485,9 +486,8 @@ def _resultado_curto(c: Carreira, r) -> dict:
 def inicio(jogo: Jogo) -> dict:
     """O painel de abertura: como esta a campanha, o que passou e o que vem."""
     c = jogo.c
-    meus = [r for r in c.jogos() if c.clube_id in (r.home, r.away)]
-    for a in c.copas.values():
-        meus += [r for r in a.resultados_do_ano if c.clube_id in (r.home, r.away)]
+    # na ordem das datas, liga e copa misturadas como foram jogadas
+    meus = [c.jogos_do_usuario[k] for k in sorted(c.jogos_do_usuario)]
     tabela_ = c.tabela()
     linha = next((x for x in tabela_ if x.club_id == c.clube_id), None)
 
@@ -558,6 +558,11 @@ def financas(jogo: Jogo) -> dict:
     }
 
 
+def _rival(c: Carreira, casa: int, fora: int) -> dict:
+    outro = fora if casa == c.clube_id else casa
+    return {"nome": _clube(c, outro)["nome"], "clube": _clube(c, outro), "casa": casa == c.clube_id}
+
+
 def calendario(jogo: Jogo) -> dict:
     """A agenda inteira da temporada, com o que ja foi jogado."""
     c = jogo.c
@@ -565,6 +570,11 @@ def calendario(jogo: Jogo) -> dict:
     for r in c.jogos():
         if c.clube_id in (r.home, r.away):
             jogados[r.matchday] = _resultado_curto(c, r)
+    # a proxima data de cada copa: so nela o confronto sorteado pode aparecer
+    proxima_da_copa: dict[str, int] = {}
+    for i, (tipo, quem) in enumerate(c.agenda):
+        if tipo == "copa" and i >= c.data:
+            proxima_da_copa.setdefault(quem, i)
     linhas, rodada = [], 0
     for i, (tipo, quem) in enumerate(c.agenda):
         if tipo == "liga":
@@ -573,19 +583,27 @@ def calendario(jogo: Jogo) -> dict:
                       if x.matchday == rodada and c.clube_id in (x.home, x.away)), None)
             rival = None
             if f is not None:
-                outro = f.away if f.home == c.clube_id else f.home
-                rival = {"nome": _clube(c, outro)["nome"], "casa": f.home == c.clube_id}
+                rival = _rival(c, f.home, f.away)
             linhas.append({"ordem": i, "tipo": "liga", "competicao": c.liga,
                            "dia": texto(dia_da_data(c.temporada, i)),
                            "rodada": rodada, "rival": rival,
                            "resultado": jogados.get(rodada), "passou": i < c.data})
         else:
             a = c.copas.get(quem)
+            # a copa: o jogo que o usuario fez nesta data, ou o proximo, se ja sorteado
+            r = c.jogos_do_usuario.get(i)
+            rival, resultado = None, None
+            if r is not None:
+                rival, resultado = _rival(c, r.home, r.away), _resultado_curto(c, r)
+            elif a is not None and i >= c.data and i == proxima_da_copa.get(quem):
+                f, _ = _jogo_de_copa(c, a)
+                if f is not None:
+                    rival = _rival(c, f.home, f.away)
             linhas.append({"ordem": i, "tipo": "copa",
                            "dia": texto(dia_da_data(c.temporada, i)),
                            "competicao": a.torneio.nome if a else quem,
-                           "rodada": None, "rival": None,
-                           "resultado": None, "passou": i < c.data})
+                           "rodada": None, "rival": rival,
+                           "resultado": resultado, "passou": i < c.data})
     return {"datas": linhas, "atual": c.data}
 
 
