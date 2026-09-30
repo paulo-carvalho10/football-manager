@@ -23,6 +23,7 @@ from fm.eventos import Partida, simular_partida
 from fm.generate import build_world
 from fm.match import effective_rating
 from fm.model import World
+from fm.moeda import texto as texto_de_euros
 from fm.rng import Streams
 from fm.season import CONDITION_COST, TAXA_DE_RECUPERACAO
 from fm.table import Row, build_table
@@ -1251,7 +1252,7 @@ class Carreira:
                             resultado = {"ok": True, "resultado": "nova_proposta",
                                          "valor": r["valor"], "mensagem":
                                          f"O {w.clubs[prop.clube].name} fez uma nova "
-                                         f"proposta de R$ {r['valor']:,}.".replace(",", ".")}
+                                         f"proposta de {texto_de_euros(r['valor'])}."}
                         self.acoes.append({**acao, "temporada": self.temporada,
                                            "data": self.data})
                         return resultado
@@ -1266,7 +1267,7 @@ class Carreira:
                 self._tirar_do_onze(p.id)
                 resultado = {"ok": True, "resultado": "aceita", "mensagem":
                              f"{p.name} foi vendido ao {w.clubs[comprador].name} por "
-                             f"R$ {valor:,}.".replace(",", ".")}
+                             f"{texto_de_euros(valor)}."}
         else:
             return {"erro": f"acao desconhecida {tipo!r}"}
         self.acoes.append({**acao, "temporada": self.temporada, "data": self.data})

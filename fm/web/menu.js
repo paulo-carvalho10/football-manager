@@ -354,8 +354,8 @@ function desenharClubes() {
       <td class="n"><span class="celula-barra"><span class="forca-barra" style="width:3.5rem"><i style="width:${
         Math.round(100 * (c.forca - minForca + 2) / (maxForca - minForca + 2))}%"></i></span>${c.forca.toFixed(1)}</span></td>
       <td class="n">${c.reputacao}</td>
-      <td class="n ${c.caixa < 0 ? "ruim" : ""}">${dinheiro(c.caixa)}</td>
-      <td class="n">${dinheiro(c.valor_do_elenco)}</td>
+      <td class="n ${c.caixa < 0 ? "ruim" : ""}">${dinheiro(c.caixa, c.moeda || MOEDA)}</td>
+      <td class="n">${euros(c.valor_do_elenco)}</td>
       <td><span class="chip ${perfilDoClube(c) === "favorito" ? "ouro" : ""}">${PERFIS_CLUBE[perfilDoClube(c)]}</span></td>
     </tr>`).join("") || `<tr><td colspan="8" class="vazio">Nenhum clube com esses filtros.</td></tr>`;
   $$("#tabela-clubes tbody tr[data-nome]").forEach((tr) => {
@@ -380,9 +380,9 @@ function desenharDetalheDoClube() {
       <div class="ficha" style="margin-top:1rem">
         <div><span>Força do elenco</span><b>${c.forca.toFixed(1)}</b></div>
         <div><span>Reputação</span><b>${c.reputacao}</b></div>
-        <div><span>Caixa</span><b class="${c.caixa < 0 ? "ruim" : ""}">${dinheiro(c.caixa)}</b></div>
-        <div><span>Valor do elenco</span><b>${dinheiro(c.valor_do_elenco)}</b></div>
-        <div><span>Folha anual</span><b>${dinheiro(c.folha)}</b></div>
+        <div><span>Caixa</span><b class="${c.caixa < 0 ? "ruim" : ""}">${dinheiro(c.caixa, c.moeda || MOEDA)}</b></div>
+        <div><span>Valor do elenco</span><b>${euros(c.valor_do_elenco)}</b></div>
+        <div><span>Folha anual</span><b>${dinheiro(c.folha, c.moeda || MOEDA)}</b></div>
         <div><span>Jogadores</span><b>${c.jogadores}</b></div>
         <div><span>Idade média</span><b>${String(c.idade_media).replace(".", ",")}</b></div>
         <div><span>Desafio</span><b>${PERFIS_CLUBE[perfilDoClube(c)]}</b></div>

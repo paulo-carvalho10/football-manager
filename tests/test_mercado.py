@@ -105,7 +105,7 @@ def test_a_receita_segue_o_tamanho_do_clube_e_a_divisao(carreira):
     assert receita_anual(c.world, grande.id, 1) > receita_anual(c.world, pequeno.id, 1) * 5
     # cair de divisao tem de doer no caixa, nao so na tabela
     assert receita_anual(c.world, grande.id, 2) < receita_anual(c.world, grande.id, 1) * 0.8
-    assert premiacao(1, 20, 1) > premiacao(20, 20, 1) > 0
+    assert premiacao(1, 20, 50_000_000) > premiacao(20, 20, 50_000_000) > 0
 
 
 def test_a_receita_cobre_a_folha_nas_duas_piramides():
@@ -125,6 +125,28 @@ def test_a_receita_cobre_a_folha_nas_duas_piramides():
             f"{ligas[0]}: algum clube paga mais salario do que fatura "
             f"(pior caso {max(razoes):.2f})")
         assert 0.2 < st.median(razoes) < 0.8, f"{ligas[0]}: folha/receita fora da faixa"
+
+
+def test_o_dinheiro_esta_na_escala_do_futebol_real():
+    """REGRESSAO: a receita era um terco da real (o Corinthians faturava 40M de euros; o de
+    verdade, ~180M), e uma venda de 65M valia um ano e meio de faturamento -- o caixa de um
+    grande pulava para 200M numa janela. Ordem de grandeza, nao numero exato."""
+    from fm.financas import folha_anual, valor_do_elenco
+
+    faixas = {"Flamengo": (100e6, 350e6), "Corinthians": (70e6, 300e6),
+              "Real Madrid": (600e6, 1_600e6)}
+    for ligas, clube in ((["brasil_real", "brasil_b_real"], "Flamengo"),
+                         (["espanha_real", "espanha_b_real"], "Real Madrid")):
+        c = Carreira.nova(ligas, clube, seed=7)
+        for k, x in c.world.clubs.items():
+            if x.name not in faixas:
+                continue
+            receita = receita_anual(c.world, k, 1, valor_do_elenco(c.world, k))
+            lo, hi = faixas[x.name]
+            assert lo < receita < hi, f"{x.name}: receita {receita / 1e6:.0f}M fora da escala real"
+            # clube de futebol vive perto do zero: ninguem comeca com anos de receita guardados
+            assert 0 < x.balance < receita, f"{x.name}: caixa inicial {x.balance / 1e6:.0f}M"
+            assert 0.25 < folha_anual(c.world, k) / receita < 0.8
 
 
 def test_a_reputacao_e_estacionaria(carreira):

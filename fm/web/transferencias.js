@@ -16,8 +16,11 @@ const TRF = {
 const SITUACOES = [["", "Todos"], ["a_venda", "À venda"], ["sem_contrato", "Sem contrato"],
                    ["terminando", "Contrato terminando"], ["lista", "Minha lista"]];
 
-function reaisInteiros(v) { return `R$ ${Math.round(v || 0).toLocaleString("pt-BR")}`; }
-function lerReais(txt) { return Math.round(+String(txt).replace(/[^\d]/g, "") || 0); }
+/* Negociacao: taxa de transferencia digitada em euro; salario na moeda do clube, que volta
+ * para euro antes de ir ao servidor. */
+function lerNumero(txt) { return Math.round(+String(txt).replace(/[^\d]/g, "") || 0); }
+function lerSalario(txt) { return paraEuro(lerNumero(txt)); }
+function salarioNoCampo(v) { return daMoeda(v).toLocaleString("pt-BR"); }
 
 TELAS.transferencias = async function () {
   const alvo = $("#tela-transferencias");
@@ -65,9 +68,9 @@ async function abaMercado() {
         <input type="number" data-f="idade_max" placeholder="máx" value="${f.idade_max}"></div></div>
       ${campo("Nacionalidade", `<input type="search" data-f="nacionalidade" value="${escapar(f.nacionalidade)}" placeholder="ex.: Brasil">`)}
       ${campo("Clube", `<input type="search" data-f="clube" value="${escapar(f.clube)}" placeholder="ex.: Santos">`)}
-      <div class="campo"><span>Valor e salário máximos (R$ mi)</span><div class="campo-duplo">
+      <div class="campo"><span>Valor (€ mi) e salário (${MOEDA.simbolo} mi) máximos</span><div class="campo-duplo">
         <input type="number" data-f="valor_max" data-mi="1" placeholder="valor" value="${f.valor_max ? f.valor_max / 1e6 : ""}">
-        <input type="number" data-f="salario_max" data-mi="1" step="0.01" placeholder="salário" value="${f.salario_max ? f.salario_max / 1e6 : ""}"></div></div>
+        <input type="number" data-f="salario_max" data-mi="1" step="0.01" placeholder="salário" value="${f.salario_max ? daMoeda(f.salario_max) / 1e6 : ""}"></div></div>
       ${campo("Força mínima", `<input type="number" data-f="ovr_min" value="${f.ovr_min}" placeholder="ex.: 70">`)}
       ${campo("Situação", `<select data-f="situacao">${SITUACOES.map(([k, r]) =>
         `<option value="${k}" ${f.situacao === k ? "selected" : ""}>${r}</option>`).join("")}</select>`)}
@@ -85,14 +88,16 @@ async function abaMercado() {
         <td class="n">${j.idade}</td>
         <td>${j.livre ? '<span class="chip ativo">sem contrato</span>'
           : `<div class="nome-celula">${escudo(j.clube, "1.3rem")}<span>${escapar(j.clube.nome)}</span></div>`}</td>
-        <td class="n">${ovr(j.overall)}</td><td class="n">${dinheiro(j.valor)}</td><td class="n">${dinheiro(j.salario)}</td></tr>`).join("")
+        <td class="n">${ovr(j.overall)}</td><td class="n">${euros(j.valor)}</td><td class="n">${dinheiro(j.salario)}</td></tr>`).join("")
         || '<tr><td colspan="7" class="vazio">Ninguém com esse perfil.</td></tr>'}</tbody></table>
     </div>
     <div id="trf-detalhe" style="border-left:1px solid var(--linha);overflow:auto"></div>`;
 
   const aplicar = () => {
     $$("[data-f]").forEach((x) => {
-      TRF.filtros[x.dataset.f] = x.dataset.mi ? (x.value ? String(Math.round(+x.value * 1e6)) : "") : x.value;
+      // o salario maximo e digitado na moeda do clube; o filtro do servidor e em euro
+      const mi = (v) => x.dataset.f === "salario_max" ? paraEuro(v * 1e6) : Math.round(v * 1e6);
+      TRF.filtros[x.dataset.f] = x.dataset.mi ? (x.value ? String(mi(+x.value)) : "") : x.value;
     });
     abaMercado();
   };
@@ -129,7 +134,7 @@ async function detalheTrf() {
       : `${escudo(j.clube, "2.4rem")}<div><b>${escapar(j.clube.nome)}</b><div class="dica">${escapar(j.liga)}</div></div>`}
       <span class="espaco"></span>${ovr(j.overall)}</div>
     <div class="kpis" style="margin-top:.9rem">
-      <div class="kpi-c destaque"><span>Valor estimado</span><b>${dinheiro(j.valor)}</b></div>
+      <div class="kpi-c destaque"><span>Valor estimado</span><b>${euros(j.valor)}</b></div>
       <div class="kpi-c"><span>Salário/mês</span><b>${dinheiro(j.salario)}</b></div>
       <div class="kpi-c"><span>Contrato</span><b>${j.livre ? "—" : `até ${j.contrato}`}</b></div>
       <div class="kpi-c"><span>Potencial</span><b>${j.potencial}</b></div>
@@ -159,14 +164,14 @@ async function fazerProposta(j, sugestao) {
     <div class="form-col">
       <div class="linha-flex">${escudo(j.clube, "2.4rem")}<div><b>${escapar(j.nome)}</b>
         <div class="dica">${escapar(j.clube.nome)}</div></div></div>
-      <div class="kpi-c"><span>Valor estimado</span><b>${reaisInteiros(j.valor)}</b></div>
-      <label class="campo"><span>Sua proposta (R$)</span>
+      <div class="kpi-c"><span>Valor estimado</span><b>${eurosConvertido(j.valor)}</b></div>
+      <label class="campo"><span>Sua proposta (€)</span>
         <input type="text" id="valor-oferta" inputmode="numeric" value="${Math.round(valorInicial).toLocaleString("pt-BR")}"></label>
     </div>`,
     botoes: [{rotulo: "Cancelar", valor: null},
              {rotulo: "Enviar proposta", primario: true, valor: "enviar"}]});
   if (r !== "enviar") return;
-  const valor = lerReais($("#valor-oferta").value);
+  const valor = lerNumero($("#valor-oferta").value);
   const resp = await api.post("/api/oferta", {jogador: j.id, valor});
   if (resp.resultado === "aceita") {
     await abrirJanela({titulo: "Proposta aceita", estreita: true,
@@ -185,7 +190,7 @@ async function fazerProposta(j, sugestao) {
   }
   if (resp.resultado === "recusada") {
     const c = await abrirJanela({titulo: "Proposta recusada", estreita: true,
-      corpo: `<p>${escapar(resp.mensagem)}</p>${resp.dica ? `<p class="dica">Valor esperado aproximado: <b>${dinheiro(resp.dica)}</b></p>` : ""}`,
+      corpo: `<p>${escapar(resp.mensagem)}</p>${resp.dica ? `<p class="dica">Valor esperado aproximado: <b>${eurosConvertido(resp.dica)}</b></p>` : ""}`,
       botoes: [{rotulo: "Cancelar negociação", valor: null},
                ...(resp.dica ? [{rotulo: "Fazer nova proposta", primario: true, valor: "nova"}] : [])]});
     if (c === "nova") return fazerProposta(j, resp.dica);
@@ -206,10 +211,10 @@ async function negociarContrato(j, preco, sugestao) {
       <div class="kpis">
         <div class="kpi-c"><span>Salário atual</span><b>${dinheiro(info.salario_atual)}/mês</b></div>
         <div class="kpi-c destaque"><span>Pretende</span><b>~ ${dinheiro(info.pretendido)}/mês</b></div>
-        ${preco ? `<div class="kpi-c"><span>Transferência</span><b>${dinheiro(preco)}</b></div>` : ""}
+        ${preco ? `<div class="kpi-c"><span>Transferência</span><b>${eurosConvertido(preco)}</b></div>` : ""}
       </div>
-      <label class="campo"><span>Salário mensal (R$)</span>
-        <input type="text" id="salario-oferta" inputmode="numeric" value="${Math.round(salarioInicial).toLocaleString("pt-BR")}"></label>
+      <label class="campo"><span>Salário mensal (${MOEDA.simbolo})</span>
+        <input type="text" id="salario-oferta" inputmode="numeric" value="${salarioNoCampo(salarioInicial)}"></label>
       <div class="campo"><span>Duração</span><div class="segmentado" id="anos">${[1, 2, 3, 4, 5].map((a) =>
         `<button data-anos="${a}" class="${a === anos ? "ativo" : ""}">${a} ${a === 1 ? "ano" : "anos"}</button>`).join("")}</div></div>
       <p class="nota-honesta">Folha do clube: ${dinheiro(info.caixa.folha)} de ${dinheiro(info.caixa.limite_da_folha)} por mês.
@@ -221,7 +226,7 @@ async function negociarContrato(j, preco, sugestao) {
     $$("[data-anos]").forEach((x) => x.classList.toggle("ativo", x === b));
   }));
   if (await promessa !== "ok") return;
-  const salario = lerReais($("#salario-oferta").value);
+  const salario = lerSalario($("#salario-oferta").value);
   const r = await api.post("/api/contrato", {jogador: j.id, preco, salario, anos});
   if (r.resultado === "concluida") {
     aplicarEstado(r.estado);
@@ -260,8 +265,8 @@ async function renovarContrato(pid, sugestao) {
         <div class="kpi-c destaque"><span>Deseja</span><b>${dinheiro(info.pretendido)}/mês</b></div>
       </div>
       <p>Interesse em renovar: ${bola} <b>${rotulo}</b> — ${escapar(info.motivo)}</p>
-      <label class="campo"><span>Novo salário mensal (R$)</span>
-        <input type="text" id="salario-renova" inputmode="numeric" value="${Math.round(sugestao || info.pretendido).toLocaleString("pt-BR")}"></label>
+      <label class="campo"><span>Novo salário mensal (${MOEDA.simbolo})</span>
+        <input type="text" id="salario-renova" inputmode="numeric" value="${salarioNoCampo(sugestao || info.pretendido)}"></label>
       <div class="campo"><span>Novo período</span><div class="segmentado">${[1, 2, 3, 4].map((a) =>
         `<button data-anos="${a}" class="${a === anos ? "ativo" : ""}">+${a} ${a === 1 ? "ano" : "anos"}</button>`).join("")}</div></div>
     </div>`,
@@ -271,7 +276,7 @@ async function renovarContrato(pid, sugestao) {
     $$("[data-anos]").forEach((x) => x.classList.toggle("ativo", x === b));
   }));
   if (await promessa !== "ok") return;
-  const r = await api.post("/api/renovacao", {jogador: pid, salario: lerReais($("#salario-renova").value), anos});
+  const r = await api.post("/api/renovacao", {jogador: pid, salario: lerSalario($("#salario-renova").value), anos});
   if (r.resultado === "concluida") {
     aplicarEstado(r.estado);
     avisar(r.mensagem);
@@ -297,7 +302,7 @@ async function pedirEmprestimo(j) {
     <div class="form-col">
       <p>${escapar(info.mensagem)}</p>
       <div class="kpis">
-        <div class="kpi-c destaque"><span>Taxa</span><b>${info.taxa ? dinheiro(info.taxa) : "sem taxa"}</b></div>
+        <div class="kpi-c destaque"><span>Taxa</span><b>${info.taxa ? eurosConvertido(info.taxa) : "sem taxa"}</b></div>
         <div class="kpi-c"><span>Salário (você paga)</span><b>${dinheiro(info.salario)}/mês</b></div>
         <div class="kpi-c"><span>Até</span><b>fim de ${info.ate}</b></div>
       </div>
@@ -360,8 +365,8 @@ async function janelaDeProposta(prop) {
         <div class="dica">tem interesse em:</div></div></div>
       <div><b>${escapar(j.nome)}</b> <span class="dica">${POSICOES_LONGAS[j.posicao]} | ${j.idade} anos | Força ${j.overall}</span></div>
       <div class="kpis">
-        <div class="kpi-c"><span>Valor do jogador</span><b>${dinheiro(j.valor)}</b></div>
-        <div class="kpi-c destaque"><span>Proposta</span><b>${reaisInteiros(prop.valor)}</b></div>
+        <div class="kpi-c"><span>Valor do jogador</span><b>${euros(j.valor)}</b></div>
+        <div class="kpi-c destaque"><span>Proposta</span><b>${eurosConvertido(prop.valor)}</b></div>
       </div>
       <p class="nota-honesta">Sem resposta, a proposta caduca quando a próxima data for jogada.</p>
     </div>`,
@@ -374,13 +379,13 @@ async function janelaDeProposta(prop) {
 async function contraproposta(prop) {
   const c = await abrirJanela({titulo: "Contraproposta", estreita: true, corpo: `
     <div class="form-col">
-      <div class="kpi-c"><span>Proposta atual</span><b>${reaisInteiros(prop.valor)}</b></div>
-      <label class="campo"><span>Sua exigência (R$)</span>
+      <div class="kpi-c"><span>Proposta atual</span><b>${eurosConvertido(prop.valor)}</b></div>
+      <label class="campo"><span>Sua exigência (€)</span>
         <input type="text" id="exigencia" inputmode="numeric" value="${Math.round(prop.valor * 1.25).toLocaleString("pt-BR")}"></label>
     </div>`,
     botoes: [{rotulo: "Voltar", valor: null}, {rotulo: "Enviar contraproposta", primario: true, valor: "ok"}]});
   if (c !== "ok") return janelaDeProposta(prop);
-  return enviarRespostaProposta(prop, "contraproposta", lerReais($("#exigencia").value));
+  return enviarRespostaProposta(prop, "contraproposta", lerNumero($("#exigencia").value));
 }
 
 async function enviarRespostaProposta(prop, acao, valor) {
@@ -409,7 +414,7 @@ async function abaPropostas() {
       const [rot, cls] = STATUS_PROPOSTA[p.status] || [p.status, ""];
       return `<tr><td><b>${escapar(p.jogador ? p.jogador.nome : "?")}</b></td>
         <td><div class="nome-celula">${escudo(p.clube, "1.3rem")}<span>${escapar(p.clube.nome)}</span></div></td>
-        <td class="n">${dinheiro(p.valor)}</td><td class="${cls}">${rot}</td><td class="n">${p.temporada}</td>
+        <td class="n">${euros(p.valor)}</td><td class="${cls}">${rot}</td><td class="n">${p.temporada}</td>
         <td>${p.status === "pendente" ? `<button class="btn pequeno primario" data-prop="${escapar(p.id)}">Responder</button>` : ""}</td></tr>`;
     }).join("") || '<tr><td colspan="6" class="vazio">Nenhuma proposta recebida ainda.</td></tr>'}</tbody></table></div>`;
   $$("[data-prop]").forEach((b) => b.addEventListener("click", () =>
@@ -428,8 +433,8 @@ async function abaNegociacoes() {
     <tbody>${negociacoes.map((n) => {
       const [rot, cls] = RES_NEG[n.resultado] || [n.resultado, ""];
       return `<tr><td class="num">${n.data}</td><td>${pos(n.posicao)} <b>${escapar(n.nome)}</b></td>
-        <td>${n.clube ? escapar(n.clube.nome) : "sem clube"}</td><td class="n">${dinheiro(n.oferta)}</td>
-        <td class="${cls}">${rot}</td><td class="n">${n.valor ? dinheiro(n.valor) : "—"}</td></tr>`;
+        <td>${n.clube ? escapar(n.clube.nome) : "sem clube"}</td><td class="n">${euros(n.oferta)}</td>
+        <td class="${cls}">${rot}</td><td class="n">${n.valor ? euros(n.valor) : "—"}</td></tr>`;
     }).join("") || '<tr><td colspan="6" class="vazio">Nenhuma oferta feita nesta sessão.</td></tr>'}</tbody></table>
     <p class="nota-honesta" style="margin:.8rem">As ofertas ficam aqui enquanto o jogo está aberto. O que vira negócio vai para o Histórico e para o save.</p></div>`;
 }
@@ -451,6 +456,6 @@ async function abaHistorico() {
       const [cls, rot, prep] = SENTIDO[m.sentido] || SENTIDO.entrada;
       return `<tr><td class="n">${m.temporada}</td><td class="${cls}">${rot}</td>
       <td>${pos(m.posicao)} <b>${escapar(m.nome)}</b></td><td class="n">${m.overall}</td>
-      <td>${prep}${escapar(m.clube)}</td><td class="n">${m.valor ? dinheiro(m.valor) : "—"}</td></tr>`;
+      <td>${prep}${escapar(m.clube)}</td><td class="n">${m.valor ? euros(m.valor) : "—"}</td></tr>`;
     }).join("") || '<tr><td colspan="6" class="vazio">Nenhuma transferência ainda.</td></tr>'}</tbody></table></div>`;
 }

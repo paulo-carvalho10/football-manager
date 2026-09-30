@@ -22,6 +22,7 @@ import numpy as np
 
 from fm.mercado import DESCIDA_TOLERADA, ELENCO_MINIMO_PARA_VENDER, preco, topa_descer
 from fm.model import World
+from fm.moeda import texto as texto_de_euros
 from fm.temporada import SALARIO_SOBRE_VALOR
 
 # o quanto da receita anual a diretoria deixa ir para salario. Acima disso ela veta.
@@ -115,12 +116,11 @@ def avaliar_oferta(c, pid: int, valor: int) -> dict:
     pedido = pedido_do_vendedor(c, p)
     if valor >= pedido:
         return {"resultado": "aceita", "valor": int(valor),
-                "mensagem": f"O {dono.name} aceitou sua proposta de R$ {int(valor):,} por "
-                            f"{p.name}.".replace(",", ".")}
+                "mensagem": f"O {dono.name} aceitou sua proposta de {texto_de_euros(valor)} "
+                            f"por {p.name}."}
     if valor >= pedido * FAIXA_DE_CONTRAPROPOSTA:
         return {"resultado": "contraproposta", "valor": pedido,
-                "mensagem": f"O {dono.name} aceita negociar por R$ {pedido:,}."
-                            .replace(",", ".")}
+                "mensagem": f"O {dono.name} aceita negociar por {texto_de_euros(pedido)}."}
     return {"resultado": "recusada", "valor": None, "dica": _redondo(pedido * 1.02),
             "mensagem": f"O {dono.name} considera sua proposta abaixo do valor esperado."}
 
@@ -321,7 +321,7 @@ def avaliar_emprestimo(c, pid: int) -> dict:
     taxa = taxa_de_emprestimo(c, p)
     return {"resultado": "aceita", "taxa": taxa, "salario": p.wage, "ate": c.temporada,
             "mensagem": (f"O {dono.name} libera {p.name} ate o fim da temporada"
-                         + (f" por R$ {taxa:,} de taxa".replace(",", ".") if taxa
+                         + (f" por {texto_de_euros(taxa)} de taxa" if taxa
                             else ", sem taxa")
                          + ". O salario passa a ser seu.")}
 

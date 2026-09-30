@@ -11,7 +11,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from fm.generate import _market_value
+from fm.generate import SALARIO_SOBRE_VALOR, _market_value
 from fm.model import World
 from fm.table import Row
 
@@ -24,7 +24,6 @@ QUEDA_POR_ANO = 0.85          # pontos de overall perdidos por ano acima do pico
 QUEDA_ACELERA = 0.22          # e a queda acelera
 
 # O salario segue o valor de mercado, mas devagar: contrato nao se reabre todo ano.
-SALARIO_SOBRE_VALOR = 110         # mesma proporcao do dado importado (~11% do valor ao ano)
 RENEGOCIACAO = 0.55               # fracao do caminho ate o salario justo, por temporada
 
 IDADE_MINIMA_APOSENTAR = 33

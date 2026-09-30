@@ -38,18 +38,36 @@ function escapar(t) {
     ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 }
 
-function dinheiro(v) {
+/* Dinheiro. O motor conta tudo em EURO. Valor de mercado e transferencia aparecem em euro,
+ * como no futebol entre paises; o dinheiro do CLUBE -- caixa, receita, folha, salario --
+ * na moeda do pais dele (MOEDA, que vem com o estado). O que o usuario digita nessa moeda
+ * volta para euro antes de ir ao servidor (paraEuro). */
+let MOEDA = {codigo: "EUR", simbolo: "€", taxa: 1};
+
+function _curto(v, simbolo) {
   const n = Math.abs(v ?? 0);
   const s = (v ?? 0) < 0 ? "−" : "";
-  if (n >= 1e9) return `${s}R$ ${(n / 1e9).toFixed(2).replace(".", ",")} bi`;
-  if (n >= 1e6) return `${s}R$ ${(n / 1e6).toFixed(1).replace(".", ",")} mi`;
-  if (n >= 1e3) return `${s}R$ ${Math.round(n / 1e3)} mil`;
-  return `${s}R$ ${n}`;
+  if (n >= 1e9) return `${s}${simbolo} ${(n / 1e9).toFixed(2).replace(".", ",")} bi`;
+  if (n >= 1e6) return `${s}${simbolo} ${(n / 1e6).toFixed(1).replace(".", ",")} mi`;
+  if (n >= 1e3) return `${s}${simbolo} ${Math.round(n / 1e3)} mil`;
+  return `${s}${simbolo} ${Math.round(n)}`;
 }
 
-function reais(v) {
-  return `R$ ${(v ?? 0).toLocaleString("pt-BR")}`;
+/* euros do motor -> moeda do clube, texto curto (R$ 12,4 mi) */
+function dinheiro(v, moeda = MOEDA) { return _curto((v ?? 0) * moeda.taxa, moeda.simbolo); }
+/* valor de mercado e transferencia: sempre em euro */
+function euros(v) { return _curto(v, "€"); }
+/* transferencia com a conversao ao lado, onde o valor encontra o caixa do clube */
+function eurosConvertido(v) {
+  return MOEDA.codigo === "EUR" ? euros(v)
+    : `${euros(v)} <small class="dica">≈ ${dinheiro(v)}</small>`;
 }
+function daMoeda(v, moeda = MOEDA) { return Math.round((v ?? 0) * moeda.taxa); }
+function paraEuro(v, moeda = MOEDA) { return Math.round((v ?? 0) / moeda.taxa); }
+/* numero inteiro por extenso, para os campos de negociacao */
+function inteiro(v, simbolo) { return `${simbolo} ${Math.round(v || 0).toLocaleString("pt-BR")}`; }
+
+function dinheiroInteiro(v) { return inteiro(daMoeda(v), MOEDA.simbolo); }
 
 function corDe(valor, bom = 80, medio = 60) {
   if (valor >= bom) return "var(--bom)";

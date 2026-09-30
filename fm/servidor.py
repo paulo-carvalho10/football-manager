@@ -24,6 +24,7 @@ from fm import telas
 from fm.ratings import exibir
 from fm.calendario import dia_da_data, texto
 from fm.carreira import Carreira, saves_disponiveis
+from fm.moeda import json_da_moeda
 from fm.tatica import ESTILOS, FORMACOES, MARCACOES, VAGAS, Tatica, arrumar_no_campo
 
 WEB = Path(__file__).resolve().parent / "web"
@@ -146,6 +147,8 @@ def _clube_do_mundo(world, cid: int) -> dict:
         "camisa2": club.kit_detail or club.color_secondary,
         "padrao": club.kit_pattern,
         "escudo": club.name in _escudos(),
+        # o motor conta em euro; caixa e salario deste clube aparecem na moeda do pais
+        "moeda": json_da_moeda(club.country),
     }
 
 

@@ -45,6 +45,7 @@ async function recarregarEstado() {
 
 function aplicarEstado(e) {
   ESTADO = e;
+  if (e.clube.moeda) MOEDA = e.clube.moeda;
   document.documentElement.style.setProperty("--clube", corDeAcento(e.clube.cor));
   desenharTopo(e);
   desenharLateral(e);
@@ -174,7 +175,7 @@ async function desenharResumoJogador() {
       }).join("")}</div>
       <div class="kpis">
         <div class="kpi-c"><span>Energia</span><b style="color:${corDe(j.energia, 85, 70)}">${j.energia}%</b></div>
-        <div class="kpi-c"><span>Valor</span><b>${dinheiro(j.valor)}</b></div>
+        <div class="kpi-c"><span>Valor</span><b>${euros(j.valor)}</b></div>
       </div>
       ${j.lesao ? `<p class="dica"><span class="ic-lesao">✚</span> ${escapar(j.lesao.tipo)} · ${j.lesao.dias} dia${j.lesao.dias === 1 ? "" : "s"} · volta ${j.lesao.volta}</p>` : ""}
       ${j.emprestado_de ? `<p class="dica">Emprestado pelo ${escapar(j.emprestado_de)} até o fim da temporada.</p>` : `
@@ -194,7 +195,7 @@ function desenharRodape(e) {
     <div>${icone("calendario")} <b>${e.data}</b></div>
     <div>Temporada <b>${e.temporada}</b></div>
     <div>${escapar(e.liga_nome)} · rodada <b>${e.rodada}</b>/${e.total_de_rodadas}</div>
-    <div>${icone("financas")} Caixa <b class="${e.caixa < 0 ? "ruim" : ""}">${reais(e.caixa)}</b></div>
+    <div>${icone("financas")} Caixa <b class="${e.caixa < 0 ? "ruim" : ""}">${dinheiroInteiro(e.caixa)}</b></div>
     <div>Reputação <b>${e.reputacao}</b></div>
     <span class="espaco"></span>
     <button id="rodape-msg">${icone("mensagens")} ${e.nao_lidas ? `<b>${e.nao_lidas}</b> não lidas` : "Mensagens"}</button>
@@ -275,7 +276,7 @@ TELAS.elenco = function () {
               <td class="n">${ovr(p.overall)}</td>
               <td>${energia(p.energia)}</td>
               <td class="n">${dinheiro(p.salario)}</td>
-              <td class="n">${dinheiro(p.valor)}</td>
+              <td class="n">${euros(p.valor)}</td>
               <td class="n">${p.gols}</td>
               <td class="n">${p.assistencias}</td>
               <td>${escapar(p.perfil)}</td>
@@ -336,7 +337,7 @@ async function abrirPerfil(id) {
           <div class="kpi-c"><span>Nacionalidade</span><b>${escapar(j.nacionalidade || "—")}</b></div>
           <div class="kpi-c"><span>Energia</span><b style="color:${corDe(j.energia, 85, 70)}">${j.energia}%</b></div>
           <div class="kpi-c"><span>Moral</span><b>${j.moral}</b></div>
-          <div class="kpi-c"><span>Valor</span><b>${dinheiro(j.valor)}</b></div>
+          <div class="kpi-c"><span>Valor</span><b>${euros(j.valor)}</b></div>
           <div class="kpi-c"><span>Salário/mês</span><b>${dinheiro(j.salario)}</b></div>
           <div class="kpi-c"><span>Contrato até</span><b>${j.contrato}</b></div>
         </div>
@@ -810,14 +811,14 @@ TELAS.financas = async function () {
   const despesas = f.folha + f.operacao;
   const maior = Math.max(f.receita, despesas, 1);
   const barraH = (rotulo, v, cor) => `<div style="margin-bottom:.8rem"><div class="linha-flex"><span>${rotulo}</span>
-    <span class="espaco"></span><b class="num">${reais(v)}</b></div>
+    <span class="espaco"></span><b class="num">${dinheiroInteiro(v)}</b></div>
     <div class="forca-barra" style="width:100%;height:.7rem;margin-top:.3rem"><i style="width:${100 * v / maior}%;background:${cor}"></i></div></div>`;
   $("#tela-financas").innerHTML = `
     <div class="coluna">
       <div class="painel fixo"><div class="cab"><h2>Situação</h2></div>
         <div class="corpo"><div class="kpis">
           <div class="kpi-c destaque"><span>Caixa</span><b>${dinheiro(f.caixa)}</b></div>
-          <div class="kpi-c"><span>Valor do elenco</span><b>${dinheiro(f.valor_do_elenco)}</b></div>
+          <div class="kpi-c"><span>Valor do elenco</span><b>${euros(f.valor_do_elenco)}</b></div>
           <div class="kpi-c"><span>Reputação</span><b>${f.reputacao}</b></div>
           <div class="kpi-c"><span>Saldo previsto</span><b class="${f.saldo_previsto < 0 ? "ruim" : "bom"}">${dinheiro(f.saldo_previsto)}</b></div>
         </div></div></div>
@@ -828,6 +829,9 @@ TELAS.financas = async function () {
           ${barraH("Custo de operação", f.operacao, "#c77a2a")}
           <p class="nota-honesta">A receita sai do valor do elenco no início do ano e da reputação; premiação
             de liga e de copas entra no fechamento. O balanço é feito na virada da temporada.</p>
+          ${MOEDA.codigo === "EUR" ? "" : `<p class="nota-honesta">Caixa, receita e salários em ${MOEDA.simbolo};
+            valor de mercado e transferências em euro, como no futebol entre países. Câmbio fixo:
+            € 1 = ${MOEDA.simbolo} ${String(MOEDA.taxa.toFixed(2)).replace(".", ",")}.</p>`}
         </div></div>
       <div class="painel fixo"><div class="cab"><h2>Folha por setor</h2><span class="dica">por mês</span></div>
         <div class="corpo">${folhaPorSetor()}</div></div>
@@ -842,7 +846,7 @@ TELAS.financas = async function () {
       <div class="corpo sem-margem"><table class="grade">
         <thead><tr><th>Jogador</th><th>Pos</th><th class="n">Salário/mês</th><th class="n">Valor</th><th class="n">Contrato</th></tr></thead>
         <tbody>${f.salarios.map((s) => `<tr><td><b>${escapar(s.nome)}</b></td><td>${pos(s.posicao)}</td>
-          <td class="n">${dinheiro(s.salario)}</td><td class="n">${dinheiro(s.valor)}</td>
+          <td class="n">${dinheiro(s.salario)}</td><td class="n">${euros(s.valor)}</td>
           <td class="n ${s.contrato <= ESTADO.temporada ? "ruim" : ""}">${s.contrato}</td></tr>`).join("")}</tbody></table></div></div>`;
 };
 
@@ -1013,8 +1017,8 @@ async function encerrarAno() {
   }
   if (r.compras.length || r.vendas.length) {
     corpo += `<div class="secao"><h3>Mercado do clube</h3><table class="grade compacta"><tbody>
-      ${r.compras.map((t) => `<tr><td class="bom">chega</td><td>${escapar(t.nome)} (${t.overall})</td><td>${escapar(t.de)}</td><td class="n">${dinheiro(t.preco)}</td></tr>`).join("")}
-      ${r.vendas.map((t) => `<tr><td class="ruim">sai</td><td>${escapar(t.nome)} (${t.overall})</td><td>${escapar(t.para)}</td><td class="n">${dinheiro(t.preco)}</td></tr>`).join("")}
+      ${r.compras.map((t) => `<tr><td class="bom">chega</td><td>${escapar(t.nome)} (${t.overall})</td><td>${escapar(t.de)}</td><td class="n">${eurosConvertido(t.preco)}</td></tr>`).join("")}
+      ${r.vendas.map((t) => `<tr><td class="ruim">sai</td><td>${escapar(t.nome)} (${t.overall})</td><td>${escapar(t.para)}</td><td class="n">${eurosConvertido(t.preco)}</td></tr>`).join("")}
       </tbody></table></div>`;
   }
   corpo += blocoDeReputacao(r.reputacao_tecnico);

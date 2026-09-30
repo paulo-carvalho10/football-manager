@@ -15,10 +15,17 @@ from __future__ import annotations
 
 import numpy as np
 
+from fm.financas import caixa_inicial
 from fm.model import Club, League, Player, World, grupo_posicao
 from fm.names import CLUB_PATTERNS, CLUB_ROOTS, FIRST_NAMES, NICKNAMES, SURNAMES
 from fm.pack import PackClub, load_pack
 from fm.rng import Streams
+
+# Salario mensal = valor de mercado / isto (~30% do valor ao ano). O Transfermarkt nao
+# publica salario; a proporcao foi medida contra folhas reais: o Real Madrid gasta perto de
+# 440M EUR por ano com um elenco de ~1,4 bi, o Corinthians perto de 80M com ~150M. A
+# versao antiga usava 110 (11% ao ano) e a folha do jogo ficava a um terco da real.
+SALARIO_SOBRE_VALOR = 40
 
 SQUAD_SIZE = 24
 
@@ -159,7 +166,7 @@ def _make_player(pid, rng, country, season_year, overall, position, age, club_id
         height_cm=int(rng.normal(190 if position == "GK" else 180, 6)),
         overall=overall, potential=potential,
         morale=int(rng.integers(60, 85)), form=int(rng.integers(55, 85)),
-        club_id=club_id, wage=int(value / 110),
+        club_id=club_id, wage=int(value / SALARIO_SOBRE_VALOR),
         contract_until=season_year + int(rng.integers(1, 5)),
         market_value=value, **_attributes(rng, overall, position),
     )
@@ -227,7 +234,7 @@ def _build_squad(world, club, pack_club, strength, rng, next_id, country, season
             jogador.potential = max(int(j.pot), ovr)
         if j.valor is not None:
             jogador.market_value = int(j.valor)
-            jogador.wage = int(j.valor / 110)
+            jogador.wage = int(j.valor / SALARIO_SOBRE_VALOR)
         world.players[pid] = jogador
         club.player_ids.append(pid)
 
@@ -278,11 +285,11 @@ def generate_league(world: World, cfg: dict, streams: Streams, *, next_id: list[
             kit_body=(pack_club.camisa[0] if pack_club and pack_club.camisa else ""),
             kit_detail=(pack_club.camisa[1] if pack_club and pack_club.camisa else ""),
             kit_pattern=(pack_club.padrao if pack_club and pack_club.padrao else "liso"),
-            balance=int(reputation ** 2 * 12_000),
         )
         _build_squad(world, club, pack_club, strength, rng, next_id, country,
                      world.season_year)
         world.clubs[club_id] = club
+        club.balance = caixa_inicial(world, club_id, league.tier)
         league.club_ids.append(club_id)
 
     world.leagues[league.id] = league

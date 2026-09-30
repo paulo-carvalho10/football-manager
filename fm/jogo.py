@@ -32,9 +32,10 @@ def _barra(valor: int, largura: int = 10) -> str:
 
 
 def _dinheiro(v: int) -> str:
+    """Em euros, a moeda do motor (a tela web converte o do clube; o terminal nao)."""
     if abs(v) >= 1_000_000:
-        return f"{v/1_000_000:.1f}M"
-    return f"{v/1000:.0f}k"
+        return f"€{v/1_000_000:.1f}M"
+    return f"€{v/1000:.0f}k"
 
 
 # ---------------------------------------------------------------- lobby

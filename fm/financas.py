@@ -4,11 +4,15 @@ Sem isto o `balance` era um numero decorativo na tela do lobby. Com isto ele e a
 que faz a carreira ter escolhas: o elenco que voce monta e a folha que voce paga, e a
 divisao em que voce joga decide quanto entra.
 
-Escala. Os valores vem do Transfermarkt, em euros, e o salario importado ja sai numa
-proporcao realista -- cerca de 11% do valor de mercado por ano. A receita foi ancorada
-nisso: um grande da Serie A fatura o suficiente para pagar a folha e sobrar um reforco por
-ano, e um pequeno fecha no zero. E o aperto que cria a decisao; caixa infinito nao decide
-nada.
+Escala. Tudo aqui dentro e EURO, a moeda do Transfermarkt, de onde vem o valor de
+mercado. A tela converte o dinheiro do clube para a moeda do pais (fm.moeda); o motor nunca.
+
+A ordem de grandeza foi medida contra faturamentos reais (Deloitte Football Money League e
+balancos dos brasileiros), e nao inventada: a versao anterior faturava um terco do real --
+o Corinthians com 40M EUR por ano quando fatura perto de 180M. O efeito era um mundo em que
+uma venda de 65M valia um ano e meio de receita, e o caixa de um grande pulava para 200M
+numa janela. Com receita, folha e premios na escala real, a mesma venda vale o que vale
+no futebol: um reforco de caixa, nao uma loteria.
 """
 
 from __future__ import annotations
@@ -31,9 +35,13 @@ from fm.table import Row
 # O freio contra bola de neve continua: o valor usado e o do INICIO da temporada, entao
 # comprar jogador nao aumenta a receita do mesmo ano -- so a do ano que vem, depois de o
 # clube ter pago pela compra. E o expoente abaixo de 1 amortece o resto.
-RECEITA_POR_ELENCO = 26_000_000     # para um elenco de REFERENCIA_DE_ELENCO
+#
+# Ajuste sobre 33 clubes com faturamento conhecido: real ~ 1,29 * elenco^0,90 (milhoes de
+# euros). A base abaixo ja desconta o fator medio de reputacao (~1,1) e a premiacao, que
+# entra por fora.
+RECEITA_POR_ELENCO = 66_000_000     # para um elenco de REFERENCIA_DE_ELENCO
 REFERENCIA_DE_ELENCO = 100_000_000
-EXPOENTE_ELENCO = 0.85
+EXPOENTE_ELENCO = 0.90
 
 # A divisao ainda pesa, porque cota de TV despenca com o rebaixamento -- mas menos do que
 # pesava antes, ja que o valor do elenco agora captura boa parte da diferenca sozinho.
@@ -44,8 +52,11 @@ FATOR_POR_TIER = {1: 1.00, 2: 0.72, 3: 0.50, 4: 0.35}
 # satura em 100.
 REPUTACAO_NA_RECEITA = (0.82, 0.36)   # piso e quanto a reputacao acrescenta
 
-# Premiacao da competicao, do campeao ao ultimo colocado. Some a receita fixa.
-PREMIO_DO_CAMPEAO = {1: 12_000_000, 2: 3_000_000, 3: 900_000, 4: 300_000}
+# Premiacao da liga, do campeao ao ultimo colocado, como fracao da receita MEDIA da
+# divisao. Um valor fixo so servia a um pais: 12M de premio era um terco da receita de um
+# grande brasileiro e troco para um ingles. Proporcional a divisao, o titulo vale o mesmo
+# peso em toda liga -- no Brasil ~8M EUR (a CBF paga R$ 48M), na Inglaterra ~50M.
+PREMIO_SOBRE_RECEITA = 0.14
 PREMIO_DO_LANTERNA = 0.12          # fracao do premio do campeao que o ultimo leva
 
 # A reputacao e o que converte desempenho em dinheiro, e ela se move devagar: um titulo
@@ -62,12 +73,16 @@ REPUTACAO_PISO, REPUTACAO_TETO = 5, 97
 # jeito antigo, quem caia nas oitavas recebia ZERO e ainda tinha pagado o custo dos jogos
 # -- disputar a Libertadores e nao chegar a final era prejuizo puro, e nao havia razao
 # financeira para buscar a vaga. Copa e premio de CAMPANHA, nao de titulo.
+#
+# Valores reais aproximados do que o campeao acumula, em euros: Libertadores ~US$ 30M,
+# Copa do Brasil ~R$ 90M, Sul-Americana ~US$ 10M, Champions ~120M so de premio (fora o
+# market pool), Liga Europa ~35M.
 PREMIO_DE_COPA = {
-    "libertadores": 9_000_000,
-    "copa_do_brasil": 4_500_000,
-    "sudamericana": 3_000_000,
-    "champions": 24_000_000,
-    "europa_league": 7_500_000,
+    "libertadores": 28_000_000,
+    "copa_do_brasil": 14_000_000,
+    "sudamericana": 9_000_000,
+    "champions": 120_000_000,
+    "europa_league": 35_000_000,
     "intercontinental": 5_000_000,
 }
 
@@ -81,7 +96,7 @@ TETO_DE_QUEM_NAO_DECIDE = 0.45   # quem nao chegou a final nao encosta no vice
 
 # Disputar copa custa: viagem, logistica, elenco maior. Por jogo alem do calendario da
 # liga.
-CUSTO_POR_JOGO_EXTRA = 260_000
+CUSTO_POR_JOGO_EXTRA = 600_000
 
 
 def premio_de_campanha(torneio: str, etapas_vividas: int, etapas_totais: int,
@@ -120,6 +135,9 @@ MESES = 12
 # doi. O aperto vem de gastar mal, nao de uma taxa calibrada para machucar.
 CUSTO_DE_OPERACAO = 0.46
 
+# Quantos meses de receita o clube tem guardados ao comecar.
+CAIXA_INICIAL_SOBRE_RECEITA = 0.35
+
 
 @dataclass(slots=True)
 class Balanco:
@@ -146,6 +164,14 @@ def valor_do_elenco(world: World, clube_id: int) -> int:
                for i in world.clubs[clube_id].player_ids if i in world.players)
 
 
+def caixa_inicial(world: World, clube_id: int, tier: int) -> int:
+    """O caixa com que o clube comeca a carreira: uma fracao da receita do ano.
+
+    Era reputacao^2 * 12 mil -- o Juventude comecava com 19M EUR em caixa e 3,7M de
+    receita, cinco anos de faturamento guardados. Clube de futebol vive perto do zero."""
+    return int(receita_anual(world, clube_id, tier) * CAIXA_INICIAL_SOBRE_RECEITA)
+
+
 def receita_anual(world: World, clube_id: int, tier: int,
                   valor: int | None = None) -> int:
     """Bilheteria, socios, patrocinio e cota de TV, tudo num numero so.
@@ -161,9 +187,11 @@ def receita_anual(world: World, clube_id: int, tier: int,
     return int(RECEITA_POR_ELENCO * escala * FATOR_POR_TIER.get(tier, 0.35) * reputacao)
 
 
-def premiacao(posicao: int, clubes: int, tier: int) -> int:
-    """Premio por onde o clube terminou, decrescendo do campeao ao lanterna."""
-    topo = PREMIO_DO_CAMPEAO.get(tier, 300_000)
+def premiacao(posicao: int, clubes: int, receita_media: int) -> int:
+    """Premio por onde o clube terminou, decrescendo do campeao ao lanterna.
+
+    `receita_media` e a da divisao: e ela que diz quanto um titulo vale naquela liga."""
+    topo = int(receita_media * PREMIO_SOBRE_RECEITA)
     if clubes <= 1:
         return topo
     fracao = 1.0 - (posicao - 1) / (clubes - 1) * (1.0 - PREMIO_DO_LANTERNA)
@@ -217,11 +245,15 @@ def fechar_o_ano(world: World, tabelas: dict[str, list[Row]],
     balancos: dict[int, Balanco] = {}
     for liga, tabela in tabelas.items():
         tier = int(cfgs[liga].get("tier", 1))
+        receitas = {linha.club_id: receita_anual(world, linha.club_id, tier,
+                                                 (valores or {}).get(linha.club_id))
+                    for linha in tabela}
+        media = sum(receitas.values()) // max(len(receitas), 1)
         for posicao, linha in enumerate(tabela, 1):
             cid = linha.club_id
-            receita = receita_anual(world, cid, tier, (valores or {}).get(cid))
+            receita = receitas[cid]
             b = Balanco(clube=cid, receita=receita,
-                        premiacao=(premiacao(posicao, len(tabela), tier)
+                        premiacao=(premiacao(posicao, len(tabela), media)
                                    + (extras or {}).get(cid, 0)),
                         folha=folha_anual(world, cid),
                         operacao=0)
