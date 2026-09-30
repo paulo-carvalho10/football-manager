@@ -190,6 +190,14 @@ SAIDA_PADRAO = {
     "por_2": ("portugal_liga_2", "portugal_b_real"),
     "arg_1": ("argentina_primera", "argentina_real"),
     "arg_2": ("argentina_nacional", "argentina_b_real"),
+    "col_1": ("colombia_primera", "colombia_real"),
+    "chi_1": ("chile_primera", "chile_real"),
+    "uru_1": ("uruguai_primera", "uruguai_real"),
+    "ecu_1": ("equador_primera", "equador_real"),
+    "par_1": ("paraguai_primera", "paraguai_real"),
+    "per_1": ("peru_primera", "peru_real"),
+    "bol_1": ("bolivia_primera", "bolivia_real"),
+    "ven_1": ("venezuela_primera", "venezuela_real"),
 }
 
 

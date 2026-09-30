@@ -14,6 +14,8 @@ from fm.ratings import converter_elenco
 NOME_PACK = {
     # "Vitória" sozinho colidia com o Vitória baiano no nome de arquivo da camisa
     "2420": "Vitória SC",
+    # as duas "CD Universidad Catolica" (Chile e Equador) tem o mesmo nome na fonte
+    "3277": "Universidad Católica", "17584": "Católica de Quito",
     "1023": "Palmeiras", "614": "Flamengo", "609": "Cruzeiro", "199": "Corinthians",
     "978": "Vasco da Gama", "537": "Botafogo", "2462": "Fluminense", "10010": "Bahia",
     "221": "Santos", "8793": "Red Bull Bragantino", "330": "Atletico Mineiro",
@@ -160,7 +162,18 @@ BETAS_PADRAO = {"bra_a": 7.0, "bra_b": 4.0, "esp_1": 7.0, "esp_2": 5.0,
                 # 2. Bundesliga pediam menos.
                 "eng_1": 8.0, "eng_2": 4.0, "ita_1": 8.0, "ita_2": 4.0,
                 "ger_1": 7.0, "ger_2": 3.2, "fra_1": 7.0, "fra_2": 4.0,
-                "por_1": 8.0, "por_2": 4.0, "arg_1": 3.5, "arg_2": 3.0}
+                "por_1": 8.0, "por_2": 4.0, "arg_1": 3.5, "arg_2": 3.0,
+                # America do Sul: o spread da Argentina, que e o vizinho medido. Sem
+                # portao de calibracao proprio -- estas ligas nao sao jogaveis, so fornecem
+                # os clubes da Libertadores e da Sul-Americana.
+                "col_1": 3.5, "chi_1": 3.5, "uru_1": 3.5, "ecu_1": 3.5, "par_1": 3.5,
+                "per_1": 3.5, "bol_1": 3.5, "ven_1": 3.5}
+
+# A REGUA da forca mundial: as ligas que ja existiam quando a escala foi fixada. As
+# importadas depois sao medidas contra ela sem movê-la (fm.ratings.forca_mundial) -- senao
+# cada liga nova mudaria a forca de todos os clubes antigos.
+LIGAS_DA_REGUA = {"bra_a", "bra_b", "esp_1", "esp_2", "eng_1", "eng_2", "ita_1", "ita_2",
+                  "ger_1", "ger_2", "fra_1", "fra_2", "por_1", "por_2", "arg_1", "arg_2"}
 
 # Quem a importacao deixou de fora, por competicao. A CLI imprime -- descarte silencioso
 # de pessoa real e pior que erro.
@@ -179,7 +192,7 @@ def montar_mundo(betas: dict[str, float] | None = None) -> dict[str, list[ClubeM
     baixado = {comp: baixar_tudo(comp) for comp in betas}
     valores = {comp: {c.verein_id: c.valor_elenco for c in clubes}
                for comp, (clubes, _, _) in baixado.items()}
-    forcas = forca_mundial(valores, betas)
+    forcas = forca_mundial(valores, betas, referencia=LIGAS_DA_REGUA & set(betas) or None)
 
     mundo: dict[str, list[ClubeMontado]] = {}
     for comp, (clubes, elencos, stats) in baixado.items():

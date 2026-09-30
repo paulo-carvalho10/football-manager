@@ -247,6 +247,7 @@ def forca_mundial(
     valores_por_liga: dict[str, dict[str, int]],
     betas: dict[str, float],
     *, beta_global: float = BETA_GLOBAL, topo: float = TOPO_DO_MUNDO,
+    referencia: set[str] | None = None,
 ) -> dict[str, dict[str, float]]:
     """Valor de elenco -> forca, para VARIAS ligas de uma vez.
 
@@ -262,10 +263,16 @@ def forca_mundial(
     No fim tudo e deslocado para que o melhor clube do mundo caia em `topo`. A escala de
     overall e limitada (40 a 95), entao ela precisa de uma ancora no topo -- senao o Real
     Madrid, com elenco de 1,46 bilhao, estoura o teto e leva os jogadores junto.
+
+    `referencia`: as ligas que definem a REGUA (media, desvio e a ancora do topo). As
+    outras sao medidas contra ela sem move-la. Sem isto, importar oito ligas
+    sul-americanas baratas puxava a media global para baixo e mudava a forca de todos os
+    clubes ja existentes -- o mundo inteiro, e a calibracao junto, por causa da Bolivia.
     """
     ln = {liga: np.log(np.array(list(v.values()), dtype=float))
           for liga, v in valores_por_liga.items()}
-    todos = np.concatenate(list(ln.values()))
+    regua = [liga for liga in ln if referencia is None or liga in referencia]
+    todos = np.concatenate([ln[liga] for liga in regua])
     mu, sd = todos.mean(), todos.std() or 1.0
 
     def calcular(desloc: float) -> dict[str, np.ndarray]:
@@ -277,7 +284,8 @@ def forca_mundial(
 
     desloc = 0.0
     for _ in range(60):     # converge o deslocamento que poe o topo do mundo no alvo
-        desloc += (topo - max(x.max() for x in calcular(desloc).values())) * 0.6
+        desloc += (topo - max(x.max() for liga, x in calcular(desloc).items()
+                              if liga in regua)) * 0.6
     resultado = calcular(desloc)
     return {liga: dict(zip(valores_por_liga[liga], resultado[liga], strict=True))
             for liga in valores_por_liga}

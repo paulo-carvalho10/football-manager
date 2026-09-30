@@ -1,0 +1,36 @@
+# LigaPro (ECU), clubes e jogadores reais. Criada em 30/09/2026 para a Libertadores.
+# NAO E JOGAVEL: fornece os clubes da Libertadores e da Sul-Americana nas carreiras de
+# outros paises. A temporada dela e simulada inteira na virada do ano (fm.carreira), em
+# turno e returno -- o formato real (Apertura e Clausura) nao existe no motor. Quito e a altitude pesam no mando.
+id     = "ecu_1_real"
+nome   = "LigaPro"
+pais   = "ECU"
+tier   = 1
+codigo = "EC1N"   # competicao na fonte
+clubes = 16
+
+pack        = "equador_primera"
+pack_offset = 0
+
+[estilo]
+gols_base = 1.10
+mando     = 0.4
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 2 } ]
+acesso = { sobem = 0, descem = 0 }
+
+# Faixas largas, escritas de memoria (os pontos, pelo numero de jogos da liga): a liga nao e jogavel e o portao aqui so avisa se o
+# importador produziu algo absurdo. Re-derivar antes de torna-la jogavel.
+[alvos]
+zero_a_zero_pct           = [7.0, 16.0]
+gols_por_jogo             = [1.9, 2.9]
+empate_pct                = [22.0, 36.0]
+vitoria_casa_pct          = [38.0, 54.0]
+vitoria_fora_pct          = [17.0, 32.0]
+margem_3_ou_mais_pct      = [5.0, 15.0]
+margem_4_ou_mais_pct      = [1.0, 6.0]
+cinco_ou_mais_gols_pct    = [3.0, 12.0]
+pontos_do_campeao         = [48.0, 84.0]   # por jogo: 1,6 a 2,8
+pontos_do_lanterna        = [6.0, 36.0]   # por jogo: 0,2 a 1,2
+melhor_elenco_campeao_pct = [10.0, 60.0]

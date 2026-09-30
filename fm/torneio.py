@@ -40,6 +40,8 @@ class Torneio:
     style: Style
     mentality: Mentality
     qualificados_de: list[str] = field(default_factory=list)
+    # datas a mais na agenda da carreira, para fases que esperam outro torneio (aguarda)
+    folga_de_datas: int = 0
 
 
 def carregar(nome: str) -> Torneio:
@@ -61,7 +63,8 @@ def carregar(nome: str) -> Torneio:
         mentality=Mentality(goals_mult=float(m.get("gols_mult", 1.0)),
                             compression=float(m.get("compressao", 0.0)),
                             home_mult=float(m.get("mando_mult", 1.0))),
-        qualificados_de=list(cfg.get("qualificados_de", [])))
+        qualificados_de=list(cfg.get("qualificados_de", [])),
+        folga_de_datas=int(cfg.get("folga_de_datas", 0)))
 
 
 def classificacao(world: World, liga, style: Style,
@@ -331,9 +334,15 @@ def resolver_classificacao(
     ja: set[int] = ocupados if ocupados is not None else set()
     saida: dict[str, list[int]] = {}
     for regra in torneio.classificacao_regras:
-        fonte = regra["fonte"]
-        ordem = (copas.get(fonte) or tabelas.get(fonte)
-                 or tabelas.get(_liga_por_codigo(world, fonte)))
+        # `reservas` = fontes alternativas, na ordem: vale a primeira que tiver clubes. E o
+        # caso do campeao da Libertadores no primeiro ano da carreira: ainda nao existe, e a
+        # vaga vai para o clube mais forte do continente em vez de sumir
+        ordem = []
+        for fonte in [regra["fonte"], *regra.get("reservas", [])]:
+            ordem = (copas.get(fonte) or tabelas.get(fonte)
+                     or tabelas.get(_liga_por_codigo(world, fonte)))
+            if ordem:
+                break
         if not ordem:
             continue
         destino = regra.get("entra_em", "grupos")

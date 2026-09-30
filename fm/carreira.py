@@ -36,6 +36,18 @@ SAVES_DIR = Path(__file__).resolve().parent.parent / "saves"
 # Por PAIS, porque copa nao e universal: um mundo so com Espanha montava a Copa do Brasil
 # vazia e reservava 33 datas que nunca aconteciam. A carreira pega as copas dos paises das
 # divisoes que ela roda.
+# As primeiras divisoes de cada confederacao. Numa carreira que disputa as copas dela, as
+# que a carreira NAO joga entram no mundo mesmo assim -- clubes e elencos reais, sem
+# calendario: a temporada delas e simulada na virada do ano, e e a tabela simulada que
+# classifica. Sem isto, a Libertadores de uma carreira no Brasil tinha so brasileiros e
+# quatro convidados, e virava grupos de dois.
+LIGAS_DA_CONFEDERACAO = {
+    "CONMEBOL": ("brasil_real", "argentina_real", "colombia_real", "chile_real",
+                 "uruguai_real", "equador_real", "paraguai_real", "peru_real",
+                 "bolivia_real", "venezuela_real"),
+}
+COPAS_DA_CONFEDERACAO = {"libertadores": "CONMEBOL", "sudamericana": "CONMEBOL"}
+
 COPAS_POR_PAIS = {
     "BRA": ("copa_do_brasil", "libertadores", "sudamericana"),
     "ESP": ("champions", "europa_league"),
@@ -140,6 +152,8 @@ class Carreira:
     premios: dict = field(default_factory=dict)          # {temporada: premios do ano}
     # o clube em que a carreira COMECOU: o replay parte dele, e as trocas sao acoes
     clube_inicial: int | None = None
+    # ligas no mundo sem calendario (LIGAS_DA_CONFEDERACAO): derivadas, nao vao ao save
+    ligas_de_fora: list[str] = field(default_factory=list)
 
     @classmethod
     def nova(cls, ligas: list[str] | str, clube: str, seed: int = 2027) -> Carreira:
@@ -163,6 +177,7 @@ class Carreira:
         self.streams = streams
         if self.clube_inicial is None:
             self.clube_inicial = self.clube_id
+        self._carregar_ligas_de_fora()
         self._novo_calendario()
         self.tecnicos = gerar(world, {self._id(n) for n in self.ligas},
                               streams.get("tecnicos"), self.temporada, self.clube_id,
@@ -226,7 +241,7 @@ class Carreira:
         rodadas = self.total_de_rodadas
         # uma folga de duas datas por copa: sobrar data e de graca (ela e pulada), faltar
         # deixaria a competicao inacabada no fim do ano
-        etapas = {nome: etapas_previstas(a.torneio) + 2
+        etapas = {nome: etapas_previstas(a.torneio) + 2 + a.torneio.folga_de_datas
                   for nome, a in self.copas.items()}
 
         # Intercala os torneios em vez de enfileirar um depois do outro: assim a Copa do
@@ -476,7 +491,7 @@ class Carreira:
     def _tabelas_para_classificacao(self, tabelas: dict, titulos: dict[str, list[int]]
                                     ) -> dict[str, list[int]]:
         """As fontes de vaga do ano que vem: tabelas das ligas e vencedores de copa."""
-        fontes: dict[str, list[int]] = dict(titulos)
+        fontes: dict[str, list[int]] = {**self._ranking_da_confederacao(), **titulos}
         for nome, linhas in tabelas.items():
             cfg = load_league(nome)
             ordem = [linha.club_id for linha in linhas]
@@ -493,6 +508,37 @@ class Carreira:
                 fora[r.home] = fora.get(r.home, 0) + 1
                 fora[r.away] = fora.get(r.away, 0) + 1
         return fora
+
+    def _repassar_exportados(self, andamento) -> None:
+        """Quem um torneio mandou para outro (o eliminado da terceira fase da Libertadores
+        vai para a Sul-Americana, o 3o do grupo para o playoff dela) entra na lista de
+        classificados do destino. As regras dizem de onde: `fonte = "libertadores:terceiros"`.
+        Antes isto nunca acontecia na carreira, e essas vagas ficavam vazias."""
+        for regra in andamento.torneio.classificacao_regras:
+            fonte = regra.get("fonte", "")
+            if ":" not in fonte:
+                continue
+            chegaram = self.exportados.get(fonte.split(":", 1)[1], [])
+            lista = andamento.classificados.setdefault(regra.get("entra_em", "grupos"), [])
+            for cid in chegaram[:int(regra.get("vagas", len(chegaram)))]:
+                if cid not in lista and cid not in andamento.vivos:
+                    lista.append(cid)
+                    # o 2o do grupo da Sul-Americana ja "entrou" nela -- e volta pelo
+                    # playoff. A trava de quem ja entrou (fm.copa) e para outro caso
+                    andamento.ja_entraram.discard(cid)
+
+    def _esperando_outro_torneio(self, andamento) -> bool:
+        """A proxima fase depende de quem outro torneio ainda nao mandou (`aguarda`)?
+        So espera se o torneio que manda existe e ainda nao acabou -- nunca para sempre."""
+        if andamento.pendentes or andamento.fase >= len(andamento.torneio.fases):
+            return False
+        chave = andamento.torneio.fases[andamento.fase].get("aguarda")
+        if not chave or chave in self.exportados:
+            return False
+        return any(not a.acabou and a is not andamento
+                   and any(r.get("para") == chave for f in a.torneio.fases
+                           for r in f.get("exporta", []))
+                   for a in self.copas.values())
 
     def _premiar_copas(self) -> dict[int, int]:
         """Premiacao de copa por CAMPANHA: cada clube leva pelo quanto avancou.
@@ -512,10 +558,54 @@ class Carreira:
                     fora[cid] = fora.get(cid, 0) + valor
         return fora
 
+    def _carregar_ligas_de_fora(self) -> None:
+        """Os clubes das ligas da confederacao que a carreira nao joga. Depois das ligas da
+        carreira, com ids novos: os clubes e jogadores de sempre nao mudam de id."""
+        from fm.generate import generate_league
+        confederacoes = {COPAS_DA_CONFEDERACAO[c] for c in self.copas_do_pais()
+                         if c in COPAS_DA_CONFEDERACAO}
+        self.ligas_de_fora = [n for conf in sorted(confederacoes)
+                              for n in LIGAS_DA_CONFEDERACAO[conf] if n not in self.ligas]
+        for nome in self.ligas_de_fora:
+            cfg = load_league(nome)
+            if cfg["id"] in self.world.leagues:
+                continue
+            proximo = [max(max(self.world.clubs, default=0),
+                           max(self.world.players, default=0)) + 1]
+            generate_league(self.world, cfg, self.streams, next_id=proximo)
+
+    def _simular_ligas_de_fora(self) -> dict[str, list]:
+        """A temporada das ligas de fora, inteira, no motor rapido: e a tabela delas que
+        classifica para as copas do ano que vem. Fluxo proprio por liga e ano."""
+        from fm.table import build_table
+        fora = {}
+        for nome in self.ligas_de_fora:
+            cfg = load_league(nome)
+            ids = list(self.world.leagues[cfg["id"]].club_ids)
+            voltas = int((cfg.get("formato", {}).get("fases") or [{}])[0].get("voltas", 2))
+            ratings = {k: float(effective_rating(self.world.team_rating(k))) for k in ids}
+            rng = self.streams.get("liga_de_fora", self.temporada, cfg["id"])
+            resultados = play_fixtures(round_robin(ids, legs=voltas), ratings, rng,
+                                       style_of(cfg))
+            fora[nome] = build_table(ids, resultados)
+        return fora
+
+    def _ranking_da_confederacao(self) -> dict[str, list[int]]:
+        """"CONMEBOL": os clubes de primeira divisao da confederacao, do mais forte ao mais
+        fraco. E a reserva das vagas de campeao da Libertadores e da Sul-Americana no
+        primeiro ano da carreira, quando ainda nao ha campeao."""
+        fora = {}
+        for conf, ligas in LIGAS_DA_CONFEDERACAO.items():
+            ids = [k for n in ligas if n in self.ligas or n in self.ligas_de_fora
+                   for k in self.world.leagues[load_league(n)["id"]].club_ids]
+            if ids:
+                fora[conf] = sorted(ids, key=lambda k: (-self.world.team_rating(k), k))
+        return fora
+
     def _tabelas_por_forca(self) -> dict[str, list[int]]:
         """Sem temporada anterior, a ordem por forca do elenco faz as vezes de tabela."""
-        fora: dict[str, list[int]] = {}
-        for nome in self.ligas:
+        fora: dict[str, list[int]] = self._ranking_da_confederacao()
+        for nome in [*self.ligas, *self.ligas_de_fora]:
             cfg = load_league(nome)
             ordem = sorted(self.world.leagues[cfg["id"]].club_ids,
                            key=lambda cid: -self.world.team_rating(cid))
@@ -942,6 +1032,9 @@ class Carreira:
             return None
         rng = self.streams.get("copa", self.temporada, self.data, nome)
         tabelas = self.tabelas_do_ano_anterior or self._tabelas_por_forca()
+        self._repassar_exportados(andamento)
+        if self._esperando_outro_torneio(andamento):
+            return None                 # a data desta copa passa sem jogo
         etapa = proxima_etapa(self.world, andamento, rng, tabelas)
         if etapa is None or not etapa.fixtures:
             return None
@@ -1338,6 +1431,9 @@ class Carreira:
 
         cfgs = {n: load_league(n) for n in self.ligas}
         tabelas = {n: self.tabela(n) for n in self.ligas}
+        # a temporada das ligas de fora, com os elencos DESTE ano (antes de envelhecer e
+        # do mercado): e ela que manda os clubes delas para as copas do ano que vem
+        tabelas_de_fora = self._simular_ligas_de_fora()
         campeoes = {n: self.world.clubs[t[0].club_id].name for n, t in tabelas.items()}
         minha_liga = self.liga
         minha_posicao = self.posicao()
@@ -1471,7 +1567,8 @@ class Carreira:
         self._mercado_de_tecnicos(dados)
         resumo["convites"] = list(self.convites)
 
-        self.tabelas_do_ano_anterior = self._tabelas_para_classificacao(tabelas, titulos)
+        self.tabelas_do_ano_anterior = self._tabelas_para_classificacao(
+            {**tabelas, **tabelas_de_fora}, titulos)
         self.exportados = {}
         self._novo_calendario()
         return resumo

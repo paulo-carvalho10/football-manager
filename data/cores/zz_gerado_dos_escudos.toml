@@ -2,9 +2,1029 @@
 # cada clube (as duas mais presentes). Para corrigir um clube, escreva a cor dele
 # num arquivo a mao em data/cores/ -- o gerado nao sobrescreve cor ja conhecida.
 
-packs = ["alemanha_2_bundesliga", "alemanha_bundesliga", "argentina_nacional", "argentina_primera", "espanha_primera", "espanha_segunda", "franca_ligue_1", "franca_ligue_2", "inglaterra_championship", "inglaterra_premier", "italia_serie_a", "italia_serie_b", "portugal_liga", "portugal_liga_2"]
+packs = ["alemanha_2_bundesliga", "alemanha_bundesliga", "argentina_nacional", "argentina_primera", "bolivia_primera", "chile_primera", "colombia_primera", "equador_primera", "espanha_primera", "espanha_segunda", "franca_ligue_1", "franca_ligue_2", "inglaterra_championship", "inglaterra_premier", "italia_serie_a", "italia_serie_b", "paraguai_primera", "peru_primera", "portugal_liga", "portugal_liga_2", "uruguai_primera", "venezuela_primera"]
 fonte = "cores dominantes do escudo (Transfermarkt), estimativa"
 verificado = false
+
+[[clubes]]
+nome = "VfL Wolfsburg"
+primaria = "#09633D"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "St. Pauli"
+primaria = "#D4121A"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "1.FC Nuremberg"
+primaria = "#AC1732"
+secundaria = "#FEFDFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "1.FC Heidenheim 1846"
+primaria = "#E20019"
+secundaria = "#254A7F"
+padrao = "liso"
+
+[[clubes]]
+nome = "Hannover 96"
+primaria = "#318E45"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "1.FC Kaiserslautern"
+primaria = "#E41E24"
+secundaria = "#FDFDFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Karlsruher"
+primaria = "#003697"
+secundaria = "#FDFDFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Holstein Kiel"
+primaria = "#02599D"
+secundaria = "#85A5C6"
+padrao = "liso"
+
+[[clubes]]
+nome = "SV Darmstadt 98"
+primaria = "#01489A"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Magdeburgo"
+primaria = "#0168B2"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Hertha Berlim"
+primaria = "#004BA3"
+secundaria = "#010101"
+padrao = "liso"
+
+[[clubes]]
+nome = "VfL Bochum"
+primaria = "#015CA4"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "SG Dynamo Dresden"
+primaria = "#92000C"
+secundaria = "#F1B044"
+padrao = "liso"
+
+[[clubes]]
+nome = "SpVgg Greuther Fürth"
+primaria = "#009D3B"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Arminia Bielefeld"
+primaria = "#0D3758"
+secundaria = "#5288AF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Eintracht Braunschweig TSV"
+primaria = "#ECBE3F"
+secundaria = "#3B75B0"
+padrao = "liso"
+
+[[clubes]]
+nome = "VfL Osnabrück"
+primaria = "#572A86"
+secundaria = "#FEFDFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Energie Cottbus"
+primaria = "#FF0000"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Bayern Munique"
+primaria = "#DC052D"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Borussia Dortmund"
+primaria = "#FCE000"
+secundaria = "#1E1A21"
+padrao = "liso"
+
+[[clubes]]
+nome = "RB Leipzig"
+primaria = "#DF0841"
+secundaria = "#35345A"
+padrao = "liso"
+
+[[clubes]]
+nome = "Bayer 04 Leverkusen"
+primaria = "#E32221"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "VfB Stuttgart"
+primaria = "#C00225"
+secundaria = "#FEFDFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "SG Eintracht Frankfurt"
+primaria = "#E1000F"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "TSG 1899 Hoffenheim"
+primaria = "#165AA4"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Freiburg"
+primaria = "#000000"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Augsburg"
+primaria = "#CA1417"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "1.FSV Mainz 05"
+primaria = "#C3141E"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "1.FC Colônia"
+primaria = "#F1222A"
+secundaria = "#272224"
+padrao = "liso"
+
+[[clubes]]
+nome = "Hamburger SV"
+primaria = "#005FAF"
+secundaria = "#A4C3DE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Borussia Mönchengladbach"
+primaria = "#000000"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Werder Bremen"
+primaria = "#00593C"
+secundaria = "#FDFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "1.FC Union Berlim"
+primaria = "#D3031C"
+secundaria = "#F9E811"
+padrao = "liso"
+
+[[clubes]]
+nome = "Schalke 04"
+primaria = "#014B9C"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "SV 07 Elversberg"
+primaria = "#000000"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Paderborn 07"
+primaria = "#065CA5"
+secundaria = "#020202"
+padrao = "liso"
+
+[[clubes]]
+nome = "Godoy Cruz Antonio Tomba"
+primaria = "#1963A8"
+secundaria = "#C6C6C6"
+padrao = "liso"
+
+[[clubes]]
+nome = "Colón"
+primaria = "#FF0000"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Chacarita Juniors"
+primaria = "#E62D2B"
+secundaria = "#010101"
+padrao = "liso"
+
+[[clubes]]
+nome = "Nueva Chicago"
+primaria = "#22583D"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Deportivo Madryn"
+primaria = "#FEDB00"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Atlanta"
+primaria = "#00176F"
+secundaria = "#EBAC00"
+padrao = "liso"
+
+[[clubes]]
+nome = "San Martín (San Juan)"
+primaria = "#285B28"
+secundaria = "#6B9D6B"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Ferro Carril Oeste"
+primaria = "#166F43"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Atletico San Martin (Tucuman)"
+primaria = "#D81322"
+secundaria = "#FFFCF9"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Deportivo Morón"
+primaria = "#EF484D"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Patronato"
+primaria = "#BD0000"
+secundaria = "#0B0B0B"
+padrao = "liso"
+
+[[clubes]]
+nome = "Temperley"
+primaria = "#22BBEF"
+secundaria = "#FDFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Tristán Suárez"
+primaria = "#1B1A32"
+secundaria = "#FDFDFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Agropecuario"
+primaria = "#009C4D"
+secundaria = "#EF192B"
+padrao = "liso"
+
+[[clubes]]
+nome = "Quilmes"
+primaria = "#35428A"
+secundaria = "#FDFDFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Los Andes"
+primaria = "#EE2226"
+secundaria = "#F79EA0"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Atlético Gimnasia y Esgrima (Jujuy)"
+primaria = "#9BC0DD"
+secundaria = "#23262E"
+padrao = "liso"
+
+[[clubes]]
+nome = "Estudiantes"
+primaria = "#201A17"
+secundaria = "#FBFBFB"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Deportivo Maipú"
+primaria = "#E3001A"
+secundaria = "#1C2922"
+padrao = "liso"
+
+[[clubes]]
+nome = "Racing (Córdoba)"
+primaria = "#029CDF"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Almirante Brown"
+primaria = "#FDE810"
+secundaria = "#2E2B25"
+padrao = "liso"
+
+[[clubes]]
+nome = "Defensores de Belgrano"
+primaria = "#FC1B1E"
+secundaria = "#020202"
+padrao = "liso"
+
+[[clubes]]
+nome = "All Boys"
+primaria = "#1C1815"
+secundaria = "#FDFDFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "AMSD Atlético de Rafaela"
+primaria = "#F2AF46"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Almagro"
+primaria = "#899DC3"
+secundaria = "#191517"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club de Gimnasia y Tiro"
+primaria = "#0BA7D6"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "San Miguel"
+primaria = "#139338"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Central Norte"
+primaria = "#231F20"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Güemes"
+primaria = "#114A85"
+secundaria = "#D91B20"
+padrao = "liso"
+
+[[clubes]]
+nome = "Mitre"
+primaria = "#FECB00"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Colegiales"
+primaria = "#FF0C0D"
+secundaria = "#232D85"
+padrao = "liso"
+
+[[clubes]]
+nome = "Acassuso"
+primaria = "#192854"
+secundaria = "#FDFEFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Chaco For Ever"
+primaria = "#000000"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Ferrocarril Midland"
+primaria = "#082877"
+secundaria = "#020307"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Ciudad de Bolivar"
+primaria = "#000BFE"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "San Telmo"
+primaria = "#32CBFE"
+secundaria = "#000066"
+padrao = "liso"
+
+[[clubes]]
+nome = "River Plate"
+primaria = "#E30613"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Boca Juniors"
+primaria = "#01418A"
+secundaria = "#EFBA05"
+padrao = "liso"
+
+[[clubes]]
+nome = "Rosario Central"
+primaria = "#F4DA45"
+secundaria = "#0D4365"
+padrao = "liso"
+
+[[clubes]]
+nome = "Racing Club"
+primaria = "#029DDD"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Estudiantes de La Plata"
+primaria = "#E51814"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Independiente Rivadavia"
+primaria = "#101246"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "San Lorenzo de Almagro"
+primaria = "#00264A"
+secundaria = "#F81829"
+padrao = "liso"
+
+[[clubes]]
+nome = "Vélez Sarsfield"
+primaria = "#0462A8"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Atlético Tigre"
+primaria = "#004B8F"
+secundaria = "#D4042E"
+padrao = "liso"
+
+[[clubes]]
+nome = "Talleres"
+primaria = "#042859"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Lanús"
+primaria = "#AB2A3E"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "AA Argentinos Juniors"
+primaria = "#00569B"
+secundaria = "#842B48"
+padrao = "liso"
+
+[[clubes]]
+nome = "Newell's Old Boys"
+primaria = "#C00811"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Atlético Platense"
+primaria = "#4C2203"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Independiente"
+primaria = "#E2001A"
+secundaria = "#FDFDFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Defensa y Justicia"
+primaria = "#FDE102"
+secundaria = "#01722E"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club de Gimnasia y Esgrima La Plata"
+primaria = "#1C5A71"
+secundaria = "#A2B193"
+padrao = "liso"
+
+[[clubes]]
+nome = "Belgrano"
+primaria = "#029ADA"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Huracán"
+primaria = "#F10A00"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Gimnasia y Esgrima (Mendoza)"
+primaria = "#FFFFFF"
+secundaria = "#020303"
+padrao = "liso"
+
+[[clubes]]
+nome = "Barracas Central"
+primaria = "#EC171F"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Instituto ACC"
+primaria = "#C23531"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Unión (Santa Fé)"
+primaria = "#EC171F"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Atlético Tucumán"
+primaria = "#6BA7D9"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Sarmiento (Junín)"
+primaria = "#045D28"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Banfield"
+primaria = "#017828"
+secundaria = "#FEFEFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Deportivo Riestra"
+primaria = "#FFFFFF"
+secundaria = "#1C1A1C"
+padrao = "liso"
+
+[[clubes]]
+nome = "Central Córdoba (SdE)"
+primaria = "#000000"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Aldosivi"
+primaria = "#009C4E"
+secundaria = "#232021"
+padrao = "liso"
+
+[[clubes]]
+nome = "AA Estudiantes (Río Cuarto)"
+primaria = "#008CD2"
+secundaria = "#1E2123"
+padrao = "liso"
+
+[[clubes]]
+nome = "Bolívar"
+primaria = "#02487E"
+secundaria = "#41A5D9"
+padrao = "liso"
+
+[[clubes]]
+nome = "Blooming"
+primaria = "#D6B921"
+secundaria = "#3C93CC"
+padrao = "liso"
+
+[[clubes]]
+nome = "Nacional Potosí"
+primaria = "#730408"
+secundaria = "#F7FCF7"
+padrao = "liso"
+
+[[clubes]]
+nome = "The Strongest"
+primaria = "#FCCE06"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Oriente Petrolero"
+primaria = "#C5C396"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Guabirá"
+primaria = "#E20001"
+secundaria = "#912F62"
+padrao = "liso"
+
+[[clubes]]
+nome = "Always Ready"
+primaria = "#D92127"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "San Antonio Bulo Bulo"
+primaria = "#02075C"
+secundaria = "#21B709"
+padrao = "liso"
+
+[[clubes]]
+nome = "Universitario de Vinto"
+primaria = "#D7031E"
+secundaria = "#4A020A"
+padrao = "liso"
+
+[[clubes]]
+nome = "ABB"
+primaria = "#CCBC50"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "San José"
+primaria = "#1A3C58"
+secundaria = "#FDFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Aurora"
+primaria = "#F8E8AE"
+secundaria = "#4EBDE5"
+padrao = "liso"
+
+[[clubes]]
+nome = "Real Potosí"
+primaria = "#FBB738"
+secundaria = "#FAFDFA"
+padrao = "liso"
+
+[[clubes]]
+nome = "Real Tomayapo"
+primaria = "#077E26"
+secundaria = "#FEFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Independiente Petrolero"
+primaria = "#FE000F"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Real Oruro"
+primaria = "#E7010A"
+secundaria = "#6A0308"
+padrao = "liso"
+
+[[clubes]]
+nome = "Universidad Católica"
+primaria = "#50679C"
+secundaria = "#FBFCFC"
+padrao = "liso"
+
+[[clubes]]
+nome = "Colo-Colo"
+primaria = "#005E9E"
+secundaria = "#BFA19F"
+padrao = "liso"
+
+[[clubes]]
+nome = "Universidad de Chile"
+primaria = "#1A3892"
+secundaria = "#E7242B"
+padrao = "liso"
+
+[[clubes]]
+nome = "O'Higgins"
+primaria = "#F1DE36"
+secundaria = "#040507"
+padrao = "liso"
+
+[[clubes]]
+nome = "Coquimbo Unido"
+primaria = "#FBED57"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Audax Italiano"
+primaria = "#0053CD"
+secundaria = "#F5CEA1"
+padrao = "liso"
+
+[[clubes]]
+nome = "Palestino"
+primaria = "#008D5C"
+secundaria = "#160C0B"
+padrao = "liso"
+
+[[clubes]]
+nome = "Everton de Viña"
+primaria = "#0D386C"
+secundaria = "#EEE052"
+padrao = "liso"
+
+[[clubes]]
+nome = "Deportes Limache"
+primaria = "#970000"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Deportes La Serena"
+primaria = "#7D291B"
+secundaria = "#FEFEFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Universidad de Concepción"
+primaria = "#FFEF00"
+secundaria = "#0A4BA2"
+padrao = "liso"
+
+[[clubes]]
+nome = "Ñublense"
+primaria = "#D21F25"
+secundaria = "#312B2C"
+padrao = "liso"
+
+[[clubes]]
+nome = "Unión La Calera"
+primaria = "#002650"
+secundaria = "#FCFDFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Huachipato"
+primaria = "#007AC1"
+secundaria = "#372828"
+padrao = "liso"
+
+[[clubes]]
+nome = "Cobresal"
+primaria = "#F5821F"
+secundaria = "#4A3F2C"
+padrao = "liso"
+
+[[clubes]]
+nome = "Deportes Concepción"
+primaria = "#FDF9C1"
+secundaria = "#572681"
+padrao = "liso"
+
+[[clubes]]
+nome = "Atlético Nacional"
+primaria = "#0E9138"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "América de Cali"
+primaria = "#B21212"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Millonarios"
+primaria = "#1C3A9F"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Junior"
+primaria = "#0330A2"
+secundaria = "#FB1B16"
+padrao = "liso"
+
+[[clubes]]
+nome = "Independiente Medellín"
+primaria = "#E12734"
+secundaria = "#DACBB7"
+padrao = "liso"
+
+[[clubes]]
+nome = "Deportivo Cali"
+primaria = "#068948"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Deportes Tolima"
+primaria = "#79081B"
+secundaria = "#D8A442"
+padrao = "liso"
+
+[[clubes]]
+nome = "Independiente Santa Fe"
+primaria = "#EC1921"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Atlético Bucaramanga"
+primaria = "#FEF200"
+secundaria = "#02602A"
+padrao = "liso"
+
+[[clubes]]
+nome = "Once Caldas"
+primaria = "#A00D28"
+secundaria = "#3F4A6F"
+padrao = "liso"
+
+[[clubes]]
+nome = "Internacional de Bogotá"
+primaria = "#D3B384"
+secundaria = "#070303"
+padrao = "liso"
+
+[[clubes]]
+nome = "Águilas Doradas"
+primaria = "#DBBB5A"
+secundaria = "#07082F"
+padrao = "liso"
+
+[[clubes]]
+nome = "Cúcuta Deportivo"
+primaria = "#FD0003"
+secundaria = "#030001"
+padrao = "liso"
+
+[[clubes]]
+nome = "Fortaleza CEIF"
+primaria = "#0A183D"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Deportivo Pasto"
+primaria = "#6B1A49"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Llaneros"
+primaria = "#F4E07E"
+secundaria = "#0A0C14"
+padrao = "liso"
+
+[[clubes]]
+nome = "Alianza Valledupar"
+primaria = "#762B53"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Deportivo Pereira"
+primaria = "#FDF408"
+secundaria = "#ED1B1E"
+padrao = "liso"
+
+[[clubes]]
+nome = "Jaguares de Córdoba"
+primaria = "#E4C081"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Boyacá Chicó"
+primaria = "#E4692E"
+secundaria = "#2B245C"
+padrao = "liso"
+
+[[clubes]]
+nome = "Independiente del Valle"
+primaria = "#1C1819"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "LDU Quito"
+primaria = "#A32C25"
+secundaria = "#3A3369"
+padrao = "liso"
+
+[[clubes]]
+nome = "Católica de Quito"
+primaria = "#21A1DC"
+secundaria = "#101D23"
+padrao = "liso"
+
+[[clubes]]
+nome = "Emelec"
+primaria = "#003E84"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Barcelona de Guayaquil"
+primaria = "#FAED00"
+secundaria = "#D61D23"
+padrao = "liso"
+
+[[clubes]]
+nome = "Aucas"
+primaria = "#FED403"
+secundaria = "#D71724"
+padrao = "liso"
+
+[[clubes]]
+nome = "Macará"
+primaria = "#0093DE"
+secundaria = "#FFFFFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Orenses"
+primaria = "#777A41"
+secundaria = "#03340F"
+padrao = "liso"
+
+[[clubes]]
+nome = "Deportivo Cuenca"
+primaria = "#DEC450"
+secundaria = "#43793D"
+padrao = "liso"
+
+[[clubes]]
+nome = "Guayaquil City"
+primaria = "#BBD3DB"
+secundaria = "#010C27"
+padrao = "liso"
+
+[[clubes]]
+nome = "Leones"
+primaria = "#602C29"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Libertad de Loja"
+primaria = "#EED885"
+secundaria = "#292724"
+padrao = "liso"
+
+[[clubes]]
+nome = "Mushuc Runa"
+primaria = "#006B34"
+secundaria = "#AF2713"
+padrao = "liso"
+
+[[clubes]]
+nome = "Delfín"
+primaria = "#023E8E"
+secundaria = "#E0E3E6"
+padrao = "liso"
+
+[[clubes]]
+nome = "Técnico Universitario"
+primaria = "#FD1616"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Manta"
+primaria = "#2C6FA8"
+secundaria = "#FEFEFE"
+padrao = "liso"
 
 [[clubes]]
 nome = "Real Madrid"
@@ -259,123 +1279,219 @@ secundaria = "#FEFEFE"
 padrao = "liso"
 
 [[clubes]]
-nome = "Manchester City"
-primaria = "#6CABDD"
+nome = "Paris Saint-Germain"
+primaria = "#004170"
+secundaria = "#DA291C"
+padrao = "liso"
+
+[[clubes]]
+nome = "Monaco"
+primaria = "#D9032B"
+secundaria = "#C67E5E"
+padrao = "liso"
+
+[[clubes]]
+nome = "Strasbourg Alsace"
+primaria = "#01A0E4"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Arsenal"
-primaria = "#E10005"
-secundaria = "#8C6851"
+nome = "Olympique Lyon"
+primaria = "#1B3D8F"
+secundaria = "#E30613"
 padrao = "liso"
 
 [[clubes]]
-nome = "Chelsea"
-primaria = "#051495"
-secundaria = "#FFFFFF"
+nome = "LOSC Lille"
+primaria = "#E3140C"
+secundaria = "#1F1C5E"
 padrao = "liso"
 
 [[clubes]]
-nome = "Liverpool"
-primaria = "#FD1E28"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Manchester United"
-primaria = "#DA291C"
+nome = "Stade Rennais"
+primaria = "#E23629"
 secundaria = "#000000"
 padrao = "liso"
 
 [[clubes]]
-nome = "Tottenham Hotspur"
-primaria = "#132257"
+nome = "Lens"
+primaria = "#F4D93B"
+secundaria = "#981A1B"
+padrao = "liso"
+
+[[clubes]]
+nome = "Olympique Marselha"
+primaria = "#0D61AB"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Newcastle United"
-primaria = "#241F20"
+nome = "Paris"
+primaria = "#0D1432"
+secundaria = "#4A96BE"
+padrao = "liso"
+
+[[clubes]]
+nome = "OGC Nice"
+primaria = "#883F3B"
+secundaria = "#CCC3B1"
+padrao = "liso"
+
+[[clubes]]
+nome = "Toulouse"
+primaria = "#38284F"
+secundaria = "#C2AAA5"
+padrao = "liso"
+
+[[clubes]]
+nome = "AJ Auxerre"
+primaria = "#004EA2"
+secundaria = "#EFF4F9"
+padrao = "liso"
+
+[[clubes]]
+nome = "Lorient"
+primaria = "#E4842A"
+secundaria = "#1D1A1C"
+padrao = "liso"
+
+[[clubes]]
+nome = "Stade Brestois 29"
+primaria = "#E71C23"
+secundaria = "#FAF8F8"
+padrao = "liso"
+
+[[clubes]]
+nome = "Angers SCO"
+primaria = "#120B09"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Brighton & Hove Albion"
-primaria = "#005DAA"
+nome = "Le Havre"
+primaria = "#96C5E7"
+secundaria = "#1E315C"
+padrao = "liso"
+
+[[clubes]]
+nome = "ESTAC Troyes"
+primaria = "#006BB4"
+secundaria = "#C4BFA1"
+padrao = "liso"
+
+[[clubes]]
+nome = "Le Mans"
+primaria = "#BD071A"
+secundaria = "#170814"
+padrao = "liso"
+
+[[clubes]]
+nome = "Saint-Étienne"
+primaria = "#1D995B"
 secundaria = "#FEFEFE"
 padrao = "liso"
 
 [[clubes]]
-nome = "Brentford"
-primaria = "#E20310"
+nome = "Stade Reims"
+primaria = "#E80000"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Nantes"
+primaria = "#FDD605"
+secundaria = "#141414"
+padrao = "liso"
+
+[[clubes]]
+nome = "Metz"
+primaria = "#731013"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Montpellier HSC"
+primaria = "#D5895C"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Clermont Foot 63"
+primaria = "#012D6A"
+secundaria = "#C70C46"
+padrao = "liso"
+
+[[clubes]]
+nome = "Nancy-Lorraine"
+primaria = "#E10916"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Red Star"
+primaria = "#084033"
+secundaria = "#991A18"
+padrao = "liso"
+
+[[clubes]]
+nome = "Rodez AF"
+primaria = "#F9C300"
+secundaria = "#B80726"
+padrao = "liso"
+
+[[clubes]]
+nome = "USL Dunkerque"
+primaria = "#111F31"
+secundaria = "#CAB18D"
+padrao = "liso"
+
+[[clubes]]
+nome = "Grenoble Foot 38"
+primaria = "#014898"
 secundaria = "#FEFEFE"
 padrao = "liso"
 
 [[clubes]]
-nome = "Crystal Palace"
-primaria = "#264F96"
-secundaria = "#D4D6DC"
+nome = "EA Guingamp"
+primaria = "#E10E17"
+secundaria = "#010101"
 padrao = "liso"
 
 [[clubes]]
-nome = "AFC Bournemouth"
-primaria = "#C2161B"
-secundaria = "#000000"
+nome = "Pau"
+primaria = "#171B3E"
+secundaria = "#B8A958"
 padrao = "liso"
 
 [[clubes]]
-nome = "Aston Villa"
-primaria = "#670E36"
-secundaria = "#95BFE5"
+nome = "Stade Lavallois"
+primaria = "#EC6507"
+secundaria = "#0A0909"
 padrao = "liso"
 
 [[clubes]]
-nome = "Nottingham Forest"
-primaria = "#ED0000"
-secundaria = "#FFFFFF"
+nome = "Sochaux-Montbéliard"
+primaria = "#FDE11D"
+secundaria = "#1A367C"
 padrao = "liso"
 
 [[clubes]]
-nome = "AFC Sunderland"
-primaria = "#E51227"
-secundaria = "#372921"
+nome = "Annecy"
+primaria = "#E40613"
+secundaria = "#FDF8F8"
 padrao = "liso"
 
 [[clubes]]
-nome = "Leeds United"
-primaria = "#FFDF10"
-secundaria = "#0253A6"
+nome = "US Boulogne"
+primaria = "#CF1721"
+secundaria = "#1C1C1A"
 padrao = "liso"
 
 [[clubes]]
-nome = "Fulham"
-primaria = "#B70101"
-secundaria = "#000000"
-padrao = "liso"
-
-[[clubes]]
-nome = "Everton"
-primaria = "#003399"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Ipswich Town"
-primaria = "#DA2531"
-secundaria = "#3863A2"
-padrao = "liso"
-
-[[clubes]]
-nome = "Coventry City"
-primaria = "#571F1C"
-secundaria = "#FBFCFC"
-padrao = "liso"
-
-[[clubes]]
-nome = "Hull City"
-primaria = "#EF8A02"
-secundaria = "#09131E"
+nome = "Dijon FCO"
+primaria = "#D3082B"
+secundaria = "#E57084"
 padrao = "liso"
 
 [[clubes]]
@@ -520,6 +1636,126 @@ padrao = "liso"
 nome = "Lincoln City"
 primaria = "#FC2C36"
 secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Manchester City"
+primaria = "#6CABDD"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Arsenal"
+primaria = "#E10005"
+secundaria = "#8C6851"
+padrao = "liso"
+
+[[clubes]]
+nome = "Chelsea"
+primaria = "#051495"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Liverpool"
+primaria = "#FD1E28"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Manchester United"
+primaria = "#DA291C"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Tottenham Hotspur"
+primaria = "#132257"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Newcastle United"
+primaria = "#241F20"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Brighton & Hove Albion"
+primaria = "#005DAA"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Brentford"
+primaria = "#E20310"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Crystal Palace"
+primaria = "#264F96"
+secundaria = "#D4D6DC"
+padrao = "liso"
+
+[[clubes]]
+nome = "AFC Bournemouth"
+primaria = "#C2161B"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Aston Villa"
+primaria = "#670E36"
+secundaria = "#95BFE5"
+padrao = "liso"
+
+[[clubes]]
+nome = "Nottingham Forest"
+primaria = "#ED0000"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "AFC Sunderland"
+primaria = "#E51227"
+secundaria = "#372921"
+padrao = "liso"
+
+[[clubes]]
+nome = "Leeds United"
+primaria = "#FFDF10"
+secundaria = "#0253A6"
+padrao = "liso"
+
+[[clubes]]
+nome = "Fulham"
+primaria = "#B70101"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Everton"
+primaria = "#003399"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Ipswich Town"
+primaria = "#DA2531"
+secundaria = "#3863A2"
+padrao = "liso"
+
+[[clubes]]
+nome = "Coventry City"
+primaria = "#571F1C"
+secundaria = "#FBFCFC"
+padrao = "liso"
+
+[[clubes]]
+nome = "Hull City"
+primaria = "#EF8A02"
+secundaria = "#09131E"
 padrao = "liso"
 
 [[clubes]]
@@ -763,435 +1999,183 @@ secundaria = "#020303"
 padrao = "liso"
 
 [[clubes]]
-nome = "Bayern Munique"
-primaria = "#DC052D"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Borussia Dortmund"
-primaria = "#FCE000"
-secundaria = "#1E1A21"
-padrao = "liso"
-
-[[clubes]]
-nome = "RB Leipzig"
-primaria = "#DF0841"
-secundaria = "#35345A"
-padrao = "liso"
-
-[[clubes]]
-nome = "Bayer 04 Leverkusen"
-primaria = "#E32221"
-secundaria = "#000000"
-padrao = "liso"
-
-[[clubes]]
-nome = "VfB Stuttgart"
-primaria = "#C00225"
-secundaria = "#FEFDFD"
-padrao = "liso"
-
-[[clubes]]
-nome = "SG Eintracht Frankfurt"
-primaria = "#E1000F"
-secundaria = "#000000"
-padrao = "liso"
-
-[[clubes]]
-nome = "TSG 1899 Hoffenheim"
-primaria = "#165AA4"
-secundaria = "#FEFEFE"
-padrao = "liso"
-
-[[clubes]]
-nome = "Freiburg"
+nome = "Olimpia"
 primaria = "#000000"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Augsburg"
-primaria = "#CA1417"
-secundaria = "#FFFFFF"
+nome = "Cerro Porteño"
+primaria = "#023D8A"
+secundaria = "#FE0210"
 padrao = "liso"
 
 [[clubes]]
-nome = "1.FSV Mainz 05"
-primaria = "#C3141E"
-secundaria = "#FEFEFE"
+nome = "Libertad"
+primaria = "#100F0F"
+secundaria = "#B3B2B2"
 padrao = "liso"
 
 [[clubes]]
-nome = "1.FC Colônia"
-primaria = "#F1222A"
-secundaria = "#272224"
-padrao = "liso"
-
-[[clubes]]
-nome = "Hamburger SV"
-primaria = "#005FAF"
-secundaria = "#A4C3DE"
-padrao = "liso"
-
-[[clubes]]
-nome = "Borussia Mönchengladbach"
-primaria = "#000000"
-secundaria = "#FEFEFE"
-padrao = "liso"
-
-[[clubes]]
-nome = "Werder Bremen"
-primaria = "#00593C"
-secundaria = "#FDFEFE"
-padrao = "liso"
-
-[[clubes]]
-nome = "1.FC Union Berlim"
-primaria = "#D3031C"
-secundaria = "#F9E811"
-padrao = "liso"
-
-[[clubes]]
-nome = "Schalke 04"
-primaria = "#014B9C"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "SV 07 Elversberg"
-primaria = "#000000"
-secundaria = "#FEFEFE"
-padrao = "liso"
-
-[[clubes]]
-nome = "Paderborn 07"
-primaria = "#065CA5"
-secundaria = "#020202"
-padrao = "liso"
-
-[[clubes]]
-nome = "VfL Wolfsburg"
-primaria = "#09633D"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "St. Pauli"
-primaria = "#D4121A"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "1.FC Nuremberg"
-primaria = "#AC1732"
-secundaria = "#FEFDFD"
-padrao = "liso"
-
-[[clubes]]
-nome = "1.FC Heidenheim 1846"
-primaria = "#E20019"
-secundaria = "#254A7F"
-padrao = "liso"
-
-[[clubes]]
-nome = "Hannover 96"
-primaria = "#318E45"
+nome = "Guaraní de Asunción"
+primaria = "#F9E702"
 secundaria = "#000000"
 padrao = "liso"
 
 [[clubes]]
-nome = "1.FC Kaiserslautern"
-primaria = "#E41E24"
-secundaria = "#FDFDFD"
+nome = "Nacional Asunción"
+primaria = "#055697"
+secundaria = "#E31E26"
 padrao = "liso"
 
 [[clubes]]
-nome = "Karlsruher"
-primaria = "#003697"
-secundaria = "#FDFDFE"
+nome = "Sportivo Luqueño"
+primaria = "#002C83"
+secundaria = "#FCCA13"
 padrao = "liso"
 
 [[clubes]]
-nome = "Holstein Kiel"
-primaria = "#02599D"
-secundaria = "#85A5C6"
+nome = "Sportivo Trinidense"
+primaria = "#FEDC10"
+secundaria = "#20137F"
 padrao = "liso"
 
 [[clubes]]
-nome = "SV Darmstadt 98"
-primaria = "#01489A"
-secundaria = "#FFFFFF"
+nome = "Recoleta"
+primaria = "#F5DE84"
+secundaria = "#000001"
 padrao = "liso"
 
 [[clubes]]
-nome = "Magdeburgo"
-primaria = "#0168B2"
+nome = "2 de Mayo"
+primaria = "#1E3581"
 secundaria = "#FEFEFE"
 padrao = "liso"
 
 [[clubes]]
-nome = "Hertha Berlim"
-primaria = "#004BA3"
+nome = "Sportivo Ameliano"
+primaria = "#3756A8"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Rubio Ñu"
+primaria = "#332C1A"
+secundaria = "#F7F7EF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Sportivo San Lorenzo"
+primaria = "#D70D23"
+secundaria = "#FCFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Universitario"
+primaria = "#8C1619"
+secundaria = "#FDFBF2"
+padrao = "liso"
+
+[[clubes]]
+nome = "Alianza Lima"
+primaria = "#152341"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Sporting Cristal"
+primaria = "#54C6EC"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Melgar"
+primaria = "#F8C121"
 secundaria = "#010101"
 padrao = "liso"
 
 [[clubes]]
-nome = "VfL Bochum"
-primaria = "#015CA4"
+nome = "Cusco FC"
+primaria = "#BD9A5B"
+secundaria = "#0B0F0E"
+padrao = "liso"
+
+[[clubes]]
+nome = "Cienciano"
+primaria = "#0A214F"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "SG Dynamo Dresden"
-primaria = "#92000C"
-secundaria = "#F1B044"
+nome = "Comerciantes Unidos"
+primaria = "#5D198C"
+secundaria = "#39B75A"
 padrao = "liso"
 
 [[clubes]]
-nome = "SpVgg Greuther Fürth"
-primaria = "#009D3B"
+nome = "Sport Boys"
+primaria = "#F7BDD9"
+secundaria = "#010001"
+padrao = "liso"
+
+[[clubes]]
+nome = "Deportivo Garcilaso"
+primaria = "#E10303"
 secundaria = "#FEFEFE"
 padrao = "liso"
 
 [[clubes]]
-nome = "Arminia Bielefeld"
-primaria = "#0D3758"
-secundaria = "#5288AF"
+nome = "Alianza Atlético"
+primaria = "#35348A"
+secundaria = "#A4A3B1"
 padrao = "liso"
 
 [[clubes]]
-nome = "Eintracht Braunschweig TSV"
-primaria = "#ECBE3F"
-secundaria = "#3B75B0"
+nome = "Sport Huancayo"
+primaria = "#F10F2A"
+secundaria = "#E1A05A"
 padrao = "liso"
 
 [[clubes]]
-nome = "VfL Osnabrück"
-primaria = "#572A86"
-secundaria = "#FEFDFE"
+nome = "Juan Pablo II"
+primaria = "#043263"
+secundaria = "#944234"
 padrao = "liso"
 
 [[clubes]]
-nome = "Energie Cottbus"
-primaria = "#FF0000"
-secundaria = "#FEFEFE"
+nome = "ADT Tarma"
+primaria = "#09B1FD"
+secundaria = "#FFFFFE"
 padrao = "liso"
 
 [[clubes]]
-nome = "Paris Saint-Germain"
-primaria = "#004170"
-secundaria = "#DA291C"
+nome = "Atlético Grau"
+primaria = "#FE0001"
+secundaria = "#FFFE00"
 padrao = "liso"
 
 [[clubes]]
-nome = "Monaco"
-primaria = "#D9032B"
-secundaria = "#C67E5E"
-padrao = "liso"
-
-[[clubes]]
-nome = "Strasbourg Alsace"
-primaria = "#01A0E4"
+nome = "Los Chankas"
+primaria = "#8A1712"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Olympique Lyon"
-primaria = "#1B3D8F"
-secundaria = "#E30613"
+nome = "Cajamarca"
+primaria = "#031089"
+secundaria = "#AE8F59"
 padrao = "liso"
 
 [[clubes]]
-nome = "LOSC Lille"
-primaria = "#E3140C"
-secundaria = "#1F1C5E"
+nome = "UTC Cajamarca"
+primaria = "#7A0203"
+secundaria = "#E6E493"
 padrao = "liso"
 
 [[clubes]]
-nome = "Stade Rennais"
-primaria = "#E23629"
-secundaria = "#000000"
-padrao = "liso"
-
-[[clubes]]
-nome = "Lens"
-primaria = "#F4D93B"
-secundaria = "#981A1B"
-padrao = "liso"
-
-[[clubes]]
-nome = "Olympique Marselha"
-primaria = "#0D61AB"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Paris"
-primaria = "#0D1432"
-secundaria = "#4A96BE"
-padrao = "liso"
-
-[[clubes]]
-nome = "OGC Nice"
-primaria = "#883F3B"
-secundaria = "#CCC3B1"
-padrao = "liso"
-
-[[clubes]]
-nome = "Toulouse"
-primaria = "#38284F"
-secundaria = "#C2AAA5"
-padrao = "liso"
-
-[[clubes]]
-nome = "AJ Auxerre"
-primaria = "#004EA2"
-secundaria = "#EFF4F9"
-padrao = "liso"
-
-[[clubes]]
-nome = "Lorient"
-primaria = "#E4842A"
-secundaria = "#1D1A1C"
-padrao = "liso"
-
-[[clubes]]
-nome = "Stade Brestois 29"
-primaria = "#E71C23"
-secundaria = "#FAF8F8"
-padrao = "liso"
-
-[[clubes]]
-nome = "Angers SCO"
-primaria = "#120B09"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Le Havre"
-primaria = "#96C5E7"
-secundaria = "#1E315C"
-padrao = "liso"
-
-[[clubes]]
-nome = "ESTAC Troyes"
-primaria = "#006BB4"
-secundaria = "#C4BFA1"
-padrao = "liso"
-
-[[clubes]]
-nome = "Le Mans"
-primaria = "#BD071A"
-secundaria = "#170814"
-padrao = "liso"
-
-[[clubes]]
-nome = "Saint-Étienne"
-primaria = "#1D995B"
-secundaria = "#FEFEFE"
-padrao = "liso"
-
-[[clubes]]
-nome = "Stade Reims"
-primaria = "#E80000"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Nantes"
-primaria = "#FDD605"
-secundaria = "#141414"
-padrao = "liso"
-
-[[clubes]]
-nome = "Metz"
-primaria = "#731013"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Montpellier HSC"
-primaria = "#D5895C"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Clermont Foot 63"
-primaria = "#012D6A"
-secundaria = "#C70C46"
-padrao = "liso"
-
-[[clubes]]
-nome = "Nancy-Lorraine"
-primaria = "#E10916"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Red Star"
-primaria = "#084033"
-secundaria = "#991A18"
-padrao = "liso"
-
-[[clubes]]
-nome = "Rodez AF"
-primaria = "#F9C300"
-secundaria = "#B80726"
-padrao = "liso"
-
-[[clubes]]
-nome = "USL Dunkerque"
-primaria = "#111F31"
-secundaria = "#CAB18D"
-padrao = "liso"
-
-[[clubes]]
-nome = "Grenoble Foot 38"
-primaria = "#014898"
-secundaria = "#FEFEFE"
-padrao = "liso"
-
-[[clubes]]
-nome = "EA Guingamp"
-primaria = "#E10E17"
-secundaria = "#010101"
-padrao = "liso"
-
-[[clubes]]
-nome = "Pau"
-primaria = "#171B3E"
-secundaria = "#B8A958"
-padrao = "liso"
-
-[[clubes]]
-nome = "Stade Lavallois"
-primaria = "#EC6507"
-secundaria = "#0A0909"
-padrao = "liso"
-
-[[clubes]]
-nome = "Sochaux-Montbéliard"
-primaria = "#FDE11D"
-secundaria = "#1A367C"
-padrao = "liso"
-
-[[clubes]]
-nome = "Annecy"
-primaria = "#E40613"
-secundaria = "#FDF8F8"
-padrao = "liso"
-
-[[clubes]]
-nome = "US Boulogne"
-primaria = "#CF1721"
-secundaria = "#1C1C1A"
-padrao = "liso"
-
-[[clubes]]
-nome = "Dijon FCO"
-primaria = "#D3082B"
-secundaria = "#E57084"
+nome = "Deportivo Moquegua"
+primaria = "#D7B03B"
+secundaria = "#0F0B0A"
 padrao = "liso"
 
 [[clubes]]
@@ -1411,397 +2395,181 @@ secundaria = "#050704"
 padrao = "liso"
 
 [[clubes]]
-nome = "River Plate"
-primaria = "#E30613"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Boca Juniors"
-primaria = "#01418A"
-secundaria = "#EFBA05"
-padrao = "liso"
-
-[[clubes]]
-nome = "Rosario Central"
-primaria = "#F4DA45"
-secundaria = "#0D4365"
-padrao = "liso"
-
-[[clubes]]
-nome = "Racing Club"
-primaria = "#029DDD"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Club Estudiantes de La Plata"
-primaria = "#E51814"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Independiente Rivadavia"
-primaria = "#101246"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "San Lorenzo de Almagro"
-primaria = "#00264A"
-secundaria = "#F81829"
-padrao = "liso"
-
-[[clubes]]
-nome = "Vélez Sarsfield"
-primaria = "#0462A8"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Club Atlético Tigre"
-primaria = "#004B8F"
-secundaria = "#D4042E"
-padrao = "liso"
-
-[[clubes]]
-nome = "Talleres"
-primaria = "#042859"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Lanús"
-primaria = "#AB2A3E"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "AA Argentinos Juniors"
-primaria = "#00569B"
-secundaria = "#842B48"
-padrao = "liso"
-
-[[clubes]]
-nome = "Newell's Old Boys"
-primaria = "#C00811"
+nome = "Peñarol"
+primaria = "#FDF300"
 secundaria = "#000000"
 padrao = "liso"
 
 [[clubes]]
-nome = "Club Atlético Platense"
-primaria = "#4C2203"
+nome = "Nacional de Montevideo"
+primaria = "#002F87"
+secundaria = "#B70E34"
+padrao = "liso"
+
+[[clubes]]
+nome = "Montevideo City Torque"
+primaria = "#102D5E"
+secundaria = "#6BAEE0"
+padrao = "liso"
+
+[[clubes]]
+nome = "Defensor Sporting"
+primaria = "#5A1389"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Independiente"
-primaria = "#E2001A"
-secundaria = "#FDFDFD"
-padrao = "liso"
-
-[[clubes]]
-nome = "Defensa y Justicia"
-primaria = "#FDE102"
-secundaria = "#01722E"
-padrao = "liso"
-
-[[clubes]]
-nome = "Club de Gimnasia y Esgrima La Plata"
-primaria = "#1C5A71"
-secundaria = "#A2B193"
-padrao = "liso"
-
-[[clubes]]
-nome = "Belgrano"
-primaria = "#029ADA"
+nome = "Juventud"
+primaria = "#0E447C"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Huracán"
-primaria = "#F10A00"
+nome = "Boston River"
+primaria = "#006F3A"
+secundaria = "#E62233"
+padrao = "liso"
+
+[[clubes]]
+nome = "Liverpool Montevideo"
+primaria = "#023287"
+secundaria = "#1C1616"
+padrao = "liso"
+
+[[clubes]]
+nome = "Albion"
+primaria = "#FF1E26"
+secundaria = "#052871"
+padrao = "liso"
+
+[[clubes]]
+nome = "Racing Montevideo"
+primaria = "#1D5029"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Gimnasia y Esgrima (Mendoza)"
-primaria = "#FFFFFF"
-secundaria = "#020303"
+nome = "Central Español"
+primaria = "#F03330"
+secundaria = "#0B032F"
 padrao = "liso"
 
 [[clubes]]
-nome = "Barracas Central"
-primaria = "#EC171F"
-secundaria = "#FEFEFE"
+nome = "Deportivo Maldonado"
+primaria = "#017300"
+secundaria = "#CF0501"
 padrao = "liso"
 
 [[clubes]]
-nome = "Instituto ACC"
-primaria = "#C23531"
+nome = "Montevideo Wanderers"
+primaria = "#190E0A"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Unión (Santa Fé)"
-primaria = "#EC171F"
+nome = "Progreso"
+primaria = "#FCD52D"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Club Atlético Tucumán"
-primaria = "#6BA7D9"
-secundaria = "#FEFEFE"
-padrao = "liso"
-
-[[clubes]]
-nome = "Sarmiento (Junín)"
-primaria = "#045D28"
-secundaria = "#FEFEFE"
-padrao = "liso"
-
-[[clubes]]
-nome = "Banfield"
-primaria = "#017828"
-secundaria = "#FEFEFD"
-padrao = "liso"
-
-[[clubes]]
-nome = "Club Deportivo Riestra"
-primaria = "#FFFFFF"
-secundaria = "#1C1A1C"
-padrao = "liso"
-
-[[clubes]]
-nome = "Central Córdoba (SdE)"
+nome = "Danubio"
 primaria = "#000000"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Cerro Largo"
+primaria = "#2F3796"
 secundaria = "#FEFEFE"
 padrao = "liso"
 
 [[clubes]]
-nome = "Aldosivi"
-primaria = "#009C4E"
-secundaria = "#232021"
+nome = "Cerro"
+primaria = "#03B0F2"
+secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "AA Estudiantes (Río Cuarto)"
-primaria = "#008CD2"
-secundaria = "#1E2123"
+nome = "Monagas"
+primaria = "#92384B"
+secundaria = "#EBD7AD"
 padrao = "liso"
 
 [[clubes]]
-nome = "Godoy Cruz Antonio Tomba"
-primaria = "#1963A8"
-secundaria = "#C6C6C6"
+nome = "Carabobo"
+primaria = "#52100F"
+secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Colón"
-primaria = "#FF0000"
-secundaria = "#000000"
-padrao = "liso"
-
-[[clubes]]
-nome = "Chacarita Juniors"
-primaria = "#E62D2B"
+nome = "Deportivo Táchira"
+primaria = "#FBC10B"
 secundaria = "#010101"
 padrao = "liso"
 
 [[clubes]]
-nome = "Nueva Chicago"
-primaria = "#22583D"
+nome = "Academia Puerto Cabello"
+primaria = "#001360"
+secundaria = "#E35104"
+padrao = "liso"
+
+[[clubes]]
+nome = "Deportivo La Guaira"
+primaria = "#EC813E"
+secundaria = "#2C2D58"
+padrao = "liso"
+
+[[clubes]]
+nome = "Metropolitanos"
+primaria = "#46284C"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Deportivo Madryn"
-primaria = "#FEDB00"
-secundaria = "#000000"
+nome = "Caracas"
+primaria = "#A81C0A"
+secundaria = "#08080B"
 padrao = "liso"
 
 [[clubes]]
-nome = "Atlanta"
-primaria = "#00176F"
-secundaria = "#EBAC00"
+nome = "Portuguesa"
+primaria = "#DB1214"
+secundaria = "#010102"
 padrao = "liso"
 
 [[clubes]]
-nome = "San Martín (San Juan)"
-primaria = "#285B28"
-secundaria = "#6B9D6B"
-padrao = "liso"
-
-[[clubes]]
-nome = "Club Ferro Carril Oeste"
-primaria = "#166F43"
-secundaria = "#FEFEFE"
-padrao = "liso"
-
-[[clubes]]
-nome = "Club Atletico San Martin (Tucuman)"
-primaria = "#D81322"
-secundaria = "#FFFCF9"
-padrao = "liso"
-
-[[clubes]]
-nome = "Club Deportivo Morón"
-primaria = "#EF484D"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Patronato"
-primaria = "#BD0000"
-secundaria = "#0B0B0B"
-padrao = "liso"
-
-[[clubes]]
-nome = "Temperley"
-primaria = "#22BBEF"
-secundaria = "#FDFEFE"
-padrao = "liso"
-
-[[clubes]]
-nome = "Club Tristán Suárez"
-primaria = "#1B1A32"
-secundaria = "#FDFDFD"
-padrao = "liso"
-
-[[clubes]]
-nome = "Agropecuario"
-primaria = "#009C4D"
-secundaria = "#EF192B"
-padrao = "liso"
-
-[[clubes]]
-nome = "Quilmes"
-primaria = "#35428A"
+nome = "UCV"
+primaria = "#D7BB3C"
 secundaria = "#FDFDFE"
 padrao = "liso"
 
 [[clubes]]
-nome = "Los Andes"
-primaria = "#EE2226"
-secundaria = "#F79EA0"
+nome = "Zamora"
+primaria = "#080808"
+secundaria = "#9B9792"
 padrao = "liso"
 
 [[clubes]]
-nome = "Club Atlético Gimnasia y Esgrima (Jujuy)"
-primaria = "#9BC0DD"
-secundaria = "#23262E"
-padrao = "liso"
-
-[[clubes]]
-nome = "Estudiantes"
-primaria = "#201A17"
-secundaria = "#FBFBFB"
-padrao = "liso"
-
-[[clubes]]
-nome = "Club Deportivo Maipú"
-primaria = "#E3001A"
-secundaria = "#1C2922"
-padrao = "liso"
-
-[[clubes]]
-nome = "Racing (Córdoba)"
-primaria = "#029CDF"
+nome = "Rayo Zuliano"
+primaria = "#022AA4"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Club Almirante Brown"
-primaria = "#FDE810"
-secundaria = "#2E2B25"
+nome = "Anzoátegui"
+primaria = "#6E95B2"
+secundaria = "#4C4C4C"
 padrao = "liso"
 
 [[clubes]]
-nome = "Defensores de Belgrano"
-primaria = "#FC1B1E"
-secundaria = "#020202"
-padrao = "liso"
-
-[[clubes]]
-nome = "All Boys"
-primaria = "#1C1815"
-secundaria = "#FDFDFD"
-padrao = "liso"
-
-[[clubes]]
-nome = "AMSD Atlético de Rafaela"
-primaria = "#F2AF46"
+nome = "Estudiantes de Mérida"
+primaria = "#47355B"
 secundaria = "#FFFFFF"
 padrao = "liso"
 
 [[clubes]]
-nome = "Club Almagro"
-primaria = "#899DC3"
-secundaria = "#191517"
-padrao = "liso"
-
-[[clubes]]
-nome = "Club de Gimnasia y Tiro"
-primaria = "#0BA7D6"
-secundaria = "#FEFEFE"
-padrao = "liso"
-
-[[clubes]]
-nome = "San Miguel"
-primaria = "#139338"
-secundaria = "#FEFEFE"
-padrao = "liso"
-
-[[clubes]]
-nome = "Central Norte"
-primaria = "#231F20"
-secundaria = "#FEFEFE"
-padrao = "liso"
-
-[[clubes]]
-nome = "Güemes"
-primaria = "#114A85"
-secundaria = "#D91B20"
-padrao = "liso"
-
-[[clubes]]
-nome = "Mitre"
-primaria = "#FECB00"
-secundaria = "#000000"
-padrao = "liso"
-
-[[clubes]]
-nome = "Colegiales"
-primaria = "#FF0C0D"
-secundaria = "#232D85"
-padrao = "liso"
-
-[[clubes]]
-nome = "Acassuso"
-primaria = "#192854"
-secundaria = "#FDFEFD"
-padrao = "liso"
-
-[[clubes]]
-nome = "Chaco For Ever"
-primaria = "#000000"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "Ferrocarril Midland"
-primaria = "#082877"
-secundaria = "#020307"
-padrao = "liso"
-
-[[clubes]]
-nome = "Club Ciudad de Bolivar"
-primaria = "#000BFE"
-secundaria = "#FFFFFF"
-padrao = "liso"
-
-[[clubes]]
-nome = "San Telmo"
-primaria = "#32CBFE"
-secundaria = "#000066"
+nome = "Trujillanos"
+primaria = "#F8E11E"
+secundaria = "#472C18"
 padrao = "liso"

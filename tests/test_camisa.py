@@ -212,3 +212,21 @@ def test_nenhum_par_de_clubes_divide_o_arquivo_da_camisa():
                 slug = _sem_acento(c["nome"]).lower().replace(" ", "-")
                 assert donos.setdefault(slug, c["nome"]) == c["nome"], (
                     f"{c['nome']!r} ({arq.stem}) e {donos[slug]!r} dividem {slug}-1.svg")
+
+
+def test_nenhum_nome_de_clube_se_repete_nas_ligas_reais():
+    """Cada clube real esta numa liga so; nome repetido e DOIS clubes com o mesmo nome. O
+    escudo, a cor e a camisa sao indexados por nome: o Nacional uruguaio vestiu o escudo
+    do Nacional da Madeira ate virar "Nacional de Montevideo"."""
+    import tomllib
+    from collections import Counter
+    from pathlib import Path
+
+    from fm.pack import PACKS_DIR
+
+    reais = {tomllib.loads(p.read_text(encoding="utf-8"))["pack"]
+             for p in Path("data/leagues").glob("*_real.toml")}
+    nomes = Counter(c["nome"] for pack in reais
+                    for c in tomllib.loads((PACKS_DIR / f"{pack}.toml")
+                                           .read_text(encoding="utf-8")).get("clubes", []))
+    assert not [n for n, k in nomes.items() if k > 1]

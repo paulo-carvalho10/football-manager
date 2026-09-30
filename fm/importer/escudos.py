@@ -129,7 +129,11 @@ CODIGO_TM = {"brasil_serie_a": "BRA1", "brasil_serie_b": "BRA2",
              "alemanha_bundesliga": "L1", "alemanha_2_bundesliga": "L2",
              "franca_ligue_1": "FR1", "franca_ligue_2": "FR2",
              "portugal_liga": "PO1", "portugal_liga_2": "PO2",
-             "argentina_primera": "ARG1", "argentina_nacional": "ARG2"}
+             "argentina_primera": "ARG1", "argentina_nacional": "ARG2",
+             "colombia_primera": "COLP", "chile_primera": "CLPD",
+             "uruguai_primera": "URU1", "equador_primera": "EC1N",
+             "paraguai_primera": "PR1A", "peru_primera": "TDeA",
+             "bolivia_primera": "BO1A", "venezuela_primera": "VZ1A"}
 INDICE = ESCUDOS_DIR / "indice.json"
 
 
@@ -165,6 +169,11 @@ def baixar_do_transfermarkt(pack: str, delay: float = 0.6) -> tuple[dict[str, Pa
             faltaram.append(clube.nome)
             continue
         destino = ESCUDOS_DIR / f"tm-{vid}.png"
+        if indice.get(clube.nome, destino.name) != destino.name:
+            # dois clubes diferentes com o mesmo nome: o indice e por nome, e sobrescrever
+            # trocava o escudo do outro (o Nacional uruguaio vestiu o da Madeira)
+            faltaram.append(f"{clube.nome} (nome ja usado por outro clube)")
+            continue
         if not destino.exists():
             bruto_path = CACHE_DIR / "escudos" / f"tm_{vid}.png"
             if not bruto_path.exists():

@@ -116,10 +116,10 @@ def test_cascata_de_vagas_quando_o_campeao_da_copa_ja_esta_classificado(mundo):
     """A regra que o Paulo descreveu, e que a CBF confirma.
 
     Vaga direta: 1o ao 4o do Brasileirao + campeao da Copa do Brasil.
-    Pre-Libertadores: 5o do Brasileirao + vice da Copa.
+    Segunda fase (era a "pre" ate 30/09/2026): 5o e 6o do Brasileirao.
 
     Se o campeao da Copa for o 2o colocado, ele ja estava classificado: a 4a vaga direta
-    desce para o 5o e a vaga da pre passa do 5o para o 6o.
+    desce para o 5o e as da segunda fase passam para o 6o e o 7o.
     """
     from fm.torneio import resolver_classificacao
     world, tabelas = mundo
@@ -135,14 +135,13 @@ def test_cascata_de_vagas_quando_o_campeao_da_copa_ja_esta_classificado(mundo):
     fora = resolver_classificacao(world, t, tabelas,
                                   {"copa_do_brasil": [bra[9], bra[14]]})
     assert sorted(do_brasileirao(fora["grupos"])) == [1, 2, 3, 4, 10]
-    assert 5 in do_brasileirao(fora["pre"])
+    assert sorted(do_brasileirao(fora["segunda"])) == [5, 6]
 
     # campeao da Copa e o 2o colocado: o 5o sobe para direta e a pre vira o 6o
     dentro = resolver_classificacao(world, t, tabelas,
                                     {"copa_do_brasil": [bra[1], bra[14]]})
     assert sorted(do_brasileirao(dentro["grupos"])) == [1, 2, 3, 4, 5]
-    assert 6 in do_brasileirao(dentro["pre"])
-    assert 5 not in do_brasileirao(dentro["pre"])
+    assert sorted(do_brasileirao(dentro["segunda"])) == [6, 7]
 
 
 def test_ninguem_se_classifica_duas_vezes(mundo):
@@ -219,16 +218,18 @@ def test_champions_esta_no_formato_atual():
 
 
 def test_funil_da_libertadores_para_a_sudamericana():
-    """O 3o de cada grupo da Libertadores cai para as oitavas da Sudamericana."""
+    """O 3o de cada grupo da Libertadores cai para o playoff da Sudamericana (contra os 2os
+    dela), e quem perde a terceira fase vai para os grupos dela."""
     lib, sul = carregar("libertadores"), carregar("sudamericana")
     grupos = next(f for f in lib.fases if f.get("tipo") == "groups")
     assert grupos["exporta"] == [{"posicao": 3, "para": "terceiros"}]
     recebe = [r for r in sul.classificacao_regras
               if r["fonte"] == "libertadores:terceiros"]
-    assert recebe and recebe[0]["entra_em"] == "oitavas"
+    assert recebe and recebe[0]["entra_em"] == "playoff"
     assert recebe[0]["vagas"] == 8
 
-    pre = next(f for f in lib.fases if f.get("rodadas") == 1)
+    pre = next(f for f in lib.fases if f.get("exporta") and f.get("tipo") == "knockout")
+    assert pre["nome"] == "Terceira fase"
     assert pre["exporta"] == [{"eliminados": True, "para": "eliminados_pre"}]
     assert any(r["fonte"] == "libertadores:eliminados_pre"
                for r in sul.classificacao_regras)

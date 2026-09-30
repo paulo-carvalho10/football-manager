@@ -561,9 +561,16 @@ def _rodadas_que_faltam(a, agora: dict | None) -> list[str]:
             nomes.append(nome_da_rodada(fase.get("nome", ""), rodadas, vivos, 0))
             vivos = isentos + (vivos - isentos) // 2 + (vivos - isentos) % 2
             continue
-        while vivos > 1:
+        # "todas" vai ate sobrar um; um numero (o mata-mata da Libertadores tem 3, e a final
+        # e outra fase) para nele -- descontando, na fase em curso, as rodadas ja jogadas
+        restam = None if str(rodadas) == "todas" else int(rodadas)
+        if restam is not None and j == a.fase:
+            restam -= a.rodadas_da_fase_feitas + (1 if agora and agora["tipo"] == "mata" else 0)
+        while vivos > 1 and (restam is None or restam > 0):
             nomes.append(nome_da_rodada(fase.get("nome", ""), rodadas, vivos, len(nomes)))
             vivos = vivos // 2 + vivos % 2
+            if restam is not None:
+                restam -= 1
     return nomes
 
 

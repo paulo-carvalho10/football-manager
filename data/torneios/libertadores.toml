@@ -1,16 +1,29 @@
-# Copa Libertadores, com pre-Libertadores e CASCATA DE VAGAS.
+# Copa Libertadores no formato atual: 47 clubes de 10 paises.
 #
-# Regra brasileira conferida na fonte (distribuicao para 2027):
-#   diretas para os grupos: 1o ao 4o do Brasileirao + campeao da Copa do Brasil
-#   pre-Libertadores:       5o do Brasileirao + vice da Copa do Brasil
+#   Primeira fase   6 clubes, ida e volta           -> 3 passam
+#   Segunda fase    13 entram + os 3               -> 16, ida e volta -> 8 passam
+#   Terceira fase   8 clubes, ida e volta           -> 4 passam; quem cai vai para a
+#                                                     fase de grupos da Sul-Americana
+#   Fase de grupos  28 diretos + os 4 = 32, 8 grupos de 4; passam 2, o 3o cai para a
+#                   Sul-Americana
+#   Oitavas, quartas e semifinal em ida e volta; FINAL EM JOGO UNICO
 #
-# A CASCATA sai de graca da ordem das regras: cada uma leva os N primeiros da sua fonte que
-# AINDA NAO se classificaram. Se o campeao da Copa do Brasil for o 2o do Brasileirao, a
-# regra do Brasileirao pula ele e desce -- a 4a vaga direta chega ao 5o e a vaga da pre
-# passa do 5o para o 6o. Exatamente como na vida real.
+# Vagas por pais (reconstituidas do regulamento de 2025-26; confira antes de tratar como
+# fonte oficial):
+#   Brasil 7:     campeao da Copa do Brasil + 1o ao 4o do Brasileirao nos grupos;
+#                 5o e 6o na segunda fase
+#   Argentina 6:  1o ao 5o nos grupos; 6o na segunda fase
+#   Colombia, Chile: 2 nos grupos, 2 na segunda fase
+#   Uruguai, Equador, Paraguai, Peru, Bolivia, Venezuela: 2 nos grupos, 1 na segunda
+#                 fase, 1 na primeira fase
+#   + o campeao da Libertadores e o da Sul-Americana do ano anterior, nos grupos
 #
-# NAO CONFERIDO: a divisao dos outros paises e estimativa. Confira antes de tratar como
-# verdade. So a regra do Brasil veio da fonte.
+# A CASCATA sai da ordem das regras: cada uma leva os N primeiros da fonte que AINDA NAO
+# se classificaram. Se o campeao da Copa do Brasil e o 2o do Brasileirao, a regra do
+# Brasileirao pula ele e a vaga desce -- como na vida real.
+#
+# Os campeonatos de fora do pais da carreira nao sao jogados rodada a rodada: a carreira
+# simula a temporada deles na virada do ano (fm.carreira), e a tabela simulada classifica.
 id   = "libertadores"
 nome = "Copa Libertadores"
 
@@ -22,9 +35,25 @@ mando     = 0.42   # altitude, gramado, viagem e caldeirao pesam muito mais aqui
 gols_mult  = 0.90
 compressao = 0.18
 
-# --- vagas, em ORDEM DE PRIORIDADE (a ordem e o que produz a cascata)
+# ------------------------------------------------------------ fase de grupos (28 diretos)
+# os campeoes do ano anterior primeiro: se ja estiverem classificados pela liga, a cascata
+# leva a vaga da liga para o proximo. No primeiro ano da carreira ainda nao ha campeao, e
+# a vaga vai para o mais forte do continente que sobrar (reserva "CONMEBOL").
+[[classificacao]]
+fonte    = "libertadores"
+reservas = ["CONMEBOL"]
+vagas    = 1
+entra_em = "grupos"
+
+[[classificacao]]
+fonte    = "sudamericana"
+reservas = ["CONMEBOL"]
+vagas    = 1
+entra_em = "grupos"
+
 [[classificacao]]
 fonte    = "copa_do_brasil"   # ordem da fonte: campeao, vice
+reservas = ["BRA1"]           # no 1o ano ainda nao ha campeao: a vaga desce na tabela
 vagas    = 1
 entra_em = "grupos"
 
@@ -39,15 +68,15 @@ vagas    = 5
 entra_em = "grupos"
 
 [[classificacao]]
-fonte    = "URU1"
-vagas    = 2
-entra_em = "grupos"
-[[classificacao]]
 fonte    = "COLP"
 vagas    = 2
 entra_em = "grupos"
 [[classificacao]]
 fonte    = "CLPD"
+vagas    = 2
+entra_em = "grupos"
+[[classificacao]]
+fonte    = "URU1"
 vagas    = 2
 entra_em = "grupos"
 [[classificacao]]
@@ -58,72 +87,108 @@ entra_em = "grupos"
 fonte    = "PR1A"
 vagas    = 2
 entra_em = "grupos"
-
-# --- pre-Libertadores
 [[classificacao]]
-fonte    = "copa_do_brasil"   # o vice, porque o campeao ja foi levado acima
-vagas    = 1
-entra_em = "pre"
+fonte    = "TDeA"
+vagas    = 2
+entra_em = "grupos"
+[[classificacao]]
+fonte    = "BO1A"
+vagas    = 2
+entra_em = "grupos"
+[[classificacao]]
+fonte    = "VZ1A"
+vagas    = 2
+entra_em = "grupos"
 
+# ------------------------------------------------------------ segunda fase (13)
 [[classificacao]]
 fonte    = "BRA1"
-vagas    = 1
-entra_em = "pre"
-
+vagas    = 2
+entra_em = "segunda"
 [[classificacao]]
 fonte    = "ARG1"
-vagas    = 2
-entra_em = "pre"
-[[classificacao]]
-fonte    = "URU1"
-vagas    = 2
-entra_em = "pre"
+vagas    = 1
+entra_em = "segunda"
 [[classificacao]]
 fonte    = "COLP"
 vagas    = 2
-entra_em = "pre"
+entra_em = "segunda"
 [[classificacao]]
 fonte    = "CLPD"
 vagas    = 2
-entra_em = "pre"
+entra_em = "segunda"
+[[classificacao]]
+fonte    = "URU1"
+vagas    = 1
+entra_em = "segunda"
 [[classificacao]]
 fonte    = "EC1N"
-vagas    = 2
-entra_em = "pre"
+vagas    = 1
+entra_em = "segunda"
 [[classificacao]]
 fonte    = "PR1A"
-vagas    = 2
-entra_em = "pre"
+vagas    = 1
+entra_em = "segunda"
+[[classificacao]]
+fonte    = "TDeA"
+vagas    = 1
+entra_em = "segunda"
+[[classificacao]]
+fonte    = "BO1A"
+vagas    = 1
+entra_em = "segunda"
+[[classificacao]]
+fonte    = "VZ1A"
+vagas    = 1
+entra_em = "segunda"
 
-# Bolivia e Venezuela nao tem liga importada: entram fixos.
-[[convidados]]
-nome = "Bolivar"
-pais = "BOL"
-forca = 62
-entra_em = "grupos"
-[[convidados]]
-nome = "The Strongest"
-pais = "BOL"
-forca = 60
-entra_em = "pre"
-[[convidados]]
-nome = "Deportivo Tachira"
-pais = "VEN"
-forca = 59
-entra_em = "grupos"
-[[convidados]]
-nome = "Carabobo"
-pais = "VEN"
-forca = 58
-entra_em = "pre"
+# ------------------------------------------------------------ primeira fase (6)
+[[classificacao]]
+fonte    = "URU1"
+vagas    = 1
+entra_em = "primeira"
+[[classificacao]]
+fonte    = "EC1N"
+vagas    = 1
+entra_em = "primeira"
+[[classificacao]]
+fonte    = "PR1A"
+vagas    = 1
+entra_em = "primeira"
+[[classificacao]]
+fonte    = "TDeA"
+vagas    = 1
+entra_em = "primeira"
+[[classificacao]]
+fonte    = "BO1A"
+vagas    = 1
+entra_em = "primeira"
+[[classificacao]]
+fonte    = "VZ1A"
+vagas    = 1
+entra_em = "primeira"
 
+# ------------------------------------------------------------ formato
 [[formato.fases]]
-nome    = "Pre-Libertadores"
+nome    = "Primeira fase"
 tipo    = "knockout"
 maos    = 2
 rodadas = 1
-entram  = [ { classificacao = "pre" } ]
-# quem perde a pre nao fica sem competicao: cai para a Sudamericana
+entram  = [ { classificacao = "primeira" } ]
+
+[[formato.fases]]
+nome    = "Segunda fase"
+tipo    = "knockout"
+maos    = 2
+rodadas = 1
+entram  = [ { classificacao = "segunda" } ]
+
+[[formato.fases]]
+nome    = "Terceira fase"
+tipo    = "knockout"
+maos    = 2
+rodadas = 1
+# quem cai na terceira fase nao fica sem competicao: vai para a Sul-Americana
 exporta = [ { eliminados = true, para = "eliminados_pre" } ]
 
 [[formato.fases]]
@@ -133,12 +198,19 @@ grupos  = 8
 voltas  = 2
 avancam = 2
 entram  = [ { classificacao = "grupos" } ]
-# o 3o de cada grupo cai para as oitavas da Sudamericana. Continua valendo na America do
-# Sul -- na Europa essa queda acabou em 2024-25, junto com os grupos.
+# o 3o de cada grupo cai para o playoff da Sul-Americana
 exporta = [ { posicao = 3, para = "terceiros" } ]
 
 [[formato.fases]]
 nome     = "Mata-mata"
 tipo     = "knockout"
 maos     = 2
+rodadas  = 3          # oitavas, quartas e semifinal
+penaltis = true
+
+[[formato.fases]]
+nome     = "Final"
+tipo     = "knockout"
+maos     = 1          # jogo unico, como desde 2019
+rodadas  = 1
 penaltis = true
