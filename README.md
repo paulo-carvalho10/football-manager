@@ -1,352 +1,204 @@
-# football-manager
+<div align="center">
 
-Motor de simulacao de futebol para um jogo de carreira. Local primeiro, sem online, sem
-interface grafica e sem versao paga: primeiro o mundo precisa ser **crivel**.
+# ⚽ PRANCHETA 11
 
-    # uma temporada completa do Brasil
-    python -m fm.cli temporada --liga brasil --seed 42
+**Um jogo de técnico de futebol que roda no navegador, com um motor de simulação calibrado contra o futebol real.**
 
-    # o portao de qualidade: 2000 temporadas contra alvos de futebol real
-    python -m fm.cli calibrar --temporadas 2000
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
+![NumPy](https://img.shields.io/badge/depend%C3%AAncia-s%C3%B3%20NumPy-013243?logo=numpy&logoColor=white)
+![Testes](https://img.shields.io/badge/testes-320%2B-2ea44f)
+![Interface](https://img.shields.io/badge/interface-HTML%20%2B%20JS%20puro-f7df1e)
 
-    # prova que o carater da liga vem do DADO, nao do motor
-    python -m fm.cli perfis
+<img src="docs/prints/escalacao.png" alt="Tela de escalação com o campo, as reservas e a tática" width="100%">
 
-    # liga x copa: o gigante ganha menos copa que liga
-    python -m fm.cli copa --liga copa_brasil
+</div>
 
-    # um elenco gerado
-    python -m fm.cli elenco --liga espanha --posicao 1
+Você assume um clube e escala o time, contrata, vende e empresta jogadores. Depois assiste à
+partida minuto a minuto e mexe no time durante o jogo. Pela frente estão a liga, as copas e o
+continental, temporada após temporada.
 
-Ambiente: `uv venv --python 3.12` e `uv pip install numpy pytest ruff`.
-Testes: `python -m pytest`. Lint: `ruff check .`
+O mundo tem **8 países, 16 divisões, 340 clubes e mais de 10 mil jogadores reais**. Há ainda
+as ligas sul-americanas de fundo, para a Libertadores e a Sul-Americana.
 
-## A pergunta que decide o projeto
+A pergunta que guia o projeto não é se a interface está bonita. É se **a tabela no fim do ano é
+crível**.
 
-Nao e se a interface esta bonita. E se a **tabela final e crivel**. Por isso o portao de
-calibracao (`fm/calibration.py`) e a peca central: ele roda milhares de temporadas e
-compara onze metricas com intervalos de futebol real. Quebrar um alvo e build vermelho.
+---
 
-Medido em 760 mil partidas, liga de referencia de 20 clubes em returno duplo:
+## Sumário
 
-| metrica | medido | alvo |
-|---|---|---|
-| gols por jogo | 2,60 | 2,55 - 2,80 |
-| 0-0 | 7,5% | 6,5 - 9,5% |
-| casa / empate / fora | 46,1 / 24,7 / 29,2 | 43-47 / 23-27 / 28-31 |
-| margem 3+ | 14,3% | 11,5 - 15,5% |
-| margem 4+ | 4,8% | 3,5 - 6,0% |
-| pontos do campeao | 76,1 | 74 - 81 |
-| pontos do lanterna | 28,8 | 22 - 31 |
-| melhor elenco e campeao | 34,6% | 33 - 46% |
+- [O que tem no jogo](#o-que-tem-no-jogo)
+- [Telas](#telas)
+- [Como rodar](#como-rodar)
+- [O motor](#o-motor)
+- [Arquitetura](#arquitetura)
+- [Dados](#dados)
 
-Aquela ultima linha e a alma do genero. Se o melhor elenco e campeao em 90% das
-temporadas, o jogo e uma planilha. Se e em 10%, e um dado.
+---
 
-**AVISO HONESTO:** os intervalos vieram da ordem de grandeza conhecida das grandes ligas,
-nao de um dataset conferido. Antes de congelar, puxar as tabelas reais (sao publicas e
-pequenas) e re-derivar. E o primeiro item da lista de pendencias.
+## O que tem no jogo
+
+| | |
+|---|---|
+| 🏟️ **Partida ao vivo** | O relógio para a cada 5 minutos. Dá para fazer substituições, mudar a tática e escolher quem bate o pênalti. Os outros jogos da rodada aparecem em paralelo. |
+| 🏆 **Competições reais** | Série A e B, Copa do Brasil, Libertadores e Sul-Americana no formato real. Tem ainda a fase de liga da Champions e a Liga Europa. Os mata-matas são em ida e volta, em datas separadas, e o empate no agregado vai para os pênaltis, cobrança a cobrança. |
+| 💸 **Mercado** | Propostas, contrapropostas, contrato, renovação e empréstimo. A IA também negocia entre si, e os clubes grandes às vezes perdem jogador para um menor. |
+| 📊 **Finanças reais** | Receita, folha e prêmios na escala dos balanços de verdade. O valor de mercado aparece em **euro**. O caixa e os salários aparecem na **moeda do clube**: R$, £, US$ ou €. |
+| 🩹 **Elenco vivo** | O desgaste vem dos minutos jogados. Tem lesão contada em dias, cartões e suspensões, evolução por idade e potencial, e revelação da base. |
+| 🧑‍💼 **Carreira de técnico** | Diretoria e torcida avaliam você e podem demitir. Há reputação, ranking mundial de técnicos e convites de outros clubes. No fim da temporada saem a Bola de Ouro e os prêmios de cada liga. |
+| 🎲 **Determinístico** | O save guarda a semente e as suas decisões. A mesma semente gera exatamente o mesmo mundo, em qualquer máquina. |
+
+## Telas
+
+<table>
+<tr>
+<td width="50%"><img src="docs/prints/aovivo.png" alt="Partida ao vivo"><br><sub><b>Partida ao vivo</b>: estatísticas, lance a lance e os outros jogos da rodada</sub></td>
+<td width="50%"><img src="docs/prints/classificacao.png" alt="Classificação"><br><sub><b>Tabela</b>: classificação, artilharia, defesas e copas</sub></td>
+</tr>
+<tr>
+<td><img src="docs/prints/transferencias.png" alt="Mercado de transferências"><br><sub><b>Mercado</b>: 13 mil jogadores com filtros, valor em € e salário na moeda do clube</sub></td>
+<td><img src="docs/prints/elenco.png" alt="Elenco"><br><sub><b>Elenco</b>: energia, cartões, perfil e contrato de cada jogador</sub></td>
+</tr>
+<tr>
+<td><img src="docs/prints/financas.png" alt="Finanças"><br><sub><b>Finanças</b>: orçamento do ano, folha por setor e maiores salários</sub></td>
+<td><img src="docs/prints/calendario.png" alt="Calendário"><br><sub><b>Calendário</b>: liga e copas intercaladas, com os últimos resultados</sub></td>
+</tr>
+<tr>
+<td><img src="docs/prints/treinador.png" alt="Treinador"><br><sub><b>Treinador</b>: confiança na temporada, carreira e ranking mundial de técnicos</sub></td>
+<td><img src="docs/prints/nova.png" alt="Nova carreira"><br><sub><b>Nova carreira</b>: escolha os países e as competições do seu mundo</sub></td>
+</tr>
+</table>
+
+## Como rodar
+
+Requer **Python 3.12**. O jogo em si depende só de NumPy.
+
+```bash
+git clone https://github.com/paulo-carvalho10/football-manager.git
+cd football-manager
+uv venv --python 3.12            # ou: python -m venv .venv
+uv pip install numpy             # ou: pip install numpy
+
+python -m fm.cli servir          # abre o jogo no navegador (http://localhost:8000)
+```
+
+Os escudos não fazem parte do repositório. Sem eles o jogo mostra a camisa do clube no lugar.
+Para baixá-los, instale as dependências do importador e rode um comando por pack:
+
+```bash
+uv pip install beautifulsoup4 lxml pillow
+python -m fm.cli escudos --pack brasil_serie_a
+```
+
+<details>
+<summary><b>Outros comandos</b> (simulação, calibração, terminal)</summary>
+
+```bash
+python -m fm.cli temporada --liga brasil --seed 42    # uma temporada completa, sem interface
+python -m fm.cli calibrar --temporadas 2000           # o portão de qualidade (ver abaixo)
+python -m fm.cli perfis                               # o caráter de cada liga vem do dado
+python -m fm.cli copa --liga copa_brasil              # liga x copa: o gigante ganha menos copa
+python -m fm.cli jogar --clube Santos                 # a carreira no terminal
+python -m fm.cli calibrar-overall                     # recalibra o overall da tela
+```
+
+Testes: `python -m pytest` · Lint: `ruff check .`
+
+</details>
+
+Também existe uma [demonstração do motor no navegador](https://paulo-carvalho10.github.io/football-manager/),
+que simula temporadas e roda o portão de calibração sem instalar nada.
 
 ## O motor
 
+### O portão de calibração
+
+O centro do projeto é o `fm/calibration.py`. Ele roda milhares de temporadas e compara as
+métricas com intervalos do futebol real. Se um alvo quebra, o build fica vermelho.
+
+A medição abaixo usa 760 mil partidas numa liga de referência de 20 clubes, em returno duplo:
+
+| métrica | medido | alvo |
+|---|---|---|
+| gols por jogo | 2,60 | 2,55 – 2,80 |
+| 0 × 0 | 7,5% | 6,5 – 9,5% |
+| casa / empate / fora | 46,1 / 24,7 / 29,2 | 43–47 / 23–27 / 28–31 |
+| margem de 3+ gols | 14,3% | 11,5 – 15,5% |
+| margem de 4+ gols | 4,8% | 3,5 – 6,0% |
+| pontos do campeão | 76,1 | 74 – 81 |
+| pontos do lanterna | 28,8 | 22 – 31 |
+| o melhor elenco é campeão | 34,6% | 33 – 46% |
+
+A última linha é a alma do gênero. Se o melhor elenco ganha 90% das vezes, o jogo vira uma
+planilha. Se ganha 10%, vira um dado.
+
+### A fórmula
+
 ```
 z = (ovr_efetivo - 68) / 20
-d = tanh((z_casa - z_fora) / 1.20)          <- saturacao
-lambda_casa = gols_base * exp(+0.58*d + mando/2)
-lambda_fora = gols_base * exp(-0.58*d - mando/2)
-gols ~ Poisson(lambda)
+d = tanh((z_casa - z_fora) / 1.20)          <- saturação
+λ_casa = gols_base · exp(+0.58·d + mando/2)
+λ_fora = gols_base · exp(-0.58·d - mando/2)
+gols ~ Poisson(λ)
 ```
 
-Tres decisoes valem explicacao:
+- **A saturação (`tanh`) impede o 9 × 0.** Sem ela, uma diferença de 26 pontos de overall gera
+  22% de jogos com 3+ gols de margem, contra ~14% no real. Com ela, num 82 × 56 o pequeno ainda
+  vence 9,3% das vezes.
+- **Não existe ruído anônimo.** Toda a variância vem de causas com nome: desgaste, moral, forma,
+  clássico e mando. O jogador entende "meu time estava morto, jogou quarta e domingo". Ele não
+  entende "o multiplicador aleatório deu 0,6".
+- **Desgaste em pontos de overall, com teto.** O motor usa a *diferença* de força, então
+  desgaste igual nos dois lados se cancela. Ele só pesa quando é assimétrico: o desgaste máximo
+  leva a derrota do favorito (78 × 64) de 14,3% para 19,0%.
 
-**A saturacao (`tanh`) e o que impede o 9-0.** Sem ela, um gap de 26 pontos de overall
-gera 22% de partidas com 3+ de margem, contra ~14% real. O `tanh` reproduz o que acontece
-de verdade: time goleando administra o resultado, time perdendo se fecha. Efeito colateral
-util: o lado fraco nunca cai abaixo de ~0,60 gol esperado, entao **em 82 x 56 o pequeno
-ainda vence 9,3% das vezes e o jogo ainda termina 0-0 em 5%**.
+### Outras calibrações
 
-**Nao existe ruido anonimo.** A versao com mistura Gamma (Negative Binomial) foi testada e
-o otimizador empurrou a dispersao para zero: ela nao era necessaria e era justamente o que
-gerava goleada demais. Toda a variancia de uma partida vem de causa com **nome** --
-desgaste, moral, forma, classico, mando. O jogador entende "meu time estava morto, jogou
-quarta e domingo"; ele nao entende "o multiplicador aleatorio deu 0,6".
+- **Overall na escala das cartinhas.** O motor tem uma escala interna própria. A tela a converte,
+  percentil por percentil, para a distribuição do EA FC. A tabela de conversão foi medida em
+  3.775 jogadores casados por nome, idade e clube. As cartinhas são só gabarito: nenhum rating é
+  copiado.
+- **Dinheiro na escala real.** A receita foi ajustada contra faturamentos conhecidos (Deloitte
+  Football Money League e balanços dos clubes brasileiros). O salário acompanha o valor de
+  mercado, e o prêmio da liga é proporcional à receita da divisão.
+- **Mundo estacionário.** Testes de 20 temporadas garantem que o overall médio e a reputação não
+  inflam, que os elencos não esvaziam e que o título circula.
 
-**Desgaste em pontos de overall, com teto.** `condition` cai com minutos e sobe com
-descanso; o onze perde `(100-condition)/60 * 8` pontos de overall, no maximo 8. Como o
-motor usa a **diferenca** de forca, desgaste igual nos dois lados se cancela exatamente --
-ele so mexe no jogo quando e assimetrico. Medido: desgaste maximo leva a derrota do
-favorito (78 x 64) de 14,3% para 19,0%. O jogador sente e planeja rotacao, mas nunca vira
-sorteio.
-
-## O carater da liga e CONTEUDO, nao codigo
-
-Nao existe `if country == "BRA"` em nenhum lugar. Brasil e Espanha rodam com as mesmas
-constantes de motor; o que muda e a **distribuicao de overall dos clubes**, declarada no
-arquivo da liga. Saida de `python -m fm.cli perfis`:
-
-| liga | campeao | lanterna | empate% | gols | margem3+ | maior clube e campeao |
-|---|---|---|---|---|---|---|
-| brasil (linear 77..59) | 73,3 | 31,4 | 25,8% | 2,46 | 12,7% | 24,2% |
-| espanha (88, 86, 82 + 75..53) | 82,3 | 27,8 | 23,8% | 2,65 | 15,7% | 41,2% |
-
-Os seis tracos que distinguem as duas ligas -- equilibrio, empates, pontuacao do campeao,
-gap entre topo e meio, previsibilidade dos confrontos desiguais, concentracao de titulos
--- **emergem do dado**. `tests/test_world.py::test_carater_da_liga_vem_do_dado` guarda essa
-propriedade.
-
-Por-liga, so dois numeros de estilo existem, e ambos tem justificativa:
-
-- `gols_base` -- o Brasileirao e mais travado que as ligas inglesas.
-- `mando` -- distancias continentais do Brasil: quem voa 3.000 km chega pior (0,36 contra
-  0,28 da Espanha).
-
-## Data packs: de onde vem o conteudo
-
-O mundo tem duas fontes possiveis, e o motor e identico nas duas:
-
-| fonte | como | usado quando |
-|---|---|---|
-| **pack** (`data/packs/*.toml`) | `pack = "brasil"` no arquivo da liga | nomes reais de clube |
-| **geracao** | bloco `[forca]` no arquivo da liga | mundo ficticio proprio |
-
-Um pack traz nome, forca e -- opcionalmente -- a escalacao nominal do clube. O que faltar
-para fechar 24 jogadores e gerado em volta da forca declarada, entao um pack pode ser
-preenchido aos poucos. O formato esta em `data/packs/_exemplo_escalacao.toml`.
-
-`pack_offset` fatia o pack por forca, e e assim que a piramide sai sem uma linha de codigo
-novo: `pack_offset = 0` da a Serie A, `pack_offset = 20` da a Serie B do mesmo arquivo.
-`test_divisoes_nao_compartilham_clube` garante que as fatias sao disjuntas.
-
-**Os packs deste repo sao estimativa editorial escrita de memoria, marcada
-`verificado = false`.** Composicao de divisao muda todo ano e os valores de forca sao
-opiniao. `test_pack_nao_verificado_esta_declarado_como_tal` impede que um pack nao
-conferido se passe por dado conferido.
-
-## Alvos por liga
-
-Aplicar os alvos da liga de referencia a toda liga e **erro**. O Brasileirao tem mando mais
-forte (logo menos vitoria fora), mais empate e campeao com menos pontos -- por motivos
-reais, nao por bug. Cada liga declara o que e realista para ela num bloco `[alvos]`; o que
-nao declarar cai na referencia. `test_cada_liga_passa_nos_seus_proprios_alvos` cobra todas.
-
-O caso mais bonito e a Serie B: mesmos parametros de motor, elencos quase equivalentes, e o
-resultado e campeao com 68 pontos e **o melhor elenco do papel sendo campeao em apenas
-14% das temporadas**. A Serie B ser maluca nao foi programado -- e consequencia de a liga
-ser achatada.
-
-| liga | campeao | lanterna | empate% | gols | margem3+ | maior clube e campeao |
-|---|---|---|---|---|---|---|
-| Serie A | 73,5 | 32,6 | 25,6% | 2,52 | 13,3% | 33,8% |
-| Serie B | 68,5 | 35,3 | 26,8% | 2,37 | 11,4% | 14,1% |
-| La Liga | 79,2 | 30,4 | 24,7% | 2,61 | 14,5% | 41,7% |
-
-
-## Base real: quatro divisoes, 2.404 jogadores
-
-    python -m fm.cli importar --competicao todas
-    python -m fm.cli temporada   --liga espanha_real
-    python -m fm.cli diagnostico --pack espanha_segunda
-
-| liga | clubes | jogadores | forcas |
-|---|---|---|---|
-| Serie A (BRA) | 20 | 669 | 79,7 a 54,4 |
-| Serie B (BRA) | 20 | 651 | 67,4 a 49,7 |
-| Primera Division (ESP) | 20 | 513 | 90,0 a 64,9 |
-| Segunda Division (ESP) | 22 | 571 | 73,2 a 55,5 |
-
-Nada disso e digitado a mao: `fm/importer/` baixa 1 pagina por liga mais 2 ou 3 por clube,
-cacheia em `data/cache/` e gera os packs. Fontes: Transfermarkt (clube, posicao, idade,
-valor de mercado, jogos, minutos) e CBF (`Codigo_Clube`, composicao oficial da Serie A).
-
-Tres etapas separadas de proposito -- **baixar**, **extrair**, **montar**. So a primeira usa
-rede, entao da para reajustar uma constante de conversao e rodar de novo sobre o cache.
-Regra de arquitetura, guardada por `test_motor_nao_depende_do_importador`: **o jogo nao
-baixa pagina**. `fm/` depende so de numpy; beautifulsoup e lxml vivem em `fm/importer/`.
-
-## Duas escalas, e por que as duas precisam existir
-
-O nivel de uma liga sai do valor MEDIO de elenco na escala global de todas as competicoes
-importadas; o spread DENTRO dela sai de um beta proprio, ajustado contra os `[alvos]`
-daquela liga. Depois tudo desloca para o melhor clube do mundo cair em 90.
-
-Isso nao e capricho -- e o resultado de duas tentativas que falharam:
-
-- **z por liga isolada** acerta o spread mas apaga o nivel: o lanterna da Serie B (3,3
-  milhoes de elenco) saia MAIS FORTE que o lanterna da Serie A (20 milhoes). Piramide
-  invertida. Guardado por `test_piramide_primeira_divisao_e_mais_forte_que_segunda`.
-- **z global unico** acerta o nivel mas achata a Serie A: a diferenca de dinheiro dentro
-  dela e pequena perto da diferenca entre paises, e a disputa de titulo virava sorteio.
-
-A ancora no topo existe porque a escala de overall e limitada (40 a 95): sem ela o Real
-Madrid, com 1,46 bilhao de elenco, estoura o teto e leva os jogadores junto.
-
-## De valor de mercado a overall
-
-Nao existe fonte aberta de overall. Existe de valor de mercado -- e overall da para
-derivar, de forma explicavel, em `fm/ratings.py`:
+## Arquitetura
 
 ```
-1. valor_qualidade = valor / ( K_POS[posicao] x A(idade)^W )
-2. z   = padroniza ln(valor_qualidade) DENTRO do elenco, limitado a +-2,4
-3. POT = forca_clube + 5,0 x z
-4. OVR = POT - teto_crescimento(idade) x (1 - 0,8 x min(1, partidas/20))
-5. desloca tudo para a media do melhor onze cair no forca_clube
+fm/
+├── eventos.py, match.py     o motor da partida (lance a lance e o modo rápido)
+├── carreira.py              a carreira: agenda, decisões, save por replay
+├── copa.py, torneio.py      mata-mata, grupos, fase de liga suíça
+├── mercado.py, negocios.py  a janela da IA e as negociações do usuário
+├── financas.py, moeda.py    receita, folha, prêmios; euro no motor, moeda local na tela
+├── temporada.py             envelhecimento, evolução, aposentadoria, base
+├── calibration.py           o portão de qualidade
+├── servidor.py              servidor HTTP da biblioteca padrão, sem framework
+├── web/                     a interface: HTML, CSS e JavaScript puros
+└── importer/                a importação de dados (fica fora do motor)
+tests/                       mais de 300 testes, incluindo determinismo entre processos
 ```
 
-O principio: **o valor da a hierarquia, o forca do clube da o nivel.** Valor diz bem quem e
-melhor que quem e diz mal "isto e um 82", porque o Brasileirao e globalmente mais barato
-que a Europa. O forca vem do valor TOTAL do elenco, com dois parametros por liga ajustados
-contra os `[alvos]`.
+Decisões que valem mencionar:
 
-Tres coisas que so apareceram medindo:
+- **O motor depende só de NumPy.** O importador (BeautifulSoup e Pillow) é um extra separado.
+  O jogo não baixa página.
+- **O save guarda a semente e as decisões**, não o estado. Carregar é refazer o caminho. Por
+  isso cada sorteio vem de um fluxo de números com nome estável, e um teste compara o mundo
+  gerado em dois processos diferentes.
+- **Nenhuma regra de jogo mora no navegador.** A tela pede estado ao servidor, desenha e devolve
+  o que o usuário decidiu.
 
-**O premio de posicao nao e enfeite.** O mercado paga por goleiro cerca de metade do que
-paga por um meia de qualidade equivalente. Sem `K_POS`, o goleiro titular sai 5 pontos
-abaixo do resto do onze; com ele, a diferenca media na liga real e **+0,5**.
+## Dados
 
-**Dividir pelo multiplicador de idade inteiro estoura a escala.** O mercado desconta
-veterano por dois motivos -- pouca carreira restante (nao e falta de qualidade hoje) e
-declinio real (e). Devolvendo tudo, um jogador de 33 anos valendo 10 milhoes virava OVR 94.
-Dai `W = 0,5` e um teto de 2x.
+- Os elencos, valores de mercado e idades vêm do **Transfermarkt**, importados por
+  `fm/importer/`. O overall e o potencial são derivados desses campos em `fm/ratings.py`: são
+  uma estimativa, não o rating oficial de ninguém.
+- O **EA FC** serviu só de referência para calibrar a escala do overall. Nenhum rating dele é
+  copiado.
+- Os **escudos** não são versionados. Cada um baixa os seus, para uso pessoal.
 
-**O desconto de imaturidade estava forte demais.** Com peso 0,6, o jogador mais valioso da
-Serie A (21 anos, 38 milhoes, temporada inteira jogada) ficava no BANCO do proprio clube.
-Quem ja e titular entregou qualidade; com 0,8, os dez mais caros da liga sao todos
-titulares.
-
-## Ajustes manuais e teto por posicao
-
-Duas valvulas de escape, porque a conta automatica nao sabe tudo.
-
-**`data/ajustes/<pack>.toml`** corrige jogador a jogador. O pack e GERADO, entao editar o
-.toml dele a mao some na proxima importacao -- o que esta nos ajustes sobrevive. Cada linha
-leva `motivo` e `data`, porque cada uma e uma opiniao contra o dado. E ajuste que nao casa
-com ninguem **levanta erro**: nome digitado errado tem de doer na hora, nao virar silencio.
-
-**`TETO_POR_POSICAO`** limita o topo de uma posicao. A normalizacao e dentro do elenco,
-entao num clube onde todo mundo e caro (Real Madrid, 1,46 bilhao) ate o lateral reserva
-sobe: Cucurella, Alexander-Arnold e Koundé saiam todos com 90. Com teto de 87 para lateral
-eles vao para 86, 85 e 85, e o resto da escala nao se mexe (Mbappé segue 95). Nao e corte
-seco -- acima do limiar o excedente e comprimido, para a ordem entre eles sobreviver.
-
-## Diagnosticos: o que separa constante ajustada de constante bonita
-
-`python -m fm.cli diagnostico` mede cinco coisas sobre cada base real. As quatro ligas
-passam nas cinco.
-
-| diagnostico | BRA A | BRA B | ESP 1 | ESP 2 | faixa |
-|---|---|---|---|---|---|
-| goleiro titular vs titulares de linha | -0,4 | -0,7 | +0,8 | +1,0 | -1,5 a 1,5 |
-| mais caro em idade de pico e titular | 100% | 100% | 100% | 95% | 80 a 100% |
-| idade media dos titulares | 28,5 | 29,6 | 27,1 | 27,3 | 26,5 a 30,5 |
-| idade media dos 50 melhores overalls | 27,9 | 28,9 | 26,6 | 28,8 | 26 a 30 |
-| desvio-padrao de overall | 10,5 | 7,6 | 9,9 | 8,4 | 7 a 13 |
-
-**Tres diagnosticos ruins custaram caro e ficaram registrados no modulo**, porque errar o
-diagnostico e pior que errar o modelo -- leva a "consertar" o que estava certo:
-
-1. **Media de overall por faixa de idade** acusava vies pro-veterano porque subia ate os
-   30-32 anos. Era composicao de elenco: clube dispensa veterano ruim e segura garoto ruim,
-   entao sobram 75 jogadores de 18-20 anos e so 37 acima de 36. O que vale e a idade de
-   QUEM JOGA.
-2. **"Os dez mais caros da liga devem ser titulares"** punia concentracao: 9 dos 10 mais
-   caros de La Liga sao do Real Madrid e do Barcelona, e nenhum clube escala 11 craques.
-   Virou por clube.
-3. **Nao filtrar idade** punia emprestimo de garoto caro. Em Segunda o mais caro do clube e
-   quase sempre um prospecto de clube grande -- um caso real tinha 22 anos, 5 milhoes de
-   euros e **28 minutos jogados**. Ele nao ser titular esta certo. Virou "o mais caro entre
-   os de 24 a 31 anos".
-
-## O premio de posicao e propriedade do mercado, nao constante universal
-
-Com o K de goleiro ajustado no Brasil (0,65), os goleiros da Segunda espanhola saiam **2,3
-pontos acima** dos titulares de linha: naquele mercado o desconto de goleiro e menor. Por
-isso `K_POS_POR_LIGA` existe. Segunda usa 0,82 e o diagnostico cai para +1,0.
-
-## Ligas nao estao no mesmo ponto da temporada
-
-O erro mais sutil de todos. Em setembro de 2026 o Brasileirao (ano civil) tinha 30 a 45
-jogos disputados e as ligas europeias (agosto a maio) tinham cinco rodadas. Com um limiar
-fixo de 20 jogos para "ja entregou", **a Espanha inteira era tratada como promessa**: o
-jogador mais caro de La Liga (19 anos, 220 milhoes, 671 minutos) ia para o banco do proprio
-clube.
-
-Duas correcoes: a referencia de "temporada inteira" passou a ser um percentil alto dos
-minutos DAQUELA liga (2.408 minutos no Brasil, 549 na Espanha em curso), e para a Europa
-baixa-se tambem a temporada ANTERIOR, ja completa. A realizacao de cada jogador e o maior
-dos dois valores normalizados -- assim o veterano pontua pela temporada passada e o
-reforco recem-chegado pontua pela atual.
-
-## O dado real tambem corrigiu o motor
-
-A formacao padrao era 4-4-2. Os elencos reais tem cerca de **9 atacantes e pontas por
-clube** contra 2 vagas -- e o jogador mais caro da liga ficava fora do onze. Era a formacao
-errada, nao o calculo. O padrao agora e 4-3-3.
-
-## Mata-mata
-
-Competicao e uma lista de fases (`round_robin`, `knockout`, `groups`) descrita em arquivo.
-Copa recebe `[mentalidade]` com `gols_mult = 0.90` e `compressao = 0.20`: o "todo jogo vale
-a vida" deixa o jogo travado (gols 2,54 -> 2,29; 0-0 7,8% -> 10,1%) e comprime o gap,
-porque o pequeno se fecha.
-
-Medido em copa de 16 clubes, ida e volta, 30 mil edicoes com o perfil brasileiro:
-
-| | maior clube leva | top-3 leva |
-|---|---|---|
-| mentalidade normal | 18,3% | 47,7% |
-| mentalidade copa | 15,8% | 41,8% |
-
-E o ponto importante: **a imprevisibilidade da copa nao usa aleatoriedade extra**. Em 38
-jogos o melhor elenco regride para a media e aparece no topo; em 4 duelos, nao da tempo.
-E por isso que copa e a competicao da esperanca e liga e a competicao do dinheiro.
-
-## Regras de arquitetura (com teste que guarda cada uma)
-
-1. **O motor nao faz I/O.** Nenhum `print` nem `input` dentro de `fm/`, exceto `fm/cli.py`.
-   Guardado por `test_motor_nao_faz_io`.
-2. **Determinismo por seed, em fluxos nomeados.** Nada cria RNG por conta propria: tudo
-   pede um fluxo a `fm.rng.Streams`. Adicionar lesoes amanha nao desloca as partidas de
-   hoje. Guardado por `test_fluxos_nomeados_sao_independentes`.
-3. **Regra de competicao vem de arquivo**, nunca de `if` espalhado pelo codigo.
-4. **Conteudo vem de pack externo, e o motor roda sem nenhum pack.** Clubes e jogadores
-   podem vir de `data/packs/*.toml` (nomes reais) ou ser gerados (mundo ficticio). Trocar
-   um pelo outro e editar uma linha do arquivo da liga. Guardado por
-   `test_motor_roda_sem_pack` -- e o que mantem a porta do licenciamento aberta.
-5. **Avanco rodada por rodada**, nao temporada de uma vez -- e o que vai permitir parar na
-   partida do usuario e simula-la em detalhe sem reescrever nada.
-
-## Performance
-
-2,7 milhoes de partidas por segundo no caminho rapido (uma temporada de 380 jogos sai em
-~0,14 s). Orcamento declarado: **uma rodada mundial em menos de 1 segundo**, guardado por
-`test_orcamento_de_performance`.
-
-## Pendencias, em ordem
-
-1. **Conferir os packs e re-derivar os alvos com dados reais.** Composicao das divisoes,
-   forca dos clubes e faixas dos alvos sao todos estimativa de memoria hoje
-   (`verificado = false`). Sao dados publicos e pequenos.
-2. **Escalacoes reais.** O formato ja aceita (`[[clubes.jogadores]]`), mas os elencos nao
-   estao preenchidos: jogadores sao gerados a partir de bancos de nomes e apelidos
-   brasileiros e espanhois, nao sao atletas reais. Preencher exige uma fonte de dados --
-   digitada ou importada.
-3. **Dinamica de colapso.** Falta espiral de moral, elenco desmontado no meio da temporada
-   e lesao acumulada -- e o que faz clube rebaixado real terminar com 16-21 pontos. Sem
-   isso, o lanterna simulado fica na casa dos 30 e o alvo esta alargado com essa
-   justificativa escrita no arquivo. Re-apertar depois do M4/M5.
-4. **Separar ataque e defesa.** Hoje o clube tem um overall unico. Com dois lambdas
-   independentes (`z_ataque_casa` contra `z_defesa_fora`) aparecem o 4-3 entre dois times
-   ofensivos e o 0-0 entre dois defensivos -- variedade de estilo, nao so de forca.
-5. **Motor detalhado por eventos** para a partida do usuario, calibrado contra o rapido
-   (se as partidas do usuario tiverem media de gols diferente do resto do mundo, a tabela
-   fica torta e o jogador sente).
-6. **Carreira**: multiplas temporadas, piramide de divisoes, acesso e rebaixamento,
-   envelhecimento, evolucao por potencial, regens, save/load.
-7. **Financas com realimentacao.** Sem isso o carater da liga **decai**: depois de 30
-   temporadas toda liga vira o mesmo mingau achatado e a Espanha deixa de ser a Espanha. O
-   laco e reputacao -> receita -> folha -> elenco -> titulo -> reputacao. Teste de longo
-   prazo a escrever: rodar 30 temporadas e conferir que o gap 1o-10o da Espanha nao caiu
-   abaixo de 25.
-8. **Mercado de transferencias** com IA de clube.
-9. Interface. Por ultimo, de proposito.
+Este é um projeto pessoal e não tem vínculo com clubes, ligas, federações, Transfermarkt ou EA.
+Os nomes e as marcas pertencem aos seus donos.
