@@ -141,7 +141,12 @@ const NOVA = {catalogo: null, paises: new Set(["BRA"]), treinador: "", seed: 202
 
 async function abrirNova() {
   $$(".logo-p-slot").forEach((el) => { el.innerHTML = logo(true); });
-  if (!NOVA.catalogo) NOVA.catalogo = await api.get("/api/catalogo");
+  if (!NOVA.catalogo) {
+    NOVA.catalogo = await api.get("/api/catalogo");
+    // todos os paises liberados vem marcados: pais desmarcado nao existe no mundo, e os
+    // jogadores dele nao aparecem no mercado (nem os clubes nas copas continentais)
+    NOVA.paises = new Set(NOVA.catalogo.nacionais.filter((n) => n.livre).map((n) => n.pais));
+  }
   desenharPaises();
   desenharEstaduais();
   desenharConfig();

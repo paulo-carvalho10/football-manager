@@ -808,6 +808,9 @@ class Carreira:
             if tipo == "liga":
                 self.ultimo_compromisso = (tipo, quem)
                 return self._jogar_rodada(substituicoes)
+            # antes de jogar: durante a partida ao vivo, e daqui que a tela sabe qual e a
+            # competicao (o sorteio da copa so acontece no dia)
+            self.ultimo_compromisso = (tipo, quem)
             saida = self._jogar_etapa_de_copa(quem, substituicoes)
             self.data += 1
             if saida is not None:

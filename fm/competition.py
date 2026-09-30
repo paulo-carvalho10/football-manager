@@ -152,15 +152,20 @@ def liga_suica(club_ids: list[int], adversarios: int = 8, potes: int = 4) -> lis
     """Fase de liga no modelo suico: tabela unica e calendario PARCIAL.
 
     E o formato da Champions desde 2024-25: 36 clubes numa tabela so, cada um joga 8
-    partidas contra 8 adversarios DIFERENTES, metade em casa. Nao joga contra todos.
+    partidas contra 8 adversarios DIFERENTES, metade em casa, 2 de cada pote. Nao joga
+    contra todos.
 
-    A construcao usa um grafo circulante e nao sorteio com repeticao, porque circulante
-    garante de graca as tres propriedades que a regra exige:
+    Montada RODADA A RODADA, como o sorteio da UEFA: cada rodada e um emparelhamento em
+    que cada clube joga UMA vez, contra quem ainda nao enfrentou, sem passar de 2
+    adversarios do mesmo pote. A versao anterior (um grafo circulante) garantia os potes,
+    mas punha dois jogos do mesmo clube na mesma rodada -- a fase de liga era jogada de
+    duas em duas rodadas. E para 36 clubes em 4 potes nao ha divisao do circulante em
+    rodadas: os deslocamentos que dao o adversario do mesmo pote formam ciclos impares.
 
-    - cada clube enfrenta `adversarios` rivais distintos (grafo k-regular);
-    - metade em casa e metade fora (orientacao por paridade do deslocamento);
-    - INTERCALANDO os potes na ordem, cada clube pega exatamente 2 de cada pote --
-      que e a regra do sorteio real, sem precisar de sorteio com retentativa.
+    Quando os potes nao dividem por igual (mundo com menos clubes), a cota de pote e
+    relaxada; se nem assim fechar, o metodo do circulo resolve. As tentativas vem de um
+    sorteio com semente fixa: o mesmo mundo da o mesmo calendario. O mando sai de um
+    circuito euleriano -- metade em casa, metade fora, para todos.
     """
     n = len(club_ids)
     if adversarios % 2 or adversarios >= n:
@@ -168,24 +173,102 @@ def liga_suica(club_ids: list[int], adversarios: int = 8, potes: int = 4) -> lis
     if n % 2:
         raise ValueError("liga suica exige numero par de clubes")
 
-    # intercala os potes: pote0[0], pote1[0], ..., pote0[1], pote1[1], ...
+    # potes pela ordem recebida (a de forca): os `tamanho` primeiros sao o pote 1...
     tamanho = max(1, n // potes)
-    grupos = [club_ids[i * tamanho:(i + 1) * tamanho] for i in range(potes)]
-    grupos[-1] += club_ids[potes * tamanho:]
-    ordem: list[int] = []
-    for i in range(max(len(g) for g in grupos)):
-        for g in grupos:
-            if i < len(g):
-                ordem.append(g[i])
+    pote = {c: min(i // tamanho, potes - 1) for i, c in enumerate(club_ids)}
+    cota = -(-adversarios // potes)
+    rodadas = (_rodadas_suicas(club_ids, adversarios, pote, cota, tentativas=40)
+               or _rodadas_suicas(club_ids, adversarios, pote, adversarios, tentativas=40)
+               or _rodadas_do_circulo(club_ids, adversarios))
+    mandante = _mandos_equilibrados([par for r in rodadas for par in r])
+    return [Fixture(a, b, numero) if mandante[(a, b)] else Fixture(b, a, numero)
+            for numero, rodada in enumerate(rodadas, 1) for a, b in rodada]
 
-    fixtures: list[Fixture] = []
-    rodada = 0
-    for d in range(1, adversarios // 2 + 1):
-        for i in range(n):
-            j = (i + d) % n
-            # deslocamento impar: manda quem esta antes; par: manda quem esta depois.
-            # E o que reparte 4 jogos em casa e 4 fora para todo mundo.
-            casa, fora = (ordem[i], ordem[j]) if d % 2 else (ordem[j], ordem[i])
-            fixtures.append(Fixture(casa, fora, rodada + 1))
-        rodada += 2
-    return fixtures
+
+def _rodadas_suicas(clubes: list[int], k: int, pote: dict[int, int], cota: int,
+                    tentativas: int) -> list[list[tuple[int, int]]] | None:
+    for t in range(tentativas):
+        rng = np.random.default_rng([len(clubes), k, cota, t, *clubes])
+        enfrentou: dict[int, set[int]] = {c: set() for c in clubes}
+        por_pote: dict[int, dict[int, int]] = {c: {} for c in clubes}
+
+        def pode(a: int, b: int) -> bool:
+            return (b not in enfrentou[a] and por_pote[a].get(pote[b], 0) < cota
+                    and por_pote[b].get(pote[a], 0) < cota)
+
+        feitas = []
+        for _ in range(k):
+            rodada = _emparelhar(list(clubes), pode, rng, limite=4_000)
+            if rodada is None:
+                break
+            for a, b in rodada:
+                enfrentou[a].add(b)
+                enfrentou[b].add(a)
+                por_pote[a][pote[b]] = por_pote[a].get(pote[b], 0) + 1
+                por_pote[b][pote[a]] = por_pote[b].get(pote[a], 0) + 1
+            feitas.append(rodada)
+        if len(feitas) == k:
+            return feitas
+    return None
+
+
+def _emparelhar(livres: list[int], pode, rng, limite: int) -> list[tuple[int, int]] | None:
+    """Emparelhamento perfeito de `livres` so com pares permitidos: busca em profundidade
+    pelo clube com menos opcoes. None se nao achar dentro do limite de passos."""
+    passos = [0]
+
+    def buscar(restam: list[int]):
+        if not restam:
+            return []
+        passos[0] += 1
+        if passos[0] > limite:
+            return None
+        opcoes = {a: [b for b in restam if b != a and pode(a, b)] for a in restam}
+        a = min(restam, key=lambda x: (len(opcoes[x]), x))
+        candidatos = list(opcoes[a])
+        rng.shuffle(candidatos)
+        for b in candidatos:
+            resto = buscar([x for x in restam if x != a and x != b])
+            if resto is not None:
+                return [(a, b)] + resto
+        return None
+
+    return buscar(livres)
+
+
+def _rodadas_do_circulo(clubes: list[int], k: int) -> list[list[tuple[int, int]]]:
+    """As k primeiras rodadas do metodo do circulo: sempre fecha, sem olhar pote."""
+    fixo, gira = clubes[0], list(clubes[1:])
+    rodadas = []
+    for _ in range(k):
+        lista = [fixo] + gira
+        rodadas.append([(lista[i], lista[-1 - i]) for i in range(len(lista) // 2)])
+        gira = gira[-1:] + gira[:-1]
+    return rodadas
+
+
+def _mandos_equilibrados(pares: list[tuple[int, int]]) -> dict[tuple[int, int], bool]:
+    """Orienta cada jogo por um circuito euleriano: em grafo de grau par, cada clube sai
+    (joga em casa) tantas vezes quanto entra. {par: True se o primeiro e mandante}."""
+    vizinhos: dict[int, list[tuple[int, int]]] = {}
+    for idx, (a, b) in enumerate(pares):
+        vizinhos.setdefault(a, []).append((b, idx))
+        vizinhos.setdefault(b, []).append((a, idx))
+    usado = [False] * len(pares)
+    mandante: dict[tuple[int, int], bool] = {}
+    ponteiro = {v: 0 for v in vizinhos}
+    for inicio in sorted(vizinhos):
+        pilha = [inicio]
+        while pilha:
+            v = pilha[-1]
+            lista = vizinhos[v]
+            while ponteiro[v] < len(lista) and usado[lista[ponteiro[v]][1]]:
+                ponteiro[v] += 1
+            if ponteiro[v] == len(lista):
+                pilha.pop()
+                continue
+            w, idx = lista[ponteiro[v]]
+            usado[idx] = True
+            mandante[pares[idx]] = pares[idx][0] == v     # v -> w: v manda
+            pilha.append(w)
+    return mandante

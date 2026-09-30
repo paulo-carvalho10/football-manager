@@ -174,10 +174,36 @@ def test_liga_suica_reproduz_a_regra_do_sorteio():
     assert set(casa.values()) == {4}, "metade em casa"
     assert {len(v) for v in advs.values()} == {8}, "8 adversarios DIFERENTES"
 
-    # os potes sao por forca; intercalando a ordem, cada clube pega 2 de cada pote
+    # os potes sao por forca; cada clube pega 2 de cada pote
     pote = {c: ids.index(c) // 9 for c in ids}
     por_clube = {tuple(sorted(Counter(pote[a] for a in advs[c]).values())) for c in ids}
     assert por_clube == {(2, 2, 2, 2)}, "2 adversarios de cada pote, como no sorteio real"
+
+    # REGRESSAO: cada rodada tem cada clube UMA vez. O gerador antigo punha dois jogos do
+    # mesmo clube na mesma rodada, e a fase de liga andava de duas em duas rodadas
+    assert sorted({f.matchday for f in fixtures}) == list(range(1, 9))
+    for rodada in range(1, 9):
+        clubes = [c for f in fixtures if f.matchday == rodada for c in (f.home, f.away)]
+        assert sorted(clubes) == ids, f"rodada {rodada}: clube repetido ou faltando"
+
+
+@pytest.mark.parametrize("n", [36, 34, 32, 30, 24, 18, 16, 10, 6])
+def test_liga_suica_em_qualquer_tamanho_de_mundo(n):
+    """Mundo com menos clubes (so alguns paises marcados): a regra da rodada vale sempre,
+    mesmo quando os potes nao dividem por igual."""
+    from collections import Counter
+
+    from fm.competition import liga_suica
+    ids = list(range(100, 100 + n))
+    k = min(8, n - 2)
+    fixtures = liga_suica(ids, adversarios=k, potes=4)
+    for rodada in range(1, k + 1):
+        clubes = [c for f in fixtures if f.matchday == rodada for c in (f.home, f.away)]
+        assert sorted(clubes) == ids
+    pares = {frozenset((f.home, f.away)) for f in fixtures}
+    assert len(pares) == len(fixtures), "adversario repetido"
+    casa = Counter(f.home for f in fixtures)
+    assert set(casa.values()) == {k // 2}, "metade em casa"
 
 
 def test_liga_suica_recusa_pedido_impossivel():

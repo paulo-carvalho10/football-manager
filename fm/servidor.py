@@ -679,6 +679,22 @@ def _competicao_da_proxima(c: Carreira) -> tuple[str, str]:
     return "", ""
 
 
+def _competicao_em_campo(c: Carreira) -> tuple[str, str] | None:
+    """O rotulo da partida em andamento, pelo que a carreira esta jogando AGORA. O
+    previsto (_competicao_da_proxima) erra na copa: o sorteio so sai no dia, e a partida
+    de copa aparecia como a proxima rodada da liga."""
+    tipo, onde = c.ultimo_compromisso
+    if tipo == "liga":
+        return tipo, f"{telas.nome_da_liga(c.liga)} · Rodada {c.rodada + 1}"
+    if tipo == "copa" and onde in c.copas:
+        a = c.copas[onde]
+        _, ida = _jogo_de_copa(c, a)
+        extra = (f" · Volta (ida: {ida['casa']} {ida['gols_casa']} × {ida['gols_fora']} "
+                 f"{ida['fora']})" if ida else "")
+        return tipo, f"{a.torneio.nome} · {a.nome_da_fase}{extra}"
+    return None
+
+
 def _jogo_de_copa(c: Carreira, a) -> tuple:
     """O proximo jogo do usuario na copa, se ja sorteado, e o placar da ida quando ele
     e a volta. Antes do sorteio (a proxima rodada so e sorteada no dia) os dois sao None."""
@@ -705,15 +721,32 @@ def partida_iniciar(jogo: Jogo, corpo: dict | None = None) -> dict:
         return {"erro": "voce nao trabalha mais aqui"}
     if c.acabou:
         return {"erro": "a temporada acabou", "fim_de_temporada": True}
-    jogo.competicao_ao_vivo = _competicao_da_proxima(c)
     jogo.pos_jogo = None
-    tipo, _, _ = c.proximo_jogo()
-    # a posicao ANTES da rodada, para o fim de jogo dizer se subiu ou caiu
-    jogo.posicao_antes = c.posicao() if tipo == "liga" and c.rodada > 0 else None
-    jogo.ao_vivo = PartidaAoVivo(c)
-    jogo.ao_vivo.perguntar_penalti = bool((corpo or {}).get("perguntar_penalti", True))
-    jogo.ao_vivo.comecar()
-    return partida_atual(jogo)
+    # Data sem jogo do clube (copa de outro continente, fase em que ele nao esta) passa
+    # direto ate a partida dele: com todos os paises no mundo eram ~50 interrupcoes por
+    # temporada. Para antes se chegar proposta por um jogador (ela caduca na data
+    # seguinte) ou se ele for demitido.
+    puladas = 0
+    while True:
+        jogo.competicao_ao_vivo = _competicao_da_proxima(c)
+        tipo, _, _ = c.proximo_jogo()
+        # a posicao ANTES da rodada, para o fim de jogo dizer se subiu ou caiu
+        jogo.posicao_antes = c.posicao() if tipo == "liga" and c.rodada > 0 else None
+        propostas_antes = len(c.propostas_pendentes())
+        jogo.ao_vivo = PartidaAoVivo(c)
+        jogo.ao_vivo.perguntar_penalti = bool((corpo or {}).get("perguntar_penalti", True))
+        jogo.ao_vivo.comecar()
+        av = jogo.ao_vivo
+        # a partida ja comecou: a competicao e a que esta em campo, nao a prevista
+        jogo.competicao_ao_vivo = _competicao_em_campo(c) or jogo.competicao_ao_vivo
+        sem_jogo = av.resultado is not None and av.resultado[1] is None
+        if (not sem_jogo or c.acabou or c.demitido
+                or len(c.propostas_pendentes()) > propostas_antes):
+            break
+        puladas += 1
+    retrato = partida_atual(jogo)
+    retrato["datas_puladas"] = puladas
+    return retrato
 
 
 def partida_seguir(jogo: Jogo, corpo: dict) -> dict:

@@ -166,4 +166,12 @@ isentos = 8          # 1o ao 8o da fase de liga vao direto as oitavas
 nome     = "Mata-mata"
 tipo     = "knockout"
 maos     = 2
+rodadas  = 3         # oitavas, quartas e semifinal
+penaltis = true
+
+[[formato.fases]]
+nome     = "Final"
+tipo     = "knockout"
+maos     = 1         # jogo unico, como na vida real
+rodadas  = 1
 penaltis = true
