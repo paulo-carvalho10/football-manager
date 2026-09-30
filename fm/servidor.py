@@ -205,8 +205,12 @@ def estado(jogo: Jogo) -> dict:
                    "rodada": c.rodada + 1}
     elif tipo == "copa":
         a = c.copas[onde]
+        f, ida = _jogo_de_copa(c, a)
         proximo = {"tipo": "copa", "competicao": a.torneio.nome, "id": onde,
-                   "fase": a.nome_da_fase, "vivos": len(a.vivos), "rival": None}
+                   "fase": a.nome_da_fase, "vivos": len(a.vivos),
+                   "rival": _clube(c, f.away if f.home == c.clube_id else f.home) if f else None,
+                   "casa": bool(f and f.home == c.clube_id),
+                   "volta": ida is not None, "ida": ida}
 
     tabela = c.tabela()
     minha = next((linha for linha in tabela if linha.club_id == c.clube_id), None)
@@ -650,8 +654,26 @@ def _competicao_da_proxima(c: Carreira) -> tuple[str, str]:
         return tipo, f"{telas.nome_da_liga(c.liga)} · Rodada {c.rodada + 1}"
     if tipo == "copa":
         a = c.copas[onde]
-        return tipo, f"{a.torneio.nome} · {a.nome_da_fase}"
+        _, ida = _jogo_de_copa(c, a)
+        extra = (f" · Volta (ida: {ida['casa']} {ida['gols_casa']} × {ida['gols_fora']} "
+                 f"{ida['fora']})" if ida else "")
+        return tipo, f"{a.torneio.nome} · {a.nome_da_fase}{extra}"
     return "", ""
+
+
+def _jogo_de_copa(c: Carreira, a) -> tuple:
+    """O proximo jogo do usuario na copa, se ja sorteado, e o placar da ida quando ele
+    e a volta. Antes do sorteio (a proxima rodada so e sorteada no dia) os dois sao None."""
+    if not a.pendentes:
+        return None, None
+    f = next((x for x in a.pendentes[0] if c.clube_id in (x.home, x.away)), None)
+    if f is None:
+        return None, None
+    ida = next((r for r in a.resultados if {r.home, r.away} == {f.home, f.away}), None)
+    if ida is None:
+        return f, None
+    return f, {"casa": c.world.clubs[ida.home].name, "fora": c.world.clubs[ida.away].name,
+               "gols_casa": ida.goals_home, "gols_fora": ida.goals_away}
 
 
 def partida_iniciar(jogo: Jogo, corpo: dict | None = None) -> dict:

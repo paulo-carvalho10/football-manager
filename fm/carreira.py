@@ -958,8 +958,8 @@ class Carreira:
         ratings = {cid: float(effective_rating(self.world.team_rating(cid),
                                                fatigue=self.world.fatigue_penalty(cid)))
                    for cid in {f.home for f in etapa.fixtures} | {f.away for f in etapa.fixtures}}
-        # no mata-mata de ida e volta o usuario joga a ida em detalhe; a volta resolve
-        # no motor rapido, senao uma data pediria duas partidas seguidas na tela
+        # uma etapa tem no maximo um jogo do usuario: no mata-mata de ida e volta a ida e
+        # a volta sao datas diferentes (fm.copa), e as duas sao jogadas em detalhe
         meu = meus[0] if meus else None
         if meu is not None:
             jogos = [f for f in jogos if f is not meu]

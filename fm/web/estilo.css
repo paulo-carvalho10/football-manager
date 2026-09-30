@@ -896,3 +896,4 @@ input:focus, select:focus { border-color: var(--ouro); }
 .convites { display: grid; gap: .5rem; }
 .convite { display: flex; align-items: center; gap: .8rem; border: 1px solid var(--linha); border-radius: 8px; padding: .6rem .8rem; }
 .convite .info { flex: 1; display: flex; flex-direction: column; gap: .1rem; }
+.onde.ida { color: var(--ouro); margin-top: .15rem; }

@@ -96,15 +96,18 @@ def test_energia_estabiliza_e_nao_desaba(carreira):
 
 
 def test_marcacao_forte_cansa_mais(carreira):
+    # 10 RODADAS de liga, nao 10 datas: quantas datas de copa cabem no meio depende da
+    # agenda (a ida e a volta do mata-mata viraram datas separadas), e em data sem jogo o
+    # elenco descansa
     onze = carreira.escalacao_atual()
-    for _ in range(10):
+    while carreira.rodada < 10:
         carreira.escalar(onze, Tatica(marcacao="forte"))
         carreira.avancar()
     com_forte = sum(carreira.world.players[j].condition for j in onze) / 11
 
     outra = Carreira.nova("brasil_real", "Santos", seed=42)
     onze2 = outra.escalacao_atual()
-    for _ in range(10):
+    while outra.rodada < 10:
         outra.escalar(onze2, Tatica(marcacao="leve"))
         outra.avancar()
     com_leve = sum(outra.world.players[j].condition for j in onze2) / 11

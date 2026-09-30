@@ -72,6 +72,11 @@ function textoDoProximo(e) {
     const fora = p.casa ? p.rival.nome : e.clube.nome;
     return {rotulo: `${p.competicao} · rodada ${p.rodada}`, texto: `${casa} x ${fora}`, botao: "Jogar ›"};
   }
+  if (p && p.rival) {
+    const casa = p.casa ? e.clube.nome : p.rival.nome;
+    const fora = p.casa ? p.rival.nome : e.clube.nome;
+    return {rotulo: `${p.competicao} · ${p.fase}${p.volta ? " · volta" : ""}`, texto: `${casa} x ${fora}`, botao: "Jogar ›"};
+  }
   if (p) return {rotulo: `${p.competicao}`, texto: p.fase, botao: "Jogar ›"};
   return {rotulo: "Sem jogo do clube", texto: "Rodada dos outros", botao: "Avançar ›"};
 }
@@ -102,6 +107,15 @@ function desenharLateral(e) {
         <span class="x">×</span>
         <div>${escudo(fora)}<span>${escapar(fora.nome)}</span></div></div>
       <div class="onde">${escapar(p.competicao)} · rodada ${p.rodada} · ${p.casa ? "em casa" : "fora"}</div>`;
+  } else if (p && p.rival) {
+    // copa com o confronto ja sorteado (a volta, ou a fase que ja tem jogos marcados)
+    const [casa, fora] = p.casa ? [e.clube, p.rival] : [p.rival, e.clube];
+    prox = `<div class="confronto">
+        <div>${escudo(casa)}<span>${escapar(casa.nome)}</span></div>
+        <span class="x">×</span>
+        <div>${escudo(fora)}<span>${escapar(fora.nome)}</span></div></div>
+      <div class="onde">${escapar(p.competicao)} · ${escapar(p.fase)}${p.volta ? " · volta" : ""} · ${p.casa ? "em casa" : "fora"}</div>
+      ${p.ida ? `<div class="onde ida">Ida: ${escapar(p.ida.casa)} ${p.ida.gols_casa} × ${p.ida.gols_fora} ${escapar(p.ida.fora)}</div>` : ""}`;
   } else if (p) {
     prox = `<div class="confronto"><div>${escudo(e.clube)}<span>${escapar(e.clube.nome)}</span></div>
       <span class="x">×</span><div>${escudo({nome: "?", cor: "#25302a", cor2: "#71897a"})}<span>sorteio da fase</span></div></div>

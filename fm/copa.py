@@ -193,15 +193,18 @@ def _sortear_confronto(andamento: Andamento, fase: dict,
     a, b = disputam[:metade], disputam[metade:]
 
     maos = int(fase.get("maos", 2))
-    jogos = [Fixture(home=int(x), away=int(y), matchday=1)
-             for x, y in zip(b, a, strict=True)]
-    if maos == 2:
-        jogos += [Fixture(home=int(y), away=int(x), matchday=2)
-                  for x, y in zip(b, a, strict=True)]
+    ida = [Fixture(home=int(x), away=int(y), matchday=1) for x, y in zip(b, a, strict=True)]
     andamento.vivos = poupados + bye + [int(x) for x in a] + [int(x) for x in b]
     andamento.pares = [(int(x), int(y)) for x, y in zip(b, a, strict=True)]
     andamento.poupados = list(poupados) + [int(x) for x in bye]
-    return [jogos]
+    if maos == 2:
+        # ida e volta em DATAS diferentes: entre uma e outra o treinador ve o placar da
+        # ida, mexe no time, e o suspenso da ida cumpre o gancho na volta. Eram uma etapa
+        # so, e a volta era jogada no motor rapido junto com a ida.
+        volta = [Fixture(home=int(y), away=int(x), matchday=2)
+                 for x, y in zip(b, a, strict=True)]
+        return [ida, volta]
+    return [ida]
 
 
 def proxima_etapa(world: World, andamento: Andamento, rng: np.random.Generator,
@@ -393,5 +396,6 @@ def etapas_previstas(torneio: Torneio) -> int:
             total += 6
         else:
             pedido = fase.get("rodadas", "todas")
-            total += ETAPAS_DE_MATA_MATA["todas"] if pedido == "todas" else int(pedido)
+            rodadas = ETAPAS_DE_MATA_MATA["todas"] if pedido == "todas" else int(pedido)
+            total += rodadas * int(fase.get("maos", 2))      # ida e volta: duas datas
     return max(total, 1)
