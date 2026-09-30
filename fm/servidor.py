@@ -21,6 +21,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from fm import telas
+from fm.ratings import exibir
 from fm.calendario import dia_da_data, texto
 from fm.carreira import Carreira, saves_disponiveis
 from fm.tatica import ESTILOS, FORMACOES, MARCACOES, VAGAS, Tatica, arrumar_no_campo
@@ -110,7 +111,7 @@ def _jogador(c: Carreira, p, titular: bool) -> dict:
     return {
         "id": p.id, "nome": p.name, "posicao": p.position,
         "detalhe": p.position_detail, "pe": p.foot, "perfil": _perfil(p),
-        "overall": p.overall, "potencial": p.potential,
+        "overall": exibir(p.overall), "potencial": exibir(p.potential),
         "idade": p.age(c.temporada), "energia": p.condition,
         "salario": p.wage, "valor": p.market_value, "titular": titular,
         "contrato": p.contract_until, "moral": p.morale,
@@ -256,7 +257,7 @@ def estado(jogo: Jogo) -> dict:
         "lesionados": [c.world.players[i].name for i in c.lesionados_do_clube()],
         # os meus que estao jogando em outro clube ate o fim do ano
         "emprestados": [{"id": p.id, "nome": p.name, "posicao": p.position,
-                         "overall": p.overall,
+                         "overall": exibir(p.overall),
                          "clube": _clube(c, p.club_id)}
                         for p in c.world.players.values()
                         if p.loan_from == c.clube_id and p.club_id in c.world.clubs],
@@ -396,14 +397,16 @@ def virar_o_ano(jogo: Jogo) -> dict:
         "premios_de_copa": resumo.get("premios_de_copa", 0),
         "aposentaram": resumo["aposentaram"], "revelados": resumo["revelados"],
         "transferencias": resumo["transferencias"],
-        "compras": [{"nome": t.nome, "overall": t.overall, "preco": t.preco,
+        "compras": [{"nome": t.nome, "overall": exibir(t.overall), "preco": t.preco,
                      "de": _clube(c, t.de)["nome"]}
                     for t in resumo.get("compras_do_clube", [])],
-        "vendas": [{"nome": t.nome, "overall": t.overall, "preco": t.preco,
+        "vendas": [{"nome": t.nome, "overall": exibir(t.overall), "preco": t.preco,
                     "para": _clube(c, t.para)["nome"]}
                    for t in resumo.get("vendas_do_clube", [])],
-        "destaques": resumo.get("destaques_do_clube", []),
-        "base": resumo.get("base_do_clube", []),
+        # (nome, antes, depois, idade) e (nome, overall, potencial, idade): na escala da tela
+        "destaques": [(n, exibir(a), exibir(d), i)
+                      for n, a, d, i in resumo.get("destaques_do_clube", [])],
+        "base": [(n, exibir(o), exibir(pt), i) for n, o, pt, i in resumo.get("base_do_clube", [])],
         "saidas": resumo.get("aposentadorias_do_clube", []),
         "estado": estado(jogo),
     }
@@ -455,7 +458,8 @@ def jogador(jogo: Jogo, pid: int) -> dict:
         "idade": p.age(c.temporada), "posicao": p.position,
         "posicao_detalhe": p.position_detail,
         "pe": "esquerdo" if p.foot == "E" else "direito",
-        "altura": p.height_cm, "overall": p.overall, "potencial": p.potential,
+        "altura": p.height_cm, "overall": exibir(p.overall),
+        "potencial": exibir(p.potential),
         "valor": p.market_value, "salario": p.wage, "contrato": p.contract_until,
         "energia": p.condition, "moral": p.morale, "forma": p.form,
         "clube": _clube(c, p.club_id) if p.club_id in c.world.clubs else None,
@@ -802,7 +806,8 @@ def _proposta_json(c: Carreira, prop) -> dict:
             "temporada": prop.temporada, "clube": _clube(c, prop.clube),
             "contra_usada": prop.contra_usada,
             "jogador": None if p is None else {
-                "id": p.id, "nome": p.name, "posicao": p.position, "overall": p.overall,
+                "id": p.id, "nome": p.name, "posicao": p.position,
+                "overall": exibir(p.overall),
                 "idade": p.age(c.temporada), "valor": p.market_value}}
 
 
@@ -832,7 +837,8 @@ def oferta(jogo: Jogo, corpo: dict) -> dict:
     p = c.world.players.get(pid)
     if p is not None and r["resultado"] != "erro":
         jogo.negociacoes.append({
-            "jogador": pid, "nome": p.name, "posicao": p.position, "overall": p.overall,
+            "jogador": pid, "nome": p.name, "posicao": p.position,
+            "overall": exibir(p.overall),
             "clube": _clube(c, p.club_id) if p.club_id in c.world.clubs else None,
             "oferta": valor, "resultado": r["resultado"], "valor": r.get("valor"),
             "data": data_do_jogo(c)})

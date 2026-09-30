@@ -86,6 +86,37 @@ PESO_DO_PISO_POR_IDADE = {17: 0.0, 18: 0.0, 19: 0.0, 20: 0.0, 21: 0.15, 22: 0.4,
                           31: 0.9, 32: 0.7, 33: 0.45, 34: 0.25, 35: 0.1}
 
 
+# O overall que a TELA mostra, na escala das cartinhas do EA FC.
+#
+# A escala interna e mais esticada (40 a 95) e e a que o motor usa -- ela esta calibrada
+# contra resultados reais, e mexer nela desmontaria a calibracao das ligas. Para a tela, o
+# overall interno passa por esta tabela, feita casando as DISTRIBUICOES (percentil com
+# percentil) dos nossos jogadores com os do EA FC 26 -- 3.775 jogadores casados por nome,
+# idade e clube em 30/09/2026 (fm.importer.cartinhas). Casar percentis, e nao ajustar uma
+# reta, mantem as estrelas no lugar: a reta punha o Mbappe em 86.
+# Nenhum rating da EA fica no jogo: so estes pontos. Para recalibrar com outra edicao:
+#     python -m fm.cli calibrar-overall
+ESCALA_DE_EXIBICAO = (
+    (40.0, 50.0), (41.0, 59.0), (47.0, 61.0), (52.0, 64.0), (55.0, 66.0), (58.0, 68.0),
+    (60.0, 69.0), (62.0, 71.0), (65.0, 72.0), (68.0, 75.0), (74.0, 78.0), (78.3, 81.0),
+    (83.5, 84.0), (85.3, 86.0), (88.7, 88.7), (95.0, 91.0),
+)
+
+
+def exibir(overall: float) -> int:
+    """O overall interno na escala das cartinhas (o que a tela mostra)."""
+    xs = [x for x, _ in ESCALA_DE_EXIBICAO]
+    ys = [y for _, y in ESCALA_DE_EXIBICAO]
+    return int(round(float(np.interp(overall, xs, ys))))
+
+
+def interno(exibido: float) -> float:
+    """O caminho de volta: um filtro da tela ("overall minimo 75") na escala interna."""
+    xs = [x for x, _ in ESCALA_DE_EXIBICAO]
+    ys = [y for _, y in ESCALA_DE_EXIBICAO]
+    return float(np.interp(exibido, ys, xs))
+
+
 def peso_do_piso(idade: int | None) -> float:
     if idade is None:
         return 0.6

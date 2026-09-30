@@ -16,6 +16,7 @@ import threading
 
 from fm.carreira import MAX_TROCAS, Carreira
 from fm.eventos import chance_de_converter, rendimento_em_campo
+from fm.ratings import exibir
 from fm.tatica import Tatica
 
 ESPERA_MAXIMA = 60.0   # segundos; se o motor nao responder nisso, algo quebrou
@@ -165,7 +166,7 @@ class PartidaAoVivo:
                 j = nomes[pid]
                 fora.append({
                     "id": pid, "nome": j.name, "posicao": j.position,
-                    "overall": j.overall, "em_campo": pid in em_campo,
+                    "overall": exibir(j.overall), "em_campo": pid in em_campo,
                     "energia": rendimento_em_campo(c.world, p, pid),
                     "amarelo": pid in amarelos, "expulso": pid in expulsos,
                     "saiu": pid in sairam, "entrou_aos": p.entrada[pid] or None,
@@ -175,7 +176,7 @@ class PartidaAoVivo:
 
         meus_em_campo = p.em_campo_casa if meu_lado == "casa" else p.em_campo_fora
         banco = [{"id": j.id, "nome": j.name, "posicao": j.position,
-                  "overall": j.overall, "energia": j.condition}
+                  "overall": exibir(j.overall), "energia": j.condition}
                  # o mesmo banco do motor: suspenso e lesionado nao foram relacionados
                  for j in (nomes[i] for i in c.banco(c.clube_id))
                  if j.id not in p.entrada]

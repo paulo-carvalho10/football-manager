@@ -239,3 +239,15 @@ def test_ajuste_sem_alvo_levanta_erro():
             aplicar("qualquer", [SimpleNamespace(nome="Clube", jogadores=[])])
     finally:
         mod.carregar = original
+
+
+def test_o_overall_exibido_segue_a_ordem_e_a_escala_das_cartinhas():
+    """A tela mostra o overall na escala do EA FC (fm.ratings.ESCALA_DE_EXIBICAO). A
+    conversao nunca inverte dois jogadores, vai de 50 a 91 como as cartinhas, e o filtro
+    da tela ("minimo 75") volta para a escala interna sem perder nada."""
+    from fm.ratings import exibir, interno
+    valores = [exibir(v) for v in range(40, 96)]
+    assert valores == sorted(valores)
+    assert exibir(40) == 50 and exibir(95) == 91
+    for tela in (60, 70, 75, 80, 88):
+        assert exibir(interno(tela)) == tela

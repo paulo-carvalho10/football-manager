@@ -8,6 +8,7 @@ inventa: o campo simplesmente nao existe, e a tela nao o desenha.
 from __future__ import annotations
 
 from fm.carreira import Carreira
+from fm.ratings import exibir
 from fm.config import load_league
 
 VERSAO = "0.11"
@@ -120,7 +121,7 @@ def clubes(ligas: list[str], seed: int, clube_json) -> dict:
             fora.append({
                 **clube_json(world, cid), "liga": nome, "liga_nome": nome_da_liga(nome),
                 "pais": cfg.get("pais", ""), "divisao": int(cfg.get("tier", 1)),
-                "forca": round(float(world.team_rating(cid)), 1),
+                "forca": exibir(world.team_rating(cid)),
                 "ranking": forca.index(cid) + 1, "de": len(ids),
                 "reputacao": club.reputation, "caixa": club.balance,
                 "valor_do_elenco": valor_do_elenco(world, cid),
@@ -130,7 +131,7 @@ def clubes(ligas: list[str], seed: int, clube_json) -> dict:
                                      / max(len(elenco), 1), 1),
                 "meta": meta.texto,
                 "estrelas": [{"nome": p.name, "posicao": p.position,
-                              "overall": p.overall} for p in estrelas],
+                              "overall": exibir(p.overall)} for p in estrelas],
             })
     return {"clubes": fora, "jogadores": len(world.players),
             "temporada": world.season_year,
@@ -193,7 +194,8 @@ def mercado(c: Carreira, filtros: dict, clube_json) -> dict:
         if pos and p.position != pos:
             continue
         idade = p.age(ano)
-        if not idade_min <= idade <= idade_max or p.overall < ovr_min:
+        # o filtro vem da tela, na escala das cartinhas
+        if not idade_min <= idade <= idade_max or exibir(p.overall) < ovr_min:
             continue
         if valor_max and p.market_value > valor_max:
             continue
@@ -217,8 +219,8 @@ def mercado(c: Carreira, filtros: dict, clube_json) -> dict:
                   for lg in c.world.leagues.values()],
         "jogadores": [
             {"id": p.id, "nome": p.name, "posicao": p.position,
-             "detalhe": p.position_detail, "idade": idade, "overall": p.overall,
-             "potencial": p.potential, "valor": p.market_value, "salario": p.wage,
+             "detalhe": p.position_detail, "idade": idade, "overall": exibir(p.overall),
+             "potencial": exibir(p.potential), "valor": p.market_value, "salario": p.wage,
              "contrato": p.contract_until, "pe": p.foot, "nacionalidade": p.nationality,
              "clube": None if livre else clube_json(p.club_id), "livre": livre,
              "liga": nome_da_liga_por_id(lg.id, lg.name) if lg else "",
@@ -341,7 +343,7 @@ def mensagens(c: Carreira, data_texto: str, lidas: set[str]) -> list[dict]:
         melhor = max(c.world.squad(rival), key=lambda p: p.overall)
         msg(f"olheiro:{c.temporada}:{c.rodada + 1}", "Olheiro", f"Relatório: {r.name}",
             f"Força do elenco {c.world.team_rating(rival):.0f}. Últimos jogos: {forma}. "
-            f"Destaque: {melhor.name} ({melhor.position}, {melhor.overall}).")
+            f"Destaque: {melhor.name} ({melhor.position}, {exibir(melhor.overall)}).")
     return fora
 
 

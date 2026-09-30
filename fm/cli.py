@@ -466,6 +466,31 @@ def cmd_cores(args):
     print(f"{total} clubes atualizados. Sem cor ficam com a paleta generica.")
 
 
+def cmd_calibrar_overall(args):
+    """Refaz a tabela do overall de exibicao contra um CSV de cartinhas do EA FC."""
+    from pathlib import Path
+
+    from fm.importer.cartinhas import CSV_PADRAO, avaliar, pares, tabela
+    from fm.ratings import ESCALA_DE_EXIBICAO
+
+    caminho = Path(args.csv) if args.csv else CSV_PADRAO
+    if not caminho.exists():
+        raise SystemExit(f"sem o CSV em {caminho}. Baixe um (ex.: github.com/mzafram2001/ea-fc,"
+                         " data/dataset_ea_fc_26.csv) para data/cache/ea_fc/")
+    dados = pares(caminho)
+    nova = tabela(dados)
+    atual = avaliar(dados, ESCALA_DE_EXIBICAO)
+    proposta = avaliar(dados, nova)
+    print(f"{len(dados)} jogadores casados")
+    print(f"tabela atual:   erro medio {atual['erro_medio']:.2f}, vies {atual['vies']:+.2f}")
+    print(f"tabela nova:    erro medio {proposta['erro_medio']:.2f}, vies {proposta['vies']:+.2f}")
+    print("para usar, copie para fm/ratings.py:")
+    print("ESCALA_DE_EXIBICAO = (")
+    for i in range(0, len(nova), 6):
+        print("    " + " ".join(f"({x}, {y})," for x, y in nova[i:i + 6]))
+    print(")")
+
+
 def cmd_diagnostico(args):
     """Roda os diagnosticos da conversao valor -> overall sobre um pack importado."""
     from fm.diagnostics import diagnosticar
@@ -582,6 +607,11 @@ def main(argv=None):
                        help="reaplica data/cores/*.toml nos packs, sem rede")
     p.add_argument("--pack", default=None, help="so este pack (por omissao, todos)")
     p.set_defaults(func=cmd_cores)
+
+    p = sub.add_parser("calibrar-overall", parents=[common],
+                       help="refaz a escala do overall exibido contra as cartinhas do EA FC")
+    p.add_argument("--csv", default="", help="CSV do EA FC (padrao: data/cache/ea_fc/)")
+    p.set_defaults(func=cmd_calibrar_overall)
 
     p = sub.add_parser("diagnostico", parents=[common],
                        help="valida a conversao valor -> overall de um pack")
