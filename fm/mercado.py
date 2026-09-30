@@ -43,6 +43,22 @@ DESCIDA_TOLERADA = 4.0          # em pontos de team_rating
 # que o craque da Serie B sobe e que o dinheiro do grande sai do caixa: sem isto o clube
 # mais rico do mundo passava a carreira inteira vendendo reserva e empilhando 300M parados.
 SALTO_PARA_LEVAR_TITULAR = 7.0
+# ...quase ninguem. Todo ano uma minoria topa descer de patamar: o veterano atras de
+# minutos, o reserva cansado do banco, o titular que quer ser o dono do time. Dificil, nao
+# impossivel -- e a mesma regra vale para a IA, para a compra do usuario e para as
+# propostas que ele recebe.
+CHANCE_DE_TOPAR_DESCER = 0.02
+EXTRA_DO_VETERANO = 0.05          # a partir de IDADE_DO_VETERANO
+IDADE_DO_VETERANO = 31
+
+
+def topa_descer(p, temporada: int) -> bool:
+    """Se o jogador aceita ir para um clube menor NESTE ano. Fixo por jogador e ano (nao
+    usa o rng da janela): perguntar duas vezes da a mesma resposta."""
+    chance = CHANCE_DE_TOPAR_DESCER
+    if p.age(temporada) >= IDADE_DO_VETERANO:
+        chance += EXTRA_DO_VETERANO
+    return float(np.random.default_rng([p.id, temporada, 5157]).random()) < chance
 PREMIO_POR_TITULAR = 1.45       # tirar titular custa caro
 SALARIO_DO_COMPRADOR = 1.15     # quem compra paga acima do que ele ganhava
 
@@ -163,10 +179,15 @@ def janela(world: World, rng: np.random.Generator, temporada: int) -> list[Trans
                     # para qualquer clube do mesmo patamar, nao so para quem esta acima
                     aperto = (SALTO_PARA_LEVAR_TITULAR if dono not in devem
                               else -DESCIDA_TOLERADA)
+                    # na janela da IA so desce o veterano ou o titular que topa: soltar os
+                    # reservas dos grandes para o resto inflava o mundo inteiro (+0,35 de
+                    # overall por ano nos titulares da Serie A, medido em 20 temporadas)
+                    desce = ((e_titular or p.age(temporada) >= IDADE_DO_VETERANO)
+                             and topa_descer(p, temporada))
                     if e_titular:
-                        if salto < aperto:
+                        if salto < aperto and not desce:
                             continue
-                    elif salto < -DESCIDA_TOLERADA:
+                    elif salto < -DESCIDA_TOLERADA and not desce:
                         continue
                     apertado = (dono in devem
                                 and vendidos_por_clube.get(dono, 0) < VENDAS_FORCADAS)

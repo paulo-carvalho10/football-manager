@@ -29,7 +29,10 @@ USUARIO = 0
 REPUTACAO_INICIAL_DO_USUARIO = 30.0
 PESO_DO_PRIMEIRO_CLUBE = 0.15
 MARGEM_DO_CONVITE = 12        # o clube aceita tecnico ate 12 pontos abaixo da reputacao dele
-CONVITES_MOSTRADOS = 3
+CONVITES_MOSTRADOS = 3          # demitido: ate 3 portas
+CONVITES_EMPREGADO = 2          # empregado: no maximo 2 por virada, para nao virar spam
+CHANCE_DO_MAIOR = 0.70          # clube maior que o meu chama quase sempre que cabe
+CHANCE_DO_MENOR = 0.20          # o menor tambem pode chamar; cabe ao usuario ver se compensa
 DESEMPREGADOS_INICIAIS = 10
 
 # o que mexe na reputacao na virada
@@ -207,22 +210,32 @@ def preencher_vagas(world: World, tecnicos: dict[int, Tecnico], vagas: list[int]
 
 
 def convites(world: World, tecnicos: dict[int, Tecnico], candidatos: list[int],
-             clube_atual: int | None, precisa: bool, reserva: list[int]) -> list[int]:
-    """Os clubes que chamam o usuario, dos mais tradicionais para os menores.
+             clube_atual: int | None, precisa: bool, reserva: list[int],
+             rng: np.random.Generator) -> list[int]:
+    """Os clubes que chamam o usuario.
 
-    `candidatos`: clubes com vaga (ou em crise, no meio do ano). Empregado, o usuario so
-    e chamado por clube maior que o dele. `precisa` (demitido): se ninguem couber, o
-    menor clube de `reserva` chama mesmo assim -- a carreira nao acaba por falta de porta.
+    `candidatos`: clubes com vaga (ou em crise, no meio do ano), que so chamam se a
+    reputacao do usuario couber. Demitido (`precisa`), todos os que cabem chamam, ate
+    CONVITES_MOSTRADOS, e se ninguem couber o menor clube de `reserva` chama mesmo assim
+    -- a carreira nao acaba por falta de porta. Empregado, clube maior chama quase
+    sempre e menor de vez em quando, ate CONVITES_EMPREGADO: e o usuario que decide se
+    descer compensa.
     """
     eu = tecnicos[USUARIO]
     atual = world.clubs[clube_atual].reputation if clube_atual in world.clubs else -1
-    cabem = [k for k in candidatos if k != clube_atual
-             and world.clubs[k].reputation <= eu.reputacao + MARGEM_DO_CONVITE
-             and (precisa or world.clubs[k].reputation > atual)]
-    cabem.sort(key=lambda k: (-world.clubs[k].reputation, k))
-    fora = cabem[:CONVITES_MOSTRADOS]
-    if precisa and not fora:
-        sobra = [k for k in reserva if k != clube_atual]
-        if sobra:
-            fora = [min(sobra, key=lambda k: (world.clubs[k].reputation, k))]
-    return fora
+    cabem = sorted((k for k in set(candidatos) if k != clube_atual
+                    and world.clubs[k].reputation <= eu.reputacao + MARGEM_DO_CONVITE),
+                   key=lambda k: (-world.clubs[k].reputation, k))
+    if precisa:
+        fora = cabem[:CONVITES_MOSTRADOS]
+        if not fora:
+            sobra = [k for k in reserva if k != clube_atual]
+            if sobra:
+                fora = [min(sobra, key=lambda k: (world.clubs[k].reputation, k))]
+        return fora
+    fora = []
+    for k in cabem:                     # um sorteio por clube, na mesma ordem sempre
+        chance = CHANCE_DO_MAIOR if world.clubs[k].reputation > atual else CHANCE_DO_MENOR
+        if rng.random() < chance:
+            fora.append(k)
+    return fora[:CONVITES_EMPREGADO]

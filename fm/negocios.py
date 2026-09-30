@@ -20,7 +20,7 @@ from dataclasses import asdict, dataclass
 
 import numpy as np
 
-from fm.mercado import DESCIDA_TOLERADA, ELENCO_MINIMO_PARA_VENDER, preco
+from fm.mercado import DESCIDA_TOLERADA, ELENCO_MINIMO_PARA_VENDER, preco, topa_descer
 from fm.model import World
 from fm.temporada import SALARIO_SOBRE_VALOR
 
@@ -139,8 +139,11 @@ def salario_pretendido(c, p, destino: int | None = None) -> int:
 
 
 def recusa_por_ambicao(c, p) -> str | None:
-    """Titular nao desce de patamar: nenhum salario compensa ir para um time bem pior."""
+    """Titular nao desce de patamar -- salvo o que topa um novo desafio neste ano
+    (fm.mercado.topa_descer): esse ouve a proposta, e cobra o salario do clube menor."""
     if p.club_id not in c.world.clubs or not _titular(c.world, p):
+        return None
+    if topa_descer(p, c.temporada):
         return None
     origem = c.world.team_rating(p.club_id)
     destino = c.world.team_rating(c.clube_id)
@@ -254,9 +257,11 @@ def gerar_propostas(c, rng: np.random.Generator) -> list[Proposta]:
     alvo = meus[int(rng.choice(len(meus), p=pesos / pesos.sum()))]
     base = alvo.market_value * (PREMIO_PARA_LEVAR_TITULAR if _titular(c.world, alvo) else 1.0)
     nivel = c.world.team_rating(c.clube_id)
+    # clube menor so entra na disputa se o jogador topa descer neste ano
+    piso = -99.0 if topa_descer(alvo, c.temporada) else nivel - 2
     candidatos = [k for k in c.world.clubs.values()
                   if k.id != c.clube_id and k.balance >= base
-                  and c.world.team_rating(k.id) >= nivel - 2]
+                  and c.world.team_rating(k.id) >= piso]
     if not candidatos:
         return []
     comprador = candidatos[int(rng.integers(len(candidatos)))]

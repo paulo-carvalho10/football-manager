@@ -347,7 +347,8 @@ class Carreira:
         if meio_do_ano:
             candidatos = self._clubes_em_crise()
             self.convites = tec.convites(self.world, self.tecnicos, candidatos, None, True,
-                                         self._clubes_da_ultima_divisao())
+                                         self._clubes_da_ultima_divisao(),
+                                         self.streams.get("convites", self.temporada, self.data))
 
     def _clubes_em_crise(self) -> list[int]:
         """Os 40% de baixo de cada tabela, com tecnico do computador."""
@@ -460,7 +461,8 @@ class Carreira:
         candidatos = [v for v in self.vagas if not (demitido and v == self.clube_id)]
         reserva = [k for k in self._clubes_da_ultima_divisao() if k != self.clube_id]
         self.convites = tec.convites(self.world, self.tecnicos, candidatos,
-                                     None if demitido else self.clube_id, demitido, reserva)
+                                     None if demitido else self.clube_id, demitido, reserva,
+                                     self.streams.get("convites", self.temporada))
 
     def _titulos_de_copa(self) -> dict[str, list[int]]:
         """Campeao e vice de cada copa, na ordem em que as regras de vaga esperam."""

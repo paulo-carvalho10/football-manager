@@ -1066,7 +1066,8 @@ async function janelaDeConvites(convites, obrigatorio) {
     <p class="dica">${convites.length ? "Clubes que querem você no comando:" : "Nenhum clube chamou."}</p>
     <div class="convites">${convites.map((k) => `<div class="convite">
       ${escudo(k.clube, "2.6rem")}<div class="info"><b>${escapar(k.clube.nome)}</b>
-        <span class="dica">${escapar(k.liga)}${k.posicao ? ` · ${k.posicao}º na tabela` : ""} · tradição ${k.reputacao}</span>
+        <span class="dica">${escapar(k.liga)}${k.posicao ? ` · ${k.posicao}º na tabela` : ""} · tradição ${k.reputacao}
+          ${obrigatorio ? "" : k.reputacao > ESTADO.reputacao ? '· <span class="bom">clube maior que o seu</span>' : '· <span class="ruim">clube menor que o seu</span>'}</span>
         ${k.tecnico_atual ? `<span class="dica">demite ${escapar(k.tecnico_atual)} para você assumir</span>` : ""}</div>
       <button class="btn primario" data-assumir="${k.clube.id}">Assumir</button></div>`).join("")}</div>`;
   let escolhido = null;
