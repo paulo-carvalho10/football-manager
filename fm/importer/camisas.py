@@ -199,6 +199,10 @@ def montar(pecas: list) -> object:
     return _fundo_transparente(camisa)
 
 
+def arquivo_da_camisa(nome: str, numero: str) -> str:
+    return f"{_sem_acento(nome).lower().replace(' ', '-')}-{numero}.svg"
+
+
 def baixar_clube(nome: str, prefixo: str | None = None) -> list[CamisaBaixada]:
     """As camisas 1 e 2 de um clube, ja vetorizadas em SVG."""
     from PIL import Image
@@ -234,7 +238,7 @@ def baixar_clube(nome: str, prefixo: str | None = None) -> list[CamisaBaixada]:
         pecas = [Image.open(_io.BytesIO(_baixar_png(infos[t]["url"]))).convert("RGBA")
                  for t in titulos]
         camisa = montar(pecas)
-        destino = CAMISAS_DIR / f"{_sem_acento(nome).lower().replace(' ', '-')}-{numero}.svg"
+        destino = CAMISAS_DIR / arquivo_da_camisa(nome, numero)
         destino.write_text(svg(camisa), encoding="utf-8")
         principal = infos[titulos[1]]
         fora.append(CamisaBaixada(
@@ -283,6 +287,15 @@ def baixar(clubes: list[str], refazer: bool = False
     faltaram: list[str] = []
     for nome in clubes:
         if not refazer and (nome, "1") in ja_tem and (nome, "2") in ja_tem:
+            continue
+        # REGRESSAO: o nome do arquivo tira o acento, e "Vitória" (o de Guimaraes, antes
+        # de virar "Vitória SC") gravou por cima de vitoria-1.svg, do Vitoria baiano. O
+        # Vitoria entrou em campo com a camisa do outro, sem erro nenhum.
+        donos = {b.arquivo.name: b.clube for b in baixadas}
+        outro = next((donos[a] for n in ("1", "2")
+                      if donos.get(a := arquivo_da_camisa(nome, n)) not in (None, nome)), None)
+        if outro:
+            faltaram.append(f"{nome} (o arquivo ja e do {outro}: renomeie um dos dois)")
             continue
         try:
             achadas = baixar_clube(nome, apelidos.get(nome))

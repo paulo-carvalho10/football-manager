@@ -150,3 +150,18 @@ def test_o_svg_da_camisa_nao_tem_script():
     texto = svg(_quadrado())
     assert "<script" not in texto.lower()
     assert re.fullmatch(r"[^<]*(<(svg|path|/svg)[^>]*>[^<]*)+", texto), "so svg e path"
+
+
+def test_dois_clubes_nao_dividem_o_arquivo_da_camisa():
+    """REGRESSAO: o nome do arquivo tira o acento, e o "Vitória" de Guimaraes gravou por
+    cima de vitoria-1.svg, do Vitoria baiano, que entrou em campo com a camisa do outro."""
+    import tomllib
+
+    from fm.importer.camisas import CAMISAS_DIR
+
+    with (CAMISAS_DIR / "indice.toml").open("rb") as fh:
+        camisas = tomllib.load(fh).get("camisas", [])
+    dono: dict[str, str] = {}
+    for c in camisas:
+        assert dono.setdefault(c["arquivo"], c["clube"]) == c["clube"], (
+            f"{c['arquivo']} e do {dono[c['arquivo']]} e do {c['clube']}")

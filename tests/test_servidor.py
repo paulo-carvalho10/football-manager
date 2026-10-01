@@ -215,10 +215,23 @@ def test_o_calendario_cobre_a_temporada(jogo):
     for _ in range(9):
         c.avancar()
     d = calendario(jogo)
-    assert len(d["datas"]) == len(c.agenda)
     assert d["atual"] == c.data
-    assert sum(1 for x in d["datas"] if x["passou"]) == c.data
+    ligas = [x for x in d["datas"] if x["tipo"] == "liga"]
+    assert len(ligas) == sum(1 for tipo, _ in c.agenda if tipo == "liga")
     assert any(x["resultado"] for x in d["datas"]), "nenhuma data jogada tem resultado"
+    # data de copa que ja passou so aparece se o clube jogou nela
+    assert all(x["resultado"] for x in d["datas"] if x["tipo"] == "copa" and x["passou"])
+
+
+def test_o_calendario_nao_lista_copa_de_outro_clube():
+    """REGRESSAO: com o mundo inteiro a agenda tem as datas de TODAS as copas, e o
+    calendario do Real Madrid listava a Liga Europa -- para onde so vai quem cai na
+    preliminar da Champions, fase que ele nem joga."""
+    from fm.servidor import calendario
+
+    c = Carreira.nova(["espanha_real", "espanha_b_real"], "Real Madrid", seed=2)
+    nomes = {x["competicao"] for x in calendario(Jogo(c))["datas"] if x["tipo"] == "copa"}
+    assert nomes == {c.copas["champions"].torneio.nome}
 
 
 def test_as_financas_batem_com_o_motor(jogo):

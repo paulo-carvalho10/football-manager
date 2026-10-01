@@ -288,3 +288,19 @@ def test_vaga_e_unica_na_temporada(mundo):
     da_sula = {c for lista in b.values() for c in lista}
     assert da_liberta and da_sula
     assert not (da_liberta & da_sula), "clube em duas competicoes continentais"
+
+
+def test_toda_fonte_entre_copas_tem_quem_exporte():
+    """`fonte = "libertadores:terceiros"` e `aguarda` tem de bater com o `torneio:para` de
+    alguem. REGRESSAO: a chave era so `para`, e a Champions e a Libertadores exportavam as
+    duas para "eliminados_pre" -- o eliminado de uma caia na copa da outra."""
+    from fm.torneio import TORNEIOS_DIR, carregar
+
+    torneios = [carregar(p.stem) for p in TORNEIOS_DIR.glob("*.toml")]
+    exportadas = {f"{t.id}:{r['para']}" for t in torneios for f in t.fases
+                  for r in f.get("exporta", [])}
+    pedidas = ({r["fonte"] for t in torneios for r in t.classificacao_regras
+                if ":" in r.get("fonte", "")}
+               | {f["aguarda"] for t in torneios for f in t.fases if f.get("aguarda")})
+    assert pedidas, "nenhuma copa recebe clubes de outra?"
+    assert pedidas <= exportadas, f"sem exportador: {pedidas - exportadas}"

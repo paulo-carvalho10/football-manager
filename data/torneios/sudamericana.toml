@@ -98,7 +98,7 @@ grupos  = 8
 voltas  = 2
 avancam = 1          # o 1o vai direto as oitavas
 entram  = [ { classificacao = "grupos" } ]
-aguarda = "eliminados_pre"
+aguarda = "libertadores:eliminados_pre"
 exporta = [ { posicao = 2, para = "segundos" } ]
 
 [[formato.fases]]
@@ -108,7 +108,7 @@ maos    = 2
 rodadas = 1
 isentos = 8          # os 8 primeiros colocados esperam nas oitavas
 entram  = [ { classificacao = "playoff" } ]
-aguarda = "terceiros"
+aguarda = "libertadores:terceiros"
 
 [[formato.fases]]
 nome     = "Mata-mata"

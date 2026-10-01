@@ -780,7 +780,8 @@ TELAS.calendario = async function () {
             <td class="n">${d.ordem + 1}</td><td class="num">${d.dia.slice(0, 5)}</td>
             <td>${d.tipo === "copa" ? `<span class="chip ouro">${escapar(d.competicao)}</span>` : `${escapar(ESTADO.liga_nome)} · ${d.rodada}ª rodada`}</td>
             <td>${d.rival ? `<div class="nome-celula">${escudo(d.rival.clube, "1.3rem")}<b>${escapar(d.rival.nome)}</b></div>`
-              : `<span class="dica">${d.passou && d.tipo === "copa" ? "sem jogo do clube" : "conforme o chaveamento"}</span>`}</td>
+              : `<span class="dica">${d.passou && d.tipo === "copa" ? "sem jogo do clube"
+                : d.condicao ? `se vier da ${escapar(d.condicao)}` : "conforme o chaveamento"}</span>`}</td>
             <td class="c">${d.rival ? (d.rival.casa ? "Casa" : "Fora") : ""}</td>
             <td class="c">${res}</td></tr>`;
         }).join("")}</tbody></table></div>
@@ -1180,7 +1181,10 @@ TELAS.destaques = async function () {
   $("#tela-destaques").innerHTML = `
     <div class="painel">
       <div class="cab"><h2>Seleção da rodada</h2>
-        <div class="abas">${s.ligas.map((l) => `<button data-sliga="${l.id}" class="${l.id === s.liga ? "ativo" : ""}">${escapar(l.nome)}</button>`).join("")}</div>
+        <!-- com o mundo inteiro sao 16 divisoes: abas quebravam em tres linhas por cima do titulo -->
+        <select id="sel-liga-selecao" class="sel-comp" title="Escolher liga">${s.ligas.map((l) =>
+          `<option value="${l.id}" ${l.id === s.liga ? "selected" : ""}>${escapar(l.nome)}</option>`).join("")}</select>
+        <span class="espaco" style="flex:1"></span>
         <div class="navegador">
           <button class="btn pequeno" id="rod-ant" ${i > 0 ? "" : "disabled"}>‹</button>
           <b>${s.rodada ? `${s.rodada}ª rodada` : "—"}</b>
@@ -1195,12 +1199,12 @@ TELAS.destaques = async function () {
     <div class="coluna">
       <div class="painel">
         <div class="cab"><h2>Artilharia</h2>
+          ${a.competicoes.length ? `<select id="art-comp" class="sel-comp" title="Escolher competição">${a.competicoes.map((c) =>
+            `<option value="${c.id}" ${c.id === a.competicao ? "selected" : ""}>${escapar(c.nome)}</option>`).join("")}</select>` : ""}
+          <span class="espaco" style="flex:1"></span>
           <select id="art-temporada" style="width:auto">${a.temporadas.map((t) =>
             `<option value="${t}" ${t === a.temporada ? "selected" : ""}>${t}${t === ESTADO.temporada ? " (atual)" : ""}</option>`).join("")}</select></div>
         <div class="corpo sem-margem">
-          <div class="abas" style="padding:.5rem .8rem">${a.competicoes.map((c) =>
-            `<button data-comp="${c.id}" class="${c.id === a.competicao ? "ativo" : ""}">${escapar(c.nome)}</button>`).join("")
-            || '<span class="dica">Nenhum gol ainda.</span>'}</div>
           <table class="grade compacta"><thead><tr><th class="n">#</th><th>Jogador</th><th>Clube</th>
             <th class="n">J</th><th class="n">G</th>${passado ? "" : '<th class="n">A</th><th class="n">Média</th>'}</tr></thead>
           <tbody>${a.artilheiros.map((x, k) => `<tr class="${x.meu ? "eu" : ""}">
@@ -1231,10 +1235,11 @@ TELAS.destaques = async function () {
           : '<div class="vazio">A Bola de Ouro e os prêmios de cada liga saem no fim da primeira temporada.</div>'}</div></div>
     </div>`;
 
-  $$("[data-sliga]").forEach((b) => b.addEventListener("click", () => { DEST.liga = b.dataset.sliga; DEST.rodada = null; TELAS.destaques(); }));
+  $("#sel-liga-selecao").addEventListener("change", (ev) => { DEST.liga = ev.target.value; DEST.rodada = null; TELAS.destaques(); });
   $("#rod-ant").addEventListener("click", () => { DEST.rodada = s.rodadas[i - 1]; TELAS.destaques(); });
   $("#rod-prox").addEventListener("click", () => { DEST.rodada = s.rodadas[i + 1]; TELAS.destaques(); });
-  $$("[data-comp]").forEach((b) => b.addEventListener("click", () => { DEST.comp = b.dataset.comp; TELAS.destaques(); }));
+  const artComp = $("#art-comp");
+  if (artComp) artComp.addEventListener("change", (ev) => { DEST.comp = ev.target.value; TELAS.destaques(); });
   $("#art-temporada").addEventListener("change", (ev) => { DEST.temporada = +ev.target.value; DEST.comp = null; TELAS.destaques(); });
   $("#premio-ano")?.addEventListener("change", (ev) => { DEST.anoPremio = +ev.target.value; TELAS.destaques(); });
 };

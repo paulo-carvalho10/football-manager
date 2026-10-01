@@ -103,6 +103,15 @@ def comecar(world: World, torneio: Torneio, tabelas: dict[str, list[int]],
     return Andamento(torneio=torneio, vivos=list(vivos), classificados=classificados)
 
 
+def chave_de_exportacao(andamento: Andamento, regra: dict) -> str:
+    """`torneio:para`, a mesma grafia das regras (`fonte = "libertadores:terceiros"`).
+
+    REGRESSAO: a chave era so `para`, e a Champions e a Libertadores exportam as duas para
+    "eliminados_pre". Com o mundo inteiro na carreira, o eliminado da pre-Libertadores ia
+    parar na Liga Europa e o da pre-Champions na Sul-Americana."""
+    return f"{andamento.torneio.id}:{regra['para']}"
+
+
 def _entrantes(world: World, andamento: Andamento, fase: dict,
                tabelas: dict[str, list[int]]) -> list[int]:
     novos = resolver_entradas(world, fase.get("entram", []), tabelas,
@@ -273,7 +282,8 @@ def _encerrar_fase(world: World, andamento: Andamento, rng: np.random.Generator,
             for regra in fase.get("exporta", []):
                 pos = int(regra.get("posicao", 0))
                 if pos and pos <= len(tabela) and exportados is not None:
-                    exportados.setdefault(regra["para"], []).append(tabela[pos - 1].club_id)
+                    exportados.setdefault(chave_de_exportacao(andamento, regra),
+                                          []).append(tabela[pos - 1].club_id)
         andamento.eliminados_na_fase = [c for c in andamento.vivos if c not in passa]
         andamento.vivos = passa
 
@@ -397,7 +407,8 @@ def _apurar_mata_mata(andamento: Andamento, fase: dict,
 
     for regra in fase.get("exporta", []):
         if regra.get("eliminados") and exportados is not None:
-            exportados.setdefault(regra["para"], []).extend(perdedores)
+            exportados.setdefault(chave_de_exportacao(andamento, regra),
+                                  []).extend(perdedores)
 
     andamento.eliminados_na_fase = perdedores
     andamento.vivos = list(poupados) + vencedores

@@ -60,12 +60,12 @@ def test_a_sul_americana_recebe_quem_cai_da_libertadores(ano):
     assert s.acabou and s.campeao is not None
     playoff = next(h for h in s.historico if h["nome"] == "Playoff")
     assert len(playoff["pares"]) == 8                      # 8 segundos x 8 terceiros
-    terceiros = set(c.exportados.get("terceiros", []))
+    terceiros = set(c.exportados.get("libertadores:terceiros", []))
     no_playoff = {k for par in playoff["pares"] for k in par}
     assert terceiros and terceiros <= no_playoff
     grupos = next(h for h in s.historico if h["tipo"] == "grupos")
     assert sum(len(g) for g in grupos["grupos"]) == 32
-    assert set(c.exportados.get("eliminados_pre", [])) <= {k for g in grupos["grupos"] for k in g}
+    assert set(c.exportados.get("libertadores:eliminados_pre", [])) <= {k for g in grupos["grupos"] for k in g}
 
 
 def test_o_campeao_da_sul_americana_vai_para_a_libertadores(ano):

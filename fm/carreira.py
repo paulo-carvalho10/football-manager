@@ -555,7 +555,7 @@ class Carreira:
             fonte = regra.get("fonte", "")
             if ":" not in fonte:
                 continue
-            chegaram = self.exportados.get(fonte.split(":", 1)[1], [])
+            chegaram = self.exportados.get(fonte, [])
             lista = andamento.classificados.setdefault(regra.get("entra_em", "grupos"), [])
             for cid in chegaram[:int(regra.get("vagas", len(chegaram)))]:
                 if cid not in lista and cid not in andamento.vivos:
@@ -573,7 +573,7 @@ class Carreira:
         if not chave or chave in self.exportados:
             return False
         return any(not a.acabou and a is not andamento
-                   and any(r.get("para") == chave for f in a.torneio.fases
+                   and any(f"{a.torneio.id}:{r.get('para')}" == chave for f in a.torneio.fases
                            for r in f.get("exporta", []))
                    for a in self.copas.values())
 

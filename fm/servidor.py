@@ -570,9 +570,54 @@ def _rival(c: Carreira, casa: int, fora: int) -> dict:
     return {"nome": _clube(c, outro)["nome"], "clube": _clube(c, outro), "casa": casa == c.clube_id}
 
 
+def _copa_ainda_me_envolve(c: Carreira, a) -> str | None:
+    """Como a copa ainda envolve o clube do usuario: None (nao envolve), "" (ele esta nela
+    ou entra numa fase ja decidida) ou o nome da copa de onde ele ainda pode cair nesta --
+    o 3o do grupo da Libertadores vai ao playoff da Sul-Americana."""
+    from fm.torneio import resolver_entradas
+
+    me = c.clube_id
+    tabelas = c.tabelas_do_ano_anterior or c._tabelas_por_forca()
+
+    def minha_fase(b) -> int | None:
+        """A primeira fase de `b` que o clube disputa daqui em diante. A tabela que decide
+        quem entra e a do ano anterior, ja fixa -- da para saber agora, sem adivinhar."""
+        if b.acabou:
+            return None
+        if me in b.vivos:
+            return b.fase
+        for k in range(b.fase + (1 if b.pendentes else 0), len(b.torneio.fases)):
+            if me in resolver_entradas(c.world, b.torneio.fases[k].get("entram", []),
+                                       tabelas, b.classificados):
+                return k
+        return None
+
+    if minha_fase(a) is not None:
+        return ""
+    # de onde esta copa recebe clubes de outra: "libertadores:terceiros" e afins
+    chaves = {r["fonte"] for r in a.torneio.classificacao_regras if ":" in r.get("fonte", "")}
+    if a.acabou:
+        return None
+    if any(me in c.exportados.get(k, []) for k in chaves):
+        return ""
+    for b in c.copas.values():
+        k = minha_fase(b) if b is not a else None
+        # so exporta a fase que o clube ainda vai jogar: quem entra direto na fase de liga
+        # da Champions nao tem como cair da preliminar para a Liga Europa
+        if k is not None and any(f"{b.torneio.id}:{r.get('para')}" in chaves
+                                 for f in b.torneio.fases[k:] for r in f.get("exporta", [])):
+            return b.torneio.nome
+    return None
+
+
 def calendario(jogo: Jogo) -> dict:
-    """A agenda inteira da temporada, com o que ja foi jogado."""
+    """A agenda da temporada do clube, com o que ja foi jogado.
+
+    Com o mundo inteiro marcado a agenda tem as datas de TODAS as copas -- 143 no Brasil,
+    metade delas de Champions e Liga Europa. A data de copa so entra se o clube jogou nela
+    ou se a copa ainda o envolve; o resto era uma fileira de "sem jogo do clube"."""
     c = jogo.c
+    envolve = {nome: _copa_ainda_me_envolve(c, a) for nome, a in c.copas.items()}
     jogados = {}
     for r in c.jogos():
         if c.clube_id in (r.home, r.away):
@@ -600,6 +645,8 @@ def calendario(jogo: Jogo) -> dict:
             # a copa: o jogo que o usuario fez nesta data, ou o proximo, se ja sorteado
             r = c.jogos_do_usuario.get(i)
             rival, resultado = None, None
+            if r is None and (i < c.data or envolve.get(quem) is None):
+                continue
             if r is not None:
                 rival, resultado = _rival(c, r.home, r.away), _resultado_curto(c, r)
             elif a is not None and i >= c.data and i == proxima_da_copa.get(quem):
@@ -610,6 +657,8 @@ def calendario(jogo: Jogo) -> dict:
                            "dia": texto(dia_da_data(c.temporada, i)),
                            "competicao": a.torneio.nome if a else quem,
                            "rodada": None, "rival": rival,
+                           # a data que so vale se o clube cair de outra copa
+                           "condicao": envolve.get(quem) or None,
                            "resultado": resultado, "passou": i < c.data})
     return {"datas": linhas, "atual": c.data}
 
