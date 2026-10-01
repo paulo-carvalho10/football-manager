@@ -76,3 +76,27 @@ def test_o_campeao_da_sul_americana_vai_para_a_libertadores(ano):
     assert campeao in liberta.get("grupos", [])
     assert sum(len(v) for v in liberta.values()) == 47
 
+
+
+def test_vaga_de_campeao_ja_classificado_desce_na_liga_e_nao_vai_ao_vice(ano):
+    """REGRESSAO: o Botafogo ganhou a Copa do Brasil e a Sul-Americana; a vaga da Copa do
+    Brasil foi para o VICE dela. Na vida real ela desce na tabela do Brasileirao -- um vice
+    da Serie B nao ganha Libertadores."""
+    from fm.torneio import carregar, resolver_classificacao
+
+    c, _ = ano
+    serie_a = list(c.world.leagues[c._id("brasil_real")].club_ids)
+    vice_da_b = c.world.leagues[c._id("brasil_b_real")].club_ids[0]
+    campeao = serie_a[5]                       # 6o do Brasileirao
+    fontes = {**(c.tabelas_do_ano_anterior or c._tabelas_por_forca()),
+              "BRA1": serie_a, "sudamericana": [campeao, serie_a[19]],
+              # o campeao da Libertadores, de fora: sem ele a vaga vai ao mais forte do
+              # continente (no primeiro ano da carreira), que pode ser brasileiro
+              "libertadores": list(c.world.leagues[c._id("argentina_real")].club_ids[:2]),
+              "copa_do_brasil": [campeao, vice_da_b]}
+    vagas = resolver_classificacao(c.world, carregar("libertadores"), fontes)
+    todos = {k for v in vagas.values() for k in v}
+    assert vice_da_b not in todos, "o vice da copa ganhou a vaga do campeao"
+    brasileiros = [k for k in serie_a if k in todos]
+    # Sul-Americana (o 6o) + 7 do Brasileirao, descendo ate o 8o
+    assert brasileiros == serie_a[:8]

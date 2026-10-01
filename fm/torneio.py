@@ -315,6 +315,12 @@ def disponiveis() -> list[str]:
     return sorted(p.stem for p in TORNEIOS_DIR.glob("*.toml"))
 
 
+def _ids_de_torneio() -> set[str]:
+    """Os torneios que existem: uma fonte com o nome de um deles e uma copa (campeao,
+    vice), nao a tabela de uma liga."""
+    return {p.stem for p in TORNEIOS_DIR.glob("*.toml")}
+
+
 def resolver_classificacao(
     world: World, torneio: Torneio, tabelas: dict[str, list[int]],
     copas: dict[str, list[int]] | None = None,
@@ -333,27 +339,35 @@ def resolver_classificacao(
     # Champions sai da lista da Europa. Sem isso o Real Madrid disputava as duas.
     ja: set[int] = ocupados if ocupados is not None else set()
     saida: dict[str, list[int]] = {}
+    torneios = _ids_de_torneio()
     for regra in torneio.classificacao_regras:
-        # `reservas` = fontes alternativas, na ordem: vale a primeira que tiver clubes. E o
-        # caso do campeao da Libertadores no primeiro ano da carreira: ainda nao existe, e a
-        # vaga vai para o clube mais forte do continente em vez de sumir
-        ordem = []
+        # `reservas` = fontes alternativas, na ordem. Servem a dois casos: o campeao que
+        # ainda nao existe (a Libertadores no primeiro ano da carreira: a vaga vai para o
+        # mais forte do continente em vez de sumir) e o campeao de copa que JA tem vaga.
+        #
+        # REGRESSAO: a fonte de uma copa e [campeao, vice], e a cascata descia nela -- o
+        # Botafogo ganhou a Copa do Brasil e a Sul-Americana, e a vaga da Copa do Brasil foi
+        # para o VICE dela. Na vida real ela desce na tabela do Brasileirao; um vice da
+        # Serie B ganharia uma Libertadores de presente. De copa vale so o campeao.
+        vagas = int(regra.get("vagas", 1))
+        destino = regra.get("entra_em", "grupos")
+        levados: list[int] = []
         for fonte in [regra["fonte"], *regra.get("reservas", [])]:
             ordem = (copas.get(fonte) or tabelas.get(fonte)
                      or tabelas.get(_liga_por_codigo(world, fonte)))
-            if ordem:
+            if not ordem:
+                continue
+            candidatos = ordem[:vagas] if fonte in torneios else ordem
+            for cid in candidatos:
+                if len(levados) >= vagas:
+                    break
+                if cid not in ja:
+                    ja.add(cid)
+                    levados.append(cid)
+            if len(levados) >= vagas:
                 break
-        if not ordem:
-            continue
-        destino = regra.get("entra_em", "grupos")
-        levados = []
-        for cid in ordem:
-            if len(levados) >= int(regra.get("vagas", 1)):
-                break
-            if cid not in ja:
-                ja.add(cid)
-                levados.append(cid)
-        saida.setdefault(destino, []).extend(levados)
+        if levados:
+            saida.setdefault(destino, []).extend(levados)
     for dados in torneio.convidados:
         cid = clube_convidado(world, dados)
         if cid not in ja:

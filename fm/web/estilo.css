@@ -179,6 +179,10 @@ table.grade { width: 100%; border-collapse: collapse; font-size: .88rem; }
 .nome-celula b { font-weight: 600; color: var(--branco); overflow: hidden; text-overflow: ellipsis; }
 .zona { display: inline-block; width: 1.7rem; text-align: center; border-radius: 3px; font-family: var(--fonte-numero); font-weight: 700; }
 .zona.continental { background: #1f4f8f; color: #fff; }
+/* as faixas continentais: copa principal, a pre dela e a segunda copa */
+.zona.lib { background: #1f4f8f; color: #fff; }
+.zona.pre { background: #3f86c9; color: #fff; }
+.zona.sula { background: #b8731b; color: #fff; }
 .zona.acesso { background: #1f8f47; color: #fff; }
 .zona.rebaixamento { background: #a3321f; color: #fff; }
 

@@ -750,16 +750,60 @@ def _arvore(a, ks: list[int], fases_json: list[dict], clube_json) -> list[dict]:
     return rodadas
 
 
+# (copa, onde entra) -> (classe da cor, rotulo). A pre de cada copa tem cor propria.
+FAIXA_DA_VAGA = {
+    ("libertadores", "grupos"): ("lib", "Libertadores"),
+    ("libertadores", "segunda"): ("pre", "Pré-Libertadores"),
+    ("libertadores", "primeira"): ("pre", "Pré-Libertadores"),
+    ("sudamericana", None): ("sula", "Sul-Americana"),
+    ("champions", "liga"): ("lib", "Liga dos Campeões"),
+    ("champions", "pre"): ("pre", "Pré-Champions"),
+    ("europa_league", None): ("sula", "Liga Europa"),
+}
+
+
+def faixas_continentais(cfg: dict) -> list[dict]:
+    """As faixas de vaga continental de uma liga, tiradas das REGRAS dos torneios (as
+    mesmas que a virada do ano aplica), na ordem em que elas pegam os clubes. No
+    Brasileirao: 1o ao 4o Libertadores, 5o e 6o pre-Libertadores, 7o ao 12o Sul-Americana.
+
+    Era um numero fixo -- 6 no Brasil, 4 em qualquer outro lugar -- sem separar grupos de
+    pre nem mostrar a Sul-Americana; a Argentina, com 6 vagas, aparecia com 4. Continua
+    indicativa: campeao de copa ja classificado faz a vaga descer na tabela."""
+    from fm.carreira import COPAS_POR_PAIS
+    from fm.torneio import carregar
+
+    codigos = {cfg.get("codigo"), cfg.get("id")} - {None}
+    faixas: list[dict] = []
+    pos = 0
+    for copa in COPAS_POR_PAIS.get(cfg.get("pais", ""), ()):
+        try:
+            t = carregar(copa)
+        except FileNotFoundError:
+            continue
+        for regra in t.classificacao_regras:
+            if regra.get("fonte") not in codigos:
+                continue
+            classe, rotulo = (FAIXA_DA_VAGA.get((copa, regra.get("entra_em")))
+                              or FAIXA_DA_VAGA.get((copa, None)) or ("lib", t.nome))
+            n = int(regra.get("vagas", 1))
+            if faixas and faixas[-1]["classe"] == classe and faixas[-1]["rotulo"] == rotulo:
+                faixas[-1]["ate"] += n
+            else:
+                faixas.append({"de": pos + 1, "ate": pos + n, "classe": classe,
+                               "rotulo": rotulo})
+            pos += n
+    return faixas
+
+
 def _zonas(cfg: dict, n: int) -> dict:
     """Faixas da tabela. Acesso e rebaixamento vem do arquivo da liga -- sao as regras
-    que a virada do ano aplica. A faixa continental e so indicativa: quem entra na
-    Libertadores sai da cascata do torneio, que depende tambem dos campeoes de copa."""
+    que a virada do ano aplica. As continentais vem das regras dos torneios."""
     acesso = cfg.get("formato", {}).get("acesso", {})
-    tier = int(cfg.get("tier", 1))
-    continental = 0
-    if tier == 1:
-        continental = 6 if cfg.get("pais") == "BRA" else 4
-    return {"acesso": int(acesso.get("sobem", 0)), "continental": continental,
+    faixas = faixas_continentais(cfg) if int(cfg.get("tier", 1)) == 1 else []
+    return {"acesso": int(acesso.get("sobem", 0)),
+            "continental": max((f["ate"] for f in faixas), default=0),
+            "faixas": faixas,
             "rebaixamento": int(acesso.get("descem", 0))}
 
 

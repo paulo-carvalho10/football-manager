@@ -688,8 +688,10 @@ TELAS.classificacao = async function () {
   CLASS.comp = d.liga;
   const z = d.zonas;
   const n = d.linhas.length;
-  const zona = (i) => i <= z.continental ? "continental" : i <= z.acesso ? "acesso"
-    : i > n - z.rebaixamento ? "rebaixamento" : "";
+  // as faixas continentais vem das regras dos torneios (fm.telas.faixas_continentais)
+  const faixa = (i) => (z.faixas || []).find((f) => i >= f.de && i <= f.ate);
+  const zona = (i) => faixa(i) ? faixa(i).classe : i <= z.continental ? "continental"
+    : i <= z.acesso ? "acesso" : i > n - z.rebaixamento ? "rebaixamento" : "";
   const v = CLASS.visao;
   const linha = (l) => v === "geral" ? l : {...l, ...l[v]};
   const ordenadas = v === "geral" ? d.linhas : [...d.linhas].sort((a, b) =>
@@ -724,7 +726,9 @@ TELAS.classificacao = async function () {
             <td class="c">${forma(l0.ultimos)}</td></tr>`;
         }).join("")}</tbody></table></div>
       <div class="pe">
-        ${z.continental ? '<span class="linha-flex"><span class="zona continental">&nbsp;</span> <span class="dica">vaga continental (indicativa)</span></span>' : ""}
+        ${(z.faixas || []).map((f) => `<span class="linha-flex"><span class="zona ${f.classe}">&nbsp;</span>
+          <span class="dica">${escapar(f.rotulo)} (${f.de === f.ate ? `${f.de}º` : `${f.de}º ao ${f.ate}º`})</span></span>`).join("")}
+        ${(z.faixas || []).length ? '<span class="dica" title="Campeão de copa que já tem vaga faz a vaga descer na tabela">· indicativo</span>' : ""}
         ${z.acesso ? '<span class="linha-flex"><span class="zona acesso">&nbsp;</span> <span class="dica">acesso</span></span>' : ""}
         ${z.rebaixamento ? '<span class="linha-flex"><span class="zona rebaixamento">&nbsp;</span> <span class="dica">rebaixamento</span></span>' : ""}
       </div>
