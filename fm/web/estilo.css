@@ -565,6 +565,19 @@ input:focus, select:focus { border-color: var(--ouro); }
 .peca.marcado .camisa-peca { outline: 2px dashed var(--ouro); outline-offset: 3px; border-radius: 6px; }
 .peca.alvo .camisa-peca { outline: 2px solid var(--bom); outline-offset: 3px; border-radius: 6px; }
 .peca.fora-de-posicao .nome { box-shadow: inset 0 -2px 0 var(--ruim); }
+
+/* os pontos fixos do campo que estao livres (como no Brasfoot): clique num titular e
+   depois num deles para mudar a posicao */
+.ponto-vazio {
+  position: absolute; transform: translate(-50%, -50%);
+  width: 2.6rem; height: 2.6rem; border-radius: 50%; padding: 0; cursor: pointer;
+  background: rgba(255,255,255,.06); border: 1.5px dashed rgba(255,255,255,.32);
+  color: rgba(255,255,255,.55); font-family: var(--fonte-titulo); font-size: .6rem;
+  font-weight: 700; letter-spacing: .04em; display: grid; place-items: center;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.ponto-vazio:hover, .ponto-vazio.alvo { background: rgba(240,193,40,.18); border-color: var(--ouro); color: var(--ouro); }
+.ponto-vazio.convida { border-color: rgba(240,193,40,.7); color: var(--ouro); background: rgba(240,193,40,.10); }
 .lista-banco tr[draggable=true] { cursor: grab; }
 .lista-banco tr.alvo td { background: rgba(63, 207, 114, .18) !important; }
 .lista-banco tr.marcado td { background: rgba(243, 195, 50, .16) !important; }

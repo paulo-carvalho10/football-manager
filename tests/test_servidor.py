@@ -280,3 +280,27 @@ def test_todo_clube_das_quatro_divisoes_tem_escudo():
                        seed=1)
     sem = [c.name for c in w.clubs.values() if c.name not in _escudos()]
     assert not sem, f"sem escudo: {sem}"
+
+
+def test_o_desenho_livre_vai_e_volta_da_tela(jogo):
+    """A tela manda o ponto de cada titular; o estado devolve o mesmo desenho, e trocar a
+    formacao pronta recomeca do desenho dela."""
+    desenho = ["GOL", "LE", "ZE", "ZD", "LD", "VC", "ME", "MCE", "MCD", "MD", "CA"]
+    r = escalar(jogo, {"onze": estado(jogo)["onze"], "desenho": desenho})
+    assert r.get("ok"), r
+    t = r["estado"]["tatica"]
+    assert t["desenho"] == desenho and t["nome"] == "4-1-4-1" and t["personalizado"]
+    assert [x["ponto"] for x in t["posicoes"]] == desenho
+    assert {x["id"] for x in r["estado"]["opcoes"]["pontos"]} >= set(desenho)
+    # mudar so a mentalidade nao desfaz o desenho
+    t = escalar(jogo, {"estilo": "ofensivo"})["estado"]["tatica"]
+    assert t["desenho"] == desenho
+    # a formacao pronta recomeca do desenho dela
+    t = escalar(jogo, {"formacao": "3-5-2"})["estado"]["tatica"]
+    assert t["nome"] == "3-5-2" and not t["personalizado"]
+
+
+def test_desenho_invalido_volta_com_o_motivo(jogo):
+    r = escalar(jogo, {"desenho": ["GOL", "LE", "ZD", "VE", "VC", "VD", "ME", "MD", "MEI",
+                                   "CAE", "CAD"]})
+    assert "defensores" in r["erro"]

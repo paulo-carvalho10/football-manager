@@ -135,3 +135,51 @@ def test_calendario_alterna_o_mando(carreira):
         assert seq.count("C") == rodadas // 2, f"clube {cid} sem metade dos jogos em casa"
         maior = max(len(list(g)) for _, g in groupby(seq))
         assert maior <= 5, f"clube {cid} com {maior} jogos seguidos sem alternar mando"
+
+
+def test_a_tatica_vale_para_os_proximos_jogos(carreira):
+    """REGRESSAO: a tatica era gravada so para a rodada em que foi escolhida. Mudar para
+    3-5-2, jogar e voltar ao menu devolvia o 4-3-3 -- era preciso escolher de novo antes
+    de todo jogo."""
+    desenho = ["GOL", "LE", "ZE", "ZD", "LD", "VC", "ME", "MCE", "MCD", "MD", "CA"]
+    carreira.escalar(carreira.escalacao_atual(),
+                     Tatica(formacao="4-5-1", estilo="ofensivo", desenho=desenho))
+    for _ in range(3):
+        _avancar_ate_a_liga(carreira)
+    t = carreira.tatica_atual()
+    assert (t.estilo, t.desenho, t.nome) == ("ofensivo", desenho, "4-1-4-1")
+    # o onze automatico da rodada nova ocupa os pontos do desenho salvo
+    onze = carreira.escalacao_atual()
+    papeis = {carreira.world.players[i].position for i in onze[5:6]}
+    assert papeis <= {"MF", "DF"}, "o volante do desenho foi ocupado por quem?"
+
+
+def test_save_antigo_continua_jogando_no_padrao(tmp_path, carreira):
+    """Save de antes da regra nao tem a marca: a rodada sem decisao segue no padrao, senao o
+    replay jogaria com outra tatica e daria outro resultado."""
+    carreira.tatica_persistente = False
+    carreira.escalar(carreira.escalacao_atual(), Tatica(formacao="5-3-2"))
+    carreira.avancar()
+    assert carreira.tatica_atual().formacao == "4-3-3"
+    carreira.salvar("teste_pytest_antigo")
+    try:
+        recarregada = Carreira.carregar("teste_pytest_antigo")
+        assert recarregada.tatica_persistente is False
+    finally:
+        from fm.carreira import SAVES_DIR
+        (SAVES_DIR / "teste_pytest_antigo.json").unlink()
+
+
+def test_mudanca_no_meio_do_jogo_nao_fica(carreira):
+    """A tatica trocada durante a partida vale so nela: e gravada em `na_partida`, nao nas
+    decisoes que valem para os proximos jogos."""
+    carreira.escalar(carreira.escalacao_atual(), Tatica(formacao="4-4-2"))
+
+    def no_intervalo(partida, minuto):
+        return {"tatica": Tatica(formacao="3-4-3")} if minuto == 45 else None
+
+    while carreira.compromisso[0] != "liga":
+        carreira.avancar()
+    carreira.avancar(substituicoes=no_intervalo)
+    assert carreira.tatica_atual().formacao == "4-4-2"
+    assert any(t for reg in carreira.na_partida.values() for _, t in reg.get("taticas", []))

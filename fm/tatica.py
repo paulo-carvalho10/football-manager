@@ -7,7 +7,7 @@ do outro), nunca botao de vencer. Quem decide o jogo continua sendo o elenco.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 FORMACOES: dict[str, dict[str, int]] = {
     "4-4-2": {"GK": 1, "DF": 4, "MF": 4, "FW": 2},
@@ -71,52 +71,145 @@ EFEITO_FORMACAO: dict[str, tuple[float, float]] = {
 }
 
 
-# --- AS VAGAS DO CAMPO ---
-# Cada formacao e uma lista ordenada de vagas; a escalacao e uma lista de onze ids na
-# MESMA ordem. Assim "quem joga de 9" e uma escolha do usuario, e nao um detalhe do desenho.
+# --- OS PONTOS DO CAMPO ---
+# Como no Brasfoot: o campo tem pontos FIXOS, e montar o time e escolher em quais deles os
+# dez de linha ficam. As formacoes prontas sao so desenhos iniciais sobre estes pontos, e a
+# escalacao e uma lista de onze ids na MESMA ordem do desenho -- "quem joga de 9" e uma
+# escolha do usuario, nao um detalhe da tela.
 #
-# (rotulo, setor, papel, x, y). O setor e o grupo de posicao que a vaga pede; o papel e o
-# position_detail que o motor de eventos usa para decidir quem finaliza, da o passe e comete
-# falta -- quem ocupa a vaga de centroavante chuta como centroavante. x e y sao a posicao no
-# desenho, em % do campo, com o ataque em cima.
-_LINHA_4 = [("LE", "DF", "FB", 12, 70), ("ZAG", "DF", "CB", 37, 74),
-            ("ZAG", "DF", "CB", 63, 74), ("LD", "DF", "FB", 88, 70)]
-_LINHA_3 = [("ZAG", "DF", "CB", 25, 73), ("ZAG", "DF", "CB", 50, 75),
-            ("ZAG", "DF", "CB", 75, 73)]
-_LINHA_5 = [("LE", "DF", "FB", 8, 64), ("ZAG", "DF", "CB", 29, 73),
-            ("ZAG", "DF", "CB", 50, 75), ("ZAG", "DF", "CB", 71, 73),
-            ("LD", "DF", "FB", 92, 64)]
-_MEIO_3 = [("MC", "MF", "MF", 25, 49), ("VOL", "MF", "DM", 50, 56), ("MC", "MF", "MF", 75, 49)]
-_MEIO_4 = [("ME", "MF", "WG", 12, 46), ("VOL", "MF", "DM", 37, 53),
-           ("MC", "MF", "MF", 63, 53), ("MD", "MF", "WG", 88, 46)]
-_MEIO_5 = [("ME", "MF", "WG", 10, 44), ("MC", "MF", "MF", 30, 50), ("VOL", "MF", "DM", 50, 57),
-           ("MC", "MF", "AM", 70, 50), ("MD", "MF", "WG", 90, 44)]
-_ATAQUE_3 = [("PE", "FW", "WG", 16, 24), ("CA", "FW", "FW", 50, 17), ("PD", "FW", "WG", 84, 24)]
-_ATAQUE_2 = [("CA", "FW", "FW", 36, 20), ("CA", "FW", "FW", 64, 20)]
-_ATAQUE_1 = [("CA", "FW", "FW", 50, 17)]
-_GOL = [("GOL", "GK", "GK", 50, 89)]
+# id -> (rotulo, setor, papel, x, y). O setor e o grupo de posicao que o ponto pede; o
+# papel e o position_detail que o motor de eventos usa para decidir quem finaliza, da o
+# passe e comete falta -- quem ocupa a vaga de centroavante chuta como centroavante. x e y
+# sao a posicao no desenho, em % do campo, com o ataque em cima.
+PONTOS: dict[str, tuple[str, str, str, int, int]] = {
+    "GOL": ("GOL", "GK", "GK", 50, 89),
+    # defesa
+    "LE":  ("LE",  "DF", "FB", 12, 70),
+    "ZE":  ("ZAG", "DF", "CB", 31, 74),
+    "ZC":  ("ZAG", "DF", "CB", 50, 76),
+    "ZD":  ("ZAG", "DF", "CB", 69, 74),
+    "LD":  ("LD",  "DF", "FB", 88, 70),
+    "ALE": ("ALA", "DF", "FB", 9, 56),
+    "ALD": ("ALA", "DF", "FB", 91, 56),
+    # volantes
+    "VE":  ("VOL", "MF", "DM", 32, 60),
+    "VC":  ("VOL", "MF", "DM", 50, 61),
+    "VD":  ("VOL", "MF", "DM", 68, 60),
+    # meio
+    "ME":  ("ME",  "MF", "WG", 12, 44),
+    "MCE": ("MC",  "MF", "MF", 31, 48),
+    "MCC": ("MC",  "MF", "MF", 50, 47),
+    "MCD": ("MC",  "MF", "MF", 69, 48),
+    "MD":  ("MD",  "MF", "WG", 88, 44),
+    # meias ofensivos
+    "MEE": ("MEI", "MF", "AM", 30, 35),
+    "MEI": ("MEI", "MF", "AM", 50, 34),
+    "MED": ("MEI", "MF", "AM", 70, 35),
+    # ataque
+    "PE":  ("PE",  "FW", "WG", 15, 23),
+    "PD":  ("PD",  "FW", "WG", 85, 23),
+    "CAE": ("CA",  "FW", "FW", 37, 19),
+    "CA":  ("CA",  "FW", "FW", 50, 16),
+    "CAD": ("CA",  "FW", "FW", 63, 19),
+}
 
+# As formacoes prontas, ponto a ponto e NA ORDEM das vagas. Os papeis sao os mesmos de
+# antes dos pontos (o 4-4-2 com um volante e um meia, o 4-5-1 com um meia ofensivo): o
+# motor de eventos foi medido com eles.
+DESENHOS: dict[str, list[str]] = {
+    "4-3-3":   ["GOL", "LE", "ZE", "ZD", "LD", "MCE", "VC", "MCD", "PE", "CA", "PD"],
+    "4-4-2":   ["GOL", "LE", "ZE", "ZD", "LD", "ME", "VE", "MCD", "MD", "CAE", "CAD"],
+    "4-5-1":   ["GOL", "LE", "ZE", "ZD", "LD", "ME", "MCE", "VC", "MED", "MD", "CA"],
+    "3-5-2":   ["GOL", "ZE", "ZC", "ZD", "ME", "MCE", "VC", "MED", "MD", "CAE", "CAD"],
+    "5-3-2":   ["GOL", "ALE", "ZE", "ZC", "ZD", "ALD", "MCE", "VC", "MCD", "CAE", "CAD"],
+    "3-4-3":   ["GOL", "ZE", "ZC", "ZD", "ME", "VE", "MCD", "MD", "PE", "CA", "PD"],
+    "4-2-3-1": ["GOL", "LE", "ZE", "ZD", "LD", "VE", "VD", "ME", "MEI", "MD", "CA"],
+}
+
+# Um desenho livre ainda tem de ser um time: tres a cinco defensores, um a tres atacantes.
+LIMITES_DO_DESENHO = {"DF": (3, 5), "FW": (1, 3)}
+
+# A lista de vagas de cada formacao pronta, no formato (rotulo, setor, papel, x, y).
 VAGAS: dict[str, list[tuple[str, str, str, int, int]]] = {
-    "4-3-3": _GOL + _LINHA_4 + _MEIO_3 + _ATAQUE_3,
-    "4-4-2": _GOL + _LINHA_4 + _MEIO_4 + _ATAQUE_2,
-    "4-5-1": _GOL + _LINHA_4 + _MEIO_5 + _ATAQUE_1,
-    "3-5-2": _GOL + _LINHA_3 + _MEIO_5 + _ATAQUE_2,
-    "5-3-2": _GOL + _LINHA_5 + _MEIO_3 + _ATAQUE_2,
-    "3-4-3": _GOL + _LINHA_3 + _MEIO_4 + _ATAQUE_3,
-    "4-2-3-1": _GOL + _LINHA_4 + [("VOL", "MF", "DM", 33, 59), ("VOL", "MF", "DM", 67, 59),
-                                  ("ME", "MF", "WG", 15, 36), ("MEI", "MF", "AM", 50, 38),
-                                  ("MD", "MF", "WG", 85, 36)] + _ATAQUE_1,
+    nome: [PONTOS[k] for k in desenho] for nome, desenho in DESENHOS.items()}
+
+# O efeito das contagens que nenhuma formacao pronta tem, interpolado das vizinhas: tirar
+# um zagueiro e por um meia vale o que vale entre 4-4-2 e 3-5-2; trocar um meia por um
+# atacante, o que vale entre 4-4-2 e 4-3-3.
+EFEITO_DE_CONTAGEM: dict[tuple[int, int, int], tuple[float, float]] = {
+    (3, 6, 1): (0.92, 0.96),
+    (5, 4, 1): (0.82, 0.81),
+    (5, 2, 3): (0.93, 0.91),
 }
 
 
-def arrumar_no_campo(jogadores: list, formacao: str) -> list:
+def contagem(pontos: list[str]) -> dict[str, int]:
+    fora = {"GK": 0, "DF": 0, "MF": 0, "FW": 0}
+    for k in pontos:
+        fora[PONTOS[k][1]] += 1
+    return fora
+
+
+def nome_do_desenho(pontos: list[str]) -> str:
+    """O nome da formacao pronta, se o desenho for o dela; senao, pelas faixas do campo --
+    defesa, volantes, meio, meias ofensivos, ataque: "4-1-4-1", "4-1-2-1-2"... Faixa
+    vazia nao entra no nome."""
+    pronta = next((n for n, d in DESENHOS.items() if set(d) == set(pontos)), None)
+    if pronta:
+        return pronta
+    faixa = {"DF": 0, "DM": 1, "MF": 2, "WG": 2, "AM": 3, "FW": 4}
+    linhas = [0] * 5
+    for k in pontos:
+        _, setor, papel, _, _ = PONTOS[k]
+        if setor != "GK":
+            linhas[4 if setor == "FW" else 0 if setor == "DF" else faixa[papel]] += 1
+    return "-".join(str(n) for n in linhas if n)
+
+
+def _papeis(pontos: list[str], papel: str) -> int:
+    return sum(1 for k in pontos if PONTOS[k][2] == papel)
+
+
+def efeito_do_desenho(pontos: list[str]) -> tuple[float, float]:
+    """(ataque, defesa) do desenho. Contagem igual a de uma formacao pronta vale o efeito
+    dela -- a calibracao foi feita nelas, e o 4-3-3 continua valendo exatamente (1, 1)."""
+    v = contagem(pontos)
+    chave = (v["DF"], v["MF"], v["FW"])
+    prontas = [n for n, d in DESENHOS.items()
+               if tuple(contagem(d)[s] for s in ("DF", "MF", "FW")) == chave]
+    if not prontas:
+        return EFEITO_DE_CONTAGEM.get(chave, (0.95, 0.95))
+    # 4-5-1 e 4-2-3-1 tem as mesmas contagens: o que separa e o volante duplo
+    prontas.sort(key=lambda n: (set(DESENHOS[n]) != set(pontos),
+                                abs(_papeis(DESENHOS[n], "DM") - _papeis(pontos, "DM"))))
+    return EFEITO_FORMACAO[prontas[0]]
+
+
+def validar_desenho(pontos: list[str]) -> None:
+    if len(pontos) != 11:
+        raise ValueError(f"o desenho precisa de 11 pontos, vieram {len(pontos)}")
+    fora = [k for k in pontos if k not in PONTOS]
+    if fora:
+        raise ValueError(f"ponto desconhecido: {fora}")
+    if len(set(pontos)) != 11:
+        raise ValueError("dois jogadores no mesmo ponto do campo")
+    if pontos.count("GOL") != 1:
+        raise ValueError("o time precisa de um goleiro, e so um")
+    v = contagem(pontos)
+    for setor, (lo, hi) in LIMITES_DO_DESENHO.items():
+        if not lo <= v[setor] <= hi:
+            nome = {"DF": "defensores", "FW": "atacantes"}[setor]
+            raise ValueError(f"o time precisa de {lo} a {hi} {nome}; ficaria com {v[setor]}")
+
+
+def arrumar_no_campo(jogadores: list, formacao) -> list:
     """Poe onze jogadores nas vagas da formacao, do jeito que um treinador poria.
 
     Custo de cada par (jogador, vaga): fora do setor pesa muito, papel diferente pesa um
     pouco, e o pe trocado na ponta pesa menos ainda -- o canhoto vai para a esquerda.
     Guloso sobre os pares ordenados por custo; com onze jogadores basta.
     """
-    vagas = VAGAS[formacao]
+    vagas = VAGAS[formacao] if isinstance(formacao, str) else formacao
     if len(jogadores) != len(vagas):
         return list(jogadores)
     pares = []
@@ -139,9 +232,10 @@ def arrumar_no_campo(jogadores: list, formacao: str) -> list:
     return ordem
 
 
-def papeis_em_campo(ids: list[int], formacao: str) -> dict[int, str]:
-    """{jogador: papel da vaga que ele ocupa}. Vazio se a lista nao casa com a formacao."""
-    vagas = VAGAS.get(formacao, [])
+def papeis_em_campo(ids: list[int], formacao) -> dict[int, str]:
+    """{jogador: papel da vaga que ele ocupa}. Vazio se a lista nao casa com a formacao.
+    `formacao` e o nome de uma pronta ou a lista de vagas (Tatica.vagas_do_campo)."""
+    vagas = VAGAS.get(formacao, []) if isinstance(formacao, str) else formacao
     if len(ids) != len(vagas):
         return {}
     return {pid: vaga[2] for pid, vaga in zip(ids, vagas)}
@@ -152,6 +246,9 @@ class Tatica:
     formacao: str = "4-3-3"
     marcacao: str = "normal"
     estilo: str = "equilibrado"
+    # o desenho livre: o ponto do campo (PONTOS) de cada vaga, na ordem do onze. Vazio e o
+    # desenho da formacao pronta; `formacao` fica como a base de onde ele saiu.
+    desenho: list[str] = field(default_factory=list)
 
     def validar(self) -> None:
         if self.formacao not in FORMACOES:
@@ -160,15 +257,29 @@ class Tatica:
             raise ValueError(f"marcacao {self.marcacao!r}; use {sorted(MARCACOES)}")
         if self.estilo not in ESTILOS:
             raise ValueError(f"estilo {self.estilo!r}; use {sorted(ESTILOS)}")
+        if self.desenho:
+            validar_desenho(self.desenho)
+
+    @property
+    def pontos(self) -> list[str]:
+        return list(self.desenho) if self.desenho else list(DESENHOS[self.formacao])
+
+    def vagas_do_campo(self) -> list[tuple[str, str, str, int, int]]:
+        return [PONTOS[k] for k in self.pontos]
 
     @property
     def vagas(self) -> dict[str, int]:
-        return FORMACOES[self.formacao]
+        """Quantos de cada setor -- do desenho, nao do nome da formacao."""
+        return contagem(self.pontos)
+
+    @property
+    def nome(self) -> str:
+        return nome_do_desenho(self.pontos)
 
     def multiplicadores(self) -> tuple[float, float]:
         """(quanto multiplica os proprios gols, quanto multiplica os gols do adversario)."""
         ea, ed = ESTILOS[self.estilo]
-        fa, fd = EFEITO_FORMACAO[self.formacao]
+        fa, fd = efeito_do_desenho(self.pontos)
         mrc = MARCACOES[self.marcacao][0]
         return ea * fa, ed * fd * mrc
 
@@ -177,7 +288,7 @@ class Tatica:
         return MARCACOES[self.marcacao][1]
 
     def como_texto(self) -> str:
-        return f"{self.formacao}, marcacao {self.marcacao}, {self.estilo}"
+        return f"{self.nome}, marcacao {self.marcacao}, {self.estilo}"
 
 
 def _interacao(va: dict[str, int], vb: dict[str, int]) -> float:
@@ -206,6 +317,6 @@ def confronto(a: Tatica, b: Tatica) -> tuple[float, float]:
     """
     a_ata, a_def = a.multiplicadores()
     b_ata, b_def = b.multiplicadores()
-    va, vb = FORMACOES[a.formacao], FORMACOES[b.formacao]
+    va, vb = a.vagas, b.vagas
     return (a_ata * b_def * (1.0 + _interacao(va, vb)),
             b_ata * a_def * (1.0 + _interacao(vb, va)))

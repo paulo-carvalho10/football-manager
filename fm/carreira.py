@@ -122,6 +122,10 @@ class Carreira:
     _pedido_de_penalti: object = field(default=None, repr=False, compare=False)
     # a lista de observacao do mercado
     observados: list[int] = field(default_factory=list)
+    # A tatica escolhida vale ate a proxima mudanca, e nao so na rodada em que foi feita.
+    # Saves de antes disto jogavam a rodada sem decisao no padrao, e o replay deles
+    # precisa continuar jogando assim -- por isso a regra nova e uma marca do save.
+    tatica_persistente: bool = True
     # um caderno de artilharia por competicao ("brasil_real", "libertadores"...) no ano
     estatisticas_por_comp: dict = field(default_factory=dict)
     # {liga: {rodada: selecao}} -- a selecao de cada rodada de liga do ano (fm.selecao)
@@ -702,8 +706,22 @@ class Carreira:
         return f"{self.temporada}:{self.rodada + 1 if rodada is None else rodada}"
 
     def tatica_atual(self) -> Tatica:
+        """A tatica da proxima rodada: a decidida para ela ou, se nao houver, a ultima que
+        o treinador deixou -- mudar para 3-5-2 antes de um jogo nao volta ao 4-3-3 no
+        seguinte. A mudanca feita DURANTE a partida fica na partida (`na_partida`)."""
         d = self.decisoes.get(self._chave())
+        if d is None and self.tatica_persistente:
+            d = self._ultima_decisao()
         return Tatica(**d.tatica) if d else Tatica()
+
+    def _ultima_decisao(self) -> Decisao | None:
+        def ordem(chave: str) -> tuple[int, int]:
+            temporada, rodada = chave.split(":")
+            return int(temporada), int(rodada)
+
+        agora = ordem(self._chave())
+        antes = [k for k in self.decisoes if ordem(k) < agora]
+        return self.decisoes[max(antes, key=ordem)] if antes else None
 
     def escalacao_atual(self) -> list[int]:
         """O onze na ORDEM das vagas da formacao (fm.tatica.VAGAS).
@@ -720,7 +738,7 @@ class Carreira:
         xi = self.world.best_xi(self.clube_id, tatica.vagas)
         if self.clube_id in self.world.escalacao_fixa and xi and xi[0].position == "GK":
             return [p.id for p in xi]
-        return [p.id for p in arrumar_no_campo(xi, tatica.formacao)]
+        return [p.id for p in arrumar_no_campo(xi, tatica.vagas_do_campo())]
 
     def proximo_jogo(self) -> tuple[str, str, Fixture | None]:
         """(tipo, competicao, jogo) da proxima data em que o usuario entra em campo.
@@ -946,7 +964,7 @@ class Carreira:
         chave = f"{self.temporada}:{self.data}"
         from fm.tatica import papeis_em_campo
         papeis = papeis_em_campo(self.world.escalacao_fixa.get(self.clube_id)
-                                 or self.escalacao_atual(), tatica.formacao)
+                                 or self.escalacao_atual(), tatica.vagas_do_campo())
         return simular_partida(
             self.world, jogo.home, jogo.away,
             [p.id for p in self.world.best_xi(jogo.home)],
@@ -1326,10 +1344,9 @@ class Carreira:
         self.world.formacao_fixa[self.clube_id] = tatica.vagas
 
     def _sem_suspensos(self, onze: list[int], tatica: Tatica, suspensos: set[int]) -> list[int]:
-        from fm.tatica import VAGAS
         if not suspensos & set(onze):
             return list(onze)
-        vagas = VAGAS.get(tatica.formacao, [])
+        vagas = tatica.vagas_do_campo()
         banco = sorted((p for p in self.world.squad(self.clube_id)
                         if p.id not in onze and p.id not in suspensos),
                        key=lambda p: -p.effective_overall)
@@ -1633,6 +1650,7 @@ class Carreira:
             "treinador": self.treinador,
             "funcoes": self.funcoes,
             "observados": self.observados,
+            "tatica_persistente": self.tatica_persistente,
             "acoes": self.acoes,
         }, indent=2, ensure_ascii=False), encoding="utf-8")
         return destino
@@ -1659,6 +1677,8 @@ class Carreira:
         c.clube_inicial = c.clube_id
         c.funcoes = d.get("funcoes", {})
         c.observados = d.get("observados", [])
+        # save sem a marca e de antes da regra: a rodada sem decisao joga no padrao
+        c.tatica_persistente = bool(d.get("tatica_persistente", False))
         c._montar(world, streams)
         acoes = d.get("acoes", [])
         # REPLAY: as temporadas sao refeitas com as mesmas decisoes. Se isto divergir, o

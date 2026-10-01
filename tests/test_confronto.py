@@ -87,3 +87,39 @@ def test_o_confronto_muda_o_carater_do_jogo():
     _, travado = _duelo("4-5-1", "5-3-2")
     _, aberto = _duelo("3-4-3", "3-4-3")
     assert aberto > travado + 0.6, f"{aberto:.2f} contra {travado:.2f} gols"
+
+
+# ------------------------------------------------------------------ o desenho livre
+
+def test_as_formacoes_prontas_sao_desenhos_nos_pontos():
+    """Os pontos fixos do campo nao mudaram nada das formacoes prontas: mesma contagem,
+    mesmo efeito, mesmo nome -- a calibracao foi feita nelas."""
+    from fm.tatica import DESENHOS, EFEITO_FORMACAO, FORMACOES, efeito_do_desenho
+
+    for nome, desenho in DESENHOS.items():
+        t = Tatica(formacao=nome)
+        t.validar()
+        assert t.vagas == FORMACOES[nome]
+        assert efeito_do_desenho(desenho) == EFEITO_FORMACAO[nome]
+        assert t.nome == nome
+    assert Tatica().multiplicadores() == (1.0, 1.0)
+
+
+def test_o_desenho_livre_ganha_nome_e_efeito():
+    t = Tatica(desenho=["GOL", "LE", "ZE", "ZD", "LD", "VC", "MCE", "MCD", "MEI", "CAE", "CAD"])
+    t.validar()
+    assert t.nome == "4-1-2-1-2"
+    assert t.vagas == {"GK": 1, "DF": 4, "MF": 4, "FW": 2}
+    ataque, defesa = t.multiplicadores()
+    assert 0.8 < ataque < 1.1 and 0.8 < defesa < 1.1
+
+
+@pytest.mark.parametrize("desenho, motivo", [
+    (["GOL", "LE", "ZD", "VE", "VC", "VD", "ME", "MD", "MEI", "CAE", "CAD"], "defensores"),
+    (["GOL", "LE", "ZE", "ZD", "LD", "VC", "ME", "PE", "CAE", "CA", "CAD"], "atacantes"),
+    (["GOL", "LE", "ZE", "ZD", "LD", "VC", "VC", "MD", "PE", "CA", "PD"], "mesmo ponto"),
+    (["LE", "ZE", "ZC", "ZD", "LD", "VC", "MCE", "MCD", "PE", "CA", "PD"], "goleiro"),
+])
+def test_o_desenho_livre_ainda_e_um_time(desenho, motivo):
+    with pytest.raises(ValueError, match=motivo):
+        Tatica(desenho=desenho).validar()

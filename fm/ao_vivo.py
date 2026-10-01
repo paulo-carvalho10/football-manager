@@ -54,7 +54,15 @@ class PartidaAoVivo:
         if penalti is not None:
             self._pedido["penalti"] = int(penalti)
         if tatica:
-            nova = Tatica(**{**self._tatica_dict(), **tatica})
+            base = self._tatica_dict()
+            pedido = {k: v for k, v in tatica.items()
+                      if k in ("formacao", "marcacao", "estilo", "desenho")}
+            # trocar a formacao no meio do jogo vai para o desenho pronto dela; o desenho
+            # livre do treinador continua salvo para os proximos jogos (fm.carreira)
+            if pedido.get("formacao", base["formacao"]) != base["formacao"]:
+                pedido["desenho"] = []
+            nova = Tatica(**{**{k: base[k] for k in ("formacao", "marcacao", "estilo",
+                                                     "desenho")}, **pedido})
             nova.validar()
             self._pedido["tatica"] = nova
             self.tatica = nova
@@ -130,7 +138,8 @@ class PartidaAoVivo:
 
     def _tatica_dict(self) -> dict:
         t = self.tatica
-        return {"formacao": t.formacao, "marcacao": t.marcacao, "estilo": t.estilo}
+        return {"formacao": t.formacao, "marcacao": t.marcacao, "estilo": t.estilo,
+                "desenho": list(t.desenho), "nome": t.nome}
 
     # ------------------------------------------------------------------ o retrato
 

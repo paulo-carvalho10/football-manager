@@ -25,7 +25,7 @@ from fm.ratings import exibir
 from fm.calendario import dia_da_data, texto
 from fm.carreira import Carreira, saves_disponiveis
 from fm.moeda import json_da_moeda
-from fm.tatica import ESTILOS, FORMACOES, MARCACOES, VAGAS, Tatica, arrumar_no_campo
+from fm.tatica import DESENHOS, ESTILOS, FORMACOES, MARCACOES, PONTOS, Tatica, arrumar_no_campo
 
 WEB = Path(__file__).resolve().parent / "web"
 POSICAO_ORDEM = {"GK": 0, "DF": 1, "MF": 2, "FW": 3}
@@ -241,11 +241,16 @@ def estado(jogo: Jogo) -> dict:
         },
         "proximo": proximo,
         "tatica": {"formacao": tatica.formacao, "marcacao": tatica.marcacao,
-                   "estilo": tatica.estilo, "vagas": tatica.vagas,
-                   "posicoes": [{"rotulo": r, "setor": s, "papel": p, "x": x, "y": y}
-                                for r, s, p, x, y in VAGAS[tatica.formacao]]},
+                   "estilo": tatica.estilo, "vagas": tatica.vagas, "nome": tatica.nome,
+                   "desenho": tatica.pontos, "personalizado": bool(tatica.desenho),
+                   "posicoes": [{"ponto": k, "rotulo": r, "setor": s, "papel": p, "x": x, "y": y}
+                                for k, (r, s, p, x, y) in zip(tatica.pontos,
+                                                              tatica.vagas_do_campo())]},
         "opcoes": {"formacoes": sorted(FORMACOES), "marcacoes": sorted(MARCACOES),
-                   "estilos": sorted(ESTILOS)},
+                   "estilos": sorted(ESTILOS),
+                   # os pontos fixos do campo, para montar o desenho a mao (fm.tatica.PONTOS)
+                   "pontos": [{"id": k, "rotulo": r, "setor": s, "x": x, "y": y}
+                              for k, (r, s, _, x, y) in PONTOS.items()]},
         "elenco": [{**_jogador(c, p, p.id in onze), **_disciplina_do(c, p.id, comp_prox)}
                    for p in elenco],
         "gancho": {
@@ -351,10 +356,24 @@ def avancar(jogo: Jogo) -> dict:
 
 def escalar(jogo: Jogo, dados: dict) -> dict:
     c = jogo.c
+    atual = c.tatica_atual()
+    formacao = dados.get("formacao", atual.formacao)
+    # trocar a formacao pronta recomeca do desenho dela; senao o desenho livre continua
+    desenho = dados.get("desenho")
+    if desenho is None:
+        desenho = atual.desenho if formacao == atual.formacao else []
+    desenho = [str(k) for k in desenho]
+    if desenho == DESENHOS.get(formacao):
+        desenho = []
     tatica = Tatica(
-        formacao=dados.get("formacao", c.tatica_atual().formacao),
-        marcacao=dados.get("marcacao", c.tatica_atual().marcacao),
-        estilo=dados.get("estilo", c.tatica_atual().estilo))
+        formacao=formacao,
+        marcacao=dados.get("marcacao", atual.marcacao),
+        estilo=dados.get("estilo", atual.estilo),
+        desenho=desenho)
+    try:
+        tatica.validar()
+    except ValueError as e:
+        return {"erro": str(e), "estado": estado(jogo)}
     if isinstance(dados.get("funcoes"), dict):
         elenco = {p.id for p in c.world.squad(c.clube_id)}
         c.funcoes = {k: int(v) for k, v in dados["funcoes"].items()
@@ -363,7 +382,7 @@ def escalar(jogo: Jogo, dados: dict) -> dict:
     if not onze:
         c.world.escalacao_fixa.pop(c.clube_id, None)
         onze = [p.id for p in arrumar_no_campo(c.world.best_xi(c.clube_id, tatica.vagas),
-                                               tatica.formacao)]
+                                               tatica.vagas_do_campo())]
     try:
         c.escalar([int(x) for x in onze], tatica)
     except ValueError as e:

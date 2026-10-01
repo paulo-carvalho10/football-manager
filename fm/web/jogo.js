@@ -364,6 +364,7 @@ async function abrirPerfil(id) {
 
 let marcado = null;           // {id, onde: "campo" | "banco"}
 let onzeLocal = null;         // o onze enquanto o usuario mexe, antes de mandar
+let desenhoLocal = null;      // o ponto do campo de cada titular, na mesma ordem do onze
 
 const LINHAS_CAMPO = `
 <svg class="linhas" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
@@ -375,16 +376,61 @@ const LINHAS_CAMPO = `
     <path d="M40 83 A 11 8 0 0 1 60 83"/><path d="M40 17 A 11 8 0 0 0 60 17"/>
   </g></svg>`;
 
-/** A lista do onze esta na ORDEM das vagas da formacao, que vem do servidor com rotulo,
- *  setor e posicao no desenho. Trocar dois titulares e trocar os dois de vaga -- e a vaga
- *  vale no jogo: quem ocupa a de centroavante finaliza como centroavante. */
+/** O campo tem pontos FIXOS (LE, ZAG, VOL, MEI, PE, CA...), como no Brasfoot. O onze
+ *  esta na ordem do desenho: o titular i ocupa o ponto desenhoLocal[i]. Trocar dois
+ *  titulares troca os dois de ponto; levar um titular a um ponto vazio muda o desenho --
+ *  e o ponto vale no jogo: quem ocupa o de centroavante finaliza como centroavante. */
+function pontosDoCampo() {
+  return Object.fromEntries(ESTADO.opcoes.pontos.map((x) => [x.id, x]));
+}
+
 function pecasNoCampo(titulares) {
-  return ESTADO.tatica.posicoes.map((vaga, i) => ({p: titulares[i], vaga})).filter((x) => x.p);
+  const pontos = pontosDoCampo();
+  return desenhoLocal.map((k, i) => ({p: titulares[i], vaga: pontos[k], ponto: k})).filter((x) => x.p && x.vaga);
+}
+
+function recarregarEscalacao(estado) {
+  onzeLocal = [...estado.onze];
+  desenhoLocal = [...estado.tatica.desenho];
+}
+
+/* O mesmo limite do servidor (fm.tatica.LIMITES_DO_DESENHO), para avisar na hora. */
+const LIMITES_DO_DESENHO = {DF: [3, 5, "defensores"], FW: [1, 3, "atacantes"]};
+
+function problemaNoDesenho(desenho) {
+  const pontos = pontosDoCampo();
+  const conta = {GK: 0, DF: 0, MF: 0, FW: 0};
+  desenho.forEach((k) => { conta[pontos[k].setor] += 1; });
+  for (const [setor, [lo, hi, nome]] of Object.entries(LIMITES_DO_DESENHO)) {
+    if (conta[setor] < lo || conta[setor] > hi) return `O time precisa de ${lo} a ${hi} ${nome}.`;
+  }
+  return null;
+}
+
+/* O nome do desenho como o servidor da (fm.tatica.nome_do_desenho), so para o rotulo. */
+function nomeDoDesenho(desenho) {
+  if (desenhoIgual(desenho, ESTADO.tatica.desenho)) return ESTADO.tatica.nome;
+  const pontos = pontosDoCampo();
+  const faixa = {DF: 0, DM: 1, MF: 2, WG: 2, AM: 3};
+  const linhas = [0, 0, 0, 0, 0];
+  desenho.forEach((k) => {
+    const v = pontos[k];
+    if (v.setor === "GK") return;
+    if (v.setor === "FW") linhas[4] += 1;
+    else if (v.setor === "DF") linhas[0] += 1;
+    else linhas[faixa[PAPEL_DO_ROTULO[v.rotulo]] ?? 2] += 1;
+  });
+  return linhas.filter(Boolean).join("-");
+}
+const PAPEL_DO_ROTULO = {VOL: "DM", MC: "MF", ME: "WG", MD: "WG", MEI: "AM"};
+
+function desenhoIgual(a, b) {
+  return a && b && a.length === b.length && a.every((k, i) => b[i] === k);
 }
 
 TELAS.escalacao = async function () {
   const e = ESTADO;
-  if (!onzeLocal) onzeLocal = [...e.onze];
+  if (!onzeLocal || !desenhoLocal) recarregarEscalacao(e);
   const porId = Object.fromEntries(e.elenco.map((p) => [p.id, p]));
   const titulares = onzeLocal.map((id) => porId[id]).filter(Boolean);
   const reservas = e.elenco.filter((p) => !onzeLocal.includes(p.id))
@@ -395,6 +441,11 @@ TELAS.escalacao = async function () {
   const f = e.funcoes || {};
 
   const colocados = pecasNoCampo(titulares);
+  const ocupados = new Set(desenhoLocal);
+  const vazios = e.opcoes.pontos.filter((x) => !ocupados.has(x.id)).map((x) => `
+    <button class="ponto-vazio ${marcado && marcado.onde === "campo" ? "convida" : ""}" data-ponto="${x.id}"
+      title="Levar o titular marcado para ${escapar(ROTULOS_VAGA[x.rotulo] || x.rotulo)}"
+      style="left:${x.x}%;top:${x.y}%"><span>${x.rotulo}</span></button>`).join("");
   const pecas = colocados.map(({p, vaga}) => `
     <button class="peca ${p.posicao !== vaga.setor ? "fora-de-posicao" : ""} ${p.suspenso ? "suspenso" : ""}
       ${marcado && marcado.id === p.id ? "marcado" : ""}" data-campo="${p.id}" draggable="true"
@@ -412,24 +463,28 @@ TELAS.escalacao = async function () {
   const opcoesFuncao = (chave) => `<select data-funcao="${chave}"><option value="">—</option>${titulares.map((p) =>
     `<option value="${p.id}" ${f[chave] === p.id ? "selected" : ""}>${escapar(p.nome)}</option>`).join("")}</select>`;
   const formacoes = [...e.opcoes.formacoes].sort();
+  const nomeAgora = nomeDoDesenho(desenhoLocal);
+  // um desenho que nao e nenhuma formacao pronta aparece como "Personalizada"
+  const personalizado = !formacoes.includes(nomeAgora);
   const improvisados = colocados.filter(({p, vaga}) => p.posicao !== vaga.setor)
     .map(({p, vaga}) => `${sobrenome(p.nome)} de ${vaga.rotulo}`);
 
   $("#tela-escalacao").innerHTML = `
     <div class="painel">
       <div class="cab"><h2>Escalação</h2>
-        <select id="sel-formacao" style="width:auto">${formacoes.map((x) =>
-          `<option ${x === e.tatica.formacao ? "selected" : ""}>${x}</option>`).join("")}</select>
+        <select id="sel-formacao" style="width:auto" title="Formações prontas: depois é só mover os jogadores pelos pontos do campo">
+          ${personalizado ? `<option value="" selected>Personalizada · ${escapar(nomeAgora)}</option>` : ""}
+          ${formacoes.map((x) => `<option ${!personalizado && x === nomeAgora ? "selected" : ""}>${x}</option>`).join("")}</select>
         <button class="btn pequeno" id="auto">Automática</button>
-        <button class="btn primario pequeno" id="confirmar-onze" ${onzeIgual() ? "disabled" : ""}>Confirmar</button></div>
-      <div class="gramado" id="gramado">${LINHAS_CAMPO}${pecas}</div>
+        <button class="btn primario pequeno" id="confirmar-onze" ${onzeIgual() && desenhoIgual(desenhoLocal, e.tatica.desenho) ? "disabled" : ""}>Confirmar</button></div>
+      <div class="gramado" id="gramado">${LINHAS_CAMPO}${vazios}${pecas}</div>
       <div class="pe"><span class="dica">OVR médio <b class="num">${media.toFixed(1)}</b> ·
         energia <b class="num">${energiaMedia.toFixed(0)}%</b></span>
         <span class="espaco" style="flex:1"></span>
         ${titulares.some((p) => p.suspenso) ? `<span class="chip" style="border-color:var(--ruim);color:var(--ruim)">suspenso na escalação: ${escapar(titulares.filter((p) => p.suspenso).map((p) => sobrenome(p.nome)).join(", "))} — entra o melhor reserva do setor</span>` : ""}
         ${improvisados.length ? `<span class="chip" style="border-color:var(--ruim);color:var(--ruim)">improvisado: ${escapar(improvisados.join(" · "))}</span>`
           : '<span class="chip ativo">todos na posição</span>'}
-        <span class="dica">Clique em dois titulares para trocar de vaga · titular e reserva para substituir</span></div>
+        <span class="dica">Clique num titular e depois num ponto vazio para mudar a posição · dois titulares trocam de vaga · titular e reserva, substituição</span></div>
     </div>
     <div class="coluna">
       <div class="painel">
@@ -455,14 +510,11 @@ TELAS.escalacao = async function () {
         <div class="corpo">
           <div class="funcoes">
             <label class="campo"><span>Capitão</span>${opcoesFuncao("capitao")}</label>
-            <label class="campo"><span>Pênalti · 1º</span>${opcoesFuncao("penaltis")}</label>
-            <label class="campo"><span>Pênalti · 2º</span>${opcoesFuncao("penaltis2")}</label>
-            <label class="campo"><span>Pênalti · 3º</span>${opcoesFuncao("penaltis3")}</label>
             <label class="campo"><span>Faltas</span>${opcoesFuncao("faltas")}</label>
             <label class="campo"><span>Escanteios</span>${opcoesFuncao("escanteios")}</label>
           </div>
-          <p class="nota-honesta">Os batedores de pênalti valem na partida: bate o primeiro que estiver em
-            campo. Capitão, faltas e escanteios ficam salvos, mas ainda não mudam o resultado.</p>
+          <p class="nota-honesta">Quem bate o pênalti você escolhe na hora, quando ele acontece na partida.
+            Capitão, faltas e escanteios ficam salvos, mas ainda não mudam o resultado.</p>
         </div>
       </div>
     </div>`;
@@ -477,11 +529,11 @@ function efeitoDaTatica(t) {
   }[t.estilo];
   const mrc = {leve: "marcação leve poupa energia e cede espaço",
                normal: "marcação normal", forte: "pressão alta sufoca o rival e cansa o time na rodada seguinte"}[t.marcacao];
-  return `<b>${t.formacao}</b> · ${txt}; ${mrc}. Os efeitos são modestos de propósito — tática é escolha, não atalho.`;
+  return `<b>${t.nome || t.formacao}</b> · ${txt}; ${mrc}. Os efeitos são modestos de propósito — tática é escolha, não atalho.`;
 }
 
 const ROTULOS_VAGA = {GOL: "goleiro", LE: "lateral-esquerdo", LD: "lateral-direito", ZAG: "zagueiro",
-  VOL: "volante", MC: "meio-campo", MEI: "meia", ME: "meia-esquerda", MD: "meia-direita",
+  VOL: "volante", MC: "meio-campo", MEI: "meia", ME: "meia-esquerda", MD: "meia-direita", ALA: "ala",
   PE: "ponta-esquerda", PD: "ponta-direita", CA: "centroavante"};
 
 /** A ORDEM conta: e ela que diz quem ocupa cada vaga. */
@@ -505,7 +557,36 @@ function trocar(a, b) {
   marcado = null;
 }
 
+/* O titular `id` vai para o ponto vazio `ponto`: muda o desenho, nao o onze. */
+function moverParaPonto(id, ponto) {
+  const i = onzeLocal.indexOf(id);
+  if (i < 0) { avisar("Marque um titular para mover."); return; }
+  if (desenhoLocal[i] === "GOL") { avisar("O goleiro fica no gol: troque-o com um reserva."); return; }
+  const novo = [...desenhoLocal];
+  novo[i] = ponto;
+  const problema = problemaNoDesenho(novo);
+  if (problema) { avisar(problema); return; }
+  desenhoLocal = novo;
+}
+
 function ligarEscalacao() {
+  $$("[data-ponto]").forEach((el) => {
+    el.addEventListener("click", () => {
+      if (!marcado || marcado.onde !== "campo") { avisar("Clique antes num titular, depois no ponto para onde ele vai."); return; }
+      moverParaPonto(marcado.id, el.dataset.ponto);
+      marcado = null;
+      TELAS.escalacao();
+    });
+    el.addEventListener("dragover", (ev) => { ev.preventDefault(); el.classList.add("alvo"); });
+    el.addEventListener("dragleave", () => el.classList.remove("alvo"));
+    el.addEventListener("drop", (ev) => {
+      ev.preventDefault();
+      const origem = JSON.parse(ev.dataTransfer.getData("text/plain"));
+      if (origem.onde === "campo") moverParaPonto(origem.id, el.dataset.ponto);
+      marcado = null;
+      TELAS.escalacao();
+    });
+  });
   const clicar = (id, onde) => {
     if (!marcado) marcado = {id, onde};
     else if (marcado.id === id) marcado = null;
@@ -537,18 +618,21 @@ function ligarEscalacao() {
     });
   });
   $("#auto").addEventListener("click", async () => {
+    // o desenho fica (o confirmado); a automatica so escolhe quem ocupa cada ponto
     const r = await api.post("/api/escalar", {formacao: ESTADO.tatica.formacao});
     aplicarEstado(r.estado);
-    onzeLocal = [...r.estado.onze];
+    recarregarEscalacao(r.estado);
     avisar("Escalação automática aplicada");
     TELAS.escalacao();
   });
   $("#confirmar-onze").addEventListener("click", mandarOnze);
-  $("#sel-formacao").addEventListener("change", (ev) => mandarTatica({formacao: ev.target.value}));
+  $("#sel-formacao").addEventListener("change", (ev) => { if (ev.target.value) mandarTatica({formacao: ev.target.value}); });
   $$("[data-tatica] button").forEach((b) => b.addEventListener("click", () =>
     mandarTatica({[b.parentNode.dataset.tatica]: b.dataset.v})));
   $$("[data-funcao]").forEach((s) => s.addEventListener("change", async () => {
+    // a ordem de batedores saiu da tela: quem bate e escolhido na hora do penalti
     const funcoes = {...ESTADO.funcoes};
+    ["penaltis", "penaltis2", "penaltis3"].forEach((k) => delete funcoes[k]);
     $$("[data-funcao]").forEach((x) => { if (x.value) funcoes[x.dataset.funcao] = +x.value; else delete funcoes[x.dataset.funcao]; });
     const r = await api.post("/api/escalar", {onze: ESTADO.onze, funcoes});
     aplicarEstado(r.estado);
@@ -557,11 +641,11 @@ function ligarEscalacao() {
 }
 
 async function mandarOnze() {
-  const r = await api.post("/api/escalar", {onze: onzeLocal, funcoes: ESTADO.funcoes});
+  const r = await api.post("/api/escalar", {onze: onzeLocal, desenho: desenhoLocal, funcoes: ESTADO.funcoes});
   if (r.erro) { avisar(r.erro); return; }
   aplicarEstado(r.estado);
-  onzeLocal = [...r.estado.onze];
-  avisar("Escalação confirmada");
+  recarregarEscalacao(r.estado);
+  avisar("Escalação confirmada — vale para os próximos jogos");
   TELAS.escalacao();
 }
 
@@ -569,11 +653,14 @@ async function mandarTatica(mudanca) {
   const t = {...ESTADO.tatica, ...mudanca};
   // mudar a formacao sem escolher o onze refaz a escalacao automatica para o esquema novo
   const corpo = {formacao: t.formacao, marcacao: t.marcacao, estilo: t.estilo};
-  if (!mudanca.formacao) corpo.onze = onzeIgual() ? ESTADO.onze : onzeLocal;
+  if (!mudanca.formacao) {
+    corpo.onze = onzeIgual() ? ESTADO.onze : onzeLocal;
+    corpo.desenho = desenhoLocal;
+  }
   const r = await api.post("/api/escalar", corpo);
   if (r.erro) { avisar(r.erro); return; }
   aplicarEstado(r.estado);
-  onzeLocal = [...r.estado.onze];
+  recarregarEscalacao(r.estado);
   TELAS.escalacao();
 }
 
