@@ -212,12 +212,17 @@ def test_o_calendario_cobre_a_temporada(jogo):
     from fm.servidor import calendario
 
     c = jogo.c
-    for _ in range(9):
+    # o ano abre em fevereiro com as preliminares das copas: o clube grande so estreia em
+    # abril, entao anda ate ele ter jogado algumas vezes
+    while len(c.jogos_do_usuario) < 4:
         c.avancar()
     d = calendario(jogo)
     assert d["atual"] == c.data
     ligas = [x for x in d["datas"] if x["tipo"] == "liga"]
-    assert len(ligas) == sum(1 for tipo, _ in c.agenda if tipo == "liga")
+    assert len(ligas) == c.rodadas_da_liga()
+    assert [x["rodada"] for x in ligas] == list(range(1, c.rodadas_da_liga() + 1))
+    dias = [x["dia"][6:] + x["dia"][3:5] + x["dia"][:2] for x in d["datas"]]
+    assert dias == sorted(dias), "o calendario fora de ordem"
     assert any(x["resultado"] for x in d["datas"]), "nenhuma data jogada tem resultado"
     # data de copa que ja passou so aparece se o clube jogou nela
     assert all(x["resultado"] for x in d["datas"] if x["tipo"] == "copa" and x["passou"])

@@ -20,8 +20,8 @@ mando     = 0.4
 fases  = [ { tipo = "round_robin", voltas = 2 } ]
 acesso = { sobem = 0, descem = 0 }
 
-# Faixas largas, escritas de memoria (os pontos, pelo numero de jogos da liga): a liga nao e jogavel e o portao aqui so avisa se o
-# importador produziu algo absurdo. Re-derivar antes de torna-la jogavel.
+# Faixas largas, escritas de memoria (os pontos, pelo numero de jogos da liga). Ainda
+# nao foram re-derivadas de tabelas reais: o portao so avisa se algo saiu absurdo.
 [alvos]
 zero_a_zero_pct           = [7.0, 16.0]
 gols_por_jogo             = [1.9, 2.9]

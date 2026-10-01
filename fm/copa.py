@@ -76,6 +76,14 @@ class Andamento:
     # visitante): a do usuario vem pronta da carreira (acompanhada cobranca a cobranca);
     # as outras sao simuladas na apuracao
     disputas: dict = field(default_factory=dict)
+    # A campanha de cada clube na fase de grupos (ou de liga): grupo, posicao, pontos,
+    # saldo, gols e se e cabeca de chave no mata-mata. E por ela que a chave e sorteada
+    # (1o de grupo contra 2o) e que a melhor campanha decide em casa.
+    campanha: dict[int, dict] = field(default_factory=dict)
+    # A chave fixa do mata-mata, como na Conmebol: um sorteio so nas oitavas e o caminho
+    # ate a final fica decidido -- o vencedor do confronto 1 pega o do 2, e assim por
+    # diante. `chave` e a ordem das oitavas; vazia enquanto nao houve sorteio.
+    chave: list[int] = field(default_factory=list)
 
     @property
     def acabou(self) -> bool:
@@ -151,6 +159,8 @@ def _montar_fase(world: World, andamento: Andamento, rng: np.random.Generator,
         if g == 0:
             andamento.pendentes = []
             return
+        if fase.get("potes"):
+            clubes = _sortear_potes(world, clubes, g, rng)
         grupos = group_stage(clubes, g, legs=int(fase.get("voltas", 2)))
         andamento.grupos = [sorted({f.home for f in gr} | {f.away for f in gr})
                             for gr in grupos]
@@ -182,13 +192,108 @@ def _montar_fase(world: World, andamento: Andamento, rng: np.random.Generator,
         raise ValueError(f"fase desconhecida em {andamento.torneio.id}: {tipo!r}")
 
 
+def _sortear_potes(world: World, clubes: list[int], grupos: int,
+                   rng: np.random.Generator) -> list[int]:
+    """O sorteio dos grupos como o da Conmebol: os clubes vao para potes pelo ranking (aqui,
+    a reputacao), cada grupo leva um de cada pote, e dois do mesmo pais nao caem juntos
+    quando da para evitar.
+
+    REGRESSAO: a lista chegava aqui fora de ordem e a serpentina de `group_stage` -- que
+    supoe a lista ordenada por forca -- virava um sorteio puro. Palmeiras, Flamengo e
+    Cruzeiro podiam cair no mesmo grupo, outro grupo ficava sem ninguem, e um azarao
+    peruano chegava a final com frequencia muito acima da do elenco dele.
+
+    Devolve a lista na ordem que `group_stage` espera: linha r (o pote) na serpentina.
+    """
+    ordem = sorted(clubes, key=lambda c: (-world.clubs[c].reputation,
+                                          -world.clubs[c].designed_strength, c))
+    potes = [ordem[i:i + grupos] for i in range(0, len(ordem), grupos)]
+    pais = {c: world.clubs[c].country for c in clubes}
+    melhor, choques_do_melhor = None, None
+    for _ in range(200):
+        montagem = [[] for _ in range(grupos)]
+        for pote in potes:
+            membros = [int(x) for x in rng.permutation(pote)]
+            for gi, c in enumerate(membros):
+                montagem[gi].append(c)
+        choques = sum(len(g) - len({pais[c] for c in g}) for g in montagem)
+        if choques_do_melhor is None or choques < choques_do_melhor:
+            melhor, choques_do_melhor = montagem, choques
+        if choques == 0:
+            break
+    # a serpentina de group_stage manda a linha impar ao contrario: compensa aqui
+    saida = []
+    for r in range(len(potes)):
+        linha = [melhor[gi][r] if r < len(melhor[gi]) else None for gi in range(grupos)]
+        if r % 2:
+            linha = linha[::-1]
+        saida += [c for c in linha if c is not None]
+    return saida
+
+
+def _campanha(andamento: Andamento, c: int) -> tuple:
+    """A chave de ordenacao da campanha: melhor primeiro."""
+    x = andamento.campanha.get(c)
+    if not x:
+        return (1, 0, 0, 0, 0)
+    return (0 if x.get("cabeca") else 1, x.get("pos", 99), -x.get("pts", 0),
+            -x.get("sg", 0), -x.get("gp", 0))
+
+
+def _confronto_da_chave(andamento: Andamento, fase: dict,
+                        rng: np.random.Generator) -> list[list[Fixture]]:
+    """A rodada do mata-mata na chave fixa. Na primeira, o sorteio: cada cabeca de chave
+    (1o de grupo) pega um nao-cabeca de OUTRO grupo. Dai em diante nao ha sorteio: os
+    vencedores seguem na ordem da chave. A volta e na casa de quem fez a melhor campanha."""
+    vivos = list(andamento.vivos)
+    if not andamento.chave:
+        cabecas = [c for c in vivos if (andamento.campanha.get(c) or {}).get("cabeca")]
+        outros = [c for c in vivos if c not in cabecas]
+        if len(cabecas) != len(outros):
+            # sem campanha (ou ela nao divide em duas metades): a metade de cima e cabeca
+            ordem = sorted(vivos, key=lambda c: _campanha(andamento, c))
+            cabecas, outros = ordem[:len(ordem) // 2], ordem[len(ordem) // 2:]
+        cabecas = [int(x) for x in rng.permutation(cabecas)]
+        restam = [int(x) for x in rng.permutation(outros)]
+        chave: list[int] = []
+        for cab in cabecas:
+            grupo = (andamento.campanha.get(cab) or {}).get("grupo", -1)
+            rival = next((o for o in restam if grupo < 0
+                          or (andamento.campanha.get(o) or {}).get("grupo", -2) != grupo),
+                         restam[0])
+            restam.remove(rival)
+            chave += [rival, cab]
+        andamento.chave = chave
+        vivos = chave
+    if len(vivos) % 2:
+        return []
+    maos = int(fase.get("maos", 2))
+    pares = []
+    for i in range(0, len(vivos), 2):
+        x, y = vivos[i], vivos[i + 1]
+        # (mandante da ida, mandante da volta): a melhor campanha decide em casa
+        melhor, pior = sorted((x, y), key=lambda c: _campanha(andamento, c))
+        pares.append((pior, melhor))
+    andamento.vivos = list(vivos)
+    andamento.pares = pares
+    andamento.poupados = []
+    ida = [Fixture(home=a, away=b, matchday=1) for a, b in pares]
+    if maos == 2:
+        return [ida, [Fixture(home=b, away=a, matchday=2) for a, b in pares]]
+    return [ida]
+
+
 def _sortear_confronto(andamento: Andamento, fase: dict,
                        rng: np.random.Generator) -> list[list[Fixture]]:
     """Uma rodada de mata-mata: sorteia os pares e devolve ida (e volta) como UMA etapa.
 
     O bye vai ao sorteio, nunca ao mais forte. Dar o bye ao maior inflava o favorito da
     Copa do Brasil de 12,6% para 40,8% dos titulos so por ele nunca jogar a rodada impar.
+
+    Fase com `chave = "fixa"` (e tudo depois dela) segue a chave: fm.copa._confronto_da_chave.
     """
+    if fase.get("chave") == "fixa" or andamento.chave:
+        return _confronto_da_chave(andamento, fase, rng)
     isentos = int(fase.get("isentos", 0))
     poupados, disputam = andamento.vivos[:isentos], list(andamento.vivos[isentos:])
     if len(disputam) < 2:
@@ -274,11 +379,16 @@ def _encerrar_fase(world: World, andamento: Andamento, rng: np.random.Generator,
 
     if tipo == "groups" and andamento.grupos:
         avancam, passa = int(fase.get("avancam", 2)), []
-        for ids in andamento.grupos:
+        for gi, ids in enumerate(andamento.grupos):
             do_grupo = [r for r in andamento.resultados
                         if r.home in ids and r.away in ids]
             tabela = build_table(ids, do_grupo)
             passa += [linha.club_id for linha in tabela[:avancam]]
+            for pos, linha in enumerate(tabela, 1):
+                andamento.campanha[linha.club_id] = {
+                    "grupo": gi, "pos": pos, "pts": linha.points,
+                    "sg": linha.goals_for - linha.goals_against, "gp": linha.goals_for,
+                    "cabeca": pos == 1}
             for regra in fase.get("exporta", []):
                 pos = int(regra.get("posicao", 0))
                 if pos and pos <= len(tabela) and exportados is not None:
@@ -291,6 +401,15 @@ def _encerrar_fase(world: World, andamento: Andamento, rng: np.random.Generator,
         tabela = build_table(andamento.vivos, andamento.resultados)
         n = int(fase.get("avancam", len(andamento.vivos)))
         passa = [linha.club_id for linha in tabela[:n]]
+        # cabeca de chave: quem vai direto ao mata-mata (os isentos do playoff seguinte)
+        seguinte = (andamento.torneio.fases[andamento.fase + 1]
+                    if andamento.fase + 1 < len(andamento.torneio.fases) else {})
+        direto = int(seguinte.get("isentos", n // 2))
+        for pos, linha in enumerate(tabela, 1):
+            andamento.campanha[linha.club_id] = {
+                "grupo": -1, "pos": pos, "pts": linha.points,
+                "sg": linha.goals_for - linha.goals_against, "gp": linha.goals_for,
+                "cabeca": pos <= direto}
         andamento.eliminados_na_fase = [c for c in andamento.vivos if c not in passa]
         andamento.vivos = passa
 
@@ -326,10 +445,12 @@ def foto_da_fase(andamento: Andamento) -> dict | None:
     if tipo == "groups":
         if not andamento.grupos:
             return None
-        return {"tipo": "grupos", "nome": nome, "grupos": [list(g) for g in andamento.grupos],
+        return {"tipo": "grupos", "nome": nome, "fase": andamento.fase,
+                "grupos": [list(g) for g in andamento.grupos],
                 "resultados": resultados, "avancam": int(fase.get("avancam", 2))}
     if tipo in ("liga_suica", "round_robin"):
-        return {"tipo": "liga", "nome": nome, "clubes": list(andamento.vivos),
+        return {"tipo": "liga", "nome": nome, "fase": andamento.fase,
+                "clubes": list(andamento.vivos),
                 "resultados": resultados,
                 "avancam": int(fase.get("avancam", len(andamento.vivos)))}
     if tipo == "knockout":
@@ -337,8 +458,9 @@ def foto_da_fase(andamento: Andamento) -> dict | None:
             return None
         rodadas = fase.get("rodadas", "todas")
         clubes = 2 * len(andamento.pares) + len(andamento.poupados)
-        return {"tipo": "mata", "nome": nome_da_rodada(nome, rodadas, clubes,
-                                                       andamento.rodadas_da_fase_feitas),
+        return {"tipo": "mata", "fase": andamento.fase,
+                "nome": nome_da_rodada(nome, rodadas, clubes,
+                                       andamento.rodadas_da_fase_feitas),
                 "pares": [list(p) for p in andamento.pares],
                 "poupados": list(andamento.poupados), "resultados": resultados,
                 "maos": int(fase.get("maos", 2)),

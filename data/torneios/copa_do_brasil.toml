@@ -19,6 +19,7 @@ compressao = 0.22   # em jogo unico o pequeno se fecha ainda mais
 
 [[formato.fases]]
 nome    = "Primeira fase"
+janela  = ["02-18", "02-27"]   # dias reais da fase (fm.agenda)
 tipo    = "knockout"
 maos    = 1
 rodadas = 1
@@ -32,6 +33,7 @@ entram = [
 
 [[formato.fases]]
 nome    = "Segunda fase"
+janela  = ["03-10", "03-19"]   # dias reais da fase (fm.agenda)
 tipo    = "knockout"
 maos    = 1
 rodadas = 1
@@ -39,6 +41,7 @@ visitante_avanca_empate = true
 
 [[formato.fases]]
 nome    = "Terceira fase em diante"
+janela  = ["04-29", "11-26"]   # dias reais da fase (fm.agenda)
 tipo    = "knockout"
 maos    = 2
 # os 12 primeiros da Serie A entram so agora: sao os de Libertadores e os cabecas

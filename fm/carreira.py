@@ -58,6 +58,8 @@ COPAS_POR_PAIS = {
     "FRA": ("champions", "europa_league"),
     "POR": ("champions", "europa_league"),
     "ARG": ("libertadores", "sudamericana"),
+    **{p: ("libertadores", "sudamericana")
+       for p in ("COL", "CHI", "URU", "ECU", "PAR", "PER", "BOL", "VEN")},
 }
 COPAS = COPAS_POR_PAIS["BRA"]
 
@@ -94,6 +96,14 @@ class Carreira:
     # copa. E o que faz poupar um titular ser uma decisao em vez de um detalhe.
     agenda: list[tuple[str, str]] = field(default_factory=list)
     data: int = 0
+    # o calendario real de cada data (fm.agenda): o dia, a fase de copa para a qual ela foi
+    # reservada e se e uma sobra do fim (so acontece se a copa atrasou)
+    dias: list = field(default_factory=list)
+    fases_da_agenda: list[int] = field(default_factory=list)
+    reservas: list[bool] = field(default_factory=list)
+    # cada liga tem as SUAS rodadas dentro da grade comum: {liga: {data de liga: rodada}}
+    rodada_propria: dict[str, dict[int, int]] = field(default_factory=dict)
+    ultimo_dia_de_energia: object = None
     copas: dict = field(default_factory=dict)
     tabelas_do_ano_anterior: dict = field(default_factory=dict)
     # o funil entre torneios: quem cai da pre da Libertadores vai para a Sudamericana
@@ -227,15 +237,17 @@ class Carreira:
         self.world.indisponiveis = set()
 
     def _montar_agenda(self) -> None:
-        """Intercala as etapas de copa entre as rodadas de liga.
+        """O calendario real da temporada (fm.agenda): ligas aos domingos, de abril a
+        dezembro, e cada fase de copa na janela dela, no meio de semana.
 
         As copas nao tem numero fixo de etapas -- depende do sorteio e de quantos clubes o
-        mundo tem importados -- entao a agenda reserva espaco pela estimativa e, se sobrar
-        data, ela e simplesmente pulada. Reservar a menos seria pior: a copa ficaria
-        inacabada no fim do ano.
+        mundo tem importados -- entao cada fase reserva datas pela estimativa e a sobra e
+        pulada. Se uma fase precisar de mais, ela usa as datas da fase seguinte, e no fim
+        do ano ha duas datas de reserva por copa.
         """
-        from fm.copa import comecar, etapas_previstas
-        from fm.torneio import carregar
+        from fm.agenda import clubes_por_fase, etapas_por_fase, montar
+        from fm.copa import comecar
+        from fm.torneio import carregar, resolver_entradas
 
         self.copas = {}
         ocupados: set[int] = set()
@@ -247,36 +259,50 @@ class Carreira:
                 continue
             self.copas[nome] = comecar(self.world, t, tabelas, ocupados=ocupados)
 
-        rodadas = self.total_de_rodadas
-        # uma folga de duas datas por copa: sobrar data e de graca (ela e pulada), faltar
-        # deixaria a competicao inacabada no fim do ano
-        etapas = {nome: etapas_previstas(a.torneio) + 2 + a.torneio.folga_de_datas
-                  for nome, a in self.copas.items()}
+        copas = {}
+        for nome, a in self.copas.items():
+            entram = [len(a.vivos) if k == 0 else 0 for k in range(len(a.torneio.fases))]
+            for k, fase in enumerate(a.torneio.fases):
+                entram[k] += len(resolver_entradas(self.world, fase.get("entram", []),
+                                                   tabelas, a.classificados))
+            n = clubes_por_fase(a.torneio, entram)
+            copas[nome] = list(zip(a.torneio.fases, etapas_por_fase(a.torneio, n),
+                                    strict=True))
 
-        # Intercala os torneios em vez de enfileirar um depois do outro: assim a Copa do
-        # Brasil e a Libertadores andam juntas, como numa temporada de verdade.
-        fila: list[str] = []
-        restam = dict(etapas)
-        while any(restam.values()):
-            for nome in etapas:
-                if restam[nome] > 0:
-                    fila.append(nome)
-                    restam[nome] -= 1
+        rodadas = {nome: max((f.matchday for f in cal), default=0)
+                   for nome, cal in self.calendarios.items()}
+        datas, mapa = montar(self.temporada, rodadas, copas)
+        self.agenda = [(d.tipo, d.quem) for d in datas]
+        self.dias = [d.dia for d in datas]
+        self.fases_da_agenda = [d.fase for d in datas]
+        self.reservas = [d.reserva for d in datas]
+        # a rodada k de cada liga vai para a data de liga mapa[liga][k-1]: o `matchday` do
+        # jogo passa a ser o numero da DATA DE LIGA, que e o que o relogio da carreira conta
+        self.rodada_propria = {}
+        for nome, cal in self.calendarios.items():
+            global_de = {k + 1: g + 1 for k, g in enumerate(mapa.get(nome, []))}
+            self.calendarios[nome] = [Fixture(f.home, f.away, global_de.get(f.matchday, f.matchday))
+                                      for f in cal]
+            self.rodada_propria[nome] = {g: k for k, g in global_de.items()}
+        self.ultimo_dia_de_energia = None
 
-        agenda: list[tuple[str, str]] = []
-        if fila:
-            por_rodada = len(fila) / max(rodadas, 1)
-            devendo = 0.0
-            for _ in range(rodadas):
-                agenda.append(("liga", ""))
-                devendo += por_rodada
-                while devendo >= 1 and fila:
-                    agenda.append(("copa", fila.pop(0)))
-                    devendo -= 1
-            agenda += [("copa", nome) for nome in fila]
-        else:
-            agenda = [("liga", "")] * rodadas
-        self.agenda = agenda
+    def dia(self, indice: int | None = None):
+        """O dia de uma data da agenda (a proxima, se nao disser qual)."""
+        i = self.data if indice is None else indice
+        if not self.dias:
+            return dia_da_data(self.temporada, i)
+        if i < len(self.dias):
+            return self.dias[i]
+        from datetime import timedelta
+        return self.dias[-1] + timedelta(days=4 * (i - len(self.dias) + 1))
+
+    def rodada_da_liga(self, liga: str | None = None, data_de_liga: int | None = None) -> int:
+        """A rodada DA LIGA (a 11a do Brasileirao) numa data de liga da grade -- ou, sem a
+        data, quantas rodadas dela ja foram jogadas."""
+        propria = self.rodada_propria.get(liga or self.liga, {})
+        if data_de_liga is not None:
+            return propria.get(data_de_liga, 0)
+        return sum(1 for g in propria if g <= self.rodada)
 
     def copas_do_pais(self) -> tuple[str, ...]:
         """As competicoes de copa dos paises que esta carreira roda, sem repetir."""
@@ -689,9 +715,9 @@ class Carreira:
                     for c in self.calendarios.values()), default=0)
 
     def rodadas_da_liga(self, liga: str | None = None) -> int:
-        """Quantas rodadas tem UMA divisao. `total_de_rodadas` e a da mais longa -- com a
-        Espanha junto, a Segunda tem 42 e a Serie A aparecia como "rodada 4/42"."""
-        return max((f.matchday for f in self.calendarios[liga or self.liga]), default=0)
+        """Quantas rodadas tem UMA divisao. `total_de_rodadas` e a grade inteira -- com a
+        Championship junto, sao 46 datas de liga e a Serie A tem so 38 delas."""
+        return len({f.matchday for f in self.calendarios[liga or self.liga]})
 
     @property
     def acabou(self) -> bool:
@@ -747,24 +773,48 @@ class Carreira:
         porque numa data de copa o clube pode nem jogar -- ele ja foi eliminado, ou passou
         sem jogar. O lobby precisa dizer "quarta tem Libertadores", nao "tem alguma coisa".
         """
+        rodada = self.rodada
         for i in range(self.data, len(self.agenda)):
             tipo, quem = self.agenda[i]
             if tipo == "liga":
-                jogo = self.proxima_partida()
+                # a liga do usuario pode folgar nesta data da grade (o Paraguai, com 22
+                # rodadas, nao joga todo domingo)
+                rodada += 1
+                jogo = self.proxima_partida(rodada)
                 if jogo is not None:
                     return tipo, self.liga, jogo
                 continue
             andamento = self.copas.get(quem)
-            if andamento is None or andamento.acabou:
+            if andamento is None or andamento.acabou or not self._data_de_copa_vale(i):
                 continue
             if andamento.esta_vivo(self.clube_id):
                 return tipo, quem, None
         return "", "", None
 
-    def proxima_partida(self) -> Fixture | None:
+    def proxima_partida(self, data_de_liga: int | None = None) -> Fixture | None:
+        """O jogo do usuario numa data de liga da grade (a proxima, se nao disser qual)."""
+        n = self.rodada + 1 if data_de_liga is None else data_de_liga
         return next((f for f in self.calendario
-                     if f.matchday == self.rodada + 1
-                     and self.clube_id in (f.home, f.away)), None)
+                     if f.matchday == n and self.clube_id in (f.home, f.away)), None)
+
+    def proxima_partida_da_liga(self) -> Fixture | None:
+        """O proximo jogo do usuario na liga, mesmo que a liga dele folgue na proxima data
+        da grade."""
+        return min((f for f in self.calendario
+                    if f.matchday > self.rodada and self.clube_id in (f.home, f.away)),
+                   key=lambda f: f.matchday, default=None)
+
+    def _data_de_copa_vale(self, indice: int) -> bool:
+        """A data de copa acontece? Ela foi reservada para uma fase: se a copa ja passou
+        dela, a data e pulada; se ainda nao chegou (atrasou), a data a ajuda a recuperar.
+        A sobra do fim so vale para copa atrasada."""
+        tipo, quem = self.agenda[indice]
+        a = self.copas.get(quem)
+        if tipo != "copa" or a is None or a.acabou:
+            return False
+        fase = self.fases_da_agenda[indice] if indice < len(self.fases_da_agenda) else -1
+        # a reserva do fim tem a fase da ultima: so vale para copa que ainda nao acabou
+        return not (fase >= 0 and a.fase > fase)
 
     def posicao_em(self, liga: str) -> list[Row]:
         return self.tabela(liga)
@@ -830,6 +880,9 @@ class Carreira:
             # antes de jogar: durante a partida ao vivo, e daqui que a tela sabe qual e a
             # competicao (o sorteio da copa so acontece no dia)
             self.ultimo_compromisso = (tipo, quem)
+            if not self._data_de_copa_vale(self.data):
+                self.data += 1          # a copa ja passou da fase desta data
+                continue
             saida = self._jogar_etapa_de_copa(quem, substituicoes)
             self.data += 1
             if saida is not None:
@@ -1388,15 +1441,15 @@ class Carreira:
             self.disciplina.registrar(comp, cartoes_dos_lances(lances))
 
     def hoje(self) -> date:
-        """O dia da proxima data da agenda (fm.calendario). E o "hoje" do lobby."""
-        return dia_da_data(self.temporada, self.data)
+        """O dia da proxima data da agenda (fm.agenda). E o "hoje" do lobby."""
+        return self.dia(self.data)
 
     def _lesoes_da_data(self, resultados, detalhada) -> None:
         """Registra os machucados de hoje (gravidade num stream proprio) e da alta a quem
         ja pode jogar na data seguinte. Chamada ANTES de `self.data` andar."""
         from fm.central import lesionados
         hoje = self.hoje()
-        voltaram = self.medico.dar_alta(dia_da_data(self.temporada, self.data + 1))
+        voltaram = self.medico.dar_alta(self.dia(self.data + 1))
         novos: list[int] = []
         for r in resultados:
             if detalhada is not None and (r.home, r.away) == (detalhada.casa, detalhada.fora):
@@ -1432,6 +1485,13 @@ class Carreira:
         proporcional ao quanto falta para 100, o que cria EQUILIBRIO: quem joga toda rodada
         estabiliza perto de 81%, nao desaba ate o piso.
         """
+        # A recuperacao conta DIAS de descanso desde a ultima conta, e nao datas: no
+        # calendario real ha semana com um jogo e semana com tres. A taxa antiga valia para
+        # quatro dias, o intervalo fixo de antes.
+        hoje = self.hoje()
+        dias = (hoje - self.ultimo_dia_de_energia).days if self.ultimo_dia_de_energia else 4
+        self.ultimo_dia_de_energia = hoje
+        taxa = 1 - (1 - TAXA_DE_RECUPERACAO) ** (max(dias, 0) / 4)
         for club_id in self.world.clubs:
             onze = ({p.id for p in self.world.best_xi(club_id)}
                     if club_id in jogaram else set())
@@ -1439,7 +1499,7 @@ class Carreira:
             custo = CONDITION_COST * (tatica.custo_de_energia
                                       if club_id == self.clube_id else 1.0)
             for p in self.world.squad(club_id):
-                recupera = TAXA_DE_RECUPERACAO * (100 - p.condition)
+                recupera = taxa * (100 - p.condition)
                 delta = recupera - (custo if p.id in onze else 0.0)
                 p.condition = int(np.clip(p.condition + delta, 25, 100))
 

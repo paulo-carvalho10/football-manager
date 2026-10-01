@@ -17,8 +17,8 @@ Você assume um clube e escala o time, contrata, vende e empresta jogadores. Dep
 partida minuto a minuto e mexe no time durante o jogo. Pela frente estão a liga, as copas e o
 continental, temporada após temporada.
 
-O mundo tem **8 países, 16 divisões, 340 clubes e mais de 10 mil jogadores reais**. Há ainda
-as ligas sul-americanas de fundo, para a Libertadores e a Sul-Americana.
+O mundo tem **16 países, 24 divisões, 468 clubes e quase 14 mil jogadores reais**: seis países
+da Europa e os dez da Conmebol, de onde saem os clubes da Libertadores e da Sul-Americana.
 
 A pergunta que guia o projeto não é se a interface está bonita. É se **a tabela no fim do ano é
 crível**.
@@ -41,7 +41,8 @@ crível**.
 | | |
 |---|---|
 | 🏟️ **Partida ao vivo** | O relógio para a cada 5 minutos. Dá para fazer substituições, mudar a tática e escolher quem bate o pênalti. Os outros jogos da rodada aparecem em paralelo. |
-| 🏆 **Competições reais** | Série A e B, Copa do Brasil, Libertadores e Sul-Americana no formato real. Tem ainda a fase de liga da Champions e a Liga Europa. Os mata-matas são em ida e volta, em datas separadas, e o empate no agregado vai para os pênaltis, cobrança a cobrança. |
+| 🏆 **Competições reais** | Série A e B, Copa do Brasil, Libertadores e Sul-Americana no formato da Conmebol: grupos sorteados por potes e chave fixa das oitavas à final. Tem ainda a fase de liga da Champions e a Liga Europa. Os mata-matas são em ida e volta, em datas separadas, e o empate no agregado vai para os pênaltis, cobrança a cobrança. |
+| 📅 **Calendário real** | A temporada vai de fevereiro a dezembro. As ligas jogam aos domingos e as copas no meio de semana, cada fase na janela de verdade: a pré-Libertadores em fevereiro, os grupos em abril e maio, a final em novembro. |
 | 💸 **Mercado** | Propostas, contrapropostas, contrato, renovação e empréstimo. A IA também negocia entre si, e os clubes grandes às vezes perdem jogador para um menor. |
 | 📊 **Finanças reais** | Receita, folha e prêmios na escala dos balanços de verdade. O valor de mercado aparece em **euro**. O caixa e os salários aparecem na **moeda do clube**: R$, £, US$ ou €. |
 | 🩹 **Elenco vivo** | O desgaste vem dos minutos jogados. Tem lesão contada em dias, cartões e suspensões, evolução por idade e potencial, e revelação da base. |

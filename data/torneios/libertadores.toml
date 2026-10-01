@@ -171,6 +171,7 @@ entra_em = "primeira"
 # ------------------------------------------------------------ formato
 [[formato.fases]]
 nome    = "Primeira fase"
+janela  = ["02-04", "02-12"]   # dias reais da fase (fm.agenda)
 tipo    = "knockout"
 maos    = 2
 rodadas = 1
@@ -178,6 +179,7 @@ entram  = [ { classificacao = "primeira" } ]
 
 [[formato.fases]]
 nome    = "Segunda fase"
+janela  = ["02-18", "02-26"]   # dias reais da fase (fm.agenda)
 tipo    = "knockout"
 maos    = 2
 rodadas = 1
@@ -185,6 +187,7 @@ entram  = [ { classificacao = "segunda" } ]
 
 [[formato.fases]]
 nome    = "Terceira fase"
+janela  = ["03-04", "03-12"]   # dias reais da fase (fm.agenda)
 tipo    = "knockout"
 maos    = 2
 rodadas = 1
@@ -193,6 +196,8 @@ exporta = [ { eliminados = true, para = "eliminados_pre" } ]
 
 [[formato.fases]]
 nome    = "Fase de grupos"
+janela  = ["04-01", "05-28"]   # dias reais da fase (fm.agenda)
+potes   = 4          # pelo ranking (reputacao), um de cada pote por grupo
 tipo    = "groups"
 grupos  = 8
 voltas  = 2
@@ -203,6 +208,8 @@ exporta = [ { posicao = 3, para = "terceiros" } ]
 
 [[formato.fases]]
 nome     = "Mata-mata"
+janela  = ["08-12", "10-29"]   # dias reais da fase (fm.agenda)
+chave    = "fixa"   # sorteio unico: 1o de grupo x 2o, caminho decidido ate a final
 tipo     = "knockout"
 maos     = 2
 rodadas  = 3          # oitavas, quartas e semifinal
@@ -210,6 +217,7 @@ penaltis = true
 
 [[formato.fases]]
 nome     = "Final"
+janela  = ["11-28", "11-28"]   # dias reais da fase (fm.agenda)
 tipo     = "knockout"
 maos     = 1          # jogo unico, como desde 2019
 rodadas  = 1

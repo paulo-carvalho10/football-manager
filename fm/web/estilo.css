@@ -886,6 +886,19 @@ input:focus, select:focus { border-color: var(--ouro); }
 .confronto { border: 1px solid var(--linha); border-radius: 6px; background: rgba(0,0,0,.25); padding: .25rem .4rem; }
 .confronto.meu { border-color: var(--ouro-2); background: var(--ouro-fundo); }
 .confronto.a-sortear { color: var(--texto-3); text-align: center; padding: .9rem; border-style: dashed; font-size: .78rem; }
+/* a chave fixa: as vagas futuras ("Vencedor O1") e a sigla de cada confronto */
+.confronto { position: relative; }
+.confronto.futuro { border-style: dashed; background: rgba(0,0,0,.12); }
+.lado-c.vaga-futura .nm { color: var(--texto-3); font-style: italic; }
+.escudo-vazio { width: 1.2rem; height: 1.2rem; border-radius: 50%; border: 1px dashed var(--linha); display: inline-block; }
+.sigla-c { position: absolute; top: -.55rem; left: .4rem; font-size: .58rem; font-family: var(--fonte-titulo);
+  letter-spacing: .06em; color: var(--texto-3); background: var(--fundo-2, #0c1a12); padding: 0 .25rem; }
+.chave.arvore .coluna-chave { flex: 1 1 0; min-width: 12rem; }
+.chave.arvore .cartas { gap: 1rem; }
+/* as abas da copa: o nome da secao e, embaixo, o periodo do ano e o estado */
+.abas-copa button { display: flex; flex-direction: column; align-items: center; line-height: 1.15; }
+.abas-copa button small { font-size: .58rem; opacity: .7; text-transform: none; letter-spacing: 0; }
+.abas-copa button.futura { opacity: .75; }
 .lado-c { display: grid; grid-template-columns: auto minmax(0,1fr) 1.6rem; align-items: center; gap: .4rem; font-size: .78rem; padding: .12rem 0; }
 .lado-c .nm { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .lado-c b { text-align: right; font-family: var(--fonte-numero); }

@@ -49,7 +49,7 @@ def tela_lobby(c: Carreira) -> None:
     print(f"  {clube.name.upper():<34s}{c.liga:>20s}  {c.temporada}")
     folha = folha_anual(c.world, c.clube_id)
     aperto = "  (NO VERMELHO)" if clube.balance < 0 else ""
-    print(f"  {pos} | {pts} pts | rodada {c.rodada} de {c.total_de_rodadas}")
+    print(f"  {pos} | {pts} pts | rodada {c.rodada_da_liga()} de {c.rodadas_da_liga()}")
     print(f"  caixa {_dinheiro(clube.balance)}{aperto} | folha {_dinheiro(folha)}/ano"
           f" | reputacao {clube.reputation}")
     print(_linha("="))
@@ -59,7 +59,7 @@ def tela_lobby(c: Carreira) -> None:
     if tipo == "liga" and jogo is not None:
         mando = "em casa contra" if jogo.home == c.clube_id else "fora contra"
         rival = c.world.clubs[jogo.away if jogo.home == c.clube_id else jogo.home]
-        print(f"  PROXIMO  rodada {c.rodada + 1}: {mando} {rival.name} "
+        print(f"  PROXIMO  rodada {c.rodada_da_liga() + 1}: {mando} {rival.name} "
               f"(forca {rival.designed_strength:.0f})")
         print(f"  TATICA   {t.como_texto()}")
     elif tipo == "copa":
@@ -113,7 +113,7 @@ def tela_lobby(c: Carreira) -> None:
 
 def tela_tabela(c: Carreira) -> None:
     print()
-    print(f"  {c.liga}  --  rodada {c.rodada} de {c.total_de_rodadas}")
+    print(f"  {c.liga}  --  rodada {c.rodada_da_liga()} de {c.rodadas_da_liga()}")
     print(f"  {'':4s}{'clube':26s}{'P':>3}{'J':>3}{'V':>3}{'E':>3}{'D':>3}"
           f"{'GP':>4}{'GC':>4}{'SG':>5}")
     for i, r in enumerate(c.tabela(), 1):

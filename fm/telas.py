@@ -34,6 +34,24 @@ NACIONAIS = [
      "ligas": [("portugal_real", "Liga Portugal"), ("portugal_b_real", "Liga Portugal 2")]},
     {"pais": "ARG", "nome": "Argentina", "cores": ["#75aadb", "#ffffff"], "livre": True,
      "ligas": [("argentina_real", "Liga Profesional"), ("argentina_b_real", "Primera Nacional")]},
+    # o resto da Conmebol: uma divisao cada (so a primeira foi importada), sem acesso e
+    # rebaixamento. Sao as ligas de onde vem os clubes da Libertadores e da Sul-Americana.
+    {"pais": "COL", "nome": "Colômbia", "cores": ["#fcd116", "#003893"], "livre": True,
+     "ligas": [("colombia_real", "Liga BetPlay")]},
+    {"pais": "CHI", "nome": "Chile", "cores": ["#d52b1e", "#0039a6"], "livre": True,
+     "ligas": [("chile_real", "Liga de Primera")]},
+    {"pais": "URU", "nome": "Uruguai", "cores": ["#0038a8", "#ffffff"], "livre": True,
+     "ligas": [("uruguai_real", "Liga AUF")]},
+    {"pais": "ECU", "nome": "Equador", "cores": ["#ffd100", "#034ea2"], "livre": True,
+     "ligas": [("equador_real", "LigaPro")]},
+    {"pais": "PAR", "nome": "Paraguai", "cores": ["#d52b1e", "#0038a8"], "livre": True,
+     "ligas": [("paraguai_real", "Primera División")]},
+    {"pais": "PER", "nome": "Peru", "cores": ["#d91023", "#ffffff"], "livre": True,
+     "ligas": [("peru_real", "Liga 1")]},
+    {"pais": "BOL", "nome": "Bolívia", "cores": ["#d52b1e", "#007934"], "livre": True,
+     "ligas": [("bolivia_real", "División Profesional")]},
+    {"pais": "VEN", "nome": "Venezuela", "cores": ["#cf142b", "#00247d"], "livre": True,
+     "ligas": [("venezuela_real", "Liga FUTVE")]},
 ]
 # Estaduais nao existem no motor. Nao sao "premium": sao trabalho por fazer.
 ESTADUAIS = ["Paulista", "Carioca", "Mineiro", "Gaúcho", "Paranaense", "Baiano",
@@ -47,6 +65,8 @@ COPAS_POR_PAIS = {
     "FRA": ["Liga dos Campeões", "Liga Europa"],
     "POR": ["Liga dos Campeões", "Liga Europa"],
     "ARG": ["Copa Libertadores", "Copa Sul-Americana"],
+    **{p: ["Copa Libertadores", "Copa Sul-Americana"]
+       for p in ("COL", "CHI", "URU", "ECU", "PAR", "PER", "BOL", "VEN")},
 }
 
 
@@ -458,7 +478,7 @@ def classificacao(c: Carreira, liga: str | None, clube_json) -> dict:
         "tipo": "liga", "competicoes": competicoes(c),
         "liga": nome, "nome": nome_da_liga(nome),
         "ligas": [{"id": n, "nome": nome_da_liga(n)} for n in c.ligas],
-        "rodada": min(c.rodada, c.rodadas_da_liga(nome)),
+        "rodada": c.rodada_da_liga(nome),
         "total_de_rodadas": c.rodadas_da_liga(nome),
         "linhas": tabela, "zonas": zonas,
         "melhores_defesas": [{"clube": x["clube"]["nome"], "gols": x["gols_contra"]}
@@ -521,7 +541,8 @@ LETRAS = "ABCDEFGHIJKLMNOP"
 
 
 def _fase_json(fase: dict, c: Carreira, clube_json, em_curso: bool) -> dict:
-    base = {"tipo": fase["tipo"], "nome": fase["nome"], "em_curso": em_curso}
+    base = {"tipo": fase["tipo"], "nome": fase["nome"], "em_curso": em_curso,
+            "fase": fase.get("fase", -1)}
     if fase["tipo"] == "grupos":
         return {**base, "avancam": fase["avancam"], "grupos": [
             {"nome": f"Grupo {LETRAS[i]}" if i < len(LETRAS) else f"Grupo {i + 1}",
@@ -609,7 +630,124 @@ def copa(c: Carreira, chave: str, clube_json) -> dict:
             "fase_atual": a.nome_da_fase,
             "campeao": clube_json(a.campeao) if a.campeao in c.world.clubs else None,
             "fases": fases, "a_sortear": restantes, "artilheiros": individuais,
+            "secoes": secoes_da_copa(c, a, fases, clube_json),
             "competicoes": competicoes(c)}
+
+
+MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
+
+
+def _periodo(fases: list[dict]) -> str:
+    """"fev a mar", "ago a out", "nov": o pedaco do ano da secao (as janelas do arquivo)."""
+    janelas = [f["janela"] for f in fases if f.get("janela")]
+    if not janelas:
+        return ""
+    a, b = int(janelas[0][0][:2]), int(janelas[-1][1][:2])
+    return MESES[a - 1] if a == b else f"{MESES[a - 1]} a {MESES[b - 1]}"
+
+
+def secoes_da_copa(c: Carreira, a, fases_json: list[dict], clube_json) -> list[dict]:
+    """A copa em secoes, na ordem do ano: as fases preliminares, os grupos (ou a fase de
+    liga), o playoff e o mata-mata em chave. Toda secao aparece desde o comeco -- a dos
+    grupos antes do sorteio diz quando ele acontece, a da chave mostra a arvore vazia.
+
+    Era um chaveamento so por ordem de rodada, e as oitavas, quartas e final "a sortear"
+    apareciam grudadas nas preliminares da Libertadores."""
+    fases = a.torneio.fases
+    tipo_de = []
+    em_chave = False
+    for f in fases:
+        if f.get("tipo") == "knockout" and (f.get("chave") == "fixa" or em_chave):
+            em_chave = True
+            tipo_de.append("chave")
+        elif f.get("tipo") == "knockout":
+            tipo_de.append("mata")
+        elif f.get("tipo") == "groups":
+            tipo_de.append("grupos")
+        else:
+            tipo_de.append("liga")
+    # a chave e uma secao so; as eliminatorias seguidas se juntam so quando vem antes dos
+    # grupos (as tres preliminares da Libertadores). Na Copa do Brasil cada fase e uma aba.
+    primeira_de_grupos = next((k for k, t in enumerate(tipo_de) if t in ("grupos", "liga")), None)
+    blocos: list[list[int]] = []
+    for k, t in enumerate(tipo_de):
+        junta = bool(blocos) and tipo_de[blocos[-1][-1]] == t and (
+            t == "chave" or (t == "mata" and primeira_de_grupos is not None
+                             and k < primeira_de_grupos))
+        if junta:
+            blocos[-1].append(k)
+        else:
+            blocos.append([k])
+    fora = []
+    for ks in blocos:
+        t = tipo_de[ks[0]]
+        nome = fases[ks[0]].get("nome", "")
+        if t == "chave":
+            nome = "Mata-mata"
+        elif len(ks) > 1:
+            nome = ("Fases preliminares" if primeira_de_grupos is not None
+                    and ks[-1] < primeira_de_grupos else " e ".join(fases[k].get("nome", "")
+                                                                   for k in ks))
+        dentro = [f for f in fases_json if f.get("fase") in ks]
+        if a.acabou or a.fase > ks[-1]:
+            estado = "encerrada"
+        elif a.fase >= ks[0]:
+            estado = "em_curso" if dentro or a.pendentes else "proxima"
+        else:
+            estado = "futura"
+        secao = {"id": f"s{ks[0]}", "nome": nome, "tipo": t, "estado": estado,
+                 "periodo": _periodo([fases[k] for k in ks]), "fases": dentro}
+        if t == "chave":
+            secao["rodadas"] = _arvore(a, ks, fases_json, clube_json)
+        elif t in ("grupos", "liga") and not dentro:
+            anterior = fases[ks[0] - 1].get("nome", "") if ks[0] > 0 else ""
+            secao["aviso"] = (f"O sorteio sai depois da {anterior}." if anterior
+                              else "O sorteio sai antes do primeiro jogo.")
+        elif not dentro:
+            secao["aviso"] = "Ainda não começou."
+        fora.append(secao)
+    return fora
+
+
+def _arvore(a, ks: list[int], fases_json: list[dict], clube_json) -> list[dict]:
+    """A chave inteira, da primeira rodada a final, com as vagas futuras como
+    "Vencedor O1". Os confrontos ja jogados vem das fotos (placar, agregado, penaltis)."""
+    from fm.copa import NOMES_DO_MATA_MATA
+    n = len(a.chave)
+    if not n:
+        # antes do sorteio: a arvore vazia, pelo tamanho previsto (16 nas copas daqui)
+        n = 16
+    jogados = {}
+    for f in fases_json:
+        if f.get("fase") in ks:
+            for x in f.get("confrontos", []):
+                jogados[frozenset((x["casa"]["id"], x["fora"]["id"]))] = x
+    rodadas = []
+    vivos: list[int | None] = list(a.chave) if a.chave else [None] * n
+    rotulos = ["a sortear"] * len(vivos)
+    tamanho = len(vivos)
+    while tamanho >= 2:
+        nome = next((nm for teto, nm in NOMES_DO_MATA_MATA if tamanho <= teto), "Mata-mata")
+        sigla = {"Oitavas de final": "O", "Quartas de final": "Q", "Semifinal": "S",
+                 "Final": "F", "16 avos de final": "D"}.get(nome, "R")
+        confrontos, proximos, proximos_rotulos = [], [], []
+        for j in range(tamanho // 2):
+            x, y = vivos[2 * j], vivos[2 * j + 1]
+            card = jogados.get(frozenset((x, y))) if x is not None and y is not None else None
+            if card is None:
+                card = {"casa": clube_json(x) if x is not None else None,
+                        "fora": clube_json(y) if y is not None else None,
+                        "jogos": [], "agregado": None, "vencedor": None, "penaltis": None,
+                        "meu": False,
+                        "rotulo_casa": rotulos[2 * j], "rotulo_fora": rotulos[2 * j + 1]}
+            card = {**card, "sigla": f"{sigla}{j + 1}" if sigla != "F" else "Final"}
+            confrontos.append(card)
+            proximos.append(card.get("vencedor"))
+            proximos_rotulos.append(f"Vencedor {sigla}{j + 1}")
+        rodadas.append({"nome": nome, "confrontos": confrontos})
+        vivos, rotulos = proximos, proximos_rotulos
+        tamanho //= 2
+    return rodadas
 
 
 def _zonas(cfg: dict, n: int) -> dict:
@@ -758,7 +896,10 @@ def selecao(c: Carreira, liga: str | None, rodada: int | None, clube_json) -> di
                      "x": vaga[3], "y": vaga[4], "meu": x["clube"] == c.clube_id,
                      "craque": x["jogador"] == sel["craque"]})
     _ = vagas
+    # `rodada` e a data de liga da grade (a chave das selecoes, para navegar); o numero que
+    # a tela mostra e o da propria liga
     return {"liga": liga, "nome": nome_da_liga(liga), "rodada": rodada, "rodadas": rodadas,
+            "rodada_da_liga": c.rodada_da_liga(liga, data_de_liga=rodada) or rodada,
             "ligas": [{"id": n, "nome": nome_da_liga(n)} for n in c.ligas],
             "onze": onze, "meus": sum(1 for x in onze if x["meu"])}
 

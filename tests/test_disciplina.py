@@ -6,6 +6,15 @@ from fm.carreira import Carreira
 from fm.disciplina import AMARELOS_PARA_SUSPENSAO, Disciplina, sortear_cartoes
 
 
+def _no_primeiro_jogo(seed: int, liga: str = "brasil_real", clube: str = "Santos") -> Carreira:
+    """A carreira na vespera do primeiro jogo de LIGA do clube. O ano abre em fevereiro com
+    as preliminares das copas (fm.agenda): o primeiro `avancar` ja nao e a 1a rodada."""
+    c = Carreira.nova(liga, clube, seed=seed)
+    while not c.acabou and not (c.compromisso[0] == "liga" and c.proxima_partida() is not None):
+        c.avancar()
+    return c
+
+
 def test_tres_amarelos_suspendem_e_zeram_a_contagem():
     d = Disciplina()
     for _ in range(AMARELOS_PARA_SUSPENSAO - 1):
@@ -41,7 +50,7 @@ def test_o_gancho_so_e_cumprido_quando_o_clube_joga():
 
 
 def test_o_suspenso_fica_fora_do_meu_jogo_e_volta_no_seguinte():
-    c = Carreira.nova("brasil_real", "Santos", seed=4)
+    c = _no_primeiro_jogo(4)
     onze = c.escalacao_atual()
     suspenso = onze[6]
     c.escalar(onze)
@@ -56,7 +65,7 @@ def test_o_suspenso_fica_fora_do_meu_jogo_e_volta_no_seguinte():
 
 
 def test_adversario_tambem_cumpre_gancho():
-    c = Carreira.nova("brasil_real", "Santos", seed=4)
+    c = _no_primeiro_jogo(4)
     jogo = c.proxima_partida()
     rival = jogo.away if jogo.home == c.clube_id else jogo.home
     craque = max(c.world.squad(rival), key=lambda p: p.overall).id
@@ -94,7 +103,7 @@ def test_uma_temporada_tem_ganchos_para_todo_lado():
 
 def test_suspenso_nao_entra_nem_como_substituto():
     """REGRESSAO: fora do onze, mas aparecia no banco ao vivo e o motor aceitava a troca."""
-    c = Carreira.nova("brasil_real", "Santos", seed=4)
+    c = _no_primeiro_jogo(4)
     onze = c.escalacao_atual()
     reserva = next(p.id for p in sorted(c.world.squad(c.clube_id), key=lambda p: -p.overall)
                    if p.id not in onze)
@@ -110,7 +119,7 @@ def test_suspenso_nao_entra_nem_como_substituto():
 
 def test_o_banco_ao_vivo_nao_mostra_o_suspenso():
     from fm.ao_vivo import PartidaAoVivo
-    c = Carreira.nova("brasil_real", "Santos", seed=4)
+    c = _no_primeiro_jogo(4)
     onze = c.escalacao_atual()
     reserva = next(p.id for p in c.world.squad(c.clube_id) if p.id not in onze)
     c.disciplina.registrar("brasil_real", [(reserva, "vermelho")])

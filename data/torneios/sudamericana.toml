@@ -12,7 +12,7 @@
 # Vagas reconstituidas do regulamento de 2025-26 (confira antes de tratar como fonte
 # oficial). Quem ja pegou vaga na Libertadores nao entra (a cascata e compartilhada).
 id   = "sudamericana"
-nome = "Copa Sudamericana"
+nome = "Copa Sul-Americana"
 # datas a mais na agenda: a fase de grupos espera a terceira fase da Libertadores e o
 # playoff espera os grupos dela. Data de espera e pulada, mas tem de existir.
 folga_de_datas = 6
@@ -86,6 +86,7 @@ entra_em = "playoff"
 # ------------------------------------------------------------ formato
 [[formato.fases]]
 nome    = "Primeira fase"
+janela  = ["03-03", "03-06"]   # dias reais da fase (fm.agenda)
 tipo    = "knockout"
 maos    = 1
 rodadas = 1
@@ -93,6 +94,8 @@ entram  = [ { classificacao = "primeira" } ]
 
 [[formato.fases]]
 nome    = "Fase de grupos"
+janela  = ["04-02", "05-29"]   # dias reais da fase (fm.agenda)
+potes   = 4
 tipo    = "groups"
 grupos  = 8
 voltas  = 2
@@ -103,6 +106,7 @@ exporta = [ { posicao = 2, para = "segundos" } ]
 
 [[formato.fases]]
 nome    = "Playoff"
+janela  = ["07-15", "07-23"]   # dias reais da fase (fm.agenda)
 tipo    = "knockout"
 maos    = 2
 rodadas = 1
@@ -112,6 +116,8 @@ aguarda = "libertadores:terceiros"
 
 [[formato.fases]]
 nome     = "Mata-mata"
+janela  = ["08-13", "10-30"]   # dias reais da fase (fm.agenda)
+chave    = "fixa"   # 1o de grupo x vencedor do playoff, caminho decidido ate a final
 tipo     = "knockout"
 maos     = 2
 rodadas  = 3         # oitavas, quartas e semifinal
@@ -119,6 +125,7 @@ penaltis = true
 
 [[formato.fases]]
 nome     = "Final"
+janela  = ["11-21", "11-21"]   # dias reais da fase (fm.agenda)
 tipo     = "knockout"
 maos     = 1
 rodadas  = 1

@@ -38,8 +38,10 @@ def test_o_catalogo_libera_as_oito_ligas_e_cada_uma_tem_pack():
     from fm.config import load_league
     from fm.pack import load_pack
     cat = telas.catalogo()
+    # as oito de 28/09/2026 e, desde 01/10/2026, o resto da Conmebol
     assert {n["pais"] for n in cat["nacionais"] if n["livre"]} == {
-        "BRA", "ESP", "ENG", "ITA", "GER", "FRA", "POR", "ARG"}
+        "BRA", "ESP", "ENG", "ITA", "GER", "FRA", "POR", "ARG",
+        "COL", "CHI", "URU", "ECU", "PAR", "PER", "BOL", "VEN"}
     for n in cat["nacionais"]:
         for liga in n["ligas"]:
             assert load_pack(load_league(liga["id"])["pack"]).clubes
@@ -70,9 +72,19 @@ def test_nova_carreira_pelo_menu(jogo):
     assert e["liga_nome"] == "Série A"
 
 
+def _iniciar_ate_ter_jogo(jogo) -> dict:
+    """O ano abre com datas de copa sem o clube; `partida_iniciar` pula elas, mas para se
+    chegar proposta por um jogador. Insiste ate a bola rolar."""
+    r = servidor.partida_iniciar(jogo)
+    while r.get("sem_jogo"):
+        r = servidor.partida_iniciar(jogo)
+    return r
+
+
 def test_partida_ao_vivo_do_apito_ao_pos_jogo(jogo):
     c = jogo.c
-    r = servidor.partida_iniciar(jogo)
+    r = _iniciar_ate_ter_jogo(jogo)
+    data_do_jogo = c.data
     assert r["minuto"] == 5 and not r["fim"]
     assert r["trocas_feitas"] == 0 and r["max_trocas"] == 5
     assert len(r["rodada"]) >= 9, "a rodada ao vivo tem os outros jogos da divisao"
@@ -86,18 +98,18 @@ def test_partida_ao_vivo_do_apito_ao_pos_jogo(jogo):
 
     r = servidor.partida_seguir(jogo, {"ate_o_fim": True})
     assert r["fim"] and r["minuto"] == 90
-    assert c.data == 1, "a data andou"
+    assert c.data == data_do_jogo + 1, "a data andou"
     p = servidor.pos_jogo(jogo)
     notas = [j["nota"] for j in p["time_casa"] + p["time_fora"]]
     assert all(3.0 <= n <= 10.0 for n in notas)
     assert p["melhor_em_campo"]["nota"] == max(notas)
     json.dumps(p)
     # a troca feita ao vivo ficou gravada para o replay do save
-    assert c.na_partida[f"{c.temporada}:0"]["trocas"][0][1:] == [sai, entra]
+    assert c.na_partida[f"{c.temporada}:{data_do_jogo}"]["trocas"][0][1:] == [sai, entra]
 
 
 def test_recarregar_a_pagina_no_meio_do_jogo_retoma(jogo):
-    servidor.partida_iniciar(jogo)
+    _iniciar_ate_ter_jogo(jogo)
     servidor.partida_seguir(jogo, {})
     r = servidor.partida_iniciar(jogo)
     assert r["minuto"] == 10, "iniciar de novo tem de retomar, nao comecar outra data"
@@ -166,7 +178,7 @@ def test_o_treinador_acumula_a_curva_de_confianca(jogo):
 def test_artilharia_por_competicao_fecha_com_a_tabela(jogo):
     """Gol de copa nao e gol de campeonato: o caderno da liga soma exatamente a tabela."""
     c = jogo.c
-    for _ in range(10):
+    while c.rodada < 6:          # o ano abre com copas: anda ate a liga ter rodadas
         c.avancar()
     gols_da_liga = sum(r.goals_home + r.goals_away for r in c.jogos("brasil_real"))
     caderno = c.estatisticas_por_comp["brasil_real"]
@@ -182,7 +194,7 @@ def test_artilharia_por_competicao_fecha_com_a_tabela(jogo):
 def test_selecao_da_rodada_e_um_433_de_quem_jogou(jogo):
     from fm.tatica import VAGAS
     c = jogo.c
-    for _ in range(3):
+    while c.rodada < 2:
         c.avancar()
     s = telas.selecao(c, "brasil_real", None, lambda cid: servidor._clube(c, cid))
     assert len(s["onze"]) == 11

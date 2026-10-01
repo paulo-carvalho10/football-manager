@@ -15,6 +15,15 @@ from fm.match import Style
 ESTILO = Style(goals_base=1.22, home_adv=0.36)
 
 
+def _no_primeiro_jogo(seed: int, liga: str = "brasil_real", clube: str = "Santos") -> Carreira:
+    """A carreira na vespera do primeiro jogo de LIGA do clube. O ano abre em fevereiro com
+    as preliminares das copas (fm.agenda): o primeiro `avancar` ja nao e a 1a rodada."""
+    c = Carreira.nova(liga, clube, seed=seed)
+    while not c.acabou and not (c.compromisso[0] == "liga" and c.proxima_partida() is not None):
+        c.avancar()
+    return c
+
+
 def _partidas(n, bancos=True):
     c = Carreira.nova("brasil_real", "Santos", seed=42)
     w, ids = c.world, c.world.leagues[c.liga_id].club_ids
@@ -64,12 +73,12 @@ def test_a_lesao_conta_dias_do_calendario():
 
 
 def test_o_lesionado_fica_fora_do_meu_onze_e_volta_depois():
-    c = Carreira.nova("brasil_real", "Santos", seed=4)
+    c = _no_primeiro_jogo(4)
     onze = c.escalacao_atual()
     machucado = onze[7]
     c.escalar(onze)
     # volta no dia da data seguinte: perde so esta
-    c.medico.lesionados[machucado] = Lesao("pancada", dia_da_data(c.temporada, c.data + 1), 4)
+    c.medico.lesionados[machucado] = Lesao("pancada", c.dia(c.data + 1), 4)
     _, partida = c.avancar()
     assert partida is not None
     assert machucado not in partida.entrada          # nem titular, nem banco
@@ -94,7 +103,7 @@ def test_o_save_refaz_as_mesmas_lesoes(tmp_path, monkeypatch):
 
 
 def _reserva_lesionado(seed=4):
-    c = Carreira.nova("brasil_real", "Santos", seed=seed)
+    c = _no_primeiro_jogo(seed)
     onze = c.escalacao_atual()
     reserva = next(p.id for p in sorted(c.world.squad(c.clube_id), key=lambda p: -p.overall)
                    if p.id not in onze)
@@ -126,7 +135,7 @@ def test_o_banco_ao_vivo_nao_mostra_o_lesionado():
 
 def test_quem_se_machuca_na_partida_nao_volta_a_campo():
     """Machucou, saiu: pedir para ele entrar de novo no bloco seguinte nao pode valer."""
-    c = Carreira.nova("brasil_real", "Santos", seed=4)
+    c = _no_primeiro_jogo(4)
     pedidos = []
 
     def pedido(partida, minuto):

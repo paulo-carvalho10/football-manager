@@ -13,6 +13,7 @@ compra o elenco inteiro do pobre e ninguem reclama.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from functools import lru_cache
 
 import numpy as np
 
@@ -58,7 +59,14 @@ def topa_descer(p, temporada: int) -> bool:
     chance = CHANCE_DE_TOPAR_DESCER
     if p.age(temporada) >= IDADE_DO_VETERANO:
         chance += EXTRA_DO_VETERANO
-    return float(np.random.default_rng([p.id, temporada, 5157]).random()) < chance
+    return _sorteio_de_descer(p.id, temporada) < chance
+
+
+@lru_cache(maxsize=65536)
+def _sorteio_de_descer(pid: int, temporada: int) -> float:
+    # a janela pergunta o mesmo jogador milhares de vezes (uma por comprador e rodada de
+    # mercado); criar um gerador a cada pergunta custava 64 dos 72 segundos da virada
+    return float(np.random.default_rng([pid, temporada, 5157]).random())
 PREMIO_POR_TITULAR = 1.45       # tirar titular custa caro
 SALARIO_DO_COMPRADOR = 1.15     # quem compra paga acima do que ele ganhava
 

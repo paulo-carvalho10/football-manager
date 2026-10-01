@@ -111,7 +111,9 @@ def test_marcacao_forte_cansa_mais(carreira):
         outra.escalar(onze2, Tatica(marcacao="leve"))
         outra.avancar()
     com_leve = sum(outra.world.players[j].condition for j in onze2) / 11
-    assert com_forte < com_leve - 3
+    # no calendario real a liga e semanal e o descanso entre rodadas e maior: a diferenca
+    # caiu de ~4 para ~2,3 pontos, mas a pressao alta continua cobrando
+    assert com_forte < com_leve - 1.5
 
 
 def test_todas_as_formacoes_escalam_onze(carreira):
@@ -159,7 +161,7 @@ def test_save_antigo_continua_jogando_no_padrao(tmp_path, carreira):
     replay jogaria com outra tatica e daria outro resultado."""
     carreira.tatica_persistente = False
     carreira.escalar(carreira.escalacao_atual(), Tatica(formacao="5-3-2"))
-    carreira.avancar()
+    _avancar_ate_a_liga(carreira)
     assert carreira.tatica_atual().formacao == "4-3-3"
     carreira.salvar("teste_pytest_antigo")
     try:

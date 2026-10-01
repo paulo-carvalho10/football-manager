@@ -11,7 +11,7 @@
 #
 # Conta das 36 vagas:  28 diretas + 8 vindas da pre.
 id   = "champions"
-nome = "Liga dos Campeoes"
+nome = "Liga dos Campeões"
 
 [estilo]
 gols_base = 1.31   # nivel altissimo dos dois lados: jogo mais aberto que liga nacional
@@ -135,7 +135,8 @@ vagas = 1
 entra_em = "pre"
 
 [[formato.fases]]
-nome    = "Pre-eliminatoria"
+nome    = "Pré-eliminatória"
+janela  = ["04-21", "04-29"]   # dias reais da fase (fm.agenda)
 tipo    = "knockout"
 maos    = 2
 rodadas = 1
@@ -149,6 +150,7 @@ exporta = [ { eliminados = true, para = "eliminados_pre" } ]
 # para a Europa League; com o fim dos grupos isso acabou.
 [[formato.fases]]
 nome        = "Fase de liga"
+janela  = ["05-05", "09-08"]   # dias reais da fase (fm.agenda)
 tipo        = "liga_suica"
 adversarios = 8
 potes       = 4
@@ -157,6 +159,7 @@ entram      = [ { classificacao = "liga" } ]
 
 [[formato.fases]]
 nome    = "Playoff"
+janela  = ["09-22", "09-30"]   # dias reais da fase (fm.agenda)
 tipo    = "knockout"
 maos    = 2
 rodadas = 1
@@ -164,6 +167,8 @@ isentos = 8          # 1o ao 8o da fase de liga vao direto as oitavas
 
 [[formato.fases]]
 nome     = "Mata-mata"
+janela  = ["10-13", "11-26"]   # dias reais da fase (fm.agenda)
+chave    = "fixa"   # 1o ao 8o da fase de liga x vencedores do playoff
 tipo     = "knockout"
 maos     = 2
 rodadas  = 3         # oitavas, quartas e semifinal
@@ -171,6 +176,7 @@ penaltis = true
 
 [[formato.fases]]
 nome     = "Final"
+janela  = ["12-09", "12-09"]   # dias reais da fase (fm.agenda)
 tipo     = "knockout"
 maos     = 1         # jogo unico, como na vida real
 rodadas  = 1

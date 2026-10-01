@@ -31,7 +31,10 @@ def test_o_save_reproduz_trocas_e_tatica_feitas_no_meio_do_jogo(tmp_path, monkey
     assert "ao_vivo" in saves_disponiveis()
 
     carregada = Carreira.carregar("ao_vivo")
-    resultados = {(r.home, r.away): (r.goals_home, r.goals_away) for r in carregada.jogos()}
+    # a primeira partida pode ser de copa: o ano abre em fevereiro com a Copa do Brasil
+    jogos = list(carregada.jogos()) + [r for a in carregada.copas.values()
+                                       for r in a.resultados_do_ano]
+    resultados = {(r.home, r.away): (r.goals_home, r.goals_away) for r in jogos}
     assert resultados[(jogada.casa, jogada.fora)] == (jogada.gols_casa, jogada.gols_fora)
     assert carregada.na_partida == c.na_partida
 

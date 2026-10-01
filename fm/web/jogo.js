@@ -756,25 +756,6 @@ function ligarSeletorDeCompeticao() {
  * Os pares sao sorteados a cada rodada (fm.copa), entao a coluna seguinte so se preenche
  * depois do sorteio: nao ha arvore fixa para desenhar antes. */
 
-function blocosDaCopa(d) {
-  const blocos = [];
-  for (const f of d.fases) {
-    const ultimo = blocos[blocos.length - 1];
-    // rodadas de mata-mata seguidas ficam juntas, ate uma fase que recebe clubes novos
-    // (a Serie A entrando na Copa do Brasil): ali comeca outro chaveamento
-    if (f.tipo === "mata" && ultimo && ultimo.tipo === "mata" && !f.abre) ultimo.fases.push(f);
-    else blocos.push({tipo: f.tipo, nome: f.nome, fases: [f]});
-  }
-  if (d.a_sortear.length) {
-    const ultimo = blocos[blocos.length - 1];
-    if (ultimo && ultimo.tipo === "mata") ultimo.vazias = d.a_sortear;
-    else blocos.push({tipo: "mata", nome: "Mata-mata", fases: [], vazias: d.a_sortear});
-  }
-  const ultimoMata = blocos.filter((b) => b.tipo === "mata").pop();
-  if (ultimoMata && (ultimoMata.fases.length + (ultimoMata.vazias || []).length) > 1) ultimoMata.nome = "Chaveamento";
-  return blocos;
-}
-
 function miniTabela(linhas, avancam, titulo) {
   return `<div class="mini-tabela">${titulo ? `<h3>${escapar(titulo)}</h3>` : ""}
     <table class="grade compacta"><thead><tr><th class="c">#</th><th>Clube</th><th class="n">P</th><th class="n">J</th>
@@ -787,7 +768,9 @@ function miniTabela(linhas, avancam, titulo) {
 }
 
 function cartaoDeConfronto(x) {
-  const lado = (clube, gols) => {
+  const lado = (clube, gols, rotulo) => {
+    // vaga ainda sem dono na chave fixa: "Vencedor O1", "a sortear"
+    if (!clube) return `<div class="lado-c vaga-futura"><span class="escudo-vazio"></span><span class="nm">${escapar(rotulo || "a definir")}</span><b></b></div>`;
     const perdeu = x.vencedor && x.vencedor !== clube.id;
     return `<div class="lado-c ${x.vencedor === clube.id ? "venceu" : ""} ${perdeu ? "caiu" : ""}">
       ${escudo(clube, "1.2rem")}<span class="nm">${escapar(clube.nome)}</span><b>${x.agregado ? gols : ""}</b></div>`;
@@ -795,7 +778,8 @@ function cartaoDeConfronto(x) {
   const pen = x.penaltis ? `<span class="pen-c">pên. ${x.penaltis[0]}–${x.penaltis[1]}</span>` : "";
   const jogos = x.jogos.length > 1 || pen ? `<div class="jogos-c">${x.jogos.length > 1 ? x.jogos.map((j) =>
     `<span>${j.gols_casa}–${j.gols_fora}</span>`).join(" · ") : ""}${pen}</div>` : "";
-  return `<div class="confronto ${x.meu ? "meu" : ""}">${lado(x.casa, x.agregado?.[0])}${lado(x.fora, x.agregado?.[1])}${jogos}</div>`;
+  const sigla = x.sigla ? `<span class="sigla-c">${escapar(x.sigla)}</span>` : "";
+  return `<div class="confronto ${x.meu ? "meu" : ""} ${!x.casa || !x.fora ? "futuro" : ""}">${sigla}${lado(x.casa, x.agregado?.[0], x.rotulo_casa)}${lado(x.fora, x.agregado?.[1], x.rotulo_fora)}${jogos}</div>`;
 }
 
 function chaveamento(bloco) {
@@ -809,33 +793,50 @@ function chaveamento(bloco) {
   return `<div class="chave">${[...colunas, ...vazias].join("")}</div>`;
 }
 
+/* A copa em secoes, na ordem do ano (o servidor monta: fm.telas.secoes_da_copa). Cada
+ * secao e uma aba, desde o comeco -- a dos grupos diz quando sai o sorteio, a do
+ * mata-mata mostra a arvore inteira com as vagas futuras ("Vencedor O1"). */
+function arvoreDaChave(secao) {
+  return `<div class="chave arvore">${secao.rodadas.map((r) => `<div class="coluna-chave">
+      <h3>${escapar(r.nome)}</h3>
+      <div class="cartas">${r.confrontos.map(cartaoDeConfronto).join("")}</div></div>`).join("")}</div>`;
+}
+
+function corpoDaSecao(sec) {
+  const aviso = (txt) => `<div class="vazio">${escapar(txt)}</div>`;
+  if (sec.tipo === "chave") return arvoreDaChave(sec);
+  if (!sec.fases.length) return aviso(sec.aviso || "Ainda não começou.");
+  if (sec.tipo === "grupos") {
+    const f = sec.fases[sec.fases.length - 1];
+    return `<div class="grade-grupos">${f.grupos.map((g) => miniTabela(g.linhas, f.avancam, g.nome)).join("")}</div>`;
+  }
+  if (sec.tipo === "liga") {
+    const f = sec.fases[sec.fases.length - 1];
+    return `<div style="padding:.6rem 1rem">${miniTabela(f.linhas, f.avancam)}</div>`;
+  }
+  return chaveamento({fases: sec.fases});
+}
+
 function telaDaCopa(d) {
-  const blocos = blocosDaCopa(d);
-  if (CLASS.bloco === null || CLASS.bloco >= blocos.length) {
-    // abre na ultima fase que ja teve jogo, nao num chaveamento so com "a sortear"
-    const comJogo = blocos.map((b, i) => (b.fases.length ? i : -1)).filter((i) => i >= 0);
-    CLASS.bloco = comJogo.length ? comJogo[comJogo.length - 1] : Math.max(0, blocos.length - 1);
+  const secoes = d.secoes || [];
+  if (CLASS.bloco === null || CLASS.bloco >= secoes.length) {
+    // abre na secao em andamento; com a copa encerrada, no mata-mata
+    const atual = secoes.findIndex((x) => x.estado === "em_curso");
+    const proxima = secoes.findIndex((x) => x.estado === "proxima");
+    CLASS.bloco = atual >= 0 ? atual : proxima >= 0 ? proxima : Math.max(0, secoes.length - 1);
   }
-  const b = blocos[CLASS.bloco];
-  let corpo = '<div class="vazio">A competição ainda não começou: os confrontos aparecem depois do sorteio.</div>';
-  if (b && b.tipo === "grupos") {
-    const f = b.fases[0];
-    corpo = `<div class="grade-grupos">${f.grupos.map((g) => miniTabela(g.linhas, f.avancam, g.nome)).join("")}</div>`;
-  } else if (b && b.tipo === "liga") {
-    const f = b.fases[0];
-    corpo = `<div style="padding:.6rem 1rem">${miniTabela(f.linhas, f.avancam)}</div>`;
-  } else if (b) {
-    corpo = chaveamento(b);
-  }
+  const sec = secoes[CLASS.bloco];
+  const rotuloEstado = {encerrada: "encerrada", em_curso: "agora", proxima: "a seguir", futura: ""};
   $("#tela-classificacao").innerHTML = `
     <div class="painel">
       <div class="cab">${seletorDeCompeticao(d.competicoes, d.id)}
-        <h2>${d.campeao ? `Campeão: ${escapar(d.campeao.nome)}` : escapar(d.fase_atual)}</h2>
+        <h2>${d.campeao ? `Campeão: ${escapar(d.campeao.nome)}` : escapar(sec ? sec.nome : d.fase_atual)}</h2>
         <span class="espaco"></span>
-        ${blocos.length > 1 ? `<div class="abas">${blocos.map((x, i) =>
-          `<button data-bloco="${i}" class="${i === CLASS.bloco ? "ativo" : ""}">${escapar(x.nome)}</button>`).join("")}</div>` : ""}</div>
-      <div class="corpo sem-margem copa-corpo">${corpo}</div>
-      ${b && b.tipo !== "mata" ? `<div class="pe"><span class="linha-flex"><span class="zona acesso">&nbsp;</span>
+        <div class="abas abas-copa">${secoes.map((x, i) =>
+          `<button data-bloco="${i}" class="${i === CLASS.bloco ? "ativo" : ""} ${x.estado}">
+            ${escapar(x.nome)}<small>${escapar(x.periodo)}${rotuloEstado[x.estado] ? ` · ${rotuloEstado[x.estado]}` : ""}</small></button>`).join("")}</div></div>
+      <div class="corpo sem-margem copa-corpo">${sec ? corpoDaSecao(sec) : '<div class="vazio">Sem jogos ainda.</div>'}</div>
+      ${sec && (sec.tipo === "grupos" || sec.tipo === "liga") && sec.fases.length ? `<div class="pe"><span class="linha-flex"><span class="zona acesso">&nbsp;</span>
         <span class="dica">avança de fase</span></span></div>` : ""}
     </div>
     <div class="coluna" style="overflow:auto">
@@ -1274,7 +1275,7 @@ TELAS.destaques = async function () {
         <span class="espaco" style="flex:1"></span>
         <div class="navegador">
           <button class="btn pequeno" id="rod-ant" ${i > 0 ? "" : "disabled"}>‹</button>
-          <b>${s.rodada ? `${s.rodada}ª rodada` : "—"}</b>
+          <b>${s.rodada ? `${s.rodada_da_liga || s.rodada}ª rodada` : "—"}</b>
           <button class="btn pequeno" id="rod-prox" ${i >= 0 && i < s.rodadas.length - 1 ? "" : "disabled"}>›</button>
         </div></div>
       ${campinhoDaSelecao(s)}

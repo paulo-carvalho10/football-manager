@@ -83,6 +83,7 @@ entra_em = "liga"
 
 [[formato.fases]]
 nome        = "Fase de liga"
+janela  = ["05-07", "09-10"]   # dias reais da fase (fm.agenda)
 tipo        = "liga_suica"
 adversarios = 8
 potes       = 4
@@ -91,6 +92,7 @@ entram      = [ { classificacao = "liga" } ]
 
 [[formato.fases]]
 nome    = "Playoff"
+janela  = ["09-24", "10-01"]   # dias reais da fase (fm.agenda)
 tipo    = "knockout"
 maos    = 2
 rodadas = 1
@@ -98,6 +100,8 @@ isentos = 8
 
 [[formato.fases]]
 nome     = "Mata-mata"
+janela  = ["10-15", "11-26"]   # dias reais da fase (fm.agenda)
+chave    = "fixa"
 tipo     = "knockout"
 maos     = 2
 rodadas  = 3         # oitavas, quartas e semifinal
@@ -105,6 +109,7 @@ penaltis = true
 
 [[formato.fases]]
 nome     = "Final"
+janela  = ["12-03", "12-03"]   # dias reais da fase (fm.agenda)
 tipo     = "knockout"
 maos     = 1         # jogo unico, como na vida real
 rodadas  = 1

@@ -1,7 +1,7 @@
 # Liga BetPlay (COL), clubes e jogadores reais. Criada em 30/09/2026 para a Libertadores.
-# NAO E JOGAVEL: fornece os clubes da Libertadores e da Sul-Americana nas carreiras de
-# outros paises. A temporada dela e simulada inteira na virada do ano (fm.carreira), em
-# turno e returno -- o formato real (Apertura e Clausura) nao existe no motor. 
+# Jogavel desde 01/10/2026 (antes so fornecia os clubes da Libertadores e da Sul-
+# Americana, simulada inteira na virada). Turno e returno: o formato real (Apertura e
+# Clausura) nao existe no motor.
 id     = "col_1_real"
 nome   = "Liga BetPlay"
 pais   = "COL"
@@ -20,8 +20,8 @@ mando     = 0.34
 fases  = [ { tipo = "round_robin", voltas = 2 } ]
 acesso = { sobem = 0, descem = 0 }
 
-# Faixas largas, escritas de memoria (os pontos, pelo numero de jogos da liga): a liga nao e jogavel e o portao aqui so avisa se o
-# importador produziu algo absurdo. Re-derivar antes de torna-la jogavel.
+# Faixas largas, escritas de memoria (os pontos, pelo numero de jogos da liga). Ainda
+# nao foram re-derivadas de tabelas reais: o portao so avisa se algo saiu absurdo.
 [alvos]
 zero_a_zero_pct           = [7.0, 16.0]
 gols_por_jogo             = [1.9, 2.9]

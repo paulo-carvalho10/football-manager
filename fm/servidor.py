@@ -22,7 +22,7 @@ from urllib.parse import urlparse
 
 from fm import telas
 from fm.ratings import exibir
-from fm.calendario import dia_da_data, texto
+from fm.calendario import texto
 from fm.carreira import Carreira, saves_disponiveis
 from fm.moeda import json_da_moeda
 from fm.tatica import DESENHOS, ESTILOS, FORMACOES, MARCACOES, PONTOS, Tatica, arrumar_no_campo
@@ -206,7 +206,8 @@ def estado(jogo: Jogo) -> dict:
         proximo = {"tipo": "liga", "competicao": _nome_da_liga(c.liga),
                    "rival": _clube(c, rival),
                    "casa": jogo_.home == c.clube_id,
-                   "rodada": c.rodada + 1}
+                   # a rodada DA LIGA (a 12a do Brasileirao), nao a data da grade
+                   "rodada": c.rodada_da_liga(data_de_liga=jogo_.matchday)}
     elif tipo == "copa":
         a = c.copas[onde]
         f, ida = _jogo_de_copa(c, a)
@@ -225,7 +226,7 @@ def estado(jogo: Jogo) -> dict:
         "liga": c.liga, "temporada": c.temporada,
         "liga_nome": _nome_da_liga(c.liga),
         # a rodada DA DIVISAO do usuario: o relogio da carreira anda ate a mais longa
-        "rodada": min(c.rodada, c.rodadas_da_liga()),
+        "rodada": c.rodada_da_liga(),
         "total_de_rodadas": c.rodadas_da_liga(),
         # `data` e a do calendario (texto); o indice na agenda e outra coisa
         "indice_da_data": c.data, "datas": len(c.agenda),
@@ -245,7 +246,8 @@ def estado(jogo: Jogo) -> dict:
                    "desenho": tatica.pontos, "personalizado": bool(tatica.desenho),
                    "posicoes": [{"ponto": k, "rotulo": r, "setor": s, "papel": p, "x": x, "y": y}
                                 for k, (r, s, p, x, y) in zip(tatica.pontos,
-                                                              tatica.vagas_do_campo())]},
+                                                              tatica.vagas_do_campo(),
+                                                              strict=True)]},
         "opcoes": {"formacoes": sorted(FORMACOES), "marcacoes": sorted(MARCACOES),
                    "estilos": sorted(ESTILOS),
                    # os pontos fixos do campo, para montar o desenho a mao (fm.tatica.PONTOS)
@@ -523,7 +525,8 @@ def inicio(jogo: Jogo) -> dict:
             rival = f.away if f.home == c.clube_id else f.home
             futuros.append({"rival": _clube(c, rival)["nome"],
                             "cor": _clube(c, rival)["cor"],
-                            "casa": f.home == c.clube_id, "rodada": f.matchday})
+                            "casa": f.home == c.clube_id,
+                            "rodada": c.rodada_da_liga(data_de_liga=f.matchday)})
     futuros.sort(key=lambda x: x["rodada"])
     return {
         "campanha": {
@@ -641,30 +644,38 @@ def calendario(jogo: Jogo) -> dict:
     for r in c.jogos():
         if c.clube_id in (r.home, r.away):
             jogados[r.matchday] = _resultado_curto(c, r)
-    # a proxima data de cada copa: so nela o confronto sorteado pode aparecer
+    # a proxima data de cada copa que vai acontecer: so nela o confronto sorteado aparece
     proxima_da_copa: dict[str, int] = {}
     for i, (tipo, quem) in enumerate(c.agenda):
-        if tipo == "copa" and i >= c.data:
+        if tipo == "copa" and i >= c.data and c._data_de_copa_vale(i):
             proxima_da_copa.setdefault(quem, i)
-    linhas, rodada = [], 0
+    linhas, data_de_liga = [], 0
     for i, (tipo, quem) in enumerate(c.agenda):
         if tipo == "liga":
-            rodada += 1
+            data_de_liga += 1
+            # cada liga tem as suas rodadas na grade: a do clube folga em algumas datas
+            rodada = c.rodada_da_liga(data_de_liga=data_de_liga)
+            if not rodada:
+                continue
             f = next((x for x in c.calendario
-                      if x.matchday == rodada and c.clube_id in (x.home, x.away)), None)
+                      if x.matchday == data_de_liga and c.clube_id in (x.home, x.away)), None)
             rival = None
             if f is not None:
                 rival = _rival(c, f.home, f.away)
             linhas.append({"ordem": i, "tipo": "liga", "competicao": c.liga,
-                           "dia": texto(dia_da_data(c.temporada, i)),
+                           "dia": texto(c.dia(i)),
                            "rodada": rodada, "rival": rival,
-                           "resultado": jogados.get(rodada), "passou": i < c.data})
+                           "resultado": jogados.get(data_de_liga), "passou": i < c.data})
         else:
             a = c.copas.get(quem)
             # a copa: o jogo que o usuario fez nesta data, ou o proximo, se ja sorteado
             r = c.jogos_do_usuario.get(i)
             rival, resultado = None, None
-            if r is None and (i < c.data or envolve.get(quem) is None):
+            # a data reservada que nao vai acontecer (a copa ja passou da fase dela, ou e
+            # sobra do fim) nao aparece
+            if r is None and (i < c.data or envolve.get(quem) is None
+                              or not c._data_de_copa_vale(i)
+                              or (c.reservas and c.reservas[i])):
                 continue
             if r is not None:
                 rival, resultado = _rival(c, r.home, r.away), _resultado_curto(c, r)
@@ -673,7 +684,7 @@ def calendario(jogo: Jogo) -> dict:
                 if f is not None:
                     rival = _rival(c, f.home, f.away)
             linhas.append({"ordem": i, "tipo": "copa",
-                           "dia": texto(dia_da_data(c.temporada, i)),
+                           "dia": texto(c.dia(i)),
                            "competicao": a.torneio.nome if a else quem,
                            "rodada": None, "rival": rival,
                            # a data que so vale se o clube cair de outra copa
@@ -744,7 +755,9 @@ def _competicao_da_proxima(c: Carreira) -> tuple[str, str]:
     tipo, onde, _ = c.proximo_jogo()
     if tipo == "liga":
         from fm.config import load_league
-        return tipo, f"{telas.nome_da_liga(c.liga)} · Rodada {c.rodada + 1}"
+        jogo_ = c.proxima_partida_da_liga()
+        n = c.rodada_da_liga(data_de_liga=jogo_.matchday) if jogo_ else c.rodada_da_liga() + 1
+        return tipo, f"{telas.nome_da_liga(c.liga)} · Rodada {n}"
     if tipo == "copa":
         a = c.copas[onde]
         _, ida = _jogo_de_copa(c, a)
@@ -760,7 +773,9 @@ def _competicao_em_campo(c: Carreira) -> tuple[str, str] | None:
     de copa aparecia como a proxima rodada da liga."""
     tipo, onde = c.ultimo_compromisso
     if tipo == "liga":
-        return tipo, f"{telas.nome_da_liga(c.liga)} · Rodada {c.rodada + 1}"
+        jogo_ = c.proxima_partida_da_liga()
+        n = c.rodada_da_liga(data_de_liga=jogo_.matchday) if jogo_ else c.rodada_da_liga() + 1
+        return tipo, f"{telas.nome_da_liga(c.liga)} · Rodada {n}"
     if tipo == "copa" and onde in c.copas:
         a = c.copas[onde]
         _, ida = _jogo_de_copa(c, a)

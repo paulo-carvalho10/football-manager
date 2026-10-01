@@ -75,3 +75,4 @@ def test_o_campeao_da_sul_americana_vai_para_a_libertadores(ano):
     liberta = c.copas["libertadores"].classificados
     assert campeao in liberta.get("grupos", [])
     assert sum(len(v) for v in liberta.values()) == 47
+
