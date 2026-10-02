@@ -1127,6 +1127,14 @@ async function encerrarAno() {
       ${r.vendas.map((t) => `<tr><td class="ruim">sai</td><td>${escapar(t.nome)} (${t.overall})</td><td>${escapar(t.para)}</td><td class="n">${eurosConvertido(t.preco)}</td></tr>`).join("")}
       </tbody></table></div>`;
   }
+  if ((r.saidas_do_clube || []).length) {
+    // quem deixou o elenco na virada e por que: veterano que pendurou as chuteiras,
+    // contrato que voce nao renovou, emprestimo que acabou
+    corpo += `<div class="secao"><h3>Saíram do elenco</h3><table class="grade compacta"><tbody>
+      ${r.saidas_do_clube.map((x) => `<tr><td>${pos(x.posicao)}</td><td><b>${escapar(x.nome)}</b> (${x.overall})</td>
+        <td class="n">${x.idade} anos</td><td class="${x.motivo === "aposentou-se" ? "dica" : "ruim"}">${escapar(x.motivo)}</td></tr>`).join("")}
+      </tbody></table></div>`;
+  }
   corpo += blocoDeReputacao(r.reputacao_tecnico);
   corpo += `<p class="dica">${r.aposentaram} aposentadorias no mundo, ${r.revelados} garotos subiram da base, ${r.transferencias} transferências.</p>`;
   await abrirJanela({titulo: `Fim da temporada ${r.temporada}`, corpo,

@@ -1666,6 +1666,9 @@ class Carreira:
         from fm.negocios import devolver_emprestimos
         voltas = devolver_emprestimos(self.world)
         antes = {p.id: (p.name, p.overall) for p in self.world.squad(self.clube_id)}
+        # para dizer na tela POR QUE cada um saiu: idade e posicao de antes da virada
+        ficha_antes = {p.id: (p.age(self.temporada), p.position)
+                       for p in self.world.squad(self.clube_id)}
         envelhecimento = envelhecer(self.world, rng, self.temporada)
         from fm.negocios import livres_que_se_aposentam, vencer_contratos
         for prop in self.propostas:
@@ -1694,6 +1697,24 @@ class Carreira:
         # o que mudou no elenco do usuario -- e isto que a tela de fim de ano mostra
         agora = {p.id: p for p in self.world.squad(self.clube_id)}
         saidas = [nome for pid, (nome, _) in antes.items() if pid not in agora]
+        # O motivo de cada saida. Antes a tela so dizia "N aposentadorias no mundo", e o
+        # veterano do usuario sumia do elenco sem explicacao.
+        fim_de_contrato = {x["jogador"] for x in contratos if x["do_usuario"]}
+        saidas_do_clube = []
+        for pid, (nome, ovr) in antes.items():
+            if pid in agora:
+                continue
+            idade, posicao = ficha_antes[pid]
+            if pid not in self.world.players:
+                motivo = "aposentou-se"
+            elif pid in fim_de_contrato:
+                motivo = "fim de contrato"
+            else:
+                destino = self.world.players[pid].club_id
+                motivo = (f"foi para o {self.world.clubs[destino].name}"
+                          if destino in self.world.clubs else "saiu do clube")
+            saidas_do_clube.append({"nome": nome, "overall": ovr, "idade": idade,
+                                    "posicao": posicao, "motivo": motivo})
         destaques = sorted(
             ((p.name, antes[pid][1], p.overall, p.age(self.temporada + 1))
              for pid, p in agora.items()
@@ -1751,6 +1772,7 @@ class Carreira:
             "demitido": False,       # preenchido logo abaixo, depois da regua do ano
             "motivo_da_demissao": "",
             "aposentadorias_do_clube": saidas,
+            "saidas_do_clube": saidas_do_clube,
             "destaques_do_clube": destaques,
             "contratos_encerrados": [x for x in contratos if x["do_usuario"]],
             "livres_aposentados": len(aposentados_livres),

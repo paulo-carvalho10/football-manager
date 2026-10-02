@@ -429,6 +429,30 @@ def mensagens(c: Carreira, data_texto: str, lidas: set[str]) -> list[dict]:
         msg(f"festa:{c.temporada}:{c.data // 4}", "Torcida", "Apoio total",
             f"A torcida está com o time: {ap.torcida:.0f}% de aprovação.")
 
+    # Veteranos que podem pendurar as chuteiras na virada (fm.temporada.envelhecer). O aviso
+    # chega na reta final do ano: a aposentadoria e sorteada so na virada, mas a chance e
+    # conhecida -- e o tecnico pode procurar substituto antes.
+    from fm.temporada import CHANCE_APOSENTADORIA, IDADE_MINIMA_APOSENTAR
+    if c.acabou or c.rodada_da_liga() >= c.rodadas_da_liga() - 5:
+        veteranos = []
+        for p in c.world.squad(c.clube_id):
+            idade = p.age(c.temporada) + 1          # a idade com que ele vira o ano
+            if idade < IDADE_MINIMA_APOSENTAR:
+                continue
+            chance = CHANCE_APOSENTADORIA.get(idade, 0.9 if idade > 38 else 0.0)
+            chance *= 1.35 if p.overall < 60 else 0.8
+            if chance >= 0.15:
+                veteranos.append((chance, p))
+        if veteranos:
+            veteranos.sort(key=lambda x: -x[0])
+            lista = "; ".join(f"{p.name} ({p.age(c.temporada)} anos, "
+                              f"{'grande' if ch >= 0.5 else 'boa' if ch >= 0.3 else 'alguma'}"
+                              " chance)" for ch, p in veteranos)
+            msg(f"aposentadoria:{c.temporada}", "Comissão técnica",
+                "Veteranos que podem se aposentar",
+                f"Na virada do ano estes jogadores podem pendurar as chuteiras: {lista}. "
+                "Quem ainda joga bem tende a segurar mais um ano.")
+
     # o vestiario (fm.moral): quem quer sair e o clima do grupo
     from fm.moral import INSATISFEITO, quimica, rotulo_da_quimica
     for p in c.world.squad(c.clube_id):

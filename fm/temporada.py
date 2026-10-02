@@ -69,26 +69,56 @@ def _quantos(cfg: dict, chave: str) -> int:
     return int(cfg.get("formato", {}).get("acesso", {}).get(chave, 0))
 
 
+def _filial_de(nome: str, principais: set[str]) -> bool:
+    """O time B de um clube que esta em `principais` ("Sporting CP B" -> "Sporting CP").
+    O nome do principal pode ter prefixo ou sufixo: "Benfica B" e o time B do "SL Benfica"."""
+    for sufixo in (" B", " II"):
+        if not nome.endswith(sufixo):
+            continue
+        base = nome[: -len(sufixo)]
+        if any(p == base or p.endswith(" " + base) or p.startswith(base + " ")
+               for p in principais):
+            return True
+    return False
+
+
 def acesso_e_rebaixamento(
     world: World, ligas: list[str], tabelas: dict[str, list[Row]], cfgs: dict[str, dict],
 ) -> list[MudancaDeDivisao]:
     """Troca clubes entre divisoes vizinhas, pela tabela final.
 
-    As divisoes sao pareadas por `tier`. Quem desce da ultima divisao nao vai a lugar
-    nenhum -- nao existe degrau abaixo neste mundo -- e simplesmente fica.
+    As divisoes sao pareadas por `tier` DENTRO DE CADA PAIS. Quem desce da ultima divisao
+    nao vai a lugar nenhum -- nao existe degrau abaixo neste mundo -- e simplesmente fica.
+
+    REGRESSAO: o pareamento era pela lista inteira ordenada por tier. Com um pais so
+    funcionava; com varios, a vizinha de baixo da Serie B era a LaLiga 2 -- o Avai caiu
+    para a Espanha, o Eibar para a Inglaterra -- e nenhuma primeira divisao ficava ao lado
+    da propria segunda: a Serie A nunca rebaixava ninguem.
     """
-    por_tier = sorted(ligas, key=lambda n: int(cfgs[n].get("tier", 1)))
+    por_pais: dict[str, list[str]] = {}
+    for n in ligas:
+        por_pais.setdefault(cfgs[n].get("pais", ""), []).append(n)
+    pares = []
+    for divisoes in por_pais.values():
+        escada = sorted(divisoes, key=lambda n: int(cfgs[n].get("tier", 1)))
+        pares += list(zip(escada, escada[1:], strict=False))
     mudancas: list[MudancaDeDivisao] = []
 
-    for cima, baixo in zip(por_tier, por_tier[1:], strict=False):
+    for cima, baixo in pares:
         descem = _quantos(cfgs[cima], "descem")
         sobem = _quantos(cfgs[baixo], "sobem")
         n = min(descem, sobem)
         if n <= 0:
             continue
         id_cima, id_baixo = cfgs[cima]["id"], cfgs[baixo]["id"]
-        rebaixados = [r.club_id for r in tabelas[cima][-n:]]
-        promovidos = [r.club_id for r in tabelas[baixo][:n]]
+        # time B nao sobe para a divisao do time principal (Sporting CP B, Porto B): a vaga
+        # passa para o proximo da tabela, como na vida real
+        nomes_de_cima = {world.clubs[r.club_id].name for r in tabelas[cima]}
+        aptos = [r.club_id for r in tabelas[baixo]
+                 if not _filial_de(world.clubs[r.club_id].name, nomes_de_cima)]
+        n = min(n, len(aptos))
+        rebaixados = [r.club_id for r in tabelas[cima][-n:]] if n else []
+        promovidos = aptos[:n]
 
         for cid in rebaixados:
             world.leagues[id_cima].club_ids.remove(cid)

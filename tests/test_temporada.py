@@ -183,3 +183,35 @@ def test_save_atravessa_a_virada_do_ano(tmp_path):
         assert elenco == {p.id: p.overall for p in c.world.squad(c.clube_id)}
     finally:
         caminho.unlink()
+
+
+def test_acesso_e_rebaixamento_ficam_dentro_de_cada_pais():
+    """REGRESSAO: com varios paises, as divisoes eram pareadas pela lista inteira ordenada
+    por tier -- os rebaixados da Serie B iam para a LaLiga 2, os da LaLiga 2 para a
+    Championship, e nenhuma primeira divisao rebaixava ninguem."""
+    from fm.carreira import Carreira
+    from fm.config import load_league
+
+    ligas = ["brasil_real", "brasil_b_real", "espanha_real", "espanha_b_real"]
+    c = Carreira.nova(ligas, "Santos", seed=5)
+    antes = {n: set(c.world.leagues[c._id(n)].club_ids) for n in ligas}
+    while not c.acabou:
+        c.avancar()
+    c.virar_o_ano()
+    for n in ligas:
+        cfg = load_league(n)
+        ids = set(c.world.leagues[c._id(n)].club_ids)
+        assert all(c.world.clubs[k].country == cfg["pais"] for k in ids), n
+        assert len(ids) == len(antes[n]), f"{n} mudou de tamanho"
+    # a Serie A e a LaLiga rebaixaram de verdade
+    assert antes["brasil_real"] - set(c.world.leagues[c._id("brasil_real")].club_ids)
+    assert antes["espanha_real"] - set(c.world.leagues[c._id("espanha_real")].club_ids)
+
+
+def test_time_b_nao_sobe_para_a_divisao_do_principal():
+    from fm.temporada import _filial_de
+    principais = {"SL Benfica", "Porto", "Sporting CP"}
+    assert _filial_de("Benfica B", principais)
+    assert _filial_de("Sporting CP B", principais)
+    assert not _filial_de("Vizela", principais)
+    assert not _filial_de("Braga B", principais)        # o principal nao esta la em cima

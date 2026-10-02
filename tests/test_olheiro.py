@@ -95,3 +95,15 @@ def test_a_sala_de_trofeus_bate_com_a_temporada(virada):
     # as lendas: quem mais jogou fez a temporada quase inteira
     assert d["mais_jogos"] and d["mais_jogos"][0]["jogos"] > 30
     assert all(x["gols"] for x in d["artilheiros"])
+
+
+def test_a_virada_diz_por_que_cada_um_saiu_do_elenco(virada):
+    """REGRESSAO: o veterano do usuario sumia do elenco na virada e a tela so dizia
+    "N aposentadorias no mundo". Agora cada saida vem com o motivo."""
+    c, antes, resumo = virada
+    saidas = resumo["saidas_do_clube"]
+    assert {x["nome"] for x in saidas} == set(resumo["aposentadorias_do_clube"])
+    for x in saidas:
+        assert x["motivo"] in ("aposentou-se", "fim de contrato") or x["motivo"].startswith("foi para")
+        if x["motivo"] == "aposentou-se":
+            assert x["idade"] >= 32

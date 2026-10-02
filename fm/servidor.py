@@ -445,6 +445,8 @@ def virar_o_ano(jogo: Jogo) -> dict:
                       for n, a, d, i in resumo.get("destaques_do_clube", [])],
         "base": [(n, exibir(o), exibir(pt), i) for n, o, pt, i in resumo.get("base_do_clube", [])],
         "saidas": resumo.get("aposentadorias_do_clube", []),
+        "saidas_do_clube": [{**x, "overall": exibir(x["overall"])}
+                            for x in resumo.get("saidas_do_clube", [])],
         "estado": estado(jogo),
     }
 
