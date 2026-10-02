@@ -28,6 +28,13 @@ PREMIO_DE_PEDIDA = 1.25         # o vendedor sempre pede acima do valor
 DESCONTO_CONTRATO_CURTO = 0.55  # a um ano do fim, sai por pouco mais da metade
 PREMIO_POR_POTENCIAL = 0.030    # por ponto de potencial acima do overall atual
 RESERVA_DE_CAIXA = 4            # meses de folha que o clube nao torra em reforco
+# O insatisfeito (fm.moral) quer sair, e o clube sabe: vende ate titular, por menos, e ele
+# aceita ir para um clube menor. E o que faz a moral mexer no mercado, e nao so no vestiario.
+DESCONTO_DO_INSATISFEITO = 0.75
+# O abatido (moral abaixo de 55) ainda nao quer sair, mas o clube ja aceita conversar.
+# E bem mais comum que o insatisfeito -- e o que deixa a moral visivel no mercado.
+DESCONTO_DO_ABATIDO = 0.90
+MORAL_DO_ABATIDO = 55
 
 # Quem esta no vermelho VENDE, e ai nao escolhe muito o preco. E o unico freio de verdade
 # do lado forte do mercado: sem ele o clube grande so acumula, a base dele passa a revelar
@@ -51,6 +58,16 @@ SALTO_PARA_LEVAR_TITULAR = 7.0
 CHANCE_DE_TOPAR_DESCER = 0.02
 EXTRA_DO_VETERANO = 0.05          # a partir de IDADE_DO_VETERANO
 IDADE_DO_VETERANO = 31
+
+
+def insatisfeito(p) -> bool:
+    from fm.moral import INSATISFEITO
+    return p.morale < INSATISFEITO
+
+
+def abatido(p) -> bool:
+    """Moral baixa, mas ainda nao insatisfeito (fm.moral.rotulo_da_moral)."""
+    return not insatisfeito(p) and p.morale < MORAL_DO_ABATIDO
 
 
 def topa_descer(p, temporada: int) -> bool:
@@ -201,8 +218,8 @@ def janela(world: World, rng: np.random.Generator, temporada: int,
                     # na janela da IA so desce o veterano ou o titular que topa: soltar os
                     # reservas dos grandes para o resto inflava o mundo inteiro (+0,35 de
                     # overall por ano nos titulares da Serie A, medido em 20 temporadas)
-                    desce = ((e_titular or p.age(temporada) >= IDADE_DO_VETERANO)
-                             and topa_descer(p, temporada))
+                    desce = (((e_titular or p.age(temporada) >= IDADE_DO_VETERANO)
+                              and topa_descer(p, temporada)) or insatisfeito(p))
                     if e_titular:
                         if salto < aperto and not desce:
                             continue
@@ -211,8 +228,12 @@ def janela(world: World, rng: np.random.Generator, temporada: int,
                     apertado = (dono in devem
                                 and vendidos_por_clube.get(dono, 0) < VENDAS_FORCADAS)
                     valor = preco(world, p, temporada)
-                    if e_titular:
+                    if insatisfeito(p):
+                        valor = int(valor * DESCONTO_DO_INSATISFEITO)
+                    elif e_titular:
                         valor = int(valor * PREMIO_POR_TITULAR)
+                    if abatido(p):
+                        valor = int(valor * DESCONTO_DO_ABATIDO)
                     if apertado:
                         valor = int(valor * DESCONTO_DE_URGENCIA)
                     if valor > orcamento:

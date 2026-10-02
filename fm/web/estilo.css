@@ -547,6 +547,20 @@ input:focus, select:focus { border-color: var(--ouro); }
 .t-mensagens { grid-template-columns: 25rem minmax(0, 1fr); gap: .8rem; }
 .t-treinador { grid-template-columns: 20rem minmax(0, 1.2fr) minmax(0, 1fr); gap: .8rem; }
 .t-destaques { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: .8rem; }
+/* a sala de trofeus */
+.t-trofeus { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: .8rem; }
+.estante { display: flex; flex-wrap: wrap; gap: .8rem; }
+.taca-grande { display: flex; flex-direction: column; align-items: center; gap: .2rem; min-width: 7rem;
+  padding: .8rem .6rem; border: 1px solid var(--ouro-2); border-radius: 8px;
+  background: linear-gradient(180deg, rgba(240,193,40,.14), rgba(240,193,40,.03)); text-align: center; }
+.taca-grande svg { width: 2.4rem; height: 2.4rem; color: var(--ouro); }
+.taca-grande b { font-family: var(--fonte-titulo); font-size: 1.3rem; color: var(--ouro); }
+.taca-grande span { font-size: .72rem; color: var(--texto-2); }
+.recordes { display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: .6rem; }
+.recorde { border: 1px solid var(--linha); border-radius: 6px; padding: .55rem .7rem; background: rgba(0,0,0,.2); }
+.recorde > span { display: block; font-size: .64rem; text-transform: uppercase; letter-spacing: .06em; color: var(--texto-2); }
+.recorde > b { font-family: var(--fonte-titulo); font-size: 1.35rem; color: var(--texto); }
+.destaque-num { color: var(--ouro); font-weight: 700; }
 .coluna { display: flex; flex-direction: column; gap: .8rem; min-height: 0; min-width: 0; }
 .coluna > .painel { flex: 1 1 auto; }
 .coluna > .painel.fixo { flex: 0 0 auto; }

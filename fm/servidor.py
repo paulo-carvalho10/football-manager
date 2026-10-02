@@ -1132,6 +1132,7 @@ ROTAS_GET = {
     "/api/clubes": lambda jogo, q: clubes(q),
     "/api/mercado": lambda jogo, q: telas.mercado(jogo.c, q, lambda cid: _clube(jogo.c, cid)),
     "/api/olheiro": lambda jogo, q: telas.olheiro(jogo.c, lambda cid: _clube(jogo.c, cid)),
+    "/api/trofeus": lambda jogo, q: telas.sala_de_trofeus(jogo.c),
     "/api/propostas": lambda jogo, q: propostas(jogo),
     "/api/renovacao": lambda jogo, q: renovacao_info(jogo, _inteiro(q, "jogador")),
     "/api/contrato": lambda jogo, q: contrato_info(jogo, _inteiro(q, "jogador")),

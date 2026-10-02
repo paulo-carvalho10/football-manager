@@ -105,6 +105,11 @@ class Carreira:
     # cada liga tem as SUAS rodadas dentro da grade comum: {liga: {data de liga: rodada}}
     rodada_propria: dict[str, dict[int, int]] = field(default_factory=dict)
     ultimo_dia_de_energia: object = None
+    # A sala de trofeus (fm.telas.sala_de_trofeus): os recordes dos jogos do tecnico e as
+    # lendas de cada clube que ele dirigiu. Derivados do replay, como o resto: nao vao ao
+    # save.
+    recordes: dict = field(default_factory=dict)
+    lendas: dict = field(default_factory=dict)
     copas: dict = field(default_factory=dict)
     tabelas_do_ano_anterior: dict = field(default_factory=dict)
     # o funil entre torneios: quem cai da pre da Libertadores vai para a Sudamericana
@@ -931,6 +936,7 @@ class Carreira:
                 r.append(Result(meu_jogo.home, meu_jogo.away,
                                 detalhada.gols_casa, detalhada.gols_fora, n))
                 self.jogos_do_usuario[self.data] = r[-1]
+                self._anotar_recorde(r[-1], nome)
             else:
                 r = play_fixtures(partidas, ratings, rng, style)
                 self._detalhar(r)
@@ -1187,6 +1193,7 @@ class Carreira:
             resultados.append(Result(meu.home, meu.away, detalhada.gols_casa,
                                      detalhada.gols_fora, meu.matchday))
             self.jogos_do_usuario[self.data] = resultados[-1]
+            self._anotar_recorde(resultados[-1], nome)
         resultados += outros
         registrar(self.world, andamento, resultados, rng, self.exportados)
         self._somar_estatisticas(resultados, detalhada, rng, nome)
@@ -1454,6 +1461,50 @@ class Carreira:
         """O dia da proxima data da agenda (fm.agenda). E o "hoje" do lobby."""
         return self.dia(self.data)
 
+    def _anotar_recorde(self, r: Result, competicao: str) -> None:
+        """Os recordes da carreira do tecnico: maior vitoria, maior derrota, jogo com mais
+        gols e as maiores sequencias (invicta e de vitorias)."""
+        casa = r.home == self.clube_id
+        pro, contra = (r.goals_home, r.goals_away) if casa else (r.goals_away, r.goals_home)
+        rival = self.world.clubs[r.away if casa else r.home].name
+        jogo = {"placar": f"{pro} x {contra}", "rival": rival, "casa": casa,
+                "competicao": competicao, "temporada": self.temporada,
+                "dia": self.dia(self.data).strftime("%d/%m/%Y"),
+                "clube": self.clube.name, "margem": pro - contra, "gols": pro + contra}
+        rec = self.recordes
+        chaves = (("maior_vitoria", lambda j: (j["margem"], j["gols"]), pro > contra),
+                  ("maior_derrota", lambda j: (-j["margem"], j["gols"]), pro < contra),
+                  ("mais_gols", lambda j: (j["gols"], j["margem"]), True))
+        for chave, ordem, vale in chaves:
+            if vale and (chave not in rec or ordem(jogo) > ordem(rec[chave])):
+                rec[chave] = jogo
+        seq = rec.setdefault("_atual", {"invicto": 0, "vitorias": 0})
+        seq["invicto"] = seq["invicto"] + 1 if pro >= contra else 0
+        seq["vitorias"] = seq["vitorias"] + 1 if pro > contra else 0
+        for chave in ("invicto", "vitorias"):
+            melhor = rec.get(f"sequencia_{chave}", {"jogos": 0})
+            if seq[chave] > melhor["jogos"]:
+                rec[f"sequencia_{chave}"] = {"jogos": seq[chave], "ate": jogo["dia"],
+                                             "temporada": self.temporada,
+                                             "clube": self.clube.name}
+
+    def _somar_lendas(self) -> None:
+        """Na virada: o ano de cada jogador do clube entra na conta das lendas dele."""
+        meus = {p.id for p in self.world.squad(self.clube_id)}
+        for pid, linha in self.estatisticas.por_jogador.items():
+            if pid not in meus or not linha.jogos:
+                continue
+            p = self.world.players[pid]
+            chave = f"{self.clube_id}:{pid}"
+            lenda = self.lendas.setdefault(chave, {
+                "jogador": pid, "nome": p.name, "posicao": p.position,
+                "clube": self.clube.name, "clube_id": self.clube_id,
+                "jogos": 0, "gols": 0, "assistencias": 0, "temporadas": []})
+            lenda["jogos"] += linha.jogos
+            lenda["gols"] += linha.gols
+            lenda["assistencias"] += linha.assistencias
+            lenda["temporadas"].append(self.temporada)
+
     def _moral_da_data(self, resultados, detalhada) -> None:
         """A moral de quem jogou e a quimica de cada clube depois da data (fm.moral). Antes
         da energia: o onze de cada clube ainda e o que entrou em campo."""
@@ -1579,6 +1630,8 @@ class Carreira:
 
         if not self.acabou:
             raise RuntimeError(f"faltam {self.total_de_rodadas - self.rodada} rodadas")
+        # antes de qualquer saida: o ano de quem jogou aqui vai para as lendas do clube
+        self._somar_lendas()
 
         cfgs = {n: load_league(n) for n in self.ligas}
         tabelas = {n: self.tabela(n) for n in self.ligas}

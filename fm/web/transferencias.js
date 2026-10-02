@@ -14,7 +14,8 @@ const TRF = {
 };
 
 const SITUACOES = [["", "Todos"], ["a_venda", "À venda"], ["sem_contrato", "Sem contrato"],
-                   ["terminando", "Contrato terminando"], ["lista", "Minha lista"]];
+                   ["terminando", "Contrato terminando"], ["moral_baixa", "Moral baixa (negociação facilitada)"],
+                   ["lista", "Minha lista"]];
 
 /* Negociacao: taxa de transferencia digitada em euro; salario na moeda do clube, que volta
  * para euro antes de ir ao servidor. */
@@ -84,7 +85,7 @@ async function abaMercado() {
       <table class="grade" id="grade-trf"><thead><tr><th>Jogador</th><th>Pos</th><th class="n">Idade</th><th>Clube</th>
         <th class="n">Força</th><th class="n">Valor</th><th class="n">Salário</th></tr></thead>
       <tbody>${TRF.lista.jogadores.map((j) => `<tr class="clicavel ${j.id === TRF.selecionado ? "sel" : ""}" data-id="${j.id}">
-        <td><b>${escapar(j.nome)}</b>${j.observado ? ' <span class="ouro">★</span>' : ""}</td><td>${pos(j.posicao)}</td>
+        <td><b>${escapar(j.nome)}</b>${j.observado ? ' <span class="ouro">★</span>' : ""}${seloQuerSair(j)}</td><td>${pos(j.posicao)}</td>
         <td class="n">${j.idade}</td>
         <td>${j.livre ? '<span class="chip ativo">sem contrato</span>'
           : `<div class="nome-celula">${escudo(j.clube, "1.3rem")}<span>${escapar(j.clube.nome)}</span></div>`}</td>
@@ -113,6 +114,14 @@ async function abaMercado() {
   detalheTrf();
 }
 
+/* O jogador insatisfeito no clube dele (fm.moral): o dono vende por menos, ate titular,
+ * e ele aceita vir para um clube menor. */
+function seloQuerSair(j) {
+  if (j.insatisfeito) return ' <span class="moral insatisfeito" title="Insatisfeito no clube: sai por menos, até sendo titular">quer sair</span>';
+  if (j.abatido) return ' <span class="moral abatido" title="Abatido no clube: o dono aceita negociar por menos">abatido</span>';
+  return "";
+}
+
 /* ------------------------------------------------------------------ olheiro */
 
 /* O relatorio do olheiro (fm.telas.olheiro): os pontos fracos do time titular e quem
@@ -129,7 +138,7 @@ async function abaOlheiro() {
       <h3 class="titulo-secao">Relatório do olheiro</h3>
       <p class="dica" style="margin:.4rem 0 .8rem">Olhei a sua escalação vaga por vaga. Estes são os pontos
         mais fracos do time titular e quem resolve, dentro do que o clube pode pagar.</p>
-      ${TRF.lista.secoes.filter((x) => x.titulo !== "Promessas").map((x) =>
+      ${TRF.lista.secoes.filter((x) => !["Promessas", "Oportunidades"].includes(x.titulo)).map((x) =>
         `<div class="necessidade">${escapar(x.titulo)}<span class="dica">${x.jogadores.length} indicados</span></div>`).join("")}
       <div class="kpis" style="margin-top:1rem;grid-template-columns:1fr">
         <div class="kpi-c"><span>Para transferência</span><b>${eurosConvertido(o.transferencia)}</b></div>
@@ -140,17 +149,20 @@ async function abaOlheiro() {
     </div>
     <div style="overflow:auto;min-height:0">
       ${TRF.lista.secoes.map((x) => `
-        <div class="secao-olheiro"><h3>${x.titulo === "Promessas" ? "Promessas (até 21 anos)" : `Reforço para ${escapar(x.titulo)}`}</h3>
+        <div class="secao-olheiro"><h3>${x.titulo === "Promessas" ? "Promessas (até 21 anos)"
+          : x.titulo === "Oportunidades" ? "Oportunidades: moral baixa em outros clubes" : `Reforço para ${escapar(x.titulo)}`}</h3>
         <table class="grade compacta grade-olheiro"><tbody>${x.jogadores.map((j) => `
           <tr class="clicavel ${j.id === TRF.selecionado ? "sel" : ""}" data-id="${j.id}">
-            <td><b>${escapar(j.nome)}</b>${j.observado ? ' <span class="ouro">★</span>' : ""}
+            <td><b>${escapar(j.nome)}</b>${j.observado ? ' <span class="ouro">★</span>' : ""}${seloQuerSair(j)}
               <div class="dica">${escapar(j.motivo)}</div></td>
             <td>${pos(j.posicao)}</td><td class="n">${j.idade}a</td>
             <td>${j.livre ? '<span class="chip ativo">sem contrato</span>'
               : `<div class="nome-celula">${escudo(j.clube, "1.3rem")}<span>${escapar(j.clube.nome)}</span></div>`}</td>
             <td class="n">${ovr(j.overall)}</td>
             <td class="n">${j.preco ? euros(j.preco) : "livre"}<div class="dica">${dinheiro(j.salario_pedido)}/mês</div></td>
-          </tr>`).join("") || '<tr><td class="vazio">Ninguém que caiba no orçamento e topa vir.</td></tr>'}</tbody></table></div>`).join("")}
+          </tr>`).join("") || `<tr><td class="vazio">${x.titulo === "Oportunidades"
+            ? "Ninguém com a moral baixa no nível do seu time agora: elas aparecem quando um clube entra em crise."
+            : "Ninguém que caiba no orçamento e topa vir."}</td></tr>`}</tbody></table></div>`).join("")}
     </div>
     <div id="trf-detalhe" style="border-left:1px solid var(--linha);overflow:auto"></div>`;
   $$(".grade-olheiro tr[data-id]").forEach((tr) => tr.addEventListener("click", () => {
@@ -181,6 +193,8 @@ async function detalheTrf() {
     <div class="linha-flex">${j.livre ? '<span class="chip ativo">sem contrato</span>'
       : `${escudo(j.clube, "2.4rem")}<div><b>${escapar(j.clube.nome)}</b><div class="dica">${escapar(j.liga)}</div></div>`}
       <span class="espaco"></span>${ovr(j.overall)}</div>
+    ${j.insatisfeito ? '<p class="dica" style="margin:.5rem 0 0"><span class="moral insatisfeito">quer sair</span> Insatisfeito no clube: o dono aceita menos, mesmo sendo titular, e ele topa vir para um clube menor.</p>'
+      : j.abatido ? '<p class="dica" style="margin:.5rem 0 0"><span class="moral abatido">abatido</span> Anda abatido no clube: o dono já aceita negociar por menos.</p>' : ""}
     <div class="kpis" style="margin-top:.9rem">
       <div class="kpi-c destaque"><span>Valor estimado</span><b>${euros(j.valor)}</b></div>
       <div class="kpi-c"><span>Salário/mês</span><b>${dinheiro(j.salario)}</b></div>

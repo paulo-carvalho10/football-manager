@@ -35,7 +35,7 @@ def test_o_olheiro_indica_quem_melhora_o_time_e_cabe_no_bolso():
 
     c = Carreira.nova(["brasil_real", "brasil_b_real"], "Cruzeiro", seed=1)
     r = olheiro(c, lambda k: _clube(c, k))
-    assert r["secoes"][-1]["titulo"] == "Promessas"
+    assert [x["titulo"] for x in r["secoes"]][-2:] == ["Promessas", "Oportunidades"]
     meus = {p.id for p in c.world.squad(c.clube_id)}
     titulares = {p.id: p for p in c.world.squad(c.clube_id)}
     indicados = [j for s in r["secoes"] for j in s["jogadores"]]
@@ -45,8 +45,53 @@ def test_o_olheiro_indica_quem_melhora_o_time_e_cabe_no_bolso():
         assert j["preco"] <= r["orcamento"]["transferencia"]
         assert j["salario_pedido"] <= r["orcamento"]["salario"]
     # cada reforco e melhor que o titular da vaga que ele resolve
-    for secao in r["secoes"][:-1]:
+    for secao in r["secoes"][:-2]:
         nome = secao["titulo"].split(": ", 1)[1].rsplit(" (", 1)[0]
         titular = next(p for p in titulares.values() if p.name == nome)
         for j in secao["jogadores"]:
             assert j["overall"] > exibir(titular.overall)
+
+
+# ------------------------------------------------------------------ a moral no mercado
+
+def test_moral_baixa_barateia_e_o_insatisfeito_desce_de_patamar():
+    """O jogador de moral baixa no clube dele sai mais barato: o abatido um pouco, o
+    insatisfeito bastante -- e esse aceita ate clube menor, sendo titular."""
+    from fm import negocios as neg
+    from fm.moral import INSATISFEITO
+
+    c = Carreira.nova(["brasil_real", "brasil_b_real"], "Mirassol", seed=3)
+    grande = max((k for k in c.world.leagues[c._id("brasil_real")].club_ids),
+                 key=lambda k: c.world.team_rating(k))
+    estrela = max(c.world.best_xi(grande), key=lambda p: p.overall)
+    estrela.morale = 75
+    normal = neg.pedido_do_vendedor(c, estrela)
+    estrela.morale = 50
+    assert neg.pedido_do_vendedor(c, estrela) < normal
+    estrela.morale = INSATISFEITO - 5
+    barato = neg.pedido_do_vendedor(c, estrela)
+    # sem o premio de titular e com o desconto de quem quer sair
+    assert barato <= normal * 0.7, "o insatisfeito titular tem de sair bem mais barato"
+    assert neg.recusa_por_ambicao(c, estrela) is None, "insatisfeito topa clube menor"
+    r = neg.avaliar_oferta(c, estrela.id, barato)
+    assert r["resultado"] == "aceita" and "quer sair" in r["mensagem"]
+
+
+# ------------------------------------------------------------------ sala de trofeus
+
+def test_a_sala_de_trofeus_bate_com_a_temporada(virada):
+    from fm.telas import sala_de_trofeus
+
+    c, _, _ = virada
+    d = sala_de_trofeus(c)
+    resumo = c.historico[-1]
+    titulos = {t["nome"] for t in d["tacas"] if t["temporada"] == resumo["temporada"]}
+    if resumo["campeoes"].get(resumo["minha_liga"]) == resumo["clube"]:
+        assert "Série A" in titulos
+    recordes = {r["titulo"]: r for r in d["recordes"]}
+    assert "Maior vitória" in recordes and "Maior invencibilidade" in recordes
+    pro, contra = (int(x) for x in recordes["Maior vitória"]["valor"].split(" x "))
+    assert pro > contra
+    # as lendas: quem mais jogou fez a temporada quase inteira
+    assert d["mais_jogos"] and d["mais_jogos"][0]["jogos"] > 30
+    assert all(x["gols"] for x in d["artilheiros"])

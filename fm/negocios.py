@@ -20,7 +20,16 @@ from dataclasses import asdict, dataclass
 
 import numpy as np
 
-from fm.mercado import DESCIDA_TOLERADA, ELENCO_MINIMO_PARA_VENDER, preco, topa_descer
+from fm.mercado import (
+    DESCIDA_TOLERADA,
+    DESCONTO_DO_ABATIDO,
+    DESCONTO_DO_INSATISFEITO,
+    ELENCO_MINIMO_PARA_VENDER,
+    abatido,
+    insatisfeito,
+    preco,
+    topa_descer,
+)
 from fm.model import World
 from fm.moeda import texto as texto_de_euros
 from fm.moral import INSATISFEITO
@@ -90,8 +99,12 @@ def resumo_do_caixa(c) -> dict:
 def pedido_do_vendedor(c, p) -> int:
     """Quanto o dono pede. Base: o preco da janela automatica; titular custa mais."""
     base = preco(c.world, p, c.temporada)
-    if _titular(c.world, p):
+    if insatisfeito(p):
+        base *= DESCONTO_DO_INSATISFEITO     # ele quer sair: o clube aceita menos
+    elif _titular(c.world, p):
         base *= PREMIO_DO_TITULAR
+    if abatido(p):
+        base *= DESCONTO_DO_ABATIDO          # anda abatido: o clube ja aceita conversar
     base *= 1 + RUIDO_DE_PRECO * _ruido(c.seed, p.id, c.temporada, 1)
     return max(PASSO, _redondo(base))
 
@@ -115,13 +128,17 @@ def avaliar_oferta(c, pid: int, valor: int) -> dict:
         return {"resultado": "recusada", "valor": None,
                 "mensagem": f"O {dono.name} nao pretende vender: o elenco ja esta curto."}
     pedido = pedido_do_vendedor(c, p)
+    quer_sair = (f" Ele está insatisfeito e quer sair: o {dono.name} não vai segurar."
+                 if insatisfeito(p) else
+                 f" Ele anda abatido no {dono.name}, que topa negociar." if abatido(p) else "")
     if valor >= pedido:
         return {"resultado": "aceita", "valor": int(valor),
                 "mensagem": f"O {dono.name} aceitou sua proposta de {texto_de_euros(valor)} "
-                            f"por {p.name}."}
+                            f"por {p.name}.{quer_sair}"}
     if valor >= pedido * FAIXA_DE_CONTRAPROPOSTA:
         return {"resultado": "contraproposta", "valor": pedido,
-                "mensagem": f"O {dono.name} aceita negociar por {texto_de_euros(pedido)}."}
+                "mensagem": f"O {dono.name} aceita negociar por "
+                            f"{texto_de_euros(pedido)}.{quer_sair}"}
     return {"resultado": "recusada", "valor": None, "dica": _redondo(pedido * 1.02),
             "mensagem": f"O {dono.name} considera sua proposta abaixo do valor esperado."}
 
@@ -144,7 +161,8 @@ def recusa_por_ambicao(c, p) -> str | None:
     (fm.mercado.topa_descer): esse ouve a proposta, e cobra o salario do clube menor."""
     if p.club_id not in c.world.clubs or not _titular(c.world, p):
         return None
-    if topa_descer(p, c.temporada):
+    # o insatisfeito quer sair de qualquer jeito: desce de patamar para jogar
+    if topa_descer(p, c.temporada) or insatisfeito(p):
         return None
     origem = c.world.team_rating(p.club_id)
     destino = c.world.team_rating(c.clube_id)

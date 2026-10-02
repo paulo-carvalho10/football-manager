@@ -173,6 +173,7 @@ def mercado(c: Carreira, filtros: dict, clube_json) -> dict:
             return padrao
 
     from fm import negocios as neg
+    from fm.mercado import abatido, insatisfeito
 
     def texto(chave):
         return filtros.get(chave, [""])[0].strip().lower()
@@ -211,6 +212,8 @@ def mercado(c: Carreira, filtros: dict, clube_json) -> dict:
             continue
         if situacao == "a_venda" and (livre or p.id in titulares):
             continue
+        if situacao == "moral_baixa" and (livre or not (insatisfeito(p) or abatido(p))):
+            continue
         if pos and p.position != pos:
             continue
         idade = p.age(ano)
@@ -244,7 +247,9 @@ def mercado(c: Carreira, filtros: dict, clube_json) -> dict:
              "contrato": p.contract_until, "pe": p.foot, "nacionalidade": p.nationality,
              "clube": None if livre else clube_json(p.club_id), "livre": livre,
              "liga": nome_da_liga_por_id(lg.id, lg.name) if lg else "",
-             "observado": p.id in observados}
+             "observado": p.id in observados,
+             "insatisfeito": not livre and insatisfeito(p),
+             "abatido": not livre and abatido(p)}
             for p, lg, idade, livre in fora[:250]],
     }
 
@@ -267,7 +272,7 @@ def olheiro(c: Carreira, clube_json) -> dict:
     quem fecha o negocio e o usuario, pelo fluxo de proposta de sempre.
     """
     from fm import negocios as neg
-    from fm.mercado import RESERVA_DE_CAIXA
+    from fm.mercado import RESERVA_DE_CAIXA, abatido, insatisfeito
 
     w = c.world
     ano = c.temporada
@@ -315,7 +320,9 @@ def olheiro(c: Carreira, clube_json) -> dict:
                 "clube": None if livre else clube_json(p.club_id), "livre": livre,
                 "liga": nome_da_liga_por_id(lg.id, lg.name) if lg else "",
                 "observado": p.id in observados, "motivo": motivo, "tipo": tipo,
-                "preco": preco, "salario_pedido": salario}
+                "preco": preco, "salario_pedido": salario,
+                "insatisfeito": not livre and insatisfeito(p),
+                "abatido": not livre and abatido(p)}
 
     candidatos = [p for p in w.players.values()
                   if p.club_id != c.clube_id and p.loan_from is None and p.market_value >= 0]
@@ -356,6 +363,27 @@ def olheiro(c: Carreira, clube_json) -> dict:
         promessas.append(item(p, f"{p.age(ano)} anos, potencial {exibir(p.potential)}: "
                                  "pode virar titular", "promessa", preco, salario))
     secoes.append({"titulo": "Promessas", "jogadores": promessas})
+
+    # Oportunidades: quem esta com a moral baixa no clube dele (fm.moral) sai mais barato.
+    # O insatisfeito quer sair -- o dono vende ate titular, e ele topa clube menor; o
+    # abatido ainda nao, mas o clube ja aceita conversar. Os melhores que caberiam no time.
+    oportunidades = []
+    for p in sorted((p for p in candidatos if p.club_id in w.clubs
+                     and (insatisfeito(p) or abatido(p))
+                     # moral baixa e coisa de reserva e de time em crise: o corte e mais
+                     # largo que o dos reforcos, senao o grande nunca ve oportunidade
+                     and p.overall >= nivel - 8 and p.id not in ja_recomendados),
+                    key=lambda p: (not insatisfeito(p), -p.overall)):
+        if len(oportunidades) == PROMESSAS:
+            break
+        preco, salario = custo(p)
+        if not cabe(preco, salario) or neg.recusa_por_ambicao(c, p):
+            continue
+        dono = w.clubs[p.club_id].name
+        motivo = (f"Insatisfeito no {dono}: quer sair, e o clube aceita menos"
+                  if insatisfeito(p) else f"Abatido no {dono}: o clube topa negociar por menos")
+        oportunidades.append(item(p, motivo, "oportunidade", preco, salario))
+    secoes.append({"titulo": "Oportunidades", "jogadores": oportunidades})
 
     todos = [j for s in secoes for j in s["jogadores"]]
     return {"caixa": neg.resumo_do_caixa(c), "secoes": secoes, "jogadores": todos,
@@ -537,6 +565,110 @@ def treinador(c: Carreira) -> dict:
         "clima": ap.clima if ap else "",
         "curva": [{"data": d, "torcida": t, "diretoria": di}
                   for ano, d, t, di in (ap.historico if ap else []) if ano == c.temporada],
+    }
+
+
+# ------------------------------------------------------------------ sala de trofeus
+
+def _nome_da_competicao_por_chave(chave: str) -> str:
+    from fm.torneio import TORNEIOS_DIR
+    if (TORNEIOS_DIR / f"{chave}.toml").exists():
+        return _nome_da_copa(chave)
+    try:
+        return nome_da_liga(chave)
+    except FileNotFoundError:
+        return chave
+
+
+def sala_de_trofeus(c: Carreira) -> dict:
+    """Os titulos, os premios dos seus jogadores, os recordes da sua carreira e as lendas
+    de cada clube que voce dirigiu. Tudo do historico das temporadas (c.historico) e do que
+    a carreira anota jogo a jogo (c.recordes, c.lendas) -- nada inventado aqui."""
+    from fm import tecnicos as tec
+
+    tacas, premios = [], []
+    for r in c.historico:
+        clube, ano = r.get("clube", ""), r["temporada"]
+        if r["campeoes"].get(r["minha_liga"]) == clube:
+            tacas.append({"nome": nome_da_liga(r["minha_liga"]), "temporada": ano,
+                          "clube": clube, "tipo": "liga"})
+        for copa in r.get("minhas_copas", []):
+            tacas.append({"nome": _nome_da_copa(copa), "temporada": ano, "clube": clube,
+                          "tipo": "copa"})
+        if r.get("subi"):
+            tacas.append({"nome": f"Acesso · {nome_da_liga(r['minha_liga'])}",
+                          "temporada": ano, "clube": clube, "tipo": "acesso"})
+        pr = r.get("premios") or {}
+        for i, x in enumerate(pr.get("bola_de_ouro", []) or []):
+            if x and x.get("clube_nome") == clube:
+                premios.append({"premio": ["Bola de Ouro", "Bola de Prata", "Bola de Bronze"][i]
+                                if i < 3 else "Bola de Ouro", "nome": x["nome"],
+                                "temporada": ano, "clube": clube})
+        for liga in (pr.get("ligas") or {}).values():
+            for chave, rotulo in (("craque", "Craque"), ("goleiro", "Melhor goleiro"),
+                                  ("revelacao", "Revelação"), ("artilheiro", "Artilheiro"),
+                                  ("garcom", "Rei das assistências")):
+                x = liga.get(chave)
+                if x and x.get("clube_nome") == clube:
+                    premios.append({"premio": f"{rotulo} da {liga['nome']}",
+                                    "nome": x["nome"], "temporada": ano, "clube": clube})
+            if liga.get("tecnico") == tec.USUARIO:
+                premios.append({"premio": f"Técnico do ano da {liga['nome']}",
+                                "nome": c.treinador, "temporada": ano, "clube": clube})
+
+    contagem: dict[str, int] = {}
+    for t in tacas:
+        if t["tipo"] != "acesso":
+            contagem[t["nome"]] = contagem.get(t["nome"], 0) + 1
+
+    rotulos = {"maior_vitoria": "Maior vitória", "maior_derrota": "Maior derrota",
+               "mais_gols": "Jogo com mais gols"}
+    recordes = []
+    for chave, rotulo in rotulos.items():
+        j = c.recordes.get(chave)
+        if j:
+            recordes.append({"titulo": rotulo, "valor": j["placar"],
+                             "detalhe": f"{'contra o' if j['casa'] else 'no'} {j['rival']} · "
+                                        f"{_nome_da_competicao_por_chave(j['competicao'])}",
+                             "quando": f"{j['dia']} · {j['clube']}"})
+    for chave, rotulo in (("sequencia_invicto", "Maior invencibilidade"),
+                          ("sequencia_vitorias", "Mais vitórias seguidas")):
+        j = c.recordes.get(chave)
+        if j:
+            recordes.append({"titulo": rotulo, "valor": f"{j['jogos']} jogos",
+                             "detalhe": f"até {j['ate']}", "quando": j["clube"]})
+
+    # as lendas: as temporadas fechadas mais a que esta em andamento
+    lendas = {k: dict(v) for k, v in c.lendas.items()}
+    meus = {p.id for p in c.world.squad(c.clube_id)}
+    for pid, linha in c.estatisticas.por_jogador.items():
+        if pid not in meus or not linha.jogos:
+            continue
+        p = c.world.players[pid]
+        chave = f"{c.clube_id}:{pid}"
+        x = lendas.setdefault(chave, {"jogador": pid, "nome": p.name, "posicao": p.position,
+                                      "clube": c.clube.name, "clube_id": c.clube_id,
+                                      "jogos": 0, "gols": 0, "assistencias": 0,
+                                      "temporadas": []})
+        x["jogos"] += linha.jogos
+        x["gols"] += linha.gols
+        x["assistencias"] += linha.assistencias
+        x["temporadas"] = [*x["temporadas"], c.temporada]
+    def linha_da_lenda(x):
+        return {"nome": x["nome"], "posicao": x["posicao"], "clube": x["clube"],
+                "jogos": x["jogos"], "gols": x["gols"], "assistencias": x["assistencias"],
+                "periodo": (f"{min(x['temporadas'])}–{max(x['temporadas'])}"
+                            if len(set(x["temporadas"])) > 1 else str(x["temporadas"][0])),
+                "atual": x["jogador"] in meus and x["clube_id"] == c.clube_id}
+    todas = list(lendas.values())
+    return {
+        "treinador": c.treinador, "temporadas": len(c.historico) + 1,
+        "tacas": tacas[::-1], "contagem": sorted(contagem.items(), key=lambda x: -x[1]),
+        "premios": premios[::-1], "recordes": recordes,
+        "artilheiros": [linha_da_lenda(x) for x in sorted(
+            todas, key=lambda x: (-x["gols"], -x["jogos"]))[:10] if x["gols"]],
+        "mais_jogos": [linha_da_lenda(x) for x in sorted(
+            todas, key=lambda x: (-x["jogos"], -x["gols"]))[:10]],
     }
 
 

@@ -16,6 +16,7 @@ const ABAS = [
   {id: "mensagens", rotulo: "Mensagens", icone: "mensagens"},
   {id: "treinador", rotulo: "Treinador", icone: "treinador"},
   {id: "destaques", rotulo: "Destaques", icone: "estrela"},
+  {id: "trofeus", rotulo: "Troféus", icone: "medalha"},
   {id: "salvar", rotulo: "Salvar", icone: "salvar", acao: janelaSalvar},
   {id: "menu", rotulo: "Menu", icone: "sair", acao: () => irParaModo("menu")},
 ];
@@ -1265,6 +1266,54 @@ function campinhoDaSelecao(s) {
         ${j.gols ? `<span>${"⚽".repeat(Math.min(j.gols, 3))}</span>` : ""}</span>
     </div>`).join("")}</div>`;
 }
+
+/* ================================================================== SALA DE TROFEUS */
+
+/* Os titulos, os premios dos seus jogadores, os recordes da sua carreira e as lendas
+ * de cada clube que voce dirigiu (fm.telas.sala_de_trofeus). */
+TELAS.trofeus = async function () {
+  const d = await api.get("/api/trofeus");
+  const iconeTaca = {liga: "tabela", copa: "tabela", acesso: "estrela"};
+  const lendas = (lista, campo) => `<table class="grade compacta"><thead><tr><th class="n">#</th><th>Jogador</th>
+      <th>Clube</th><th class="n">J</th><th class="n">G</th><th class="n">A</th><th class="n">Período</th></tr></thead>
+    <tbody>${lista.map((x, i) => `<tr class="${x.atual ? "eu" : ""}"><td class="n">${i + 1}</td>
+      <td>${pos(x.posicao)} <b>${escapar(x.nome)}</b></td><td>${escapar(x.clube)}</td>
+      <td class="n ${campo === "jogos" ? "destaque-num" : ""}">${x.jogos}</td>
+      <td class="n ${campo === "gols" ? "destaque-num" : ""}">${x.gols}</td><td class="n">${x.assistencias}</td>
+      <td class="n dica">${escapar(x.periodo)}</td></tr>`).join("")
+      || '<tr><td colspan="7" class="vazio">A galeria começa quando a primeira temporada terminar.</td></tr>'}</tbody></table>`;
+  $("#tela-trofeus").innerHTML = `
+    <div class="coluna">
+      <div class="painel fixo"><div class="cab"><h2>Sala de troféus</h2>
+          <span class="dica">${escapar(d.treinador)} · ${d.temporadas} temporada${d.temporadas === 1 ? "" : "s"}</span></div>
+        <div class="corpo">
+          ${d.contagem.length ? `<div class="estante">${d.contagem.map(([nome, n]) => `
+            <div class="taca-grande">${icone("tabela")}<b>${n}×</b><span>${escapar(nome)}</span></div>`).join("")}</div>`
+            : '<div class="vazio">Nenhum título ainda. A primeira taça é a mais difícil.</div>'}
+        </div></div>
+      <div class="painel"><div class="cab"><h2>Conquistas</h2><span class="dica">títulos e acessos, do mais recente</span></div>
+        <div class="corpo sem-margem"><table class="grade compacta"><tbody>${d.tacas.map((t) => `
+          <tr><td class="c">${icone(iconeTaca[t.tipo] || "tabela", 'style="width:1.1rem;height:1.1rem"')}</td>
+            <td><b>${escapar(t.nome)}</b></td><td>${escapar(t.clube)}</td><td class="n">${t.temporada}</td></tr>`).join("")
+          || '<tr><td class="vazio">Sem conquistas por enquanto.</td></tr>'}</tbody></table></div></div>
+      <div class="painel fixo"><div class="cab"><h2>Prêmios individuais</h2><span class="dica">dos seus jogadores e seus</span></div>
+        <div class="corpo sem-margem" style="max-height:16rem;overflow:auto"><table class="grade compacta"><tbody>${d.premios.map((x) => `
+          <tr><td><b>${escapar(x.premio)}</b><div class="dica">${escapar(x.nome)} · ${escapar(x.clube)}</div></td>
+            <td class="n">${x.temporada}</td></tr>`).join("")
+          || '<tr><td class="vazio">Nenhum prêmio ainda: saem na virada do ano.</td></tr>'}</tbody></table></div></div>
+    </div>
+    <div class="coluna">
+      <div class="painel fixo"><div class="cab"><h2>Recordes</h2><span class="dica">da sua carreira</span></div>
+        <div class="corpo"><div class="recordes">${d.recordes.map((r) => `
+          <div class="recorde"><span>${escapar(r.titulo)}</span><b>${escapar(r.valor)}</b>
+            <div class="dica">${escapar(r.detalhe)}</div><div class="dica">${escapar(r.quando)}</div></div>`).join("")
+          || '<div class="vazio">Os recordes aparecem depois do primeiro jogo.</div>'}</div></div></div>
+      <div class="painel"><div class="cab"><h2>Hall da fama · artilheiros</h2></div>
+        <div class="corpo sem-margem">${lendas(d.artilheiros, "gols")}</div></div>
+      <div class="painel"><div class="cab"><h2>Hall da fama · mais jogos</h2></div>
+        <div class="corpo sem-margem">${lendas(d.mais_jogos, "jogos")}</div></div>
+    </div>`;
+};
 
 TELAS.destaques = async function () {
   const qs = new URLSearchParams();
