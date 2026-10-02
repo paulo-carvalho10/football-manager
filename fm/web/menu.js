@@ -49,9 +49,7 @@ async function janelaDeSaves() {
         <div class="item"><span>${icone("pasta")}</span><b>${escapar(s)}</b>
           <span class="espaco"></span>
           <button class="btn primario pequeno" data-carregar="${escapar(s)}">Carregar</button></div>`).join("")}
-       </div>
-       <p class="nota-honesta">Carregar refaz a carreira a partir da semente e das suas decisões —
-         temporadas longas levam alguns segundos.</p>`
+       </div>`
     : `<div class="vazio">Nenhum jogo salvo ainda.</div>`;
   const promessa = abrirJanela({titulo: "Jogos salvos", corpo, estreita: true,
                                 botoes: [{rotulo: "Voltar"}]});
@@ -81,7 +79,6 @@ function janelaDeConfiguracoes() {
       ${seg("perguntarPenalti", [[true, "Sim"], [false, "Não, usar a ordem"]])}</label>
     <label class="campo"><span>Pausar em expulsão</span>
       ${seg("pausarNaExpulsao", [[true, "Sim"], [false, "Não"]])}</label>
-    <p class="nota-honesta">As preferências ficam neste navegador; não entram no save da carreira.</p>
   </div>`;
   const p = abrirJanela({titulo: "Configurações", corpo, estreita: true,
     botoes: [{rotulo: "Salvar", primario: true, acao: () => {
@@ -191,8 +188,7 @@ function desenharPaises() {
 function desenharEstaduais() {
   $("#lista-estaduais").innerHTML = `<div class="lista-simples">${NOVA.catalogo.estaduais.map((e) =>
     `<div class="item inativo"><span>${escapar(e)}</span><span class="espaco"></span>
-      <span class="chip">em desenvolvimento</span></div>`).join("")}</div>
-    <p class="nota-honesta">Os estaduais ainda não existem no motor. A temporada começa direto no nacional.</p>`;
+      <span class="chip">em desenvolvimento</span></div>`).join("")}</div>`;
 }
 
 function desenharCopas() {
@@ -204,8 +200,7 @@ function desenharCopas() {
         `<div class="item ${ativo ? "ok" : "inativo"}">${ativo ? icone("check") : '<span class="dica" style="width:1.1rem;text-align:center">—</span>'}
           <span>${escapar(c)}</span></div>`).join("")}</div>`;
   }).join("");
-  $("#lista-copas").innerHTML = blocos +
-    `<p class="nota-honesta">As copas entram sozinhas com o país: as vagas saem da tabela e dos campeões do ano anterior.</p>`;
+  $("#lista-copas").innerHTML = blocos;
 }
 
 function desenharConfig() {
@@ -223,8 +218,6 @@ function desenharConfig() {
         `<option ${f === NOVA.formacao ? "selected" : ""}>${f}</option>`).join("")}</select></label>
     <label class="campo"><span>Número do mundo</span>
       <input type="number" id="in-seed" min="1" max="999999" value="${NOVA.seed}"></label>
-    <p class="nota-honesta">O número do mundo é a semente: o mesmo número gera exatamente o mesmo
-      universo — elencos, calendário e resultados de quem você não controla.</p>
     <div class="kpis">
       <div class="kpi-c"><span>Temporada inicial</span><b id="temporada-inicial">2027</b></div>
       <div class="kpi-c"><span>Modo</span><b>Carreira</b></div>
@@ -301,8 +294,7 @@ async function abrirEscolha() {
     <label class="campo"><span>Ordenar por</span>
       <select id="f-ordem">${[["forca", "Força do elenco"], ["reputacao", "Reputação"], ["caixa", "Caixa"],
         ["valor_do_elenco", "Valor do elenco"], ["nome", "Nome"]].map(([k, v]) =>
-        `<option value="${k}" ${ESCOLHA.ordem.coluna === k ? "selected" : ""}>${v}</option>`).join("")}</select></label>
-    <p class="nota-honesta">A expectativa é a meta que a diretoria vai cobrar, calculada pela força do elenco dentro da divisão.</p>`;
+        `<option value="${k}" ${ESCOLHA.ordem.coluna === k ? "selected" : ""}>${v}</option>`).join("")}</select></label>`;
   $("#f-busca").addEventListener("input", (e) => { ESCOLHA.filtro.busca = e.target.value; desenharClubes(); });
   $("#f-liga").addEventListener("change", (e) => { ESCOLHA.filtro.liga = e.target.value; desenharClubes(); });
   $("#f-perfil").addEventListener("change", (e) => { ESCOLHA.filtro.perfil = e.target.value; desenharClubes(); });
@@ -418,10 +410,6 @@ function boasVindas(e) {
       <div class="linha-flex">${escudo(e.clube, "3.6rem")}
         <div><b style="font-size:1.1rem">${escapar(e.treinador)}</b><div class="dica">novo treinador · temporada ${e.temporada}</div></div></div>
       <div class="meta-caixa"><span>A diretoria espera</span>${escapar(e.aprovacao.meta)}</div>
-      <p>Torcida e diretoria começam neutras. Resultados, copas e o uso do dinheiro movem a
-        confiança — abaixo de certo ponto, o emprego acaba.</p>
-      <p class="dica">Dica: <span class="tecla">ESPAÇO</span> pausa a partida ao vivo,
-        <span class="tecla">S</span> abre as substituições e <span class="tecla">T</span> a tática.</p>
     </div>`, botoes: [{rotulo: "Ao trabalho", primario: true}]});
 }
 

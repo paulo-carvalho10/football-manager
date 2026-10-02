@@ -496,8 +496,7 @@ TELAS.escalacao = async function () {
         <span class="espaco" style="flex:1"></span>
         ${titulares.some((p) => p.suspenso) ? `<span class="chip" style="border-color:var(--ruim);color:var(--ruim)">suspenso na escalação: ${escapar(titulares.filter((p) => p.suspenso).map((p) => sobrenome(p.nome)).join(", "))} — entra o melhor reserva do setor</span>` : ""}
         ${improvisados.length ? `<span class="chip" style="border-color:var(--ruim);color:var(--ruim)">improvisado: ${escapar(improvisados.join(" · "))}</span>`
-          : '<span class="chip ativo">todos na posição</span>'}
-        <span class="dica">Clique num titular e depois num ponto vazio para mudar a posição · dois titulares trocam de vaga · titular e reserva, substituição</span></div>
+          : '<span class="chip ativo">todos na posição</span>'}</div>
     </div>
     <div class="coluna">
       <div class="painel">
@@ -526,8 +525,6 @@ TELAS.escalacao = async function () {
             <label class="campo"><span>Faltas</span>${opcoesFuncao("faltas")}</label>
             <label class="campo"><span>Escanteios</span>${opcoesFuncao("escanteios")}</label>
           </div>
-          <p class="nota-honesta">Quem bate o pênalti você escolhe na hora, quando ele acontece na partida.
-            Capitão, faltas e escanteios ficam salvos, mas ainda não mudam o resultado.</p>
         </div>
       </div>
     </div>`;
@@ -542,7 +539,7 @@ function efeitoDaTatica(t) {
   }[t.estilo];
   const mrc = {leve: "marcação leve poupa energia e cede espaço",
                normal: "marcação normal", forte: "pressão alta sufoca o rival e cansa o time na rodada seguinte"}[t.marcacao];
-  return `<b>${t.nome || t.formacao}</b> · ${txt}; ${mrc}. Os efeitos são modestos de propósito — tática é escolha, não atalho.`;
+  return `<b>${t.nome || t.formacao}</b> · ${txt}; ${mrc}.`;
 }
 
 const ROTULOS_VAGA = {GOL: "goleiro", LE: "lateral-esquerdo", LD: "lateral-direito", ZAG: "zagueiro",
@@ -933,11 +930,6 @@ TELAS.financas = async function () {
           ${barraH("Receita prevista", f.receita, "var(--bom)")}
           ${barraH("Folha salarial", f.folha, "var(--ruim)")}
           ${barraH("Custo de operação", f.operacao, "#c77a2a")}
-          <p class="nota-honesta">A receita sai do valor do elenco no início do ano e da reputação; premiação
-            de liga e de copas entra no fechamento. O balanço é feito na virada da temporada.</p>
-          ${MOEDA.codigo === "EUR" ? "" : `<p class="nota-honesta">Caixa, receita e salários em ${MOEDA.simbolo};
-            valor de mercado e transferências em euro, como no futebol entre países. Câmbio fixo:
-            € 1 = ${MOEDA.simbolo} ${String(MOEDA.taxa.toFixed(2)).replace(".", ",")}.</p>`}
         </div></div>
       <div class="painel fixo"><div class="cab"><h2>Folha por setor</h2><span class="dica">por mês</span></div>
         <div class="corpo">${folhaPorSetor()}</div></div>
@@ -985,9 +977,7 @@ TELAS.mensagens = async function () {
         </div>`).join("") || '<div class="vazio">Nada por aqui.</div>'}</div></div>
     <div class="painel"><div class="corpo leitura">${m ? `
       <h2>${escapar(m.assunto)}</h2><div class="de">De: ${escapar(m.remetente)} · ${m.data}</div>
-      <p>${escapar(m.texto)}</p>` : '<div class="vazio">Selecione uma mensagem.</div>'}
-      <p class="nota-honesta" style="margin-top:2rem">A caixa é montada da situação do clube a cada dia: o que a diretoria,
-        a torcida, a preparação física e o olheiro diriam hoje.</p></div></div>`;
+      <p>${escapar(m.texto)}</p>` : '<div class="vazio">Selecione uma mensagem.</div>'}</div></div>`;
   if (m && !m.lida) {
     await api.post("/api/lida", {ids: [m.id]});
     recarregarEstado();
@@ -1060,9 +1050,7 @@ TELAS.treinador = async function () {
             <td>${x.clube ? `<div class="nome-celula">${escudo(x.clube, "1.1rem")}<span>${escapar(x.clube.nome)}</span></div>` : '<span class="dica">sem clube</span>'}</td>
             <td class="n"><b>${String(x.reputacao).replace(".", ",")}</b></td>
             <td class="n ${x.variacao > 0 ? "bom" : x.variacao < 0 ? "ruim" : "dica"}">${x.variacao > 0 ? "+" : ""}${String(x.variacao).replace(".", ",")}</td>
-            <td class="n">${x.titulos || ""}</td></tr>`).join("")}</tbody></table></div>
-        <div class="pe"><span class="dica">A reputação anda na virada: o que você fez com o elenco que tinha, títulos, acesso e queda.
-          É ela que faz clubes maiores te chamarem.</span></div></div>
+            <td class="n">${x.titulos || ""}</td></tr>`).join("")}</tbody></table></div></div>
     </div>`;
 };
 
@@ -1084,9 +1072,7 @@ function curvaDeConfianca(curva) {
 function janelaSalvar() {
   return abrirJanela({titulo: "Salvar carreira", estreita: true, corpo: `
     <label class="campo"><span>Nome do save</span>
-      <input type="text" id="nome-save" value="${escapar(ESTADO.clube.nome.toLowerCase().replace(/[^a-z0-9]+/g, "-"))}-${ESTADO.temporada}"></label>
-    <p class="nota-honesta">O save guarda a semente e as suas decisões — escalações, táticas e trocas durante
-      os jogos —, não o mundo inteiro. Por isso tem poucos KB.</p>`,
+      <input type="text" id="nome-save" value="${escapar(ESTADO.clube.nome.toLowerCase().replace(/[^a-z0-9]+/g, "-"))}-${ESTADO.temporada}"></label>`,
     botoes: [{rotulo: "Cancelar"}, {rotulo: "Salvar", primario: true, acao: async () => {
       const nome = $("#nome-save").value.trim().replace(/[^\w-]+/g, "-") || "carreira";
       const r = await api.post("/api/salvar", {nome});
@@ -1183,9 +1169,7 @@ function htmlDePremios(p) {
       ${d.selecao.length ? `<div class="selecao-do-ano"><span class="dica">Seleção do ano:</span>
         ${d.selecao.map((x) => `<span class="${x.clube === ESTADO.clube.id ? "meu" : ""}">${escapar(x.nome)}</span>`).join(" · ")}</div>` : ""}
     </div>`).join("");
-  return `<div class="bola-de-ouro"><h3>Bola de Ouro ${p.temporada}</h3><div class="podio">${podio}</div></div>${ligas}
-    <p class="nota-honesta">Pela média das notas do ano (mínimo de jogos), com um pouco a mais para quem ganhou título.
-      Premiado ganha moral.</p>`;
+  return `<div class="bola-de-ouro"><h3>Bola de Ouro ${p.temporada}</h3><div class="podio">${podio}</div></div>${ligas}`;
 }
 
 function janelaDePremios(p) {
@@ -1354,8 +1338,7 @@ TELAS.destaques = async function () {
       ${campinhoDaSelecao(s)}
       <div class="pe">${craque ? `<span class="chip ouro">★ Craque da rodada: ${escapar(craque.nome)} (${escapar(craque.clube.nome)}) · ${craque.nota.toFixed(1).replace(".", ",")}</span>` : ""}
         ${s.meus ? `<span class="chip ativo">${s.meus} do ${escapar(ESTADO.clube.nome)}</span>` : ""}
-        <span class="espaco" style="flex:1"></span>
-        <span class="dica">4-3-3 pelas notas · no seu jogo a nota vem dos lances; nos outros, do placar, gols e assistências</span></div>
+        <span class="espaco" style="flex:1"></span></div>
     </div>
     <div class="coluna">
       <div class="painel">

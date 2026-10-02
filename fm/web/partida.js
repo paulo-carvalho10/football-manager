@@ -316,9 +316,7 @@ async function avisarLesao(e) {
   VIVO.pausado = true;
   const nome = nomeDoJogador(e.jogador) || "?";
   const escolha = await abrirJanela({titulo: "LESÃO", estreita: true, corpo: `
-    <p><span class="ic-lesao">✚</span> <b>${escapar(nome)}</b> sente aos ${e.minuto}' e pede para sair.</p>
-    <p class="dica">Escolha quem entra, ou deixe a comissão técnica colocar o reserva do mesmo setor
-      na parada técnica (${VIVO.s.minuto}'). Sem troca sobrando, o time fica com um a menos.</p>`,
+    <p><span class="ic-lesao">✚</span> <b>${escapar(nome)}</b> sente aos ${e.minuto}' e pede para sair.</p>`,
     botoes: [{rotulo: "Deixar o automático", valor: "auto"},
              {rotulo: "Escolher substituto ›", primario: true, valor: "subs"}]});
   VIVO.pausado = false;
@@ -361,7 +359,7 @@ async function avisarExpulsao(e) {
   VIVO.pausado = true;
   const escolha = await abrirJanela({titulo: "EXPULSÃO", estreita: true, corpo: `
     <p><span class="cartao vm"></span> <b>${escapar(nomeDoJogador(e.jogador) || "?")}</b> (${escapar(clube.nome)}) recebe o vermelho aos ${e.minuto}'.</p>
-    <p class="dica">${meu ? "Seu time fica com um a menos. Vale mexer antes de o jogo seguir." : "O adversário fica com um a menos."}</p>`,
+    <p class="dica">${meu ? "Seu time fica com um a menos." : "O adversário fica com um a menos."}</p>`,
     botoes: [{rotulo: "Ajustar tática", valor: "tatica"}, {rotulo: "Substituições", valor: "subs"},
              {rotulo: "Continuar ›", primario: true, valor: "ok"}]});
   VIVO.pausado = false;
@@ -383,8 +381,7 @@ async function escolherPenalti() {
       <td><input type="radio" name="batedor" value="${j.id}" id="bat-${j.id}" ${i === 0 ? "checked" : ""}></td>
       <td><label for="bat-${j.id}">${pos(j.posicao)} <b>${escapar(j.nome)}</b>${j.ordem ? ` <span class="chip">${j.ordem}º batedor</span>` : ""}</label></td>
       <td class="n">${j.finalizacao}</td><td class="n">${j.tecnica}</td><td class="n">${j.confianca}</td>
-      <td class="n"><b>${j.chance}%</b></td></tr>`).join("")}</tbody></table>
-    <p class="nota-honesta">A chance é a conta do motor: finalização e técnica do batedor contra os reflexos do goleiro.</p>`,
+      <td class="n"><b>${j.chance}%</b></td></tr>`).join("")}</tbody></table>`,
     botoes: [{rotulo: "Cobrar ›", primario: true, valor: "ok", acao: () => {
       const r = document.querySelector("input[name=batedor]:checked");
       if (r) escolhido = +r.value;
@@ -620,8 +617,6 @@ function pintarGaveta() {
             ${pos(j.posicao)}<span class="nm">${escapar(j.nome)}</span>${ovr(j.overall)}
             <span class="en" style="color:${corDe(j.energia, 85, 70)}">${j.energia}%</span></div>`).join("") || '<div class="vazio">Banco vazio.</div>'}</div>
         </div>
-        <p class="nota-honesta">A energia em campo cai com o minuto, o fôlego e a energia com que o jogador entrou.
-          As trocas entram na próxima parada técnica (${s.minuto}'). Quem sai não volta.</p>
       </div>
       <div class="pe"><span class="dica">Escolha quem sai e quem entra</span><span class="espaco"></span>
         <button class="btn azul" id="g-add" ${subSai && subEntra && !esgotou ? "" : "disabled"}>Adicionar troca</button>
@@ -651,7 +646,6 @@ function pintarGaveta() {
         <div class="linha-t"><span>Marcação</span>${seg("marcacao", ["leve", "normal", "forte"], {leve: "Leve", normal: "Normal", forte: "Pressão alta"})}</div>
         <div class="linha-t"><span>Formação</span>${seg("formacao", ["4-3-3", "4-4-2", "4-2-3-1", "4-5-1", "3-5-2", "3-4-3", "5-3-2"], {})}</div>
         <div class="efeito">${efeitoDaTatica(t)}</div>
-        <p class="nota-honesta">A mudança vale a partir da próxima parada técnica (${s.minuto}') e só para esta partida.</p>
       </div>
       <div class="pe"><span class="espaco"></span><button class="btn primario" id="g-ok">Confirmar <span class="tecla">ENTER</span></button></div>
     </aside>`;

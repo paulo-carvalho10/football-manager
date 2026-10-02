@@ -136,16 +136,12 @@ async function abaOlheiro() {
   $("#trf-corpo").innerHTML = `
     <div style="padding:.9rem;border-right:1px solid var(--linha);overflow:auto">
       <h3 class="titulo-secao">Relatório do olheiro</h3>
-      <p class="dica" style="margin:.4rem 0 .8rem">Olhei a sua escalação vaga por vaga. Estes são os pontos
-        mais fracos do time titular e quem resolve, dentro do que o clube pode pagar.</p>
       ${TRF.lista.secoes.filter((x) => !["Promessas", "Oportunidades"].includes(x.titulo)).map((x) =>
         `<div class="necessidade">${escapar(x.titulo)}<span class="dica">${x.jogadores.length} indicados</span></div>`).join("")}
       <div class="kpis" style="margin-top:1rem;grid-template-columns:1fr">
         <div class="kpi-c"><span>Para transferência</span><b>${eurosConvertido(o.transferencia)}</b></div>
         <div class="kpi-c"><span>Folga na folha (mês)</span><b>${dinheiro(o.salario)}</b></div>
       </div>
-      <p class="nota-honesta">O olheiro só indica. Nenhum jogador entra ou sai do seu elenco sem você:
-        a compra é pela proposta, e as ofertas por jogadores seus chegam para você decidir.</p>
     </div>
     <div style="overflow:auto;min-height:0">
       ${TRF.lista.secoes.map((x) => `
@@ -193,8 +189,6 @@ async function detalheTrf() {
     <div class="linha-flex">${j.livre ? '<span class="chip ativo">sem contrato</span>'
       : `${escudo(j.clube, "2.4rem")}<div><b>${escapar(j.clube.nome)}</b><div class="dica">${escapar(j.liga)}</div></div>`}
       <span class="espaco"></span>${ovr(j.overall)}</div>
-    ${j.insatisfeito ? '<p class="dica" style="margin:.5rem 0 0"><span class="moral insatisfeito">quer sair</span> Insatisfeito no clube: o dono aceita menos, mesmo sendo titular, e ele topa vir para um clube menor.</p>'
-      : j.abatido ? '<p class="dica" style="margin:.5rem 0 0"><span class="moral abatido">abatido</span> Anda abatido no clube: o dono já aceita negociar por menos.</p>' : ""}
     <div class="kpis" style="margin-top:.9rem">
       <div class="kpi-c destaque"><span>Valor estimado</span><b>${euros(j.valor)}</b></div>
       <div class="kpi-c"><span>Salário/mês</span><b>${dinheiro(j.salario)}</b></div>
@@ -430,7 +424,6 @@ async function janelaDeProposta(prop) {
         <div class="kpi-c"><span>Valor do jogador</span><b>${euros(j.valor)}</b></div>
         <div class="kpi-c destaque"><span>Proposta</span><b>${eurosConvertido(prop.valor)}</b></div>
       </div>
-      <p class="nota-honesta">Sem resposta, a proposta caduca quando a próxima data for jogada.</p>
     </div>`,
     botoes: [{rotulo: "Recusar", valor: "recusar"}, {rotulo: "Negociar", valor: "negociar"},
              {rotulo: "Aceitar", primario: true, valor: "aceitar"}]});
@@ -497,8 +490,7 @@ async function abaNegociacoes() {
       return `<tr><td class="num">${n.data}</td><td>${pos(n.posicao)} <b>${escapar(n.nome)}</b></td>
         <td>${n.clube ? escapar(n.clube.nome) : "sem clube"}</td><td class="n">${euros(n.oferta)}</td>
         <td class="${cls}">${rot}</td><td class="n">${n.valor ? euros(n.valor) : "—"}</td></tr>`;
-    }).join("") || '<tr><td colspan="6" class="vazio">Nenhuma oferta feita nesta sessão.</td></tr>'}</tbody></table>
-    <p class="nota-honesta" style="margin:.8rem">As ofertas ficam aqui enquanto o jogo está aberto. O que vira negócio vai para o Histórico e para o save.</p></div>`;
+    }).join("") || '<tr><td colspan="6" class="vazio">Nenhuma oferta feita nesta sessão.</td></tr>'}</tbody></table></div>`;
 }
 
 async function abaHistorico() {
