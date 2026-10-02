@@ -23,6 +23,7 @@ import numpy as np
 from fm.mercado import DESCIDA_TOLERADA, ELENCO_MINIMO_PARA_VENDER, preco, topa_descer
 from fm.model import World
 from fm.moeda import texto as texto_de_euros
+from fm.moral import INSATISFEITO
 from fm.temporada import SALARIO_SOBRE_VALOR
 
 # o quanto da receita anual a diretoria deixa ir para salario. Acima disso ela veta.
@@ -177,7 +178,7 @@ def interesse_em_renovar(c, p) -> dict:
     idade = p.age(c.temporada)
     nivel_do_time = c.world.team_rating(c.clube_id)
     titular = _titular(c.world, p)
-    if (p.overall >= nivel_do_time + 8 and idade <= 29) or p.morale < 35:
+    if (p.overall >= nivel_do_time + 8 and idade <= 29) or p.morale < INSATISFEITO:
         return {"nivel": "baixo", "motivo": "Deseja buscar novos desafios.",
                 "pretendido": None}
     if p.wage < justo * 0.85 or (not titular and idade < 30):
@@ -253,7 +254,9 @@ def gerar_propostas(c, rng: np.random.Generator) -> list[Proposta]:
     meus = [p for p in c.world.squad(c.clube_id) if p.market_value > 0 and p.loan_from is None]
     if len(meus) <= ELENCO_MINIMO:
         return []
-    pesos = np.array([p.market_value ** 0.7 for p in meus], dtype=float)
+    # o insatisfeito (fm.moral) e o que mais aparece no mercado: o empresario dele avisa
+    pesos = np.array([p.market_value ** 0.7 * (3.0 if p.morale < INSATISFEITO else 1.0)
+                      for p in meus], dtype=float)
     alvo = meus[int(rng.choice(len(meus), p=pesos / pesos.sum()))]
     base = alvo.market_value * (PREMIO_PARA_LEVAR_TITULAR if _titular(c.world, alvo) else 1.0)
     nivel = c.world.team_rating(c.clube_id)

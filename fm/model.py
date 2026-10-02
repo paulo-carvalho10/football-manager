@@ -130,6 +130,11 @@ class World:
     # Suspensos da competicao que esta sendo jogada AGORA (fm.disciplina). A carreira
     # preenche antes de cada data e esvazia depois: fora da data ninguem esta suspenso.
     indisponiveis: set[int] = field(default_factory=set)
+    # A quimica do vestiario de cada clube (fm.moral), 0-100. Quem nao esta aqui esta no
+    # neutro: o mundo nasce sem historia.
+    quimica: dict[int, int] = field(default_factory=dict)
+    # Jogos seguidos no banco de quem esperava jogar (fm.moral): a frustracao acumula.
+    banco_seguido: dict[int, int] = field(default_factory=dict)
 
     def squad(self, club_id: int) -> list[Player]:
         return [self.players[p] for p in self.clubs[club_id].player_ids]

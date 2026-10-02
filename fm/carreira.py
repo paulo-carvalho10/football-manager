@@ -24,6 +24,7 @@ from fm.generate import build_world
 from fm.match import effective_rating
 from fm.model import World
 from fm.moeda import texto as texto_de_euros
+from fm.moral import bonus as bonus_de_moral
 from fm.rng import Streams
 from fm.season import CONDITION_COST, TAXA_DE_RECUPERACAO
 from fm.table import Row, build_table
@@ -911,7 +912,8 @@ class Carreira:
             jogaram |= {f.home for f in partidas} | {f.away for f in partidas}
             ratings = {
                 cid: float(effective_rating(self.world.team_rating(cid),
-                                            fatigue=self.world.fatigue_penalty(cid)))
+                                            fatigue=self.world.fatigue_penalty(cid),
+                                            morale=bonus_de_moral(self.world, cid)))
                 for cid in self.world.leagues[lid].club_ids
             }
             rng = self.streams.get("carreira", self.temporada, n, lid)
@@ -952,6 +954,7 @@ class Carreira:
                 self.world, rs, rodada[nome], minha)
             clubes = {x.home for x in rs} | {x.away for x in rs}
             self._cartoes_da_data(nome, rs, minha, clubes)
+        self._moral_da_data(todos, detalhada)
         self._lesoes_da_data(todos, detalhada)
 
         self._gastar_energia(jogaram, tatica)
@@ -1014,6 +1017,11 @@ class Carreira:
         sou_casa = jogo.home == self.clube_id
         ma, md = (confronto(tatica, Tatica()) if sou_casa
                   else confronto(Tatica(), tatica))
+        # a moral e a quimica, que no motor rapido entram no rating, aqui entram nos gols
+        # esperados: um ponto de overall vale ~2,4% de gol na conta do motor (fm.match)
+        import math
+        dif = bonus_de_moral(self.world, jogo.home) - bonus_de_moral(self.world, jogo.away)
+        ma, md = ma * math.exp(0.024 * dif), md * math.exp(-0.024 * dif)
         chave = f"{self.temporada}:{self.data}"
         from fm.tatica import papeis_em_campo
         papeis = papeis_em_campo(self.world.escalacao_fixa.get(self.clube_id)
@@ -1161,7 +1169,8 @@ class Carreira:
         resultados: list[Result] = []
 
         ratings = {cid: float(effective_rating(self.world.team_rating(cid),
-                                               fatigue=self.world.fatigue_penalty(cid)))
+                                               fatigue=self.world.fatigue_penalty(cid),
+                                               morale=bonus_de_moral(self.world, cid)))
                    for cid in {f.home for f in etapa.fixtures} | {f.away for f in etapa.fixtures}}
         # uma etapa tem no maximo um jogo do usuario: no mata-mata de ida e volta a ida e
         # a volta sao datas diferentes (fm.copa), e as duas sao jogadas em detalhe
@@ -1184,6 +1193,7 @@ class Carreira:
 
         jogaram = {f.home for f in etapa.fixtures} | {f.away for f in etapa.fixtures}
         self._cartoes_da_data(nome, resultados, detalhada, jogaram)
+        self._moral_da_data(resultados, detalhada)
         self._lesoes_da_data(resultados, detalhada)
         self._gastar_energia(jogaram, tatica)
         self._encerrar_desfalques()
@@ -1444,6 +1454,27 @@ class Carreira:
         """O dia da proxima data da agenda (fm.agenda). E o "hoje" do lobby."""
         return self.dia(self.data)
 
+    def _moral_da_data(self, resultados, detalhada) -> None:
+        """A moral de quem jogou e a quimica de cada clube depois da data (fm.moral). Antes
+        da energia: o onze de cada clube ainda e o que entrou em campo."""
+        from collections import Counter
+
+        from fm.moral import depois_do_jogo
+        fora = set(self.world.indisponiveis)
+        for r in resultados:
+            if detalhada is not None and (r.home, r.away) == (detalhada.casa, detalhada.fora):
+                entraram = set(detalhada.entrada)
+                gols = Counter(e.jogador for e in detalhada.eventos if e.tipo == "gol")
+            else:
+                lances = self.lances_da_data.get((r.home, r.away), [])
+                entraram = ({p.id for p in self.world.best_xi(r.home)}
+                            | {p.id for p in self.world.best_xi(r.away)}
+                            | {x.segundo for x in lances
+                               if x.tipo == "substituicao" and x.segundo})
+                gols = Counter(x.jogador for x in lances if x.tipo == "gol")
+            depois_do_jogo(self.world, r.home, r.goals_home, r.goals_away, entraram, gols, fora)
+            depois_do_jogo(self.world, r.away, r.goals_away, r.goals_home, entraram, gols, fora)
+
     def _lesoes_da_data(self, resultados, detalhada) -> None:
         """Registra os machucados de hoje (gravidade num stream proprio) e da alta a quem
         ja pode jogar na data seguinte. Chamada ANTES de `self.data` andar."""
@@ -1596,6 +1627,11 @@ class Carreira:
         da_carreira = {k for n in self.ligas for k in self.world.leagues[self._id(n)].club_ids}
         transferencias = janela(self.world, rng, self.temporada + 1, da_carreira)
         novos = repor_elencos(self.world, rng, self.temporada + 1, alvos=alvos)
+        # a pre-temporada da moral: volta ao normal, e o elenco novo ainda nao se conhece
+        from collections import Counter as _Contagem
+
+        from fm.moral import na_virada
+        na_virada(self.world, _Contagem(t.para for t in transferencias))
 
         # o que mudou no elenco do usuario -- e isto que a tela de fim de ano mostra
         agora = {p.id: p for p in self.world.squad(self.clube_id)}

@@ -132,7 +132,10 @@ function desenharLateral(e) {
           <div class="sub">${icone("treinador", 'style="width:.9rem;height:.9rem;vertical-align:-2px"')} ${escapar(e.treinador)}</div></div>
       </div>
       <div class="confianca">${trilho("Diretoria", e.aprovacao.diretoria)}${trilho("Torcida", e.aprovacao.torcida)}</div>
-      <div class="clima">Ambiente: <b>${escapar(clima(e.aprovacao.clima))}</b><br>Meta: ${escapar(e.aprovacao.meta)}</div>
+      <div class="clima">Ambiente: <b>${escapar(clima(e.aprovacao.clima))}</b>
+        ${e.vestiario ? ` · Vestiário: <b class="quimica ${e.vestiario.quimica < 40 ? "ruim" : e.vestiario.quimica >= 70 ? "bom" : ""}"
+          title="Química ${e.vestiario.quimica}/100 · efeito em campo ${e.vestiario.bonus > 0 ? "+" : ""}${e.vestiario.bonus} de overall">${escapar(e.vestiario.rotulo)}</b>` : ""}
+        <br>Meta: ${escapar(e.aprovacao.meta)}</div>
     </div>
     <div class="painel fixo"><div class="cab"><h2>Próxima partida</h2></div>
       <div class="prox-jogo">${prox}
@@ -177,6 +180,7 @@ async function desenharResumoJogador() {
         <div class="kpi-c"><span>Energia</span><b style="color:${corDe(j.energia, 85, 70)}">${j.energia}%</b></div>
         <div class="kpi-c"><span>Valor</span><b>${euros(j.valor)}</b></div>
       </div>
+      <div class="linha-flex dica" style="margin:.2rem 0">Moral: ${seloDeMoral(j)}</div>
       ${j.lesao ? `<p class="dica"><span class="ic-lesao">✚</span> ${escapar(j.lesao.tipo)} · ${j.lesao.dias} dia${j.lesao.dias === 1 ? "" : "s"} · volta ${j.lesao.volta}</p>` : ""}
       ${j.emprestado_de ? `<p class="dica">Emprestado pelo ${escapar(j.emprestado_de)} até o fim da temporada.</p>` : `
       <div class="linha-flex dica">Contrato: ${avisoDeContrato(j)}<span class="espaco"></span>
@@ -211,6 +215,7 @@ const COLUNAS_ELENCO = [
   {id: "pe", rotulo: "Pé", classe: "c"},
   {id: "overall", rotulo: "OVR", classe: "n"},
   {id: "energia", rotulo: "Energia"},
+  {id: "moral", rotulo: "Moral"},
   {id: "salario", rotulo: "Salário", classe: "n"},
   {id: "valor", rotulo: "Valor", classe: "n"},
   {id: "gols", rotulo: "Gols", classe: "n"},
@@ -220,6 +225,12 @@ const COLUNAS_ELENCO = [
   {id: "cartoes", rotulo: "Cartões", classe: "c", valor: (p) => p.amarelos + 3 * p.vermelhos},
   {id: "contrato", rotulo: "Contrato", classe: "c"},
 ];
+
+/** A moral do jogador (fm.moral): embalado, confiante, normal, abatido, insatisfeito. */
+function seloDeMoral(p) {
+  const r = p.moral_rotulo || "normal";
+  return `<span class="moral ${r}" title="Moral ${p.moral}/100">${escapar(r)}</span>`;
+}
 
 /** O aviso de contrato: vermelho acaba nesta temporada, amarelo na proxima. */
 function avisoDeContrato(p) {
@@ -275,6 +286,7 @@ TELAS.elenco = function () {
               <td class="c">${pe(p.pe)}</td>
               <td class="n">${ovr(p.overall)}</td>
               <td>${energia(p.energia)}</td>
+              <td>${seloDeMoral(p)}</td>
               <td class="n">${dinheiro(p.salario)}</td>
               <td class="n">${euros(p.valor)}</td>
               <td class="n">${p.gols}</td>
@@ -336,7 +348,7 @@ async function abrirPerfil(id) {
           <div class="kpi-c"><span>Altura</span><b>${j.altura ? `${j.altura} cm` : "—"}</b></div>
           <div class="kpi-c"><span>Nacionalidade</span><b>${escapar(j.nacionalidade || "—")}</b></div>
           <div class="kpi-c"><span>Energia</span><b style="color:${corDe(j.energia, 85, 70)}">${j.energia}%</b></div>
-          <div class="kpi-c"><span>Moral</span><b>${j.moral}</b></div>
+          <div class="kpi-c"><span>Moral</span><b>${seloDeMoral(j)}</b></div>
           <div class="kpi-c"><span>Valor</span><b>${euros(j.valor)}</b></div>
           <div class="kpi-c"><span>Salário/mês</span><b>${dinheiro(j.salario)}</b></div>
           <div class="kpi-c"><span>Contrato até</span><b>${j.contrato}</b></div>

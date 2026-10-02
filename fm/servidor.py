@@ -25,6 +25,7 @@ from fm.ratings import exibir
 from fm.calendario import texto
 from fm.carreira import Carreira, saves_disponiveis
 from fm.moeda import json_da_moeda
+from fm.moral import rotulo_da_moral
 from fm.tatica import DESENHOS, ESTILOS, FORMACOES, MARCACOES, PONTOS, Tatica, arrumar_no_campo
 
 WEB = Path(__file__).resolve().parent / "web"
@@ -116,6 +117,7 @@ def _jogador(c: Carreira, p, titular: bool) -> dict:
         "idade": p.age(c.temporada), "energia": p.condition,
         "salario": p.wage, "valor": p.market_value, "titular": titular,
         "contrato": p.contract_until, "moral": p.morale,
+        "moral_rotulo": rotulo_da_moral(p.morale),
         # 0 = acaba ao fim desta temporada; 1 = na seguinte (o aviso do elenco)
         "vence_em": p.contract_until - c.temporada,
         # emprestado A MIM: o nome do clube dono (volta para la no fim do ano)
@@ -189,6 +191,16 @@ def _disciplina_do(c: Carreira, pid: int, comp: str | None) -> dict:
             "amarelos_na_comp": c.disciplina.amarelos.get(comp, {}).get(pid, 0)}
 
 
+def _vestiario(c: Carreira) -> dict:
+    """A quimica do clube e quem esta insatisfeito (fm.moral)."""
+    from fm.moral import INSATISFEITO, bonus, quimica, rotulo_da_quimica
+    q = quimica(c.world, c.clube_id)
+    return {"quimica": q, "rotulo": rotulo_da_quimica(q),
+            "bonus": round(bonus(c.world, c.clube_id), 1),
+            "insatisfeitos": sorted(p.name for p in c.world.squad(c.clube_id)
+                                    if p.morale < INSATISFEITO)}
+
+
 def estado(jogo: Jogo) -> dict:
     """Tudo que o lobby precisa numa chamada so."""
     c = jogo.c
@@ -241,6 +253,7 @@ def estado(jogo: Jogo) -> dict:
             "clima": ap.clima if ap else "", "meta": ap.meta.texto if ap and ap.meta else "",
         },
         "proximo": proximo,
+        "vestiario": _vestiario(c),
         "tatica": {"formacao": tatica.formacao, "marcacao": tatica.marcacao,
                    "estilo": tatica.estilo, "vagas": tatica.vagas, "nome": tatica.nome,
                    "desenho": tatica.pontos, "personalizado": bool(tatica.desenho),
@@ -486,6 +499,7 @@ def jogador(jogo: Jogo, pid: int) -> dict:
         "potencial": exibir(p.potential),
         "valor": p.market_value, "salario": p.wage, "contrato": p.contract_until,
         "energia": p.condition, "moral": p.morale, "forma": p.form,
+        "moral_rotulo": rotulo_da_moral(p.morale),
         "clube": _clube(c, p.club_id) if p.club_id in c.world.clubs else None,
         "emprestado_de": (c.world.clubs[p.loan_from].name
                           if p.loan_from in c.world.clubs else None),

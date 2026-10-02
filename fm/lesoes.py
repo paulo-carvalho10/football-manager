@@ -23,16 +23,22 @@ from datetime import date, timedelta
 import numpy as np
 
 # Lesoes que tiram o jogador de campo, por time e partida.
-LESOES_POR_TIME = 0.30
+#
+# Era 0,30, com media de 17 dias (medidos: 23). Batia com a literatura de lesao em jogo,
+# mas no jogo pesava demais: no calendario real um clube de Libertadores faz ~50 jogos, e
+# a tela ao vivo mostra tambem as lesoes do adversario -- a sensacao era de lesao em todo
+# jogo. Medido numa temporada do Cruzeiro: 18 lesoes, 3 delas de mais de 40 dias.
+LESOES_POR_TIME = 0.20
 
-# (nome, minimo de dias, maximo, peso). Media perto de 17 dias.
+# (nome, minimo de dias, maximo, peso). Media perto de 12 dias: a maioria e pancada ou
+# desconforto de uma semana; joelho e fratura ficaram raros, como devem ser.
 TIPOS = (
-    ("pancada", 3, 8, 0.30),
-    ("desconforto muscular", 5, 12, 0.25),
-    ("lesão muscular", 10, 25, 0.25),
-    ("entorse no tornozelo", 14, 30, 0.10),
-    ("lesão no joelho", 40, 90, 0.07),
-    ("fratura", 60, 120, 0.03),
+    ("pancada", 2, 6, 0.40),
+    ("desconforto muscular", 4, 10, 0.27),
+    ("lesão muscular", 10, 21, 0.20),
+    ("entorse no tornozelo", 12, 28, 0.08),
+    ("lesão no joelho", 35, 75, 0.04),
+    ("fratura", 50, 100, 0.01),
 )
 
 

@@ -179,6 +179,15 @@ table.grade { width: 100%; border-collapse: collapse; font-size: .88rem; }
 .nome-celula b { font-weight: 600; color: var(--branco); overflow: hidden; text-overflow: ellipsis; }
 .zona { display: inline-block; width: 1.7rem; text-align: center; border-radius: 3px; font-family: var(--fonte-numero); font-weight: 700; }
 .zona.continental { background: #1f4f8f; color: #fff; }
+/* a moral do jogador e a quimica do vestiario (fm.moral) */
+.moral { font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+  padding: .05rem .4rem; border-radius: 3px; border: 1px solid var(--linha); color: var(--texto-2); white-space: nowrap; }
+.moral.embalado { color: #0d2a16; background: #4fd17c; border-color: #4fd17c; }
+.moral.confiante { color: #4fd17c; border-color: #2c7a48; }
+.moral.abatido { color: #e3a33a; border-color: #8a6420; }
+.moral.insatisfeito { color: #fff; background: #a3321f; border-color: #e3342b; }
+.quimica.bom { color: var(--bom); }
+.quimica.ruim { color: var(--ruim); }
 /* as faixas continentais: copa principal, a pre dela e a segunda copa */
 .zona.lib { background: #1f4f8f; color: #fff; }
 .zona.pre { background: #3f86c9; color: #fff; }

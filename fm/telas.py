@@ -287,6 +287,27 @@ def mensagens(c: Carreira, data_texto: str, lidas: set[str]) -> list[dict]:
         msg(f"festa:{c.temporada}:{c.data // 4}", "Torcida", "Apoio total",
             f"A torcida está com o time: {ap.torcida:.0f}% de aprovação.")
 
+    # o vestiario (fm.moral): quem quer sair e o clima do grupo
+    from fm.moral import INSATISFEITO, quimica, rotulo_da_quimica
+    for p in c.world.squad(c.clube_id):
+        if p.morale < INSATISFEITO:
+            seguidos = c.world.banco_seguido.get(p.id, 0)
+            motivo = (f"Está há {seguidos} jogos sem entrar em campo e quer sair do clube."
+                      if seguidos >= 4 else
+                      "Está abatido com a fase do time e não esconde que pensa em sair.")
+            msg(f"insatisfeito:{c.temporada}:{p.id}", "Vestiário",
+                f"{p.name} está insatisfeito",
+                f"{motivo} Insatisfeito, ele não renova e atrai propostas; minutos em campo e "
+                "vitórias devolvem a confiança.", "alerta")
+    q = quimica(c.world, c.clube_id)
+    if q < 40:
+        msg(f"vestiario-ruim:{c.temporada}:{c.data // 8}", "Vestiário", "Clima pesado no grupo",
+            f"O vestiário está {rotulo_da_quimica(q)}. Derrotas seguidas e jogadores "
+            "insatisfeitos derrubam o rendimento em campo.", "alerta")
+    elif q >= 85:
+        msg(f"vestiario-bom:{c.temporada}:{c.data // 8}", "Vestiário", "Grupo fechado",
+            "O elenco está fechado com o técnico: a boa fase dá confiança em campo.")
+
     comp = c.competicao_do_proximo()
     if comp and c.disciplina is not None:
         meus = {p.id: p for p in c.world.squad(c.clube_id)}
