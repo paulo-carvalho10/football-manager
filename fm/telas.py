@@ -249,6 +249,120 @@ def mercado(c: Carreira, filtros: dict, clube_json) -> dict:
     }
 
 
+# ------------------------------------------------------------------ olheiro
+
+VAGAS_DO_RELATORIO = 3        # os pontos mais fracos do time titular
+POR_VAGA = 4                  # reforcos recomendados para cada um
+PROMESSAS = 6
+IDADE_DA_PROMESSA = 21
+
+
+def olheiro(c: Carreira, clube_json) -> dict:
+    """O relatorio do olheiro: onde o time titular e mais fraco e quem resolve.
+
+    Olha a escalacao da proxima rodada, vaga por vaga (fm.tatica): o titular mais fraco e
+    o improvisado fora de posicao sao as necessidades. Para cada uma, recomenda quem seria
+    titular ali, cabe no caixa e na folha e topa vir (fm.negocios.recusa_por_ambicao). E
+    separa as promessas: ate 21 anos, potencial para chegar ao nivel do time. So recomenda --
+    quem fecha o negocio e o usuario, pelo fluxo de proposta de sempre.
+    """
+    from fm import negocios as neg
+    from fm.mercado import RESERVA_DE_CAIXA
+
+    w = c.world
+    ano = c.temporada
+    tatica = c.tatica_atual()
+    vagas = tatica.vagas_do_campo()
+    onze = [w.players[i] for i in c.escalacao_atual() if i in w.players]
+    nivel = sum(p.overall for p in onze) / max(len(onze), 1)
+    folha = neg.folha_mensal(w, c.clube_id)
+    caixa_livre = c.clube.balance - folha * RESERVA_DE_CAIXA
+    folha_livre = neg.limite_da_folha(c) - folha
+    observados = set(c.observados)
+    ligas_do_clube = {cid: lg for lg in w.leagues.values() for cid in lg.club_ids}
+
+    # as necessidades: a vaga (rotulo, setor) e quem esta nela hoje
+    pontos = []
+    for p, (rotulo, setor, papel, _, _) in zip(onze, vagas, strict=False):
+        improvisado = p.position != setor
+        pontos.append((p.overall - (6 if improvisado else 0), rotulo, setor, papel, p,
+                       improvisado))
+    pontos.sort(key=lambda x: x[0])
+    necessidades, vistos = [], set()
+    for _, rotulo, setor, papel, p, improvisado in pontos:
+        if (rotulo, setor) in vistos:
+            continue
+        vistos.add((rotulo, setor))
+        necessidades.append((rotulo, setor, papel, p, improvisado))
+        if len(necessidades) == VAGAS_DO_RELATORIO:
+            break
+
+    def custo(p) -> tuple[int, int]:
+        """(transferencia, salario pedido). Sem contrato: so o salario."""
+        livre = p.club_id not in w.clubs
+        return (0 if livre else neg.pedido_do_vendedor(c, p)), neg.salario_pretendido(c, p)
+
+    def cabe(preco: int, salario: int) -> bool:
+        return preco <= caixa_livre and salario <= folha_livre
+
+    def item(p, motivo: str, tipo: str, preco: int, salario: int) -> dict:
+        livre = p.club_id not in w.clubs
+        lg = ligas_do_clube.get(p.club_id)
+        return {"id": p.id, "nome": p.name, "posicao": p.position, "detalhe": p.position_detail,
+                "idade": p.age(ano), "overall": exibir(p.overall),
+                "potencial": exibir(p.potential), "valor": p.market_value, "salario": p.wage,
+                "contrato": p.contract_until, "pe": p.foot, "nacionalidade": p.nationality,
+                "clube": None if livre else clube_json(p.club_id), "livre": livre,
+                "liga": nome_da_liga_por_id(lg.id, lg.name) if lg else "",
+                "observado": p.id in observados, "motivo": motivo, "tipo": tipo,
+                "preco": preco, "salario_pedido": salario}
+
+    candidatos = [p for p in w.players.values()
+                  if p.club_id != c.clube_id and p.loan_from is None and p.market_value >= 0]
+    ja_recomendados: set[int] = set()
+    secoes = []
+    for rotulo, setor, papel, titular, improvisado in necessidades:
+        alvo = titular.overall + 2
+        bons = sorted((p for p in candidatos if p.position == setor and p.overall >= alvo
+                       and p.age(ano) <= 31 and p.id not in ja_recomendados),
+                      key=lambda p: (p.position_detail != papel, -p.overall))
+        recomendados = []
+        for p in bons:
+            if len(recomendados) == POR_VAGA:
+                break
+            preco, salario = custo(p)
+            if not cabe(preco, salario) or neg.recusa_por_ambicao(c, p):
+                continue
+            ganho = exibir(p.overall) - exibir(titular.overall)
+            motivo = (f"Titular de {rotulo} no lugar de {titular.name}"
+                      + (" (improvisado)" if improvisado else f" ({exibir(titular.overall)})")
+                      + f": +{ganho} de overall")
+            recomendados.append(item(p, motivo, "reforco", preco, salario))
+            ja_recomendados.add(p.id)
+        secoes.append({"titulo": f"{rotulo}: {titular.name} ({exibir(titular.overall)})"
+                                 + (" — improvisado" if improvisado else ""),
+                       "jogadores": recomendados})
+
+    promessas = []
+    for p in sorted((p for p in candidatos if p.age(ano) <= IDADE_DA_PROMESSA
+                     # pode chegar ao nivel do time titular: e o que faz dele uma aposta
+                     and p.potential >= nivel - 1 and p.id not in ja_recomendados),
+                    key=lambda p: -p.potential):
+        if len(promessas) == PROMESSAS:
+            break
+        preco, salario = custo(p)
+        if not cabe(preco, salario) or neg.recusa_por_ambicao(c, p):
+            continue
+        promessas.append(item(p, f"{p.age(ano)} anos, potencial {exibir(p.potential)}: "
+                                 "pode virar titular", "promessa", preco, salario))
+    secoes.append({"titulo": "Promessas", "jogadores": promessas})
+
+    todos = [j for s in secoes for j in s["jogadores"]]
+    return {"caixa": neg.resumo_do_caixa(c), "secoes": secoes, "jogadores": todos,
+            "orcamento": {"transferencia": max(0, int(caixa_livre)),
+                          "salario": max(0, int(folha_livre))}}
+
+
 def observar(c: Carreira, pid: int) -> dict:
     if pid in c.observados:
         c.observados.remove(pid)

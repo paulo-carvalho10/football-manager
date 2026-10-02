@@ -155,12 +155,41 @@ def test_o_tecnico_ruim_e_demitido_e_o_bom_nao():
                 if ruim:
                     with contextlib.suppress(ValueError):
                         c.escalar(piores, Tatica(estilo="ofensivo", marcacao="leve"))
+                else:
+                    _automatica(c)
                 c.avancar()
             if c.demitido:
                 return True
+            if not ruim:
+                _renovar_os_principais(c)
             if c.virar_o_ano()["demitido"]:
                 return True
         return False
+
+    def _automatica(c):
+        """O botao "Automatica" a cada data: reescala pelo cansaco. A escalacao do usuario
+        vale ate ele mudar, e os mesmos onze em toda liga, Copa do Brasil e Libertadores
+        afundam de cansaco -- quem rodava o time por ele era, sem querer, a janela da IA,
+        que trocava o elenco na virada."""
+        from fm.tatica import arrumar_no_campo
+        t = c.tatica_atual()
+        c.world.escalacao_fixa.pop(c.clube_id, None)
+        onze = arrumar_no_campo(c.world.best_xi(c.clube_id, t.vagas), t.vagas_do_campo())
+        with contextlib.suppress(ValueError):
+            c.escalar([p.id for p in onze], t)
+
+    def _renovar_os_principais(c):
+        """O tecnico competente cuida do elenco. Antes a janela da IA repunha os jogadores
+        do usuario sem pedir; desde que ela nao toca no elenco dele, quem nunca renova
+        perde metade do time em tres anos -- e e demitido com razao."""
+        from fm.negocios import interesse_em_renovar
+        for p in sorted(c.world.squad(c.clube_id), key=lambda p: -p.overall)[:20]:
+            if p.contract_until > c.temporada or p.loan_from is not None:
+                continue
+            pedido = interesse_em_renovar(c, p)["pretendido"]
+            if pedido:
+                c.executar({"tipo": "renovacao", "jogador": p.id, "salario": pedido,
+                            "anos": 3})
 
     assert carreira_de("Palmeiras", ruim=True), "escalar os piores nao custou o emprego"
     assert not carreira_de("Palmeiras", ruim=False), "tecnico competente foi demitido"

@@ -6,7 +6,7 @@
  * so pergunta e mostra. */
 
 const TRF = {
-  aba: "mercado",
+  aba: PARAMS.get("trf") || "mercado",       // ?trf=olheiro abre direto numa aba
   filtros: {nome: "", pos: "", idade_min: "", idade_max: "", nacionalidade: "", clube: "",
             valor_max: "", salario_max: "", ovr_min: "", situacao: "", liga: ""},
   lista: null, selecionado: null,
@@ -27,14 +27,14 @@ TELAS.transferencias = async function () {
   alvo.innerHTML = `
     <div class="painel" style="grid-column:1 / -1">
       <div class="cab"><h2>Transferências</h2>
-        <div class="abas" id="trf-abas">${[["mercado", "Mercado"], ["negociacoes", "Negociações"],
+        <div class="abas" id="trf-abas">${[["mercado", "Mercado"], ["olheiro", "Olheiro"], ["negociacoes", "Negociações"],
           ["propostas", "Propostas recebidas"], ["historico", "Histórico"]].map(([k, r]) =>
           `<button data-trf="${k}" class="${TRF.aba === k ? "ativo" : ""}">${r}</button>`).join("")}</div>
         <span class="espaco" style="flex:1"></span><span id="trf-caixa" class="linha-flex"></span></div>
       <div class="corpo sem-margem" id="trf-corpo" style="display:grid;min-height:0"></div>
     </div>`;
   $$("[data-trf]").forEach((b) => b.addEventListener("click", () => { TRF.aba = b.dataset.trf; TELAS.transferencias(); }));
-  await ({mercado: abaMercado, negociacoes: abaNegociacoes, propostas: abaPropostas,
+  await ({mercado: abaMercado, olheiro: abaOlheiro, negociacoes: abaNegociacoes, propostas: abaPropostas,
           historico: abaHistorico}[TRF.aba])();
 };
 
@@ -113,6 +113,54 @@ async function abaMercado() {
   detalheTrf();
 }
 
+/* ------------------------------------------------------------------ olheiro */
+
+/* O relatorio do olheiro (fm.telas.olheiro): os pontos fracos do time titular e quem
+ * resolve, dentro do caixa e da folha, mais as promessas. So recomenda: a compra e o
+ * fluxo de proposta de sempre -- nada entra no elenco sem o usuario. */
+async function abaOlheiro() {
+  TRF.lista = await api.get("/api/olheiro");
+  pintarCaixa(TRF.lista.caixa);
+  if (!TRF.lista.jogadores.some((j) => j.id === TRF.selecionado)) TRF.selecionado = TRF.lista.jogadores[0]?.id ?? null;
+  const o = TRF.lista.orcamento;
+  $("#trf-corpo").style.gridTemplateColumns = "17rem minmax(0,1fr) 22rem";
+  $("#trf-corpo").innerHTML = `
+    <div style="padding:.9rem;border-right:1px solid var(--linha);overflow:auto">
+      <h3 class="titulo-secao">Relatório do olheiro</h3>
+      <p class="dica" style="margin:.4rem 0 .8rem">Olhei a sua escalação vaga por vaga. Estes são os pontos
+        mais fracos do time titular e quem resolve, dentro do que o clube pode pagar.</p>
+      ${TRF.lista.secoes.filter((x) => x.titulo !== "Promessas").map((x) =>
+        `<div class="necessidade">${escapar(x.titulo)}<span class="dica">${x.jogadores.length} indicados</span></div>`).join("")}
+      <div class="kpis" style="margin-top:1rem;grid-template-columns:1fr">
+        <div class="kpi-c"><span>Para transferência</span><b>${eurosConvertido(o.transferencia)}</b></div>
+        <div class="kpi-c"><span>Folga na folha (mês)</span><b>${dinheiro(o.salario)}</b></div>
+      </div>
+      <p class="nota-honesta">O olheiro só indica. Nenhum jogador entra ou sai do seu elenco sem você:
+        a compra é pela proposta, e as ofertas por jogadores seus chegam para você decidir.</p>
+    </div>
+    <div style="overflow:auto;min-height:0">
+      ${TRF.lista.secoes.map((x) => `
+        <div class="secao-olheiro"><h3>${x.titulo === "Promessas" ? "Promessas (até 21 anos)" : `Reforço para ${escapar(x.titulo)}`}</h3>
+        <table class="grade compacta grade-olheiro"><tbody>${x.jogadores.map((j) => `
+          <tr class="clicavel ${j.id === TRF.selecionado ? "sel" : ""}" data-id="${j.id}">
+            <td><b>${escapar(j.nome)}</b>${j.observado ? ' <span class="ouro">★</span>' : ""}
+              <div class="dica">${escapar(j.motivo)}</div></td>
+            <td>${pos(j.posicao)}</td><td class="n">${j.idade}a</td>
+            <td>${j.livre ? '<span class="chip ativo">sem contrato</span>'
+              : `<div class="nome-celula">${escudo(j.clube, "1.3rem")}<span>${escapar(j.clube.nome)}</span></div>`}</td>
+            <td class="n">${ovr(j.overall)}</td>
+            <td class="n">${j.preco ? euros(j.preco) : "livre"}<div class="dica">${dinheiro(j.salario_pedido)}/mês</div></td>
+          </tr>`).join("") || '<tr><td class="vazio">Ninguém que caiba no orçamento e topa vir.</td></tr>'}</tbody></table></div>`).join("")}
+    </div>
+    <div id="trf-detalhe" style="border-left:1px solid var(--linha);overflow:auto"></div>`;
+  $$(".grade-olheiro tr[data-id]").forEach((tr) => tr.addEventListener("click", () => {
+    TRF.selecionado = +tr.dataset.id;
+    $$(".grade-olheiro tr").forEach((x) => x.classList.toggle("sel", x === tr));
+    detalheTrf();
+  }));
+  detalheTrf();
+}
+
 const ATRIBUTOS_RESUMO = [["finalizacao", "Finalização"], ["passe", "Passe"], ["drible", "Drible"],
                           ["marcacao", "Marcação"], ["velocidade", "Velocidade"], ["resistencia", "Resistência"]];
 const ATRIBUTOS_GOLEIRO = [["reflexos", "Reflexos"], ["posicionamento", "Posicionamento"],
@@ -152,7 +200,7 @@ async function detalheTrf() {
   $("#lista").addEventListener("click", async () => {
     await api.post("/api/observar", {id: j.id});
     await recarregarEstado();
-    abaMercado();
+    TELAS.transferencias();      // a aba em que ele esta: mercado ou olheiro
   });
 }
 

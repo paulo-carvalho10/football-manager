@@ -1625,6 +1625,11 @@ class Carreira:
         aposentados_livres = livres_que_se_aposentam(self.world, self.temporada + 1)
         # so as ligas que a carreira joga: as de fora sao pano de fundo (fm.mercado.janela)
         da_carreira = {k for n in self.ligas for k in self.world.leagues[self._id(n)].club_ids}
+        # O clube do usuario NAO entra na janela da IA, nem comprando nem vendendo. Ela
+        # levava jogador dele (ate em venda forcada, com o caixa no vermelho) e punha gente
+        # no elenco sem perguntar. Quem decide o elenco dele e ele: comprando no mercado,
+        # aceitando ou recusando as propostas que chegam.
+        da_carreira.discard(self.clube_id)
         transferencias = janela(self.world, rng, self.temporada + 1, da_carreira)
         novos = repor_elencos(self.world, rng, self.temporada + 1, alvos=alvos)
         # a pre-temporada da moral: volta ao normal, e o elenco novo ainda nao se conhece

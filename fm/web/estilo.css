@@ -179,6 +179,13 @@ table.grade { width: 100%; border-collapse: collapse; font-size: .88rem; }
 .nome-celula b { font-weight: 600; color: var(--branco); overflow: hidden; text-overflow: ellipsis; }
 .zona { display: inline-block; width: 1.7rem; text-align: center; border-radius: 3px; font-family: var(--fonte-numero); font-weight: 700; }
 .zona.continental { background: #1f4f8f; color: #fff; }
+/* o relatorio do olheiro */
+.necessidade { display: flex; justify-content: space-between; align-items: center; gap: .5rem;
+  padding: .45rem .6rem; margin-bottom: .35rem; border: 1px solid var(--linha); border-left: 3px solid var(--ouro);
+  border-radius: 5px; font-size: .8rem; font-weight: 600; }
+.secao-olheiro h3 { font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ouro);
+  margin: 0; padding: .8rem .8rem .3rem; }
+.titulo-secao { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ouro); margin: 0; }
 /* a moral do jogador e a quimica do vestiario (fm.moral) */
 .moral { font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
   padding: .05rem .4rem; border-radius: 3px; border: 1px solid var(--linha); color: var(--texto-2); white-space: nowrap; }
