@@ -185,3 +185,43 @@ def test_mudanca_no_meio_do_jogo_nao_fica(carreira):
     carreira.avancar(substituicoes=no_intervalo)
     assert carreira.tatica_atual().formacao == "4-4-2"
     assert any(t for reg in carreira.na_partida.values() for _, t in reg.get("taticas", []))
+
+
+# ------------------------------------------------------------------ o retrato do save
+
+def _foto(c):
+    w = c.world
+    return (c.temporada, c.data, c.clube_id,
+            sorted((r.home, r.away, r.goals_home, r.goals_away) for n in c.ligas
+                   for r in c.jogos(n)),
+            sorted((p.id, p.club_id, p.overall, p.morale, p.condition)
+                   for p in w.players.values()),
+            sorted((k, cl.balance, cl.reputation) for k, cl in w.clubs.items()))
+
+
+def test_o_retrato_carrega_o_mesmo_mundo_que_o_replay(tmp_path, monkeypatch):
+    """Carregar pelo retrato (o comeco da temporada) tem de dar EXATAMENTE o mundo do
+    replay completo. Com as 40 ligas, o replay levava ~47 s por temporada."""
+    import fm.carreira as mod
+    monkeypatch.setattr(mod, "SAVES_DIR", tmp_path)
+    c = Carreira.nova(["brasil_real", "brasil_b_real"], "Santos", seed=8)
+    while not c.acabou:
+        c.avancar()
+    c.virar_o_ano()
+    for _ in range(6):
+        c.avancar()
+    c.salvar("r")
+    assert (tmp_path / "r.retrato").exists()
+
+    chamadas = []
+    original = mod.build_world
+    monkeypatch.setattr(mod, "build_world", lambda *a, **k: chamadas.append(1) or original(*a, **k))
+    rapido = Carreira.carregar("r")
+    assert not chamadas, "com retrato valido o mundo nao e montado do zero"
+    assert _foto(rapido) == _foto(c)
+
+    # versao do jogo diferente: o retrato e ignorado e o replay completo roda
+    monkeypatch.setattr(mod, "_IMPRESSAO", "outra-versao")
+    completo = Carreira.carregar("r")
+    assert chamadas, "retrato de outra versao do jogo nao pode valer"
+    assert _foto(completo) == _foto(c)

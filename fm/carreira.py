@@ -115,6 +115,9 @@ class Carreira:
     # save.
     recordes: dict = field(default_factory=dict)
     lendas: dict = field(default_factory=dict)
+    # O retrato da carreira no comeco da temporada em curso (pickle), tirado na virada. O
+    # `salvar` grava ao lado do save; o `carregar` parte dele e refaz so o ano em curso.
+    retrato: bytes | None = field(default=None, repr=False)
     copas: dict = field(default_factory=dict)
     tabelas_do_ano_anterior: dict = field(default_factory=dict)
     # o funil entre torneios: quem cai da pre da Libertadores vai para a Sudamericana
@@ -1814,7 +1817,18 @@ class Carreira:
             {**tabelas, **tabelas_de_fora}, titulos)
         self.exportados = {}
         self._novo_calendario()
+        self.retrato = self._fotografar()
         return resumo
+
+    def _fotografar(self) -> bytes:
+        """O estado inteiro, inclusive o ponto de cada gerador aleatorio: e o que faz o ano
+        refeito a partir do retrato sair identico ao do replay completo."""
+        import pickle
+        anterior, self.retrato = self.retrato, None
+        try:
+            return pickle.dumps(self, protocol=5)
+        finally:
+            self.retrato = anterior
 
     def salvar(self, nome: str) -> Path:
         SAVES_DIR.mkdir(parents=True, exist_ok=True)
@@ -1834,6 +1848,9 @@ class Carreira:
             "tatica_persistente": self.tatica_persistente,
             "acoes": self.acoes,
         }, indent=2, ensure_ascii=False), encoding="utf-8")
+        if self.retrato is not None:
+            _gravar_retrato(nome, self.temporada, self.retrato,
+                            json.loads(destino.read_text(encoding="utf-8")))
         return destino
 
     @classmethod
@@ -1842,6 +1859,16 @@ class Carreira:
         if not origem.exists():
             raise FileNotFoundError(f"save {nome!r} nao existe. Ha: {saves_disponiveis()}")
         d = _atualizar_save(json.loads(origem.read_text(encoding="utf-8")))
+        atalho = _do_retrato(nome, d)
+        if atalho is not None:
+            # as decisoes do ano em curso vem do save; as de antes ja estao no retrato
+            atalho.decisoes = {k: Decisao(**v) for k, v in d["decisoes"].items()}
+            atalho.na_partida = d.get("na_partida", {})
+            atalho.treinador = d.get("treinador", atalho.treinador)
+            atalho.funcoes = d.get("funcoes", {})
+            atalho.observados = d.get("observados", [])
+            atalho._refazer_ate(d)
+            return atalho
         cfgs = [load_league(n) for n in d["ligas"]]
         world, streams = build_world(cfgs, seed=d["seed"])
         if d["clube_id"] not in world.clubs:
@@ -1861,21 +1888,122 @@ class Carreira:
         # save sem a marca e de antes da regra: a rodada sem decisao joga no padrao
         c.tatica_persistente = bool(d.get("tatica_persistente", False))
         c._montar(world, streams)
-        acoes = d.get("acoes", [])
-        # REPLAY: as temporadas sao refeitas com as mesmas decisoes. Se isto divergir, o
-        # determinismo do motor quebrou -- e o save seria a primeira vitima. Os negocios
-        # entram no mesmo ponto em que foram feitos: antes da data seguinte.
-        while c.temporada < d["temporada"]:
-            while not c.acabou:
-                c._aplicar_acoes_do_save(acoes)
-                c.avancar()
-            c._aplicar_acoes_do_save(acoes)
-            c.virar_o_ano()
-        while c.data < d.get("data", d.get("rodada", 0)) and not c.acabou:
-            c._aplicar_acoes_do_save(acoes)
-            c.avancar()
-        c._aplicar_acoes_do_save(acoes)
+        c._refazer_ate(d)
+        _gravar_retrato(nome, c.temporada, c.retrato, d)
         return c
+
+    def _refazer_ate(self, d: dict) -> None:
+        """REPLAY: as temporadas sao refeitas com as mesmas decisoes, da temporada em que a
+        carreira esta ate a do save. Se isto divergir, o determinismo do motor quebrou -- e
+        o save seria a primeira vitima. Os negocios entram no mesmo ponto em que foram
+        feitos: antes da data seguinte."""
+        acoes = d.get("acoes", [])
+        while self.temporada < d["temporada"]:
+            while not self.acabou:
+                self._aplicar_acoes_do_save(acoes)
+                self.avancar()
+            self._aplicar_acoes_do_save(acoes)
+            self.virar_o_ano()
+        while self.data < d.get("data", d.get("rodada", 0)) and not self.acabou:
+            self._aplicar_acoes_do_save(acoes)
+            self.avancar()
+        self._aplicar_acoes_do_save(acoes)
+
+
+# ---------------------------------------------------------------- o retrato do save
+#
+# Carregar e refazer a carreira inteira a partir da semente: com as 40 ligas, uns 47 s por
+# temporada -- uma carreira de dez anos levava oito minutos para abrir. O retrato e a
+# carreira no comeco da temporada do save; carregar parte dele e refaz so o ano em curso.
+#
+# O save continua sendo a semente e as decisoes, e o retrato e so um atalho: se ele nao
+# bater com o save ou com a versao do jogo, e ignorado e o replay completo roda. A CHAVE
+# junta o que muda o mundo: o codigo do motor, os dados das ligas e torneios, e as
+# decisoes gravadas ANTES daquela temporada. Atualizar o jogo (a correcao do rebaixamento,
+# por exemplo) invalida o retrato -- carregar um mundo feito pelo codigo antigo seria
+# carregar o defeito junto.
+
+_IMPRESSAO: str | None = None
+
+
+def _impressao_digital() -> str:
+    """O hash do que decide o mundo: o codigo do motor (fm/, sem a tela e o importador) e
+    os dados de liga, pack, torneio, cor e ajuste."""
+    global _IMPRESSAO
+    if _IMPRESSAO is None:
+        import hashlib
+        raiz = Path(__file__).resolve().parent.parent
+        arquivos = sorted(
+            [p for p in (raiz / "fm").rglob("*.py")
+             if "__pycache__" not in p.parts and "importer" not in p.parts
+             and "web" not in p.parts]
+            + [p for pasta in ("leagues", "packs", "torneios", "cores", "ajustes")
+               for p in (raiz / "data" / pasta).glob("*.toml")])
+        h = hashlib.sha256()
+        for p in arquivos:
+            h.update(str(p.relative_to(raiz)).encode())
+            h.update(p.read_bytes())
+        _IMPRESSAO = h.hexdigest()
+    return _IMPRESSAO
+
+
+def _chave_do_retrato(d: dict, temporada: int) -> str:
+    """O que precisa ser igual para o retrato da `temporada` valer para o save `d`."""
+    import hashlib
+
+    def antes(chave: str) -> bool:
+        return int(str(chave).split(":", 1)[0]) < temporada
+
+    base = {
+        "versao": _impressao_digital(), "temporada": temporada,
+        "seed": d["seed"], "ligas": d["ligas"],
+        "clube_inicial": d.get("clube_inicial") or d["clube_id"],
+        "temporada_inicial": d["temporada_inicial"], "treinador": d.get("treinador"),
+        "tatica_persistente": bool(d.get("tatica_persistente", False)),
+        "decisoes": {k: v for k, v in d.get("decisoes", {}).items() if antes(k)},
+        "na_partida": {k: v for k, v in d.get("na_partida", {}).items() if antes(k)},
+        "acoes": [a for a in d.get("acoes", []) if a.get("temporada", 0) < temporada],
+    }
+    return hashlib.sha256(json.dumps(base, sort_keys=True, default=str).encode()).hexdigest()
+
+
+def _arquivo_do_retrato(nome: str) -> Path:
+    return SAVES_DIR / f"{nome}.retrato"
+
+
+def _gravar_retrato(nome: str, temporada: int, retrato: bytes | None, d: dict) -> None:
+    """Grava o retrato ao lado do save. Falhar aqui nao pode derrubar o save: sem retrato,
+    carregar so fica mais lento."""
+    if retrato is None:
+        return
+    import gzip
+    import pickle
+    try:
+        conteudo = pickle.dumps({"chave": _chave_do_retrato(d, temporada),
+                                 "temporada": temporada, "estado": retrato}, protocol=5)
+        _arquivo_do_retrato(nome).write_bytes(gzip.compress(conteudo, compresslevel=3))
+    except OSError:
+        pass
+
+
+def _do_retrato(nome: str, d: dict) -> Carreira | None:
+    """A carreira do retrato, se ele valer para este save; senao None (replay completo)."""
+    import gzip
+    import pickle
+    arq = _arquivo_do_retrato(nome)
+    if not arq.exists():
+        return None
+    try:
+        dados = pickle.loads(gzip.decompress(arq.read_bytes()))
+        if dados.get("temporada", 10**6) > d["temporada"]:
+            return None
+        if dados.get("chave") != _chave_do_retrato(d, dados["temporada"]):
+            return None
+        c = pickle.loads(dados["estado"])
+    except Exception:                     # retrato corrompido ou de outra versao
+        return None
+    c.retrato = dados["estado"]
+    return c
 
 
 def _atualizar_save(d: dict) -> dict:
