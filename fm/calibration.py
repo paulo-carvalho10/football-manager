@@ -62,11 +62,13 @@ def measure(
     rng = np.random.default_rng(seed)
     r = np.array(ratings, dtype=float)
     iu, ju = np.triu_indices(n, 1)
-    if voltas == 1:
-        home, away = iu, ju                  # turno unico: cada par joga uma vez
-    else:
-        home = np.concatenate([iu, ju])      # returno duplo: todo par joga nos dois mandos
-        away = np.concatenate([ju, iu])
+    # cada turno alterna o mando: o 1o e o 3o com um mandante, o 2o e o 4o com o outro.
+    # Escocia, Suica, Austria e Dinamarca jogam 3 turnos (33 rodadas); a Croacia, 4 (36).
+    homes, aways = [], []
+    for turno in range(max(voltas, 1)):
+        homes.append(iu if turno % 2 == 0 else ju)
+        aways.append(ju if turno % 2 == 0 else iu)
+    home, away = np.concatenate(homes), np.concatenate(aways)
     rh, ra = r[home], r[away]
 
     tot_goals = tot_matches = 0

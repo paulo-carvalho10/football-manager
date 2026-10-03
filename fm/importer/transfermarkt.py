@@ -46,6 +46,24 @@ COMPETICOES = {
     "per_1": ("liga-1-apertura", "TDeA", "PER"),
     "bol_1": ("division-profesional", "BO1A", "BOL"),
     "ven_1": ("liga-futve-apertura", "VZ1A", "VEN"),
+    # o resto da Europa para a Champions e a Liga Europa (03/10/2026): so as primeiras
+    # divisoes. Quase todas ja estavam no cache desde a importacao das 59 ligas.
+    "ned_1": ("eredivisie", "NL1", "NED"),
+    "bel_1": ("jupiler-pro-league", "BE1", "BEL"),
+    "tur_1": ("super-lig", "TR1", "TUR"),
+    "gre_1": ("super-league-1", "GR1", "GRE"),
+    "ukr_1": ("premier-liga", "UKR1", "UKR"),
+    "rus_1": ("premier-liga", "RU1", "RUS"),
+    "aut_1": ("bundesliga", "A1", "AUT"),
+    "sui_1": ("super-league", "C1", "SUI"),
+    "sco_1": ("scottish-premiership", "SC1", "SCO"),
+    "den_1": ("superligaen", "DK1", "DEN"),
+    "nor_1": ("eliteserien", "NO1", "NOR"),
+    "swe_1": ("allsvenskan", "SE1", "SWE"),
+    "srb_1": ("super-liga-srbije", "SER1", "SRB"),
+    "cro_1": ("supersport-hnl", "KR1", "CRO"),
+    "pol_1": ("pko-bp-ekstraklasa", "PL1", "POL"),
+    "cze_1": ("chance-liga", "TS1", "CZE"),
 }
 
 # Temporada de onde tirar minutos jogados. As ligas nao estao no mesmo ponto do calendario:
@@ -53,7 +71,11 @@ COMPETICOES = {
 # (agosto a maio) tinham 5 rodadas. Cinco rodadas nao dizem nada sobre quem e titular,
 # entao para a Europa usa-se a temporada ANTERIOR, ja completa.
 TEMPORADA_STATS = {c: "2025" for c in ("esp_1", "esp_2", "eng_1", "eng_2", "ita_1", "ita_2",
-                                        "ger_1", "ger_2", "fra_1", "fra_2", "por_1", "por_2")}
+                                        "ger_1", "ger_2", "fra_1", "fra_2", "por_1", "por_2",
+                                        "ned_1", "bel_1", "tur_1", "gre_1", "ukr_1", "rus_1",
+                                        "aut_1", "sui_1", "sco_1", "den_1", "srb_1", "cro_1",
+                                        "pol_1", "cze_1")}
+# Noruega e Suecia jogam no ano civil, como o Brasil: a temporada atual ja diz tudo.
 # A Argentina joga no ano civil, como o Brasil: em setembro a temporada atual ja diz tudo.
 
 # Siglas de tipo de clube que nao fazem parte do nome. "Real" NAO entra: Real Madrid,

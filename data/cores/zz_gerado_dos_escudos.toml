@@ -2,7 +2,7 @@
 # cada clube (as duas mais presentes). Para corrigir um clube, escreva a cor dele
 # num arquivo a mao em data/cores/ -- o gerado nao sobrescreve cor ja conhecida.
 
-packs = ["alemanha_2_bundesliga", "alemanha_bundesliga", "argentina_nacional", "argentina_primera", "bolivia_primera", "chile_primera", "colombia_primera", "equador_primera", "espanha_primera", "espanha_segunda", "franca_ligue_1", "franca_ligue_2", "inglaterra_championship", "inglaterra_premier", "italia_serie_a", "italia_serie_b", "paraguai_primera", "peru_primera", "portugal_liga", "portugal_liga_2", "uruguai_primera", "venezuela_primera"]
+packs = ["alemanha_2_bundesliga", "alemanha_bundesliga", "argentina_nacional", "argentina_primera", "austria_bundesliga", "belgica_pro_league", "bolivia_primera", "chile_primera", "colombia_primera", "croacia_hnl", "dinamarca_superliga", "equador_primera", "escocia_premiership", "espanha_primera", "espanha_segunda", "franca_ligue_1", "franca_ligue_2", "grecia_super_league", "holanda_eredivisie", "inglaterra_championship", "inglaterra_premier", "italia_serie_a", "italia_serie_b", "noruega_eliteserien", "paraguai_primera", "peru_primera", "polonia_ekstraklasa", "portugal_liga", "portugal_liga_2", "russia_premier_liga", "servia_superliga", "suecia_allsvenskan", "suica_super_league", "tchequia_chance_liga", "turquia_super_lig", "ucrania_premier_liga", "uruguai_primera", "venezuela_primera"]
 fonte = "cores dominantes do escudo (Transfermarkt), estimativa"
 verificado = false
 
@@ -2572,4 +2572,1432 @@ padrao = "liso"
 nome = "Trujillanos"
 primaria = "#F8E11E"
 secundaria = "#472C18"
+padrao = "liso"
+
+[[clubes]]
+nome = "PSV Eindhoven"
+primaria = "#B7302F"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "AFC Ajax"
+primaria = "#625557"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Feyenoord"
+primaria = "#FC0101"
+secundaria = "#020202"
+padrao = "liso"
+
+[[clubes]]
+nome = "AZ Alkmaar"
+primaria = "#DB0020"
+secundaria = "#261F24"
+padrao = "liso"
+
+[[clubes]]
+nome = "Twente"
+primaria = "#E50018"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Utrecht"
+primaria = "#ED192E"
+secundaria = "#030404"
+padrao = "liso"
+
+[[clubes]]
+nome = "Heerenveen"
+primaria = "#004F9F"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "NEC Nijmegen"
+primaria = "#BD2C2C"
+secundaria = "#081D15"
+padrao = "liso"
+
+[[clubes]]
+nome = "Groningen"
+primaria = "#008F5A"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Sparta Rotterdam"
+primaria = "#634939"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "PEC Zwolle"
+primaria = "#0154A2"
+secundaria = "#7DC5EC"
+padrao = "liso"
+
+[[clubes]]
+nome = "Go Ahead Eagles"
+primaria = "#FDE606"
+secundaria = "#090908"
+padrao = "liso"
+
+[[clubes]]
+nome = "Willem II Tilburg"
+primaria = "#D7A634"
+secundaria = "#FFFFFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "ADO Den Haag"
+primaria = "#006B2B"
+secundaria = "#FEEF03"
+padrao = "liso"
+
+[[clubes]]
+nome = "Excelsior Rotterdam"
+primaria = "#CA0016"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Fortuna Sittard"
+primaria = "#1B6C51"
+secundaria = "#FFFEFC"
+padrao = "liso"
+
+[[clubes]]
+nome = "Cambuur Leeuwarden"
+primaria = "#F7E310"
+secundaria = "#390308"
+padrao = "liso"
+
+[[clubes]]
+nome = "Telstar"
+primaria = "#0076C0"
+secundaria = "#E31B23"
+padrao = "liso"
+
+[[clubes]]
+nome = "Club Brugge"
+primaria = "#35576D"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "KRC Genk"
+primaria = "#01499A"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "RSC Anderlecht"
+primaria = "#54308A"
+secundaria = "#D29C7B"
+padrao = "liso"
+
+[[clubes]]
+nome = "Union Saint-Gilloise"
+primaria = "#FDD500"
+secundaria = "#0471B0"
+padrao = "liso"
+
+[[clubes]]
+nome = "Royal Antuérpia"
+primaria = "#C81D2C"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "KAA Gent"
+primaria = "#0150A0"
+secundaria = "#81A9D0"
+padrao = "liso"
+
+[[clubes]]
+nome = "Standard de Liège"
+primaria = "#988344"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "KVC Westerlo"
+primaria = "#005FA1"
+secundaria = "#D4B516"
+padrao = "liso"
+
+[[clubes]]
+nome = "KV Mechelen"
+primaria = "#D12017"
+secundaria = "#E6B042"
+padrao = "liso"
+
+[[clubes]]
+nome = "VV St.Truiden"
+primaria = "#F5D128"
+secundaria = "#025BB1"
+padrao = "liso"
+
+[[clubes]]
+nome = "Cercle Brügge"
+primaria = "#60B32C"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Oud-Heverlee Leuven"
+primaria = "#E61D21"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "R Charleroi"
+primaria = "#4E4817"
+secundaria = "#FDFDFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Lommel SK"
+primaria = "#036343"
+secundaria = "#FEFFFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Zulte Waregem"
+primaria = "#DB0044"
+secundaria = "#2D8D4A"
+padrao = "liso"
+
+[[clubes]]
+nome = "KV Kortrijk"
+primaria = "#CA2027"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "RAAL La Louvière"
+primaria = "#0A865A"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "SK Beveren"
+primaria = "#FBDA1F"
+secundaria = "#283B7A"
+padrao = "liso"
+
+[[clubes]]
+nome = "Galatasaray"
+primaria = "#AD3C2F"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Fenerbahce"
+primaria = "#FEF56F"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Besiktas JK"
+primaria = "#4B080C"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Trabzonspor"
+primaria = "#76B5E4"
+secundaria = "#5A122A"
+padrao = "liso"
+
+[[clubes]]
+nome = "Basaksehir FK"
+primaria = "#002B55"
+secundaria = "#40A6D2"
+padrao = "liso"
+
+[[clubes]]
+nome = "Corum FK"
+primaria = "#B15153"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Göztepe"
+primaria = "#DC0714"
+secundaria = "#FEDA04"
+padrao = "liso"
+
+[[clubes]]
+nome = "Caykur Rizespor"
+primaria = "#763165"
+secundaria = "#F2F2F5"
+padrao = "liso"
+
+[[clubes]]
+nome = "Samsunspor"
+primaria = "#A50506"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Konyaspor"
+primaria = "#2C6852"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Kasimpasa"
+primaria = "#0E2E61"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Alanyaspor"
+primaria = "#F68320"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Gaziantep FK"
+primaria = "#AA121E"
+secundaria = "#020202"
+padrao = "liso"
+
+[[clubes]]
+nome = "Genclerbirligi Ankara"
+primaria = "#E10812"
+secundaria = "#2A2825"
+padrao = "liso"
+
+[[clubes]]
+nome = "Amed SK"
+primaria = "#3D9D01"
+secundaria = "#E2E5E0"
+padrao = "liso"
+
+[[clubes]]
+nome = "Erzurumspor FK"
+primaria = "#0087C5"
+secundaria = "#FEFEFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Kocaelispor"
+primaria = "#00612B"
+secundaria = "#67C3DA"
+padrao = "liso"
+
+[[clubes]]
+nome = "Eyüpspor"
+primaria = "#EBBF53"
+secundaria = "#5E3181"
+padrao = "liso"
+
+[[clubes]]
+nome = "Olympiacos Pireu"
+primaria = "#DD242B"
+secundaria = "#FEFFFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Panathinaikos"
+primaria = "#01763A"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "PAOK Thessaloniki"
+primaria = "#000000"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "AEK Atenas"
+primaria = "#FBD20E"
+secundaria = "#1D191F"
+padrao = "liso"
+
+[[clubes]]
+nome = "Aris Thessaloniki"
+primaria = "#FCD011"
+secundaria = "#352E1D"
+padrao = "liso"
+
+[[clubes]]
+nome = "OFI Creta"
+primaria = "#000000"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Levadiakos"
+primaria = "#0E8ECF"
+secundaria = "#7CB672"
+padrao = "liso"
+
+[[clubes]]
+nome = "Volos"
+primaria = "#C60102"
+secundaria = "#FDFDFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Panetolikos"
+primaria = "#F6D318"
+secundaria = "#0E4DB1"
+padrao = "liso"
+
+[[clubes]]
+nome = "Atromitos Atenas"
+primaria = "#012C62"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Asteras Aktor"
+primaria = "#08368C"
+secundaria = "#E3D14D"
+padrao = "liso"
+
+[[clubes]]
+nome = "Kalamata"
+primaria = "#12100C"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Iraklis Salonica"
+primaria = "#022B68"
+secundaria = "#FAFBFC"
+padrao = "liso"
+
+[[clubes]]
+nome = "Kifisia"
+primaria = "#2C3A7A"
+secundaria = "#ACB5C5"
+padrao = "liso"
+
+[[clubes]]
+nome = "Shakhtar Donetsk"
+primaria = "#D67024"
+secundaria = "#010101"
+padrao = "liso"
+
+[[clubes]]
+nome = "Dinamo de Kiev"
+primaria = "#166EC0"
+secundaria = "#FDFEFC"
+padrao = "liso"
+
+[[clubes]]
+nome = "Polissya Zhytomyr"
+primaria = "#53CB4C"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Kharkiv"
+primaria = "#FEBC02"
+secundaria = "#38091D"
+padrao = "liso"
+
+[[clubes]]
+nome = "LNZ Cherkasy"
+primaria = "#624A81"
+secundaria = "#B6ABC5"
+padrao = "liso"
+
+[[clubes]]
+nome = "Karpaty Lviv"
+primaria = "#04794D"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Zorya Lugansk"
+primaria = "#4D0B09"
+secundaria = "#B9534C"
+padrao = "liso"
+
+[[clubes]]
+nome = "Kolos Kovalivka"
+primaria = "#000404"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Kryvbas Kryvyi Rig"
+primaria = "#EE1B23"
+secundaria = "#434445"
+padrao = "liso"
+
+[[clubes]]
+nome = "Bukovina Chernivtsi"
+primaria = "#FFE108"
+secundaria = "#1C1C1B"
+padrao = "liso"
+
+[[clubes]]
+nome = "Epitsentr Kamyanets-Podilskyi"
+primaria = "#E696C5"
+secundaria = "#26203F"
+padrao = "liso"
+
+[[clubes]]
+nome = "NK Veres Rivne"
+primaria = "#E31D23"
+secundaria = "#161512"
+padrao = "liso"
+
+[[clubes]]
+nome = "Chornomorets Odesa"
+primaria = "#21488F"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Obolon Kyiv"
+primaria = "#E02328"
+secundaria = "#225231"
+padrao = "liso"
+
+[[clubes]]
+nome = "Livyi Bereg Kyiv"
+primaria = "#FDCB17"
+secundaria = "#2C6031"
+padrao = "liso"
+
+[[clubes]]
+nome = "Kudrivka"
+primaria = "#0D459C"
+secundaria = "#FDFEFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Zenit São Petersburgo"
+primaria = "#00A3E7"
+secundaria = "#D3B228"
+padrao = "liso"
+
+[[clubes]]
+nome = "Spartak Moscou"
+primaria = "#C8102E"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Dínamo Moscou"
+primaria = "#0E5692"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "CSKA Moscou"
+primaria = "#D00019"
+secundaria = "#BB9315"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Krasnodar"
+primaria = "#016137"
+secundaria = "#F9FAF9"
+padrao = "liso"
+
+[[clubes]]
+nome = "Lokomotiv Moscou"
+primaria = "#C45049"
+secundaria = "#D7D7D6"
+padrao = "liso"
+
+[[clubes]]
+nome = "Rubin Kazan"
+primaria = "#7F1F35"
+secundaria = "#FDFDFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Rostov"
+primaria = "#FFF000"
+secundaria = "#274894"
+padrao = "liso"
+
+[[clubes]]
+nome = "Akhmat Grozny"
+primaria = "#038F4D"
+secundaria = "#7CC09F"
+padrao = "liso"
+
+[[clubes]]
+nome = "Baltika Kaliningrad"
+primaria = "#024D96"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Akron Togliatti"
+primaria = "#FF0000"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Krylya Sovetov Samara"
+primaria = "#1D3D90"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Rodina Moscow"
+primaria = "#00B4E6"
+secundaria = "#001B2E"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Orenburg"
+primaria = "#01175B"
+secundaria = "#D0D5D9"
+padrao = "liso"
+
+[[clubes]]
+nome = "Dinamo Makhachkala"
+primaria = "#3461F5"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Fackel Voronezh"
+primaria = "#2C52AB"
+secundaria = "#CBD4EA"
+padrao = "liso"
+
+[[clubes]]
+nome = "Red Bull Salzburg"
+primaria = "#BB073C"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "SK Sturm Graz"
+primaria = "#000000"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "LASK"
+primaria = "#0C0C0C"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Rapid de Viena"
+primaria = "#084C74"
+secundaria = "#BFBF31"
+padrao = "liso"
+
+[[clubes]]
+nome = "Áustria Viena"
+primaria = "#3B0C72"
+secundaria = "#876A9E"
+padrao = "liso"
+
+[[clubes]]
+nome = "Wolfsberger"
+primaria = "#1C1C1B"
+secundaria = "#FEFDFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "TSV Hartberg"
+primaria = "#399CD3"
+secundaria = "#DEE6EC"
+padrao = "liso"
+
+[[clubes]]
+nome = "SCR Altach"
+primaria = "#000000"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Grazer AK 1902"
+primaria = "#CE1518"
+secundaria = "#FEFDFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "SV Ried"
+primaria = "#024B3E"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "WSG Tirol"
+primaria = "#009342"
+secundaria = "#401512"
+padrao = "liso"
+
+[[clubes]]
+nome = "Austria Lustenau"
+primaria = "#FFC60C"
+secundaria = "#140F02"
+padrao = "liso"
+
+[[clubes]]
+nome = "BSC Young Boys"
+primaria = "#F0D91D"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Basel"
+primaria = "#F7D002"
+secundaria = "#0F4287"
+padrao = "liso"
+
+[[clubes]]
+nome = "Lugano"
+primaria = "#000000"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Sion"
+primaria = "#EE2222"
+secundaria = "#FDFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "St. Gallen 1879"
+primaria = "#007D3F"
+secundaria = "#F9FCFB"
+padrao = "liso"
+
+[[clubes]]
+nome = "Lausanne-Sport"
+primaria = "#002C71"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Luzern"
+primaria = "#023F7E"
+secundaria = "#FEFEFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Servette"
+primaria = "#5F1625"
+secundaria = "#F2EBE3"
+padrao = "liso"
+
+[[clubes]]
+nome = "Thun"
+primaria = "#E3020D"
+secundaria = "#DFDEDA"
+padrao = "liso"
+
+[[clubes]]
+nome = "Grasshopper Club Zurique"
+primaria = "#025791"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Zürich"
+primaria = "#172A53"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Vaduz"
+primaria = "#DD042A"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Rangers"
+primaria = "#012D9E"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Celtic"
+primaria = "#039947"
+secundaria = "#FDFEFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Heart of Midlothian"
+primaria = "#931E30"
+secundaria = "#CA9479"
+padrao = "liso"
+
+[[clubes]]
+nome = "Hibernian"
+primaria = "#018348"
+secundaria = "#56AC85"
+padrao = "liso"
+
+[[clubes]]
+nome = "Motherwell"
+primaria = "#F9AB03"
+secundaria = "#75143D"
+padrao = "liso"
+
+[[clubes]]
+nome = "Aberdeen"
+primaria = "#ED1D24"
+secundaria = "#F5797E"
+padrao = "liso"
+
+[[clubes]]
+nome = "Dundee United"
+primaria = "#F86402"
+secundaria = "#0C0D0F"
+padrao = "liso"
+
+[[clubes]]
+nome = "St. Mirren"
+primaria = "#D8D283"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Dundee"
+primaria = "#04275D"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Kilmarnock"
+primaria = "#293462"
+secundaria = "#9D7956"
+padrao = "liso"
+
+[[clubes]]
+nome = "Falkirk"
+primaria = "#231F20"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "St. Johnstone"
+primaria = "#155997"
+secundaria = "#87684C"
+padrao = "liso"
+
+[[clubes]]
+nome = "Midtjylland"
+primaria = "#B60C27"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Copenhague"
+primaria = "#0F2DB9"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Bröndby IF"
+primaria = "#072F66"
+secundaria = "#FFFF00"
+padrao = "liso"
+
+[[clubes]]
+nome = "Nordsjaelland"
+primaria = "#FEF000"
+secundaria = "#DD2A26"
+padrao = "liso"
+
+[[clubes]]
+nome = "Aarhus GF"
+primaria = "#B11627"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Odense Boldklub"
+primaria = "#015EFD"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Viborg FF"
+primaria = "#039B68"
+secundaria = "#93D8C3"
+padrao = "liso"
+
+[[clubes]]
+nome = "Randers"
+primaria = "#0A236B"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Silkeborg IF"
+primaria = "#0094D2"
+secundaria = "#FEFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Sönderjyske Fodbold"
+primaria = "#1B3463"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Lyngby Boldklub"
+primaria = "#003770"
+secundaria = "#EEF1F5"
+padrao = "liso"
+
+[[clubes]]
+nome = "Horsens"
+primaria = "#FEDC00"
+secundaria = "#0F0D00"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Bodø/Glimt"
+primaria = "#FEE200"
+secundaria = "#231F1F"
+padrao = "liso"
+
+[[clubes]]
+nome = "Viking FK"
+primaria = "#72121C"
+secundaria = "#D4B462"
+padrao = "liso"
+
+[[clubes]]
+nome = "Molde FK"
+primaria = "#156FC3"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Rosenborg BK"
+primaria = "#000000"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "SK Brann"
+primaria = "#E62C31"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Tromsø IL"
+primaria = "#F9B731"
+secundaria = "#050402"
+padrao = "liso"
+
+[[clubes]]
+nome = "Sarpsborg 08 FF"
+primaria = "#2747A3"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Sandefjord Fotball"
+primaria = "#045795"
+secundaria = "#C5102E"
+padrao = "liso"
+
+[[clubes]]
+nome = "Lillestrøm SK"
+primaria = "#F6DA13"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Kristiansund BK"
+primaria = "#003975"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Fredrikstad FK"
+primaria = "#DA1F26"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Aalesunds FK"
+primaria = "#3176B4"
+secundaria = "#937E4F"
+padrao = "liso"
+
+[[clubes]]
+nome = "Vålerenga Fotball Elite"
+primaria = "#2D2F8B"
+secundaria = "#C5A0B7"
+padrao = "liso"
+
+[[clubes]]
+nome = "Hamarkameratene"
+primaria = "#23B368"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "KFUM-Kameratene Oslo"
+primaria = "#E2242B"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "IK Start"
+primaria = "#3D7FC6"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Hammarby IF"
+primaria = "#F9BD00"
+secundaria = "#8D7D12"
+padrao = "liso"
+
+[[clubes]]
+nome = "Djurgårdens IF"
+primaria = "#FEDD02"
+secundaria = "#E33327"
+padrao = "liso"
+
+[[clubes]]
+nome = "Malmö FF"
+primaria = "#0090CE"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "AIK"
+primaria = "#002944"
+secundaria = "#5E6251"
+padrao = "liso"
+
+[[clubes]]
+nome = "IK Sirius"
+primaria = "#173B7D"
+secundaria = "#0F0300"
+padrao = "liso"
+
+[[clubes]]
+nome = "BK Häcken"
+primaria = "#FDF13B"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Mjällby AIF"
+primaria = "#F0EC3B"
+secundaria = "#0B0D13"
+padrao = "liso"
+
+[[clubes]]
+nome = "IFK Gotemburgo"
+primaria = "#F7BB06"
+secundaria = "#34548E"
+padrao = "liso"
+
+[[clubes]]
+nome = "IF Elfsborg"
+primaria = "#FCE114"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "GAIS"
+primaria = "#FFD900"
+secundaria = "#0A8D44"
+padrao = "liso"
+
+[[clubes]]
+nome = "Kalmar FF"
+primaria = "#CE102C"
+secundaria = "#CA9B4C"
+padrao = "liso"
+
+[[clubes]]
+nome = "Västerås SK"
+primaria = "#078449"
+secundaria = "#99CCB5"
+padrao = "liso"
+
+[[clubes]]
+nome = "IF Brommapojkarna"
+primaria = "#C7452E"
+secundaria = "#000000"
+padrao = "liso"
+
+[[clubes]]
+nome = "Halmstads BK"
+primaria = "#FEDB1D"
+secundaria = "#162881"
+padrao = "liso"
+
+[[clubes]]
+nome = "Örgryte IS"
+primaria = "#780808"
+secundaria = "#11174A"
+padrao = "liso"
+
+[[clubes]]
+nome = "Degerfors IF"
+primaria = "#F6130C"
+secundaria = "#C99A35"
+padrao = "liso"
+
+[[clubes]]
+nome = "Estrela Vermelha de Belgrado"
+primaria = "#D90512"
+secundaria = "#F2AF79"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Partizan Belgrado"
+primaria = "#833437"
+secundaria = "#030303"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Vojvodina Novi Sad"
+primaria = "#DE1B23"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "OFK Belgrad"
+primaria = "#0C4E97"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Zeleznicar Pancevo"
+primaria = "#B2D5EF"
+secundaria = "#3B353A"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Cukaricki"
+primaria = "#CDA300"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK IMT Belgrad"
+primaria = "#361F1F"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Novi Pazar"
+primaria = "#014384"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Radnicki Nis"
+primaria = "#E21E25"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Radnicki 1923 Kragujevac"
+primaria = "#DD021D"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Radnik Surdulica"
+primaria = "#01B5F2"
+secundaria = "#221E74"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Mladost Lucani"
+primaria = "#27A7E5"
+secundaria = "#285064"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Macva Sabac"
+primaria = "#A72625"
+secundaria = "#060504"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Zemun"
+primaria = "#004E9E"
+secundaria = "#F5C62E"
+padrao = "liso"
+
+[[clubes]]
+nome = "GNK Dinamo Zagreb"
+primaria = "#004699"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "HNK Rijeka"
+primaria = "#B99C55"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "HNK Hajduk Split"
+primaria = "#003A86"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "NK Lokomotiva Zagreb"
+primaria = "#475A79"
+secundaria = "#FBFDFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "NK Varazdin"
+primaria = "#0563A3"
+secundaria = "#FDFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "NK Osijek"
+primaria = "#3EB3E1"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "NK Istra 1961"
+primaria = "#037A42"
+secundaria = "#EABB15"
+padrao = "liso"
+
+[[clubes]]
+nome = "HNK Gorica"
+primaria = "#E7B256"
+secundaria = "#1F1C1E"
+padrao = "liso"
+
+[[clubes]]
+nome = "Slaven Belupo Koprivnica"
+primaria = "#0F4CA2"
+secundaria = "#DCCCAD"
+padrao = "liso"
+
+[[clubes]]
+nome = "NK Rudes"
+primaria = "#0D1795"
+secundaria = "#FDFDFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "KKS Lech Poznan"
+primaria = "#014290"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Widzew Lodz"
+primaria = "#F22019"
+secundaria = "#AB9961"
+padrao = "liso"
+
+[[clubes]]
+nome = "Raków Częstochowa"
+primaria = "#F1020F"
+secundaria = "#0042AB"
+padrao = "liso"
+
+[[clubes]]
+nome = "Jagiellonia Bialystok"
+primaria = "#D81921"
+secundaria = "#EFE52E"
+padrao = "liso"
+
+[[clubes]]
+nome = "Górnik Zabrze"
+primaria = "#073B9B"
+secundaria = "#FF443F"
+padrao = "liso"
+
+[[clubes]]
+nome = "Cracovia"
+primaria = "#E0C3A2"
+secundaria = "#0B202F"
+padrao = "liso"
+
+[[clubes]]
+nome = "Korona Kielce"
+primaria = "#FDE600"
+secundaria = "#DB251C"
+padrao = "liso"
+
+[[clubes]]
+nome = "Legia de Varsóvia"
+primaria = "#00A653"
+secundaria = "#6C0D10"
+padrao = "liso"
+
+[[clubes]]
+nome = "Motor Lublin"
+primaria = "#F2EA2D"
+secundaria = "#2A4999"
+padrao = "liso"
+
+[[clubes]]
+nome = "Zaglebie Lubin SA"
+primaria = "#F5AE6E"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Wieczysta Krakow"
+primaria = "#FFF100"
+secundaria = "#2C271C"
+padrao = "liso"
+
+[[clubes]]
+nome = "Pogon Szczecin"
+primaria = "#01245D"
+secundaria = "#8C0D04"
+padrao = "liso"
+
+[[clubes]]
+nome = "Wisla Plock"
+primaria = "#0167BB"
+secundaria = "#FDFEFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Wisla Kraków SSA"
+primaria = "#D81E25"
+secundaria = "#CD9D50"
+padrao = "liso"
+
+[[clubes]]
+nome = "GKS Katowice"
+primaria = "#007338"
+secundaria = "#FCF7C8"
+padrao = "liso"
+
+[[clubes]]
+nome = "Radomiak Radom"
+primaria = "#007641"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Slask Wroclaw"
+primaria = "#FBFBCB"
+secundaria = "#D2B16C"
+padrao = "liso"
+
+[[clubes]]
+nome = "Piast Gliwice KS"
+primaria = "#E4D298"
+secundaria = "#712E57"
+padrao = "liso"
+
+[[clubes]]
+nome = "SK Slavia Praga"
+primaria = "#ED1B2F"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Sparta Praga"
+primaria = "#1D1D1B"
+secundaria = "#FEFEFE"
+padrao = "liso"
+
+[[clubes]]
+nome = "Viktoria Plzen"
+primaria = "#EE1C24"
+secundaria = "#263C5B"
+padrao = "liso"
+
+[[clubes]]
+nome = "SK Sigma Olomouc"
+primaria = "#005B9E"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "Slovan Liberec"
+primaria = "#7BACF7"
+secundaria = "#020A0C"
+padrao = "liso"
+
+[[clubes]]
+nome = "Banik Ostrava"
+primaria = "#DB061C"
+secundaria = "#D6A96B"
+padrao = "liso"
+
+[[clubes]]
+nome = "Hradec Králové"
+primaria = "#2F2E2C"
+secundaria = "#C9BEA5"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Pardubice"
+primaria = "#D8101B"
+secundaria = "#FEFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Jablonec"
+primaria = "#01321F"
+secundaria = "#FFFFFF"
+padrao = "liso"
+
+[[clubes]]
+nome = "SK Artis Brno"
+primaria = "#263371"
+secundaria = "#DDDFE6"
+padrao = "liso"
+
+[[clubes]]
+nome = "Zbrojovka Brno"
+primaria = "#0337A2"
+secundaria = "#F9FBFA"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Mlada Boleslav"
+primaria = "#0874AF"
+secundaria = "#C5E0E4"
+padrao = "liso"
+
+[[clubes]]
+nome = "FK Teplice"
+primaria = "#002FB9"
+secundaria = "#F6E098"
+padrao = "liso"
+
+[[clubes]]
+nome = "1.FC Slovacko"
+primaria = "#033469"
+secundaria = "#9FAABC"
+padrao = "liso"
+
+[[clubes]]
+nome = "Bohemians Praga 1905"
+primaria = "#2B8923"
+secundaria = "#FDFEFD"
+padrao = "liso"
+
+[[clubes]]
+nome = "Zlin"
+primaria = "#F1C71B"
+secundaria = "#284067"
 padrao = "liso"

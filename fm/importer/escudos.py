@@ -133,7 +133,16 @@ CODIGO_TM = {"brasil_serie_a": "BRA1", "brasil_serie_b": "BRA2",
              "colombia_primera": "COLP", "chile_primera": "CLPD",
              "uruguai_primera": "URU1", "equador_primera": "EC1N",
              "paraguai_primera": "PR1A", "peru_primera": "TDeA",
-             "bolivia_primera": "BO1A", "venezuela_primera": "VZ1A"}
+             "bolivia_primera": "BO1A", "venezuela_primera": "VZ1A",
+             # o resto da Europa (03/10/2026)
+             "holanda_eredivisie": "NL1", "belgica_pro_league": "BE1",
+             "turquia_super_lig": "TR1", "grecia_super_league": "GR1",
+             "ucrania_premier_liga": "UKR1", "russia_premier_liga": "RU1",
+             "austria_bundesliga": "A1", "suica_super_league": "C1",
+             "escocia_premiership": "SC1", "dinamarca_superliga": "DK1",
+             "noruega_eliteserien": "NO1", "suecia_allsvenskan": "SE1",
+             "servia_superliga": "SER1", "croacia_hnl": "KR1",
+             "polonia_ekstraklasa": "PL1", "tchequia_chance_liga": "TS1"}
 INDICE = ESCUDOS_DIR / "indice.json"
 
 

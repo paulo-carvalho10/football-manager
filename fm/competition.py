@@ -67,8 +67,12 @@ def round_robin(club_ids: list[int], legs: int = 2) -> list[Fixture]:
         base = fixtures[:]
         for leg in range(1, legs):
             deslocamento = leg * (n - 1)
-            for f in base:                      # returno: inverte o mando
-                fixtures.append(Fixture(f.away, f.home, f.matchday + deslocamento))
+            for f in base:
+                # o mando alterna a cada turno. REGRESSAO: todo turno extra invertia o
+                # mando do primeiro, e no 3o turno (Escocia, Suica) quem mandou no 2o
+                # mandava de novo
+                casa, fora = (f.away, f.home) if leg % 2 else (f.home, f.away)
+                fixtures.append(Fixture(casa, fora, f.matchday + deslocamento))
     return fixtures
 
 

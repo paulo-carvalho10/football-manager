@@ -1,0 +1,3846 @@
+# SC1 -- GERADO por fm.importer. Nao editar a mao: rode o importador.
+#
+# Fonte: Transfermarkt (clube, posicao, idade, valor de mercado, jogos, minutos).
+# ovr e pot sao DERIVADOS por fm/ratings.py a partir desses campos. Sao estimativa, nao
+# rating oficial de ninguem, e a conta esta documentada no modulo.
+#
+# forca do clube = nivel_da_liga + 6.0 * z(ln(valor de elenco) dentro da liga).
+# O NIVEL da liga sai do valor medio de elenco na escala global de todas as competicoes
+# importadas, com o melhor clube do mundo ancorado em 90 -- fazer z so por liga apagava a
+# diferenca entre divisoes e o lanterna da Serie B saia mais forte que o da Serie A.
+# O BETA e proprio desta liga e foi ajustado contra os [alvos] do arquivo dela.
+verificado = false
+fonte = "Transfermarkt SC1 (valores de mercado); ovr/pot derivados por fm.ratings"
+
+[[clubes]]
+nome = "Rangers"
+forca = 72.2
+valor_elenco = 148650000
+cores = ["#012D9E", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Emmanuel Fernandez"
+  pos = "CB"
+  idade = 24
+  ovr = 79
+  pot = 80
+  valor = 18000000
+  partidas = 13
+  minutos = 1200
+  gols = 6
+  id_fonte = "807417"
+
+  [[clubes.jogadores]]
+  nome = "Nicolas Raskin"
+  pos = "DM"
+  idade = 25
+  ovr = 79
+  pot = 79
+  valor = 17000000
+  partidas = 8
+  minutos = 706
+  gols = 7
+  id_fonte = "422763"
+
+  [[clubes.jogadores]]
+  nome = "Ivor Pandur"
+  pos = "GK"
+  idade = 26
+  ovr = 74
+  pot = 74
+  valor = 4500000
+  partidas = 13
+  minutos = 1200
+  id_fonte = "371013"
+
+  [[clubes.jogadores]]
+  nome = "Youssef Chermiti"
+  pos = "FW"
+  idade = 22
+  ovr = 74
+  pot = 76
+  valor = 15000000
+  partidas = 2
+  minutos = 171
+  gols = 15
+  id_fonte = "670688"
+
+  [[clubes.jogadores]]
+  nome = "Ben Godfrey"
+  pos = "CB"
+  idade = 28
+  ovr = 73
+  pot = 73
+  valor = 5000000
+  partidas = 1
+  minutos = 99
+  id_fonte = "343475"
+
+  [[clubes.jogadores]]
+  nome = "Djeidi Gassama"
+  pos = "WG"
+  idade = 23
+  ovr = 70
+  pot = 71
+  valor = 6000000
+  partidas = 9
+  minutos = 822
+  gols = 1
+  id_fonte = "795657"
+
+  [[clubes.jogadores]]
+  nome = "José Cifuentes"
+  pos = "MF"
+  idade = 27
+  ovr = 70
+  pot = 71
+  valor = 4000000
+  id_fonte = "450211"
+
+  [[clubes.jogadores]]
+  nome = "Ross McCrorie"
+  pos = "FB"
+  idade = 28
+  ovr = 70
+  pot = 70
+  valor = 3000000
+  partidas = 2
+  minutos = 206
+  id_fonte = "293746"
+
+  [[clubes.jogadores]]
+  nome = "Dan Neil"
+  pos = "MF"
+  idade = 24
+  ovr = 69
+  pot = 71
+  valor = 4500000
+  partidas = 8
+  minutos = 754
+  gols = 2
+  id_fonte = "570336"
+
+  [[clubes.jogadores]]
+  nome = "Lawrence Shankland"
+  pos = "FW"
+  idade = 31
+  ovr = 69
+  pot = 69
+  valor = 3000000
+  partidas = 6
+  minutos = 561
+  gols = 4
+  id_fonte = "225744"
+
+  [[clubes.jogadores]]
+  nome = "Dujon Sterling"
+  pos = "FB"
+  idade = 26
+  ovr = 68
+  pot = 69
+  valor = 2500000
+  partidas = 11
+  minutos = 998
+  gols = 2
+  id_fonte = "346315"
+
+  [[clubes.jogadores]]
+  nome = "James Penrice"
+  pos = "FB"
+  idade = 27
+  ovr = 68
+  pot = 69
+  valor = 2500000
+  partidas = 9
+  minutos = 808
+  gols = 1
+  id_fonte = "363227"
+
+  [[clubes.jogadores]]
+  nome = "John Souttar"
+  pos = "CB"
+  idade = 29
+  ovr = 68
+  pot = 68
+  valor = 2000000
+  partidas = 35
+  minutos = 3184
+  id_fonte = "235767"
+
+  [[clubes.jogadores]]
+  nome = "Tuur Rommens"
+  pos = "FB"
+  idade = 23
+  ovr = 68
+  pot = 74
+  valor = 7000000
+  partidas = 3
+  minutos = 270
+  gols = 1
+  id_fonte = "707621"
+
+  [[clubes.jogadores]]
+  nome = "Cammy Devlin"
+  pos = "MF"
+  idade = 28
+  ovr = 67
+  pot = 67
+  valor = 2000000
+  partidas = 5
+  minutos = 409
+  id_fonte = "399162"
+
+  [[clubes.jogadores]]
+  nome = "Ryan Naderi"
+  pos = "FW"
+  idade = 23
+  ovr = 67
+  pot = 69
+  valor = 4500000
+  partidas = 8
+  minutos = 746
+  gols = 4
+  id_fonte = "654257"
+
+  [[clubes.jogadores]]
+  nome = "Tochi Chukwuani"
+  pos = "DM"
+  idade = 23
+  ovr = 67
+  pot = 72
+  valor = 5000000
+  partidas = 4
+  minutos = 384
+  gols = 3
+  id_fonte = "553328"
+
+  [[clubes.jogadores]]
+  nome = "Bojan Miovski"
+  pos = "FW"
+  idade = 27
+  ovr = 66
+  pot = 66
+  valor = 2500000
+  partidas = 1
+  minutos = 55
+  gols = 1
+  id_fonte = "476219"
+
+  [[clubes.jogadores]]
+  nome = "Liam Kelly"
+  pos = "GK"
+  idade = 30
+  ovr = 65
+  pot = 65
+  valor = 800000
+  partidas = 3
+  minutos = 270
+  id_fonte = "208772"
+
+  [[clubes.jogadores]]
+  nome = "Olwethu Makhanya"
+  pos = "CB"
+  idade = 22
+  ovr = 65
+  pot = 67
+  valor = 2000000
+  partidas = 11
+  minutos = 1020
+  id_fonte = "1069801"
+
+  [[clubes.jogadores]]
+  nome = "Vanja Dragojevic"
+  pos = "DM"
+  idade = 20
+  ovr = 64
+  pot = 74
+  valor = 8000000
+  partidas = 3
+  minutos = 279
+  gols = 1
+  id_fonte = "944289"
+
+  [[clubes.jogadores]]
+  nome = "Badredine Bouanani"
+  pos = "WG"
+  idade = 21
+  ovr = 63
+  pot = 74
+  valor = 10000000
+  partidas = 1
+  minutos = 94
+  id_fonte = "707242"
+
+  [[clubes.jogadores]]
+  nome = "Daisuke Yokota"
+  pos = "WG"
+  idade = 26
+  ovr = 63
+  pot = 64
+  valor = 1700000
+  partidas = 5
+  minutos = 412
+  id_fonte = "602781"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Kelsy"
+  pos = "FW"
+  idade = 22
+  ovr = 61
+  pot = 68
+  valor = 4000000
+  partidas = 3
+  minutos = 257
+  gols = 1
+  id_fonte = "888023"
+
+  [[clubes.jogadores]]
+  nome = "Min-su Kim"
+  pos = "WG"
+  idade = 20
+  ovr = 61
+  pot = 70
+  valor = 5000000
+  partidas = 4
+  minutos = 396
+  id_fonte = "1108203"
+
+  [[clubes.jogadores]]
+  nome = "Kosta Nedeljkovic"
+  pos = "FB"
+  idade = 20
+  ovr = 60
+  pot = 73
+  valor = 6000000
+  partidas = 1
+  minutos = 121
+  id_fonte = "848682"
+
+  [[clubes.jogadores]]
+  nome = "Findlay Curtis"
+  pos = "WG"
+  idade = 20
+  ovr = 58
+  pot = 64
+  valor = 2000000
+  partidas = 7
+  minutos = 597
+  gols = 3
+  id_fonte = "1082993"
+
+  [[clubes.jogadores]]
+  nome = "Ross McCausland"
+  pos = "WG"
+  idade = 23
+  ovr = 51
+  pot = 59
+  valor = 750000
+  partidas = 1
+  minutos = 27
+  gols = 1
+  id_fonte = "624266"
+
+  [[clubes.jogadores]]
+  nome = "Clinton Nsiala"
+  pos = "CB"
+  idade = 22
+  ovr = 48
+  pot = 58
+  valor = 400000
+  partidas = 2
+  minutos = 139
+  id_fonte = "910175"
+
+[[clubes]]
+nome = "Celtic"
+forca = 70.8
+valor_elenco = 118400000
+cores = ["#039947", "#FDFEFD"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Cameron Carter-Vickers"
+  pos = "CB"
+  idade = 28
+  ovr = 74
+  pot = 74
+  valor = 9000000
+  partidas = 11
+  minutos = 991
+  id_fonte = "341049"
+
+  [[clubes.jogadores]]
+  nome = "Kieran Tierney"
+  pos = "FB"
+  idade = 29
+  ovr = 74
+  pot = 74
+  valor = 8000000
+  partidas = 7
+  minutos = 634
+  gols = 6
+  id_fonte = "300716"
+
+  [[clubes.jogadores]]
+  nome = "Benjamin Nygren"
+  pos = "AM"
+  idade = 25
+  ovr = 73
+  pot = 74
+  valor = 14000000
+  partidas = 9
+  minutos = 803
+  gols = 5
+  id_fonte = "475949"
+
+  [[clubes.jogadores]]
+  nome = "Alistair Johnston"
+  pos = "FB"
+  idade = 27
+  ovr = 72
+  pot = 73
+  valor = 8000000
+  partidas = 2
+  minutos = 135
+  gols = 1
+  id_fonte = "637446"
+
+  [[clubes.jogadores]]
+  nome = "Auston Trusty"
+  pos = "CB"
+  idade = 28
+  ovr = 72
+  pot = 72
+  valor = 6000000
+  partidas = 9
+  minutos = 837
+  gols = 1
+  id_fonte = "389253"
+
+  [[clubes.jogadores]]
+  nome = "Kasper Høgh"
+  pos = "FW"
+  idade = 25
+  ovr = 71
+  pot = 73
+  valor = 12000000
+  partidas = 8
+  minutos = 689
+  gols = 3
+  id_fonte = "542877"
+
+  [[clubes.jogadores]]
+  nome = "Liam Scales"
+  pos = "CB"
+  idade = 28
+  ovr = 71
+  pot = 71
+  valor = 5000000
+  partidas = 9
+  minutos = 779
+  gols = 1
+  id_fonte = "439497"
+
+  [[clubes.jogadores]]
+  nome = "Sam Johnstone"
+  pos = "GK"
+  idade = 33
+  ovr = 71
+  pot = 71
+  valor = 2000000
+  partidas = 2
+  minutos = 180
+  id_fonte = "110864"
+
+  [[clubes.jogadores]]
+  nome = "Callum McGregor"
+  pos = "DM"
+  idade = 33
+  ovr = 69
+  pot = 69
+  valor = 2000000
+  partidas = 11
+  minutos = 1020
+  gols = 1
+  id_fonte = "120977"
+
+  [[clubes.jogadores]]
+  nome = "Hyun-jun Yang"
+  pos = "WG"
+  idade = 24
+  ovr = 68
+  pot = 69
+  valor = 5000000
+  partidas = 6
+  minutos = 516
+  gols = 2
+  id_fonte = "853110"
+
+  [[clubes.jogadores]]
+  nome = "Jordan Lotomba"
+  pos = "FB"
+  idade = 27
+  ovr = 68
+  pot = 69
+  valor = 3500000
+  partidas = 1
+  minutos = 10
+  id_fonte = "313094"
+
+  [[clubes.jogadores]]
+  nome = "Jota"
+  pos = "WG"
+  idade = 27
+  ovr = 68
+  pot = 69
+  valor = 5000000
+  id_fonte = "329812"
+
+  [[clubes.jogadores]]
+  nome = "Haissem Hassan"
+  pos = "WG"
+  idade = 24
+  ovr = 67
+  pot = 71
+  valor = 8000000
+  partidas = 5
+  minutos = 431
+  id_fonte = "620164"
+
+  [[clubes.jogadores]]
+  nome = "Sebastian Tounekti"
+  pos = "WG"
+  idade = 24
+  ovr = 67
+  pot = 69
+  valor = 5000000
+  partidas = 4
+  minutos = 393
+  gols = 1
+  id_fonte = "539677"
+
+  [[clubes.jogadores]]
+  nome = "Mika Baur"
+  pos = "MF"
+  idade = 22
+  ovr = 66
+  pot = 70
+  valor = 5000000
+  partidas = 8
+  minutos = 693
+  gols = 2
+  id_fonte = "720948"
+
+  [[clubes.jogadores]]
+  nome = "Oliver Sørensen"
+  pos = "MF"
+  idade = 24
+  ovr = 66
+  pot = 71
+  valor = 6500000
+  partidas = 2
+  minutos = 156
+  id_fonte = "514888"
+
+  [[clubes.jogadores]]
+  nome = "Alex Oxlade-Chamberlain"
+  pos = "MF"
+  idade = 33
+  ovr = 65
+  pot = 65
+  valor = 1000000
+  partidas = 3
+  minutos = 226
+  gols = 2
+  id_fonte = "143424"
+
+  [[clubes.jogadores]]
+  nome = "Anthony Ralston"
+  pos = "FB"
+  idade = 27
+  ovr = 65
+  pot = 65
+  valor = 1500000
+  partidas = 1
+  minutos = 46
+  gols = 1
+  id_fonte = "388171"
+
+  [[clubes.jogadores]]
+  nome = "Luke McCowan"
+  pos = "MF"
+  idade = 28
+  ovr = 65
+  pot = 65
+  valor = 1500000
+  partidas = 2
+  minutos = 176
+  gols = 1
+  id_fonte = "468264"
+
+  [[clubes.jogadores]]
+  nome = "Camilo Durán"
+  pos = "FW"
+  idade = 24
+  ovr = 63
+  pot = 65
+  valor = 2000000
+  partidas = 10
+  minutos = 918
+  gols = 6
+  id_fonte = "997867"
+
+  [[clubes.jogadores]]
+  nome = "Viljami Sinisalo"
+  pos = "GK"
+  idade = 24
+  ovr = 63
+  pot = 65
+  valor = 1000000
+  partidas = 10
+  minutos = 930
+  id_fonte = "484838"
+
+  [[clubes.jogadores]]
+  nome = "Colby Donovan"
+  pos = "FB"
+  idade = 20
+  ovr = 62
+  pot = 65
+  valor = 1500000
+  partidas = 10
+  minutos = 916
+  id_fonte = "1208182"
+
+  [[clubes.jogadores]]
+  nome = "James Forrest"
+  pos = "WG"
+  idade = 35
+  ovr = 59
+  pot = 59
+  valor = 300000
+  partidas = 3
+  minutos = 239
+  gols = 1
+  id_fonte = "84992"
+
+  [[clubes.jogadores]]
+  nome = "Ross Doohan"
+  pos = "GK"
+  idade = 28
+  ovr = 59
+  pot = 59
+  valor = 250000
+  id_fonte = "285283"
+
+  [[clubes.jogadores]]
+  nome = "Dane Murray"
+  pos = "CB"
+  idade = 23
+  ovr = 52
+  pot = 58
+  valor = 350000
+  partidas = 2
+  minutos = 162
+  gols = 1
+  id_fonte = "662932"
+
+  [[clubes.jogadores]]
+  nome = "Shumaira Mheuka"
+  pos = "FW"
+  idade = 18
+  ovr = 49
+  pot = 66
+  valor = 3000000
+  partidas = 5
+  minutos = 40
+  id_fonte = "982097"
+
+  [[clubes.jogadores]]
+  nome = "Joël van den Berg"
+  pos = "MF"
+  idade = 19
+  ovr = 48
+  pot = 64
+  valor = 1500000
+  id_fonte = "987376"
+
+  [[clubes.jogadores]]
+  nome = "Callum Osmand"
+  pos = "FW"
+  idade = 20
+  ovr = 44
+  pot = 58
+  valor = 500000
+  partidas = 2
+  minutos = 28
+  gols = 2
+  id_fonte = "883540"
+
+  [[clubes.jogadores]]
+  nome = "Landon Emenalo"
+  pos = "FB"
+  idade = 18
+  ovr = 41
+  pot = 59
+  valor = 474137
+  id_fonte = "1108471"
+
+[[clubes]]
+nome = "Heart of Midlothian"
+forca = 61.0
+valor_elenco = 22030000
+cores = ["#931E30", "#CA9479"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Cláudio Braga"
+  pos = "FW"
+  idade = 26
+  ovr = 69
+  pot = 70
+  valor = 7000000
+  partidas = 13
+  minutos = 1138
+  gols = 3
+  id_fonte = "740596"
+
+  [[clubes.jogadores]]
+  nome = "Beau Reus"
+  pos = "GK"
+  idade = 24
+  ovr = 65
+  pot = 67
+  valor = 1500000
+  partidas = 13
+  minutos = 1200
+  id_fonte = "515386"
+
+  [[clubes.jogadores]]
+  nome = "Stuart Findlay"
+  pos = "CB"
+  idade = 31
+  ovr = 63
+  pot = 63
+  valor = 700000
+  partidas = 11
+  minutos = 1013
+  gols = 6
+  id_fonte = "165334"
+
+  [[clubes.jogadores]]
+  nome = "Stephen Kingsley"
+  pos = "FB"
+  idade = 32
+  ovr = 62
+  pot = 62
+  valor = 500000
+  partidas = 2
+  minutos = 170
+  gols = 1
+  id_fonte = "184398"
+
+  [[clubes.jogadores]]
+  nome = "Blair Spittal"
+  pos = "MF"
+  idade = 30
+  ovr = 61
+  pot = 61
+  valor = 600000
+  partidas = 9
+  minutos = 810
+  gols = 2
+  id_fonte = "251587"
+
+  [[clubes.jogadores]]
+  nome = "Craig Halkett"
+  pos = "CB"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 500000
+  partidas = 32
+  minutos = 2883
+  gols = 6
+  id_fonte = "253817"
+
+  [[clubes.jogadores]]
+  nome = "Harry Milne"
+  pos = "FB"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 550000
+  partidas = 6
+  minutos = 566
+  gols = 1
+  id_fonte = "411267"
+
+  [[clubes.jogadores]]
+  nome = "Calvin Miller"
+  pos = "AM"
+  idade = 28
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 12
+  minutos = 1073
+  gols = 4
+  id_fonte = "244261"
+
+  [[clubes.jogadores]]
+  nome = "Oisin McEntee"
+  pos = "CB"
+  idade = 25
+  ovr = 59
+  pot = 59
+  valor = 500000
+  partidas = 11
+  minutos = 963
+  gols = 1
+  id_fonte = "541448"
+
+  [[clubes.jogadores]]
+  nome = "Christian Borchgrevink"
+  pos = "FB"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 450000
+  partidas = 6
+  minutos = 568
+  gols = 1
+  id_fonte = "367244"
+
+  [[clubes.jogadores]]
+  nome = "Jamie McCart"
+  pos = "CB"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 350000
+  partidas = 12
+  minutos = 1087
+  id_fonte = "290801"
+
+  [[clubes.jogadores]]
+  nome = "Jordi Altena"
+  pos = "FB"
+  idade = 22
+  ovr = 58
+  pot = 60
+  valor = 600000
+  partidas = 11
+  minutos = 986
+  id_fonte = "607173"
+
+  [[clubes.jogadores]]
+  nome = "Laurent Mendy"
+  pos = "CB"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 302500
+  partidas = 7
+  minutos = 657
+  gols = 1
+  id_fonte = "1150286"
+
+  [[clubes.jogadores]]
+  nome = "Zander Clark"
+  pos = "GK"
+  idade = 34
+  ovr = 58
+  pot = 58
+  valor = 150000
+  partidas = 7
+  minutos = 660
+  id_fonte = "98067"
+
+  [[clubes.jogadores]]
+  nome = "Ageu"
+  pos = "MF"
+  idade = 24
+  ovr = 57
+  pot = 63
+  valor = 1300000
+  partidas = 1
+  minutos = 31
+  id_fonte = "978150"
+
+  [[clubes.jogadores]]
+  nome = "Elton Kabangu"
+  pos = "FW"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 500000
+  partidas = 3
+  minutos = 312
+  gols = 1
+  id_fonte = "396847"
+
+  [[clubes.jogadores]]
+  nome = "Josh McPake"
+  pos = "WG"
+  idade = 25
+  ovr = 56
+  pot = 57
+  valor = 500000
+  partidas = 8
+  minutos = 759
+  gols = 2
+  id_fonte = "424014"
+
+  [[clubes.jogadores]]
+  nome = "Sabri Guendouz"
+  pos = "WG"
+  idade = 26
+  ovr = 56
+  pot = 57
+  valor = 500000
+  partidas = 4
+  minutos = 399
+  id_fonte = "796894"
+
+  [[clubes.jogadores]]
+  nome = "Tómas Bent Magnússon"
+  pos = "MF"
+  idade = 24
+  ovr = 56
+  pot = 59
+  valor = 600000
+  partidas = 6
+  minutos = 521
+  gols = 1
+  id_fonte = "599628"
+
+  [[clubes.jogadores]]
+  nome = "Yan Dhanda"
+  pos = "AM"
+  idade = 27
+  ovr = 56
+  pot = 57
+  valor = 400000
+  partidas = 1
+  minutos = 116
+  gols = 1
+  id_fonte = "332340"
+
+  [[clubes.jogadores]]
+  nome = "JJ Williams"
+  pos = "FW"
+  idade = 28
+  ovr = 55
+  pot = 55
+  valor = 300000
+  partidas = 2
+  minutos = 196
+  gols = 1
+  id_fonte = "644786"
+
+  [[clubes.jogadores]]
+  nome = "Tom Renaud"
+  pos = "DM"
+  idade = 25
+  ovr = 55
+  pot = 58
+  valor = 400000
+  partidas = 4
+  minutos = 394
+  gols = 2
+  id_fonte = "695643"
+
+  [[clubes.jogadores]]
+  nome = "Amadou Ba-Sy"
+  pos = "FW"
+  idade = 25
+  ovr = 54
+  pot = 57
+  valor = 500000
+  partidas = 2
+  minutos = 221
+  id_fonte = "889618"
+
+  [[clubes.jogadores]]
+  nome = "Sabah Kerjota"
+  pos = "WG"
+  idade = 25
+  ovr = 54
+  pot = 56
+  valor = 400000
+  partidas = 7
+  minutos = 601
+  gols = 1
+  id_fonte = "1032804"
+
+  [[clubes.jogadores]]
+  nome = "James Wilson"
+  pos = "FW"
+  idade = 19
+  ovr = 52
+  pot = 61
+  valor = 1200000
+  partidas = 6
+  minutos = 504
+  gols = 5
+  id_fonte = "1041600"
+
+  [[clubes.jogadores]]
+  nome = "Pierre Landry Kaboré"
+  pos = "FW"
+  idade = 25
+  ovr = 52
+  pot = 54
+  valor = 300000
+  partidas = 4
+  minutos = 361
+  gols = 1
+  id_fonte = "649453"
+
+  [[clubes.jogadores]]
+  nome = "Rogers Mato"
+  pos = "WG"
+  idade = 22
+  ovr = 50
+  pot = 58
+  valor = 700000
+  partidas = 2
+  minutos = 212
+  gols = 2
+  id_fonte = "973449"
+
+  [[clubes.jogadores]]
+  nome = "Ryan Fulton"
+  pos = "GK"
+  idade = 30
+  ovr = 50
+  pot = 50
+  valor = 50000
+  partidas = 2
+  minutos = 180
+  id_fonte = "193861"
+
+  [[clubes.jogadores]]
+  nome = "Malachi Fagan-Walcott"
+  pos = "CB"
+  idade = 24
+  ovr = 49
+  pot = 54
+  valor = 197500
+  partidas = 2
+  minutos = 180
+  id_fonte = "554173"
+
+  [[clubes.jogadores]]
+  nome = "Kieran Wright"
+  pos = "GK"
+  idade = 27
+  ovr = 48
+  pot = 49
+  valor = 50000
+  id_fonte = "369523"
+
+  [[clubes.jogadores]]
+  nome = "Aron Benjaminsen"
+  pos = "WG"
+  idade = 18
+  ovr = 40
+  pot = 50
+  valor = 150000
+  id_fonte = "1010729"
+
+  [[clubes.jogadores]]
+  nome = "Finlay Pollock"
+  pos = "AM"
+  idade = 22
+  ovr = 40
+  pot = 47
+  valor = 75000
+  id_fonte = "887137"
+
+  [[clubes.jogadores]]
+  nome = "Leart Kabashi"
+  pos = "MF"
+  idade = 18
+  ovr = 40
+  pot = 49
+  valor = 100000
+  id_fonte = "1123521"
+
+[[clubes]]
+nome = "Hibernian"
+forca = 60.2
+valor_elenco = 19050000
+cores = ["#018348", "#56AC85"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Josh Mulligan"
+  pos = "MF"
+  idade = 23
+  ovr = 65
+  pot = 66
+  valor = 3000000
+  partidas = 14
+  minutos = 1275
+  gols = 3
+  id_fonte = "674809"
+
+  [[clubes.jogadores]]
+  nome = "Miguel Chaiwa"
+  pos = "DM"
+  idade = 22
+  ovr = 65
+  pot = 67
+  valor = 3000000
+  partidas = 11
+  minutos = 990
+  gols = 2
+  id_fonte = "956604"
+
+  [[clubes.jogadores]]
+  nome = "Jamie McGrath"
+  pos = "AM"
+  idade = 29
+  ovr = 62
+  pot = 62
+  valor = 1200000
+  partidas = 6
+  minutos = 500
+  gols = 9
+  id_fonte = "344107"
+
+  [[clubes.jogadores]]
+  nome = "Jason Kerr"
+  pos = "CB"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 700000
+  partidas = 14
+  minutos = 1260
+  gols = 1
+  id_fonte = "340728"
+
+  [[clubes.jogadores]]
+  nome = "Rocky Bushiri"
+  pos = "CB"
+  idade = 26
+  ovr = 61
+  pot = 62
+  valor = 1000000
+  partidas = 33
+  minutos = 2988
+  gols = 5
+  id_fonte = "511802"
+
+  [[clubes.jogadores]]
+  nome = "Felix Passlack"
+  pos = "FB"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 700000
+  partidas = 13
+  minutos = 1194
+  gols = 2
+  id_fonte = "274461"
+
+  [[clubes.jogadores]]
+  nome = "Raphael Sallinger"
+  pos = "GK"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 450000
+  partidas = 15
+  minutos = 1350
+  id_fonte = "225360"
+
+  [[clubes.jogadores]]
+  nome = "Thibault Klidjé"
+  pos = "FW"
+  idade = 25
+  ovr = 60
+  pot = 63
+  valor = 2000000
+  partidas = 3
+  minutos = 262
+  gols = 1
+  id_fonte = "575610"
+
+  [[clubes.jogadores]]
+  nome = "Marko Ivezic"
+  pos = "CB"
+  idade = 24
+  ovr = 58
+  pot = 64
+  valor = 1500000
+  id_fonte = "706024"
+
+  [[clubes.jogadores]]
+  nome = "Nicky Cadden"
+  pos = "AM"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 600000
+  partidas = 2
+  minutos = 26
+  id_fonte = "291177"
+
+  [[clubes.jogadores]]
+  nome = "Callum Wright"
+  pos = "AM"
+  idade = 26
+  ovr = 57
+  pot = 58
+  valor = 750000
+  partidas = 5
+  minutos = 489
+  gols = 2
+  id_fonte = "502830"
+
+  [[clubes.jogadores]]
+  nome = "Grant Hanley"
+  pos = "CB"
+  idade = 34
+  ovr = 57
+  pot = 57
+  valor = 200000
+  partidas = 6
+  minutos = 503
+  id_fonte = "121385"
+
+  [[clubes.jogadores]]
+  nome = "Ante Suto"
+  pos = "FW"
+  idade = 26
+  ovr = 56
+  pot = 57
+  valor = 700000
+  partidas = 4
+  minutos = 382
+  gols = 1
+  id_fonte = "697511"
+
+  [[clubes.jogadores]]
+  nome = "Martin Boyle"
+  pos = "FW"
+  idade = 33
+  ovr = 56
+  pot = 56
+  valor = 300000
+  partidas = 8
+  minutos = 720
+  gols = 4
+  id_fonte = "140554"
+
+  [[clubes.jogadores]]
+  nome = "Adam Mayor"
+  pos = "FB"
+  idade = 21
+  ovr = 55
+  pot = 57
+  valor = 500000
+  partidas = 12
+  minutos = 1064
+  gols = 2
+  id_fonte = "1050650"
+
+  [[clubes.jogadores]]
+  nome = "Jack Iredale"
+  pos = "CB"
+  idade = 30
+  ovr = 55
+  pot = 55
+  valor = 250000
+  partidas = 5
+  minutos = 409
+  id_fonte = "524537"
+
+  [[clubes.jogadores]]
+  nome = "Joe Newell"
+  pos = "MF"
+  idade = 33
+  ovr = 55
+  pot = 55
+  valor = 200000
+  partidas = 2
+  minutos = 216
+  gols = 1
+  id_fonte = "185342"
+
+  [[clubes.jogadores]]
+  nome = "Jordan Obita"
+  pos = "FB"
+  idade = 32
+  ovr = 53
+  pot = 53
+  valor = 150000
+  partidas = 9
+  minutos = 839
+  gols = 1
+  id_fonte = "158816"
+
+  [[clubes.jogadores]]
+  nome = "Nathan Lowe"
+  pos = "FW"
+  idade = 21
+  ovr = 50
+  pot = 53
+  valor = 350000
+  partidas = 11
+  minutos = 1009
+  gols = 2
+  id_fonte = "980417"
+
+  [[clubes.jogadores]]
+  nome = "Jordan Smith"
+  pos = "GK"
+  idade = 31
+  ovr = 49
+  pot = 49
+  valor = 50000
+  partidas = 13
+  minutos = 1155
+  id_fonte = "452707"
+
+  [[clubes.jogadores]]
+  nome = "Owen Elding"
+  pos = "FW"
+  idade = 20
+  ovr = 49
+  pot = 55
+  valor = 500000
+  partidas = 7
+  minutos = 656
+  gols = 3
+  id_fonte = "1127616"
+
+  [[clubes.jogadores]]
+  nome = "Azeem Abdulai"
+  pos = "DM"
+  idade = 23
+  ovr = 48
+  pot = 56
+  valor = 400000
+  partidas = 1
+  minutos = 69
+  id_fonte = "859940"
+
+  [[clubes.jogadores]]
+  nome = "Kanayo Megwa"
+  pos = "FB"
+  idade = 22
+  ovr = 45
+  pot = 52
+  valor = 200000
+  partidas = 3
+  minutos = 302
+  id_fonte = "1001854"
+
+  [[clubes.jogadores]]
+  nome = "Jacob Devaney"
+  pos = "DM"
+  idade = 19
+  ovr = 41
+  pot = 53
+  valor = 250000
+  partidas = 3
+  minutos = 286
+  id_fonte = "1112908"
+
+  [[clubes.jogadores]]
+  nome = "Alex Williams"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 48
+  valor = 100000
+  partidas = 1
+  minutos = 11
+  id_fonte = "751659"
+
+  [[clubes.jogadores]]
+  nome = "Freddie Owens"
+  pos = "GK"
+  idade = 20
+  ovr = 40
+  pot = 48
+  valor = 78269
+  id_fonte = "1061690"
+
+[[clubes]]
+nome = "Motherwell"
+forca = 59.3
+valor_elenco = 16300000
+cores = ["#F9AB03", "#75143D"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Tawanda Maswanhise"
+  pos = "FW"
+  idade = 23
+  ovr = 66
+  pot = 68
+  valor = 5000000
+  partidas = 9
+  minutos = 847
+  gols = 2
+  id_fonte = "670987"
+
+  [[clubes.jogadores]]
+  nome = "Emmanuel Longelo"
+  pos = "FB"
+  idade = 25
+  ovr = 64
+  pot = 65
+  valor = 1500000
+  partidas = 12
+  minutos = 1044
+  gols = 1
+  id_fonte = "504386"
+
+  [[clubes.jogadores]]
+  nome = "Ibrahim Said"
+  pos = "WG"
+  idade = 24
+  ovr = 63
+  pot = 64
+  valor = 2000000
+  partidas = 10
+  minutos = 883
+  gols = 3
+  id_fonte = "718318"
+
+  [[clubes.jogadores]]
+  nome = "Jake Girdwood-Reich"
+  pos = "CB"
+  idade = 22
+  ovr = 60
+  pot = 62
+  valor = 1000000
+  partidas = 11
+  minutos = 964
+  id_fonte = "867761"
+
+  [[clubes.jogadores]]
+  nome = "Alex Paulsen"
+  pos = "GK"
+  idade = 24
+  ovr = 59
+  pot = 60
+  valor = 500000
+  partidas = 13
+  minutos = 1170
+  id_fonte = "617009"
+
+  [[clubes.jogadores]]
+  nome = "Regan Charles-Cook"
+  pos = "WG"
+  idade = 29
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 7
+  minutos = 634
+  gols = 3
+  id_fonte = "385635"
+
+  [[clubes.jogadores]]
+  nome = "Joe Hodge"
+  pos = "DM"
+  idade = 24
+  ovr = 57
+  pot = 60
+  valor = 700000
+  partidas = 7
+  minutos = 614
+  id_fonte = "503975"
+
+  [[clubes.jogadores]]
+  nome = "John Koutroumbis"
+  pos = "FB"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 350000
+  partidas = 1
+  minutos = 101
+  gols = 1
+  id_fonte = "456583"
+
+  [[clubes.jogadores]]
+  nome = "Martin Moormann"
+  pos = "CB"
+  idade = 25
+  ovr = 57
+  pot = 58
+  valor = 400000
+  partidas = 12
+  minutos = 1055
+  gols = 1
+  id_fonte = "434098"
+
+  [[clubes.jogadores]]
+  nome = "Dylan Levitt"
+  pos = "MF"
+  idade = 25
+  ovr = 55
+  pot = 59
+  valor = 600000
+  partidas = 1
+  minutos = 70
+  gols = 1
+  id_fonte = "496652"
+
+  [[clubes.jogadores]]
+  nome = "Lukas Fadinger"
+  pos = "MF"
+  idade = 25
+  ovr = 55
+  pot = 56
+  valor = 350000
+  partidas = 13
+  minutos = 1156
+  gols = 3
+  id_fonte = "394018"
+
+  [[clubes.jogadores]]
+  nome = "Paul McGinn"
+  pos = "FB"
+  idade = 35
+  ovr = 54
+  pot = 54
+  valor = 100000
+  partidas = 37
+  minutos = 3362
+  id_fonte = "120070"
+
+  [[clubes.jogadores]]
+  nome = "Eythor Bjørgolfsson"
+  pos = "FW"
+  idade = 26
+  ovr = 53
+  pot = 55
+  valor = 400000
+  partidas = 1
+  minutos = 74
+  gols = 1
+  id_fonte = "904414"
+
+  [[clubes.jogadores]]
+  nome = "Alex Lowry"
+  pos = "AM"
+  idade = 23
+  ovr = 51
+  pot = 53
+  valor = 250000
+  partidas = 9
+  minutos = 823
+  gols = 2
+  id_fonte = "633753"
+
+  [[clubes.jogadores]]
+  nome = "Dylan Williams"
+  pos = "FB"
+  idade = 23
+  ovr = 51
+  pot = 56
+  valor = 350000
+  partidas = 4
+  minutos = 333
+  gols = 1
+  id_fonte = "732117"
+
+  [[clubes.jogadores]]
+  nome = "Jordan McGhee"
+  pos = "CB"
+  idade = 30
+  ovr = 51
+  pot = 51
+  valor = 100000
+  partidas = 1
+  minutos = 92
+  id_fonte = "193881"
+
+  [[clubes.jogadores]]
+  nome = "Willy Vogt"
+  pos = "WG"
+  idade = 24
+  ovr = 51
+  pot = 54
+  valor = 300000
+  partidas = 6
+  minutos = 572
+  id_fonte = "500782"
+
+  [[clubes.jogadores]]
+  nome = "Callum Hendry"
+  pos = "FW"
+  idade = 28
+  ovr = 50
+  pot = 50
+  valor = 150000
+  partidas = 8
+  minutos = 762
+  gols = 1
+  id_fonte = "390156"
+
+  [[clubes.jogadores]]
+  nome = "Jamie Knight-Lebel"
+  pos = "CB"
+  idade = 21
+  ovr = 50
+  pot = 56
+  valor = 300000
+  partidas = 7
+  minutos = 591
+  id_fonte = "1002286"
+
+  [[clubes.jogadores]]
+  nome = "Stephen O'Donnell"
+  pos = "FB"
+  idade = 34
+  ovr = 50
+  pot = 50
+  valor = 50000
+  partidas = 1
+  minutos = 79
+  gols = 1
+  id_fonte = "186337"
+
+  [[clubes.jogadores]]
+  nome = "Oscar Priestman"
+  pos = "MF"
+  idade = 23
+  ovr = 49
+  pot = 54
+  valor = 250000
+  partidas = 6
+  minutos = 501
+  id_fonte = "867755"
+
+  [[clubes.jogadores]]
+  nome = "Ewan Wilson"
+  pos = "FB"
+  idade = 21
+  ovr = 47
+  pot = 56
+  valor = 350000
+  partidas = 3
+  minutos = 290
+  id_fonte = "904922"
+
+  [[clubes.jogadores]]
+  nome = "Tom Sparrow"
+  pos = "MF"
+  idade = 23
+  ovr = 47
+  pot = 49
+  valor = 100000
+  partidas = 9
+  minutos = 852
+  id_fonte = "621365"
+
+  [[clubes.jogadores]]
+  nome = "Seb Palmer-Houlden"
+  pos = "FW"
+  idade = 22
+  ovr = 45
+  pot = 52
+  valor = 250000
+  partidas = 4
+  minutos = 341
+  gols = 1
+  id_fonte = "855258"
+
+  [[clubes.jogadores]]
+  nome = "Jardell Kanga"
+  pos = "AM"
+  idade = 20
+  ovr = 43
+  pot = 54
+  valor = 300000
+  partidas = 3
+  minutos = 233
+  gols = 1
+  id_fonte = "896597"
+
+  [[clubes.jogadores]]
+  nome = "Matty Connelly"
+  pos = "GK"
+  idade = 23
+  ovr = 40
+  pot = 48
+  valor = 50000
+  partidas = 1
+  minutos = 120
+  id_fonte = "633645"
+
+  [[clubes.jogadores]]
+  nome = "Mikey Booth"
+  pos = "MF"
+  idade = 19
+  ovr = 40
+  pot = 51
+  valor = 165000
+  partidas = 4
+  minutos = 364
+  id_fonte = "1161843"
+
+[[clubes]]
+nome = "Aberdeen"
+forca = 58.8
+valor_elenco = 14900000
+cores = ["#ED1D24", "#F5797E"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Marius Müller"
+  pos = "GK"
+  idade = 33
+  ovr = 65
+  pot = 65
+  valor = 700000
+  partidas = 12
+  minutos = 1110
+  id_fonte = "118161"
+
+  [[clubes.jogadores]]
+  nome = "Jack Milne"
+  pos = "CB"
+  idade = 23
+  ovr = 63
+  pot = 64
+  valor = 1500000
+  partidas = 4
+  minutos = 352
+  gols = 1
+  id_fonte = "808452"
+
+  [[clubes.jogadores]]
+  nome = "Connor Ronan"
+  pos = "MF"
+  idade = 28
+  ovr = 62
+  pot = 62
+  valor = 1200000
+  partidas = 8
+  minutos = 764
+  gols = 1
+  id_fonte = "337787"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Nisbet"
+  pos = "FW"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 1200000
+  partidas = 12
+  minutos = 1039
+  gols = 13
+  id_fonte = "360661"
+
+  [[clubes.jogadores]]
+  nome = "Chris Cadden"
+  pos = "FB"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 9
+  minutos = 819
+  id_fonte = "277782"
+
+  [[clubes.jogadores]]
+  nome = "Hicham Mahou"
+  pos = "WG"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 1000000
+  id_fonte = "344610"
+
+  [[clubes.jogadores]]
+  nome = "Lewis Mayo"
+  pos = "CB"
+  idade = 26
+  ovr = 58
+  pot = 58
+  valor = 600000
+  partidas = 12
+  minutos = 1040
+  id_fonte = "403569"
+
+  [[clubes.jogadores]]
+  nome = "Mats Knoester"
+  pos = "CB"
+  idade = 27
+  ovr = 58
+  pot = 58
+  valor = 600000
+  partidas = 5
+  minutos = 423
+  id_fonte = "315138"
+
+  [[clubes.jogadores]]
+  nome = "Kristers Tobers"
+  pos = "CB"
+  idade = 25
+  ovr = 56
+  pot = 60
+  valor = 800000
+  partidas = 1
+  minutos = 61
+  id_fonte = "448883"
+
+  [[clubes.jogadores]]
+  nome = "Afeez Aremu"
+  pos = "DM"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 500000
+  partidas = 10
+  minutos = 889
+  gols = 1
+  id_fonte = "562409"
+
+  [[clubes.jogadores]]
+  nome = "Ante Palaversa"
+  pos = "DM"
+  idade = 26
+  ovr = 55
+  pot = 57
+  valor = 550000
+  partidas = 11
+  minutos = 972
+  id_fonte = "371003"
+
+  [[clubes.jogadores]]
+  nome = "Alexander Briedl"
+  pos = "DM"
+  idade = 24
+  ovr = 54
+  pot = 58
+  valor = 700000
+  partidas = 4
+  minutos = 338
+  id_fonte = "531634"
+
+  [[clubes.jogadores]]
+  nome = "Brad Lyons"
+  pos = "MF"
+  idade = 29
+  ovr = 54
+  pot = 54
+  valor = 350000
+  partidas = 5
+  minutos = 434
+  gols = 1
+  id_fonte = "334816"
+
+  [[clubes.jogadores]]
+  nome = "Gavin Molloy"
+  pos = "CB"
+  idade = 24
+  ovr = 54
+  pot = 58
+  valor = 600000
+  partidas = 5
+  minutos = 438
+  gols = 1
+  id_fonte = "728478"
+
+  [[clubes.jogadores]]
+  nome = "Toyosi Olusanya"
+  pos = "FW"
+  idade = 28
+  ovr = 54
+  pot = 54
+  valor = 500000
+  partidas = 9
+  minutos = 846
+  gols = 1
+  id_fonte = "434981"
+
+  [[clubes.jogadores]]
+  nome = "Dan Happe"
+  pos = "CB"
+  idade = 27
+  ovr = 53
+  pot = 53
+  valor = 300000
+  partidas = 9
+  minutos = 789
+  gols = 1
+  id_fonte = "491174"
+
+  [[clubes.jogadores]]
+  nome = "Lewis Smith"
+  pos = "AM"
+  idade = 26
+  ovr = 53
+  pot = 54
+  valor = 500000
+  partidas = 5
+  minutos = 419
+  gols = 1
+  id_fonte = "446712"
+
+  [[clubes.jogadores]]
+  nome = "Nicky Devlin"
+  pos = "FB"
+  idade = 32
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 1
+  minutos = 32
+  gols = 2
+  id_fonte = "148215"
+
+  [[clubes.jogadores]]
+  nome = "Stuart Armstrong"
+  pos = "MF"
+  idade = 34
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 7
+  minutos = 609
+  gols = 2
+  id_fonte = "130765"
+
+  [[clubes.jogadores]]
+  nome = "Nesta Guinness-Walker"
+  pos = "FB"
+  idade = 27
+  ovr = 52
+  pot = 53
+  valor = 300000
+  partidas = 12
+  minutos = 1080
+  id_fonte = "636908"
+
+  [[clubes.jogadores]]
+  nome = "Ayoub Mouloua"
+  pos = "FW"
+  idade = 23
+  ovr = 50
+  pot = 56
+  valor = 750000
+  partidas = 3
+  minutos = 291
+  gols = 1
+  id_fonte = "844300"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Klein"
+  pos = "GK"
+  idade = 25
+  ovr = 46
+  pot = 50
+  valor = 150000
+  id_fonte = "392124"
+
+  [[clubes.jogadores]]
+  nome = "Mitchy Ntelo"
+  pos = "FW"
+  idade = 25
+  ovr = 46
+  pot = 49
+  valor = 300000
+  partidas = 3
+  minutos = 265
+  gols = 1
+  id_fonte = "706860"
+
+  [[clubes.jogadores]]
+  nome = "Nick Suman"
+  pos = "GK"
+  idade = 26
+  ovr = 45
+  pot = 47
+  valor = 110000
+  id_fonte = "477136"
+
+  [[clubes.jogadores]]
+  nome = "Emmanuel Gyamfi"
+  pos = "FB"
+  idade = 22
+  ovr = 42
+  pot = 49
+  valor = 200000
+  partidas = 12
+  minutos = 1090
+  gols = 1
+  id_fonte = "796216"
+
+  [[clubes.jogadores]]
+  nome = "Mitchel Frame"
+  pos = "FB"
+  idade = 20
+  ovr = 41
+  pot = 51
+  valor = 300000
+  partidas = 11
+  minutos = 988
+  gols = 1
+  id_fonte = "948938"
+
+  [[clubes.jogadores]]
+  nome = "Findlay Marshall"
+  pos = "MF"
+  idade = 20
+  ovr = 40
+  pot = 47
+  valor = 200000
+  partidas = 3
+  minutos = 254
+  id_fonte = "1025974"
+
+  [[clubes.jogadores]]
+  nome = "Tony Yogane"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 46
+  valor = 200000
+  partidas = 6
+  minutos = 558
+  id_fonte = "979064"
+
+[[clubes]]
+nome = "Dundee United"
+forca = 57.8
+valor_elenco = 12630000
+cores = ["#F86402", "#0C0D0F"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Will Ferry"
+  pos = "FB"
+  idade = 25
+  ovr = 64
+  pot = 65
+  valor = 1200000
+  partidas = 6
+  minutos = 565
+  gols = 1
+  id_fonte = "504856"
+
+  [[clubes.jogadores]]
+  nome = "Jack Walton"
+  pos = "GK"
+  idade = 28
+  ovr = 61
+  pot = 61
+  valor = 500000
+  partidas = 12
+  minutos = 1080
+  id_fonte = "368629"
+
+  [[clubes.jogadores]]
+  nome = "Dylan Tait"
+  pos = "MF"
+  idade = 24
+  ovr = 59
+  pot = 60
+  valor = 800000
+  partidas = 9
+  minutos = 853
+  gols = 1
+  id_fonte = "647281"
+
+  [[clubes.jogadores]]
+  nome = "Ross Graham"
+  pos = "CB"
+  idade = 25
+  ovr = 59
+  pot = 61
+  valor = 700000
+  partidas = 1
+  minutos = 45
+  gols = 3
+  id_fonte = "396563"
+
+  [[clubes.jogadores]]
+  nome = "Jesse Randall"
+  pos = "WG"
+  idade = 24
+  ovr = 57
+  pot = 60
+  valor = 900000
+  partidas = 7
+  minutos = 656
+  gols = 2
+  id_fonte = "677509"
+
+  [[clubes.jogadores]]
+  nome = "Zachary Sapsford"
+  pos = "FW"
+  idade = 24
+  ovr = 57
+  pot = 58
+  valor = 800000
+  partidas = 9
+  minutos = 776
+  gols = 4
+  id_fonte = "703657"
+
+  [[clubes.jogadores]]
+  nome = "Bert Esselink"
+  pos = "CB"
+  idade = 27
+  ovr = 56
+  pot = 56
+  valor = 350000
+  partidas = 10
+  minutos = 872
+  gols = 1
+  id_fonte = "462059"
+
+  [[clubes.jogadores]]
+  nome = "Lachlan Rose"
+  pos = "FW"
+  idade = 27
+  ovr = 56
+  pot = 56
+  valor = 550000
+  partidas = 6
+  minutos = 584
+  gols = 4
+  id_fonte = "840008"
+
+  [[clubes.jogadores]]
+  nome = "Lyall Cameron"
+  pos = "MF"
+  idade = 23
+  ovr = 56
+  pot = 63
+  valor = 1200000
+  partidas = 2
+  minutos = 147
+  gols = 1
+  id_fonte = "624751"
+
+  [[clubes.jogadores]]
+  nome = "Iurie Iovu"
+  pos = "CB"
+  idade = 24
+  ovr = 55
+  pot = 57
+  valor = 400000
+  partidas = 2
+  minutos = 188
+  gols = 1
+  id_fonte = "619353"
+
+  [[clubes.jogadores]]
+  nome = "Joshua Rawlins"
+  pos = "FB"
+  idade = 22
+  ovr = 55
+  pot = 57
+  valor = 450000
+  partidas = 10
+  minutos = 928
+  id_fonte = "703658"
+
+  [[clubes.jogadores]]
+  nome = "Mehdi Merghem"
+  pos = "WG"
+  idade = 29
+  ovr = 55
+  pot = 55
+  valor = 400000
+  partidas = 3
+  minutos = 236
+  id_fonte = "452877"
+
+  [[clubes.jogadores]]
+  nome = "Michael Forbes"
+  pos = "CB"
+  idade = 22
+  ovr = 55
+  pot = 57
+  valor = 450000
+  partidas = 12
+  minutos = 1035
+  gols = 1
+  id_fonte = "701006"
+
+  [[clubes.jogadores]]
+  nome = "Zidane Iqbal"
+  pos = "MF"
+  idade = 23
+  ovr = 55
+  pot = 62
+  valor = 1000000
+  partidas = 1
+  minutos = 116
+  id_fonte = "686845"
+
+  [[clubes.jogadores]]
+  nome = "Panutche Camara"
+  pos = "MF"
+  idade = 29
+  ovr = 54
+  pot = 54
+  valor = 300000
+  partidas = 6
+  minutos = 541
+  gols = 1
+  id_fonte = "512916"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Ciubotaru"
+  pos = "FB"
+  idade = 22
+  ovr = 52
+  pot = 59
+  valor = 600000
+  partidas = 3
+  minutos = 296
+  gols = 1
+  id_fonte = "710076"
+
+  [[clubes.jogadores]]
+  nome = "Idjessi Metsoko"
+  pos = "FW"
+  idade = 24
+  ovr = 48
+  pot = 52
+  valor = 350000
+  partidas = 4
+  minutos = 322
+  gols = 1
+  id_fonte = "913305"
+
+  [[clubes.jogadores]]
+  nome = "Jordan Amissah"
+  pos = "GK"
+  idade = 25
+  ovr = 47
+  pot = 51
+  valor = 150000
+  id_fonte = "385412"
+
+  [[clubes.jogadores]]
+  nome = "Neil Farrugia"
+  pos = "AM"
+  idade = 27
+  ovr = 45
+  pot = 46
+  valor = 125000
+  partidas = 1
+  minutos = 129
+  id_fonte = "491578"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Bennie"
+  pos = "WG"
+  idade = 20
+  ovr = 44
+  pot = 53
+  valor = 400000
+  partidas = 5
+  minutos = 418
+  id_fonte = "1104713"
+
+  [[clubes.jogadores]]
+  nome = "Dario Naamo"
+  pos = "FB"
+  idade = 21
+  ovr = 44
+  pot = 53
+  valor = 300000
+  partidas = 3
+  minutos = 280
+  id_fonte = "741580"
+
+  [[clubes.jogadores]]
+  nome = "Emmanuel Agyei"
+  pos = "MF"
+  idade = 21
+  ovr = 44
+  pot = 51
+  valor = 250000
+  partidas = 5
+  minutos = 469
+  gols = 1
+  id_fonte = "960062"
+
+  [[clubes.jogadores]]
+  nome = "Abdoulaye Yoro"
+  pos = "MF"
+  idade = 19
+  ovr = 40
+  pot = 52
+  valor = 300000
+  partidas = 2
+  minutos = 211
+  id_fonte = "1367128"
+
+  [[clubes.jogadores]]
+  nome = "Miller Thomson"
+  pos = "WG"
+  idade = 22
+  ovr = 40
+  pot = 45
+  valor = 150000
+  partidas = 2
+  minutos = 146
+  id_fonte = "888790"
+
+[[clubes]]
+nome = "St. Mirren"
+forca = 55.1
+valor_elenco = 7880000
+cores = ["#D8D283", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Keanu Baccus"
+  pos = "DM"
+  idade = 28
+  ovr = 59
+  pot = 59
+  valor = 700000
+  partidas = 18
+  minutos = 1653
+  gols = 1
+  id_fonte = "479037"
+
+  [[clubes.jogadores]]
+  nome = "Calvin Ramsay"
+  pos = "FB"
+  idade = 23
+  ovr = 58
+  pot = 63
+  valor = 1500000
+  partidas = 4
+  minutos = 393
+  id_fonte = "633652"
+
+  [[clubes.jogadores]]
+  nome = "Killian Phillips"
+  pos = "MF"
+  idade = 24
+  ovr = 58
+  pot = 60
+  valor = 1000000
+  partidas = 7
+  minutos = 628
+  gols = 4
+  id_fonte = "801420"
+
+  [[clubes.jogadores]]
+  nome = "Allan Campbell"
+  pos = "MF"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 500000
+  partidas = 12
+  minutos = 1042
+  id_fonte = "347619"
+
+  [[clubes.jogadores]]
+  nome = "Marcus Fraser"
+  pos = "FB"
+  idade = 32
+  ovr = 55
+  pot = 55
+  valor = 250000
+  partidas = 6
+  minutos = 576
+  gols = 3
+  id_fonte = "132203"
+
+  [[clubes.jogadores]]
+  nome = "Alex Gogic"
+  pos = "CB"
+  idade = 32
+  ovr = 54
+  pot = 54
+  valor = 200000
+  partidas = 12
+  minutos = 1080
+  gols = 3
+  id_fonte = "225393"
+
+  [[clubes.jogadores]]
+  nome = "Jacob Chapman"
+  pos = "GK"
+  idade = 25
+  ovr = 54
+  pot = 55
+  valor = 275000
+  partidas = 12
+  minutos = 1080
+  id_fonte = "741591"
+
+  [[clubes.jogadores]]
+  nome = "Jayden Richardson"
+  pos = "FB"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 350000
+  partidas = 5
+  minutos = 478
+  gols = 3
+  id_fonte = "565675"
+
+  [[clubes.jogadores]]
+  nome = "Jonah Ayunga"
+  pos = "FW"
+  idade = 29
+  ovr = 53
+  pot = 53
+  valor = 350000
+  partidas = 19
+  minutos = 1725
+  gols = 5
+  id_fonte = "420777"
+
+  [[clubes.jogadores]]
+  nome = "Liam Donnelly"
+  pos = "DM"
+  idade = 30
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 1
+  minutos = 53
+  gols = 1
+  id_fonte = "211121"
+
+  [[clubes.jogadores]]
+  nome = "Samuel Ramos"
+  pos = "MF"
+  idade = 26
+  ovr = 53
+  pot = 53
+  valor = 325000
+  partidas = 7
+  minutos = 588
+  gols = 4
+  id_fonte = "833187"
+
+  [[clubes.jogadores]]
+  nome = "Declan John"
+  pos = "FB"
+  idade = 31
+  ovr = 52
+  pot = 52
+  valor = 150000
+  partidas = 8
+  minutos = 729
+  gols = 1
+  id_fonte = "238585"
+
+  [[clubes.jogadores]]
+  nome = "Nikolas Agrafiotis"
+  pos = "FW"
+  idade = 26
+  ovr = 52
+  pot = 53
+  valor = 400000
+  partidas = 3
+  minutos = 267
+  gols = 1
+  id_fonte = "477274"
+
+  [[clubes.jogadores]]
+  nome = "Luke Thomas"
+  pos = "WG"
+  idade = 27
+  ovr = 51
+  pot = 52
+  valor = 300000
+  partidas = 2
+  minutos = 159
+  id_fonte = "399473"
+
+  [[clubes.jogadores]]
+  nome = "Richard King"
+  pos = "CB"
+  idade = 24
+  ovr = 51
+  pot = 53
+  valor = 250000
+  partidas = 3
+  minutos = 228
+  gols = 4
+  id_fonte = "909017"
+
+  [[clubes.jogadores]]
+  nome = "Ryan Carr"
+  pos = "MF"
+  idade = 21
+  ovr = 48
+  pot = 50
+  valor = 217053
+  partidas = 9
+  minutos = 846
+  gols = 1
+  id_fonte = "1013172"
+
+  [[clubes.jogadores]]
+  nome = "Jake Young"
+  pos = "FW"
+  idade = 25
+  ovr = 47
+  pot = 50
+  valor = 225000
+  partidas = 2
+  minutos = 193
+  gols = 3
+  id_fonte = "794437"
+
+  [[clubes.jogadores]]
+  nome = "Peter Urminsky"
+  pos = "GK"
+  idade = 27
+  ovr = 47
+  pot = 48
+  valor = 75000
+  partidas = 2
+  minutos = 180
+  id_fonte = "454574"
+
+  [[clubes.jogadores]]
+  nome = "Henry Fieldson"
+  pos = "FB"
+  idade = 21
+  ovr = 46
+  pot = 49
+  valor = 150000
+  partidas = 9
+  minutos = 773
+  id_fonte = "845418"
+
+  [[clubes.jogadores]]
+  nome = "Chris Mochrie"
+  pos = "AM"
+  idade = 23
+  ovr = 43
+  pot = 46
+  valor = 100000
+  partidas = 9
+  minutos = 805
+  gols = 2
+  id_fonte = "633655"
+
+  [[clubes.jogadores]]
+  nome = "Fraser Taylor"
+  pos = "AM"
+  idade = 23
+  ovr = 43
+  pot = 48
+  valor = 150000
+  partidas = 5
+  minutos = 472
+  gols = 1
+  id_fonte = "921542"
+
+  [[clubes.jogadores]]
+  nome = "Paul Nsio"
+  pos = "MF"
+  idade = 20
+  ovr = 43
+  pot = 50
+  valor = 200000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "1054052"
+
+  [[clubes.jogadores]]
+  nome = "Ryan Mullen"
+  pos = "GK"
+  idade = 25
+  ovr = 41
+  pot = 45
+  valor = 50000
+  partidas = 2
+  minutos = 187
+  id_fonte = "403566"
+
+  [[clubes.jogadores]]
+  nome = "Carrick McEvoy"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 45
+  valor = 93303
+  partidas = 3
+  minutos = 235
+  id_fonte = "1161841"
+
+  [[clubes.jogadores]]
+  nome = "Eseosa Sule"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 46
+  valor = 130625
+  partidas = 5
+  minutos = 476
+  gols = 1
+  id_fonte = "1102807"
+
+  [[clubes.jogadores]]
+  nome = "Ismeal Kabia"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 45
+  valor = 100000
+  partidas = 5
+  minutos = 452
+  id_fonte = "964561"
+
+  [[clubes.jogadores]]
+  nome = "Louis Jackson"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 43
+  valor = 47633
+  partidas = 1
+  minutos = 90
+  id_fonte = "858191"
+
+  [[clubes.jogadores]]
+  nome = "Malik Dijksteel"
+  pos = "WG"
+  idade = 25
+  ovr = 40
+  pot = 44
+  valor = 75000
+  partidas = 2
+  minutos = 39
+  gols = 1
+  id_fonte = "514281"
+
+[[clubes]]
+nome = "Dundee"
+forca = 54.3
+valor_elenco = 6880000
+cores = ["#04275D", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Ryan Astley"
+  pos = "CB"
+  idade = 24
+  ovr = 59
+  pot = 60
+  valor = 600000
+  partidas = 12
+  minutos = 1080
+  gols = 3
+  id_fonte = "511552"
+
+  [[clubes.jogadores]]
+  nome = "Joe Wright"
+  pos = "CB"
+  idade = 31
+  ovr = 58
+  pot = 58
+  valor = 300000
+  partidas = 1
+  minutos = 25
+  id_fonte = "356396"
+
+  [[clubes.jogadores]]
+  nome = "Owen Goodman"
+  pos = "GK"
+  idade = 22
+  ovr = 58
+  pot = 61
+  valor = 550000
+  partidas = 8
+  minutos = 720
+  id_fonte = "814848"
+
+  [[clubes.jogadores]]
+  nome = "Brad Halliday"
+  pos = "FB"
+  idade = 31
+  ovr = 57
+  pot = 57
+  valor = 250000
+  partidas = 2
+  minutos = 194
+  id_fonte = "282240"
+
+  [[clubes.jogadores]]
+  nome = "Ethan Hamilton"
+  pos = "MF"
+  idade = 27
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 12
+  minutos = 1067
+  gols = 1
+  id_fonte = "396286"
+
+  [[clubes.jogadores]]
+  nome = "Idris Odutayo"
+  pos = "FB"
+  idade = 23
+  ovr = 55
+  pot = 57
+  valor = 400000
+  partidas = 9
+  minutos = 815
+  id_fonte = "657723"
+
+  [[clubes.jogadores]]
+  nome = "Alan Forrest"
+  pos = "WG"
+  idade = 30
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 5
+  minutos = 429
+  gols = 1
+  id_fonte = "276764"
+
+  [[clubes.jogadores]]
+  nome = "Finlay Robertson"
+  pos = "MF"
+  idade = 23
+  ovr = 54
+  pot = 59
+  valor = 600000
+  partidas = 4
+  minutos = 398
+  gols = 1
+  id_fonte = "396540"
+
+  [[clubes.jogadores]]
+  nome = "Owen Bevan"
+  pos = "CB"
+  idade = 22
+  ovr = 54
+  pot = 56
+  valor = 309099
+  partidas = 10
+  minutos = 882
+  gols = 1
+  id_fonte = "583990"
+
+  [[clubes.jogadores]]
+  nome = "Callum Jones"
+  pos = "MF"
+  idade = 25
+  ovr = 52
+  pot = 55
+  valor = 300000
+  partidas = 2
+  minutos = 223
+  gols = 1
+  id_fonte = "603937"
+
+  [[clubes.jogadores]]
+  nome = "Imari Samuels"
+  pos = "FB"
+  idade = 23
+  ovr = 52
+  pot = 55
+  valor = 300000
+  partidas = 2
+  minutos = 177
+  id_fonte = "565846"
+
+  [[clubes.jogadores]]
+  nome = "Kieran O'Hara"
+  pos = "GK"
+  idade = 30
+  ovr = 52
+  pot = 52
+  valor = 100000
+  partidas = 3
+  minutos = 270
+  id_fonte = "289791"
+
+  [[clubes.jogadores]]
+  nome = "Zan Besir"
+  pos = "MF"
+  idade = 25
+  ovr = 51
+  pot = 55
+  valor = 300000
+  partidas = 1
+  minutos = 123
+  id_fonte = "708239"
+
+  [[clubes.jogadores]]
+  nome = "Simon Murray"
+  pos = "FW"
+  idade = 34
+  ovr = 50
+  pot = 50
+  valor = 100000
+  partidas = 4
+  minutos = 394
+  gols = 2
+  id_fonte = "177130"
+
+  [[clubes.jogadores]]
+  nome = "Drey Wright"
+  pos = "AM"
+  idade = 31
+  ovr = 47
+  pot = 47
+  valor = 75000
+  partidas = 11
+  minutos = 985
+  gols = 1
+  id_fonte = "238468"
+
+  [[clubes.jogadores]]
+  nome = "Harry Sharp"
+  pos = "GK"
+  idade = 25
+  ovr = 47
+  pot = 51
+  valor = 100000
+  partidas = 1
+  minutos = 90
+  id_fonte = "611912"
+
+  [[clubes.jogadores]]
+  nome = "Matai Akinmboni"
+  pos = "CB"
+  idade = 19
+  ovr = 47
+  pot = 63
+  valor = 1000000
+  id_fonte = "994604"
+
+  [[clubes.jogadores]]
+  nome = "Ryan Finnigan"
+  pos = "MF"
+  idade = 22
+  ovr = 47
+  pot = 50
+  valor = 150000
+  partidas = 9
+  minutos = 836
+  id_fonte = "807318"
+
+  [[clubes.jogadores]]
+  nome = "Bradley Fink"
+  pos = "FW"
+  idade = 23
+  ovr = 44
+  pot = 50
+  valor = 200000
+  partidas = 3
+  minutos = 247
+  gols = 2
+  id_fonte = "539801"
+
+  [[clubes.jogadores]]
+  nome = "Charlie Reilly"
+  pos = "AM"
+  idade = 24
+  ovr = 44
+  pot = 47
+  valor = 100000
+  partidas = 6
+  minutos = 577
+  gols = 4
+  id_fonte = "589926"
+
+  [[clubes.jogadores]]
+  nome = "Joe Westley"
+  pos = "FW"
+  idade = 21
+  ovr = 44
+  pot = 48
+  valor = 150000
+  partidas = 8
+  minutos = 731
+  gols = 5
+  id_fonte = "937845"
+
+  [[clubes.jogadores]]
+  nome = "Bobby Wales"
+  pos = "FW"
+  idade = 21
+  ovr = 43
+  pot = 53
+  valor = 350000
+  partidas = 2
+  minutos = 187
+  id_fonte = "924850"
+
+  [[clubes.jogadores]]
+  nome = "Joe Bevan"
+  pos = "FW"
+  idade = 22
+  ovr = 43
+  pot = 45
+  valor = 100000
+  partidas = 9
+  minutos = 815
+  gols = 3
+  id_fonte = "1063676"
+
+  [[clubes.jogadores]]
+  nome = "Ashley Hay"
+  pos = "FW"
+  idade = 23
+  ovr = 41
+  pot = 46
+  valor = 100000
+  partidas = 3
+  minutos = 268
+  gols = 2
+  id_fonte = "1298557"
+
+  [[clubes.jogadores]]
+  nome = "Jack Moorhouse"
+  pos = "MF"
+  idade = 20
+  ovr = 40
+  pot = 47
+  valor = 100000
+  partidas = 1
+  minutos = 106
+  id_fonte = "953933"
+
+[[clubes]]
+nome = "Kilmarnock"
+forca = 54.2
+valor_elenco = 6800000
+cores = ["#293462", "#9D7956"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Mark O'Hara"
+  pos = "DM"
+  idade = 30
+  ovr = 59
+  pot = 59
+  valor = 500000
+  partidas = 5
+  minutos = 420
+  id_fonte = "235780"
+
+  [[clubes.jogadores]]
+  nome = "Tyreece John-Jules"
+  pos = "FW"
+  idade = 25
+  ovr = 59
+  pot = 60
+  valor = 1000000
+  partidas = 9
+  minutos = 819
+  gols = 1
+  id_fonte = "503768"
+
+  [[clubes.jogadores]]
+  nome = "Maksymilian Stryjek"
+  pos = "GK"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 300000
+  partidas = 11
+  minutos = 1020
+  id_fonte = "240457"
+
+  [[clubes.jogadores]]
+  nome = "Robbie Deas"
+  pos = "CB"
+  idade = 26
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 5
+  minutos = 469
+  gols = 3
+  id_fonte = "423752"
+
+  [[clubes.jogadores]]
+  nome = "Jamie Brandon"
+  pos = "FB"
+  idade = 28
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 7
+  minutos = 629
+  id_fonte = "406694"
+
+  [[clubes.jogadores]]
+  nome = "Michael Schjönning-Larsen"
+  pos = "FB"
+  idade = 25
+  ovr = 54
+  pot = 55
+  valor = 350000
+  partidas = 13
+  minutos = 1178
+  gols = 2
+  id_fonte = "368984"
+
+  [[clubes.jogadores]]
+  nome = "Calum Ferrie"
+  pos = "GK"
+  idade = 28
+  ovr = 52
+  pot = 52
+  valor = 150000
+  partidas = 2
+  minutos = 180
+  id_fonte = "450837"
+
+  [[clubes.jogadores]]
+  nome = "Aaron Tshibola"
+  pos = "MF"
+  idade = 31
+  ovr = 51
+  pot = 51
+  valor = 150000
+  partidas = 6
+  minutos = 525
+  id_fonte = "243633"
+
+  [[clubes.jogadores]]
+  nome = "George Stanger"
+  pos = "CB"
+  idade = 26
+  ovr = 51
+  pot = 52
+  valor = 200000
+  partidas = 12
+  minutos = 1038
+  gols = 1
+  id_fonte = "509709"
+
+  [[clubes.jogadores]]
+  nome = "Greg Kiltie"
+  pos = "WG"
+  idade = 29
+  ovr = 51
+  pot = 51
+  valor = 250000
+  partidas = 12
+  minutos = 1086
+  gols = 2
+  id_fonte = "244256"
+
+  [[clubes.jogadores]]
+  nome = "Joe Hugill"
+  pos = "FW"
+  idade = 22
+  ovr = 51
+  pot = 53
+  valor = 400000
+  partidas = 13
+  minutos = 1145
+  gols = 3
+  id_fonte = "726859"
+
+  [[clubes.jogadores]]
+  nome = "Jonathan Meier"
+  pos = "FB"
+  idade = 26
+  ovr = 51
+  pot = 53
+  valor = 250000
+  partidas = 1
+  minutos = 85
+  id_fonte = "379989"
+
+  [[clubes.jogadores]]
+  nome = "Tom Lowery"
+  pos = "MF"
+  idade = 28
+  ovr = 50
+  pot = 50
+  valor = 175000
+  partidas = 12
+  minutos = 1108
+  gols = 1
+  id_fonte = "426414"
+
+  [[clubes.jogadores]]
+  nome = "Bailey Rice"
+  pos = "DM"
+  idade = 19
+  ovr = 49
+  pot = 60
+  valor = 800000
+  partidas = 4
+  minutos = 383
+  id_fonte = "924849"
+
+  [[clubes.jogadores]]
+  nome = "Erik Ring"
+  pos = "WG"
+  idade = 24
+  ovr = 49
+  pot = 51
+  valor = 275000
+  partidas = 10
+  minutos = 874
+  id_fonte = "677298"
+
+  [[clubes.jogadores]]
+  nome = "Cathal McCarthy"
+  pos = "CB"
+  idade = 20
+  ovr = 47
+  pot = 54
+  valor = 300000
+  partidas = 6
+  minutos = 570
+  id_fonte = "1262696"
+
+  [[clubes.jogadores]]
+  nome = "Djenairo Daniels"
+  pos = "FW"
+  idade = 24
+  ovr = 43
+  pot = 48
+  valor = 200000
+  partidas = 2
+  minutos = 215
+  gols = 4
+  id_fonte = "596400"
+
+  [[clubes.jogadores]]
+  nome = "Nicky Clescenco"
+  pos = "WG"
+  idade = 25
+  ovr = 43
+  pot = 47
+  valor = 150000
+  partidas = 3
+  minutos = 235
+  gols = 1
+  id_fonte = "576712"
+
+  [[clubes.jogadores]]
+  nome = "Rory McKenzie"
+  pos = "WG"
+  idade = 32
+  ovr = 42
+  pot = 42
+  valor = 50000
+  partidas = 2
+  minutos = 170
+  id_fonte = "177550"
+
+  [[clubes.jogadores]]
+  nome = "Johnly Yfeko"
+  pos = "CB"
+  idade = 23
+  ovr = 41
+  pot = 48
+  valor = 125000
+  partidas = 2
+  minutos = 135
+  id_fonte = "670986"
+
+  [[clubes.jogadores]]
+  nome = "Ieuan Owen"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 43
+  valor = 100000
+  partidas = 1
+  minutos = 133
+  id_fonte = "1080421"
+
+  [[clubes.jogadores]]
+  nome = "MJ Kamson-Kamara"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 50
+  valor = 175000
+  partidas = 1
+  minutos = 67
+  id_fonte = "1091673"
+
+  [[clubes.jogadores]]
+  nome = "Roshaun Mathurin"
+  pos = "WG"
+  idade = 22
+  ovr = 40
+  pot = 46
+  valor = 150000
+  partidas = 2
+  minutos = 180
+  id_fonte = "706822"
+
+[[clubes]]
+nome = "Falkirk"
+forca = 53.9
+valor_elenco = 6500000
+cores = ["#231F20", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Ryan Strain"
+  pos = "FB"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 450000
+  partidas = 8
+  minutos = 723
+  gols = 1
+  id_fonte = "549354"
+
+  [[clubes.jogadores]]
+  nome = "Jack McMillan"
+  pos = "FB"
+  idade = 28
+  ovr = 59
+  pot = 59
+  valor = 400000
+  partidas = 3
+  minutos = 231
+  id_fonte = "347617"
+
+  [[clubes.jogadores]]
+  nome = "Lewis Neilson"
+  pos = "CB"
+  idade = 23
+  ovr = 58
+  pot = 61
+  valor = 600000
+  partidas = 7
+  minutos = 662
+  id_fonte = "652633"
+
+  [[clubes.jogadores]]
+  nome = "Craig Sibbald"
+  pos = "DM"
+  idade = 31
+  ovr = 57
+  pot = 57
+  valor = 250000
+  partidas = 5
+  minutos = 466
+  id_fonte = "165345"
+
+  [[clubes.jogadores]]
+  nome = "Scott Bain"
+  pos = "GK"
+  idade = 34
+  ovr = 56
+  pot = 56
+  valor = 100000
+  partidas = 7
+  minutos = 630
+  id_fonte = "85627"
+
+  [[clubes.jogadores]]
+  nome = "Brad Spencer"
+  pos = "DM"
+  idade = 30
+  ovr = 55
+  pot = 55
+  valor = 225000
+  partidas = 8
+  minutos = 709
+  gols = 1
+  id_fonte = "531031"
+
+  [[clubes.jogadores]]
+  nome = "Deniss Melniks"
+  pos = "CB"
+  idade = 24
+  ovr = 55
+  pot = 58
+  valor = 400000
+  partidas = 5
+  minutos = 434
+  id_fonte = "574117"
+
+  [[clubes.jogadores]]
+  nome = "Connor Allan"
+  pos = "CB"
+  idade = 22
+  ovr = 54
+  pot = 58
+  valor = 400000
+  partidas = 2
+  minutos = 148
+  gols = 1
+  id_fonte = "743556"
+
+  [[clubes.jogadores]]
+  nome = "Scott Tanser"
+  pos = "FB"
+  idade = 31
+  ovr = 54
+  pot = 54
+  valor = 150000
+  partidas = 4
+  minutos = 370
+  gols = 1
+  id_fonte = "268119"
+
+  [[clubes.jogadores]]
+  nome = "Keelan Adams"
+  pos = "FB"
+  idade = 24
+  ovr = 53
+  pot = 55
+  valor = 250000
+  partidas = 27
+  minutos = 2467
+  gols = 1
+  id_fonte = "1073295"
+
+  [[clubes.jogadores]]
+  nome = "Leon McCann"
+  pos = "FB"
+  idade = 26
+  ovr = 53
+  pot = 54
+  valor = 200000
+  partidas = 7
+  minutos = 620
+  id_fonte = "527858"
+
+  [[clubes.jogadores]]
+  nome = "Liam Henderson"
+  pos = "CB"
+  idade = 30
+  ovr = 53
+  pot = 53
+  valor = 150000
+  partidas = 11
+  minutos = 957
+  gols = 1
+  id_fonte = "328429"
+
+  [[clubes.jogadores]]
+  nome = "Ethan Ross"
+  pos = "AM"
+  idade = 25
+  ovr = 52
+  pot = 53
+  valor = 250000
+  partidas = 8
+  minutos = 741
+  gols = 1
+  id_fonte = "512995"
+
+  [[clubes.jogadores]]
+  nome = "Aidan Nesbitt"
+  pos = "AM"
+  idade = 29
+  ovr = 51
+  pot = 51
+  valor = 150000
+  partidas = 1
+  minutos = 12
+  id_fonte = "244263"
+
+  [[clubes.jogadores]]
+  nome = "Coll Donaldson"
+  pos = "CB"
+  idade = 31
+  ovr = 51
+  pot = 51
+  valor = 100000
+  partidas = 8
+  minutos = 716
+  id_fonte = "196229"
+
+  [[clubes.jogadores]]
+  nome = "Finn Yeats"
+  pos = "AM"
+  idade = 22
+  ovr = 51
+  pot = 57
+  valor = 500000
+  partidas = 3
+  minutos = 243
+  gols = 3
+  id_fonte = "719685"
+
+  [[clubes.jogadores]]
+  nome = "Nicky Hogarth"
+  pos = "GK"
+  idade = 25
+  ovr = 51
+  pot = 54
+  valor = 150000
+  partidas = 4
+  minutos = 360
+  id_fonte = "423750"
+
+  [[clubes.jogadores]]
+  nome = "Ross MacIver"
+  pos = "FW"
+  idade = 27
+  ovr = 50
+  pot = 51
+  valor = 200000
+  partidas = 5
+  minutos = 420
+  gols = 2
+  id_fonte = "401046"
+
+  [[clubes.jogadores]]
+  nome = "Jacob Murrell"
+  pos = "FW"
+  idade = 22
+  ovr = 47
+  pot = 54
+  valor = 350000
+  partidas = 3
+  minutos = 310
+  gols = 1
+  id_fonte = "1214848"
+
+  [[clubes.jogadores]]
+  nome = "CJ Fodrey"
+  pos = "WG"
+  idade = 22
+  ovr = 46
+  pot = 54
+  valor = 350000
+  partidas = 2
+  minutos = 184
+  id_fonte = "881090"
+
+  [[clubes.jogadores]]
+  nome = "Ben Krauhaus"
+  pos = "MF"
+  idade = 21
+  ovr = 44
+  pot = 50
+  valor = 150000
+  partidas = 6
+  minutos = 582
+  gols = 1
+  id_fonte = "855299"
+
+  [[clubes.jogadores]]
+  nome = "Aodhan Doherty"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 45
+  valor = 100000
+  partidas = 3
+  minutos = 227
+  id_fonte = "1077242"
+
+  [[clubes.jogadores]]
+  nome = "Ben Parkinson"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 48
+  valor = 150000
+  partidas = 5
+  minutos = 414
+  gols = 3
+  id_fonte = "922764"
+
+  [[clubes.jogadores]]
+  nome = "Conor McLeod"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 42
+  valor = 55000
+  partidas = 1
+  minutos = 21
+  id_fonte = "965969"
+
+  [[clubes.jogadores]]
+  nome = "Ethan Laidlaw"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 44
+  valor = 82500
+  partidas = 3
+  minutos = 296
+  id_fonte = "883005"
+
+  [[clubes.jogadores]]
+  nome = "Finley Barbrook"
+  pos = "DM"
+  idade = 21
+  ovr = 40
+  pot = 46
+  valor = 75000
+  partidas = 6
+  minutos = 506
+  id_fonte = "883152"
+
+  [[clubes.jogadores]]
+  nome = "Joe Gardner"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 200000
+  partidas = 1
+  minutos = 84
+  id_fonte = "921513"
+
+  [[clubes.jogadores]]
+  nome = "Owen Eames"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 46
+  valor = 100000
+  partidas = 3
+  minutos = 238
+  gols = 1
+  id_fonte = "1085929"
+
+  [[clubes.jogadores]]
+  nome = "Paul McGovern"
+  pos = "WG"
+  idade = 18
+  ovr = 40
+  pot = 45
+  valor = 100000
+  partidas = 3
+  minutos = 248
+  id_fonte = "1130621"
+
+[[clubes]]
+nome = "St. Johnstone"
+forca = 53.9
+valor_elenco = 6480000
+cores = ["#155997", "#87684C"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Josh Campbell"
+  pos = "AM"
+  idade = 26
+  ovr = 63
+  pot = 64
+  valor = 1200000
+  partidas = 1
+  minutos = 129
+  id_fonte = "482802"
+
+  [[clubes.jogadores]]
+  nome = "Enes Alic"
+  pos = "FB"
+  idade = 27
+  ovr = 60
+  pot = 60
+  valor = 400000
+  partidas = 5
+  minutos = 450
+  gols = 1
+  id_fonte = "563194"
+
+  [[clubes.jogadores]]
+  nome = "Jamie Gullan"
+  pos = "FW"
+  idade = 27
+  ovr = 55
+  pot = 56
+  valor = 350000
+  partidas = 7
+  minutos = 588
+  gols = 2
+  id_fonte = "346643"
+
+  [[clubes.jogadores]]
+  nome = "Toby Steward"
+  pos = "GK"
+  idade = 21
+  ovr = 55
+  pot = 58
+  valor = 250000
+  partidas = 11
+  minutos = 990
+  id_fonte = "932854"
+
+  [[clubes.jogadores]]
+  nome = "Liam Smith"
+  pos = "FB"
+  idade = 30
+  ovr = 53
+  pot = 53
+  valor = 150000
+  partidas = 7
+  minutos = 661
+  gols = 4
+  id_fonte = "281807"
+
+  [[clubes.jogadores]]
+  nome = "Morgan Boyes"
+  pos = "CB"
+  idade = 25
+  ovr = 53
+  pot = 54
+  valor = 200000
+  partidas = 1
+  minutos = 114
+  gols = 1
+  id_fonte = "554250"
+
+  [[clubes.jogadores]]
+  nome = "Cheick Diabaté"
+  pos = "CB"
+  idade = 24
+  ovr = 52
+  pot = 53
+  valor = 175000
+  partidas = 10
+  minutos = 908
+  gols = 1
+  id_fonte = "745189"
+
+  [[clubes.jogadores]]
+  nome = "Logan Chalmers"
+  pos = "WG"
+  idade = 26
+  ovr = 51
+  pot = 53
+  valor = 250000
+  partidas = 4
+  minutos = 316
+  id_fonte = "396548"
+
+  [[clubes.jogadores]]
+  nome = "Reece McAlear"
+  pos = "MF"
+  idade = 24
+  ovr = 51
+  pot = 52
+  valor = 200000
+  partidas = 10
+  minutos = 874
+  gols = 1
+  id_fonte = "567117"
+
+  [[clubes.jogadores]]
+  nome = "Bozo Mikulic"
+  pos = "CB"
+  idade = 29
+  ovr = 50
+  pot = 50
+  valor = 100000
+  partidas = 2
+  minutos = 135
+  id_fonte = "334839"
+
+  [[clubes.jogadores]]
+  nome = "Danny Finlayson"
+  pos = "FB"
+  idade = 25
+  ovr = 50
+  pot = 54
+  valor = 200000
+  partidas = 2
+  minutos = 205
+  id_fonte = "424019"
+
+  [[clubes.jogadores]]
+  nome = "Ruari Paton"
+  pos = "FW"
+  idade = 26
+  ovr = 50
+  pot = 51
+  valor = 225000
+  partidas = 7
+  minutos = 593
+  gols = 2
+  id_fonte = "482801"
+
+  [[clubes.jogadores]]
+  nome = "Josh Fowler"
+  pos = "FW"
+  idade = 24
+  ovr = 49
+  pot = 51
+  valor = 225000
+  partidas = 8
+  minutos = 687
+  gols = 4
+  id_fonte = "1195200"
+
+  [[clubes.jogadores]]
+  nome = "Kai Fotheringham"
+  pos = "WG"
+  idade = 23
+  ovr = 49
+  pot = 55
+  valor = 350000
+  partidas = 4
+  minutos = 329
+  gols = 2
+  id_fonte = "652672"
+
+  [[clubes.jogadores]]
+  nome = "Macaulay Tait"
+  pos = "MF"
+  idade = 21
+  ovr = 49
+  pot = 60
+  valor = 500000
+  partidas = 2
+  minutos = 149
+  id_fonte = "909254"
+
+  [[clubes.jogadores]]
+  nome = "Zach Mitchell"
+  pos = "CB"
+  idade = 21
+  ovr = 49
+  pot = 53
+  valor = 200000
+  partidas = 8
+  minutos = 725
+  id_fonte = "796307"
+
+  [[clubes.jogadores]]
+  nome = "Matty Foulds"
+  pos = "FB"
+  idade = 28
+  ovr = 48
+  pot = 48
+  valor = 100000
+  partidas = 5
+  minutos = 460
+  gols = 1
+  id_fonte = "374062"
+
+  [[clubes.jogadores]]
+  nome = "Matty Todd"
+  pos = "MF"
+  idade = 25
+  ovr = 48
+  pot = 51
+  valor = 175000
+  partidas = 3
+  minutos = 261
+  id_fonte = "422034"
+
+  [[clubes.jogadores]]
+  nome = "Sam Stanton"
+  pos = "MF"
+  idade = 32
+  ovr = 48
+  pot = 48
+  valor = 75000
+  partidas = 8
+  minutos = 753
+  gols = 1
+  id_fonte = "192505"
+
+  [[clubes.jogadores]]
+  nome = "Danny Schmidt"
+  pos = "FW"
+  idade = 23
+  ovr = 47
+  pot = 55
+  valor = 350000
+  partidas = 1
+  minutos = 47
+  id_fonte = "677032"
+
+  [[clubes.jogadores]]
+  nome = "Ross Sinclair"
+  pos = "GK"
+  idade = 25
+  ovr = 46
+  pot = 50
+  valor = 100000
+  id_fonte = "412741"
+
+  [[clubes.jogadores]]
+  nome = "Unax Álvarez"
+  pos = "WG"
+  idade = 24
+  ovr = 46
+  pot = 52
+  valor = 250000
+  id_fonte = "1055547"
+
+  [[clubes.jogadores]]
+  nome = "Jason Holt"
+  pos = "MF"
+  idade = 33
+  ovr = 45
+  pot = 45
+  valor = 50000
+  partidas = 9
+  minutos = 806
+  gols = 1
+  id_fonte = "105695"
+
+  [[clubes.jogadores]]
+  nome = "Joel Cotterill"
+  pos = "MF"
+  idade = 21
+  ovr = 40
+  pot = 49
+  valor = 150000
+  partidas = 2
+  minutos = 210
+  id_fonte = "667516"
+
+  [[clubes.jogadores]]
+  nome = "Kyle Thomson"
+  pos = "GK"
+  idade = 19
+  ovr = 40
+  pot = 44
+  valor = 55000
+  id_fonte = "1107711"
+
+  [[clubes.jogadores]]
+  nome = "Louis Lloyd"
+  pos = "FW"
+  idade = 22
+  ovr = 40
+  pot = 45
+  valor = 125000
+  partidas = 2
+  minutos = 27
+  gols = 1
+  id_fonte = "816001"
+
+  [[clubes.jogadores]]
+  nome = "Taylor Steven"
+  pos = "WG"
+  idade = 22
+  ovr = 40
+  pot = 46
+  valor = 125000
+  partidas = 4
+  minutos = 387
+  id_fonte = "903456"
+

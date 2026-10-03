@@ -17,8 +17,9 @@ Você assume um clube e escala o time, contrata, vende e empresta jogadores. Dep
 partida minuto a minuto e mexe no time durante o jogo. Pela frente estão a liga, as copas e o
 continental, temporada após temporada.
 
-O mundo tem **16 países, 24 divisões, 468 clubes e quase 14 mil jogadores reais**: seis países
-da Europa e os dez da Conmebol, de onde saem os clubes da Libertadores e da Sul-Americana.
+O mundo tem **32 países, 40 divisões, 706 clubes e quase 21 mil jogadores reais**: 22 países
+da Europa, de onde saem os 36 clubes da fase de liga da Champions, e os dez da Conmebol, de
+onde saem os da Libertadores e da Sul-Americana.
 
 A pergunta que guia o projeto não é se a interface está bonita. É se **a tabela no fim do ano é
 crível**.

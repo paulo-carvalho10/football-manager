@@ -167,7 +167,14 @@ BETAS_PADRAO = {"bra_a": 7.0, "bra_b": 4.0, "esp_1": 7.0, "esp_2": 5.0,
                 # portao de calibracao proprio -- estas ligas nao sao jogaveis, so fornecem
                 # os clubes da Libertadores e da Sul-Americana.
                 "col_1": 3.5, "chi_1": 3.5, "uru_1": 3.5, "ecu_1": 3.5, "par_1": 3.5,
-                "per_1": 3.5, "bol_1": 3.5, "ven_1": 3.5}
+                "per_1": 3.5, "bol_1": 3.5, "ven_1": 3.5,
+                # o resto da Europa (03/10/2026): primeiras divisoes, sem portao proprio. O
+                # beta e o espalhamento da liga: maior onde dois ou tres dominam (Escocia,
+                # Holanda, Turquia, Servia), menor nas equilibradas (Suecia, Polonia).
+                "ned_1": 6.0, "bel_1": 5.0, "tur_1": 5.5, "gre_1": 5.0, "ukr_1": 4.5,
+                "rus_1": 4.5, "aut_1": 4.5, "sui_1": 4.0, "sco_1": 6.0, "den_1": 4.0,
+                "nor_1": 4.0, "swe_1": 3.5, "srb_1": 5.5, "cro_1": 5.0, "pol_1": 3.5,
+                "cze_1": 5.0}
 
 # A REGUA da forca mundial: as ligas que ja existiam quando a escala foi fixada. As
 # importadas depois sao medidas contra ela sem movê-la (fm.ratings.forca_mundial) -- senao

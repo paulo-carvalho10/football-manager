@@ -304,3 +304,22 @@ def test_toda_fonte_entre_copas_tem_quem_exporte():
                | {f["aguarda"] for t in torneios for f in t.fases if f.get("aguarda")})
     assert pedidas, "nenhuma copa recebe clubes de outra?"
     assert pedidas <= exportadas, f"sem exportador: {pedidas - exportadas}"
+
+
+def test_a_champions_tem_36_na_fase_de_liga_com_a_europa_inteira():
+    """Com as ligas que faltavam (03/10/2026), a fase de liga fecha com 36 clubes de verdade:
+    28 diretos e 8 da pre. Antes ficava com ~23 -- faltavam Holanda, Belgica, Escocia..."""
+    from collections import Counter
+
+    from fm.carreira import Carreira
+    from fm.telas import NACIONAIS
+
+    europa = [k for n in NACIONAIS if n.get("livre") and n["pais"] not in
+              ("BRA", "ARG", "COL", "CHI", "URU", "ECU", "PAR", "PER", "BOL", "VEN")
+              for k, _ in n["ligas"]]
+    c = Carreira.nova(europa, "Celtic", seed=4)
+    a = c.copas["champions"]
+    assert {f: len(v) for f, v in a.classificados.items()} == {"liga": 28, "pre": 16}
+    paises = Counter(c.world.clubs[k].country for v in a.classificados.values() for k in v)
+    assert "RUS" not in paises, "a UEFA exclui os clubes russos desde 2022"
+    assert {"NED", "BEL", "SCO", "TUR", "CZE"} <= set(paises)

@@ -41,7 +41,10 @@ def test_o_catalogo_libera_as_oito_ligas_e_cada_uma_tem_pack():
     # as oito de 28/09/2026 e, desde 01/10/2026, o resto da Conmebol
     assert {n["pais"] for n in cat["nacionais"] if n["livre"]} == {
         "BRA", "ESP", "ENG", "ITA", "GER", "FRA", "POR", "ARG",
-        "COL", "CHI", "URU", "ECU", "PAR", "PER", "BOL", "VEN"}
+        "COL", "CHI", "URU", "ECU", "PAR", "PER", "BOL", "VEN",
+        # e, desde 03/10/2026, o resto da Europa
+        "NED", "BEL", "TUR", "GRE", "UKR", "RUS", "AUT", "SUI", "SCO", "DEN", "NOR", "SWE",
+        "SRB", "CRO", "POL", "CZE"}
     for n in cat["nacionais"]:
         for liga in n["ligas"]:
             assert load_pack(load_league(liga["id"])["pack"]).clubes

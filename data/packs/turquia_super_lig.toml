@@ -1,0 +1,5957 @@
+# TR1 -- GERADO por fm.importer. Nao editar a mao: rode o importador.
+#
+# Fonte: Transfermarkt (clube, posicao, idade, valor de mercado, jogos, minutos).
+# ovr e pot sao DERIVADOS por fm/ratings.py a partir desses campos. Sao estimativa, nao
+# rating oficial de ninguem, e a conta esta documentada no modulo.
+#
+# forca do clube = nivel_da_liga + 5.5 * z(ln(valor de elenco) dentro da liga).
+# O NIVEL da liga sai do valor medio de elenco na escala global de todas as competicoes
+# importadas, com o melhor clube do mundo ancorado em 90 -- fazer z so por liga apagava a
+# diferenca entre divisoes e o lanterna da Serie B saia mais forte que o da Serie A.
+# O BETA e proprio desta liga e foi ajustado contra os [alvos] do arquivo dela.
+verificado = false
+fonte = "Transfermarkt TR1 (valores de mercado); ovr/pot derivados por fm.ratings"
+
+[[clubes]]
+nome = "Galatasaray"
+forca = 76.3
+valor_elenco = 411600000
+cores = ["#AD3C2F", "#FEFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Victor Osimhen"
+  pos = "FW"
+  idade = 27
+  ovr = 79
+  pot = 79
+  valor = 75000000
+  partidas = 3
+  minutos = 303
+  gols = 6
+  id_fonte = "401923"
+
+  [[clubes.jogadores]]
+  nome = "Rafael Leão"
+  pos = "WG"
+  idade = 27
+  ovr = 78
+  pot = 78
+  valor = 50000000
+  partidas = 3
+  minutos = 230
+  id_fonte = "357164"
+
+  [[clubes.jogadores]]
+  nome = "Davinson Sánchez"
+  pos = "CB"
+  idade = 30
+  ovr = 77
+  pot = 77
+  valor = 16000000
+  partidas = 7
+  minutos = 611
+  gols = 1
+  id_fonte = "341429"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Sara"
+  pos = "MF"
+  idade = 27
+  ovr = 77
+  pot = 77
+  valor = 27000000
+  partidas = 6
+  minutos = 554
+  gols = 2
+  id_fonte = "553469"
+
+  [[clubes.jogadores]]
+  nome = "Uğurcan Çakır"
+  pos = "GK"
+  idade = 30
+  ovr = 77
+  pot = 77
+  valor = 15000000
+  partidas = 6
+  minutos = 540
+  id_fonte = "292199"
+
+  [[clubes.jogadores]]
+  nome = "Barış Alper Yılmaz"
+  pos = "WG"
+  idade = 26
+  ovr = 76
+  pot = 77
+  valor = 30000000
+  partidas = 6
+  minutos = 535
+  gols = 12
+  id_fonte = "541537"
+
+  [[clubes.jogadores]]
+  nome = "Leroy Sané"
+  pos = "WG"
+  idade = 30
+  ovr = 76
+  pot = 76
+  valor = 20000000
+  partidas = 4
+  minutos = 374
+  gols = 7
+  id_fonte = "192565"
+
+  [[clubes.jogadores]]
+  nome = "Roland Sallai"
+  pos = "FB"
+  idade = 29
+  ovr = 76
+  pot = 76
+  valor = 14000000
+  partidas = 7
+  minutos = 589
+  gols = 1
+  id_fonte = "332798"
+
+  [[clubes.jogadores]]
+  nome = "Abdülkerim Bardakcı"
+  pos = "CB"
+  idade = 32
+  ovr = 75
+  pot = 75
+  valor = 6500000
+  partidas = 5
+  minutos = 444
+  gols = 1
+  id_fonte = "199316"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Torreira"
+  pos = "DM"
+  idade = 30
+  ovr = 75
+  pot = 75
+  valor = 10000000
+  partidas = 7
+  minutos = 588
+  gols = 1
+  id_fonte = "318077"
+
+  [[clubes.jogadores]]
+  nome = "Wilfried Singo"
+  pos = "FB"
+  idade = 25
+  ovr = 75
+  pot = 77
+  valor = 23000000
+  partidas = 2
+  minutos = 41
+  gols = 2
+  id_fonte = "648779"
+
+  [[clubes.jogadores]]
+  nome = "Yunus Akgün"
+  pos = "WG"
+  idade = 26
+  ovr = 75
+  pot = 75
+  valor = 18000000
+  partidas = 6
+  minutos = 579
+  gols = 1
+  id_fonte = "396908"
+
+  [[clubes.jogadores]]
+  nome = "Ismail Jakobs"
+  pos = "FB"
+  idade = 27
+  ovr = 74
+  pot = 74
+  valor = 8000000
+  partidas = 5
+  minutos = 472
+  id_fonte = "375137"
+
+  [[clubes.jogadores]]
+  nome = "Mario Lemina"
+  pos = "DM"
+  idade = 33
+  ovr = 74
+  pot = 74
+  valor = 4500000
+  partidas = 2
+  minutos = 220
+  gols = 3
+  id_fonte = "170934"
+
+  [[clubes.jogadores]]
+  nome = "Eren Elmalı"
+  pos = "FB"
+  idade = 26
+  ovr = 72
+  pot = 72
+  valor = 5000000
+  partidas = 3
+  minutos = 257
+  gols = 4
+  id_fonte = "616894"
+
+  [[clubes.jogadores]]
+  nome = "İlkay Gündoğan"
+  pos = "MF"
+  idade = 35
+  ovr = 71
+  pot = 71
+  valor = 2000000
+  partidas = 2
+  minutos = 11
+  gols = 2
+  id_fonte = "53622"
+
+  [[clubes.jogadores]]
+  nome = "Kaan Ayhan"
+  pos = "CB"
+  idade = 31
+  ovr = 70
+  pot = 70
+  valor = 1500000
+  partidas = 1
+  minutos = 1
+  gols = 1
+  id_fonte = "119031"
+
+  [[clubes.jogadores]]
+  nome = "Aleksey Batrakov"
+  pos = "AM"
+  idade = 21
+  ovr = 69
+  pot = 76
+  valor = 28000000
+  partidas = 3
+  minutos = 230
+  id_fonte = "720286"
+
+  [[clubes.jogadores]]
+  nome = "Lesley Ugochukwu"
+  pos = "DM"
+  idade = 22
+  ovr = 67
+  pot = 76
+  valor = 22000000
+  partidas = 1
+  minutos = 62
+  id_fonte = "711999"
+
+  [[clubes.jogadores]]
+  nome = "Günay Güvenç"
+  pos = "GK"
+  idade = 35
+  ovr = 66
+  pot = 66
+  valor = 200000
+  partidas = 14
+  minutos = 1301
+  id_fonte = "114422"
+
+  [[clubes.jogadores]]
+  nome = "El Chadaille Bitshiabu"
+  pos = "CB"
+  idade = 21
+  ovr = 64
+  pot = 76
+  valor = 18000000
+  id_fonte = "787912"
+
+  [[clubes.jogadores]]
+  nome = "Deniz Gül"
+  pos = "FW"
+  idade = 22
+  ovr = 63
+  pot = 71
+  valor = 5000000
+  partidas = 2
+  minutos = 155
+  id_fonte = "1063292"
+
+  [[clubes.jogadores]]
+  nome = "Kazımcan Karataş"
+  pos = "FB"
+  idade = 23
+  ovr = 63
+  pot = 69
+  valor = 2000000
+  partidas = 3
+  minutos = 27
+  id_fonte = "697149"
+
+  [[clubes.jogadores]]
+  nome = "Jankat Yılmaz"
+  pos = "GK"
+  idade = 22
+  ovr = 61
+  pot = 69
+  valor = 1500000
+  partidas = 1
+  minutos = 90
+  id_fonte = "727077"
+
+  [[clubes.jogadores]]
+  nome = "Renato Nhaga"
+  pos = "MF"
+  idade = 19
+  ovr = 57
+  pot = 72
+  valor = 6000000
+  partidas = 2
+  minutos = 15
+  gols = 2
+  id_fonte = "1396595"
+
+  [[clubes.jogadores]]
+  nome = "Eyüp Aydın"
+  pos = "DM"
+  idade = 22
+  ovr = 56
+  pot = 66
+  valor = 800000
+  id_fonte = "605110"
+
+  [[clubes.jogadores]]
+  nome = "Arda Ünyay"
+  pos = "CB"
+  idade = 19
+  ovr = 53
+  pot = 67
+  valor = 1000000
+  partidas = 4
+  minutos = 340
+  id_fonte = "1048118"
+
+  [[clubes.jogadores]]
+  nome = "Enes Emre Büyük"
+  pos = "GK"
+  idade = 20
+  ovr = 52
+  pot = 66
+  valor = 550000
+  id_fonte = "1105505"
+
+  [[clubes.jogadores]]
+  nome = "Berat Luş"
+  pos = "WG"
+  idade = 19
+  ovr = 50
+  pot = 66
+  valor = 1000000
+  id_fonte = "1076981"
+
+  [[clubes.jogadores]]
+  nome = "Arda Yılmaz"
+  pos = "GK"
+  idade = 18
+  ovr = 48
+  pot = 66
+  valor = 550000
+  id_fonte = "1178926"
+
+  [[clubes.jogadores]]
+  nome = "Armando Güner"
+  pos = "WG"
+  idade = 18
+  ovr = 46
+  pot = 64
+  valor = 500000
+  partidas = 2
+  minutos = 14
+  id_fonte = "1070983"
+
+  [[clubes.jogadores]]
+  nome = "Ada Yüzgeç"
+  pos = "FW"
+  idade = 17
+  ovr = 40
+  pot = 60
+  valor = 100000
+  partidas = 3
+  minutos = 20
+  id_fonte = "1223334"
+
+[[clubes]]
+nome = "Fenerbahce"
+forca = 74.0
+valor_elenco = 280700000
+cores = ["#FEF56F", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Ederson"
+  pos = "GK"
+  idade = 33
+  ovr = 76
+  pot = 76
+  valor = 10000000
+  partidas = 8
+  minutos = 720
+  id_fonte = "238223"
+
+  [[clubes.jogadores]]
+  nome = "Mason Greenwood"
+  pos = "WG"
+  idade = 24
+  ovr = 76
+  pot = 77
+  valor = 55000000
+  partidas = 10
+  minutos = 894
+  gols = 6
+  id_fonte = "532826"
+
+  [[clubes.jogadores]]
+  nome = "Mattéo Guendouzi"
+  pos = "MF"
+  idade = 27
+  ovr = 75
+  pot = 76
+  valor = 27000000
+  partidas = 12
+  minutos = 1044
+  gols = 1
+  id_fonte = "465830"
+
+  [[clubes.jogadores]]
+  nome = "Nathan Aké"
+  pos = "CB"
+  idade = 31
+  ovr = 75
+  pot = 75
+  valor = 12000000
+  partidas = 12
+  minutos = 1125
+  id_fonte = "177476"
+
+  [[clubes.jogadores]]
+  nome = "Jayden Oosterwolde"
+  pos = "CB"
+  idade = 25
+  ovr = 74
+  pot = 75
+  valor = 20000000
+  partidas = 2
+  minutos = 210
+  gols = 1
+  id_fonte = "591361"
+
+  [[clubes.jogadores]]
+  nome = "Kerem Aktürkoğlu"
+  pos = "WG"
+  idade = 27
+  ovr = 74
+  pot = 74
+  valor = 20000000
+  partidas = 8
+  minutos = 717
+  gols = 15
+  id_fonte = "382528"
+
+  [[clubes.jogadores]]
+  nome = "Marco Asensio"
+  pos = "AM"
+  idade = 30
+  ovr = 74
+  pot = 74
+  valor = 15000000
+  partidas = 4
+  minutos = 343
+  gols = 1
+  id_fonte = "296622"
+
+  [[clubes.jogadores]]
+  nome = "Milan Škriniar"
+  pos = "CB"
+  idade = 31
+  ovr = 74
+  pot = 74
+  valor = 10000000
+  partidas = 13
+  minutos = 1150
+  gols = 1
+  id_fonte = "204069"
+
+  [[clubes.jogadores]]
+  nome = "İsmail Yüksek"
+  pos = "DM"
+  idade = 27
+  ovr = 74
+  pot = 74
+  valor = 15000000
+  partidas = 5
+  minutos = 425
+  gols = 2
+  id_fonte = "613725"
+
+  [[clubes.jogadores]]
+  nome = "Archie Brown"
+  pos = "FB"
+  idade = 24
+  ovr = 72
+  pot = 73
+  valor = 12000000
+  partidas = 9
+  minutos = 838
+  gols = 2
+  id_fonte = "581329"
+
+  [[clubes.jogadores]]
+  nome = "N'Golo Kanté"
+  pos = "DM"
+  idade = 35
+  ovr = 72
+  pot = 72
+  valor = 4000000
+  partidas = 9
+  minutos = 842
+  gols = 2
+  id_fonte = "225083"
+
+  [[clubes.jogadores]]
+  nome = "Nélson Semedo"
+  pos = "FB"
+  idade = 32
+  ovr = 72
+  pot = 72
+  valor = 6000000
+  partidas = 10
+  minutos = 888
+  gols = 1
+  id_fonte = "231572"
+
+  [[clubes.jogadores]]
+  nome = "Dorgeles Nene"
+  pos = "WG"
+  idade = 23
+  ovr = 71
+  pot = 73
+  valor = 20000000
+  partidas = 1
+  minutos = 101
+  gols = 11
+  id_fonte = "671591"
+
+  [[clubes.jogadores]]
+  nome = "Mert Müldür"
+  pos = "FB"
+  idade = 27
+  ovr = 71
+  pot = 71
+  valor = 7000000
+  partidas = 3
+  minutos = 282
+  gols = 1
+  id_fonte = "353922"
+
+  [[clubes.jogadores]]
+  nome = "Romelu Lukaku"
+  pos = "FW"
+  idade = 33
+  ovr = 71
+  pot = 71
+  valor = 6000000
+  partidas = 2
+  minutos = 191
+  id_fonte = "96341"
+
+  [[clubes.jogadores]]
+  nome = "Vedat Muriqi"
+  pos = "FW"
+  idade = 32
+  ovr = 70
+  pot = 70
+  valor = 4500000
+  partidas = 6
+  minutos = 572
+  gols = 7
+  id_fonte = "256267"
+
+  [[clubes.jogadores]]
+  nome = "Levent Mercan"
+  pos = "FB"
+  idade = 25
+  ovr = 68
+  pot = 70
+  valor = 5000000
+  partidas = 2
+  minutos = 199
+  id_fonte = "388820"
+
+  [[clubes.jogadores]]
+  nome = "Oğuz Aydın"
+  pos = "WG"
+  idade = 25
+  ovr = 68
+  pot = 70
+  valor = 7000000
+  partidas = 5
+  minutos = 444
+  gols = 1
+  id_fonte = "563749"
+
+  [[clubes.jogadores]]
+  nome = "İrfan Can Kahveci"
+  pos = "AM"
+  idade = 31
+  ovr = 68
+  pot = 68
+  valor = 3000000
+  partidas = 5
+  minutos = 457
+  gols = 1
+  id_fonte = "216603"
+
+  [[clubes.jogadores]]
+  nome = "Mert Günok"
+  pos = "GK"
+  idade = 37
+  ovr = 65
+  pot = 65
+  valor = 500000
+  partidas = 4
+  minutos = 360
+  id_fonte = "51894"
+
+  [[clubes.jogadores]]
+  nome = "Tarık Çetin"
+  pos = "GK"
+  idade = 29
+  ovr = 64
+  pot = 64
+  valor = 600000
+  partidas = 1
+  minutos = 90
+  id_fonte = "286170"
+
+  [[clubes.jogadores]]
+  nome = "Yiğit Efe Demir"
+  pos = "CB"
+  idade = 22
+  ovr = 64
+  pot = 70
+  valor = 6000000
+  partidas = 14
+  minutos = 1247
+  id_fonte = "889136"
+
+  [[clubes.jogadores]]
+  nome = "Kojo Peprah Oppong"
+  pos = "CB"
+  idade = 22
+  ovr = 63
+  pot = 72
+  valor = 10000000
+  partidas = 1
+  minutos = 20
+  id_fonte = "1113451"
+
+  [[clubes.jogadores]]
+  nome = "Mert Hakan Yandaş"
+  pos = "AM"
+  idade = 32
+  ovr = 63
+  pot = 63
+  valor = 714999
+  id_fonte = "306462"
+
+  [[clubes.jogadores]]
+  nome = "Bartuğ Elmaz"
+  pos = "DM"
+  idade = 23
+  ovr = 59
+  pot = 65
+  valor = 1500000
+  partidas = 2
+  minutos = 143
+  id_fonte = "655895"
+
+  [[clubes.jogadores]]
+  nome = "Ognjen Mimović"
+  pos = "FB"
+  idade = 22
+  ovr = 57
+  pot = 67
+  valor = 2700000
+  id_fonte = "851551"
+
+  [[clubes.jogadores]]
+  nome = "Amara Diouf"
+  pos = "WG"
+  idade = 18
+  ovr = 43
+  pot = 61
+  valor = 800000
+  id_fonte = "1133736"
+
+  [[clubes.jogadores]]
+  nome = "Abdou Aziz Fall"
+  pos = "MF"
+  idade = 19
+  ovr = 42
+  pot = 58
+  valor = 100000
+  id_fonte = "1133732"
+
+[[clubes]]
+nome = "Besiktas JK"
+forca = 73.7
+valor_elenco = 266600000
+cores = ["#4B080C", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Alexander Nübel"
+  pos = "GK"
+  idade = 29
+  ovr = 76
+  pot = 76
+  valor = 12000000
+  partidas = 13
+  minutos = 1170
+  id_fonte = "195778"
+
+  [[clubes.jogadores]]
+  nome = "Dušan Vlahović"
+  pos = "FW"
+  idade = 26
+  ovr = 76
+  pot = 77
+  valor = 35000000
+  partidas = 5
+  minutos = 464
+  gols = 5
+  id_fonte = "357498"
+
+  [[clubes.jogadores]]
+  nome = "Emmanuel Agbadou"
+  pos = "CB"
+  idade = 29
+  ovr = 76
+  pot = 76
+  valor = 16000000
+  partidas = 7
+  minutos = 604
+  gols = 1
+  id_fonte = "683895"
+
+  [[clubes.jogadores]]
+  nome = "Leandro Trossard"
+  pos = "WG"
+  idade = 31
+  ovr = 75
+  pot = 75
+  valor = 18000000
+  partidas = 5
+  minutos = 481
+  gols = 1
+  id_fonte = "144028"
+
+  [[clubes.jogadores]]
+  nome = "Orkun Kökçü"
+  pos = "MF"
+  idade = 25
+  ovr = 75
+  pot = 76
+  valor = 25000000
+  partidas = 11
+  minutos = 1008
+  gols = 4
+  id_fonte = "454567"
+
+  [[clubes.jogadores]]
+  nome = "Amir Murillo"
+  pos = "FB"
+  idade = 30
+  ovr = 73
+  pot = 73
+  valor = 7000000
+  partidas = 11
+  minutos = 986
+  gols = 3
+  id_fonte = "354482"
+
+  [[clubes.jogadores]]
+  nome = "Hyeon-gyu Oh"
+  pos = "FW"
+  idade = 25
+  ovr = 73
+  pot = 73
+  valor = 15000000
+  partidas = 7
+  minutos = 628
+  gols = 1
+  id_fonte = "639246"
+
+  [[clubes.jogadores]]
+  nome = "Wilfred Ndidi"
+  pos = "DM"
+  idade = 29
+  ovr = 73
+  pot = 73
+  valor = 8000000
+  partidas = 2
+  minutos = 200
+  gols = 2
+  id_fonte = "274839"
+
+  [[clubes.jogadores]]
+  nome = "Emirhan Topçu"
+  pos = "CB"
+  idade = 25
+  ovr = 72
+  pot = 72
+  valor = 7000000
+  partidas = 10
+  minutos = 932
+  gols = 1
+  id_fonte = "531332"
+
+  [[clubes.jogadores]]
+  nome = "Tiago Djaló"
+  pos = "CB"
+  idade = 26
+  ovr = 72
+  pot = 72
+  valor = 7000000
+  partidas = 9
+  minutos = 795
+  gols = 2
+  id_fonte = "420465"
+
+  [[clubes.jogadores]]
+  nome = "Vaclav Cerny"
+  pos = "WG"
+  idade = 28
+  ovr = 71
+  pot = 71
+  valor = 7000000
+  partidas = 10
+  minutos = 911
+  gols = 4
+  id_fonte = "242063"
+
+  [[clubes.jogadores]]
+  nome = "Junior Olaitan"
+  pos = "MF"
+  idade = 24
+  ovr = 70
+  pot = 71
+  valor = 7000000
+  partidas = 11
+  minutos = 954
+  gols = 2
+  id_fonte = "900938"
+
+  [[clubes.jogadores]]
+  nome = "Kassoum Ouattara"
+  pos = "FB"
+  idade = 21
+  ovr = 70
+  pot = 74
+  valor = 12000000
+  partidas = 5
+  minutos = 447
+  id_fonte = "947360"
+
+  [[clubes.jogadores]]
+  nome = "Rıdvan Yılmaz"
+  pos = "FB"
+  idade = 25
+  ovr = 70
+  pot = 71
+  valor = 5000000
+  partidas = 8
+  minutos = 694
+  gols = 1
+  id_fonte = "477930"
+
+  [[clubes.jogadores]]
+  nome = "Salih Özcan"
+  pos = "DM"
+  idade = 28
+  ovr = 70
+  pot = 70
+  valor = 3500000
+  partidas = 12
+  minutos = 1087
+  id_fonte = "244940"
+
+  [[clubes.jogadores]]
+  nome = "Milot Rashica"
+  pos = "WG"
+  idade = 30
+  ovr = 69
+  pot = 69
+  valor = 3500000
+  partidas = 1
+  minutos = 115
+  gols = 1
+  id_fonte = "291739"
+
+  [[clubes.jogadores]]
+  nome = "Fabio Miretti"
+  pos = "MF"
+  idade = 23
+  ovr = 67
+  pot = 74
+  valor = 15000000
+  partidas = 1
+  minutos = 66
+  id_fonte = "571607"
+
+  [[clubes.jogadores]]
+  nome = "Ernest Poku"
+  pos = "WG"
+  idade = 22
+  ovr = 66
+  pot = 75
+  valor = 25000000
+  partidas = 1
+  minutos = 77
+  gols = 1
+  id_fonte = "718303"
+
+  [[clubes.jogadores]]
+  nome = "Kartal Yılmaz"
+  pos = "DM"
+  idade = 25
+  ovr = 65
+  pot = 68
+  valor = 2500000
+  partidas = 1
+  minutos = 123
+  gols = 2
+  id_fonte = "461951"
+
+  [[clubes.jogadores]]
+  nome = "Semih Kılıçsoy"
+  pos = "FW"
+  idade = 21
+  ovr = 62
+  pot = 72
+  valor = 11000000
+  partidas = 1
+  minutos = 129
+  gols = 1
+  id_fonte = "875334"
+
+  [[clubes.jogadores]]
+  nome = "Ümit Akdağ"
+  pos = "CB"
+  idade = 22
+  ovr = 62
+  pot = 72
+  valor = 6000000
+  id_fonte = "958647"
+
+  [[clubes.jogadores]]
+  nome = "İlhan Fakılı"
+  pos = "WG"
+  idade = 20
+  ovr = 61
+  pot = 64
+  valor = 1200000
+  partidas = 8
+  minutos = 711
+  gols = 3
+  id_fonte = "1047101"
+
+  [[clubes.jogadores]]
+  nome = "Can Keleş"
+  pos = "WG"
+  idade = 25
+  ovr = 60
+  pot = 64
+  valor = 1200000
+  id_fonte = "451642"
+
+  [[clubes.jogadores]]
+  nome = "Doğan Alemdar"
+  pos = "GK"
+  idade = 23
+  ovr = 60
+  pot = 68
+  valor = 1500000
+  id_fonte = "576033"
+
+  [[clubes.jogadores]]
+  nome = "Taylan Bulut"
+  pos = "FB"
+  idade = 20
+  ovr = 60
+  pot = 71
+  valor = 5000000
+  partidas = 2
+  minutos = 184
+  id_fonte = "810100"
+
+  [[clubes.jogadores]]
+  nome = "Yasin Özcan"
+  pos = "CB"
+  idade = 20
+  ovr = 58
+  pot = 71
+  valor = 5000000
+  partidas = 2
+  minutos = 29
+  id_fonte = "1043003"
+
+  [[clubes.jogadores]]
+  nome = "Mustafa Hekimoğlu"
+  pos = "FW"
+  idade = 19
+  ovr = 55
+  pot = 69
+  valor = 5000000
+  partidas = 2
+  minutos = 7
+  gols = 1
+  id_fonte = "1071252"
+
+  [[clubes.jogadores]]
+  nome = "Azem Yortaç"
+  pos = "CB"
+  idade = 18
+  ovr = 49
+  pot = 67
+  valor = 1605645
+  id_fonte = "1189064"
+
+  [[clubes.jogadores]]
+  nome = "Ozan Sevim"
+  pos = "WG"
+  idade = 19
+  ovr = 49
+  pot = 65
+  valor = 1605645
+  id_fonte = "1177020"
+
+  [[clubes.jogadores]]
+  nome = "Emir Yaşar"
+  pos = "GK"
+  idade = 20
+  ovr = 44
+  pot = 58
+  valor = 100000
+  id_fonte = "935552"
+
+  [[clubes.jogadores]]
+  nome = "Ahmet Sami Bircan"
+  pos = "FW"
+  idade = 19
+  ovr = 42
+  pot = 58
+  valor = 100000
+  partidas = 1
+  minutos = 4
+  id_fonte = "1076666"
+
+[[clubes]]
+nome = "Trabzonspor"
+forca = 71.6
+valor_elenco = 185800000
+cores = ["#76B5E4", "#5A122A"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Mohamed Salah"
+  pos = "WG"
+  idade = 34
+  ovr = 77
+  pot = 77
+  valor = 22000000
+  partidas = 7
+  minutos = 635
+  gols = 7
+  id_fonte = "148455"
+
+  [[clubes.jogadores]]
+  nome = "André Onana"
+  pos = "GK"
+  idade = 30
+  ovr = 75
+  pot = 75
+  valor = 10000000
+  partidas = 8
+  minutos = 720
+  id_fonte = "234509"
+
+  [[clubes.jogadores]]
+  nome = "Fabinho"
+  pos = "DM"
+  idade = 32
+  ovr = 75
+  pot = 75
+  valor = 12000000
+  partidas = 4
+  minutos = 329
+  id_fonte = "225693"
+
+  [[clubes.jogadores]]
+  nome = "Arseniy Batagov"
+  pos = "CB"
+  idade = 24
+  ovr = 72
+  pot = 73
+  valor = 11000000
+  partidas = 29
+  minutos = 2574
+  gols = 1
+  id_fonte = "665048"
+
+  [[clubes.jogadores]]
+  nome = "Chibuike Nwaiwu"
+  pos = "CB"
+  idade = 23
+  ovr = 71
+  pot = 72
+  valor = 10000000
+  partidas = 7
+  minutos = 623
+  gols = 3
+  id_fonte = "985825"
+
+  [[clubes.jogadores]]
+  nome = "Ernest Muci"
+  pos = "AM"
+  idade = 25
+  ovr = 71
+  pot = 72
+  valor = 11000000
+  partidas = 4
+  minutos = 404
+  gols = 1
+  id_fonte = "583917"
+
+  [[clubes.jogadores]]
+  nome = "Wagner Pina"
+  pos = "FB"
+  idade = 23
+  ovr = 71
+  pot = 72
+  valor = 11000000
+  partidas = 6
+  minutos = 507
+  id_fonte = "1072017"
+
+  [[clubes.jogadores]]
+  nome = "Paul Onuachu"
+  pos = "FW"
+  idade = 32
+  ovr = 70
+  pot = 70
+  valor = 6000000
+  partidas = 6
+  minutos = 567
+  gols = 2
+  id_fonte = "272855"
+
+  [[clubes.jogadores]]
+  nome = "Sidny Lopes Cabral"
+  pos = "FB"
+  idade = 24
+  ovr = 70
+  pot = 72
+  valor = 10000000
+  partidas = 4
+  minutos = 387
+  id_fonte = "611855"
+
+  [[clubes.jogadores]]
+  nome = "Tim Jabol-Folcarelli"
+  pos = "MF"
+  idade = 26
+  ovr = 70
+  pot = 70
+  valor = 7000000
+  partidas = 30
+  minutos = 2726
+  id_fonte = "674241"
+
+  [[clubes.jogadores]]
+  nome = "Batista Mendy"
+  pos = "DM"
+  idade = 26
+  ovr = 69
+  pot = 71
+  valor = 7500000
+  partidas = 1
+  minutos = 49
+  id_fonte = "395234"
+
+  [[clubes.jogadores]]
+  nome = "Mustafa Eskihellaç"
+  pos = "FB"
+  idade = 29
+  ovr = 69
+  pot = 69
+  valor = 4000000
+  partidas = 7
+  minutos = 592
+  gols = 1
+  id_fonte = "390379"
+
+  [[clubes.jogadores]]
+  nome = "Ruslan Malinovskyi"
+  pos = "MF"
+  idade = 33
+  ovr = 69
+  pot = 69
+  valor = 2500000
+  partidas = 2
+  minutos = 223
+  id_fonte = "207877"
+
+  [[clubes.jogadores]]
+  nome = "Aral Şimşir"
+  pos = "WG"
+  idade = 24
+  ovr = 68
+  pot = 71
+  valor = 10000000
+  partidas = 5
+  minutos = 416
+  id_fonte = "514887"
+
+  [[clubes.jogadores]]
+  nome = "Cenk Özkacar"
+  pos = "CB"
+  idade = 25
+  ovr = 66
+  pot = 69
+  valor = 4000000
+  partidas = 2
+  minutos = 201
+  id_fonte = "615350"
+
+  [[clubes.jogadores]]
+  nome = "Noah Saviolo"
+  pos = "WG"
+  idade = 22
+  ovr = 66
+  pot = 71
+  valor = 10000000
+  partidas = 4
+  minutos = 342
+  gols = 2
+  id_fonte = "671669"
+
+  [[clubes.jogadores]]
+  nome = "Okay Yokuşlu"
+  pos = "DM"
+  idade = 32
+  ovr = 66
+  pot = 66
+  valor = 1200000
+  partidas = 11
+  minutos = 1033
+  gols = 1
+  id_fonte = "137616"
+
+  [[clubes.jogadores]]
+  nome = "Ozan Tufan"
+  pos = "MF"
+  idade = 31
+  ovr = 66
+  pot = 66
+  valor = 1500000
+  partidas = 3
+  minutos = 238
+  gols = 2
+  id_fonte = "236471"
+
+  [[clubes.jogadores]]
+  nome = "Samet Akaydin"
+  pos = "CB"
+  idade = 32
+  ovr = 66
+  pot = 66
+  valor = 1200000
+  partidas = 2
+  minutos = 33
+  id_fonte = "295024"
+
+  [[clubes.jogadores]]
+  nome = "Benjamin Bouchouari"
+  pos = "MF"
+  idade = 24
+  ovr = 65
+  pot = 68
+  valor = 4500000
+  partidas = 2
+  minutos = 189
+  id_fonte = "783094"
+
+  [[clubes.jogadores]]
+  nome = "Franculino"
+  pos = "FW"
+  idade = 22
+  ovr = 65
+  pot = 73
+  valor = 22000000
+  partidas = 1
+  minutos = 126
+  gols = 1
+  id_fonte = "929090"
+
+  [[clubes.jogadores]]
+  nome = "Melih Kabasakal"
+  pos = "DM"
+  idade = 30
+  ovr = 63
+  pot = 63
+  valor = 600000
+  partidas = 6
+  minutos = 500
+  id_fonte = "275683"
+
+  [[clubes.jogadores]]
+  nome = "Stefan Savić"
+  pos = "CB"
+  idade = 35
+  ovr = 63
+  pot = 63
+  valor = 400000
+  partidas = 7
+  minutos = 629
+  gols = 1
+  id_fonte = "107010"
+
+  [[clubes.jogadores]]
+  nome = "Umut Nayir"
+  pos = "FW"
+  idade = 33
+  ovr = 62
+  pot = 62
+  valor = 600000
+  partidas = 1
+  minutos = 45
+  gols = 1
+  id_fonte = "248271"
+
+  [[clubes.jogadores]]
+  nome = "Metehan Mimaroğlu"
+  pos = "WG"
+  idade = 32
+  ovr = 60
+  pot = 60
+  valor = 400000
+  partidas = 1
+  minutos = 104
+  id_fonte = "294100"
+
+  [[clubes.jogadores]]
+  nome = "Ali Habeşoğlu"
+  pos = "FW"
+  idade = 22
+  ovr = 54
+  pot = 64
+  valor = 2200000
+  id_fonte = "892611"
+
+  [[clubes.jogadores]]
+  nome = "Cihan Çanak"
+  pos = "WG"
+  idade = 21
+  ovr = 53
+  pot = 64
+  valor = 2000000
+  partidas = 3
+  minutos = 256
+  id_fonte = "743376"
+
+  [[clubes.jogadores]]
+  nome = "Onuralp Çevikkan"
+  pos = "GK"
+  idade = 20
+  ovr = 52
+  pot = 64
+  valor = 1000000
+  partidas = 5
+  minutos = 450
+  id_fonte = "1054214"
+
+  [[clubes.jogadores]]
+  nome = "Erol Can Çolak"
+  pos = "GK"
+  idade = 20
+  ovr = 44
+  pot = 58
+  valor = 220000
+  id_fonte = "1152080"
+
+  [[clubes.jogadores]]
+  nome = "Ahmet Yıldırım"
+  pos = "GK"
+  idade = 19
+  ovr = 43
+  pot = 58
+  valor = 200000
+  partidas = 2
+  minutos = 173
+  id_fonte = "1174140"
+
+[[clubes]]
+nome = "Basaksehir FK"
+forca = 66.4
+valor_elenco = 75500000
+cores = ["#002B55", "#40A6D2"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Eldor Shomurodov"
+  pos = "FW"
+  idade = 31
+  ovr = 70
+  pot = 70
+  valor = 7000000
+  partidas = 7
+  minutos = 651
+  gols = 6
+  id_fonte = "358166"
+
+  [[clubes.jogadores]]
+  nome = "Jerome Opoku"
+  pos = "CB"
+  idade = 27
+  ovr = 70
+  pot = 71
+  valor = 7000000
+  partidas = 5
+  minutos = 479
+  gols = 1
+  id_fonte = "408563"
+
+  [[clubes.jogadores]]
+  nome = "Muhammed Şengezer"
+  pos = "GK"
+  idade = 29
+  ovr = 69
+  pot = 69
+  valor = 3500000
+  partidas = 6
+  minutos = 540
+  id_fonte = "330871"
+
+  [[clubes.jogadores]]
+  nome = "Christopher Operi"
+  pos = "FB"
+  idade = 29
+  ovr = 68
+  pot = 68
+  valor = 4000000
+  partidas = 6
+  minutos = 513
+  gols = 1
+  id_fonte = "469976"
+
+  [[clubes.jogadores]]
+  nome = "Andreas Skov Olsen"
+  pos = "WG"
+  idade = 26
+  ovr = 67
+  pot = 68
+  valor = 6000000
+  partidas = 5
+  minutos = 460
+  gols = 1
+  id_fonte = "432982"
+
+  [[clubes.jogadores]]
+  nome = "Emin Bayram"
+  pos = "CB"
+  idade = 23
+  ovr = 66
+  pot = 67
+  valor = 4000000
+  partidas = 8
+  minutos = 720
+  gols = 1
+  id_fonte = "655902"
+
+  [[clubes.jogadores]]
+  nome = "Olivier Kemen"
+  pos = "MF"
+  idade = 30
+  ovr = 66
+  pot = 66
+  valor = 2500000
+  partidas = 6
+  minutos = 576
+  id_fonte = "243725"
+
+  [[clubes.jogadores]]
+  nome = "Bertuğ Yıldırım"
+  pos = "FW"
+  idade = 24
+  ovr = 65
+  pot = 68
+  valor = 7000000
+  partidas = 3
+  minutos = 300
+  gols = 7
+  id_fonte = "672803"
+
+  [[clubes.jogadores]]
+  nome = "Davie Selke"
+  pos = "FW"
+  idade = 31
+  ovr = 65
+  pot = 65
+  valor = 2800000
+  partidas = 2
+  minutos = 199
+  gols = 1
+  id_fonte = "178459"
+
+  [[clubes.jogadores]]
+  nome = "Umut Güneş"
+  pos = "MF"
+  idade = 26
+  ovr = 65
+  pot = 65
+  valor = 3000000
+  partidas = 5
+  minutos = 471
+  gols = 1
+  id_fonte = "422203"
+
+  [[clubes.jogadores]]
+  nome = "Yusuf Sarı"
+  pos = "WG"
+  idade = 27
+  ovr = 65
+  pot = 66
+  valor = 4000000
+  partidas = 3
+  minutos = 284
+  gols = 1
+  id_fonte = "517376"
+
+  [[clubes.jogadores]]
+  nome = "Abbosbek Fayzullaev"
+  pos = "WG"
+  idade = 22
+  ovr = 64
+  pot = 68
+  valor = 7000000
+  partidas = 4
+  minutos = 391
+  gols = 4
+  id_fonte = "754037"
+
+  [[clubes.jogadores]]
+  nome = "Ousseynou Ba"
+  pos = "CB"
+  idade = 30
+  ovr = 63
+  pot = 63
+  valor = 1200000
+  partidas = 3
+  minutos = 248
+  id_fonte = "520815"
+
+  [[clubes.jogadores]]
+  nome = "Umut Bozok"
+  pos = "FW"
+  idade = 30
+  ovr = 62
+  pot = 62
+  valor = 1500000
+  partidas = 1
+  minutos = 104
+  id_fonte = "259025"
+
+  [[clubes.jogadores]]
+  nome = "Berkay Özcan"
+  pos = "MF"
+  idade = 28
+  ovr = 61
+  pot = 61
+  valor = 1200000
+  partidas = 1
+  minutos = 53
+  id_fonte = "249952"
+
+  [[clubes.jogadores]]
+  nome = "Michal Karbownik"
+  pos = "FB"
+  idade = 25
+  ovr = 61
+  pot = 64
+  valor = 1800000
+  partidas = 3
+  minutos = 252
+  id_fonte = "401604"
+
+  [[clubes.jogadores]]
+  nome = "Onur Bulut"
+  pos = "FB"
+  idade = 32
+  ovr = 61
+  pot = 61
+  valor = 600000
+  partidas = 1
+  minutos = 90
+  id_fonte = "152733"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Brnic"
+  pos = "WG"
+  idade = 25
+  ovr = 60
+  pot = 62
+  valor = 2000000
+  partidas = 3
+  minutos = 257
+  gols = 7
+  id_fonte = "432752"
+
+  [[clubes.jogadores]]
+  nome = "Jakub Kaluzinski"
+  pos = "DM"
+  idade = 23
+  ovr = 60
+  pot = 65
+  valor = 2500000
+  partidas = 3
+  minutos = 295
+  id_fonte = "699418"
+
+  [[clubes.jogadores]]
+  nome = "Ömer Ali Şahiner"
+  pos = "FB"
+  idade = 34
+  ovr = 57
+  pot = 57
+  valor = 200000
+  partidas = 5
+  minutos = 481
+  gols = 3
+  id_fonte = "110695"
+
+  [[clubes.jogadores]]
+  nome = "Onur Ergün"
+  pos = "DM"
+  idade = 33
+  ovr = 55
+  pot = 55
+  valor = 150000
+  partidas = 1
+  minutos = 100
+  id_fonte = "293998"
+
+  [[clubes.jogadores]]
+  nome = "Deniz Dilmen"
+  pos = "GK"
+  idade = 21
+  ovr = 54
+  pot = 63
+  valor = 1200000
+  partidas = 2
+  minutos = 180
+  id_fonte = "842465"
+
+  [[clubes.jogadores]]
+  nome = "Edin Visca"
+  pos = "WG"
+  idade = 36
+  ovr = 52
+  pot = 52
+  valor = 100000
+  id_fonte = "109217"
+
+  [[clubes.jogadores]]
+  nome = "Volkan Babacan"
+  pos = "GK"
+  idade = 38
+  ovr = 52
+  pot = 52
+  valor = 50000
+  partidas = 1
+  minutos = 90
+  id_fonte = "52261"
+
+  [[clubes.jogadores]]
+  nome = "Hamza Güreler"
+  pos = "CB"
+  idade = 20
+  ovr = 51
+  pot = 63
+  valor = 1800000
+  partidas = 2
+  minutos = 17
+  id_fonte = "988247"
+
+  [[clubes.jogadores]]
+  nome = "Saba Kharebashvili"
+  pos = "FB"
+  idade = 18
+  ovr = 50
+  pot = 65
+  valor = 2500000
+  partidas = 1
+  minutos = 117
+  id_fonte = "1193794"
+
+  [[clubes.jogadores]]
+  nome = "Batuhan Çelik"
+  pos = "FW"
+  idade = 21
+  ovr = 46
+  pot = 58
+  valor = 900000
+  id_fonte = "875249"
+
+  [[clubes.jogadores]]
+  nome = "Efe Arda Koyuncu"
+  pos = "CB"
+  idade = 21
+  ovr = 45
+  pot = 57
+  valor = 500322
+  id_fonte = "889264"
+
+  [[clubes.jogadores]]
+  nome = "Albert Gomez"
+  pos = "CB"
+  idade = 20
+  ovr = 43
+  pot = 57
+  valor = 500322
+  id_fonte = "1460268"
+
+  [[clubes.jogadores]]
+  nome = "Luca Stancic"
+  pos = "GK"
+  idade = 19
+  ovr = 43
+  pot = 59
+  valor = 500322
+  id_fonte = "1057178"
+
+  [[clubes.jogadores]]
+  nome = "Ege Öztürk"
+  pos = "GK"
+  idade = 18
+  ovr = 41
+  pot = 59
+  valor = 500322
+  id_fonte = "1245279"
+
+[[clubes]]
+nome = "Corum FK"
+forca = 65.8
+valor_elenco = 67250000
+cores = ["#B15153", "#000000"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Alexandre Penetra"
+  pos = "CB"
+  idade = 25
+  ovr = 69
+  pot = 72
+  valor = 10000000
+  partidas = 3
+  minutos = 280
+  id_fonte = "479643"
+
+  [[clubes.jogadores]]
+  nome = "Çağlar Söyüncü"
+  pos = "CB"
+  idade = 30
+  ovr = 68
+  pot = 68
+  valor = 3500000
+  partidas = 1
+  minutos = 45
+  id_fonte = "320141"
+
+  [[clubes.jogadores]]
+  nome = "Jesús Ramírez"
+  pos = "FW"
+  idade = 28
+  ovr = 67
+  pot = 67
+  valor = 5000000
+  partidas = 6
+  minutos = 502
+  gols = 4
+  id_fonte = "419936"
+
+  [[clubes.jogadores]]
+  nome = "Cengiz Ünder"
+  pos = "WG"
+  idade = 29
+  ovr = 66
+  pot = 66
+  valor = 4000000
+  partidas = 3
+  minutos = 245
+  gols = 2
+  id_fonte = "341647"
+
+  [[clubes.jogadores]]
+  nome = "Mohamed Diomandé"
+  pos = "MF"
+  idade = 24
+  ovr = 66
+  pot = 69
+  valor = 7000000
+  partidas = 4
+  minutos = 374
+  gols = 1
+  id_fonte = "658531"
+
+  [[clubes.jogadores]]
+  nome = "Berat Özdemir"
+  pos = "DM"
+  idade = 28
+  ovr = 65
+  pot = 65
+  valor = 2500000
+  partidas = 2
+  minutos = 222
+  id_fonte = "483063"
+
+  [[clubes.jogadores]]
+  nome = "Marcos Felipe"
+  pos = "GK"
+  idade = 30
+  ovr = 65
+  pot = 65
+  valor = 1500000
+  partidas = 6
+  minutos = 540
+  id_fonte = "283166"
+
+  [[clubes.jogadores]]
+  nome = "Alexandros Kyziridis"
+  pos = "WG"
+  idade = 26
+  ovr = 64
+  pot = 65
+  valor = 3500000
+  partidas = 4
+  minutos = 340
+  gols = 3
+  id_fonte = "586538"
+
+  [[clubes.jogadores]]
+  nome = "Gökhan Sazdağı"
+  pos = "FB"
+  idade = 32
+  ovr = 64
+  pot = 64
+  valor = 1200000
+  partidas = 6
+  minutos = 530
+  id_fonte = "257785"
+
+  [[clubes.jogadores]]
+  nome = "Hrvoje Smolcic"
+  pos = "CB"
+  idade = 26
+  ovr = 64
+  pot = 64
+  valor = 2000000
+  partidas = 6
+  minutos = 518
+  id_fonte = "571299"
+
+  [[clubes.jogadores]]
+  nome = "Ylber Ramadani"
+  pos = "DM"
+  idade = 30
+  ovr = 64
+  pot = 64
+  valor = 1800000
+  partidas = 4
+  minutos = 393
+  id_fonte = "442703"
+
+  [[clubes.jogadores]]
+  nome = "Andrei Borza"
+  pos = "FB"
+  idade = 20
+  ovr = 62
+  pot = 65
+  valor = 2500000
+  partidas = 6
+  minutos = 539
+  gols = 1
+  id_fonte = "723826"
+
+  [[clubes.jogadores]]
+  nome = "Mame Thiam"
+  pos = "FW"
+  idade = 33
+  ovr = 61
+  pot = 61
+  valor = 900000
+  partidas = 1
+  minutos = 83
+  gols = 10
+  id_fonte = "163053"
+
+  [[clubes.jogadores]]
+  nome = "Markus Karlsbakk"
+  pos = "MF"
+  idade = 26
+  ovr = 61
+  pot = 62
+  valor = 1500000
+  partidas = 1
+  minutos = 132
+  id_fonte = "519882"
+
+  [[clubes.jogadores]]
+  nome = "Arda Şengül"
+  pos = "CB"
+  idade = 27
+  ovr = 60
+  pot = 60
+  valor = 700000
+  partidas = 2
+  minutos = 22
+  gols = 1
+  id_fonte = "353863"
+
+  [[clubes.jogadores]]
+  nome = "Ermin Mahmic"
+  pos = "AM"
+  idade = 21
+  ovr = 58
+  pot = 68
+  valor = 7000000
+  partidas = 1
+  minutos = 110
+  gols = 2
+  id_fonte = "803049"
+
+  [[clubes.jogadores]]
+  nome = "Serdar Saatçı"
+  pos = "CB"
+  idade = 23
+  ovr = 58
+  pot = 64
+  valor = 1800000
+  partidas = 2
+  minutos = 225
+  id_fonte = "655899"
+
+  [[clubes.jogadores]]
+  nome = "Cemali Sertel"
+  pos = "FB"
+  idade = 26
+  ovr = 57
+  pot = 58
+  valor = 500000
+  partidas = 11
+  minutos = 981
+  id_fonte = "573981"
+
+  [[clubes.jogadores]]
+  nome = "Erhan Erentürk"
+  pos = "GK"
+  idade = 31
+  ovr = 57
+  pot = 57
+  valor = 200000
+  id_fonte = "342065"
+
+  [[clubes.jogadores]]
+  nome = "Hüseyin Bulut"
+  pos = "FB"
+  idade = 27
+  ovr = 57
+  pot = 58
+  valor = 450000
+  id_fonte = "342971"
+
+  [[clubes.jogadores]]
+  nome = "Ahmed Ildız"
+  pos = "MF"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 350000
+  partidas = 1
+  minutos = 81
+  id_fonte = "226169"
+
+  [[clubes.jogadores]]
+  nome = "Atakan Akkaynak"
+  pos = "MF"
+  idade = 27
+  ovr = 55
+  pot = 56
+  valor = 400000
+  partidas = 5
+  minutos = 483
+  gols = 4
+  id_fonte = "327542"
+
+  [[clubes.jogadores]]
+  nome = "Fredy"
+  pos = "MF"
+  idade = 36
+  ovr = 55
+  pot = 55
+  valor = 150000
+  partidas = 4
+  minutos = 374
+  gols = 5
+  id_fonte = "87854"
+
+  [[clubes.jogadores]]
+  nome = "Göktan Gürpüz"
+  pos = "AM"
+  idade = 23
+  ovr = 55
+  pot = 63
+  valor = 2000000
+  partidas = 2
+  minutos = 28
+  id_fonte = "655912"
+
+  [[clubes.jogadores]]
+  nome = "Youssoufa Moukoko"
+  pos = "FW"
+  idade = 21
+  ovr = 55
+  pot = 66
+  valor = 5000000
+  partidas = 1
+  minutos = 61
+  id_fonte = "467720"
+
+  [[clubes.jogadores]]
+  nome = "Emircan Gürlük"
+  pos = "WG"
+  idade = 22
+  ovr = 51
+  pot = 60
+  valor = 1200000
+  partidas = 1
+  minutos = 92
+  id_fonte = "858259"
+
+  [[clubes.jogadores]]
+  nome = "Arif Şimşir"
+  pos = "GK"
+  idade = 21
+  ovr = 43
+  pot = 55
+  valor = 200000
+  id_fonte = "920118"
+
+  [[clubes.jogadores]]
+  nome = "Furkan Çetinkaya"
+  pos = "AM"
+  idade = 17
+  ovr = 40
+  pot = 52
+  valor = 220000
+  partidas = 1
+  minutos = 21
+  id_fonte = "1476544"
+
+  [[clubes.jogadores]]
+  nome = "Hasanege Akdoğan"
+  pos = "FW"
+  idade = 18
+  ovr = 40
+  pot = 54
+  valor = 400000
+  id_fonte = "1197994"
+
+[[clubes]]
+nome = "Göztepe"
+forca = 65.1
+valor_elenco = 60100000
+cores = ["#DC0714", "#FEDA04"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Juan"
+  pos = "FW"
+  idade = 24
+  ovr = 69
+  pot = 71
+  valor = 12000000
+  partidas = 4
+  minutos = 345
+  gols = 4
+  id_fonte = "662332"
+
+  [[clubes.jogadores]]
+  nome = "Malcom Bokele"
+  pos = "CB"
+  idade = 26
+  ovr = 69
+  pot = 69
+  valor = 5000000
+  partidas = 5
+  minutos = 450
+  gols = 3
+  id_fonte = "647787"
+
+  [[clubes.jogadores]]
+  nome = "Janderson"
+  pos = "FW"
+  idade = 27
+  ovr = 68
+  pot = 68
+  valor = 6000000
+  partidas = 4
+  minutos = 334
+  gols = 6
+  id_fonte = "976561"
+
+  [[clubes.jogadores]]
+  nome = "Arda Okan Kurtulan"
+  pos = "AM"
+  idade = 23
+  ovr = 67
+  pot = 69
+  valor = 7000000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "700031"
+
+  [[clubes.jogadores]]
+  nome = "Novatus Miroshi"
+  pos = "DM"
+  idade = 24
+  ovr = 67
+  pot = 68
+  valor = 5000000
+  partidas = 4
+  minutos = 334
+  gols = 1
+  id_fonte = "833315"
+
+  [[clubes.jogadores]]
+  nome = "Taha Altıkardeş"
+  pos = "CB"
+  idade = 23
+  ovr = 66
+  pot = 68
+  valor = 4000000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "745233"
+
+  [[clubes.jogadores]]
+  nome = "Noah Sonko Sundberg"
+  pos = "CB"
+  idade = 30
+  ovr = 63
+  pot = 63
+  valor = 900000
+  id_fonte = "249121"
+
+  [[clubes.jogadores]]
+  nome = "André Henrique"
+  pos = "FW"
+  idade = 24
+  ovr = 62
+  pot = 65
+  valor = 3000000
+  partidas = 4
+  minutos = 400
+  id_fonte = "1024605"
+
+  [[clubes.jogadores]]
+  nome = "Efkan Bekiroğlu"
+  pos = "AM"
+  idade = 31
+  ovr = 62
+  pot = 62
+  valor = 1000000
+  partidas = 2
+  minutos = 194
+  gols = 2
+  id_fonte = "327402"
+
+  [[clubes.jogadores]]
+  nome = "Luka Gugeshashvili"
+  pos = "GK"
+  idade = 27
+  ovr = 62
+  pot = 62
+  valor = 700000
+  partidas = 4
+  minutos = 315
+  id_fonte = "407491"
+
+  [[clubes.jogadores]]
+  nome = "Tino Anjorin"
+  pos = "MF"
+  idade = 24
+  ovr = 62
+  pot = 67
+  valor = 4000000
+  partidas = 1
+  minutos = 62
+  id_fonte = "433181"
+
+  [[clubes.jogadores]]
+  nome = "Alexis Antunes"
+  pos = "AM"
+  idade = 26
+  ovr = 61
+  pot = 63
+  valor = 1500000
+  partidas = 2
+  minutos = 181
+  gols = 1
+  id_fonte = "346898"
+
+  [[clubes.jogadores]]
+  nome = "Furkan Bayır"
+  pos = "CB"
+  idade = 26
+  ovr = 61
+  pot = 62
+  valor = 1000000
+  partidas = 4
+  minutos = 334
+  id_fonte = "548270"
+
+  [[clubes.jogadores]]
+  nome = "Rhaldney"
+  pos = "MF"
+  idade = 27
+  ovr = 61
+  pot = 62
+  valor = 1000000
+  partidas = 5
+  minutos = 418
+  gols = 1
+  id_fonte = "638269"
+
+  [[clubes.jogadores]]
+  nome = "Bekir Turaç Böke"
+  pos = "FW"
+  idade = 27
+  ovr = 60
+  pot = 61
+  valor = 1000000
+  partidas = 3
+  minutos = 26
+  id_fonte = "500972"
+
+  [[clubes.jogadores]]
+  nome = "Ogün Bayrak"
+  pos = "AM"
+  idade = 27
+  ovr = 59
+  pot = 60
+  valor = 700000
+  partidas = 1
+  minutos = 118
+  id_fonte = "545550"
+
+  [[clubes.jogadores]]
+  nome = "Sinclair Armstrong"
+  pos = "FW"
+  idade = 23
+  ovr = 58
+  pot = 64
+  valor = 2500000
+  partidas = 2
+  minutos = 178
+  gols = 1
+  id_fonte = "724532"
+
+  [[clubes.jogadores]]
+  nome = "Arda Özçimen"
+  pos = "GK"
+  idade = 24
+  ovr = 56
+  pot = 60
+  valor = 450000
+  partidas = 2
+  minutos = 225
+  id_fonte = "615430"
+
+  [[clubes.jogadores]]
+  nome = "Allan Godói"
+  pos = "CB"
+  idade = 33
+  ovr = 55
+  pot = 55
+  valor = 100000
+  partidas = 2
+  minutos = 135
+  id_fonte = "681814"
+
+  [[clubes.jogadores]]
+  nome = "Richard Akonnor"
+  pos = "AM"
+  idade = 22
+  ovr = 55
+  pot = 60
+  valor = 800000
+  partidas = 4
+  minutos = 339
+  id_fonte = "1081721"
+
+  [[clubes.jogadores]]
+  nome = "Alex Matos"
+  pos = "MF"
+  idade = 21
+  ovr = 54
+  pot = 61
+  valor = 1000000
+  partidas = 3
+  minutos = 250
+  gols = 1
+  id_fonte = "670850"
+
+  [[clubes.jogadores]]
+  nome = "Gökdeniz Bayrakdar"
+  pos = "FW"
+  idade = 24
+  ovr = 53
+  pot = 59
+  valor = 800000
+  id_fonte = "345105"
+
+  [[clubes.jogadores]]
+  nome = "Ege Yıldırım"
+  pos = "CB"
+  idade = 19
+  ovr = 45
+  pot = 50
+  valor = 50000
+  partidas = 5
+  minutos = 450
+  id_fonte = "1076671"
+
+  [[clubes.jogadores]]
+  nome = "Ibrahim Sabra"
+  pos = "FW"
+  idade = 20
+  ovr = 44
+  pot = 57
+  valor = 500000
+  partidas = 1
+  minutos = 84
+  gols = 1
+  id_fonte = "1142382"
+
+  [[clubes.jogadores]]
+  nome = "Nevzat Üzel"
+  pos = "GK"
+  idade = 19
+  ovr = 42
+  pot = 58
+  valor = 266538
+  id_fonte = "1175606"
+
+  [[clubes.jogadores]]
+  nome = "Şamil Öztürk"
+  pos = "GK"
+  idade = 21
+  ovr = 42
+  pot = 54
+  valor = 100000
+  id_fonte = "1014342"
+
+[[clubes]]
+nome = "Caykur Rizespor"
+forca = 63.8
+valor_elenco = 48000000
+cores = ["#763165", "#F2F2F5"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Yahia Fofana"
+  pos = "GK"
+  idade = 26
+  ovr = 70
+  pot = 70
+  valor = 6000000
+  partidas = 6
+  minutos = 540
+  id_fonte = "418651"
+
+  [[clubes.jogadores]]
+  nome = "Mithat Pala"
+  pos = "FB"
+  idade = 26
+  ovr = 65
+  pot = 65
+  valor = 3000000
+  partidas = 6
+  minutos = 540
+  gols = 3
+  id_fonte = "703720"
+
+  [[clubes.jogadores]]
+  nome = "Qazim Laci"
+  pos = "MF"
+  idade = 30
+  ovr = 65
+  pot = 65
+  valor = 2800000
+  partidas = 5
+  minutos = 485
+  gols = 1
+  id_fonte = "290552"
+
+  [[clubes.jogadores]]
+  nome = "Modibo Sagnan"
+  pos = "CB"
+  idade = 27
+  ovr = 64
+  pot = 64
+  valor = 2000000
+  partidas = 6
+  minutos = 538
+  gols = 1
+  id_fonte = "524925"
+
+  [[clubes.jogadores]]
+  nome = "Taha Şahin"
+  pos = "FB"
+  idade = 25
+  ovr = 64
+  pot = 65
+  valor = 3000000
+  partidas = 2
+  minutos = 148
+  gols = 2
+  id_fonte = "616885"
+
+  [[clubes.jogadores]]
+  nome = "Ahmed Kutucu"
+  pos = "WG"
+  idade = 26
+  ovr = 63
+  pot = 64
+  valor = 3000000
+  partidas = 5
+  minutos = 430
+  id_fonte = "452084"
+
+  [[clubes.jogadores]]
+  nome = "Attila Mocsi"
+  pos = "CB"
+  idade = 26
+  ovr = 63
+  pot = 64
+  valor = 2000000
+  partidas = 6
+  minutos = 533
+  gols = 2
+  id_fonte = "496996"
+
+  [[clubes.jogadores]]
+  nome = "Ibrahim Olawoyin"
+  pos = "MF"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 2200000
+  partidas = 4
+  minutos = 395
+  gols = 1
+  id_fonte = "672597"
+
+  [[clubes.jogadores]]
+  nome = "Valentin Mihăilă"
+  pos = "WG"
+  idade = 26
+  ovr = 63
+  pot = 64
+  valor = 3500000
+  partidas = 1
+  minutos = 96
+  gols = 6
+  id_fonte = "535469"
+
+  [[clubes.jogadores]]
+  nome = "Ali Sowe"
+  pos = "FW"
+  idade = 32
+  ovr = 62
+  pot = 62
+  valor = 1500000
+  partidas = 6
+  minutos = 528
+  gols = 2
+  id_fonte = "229817"
+
+  [[clubes.jogadores]]
+  nome = "Gennaro Borrelli"
+  pos = "FW"
+  idade = 26
+  ovr = 61
+  pot = 63
+  valor = 3000000
+  id_fonte = "459988"
+
+  [[clubes.jogadores]]
+  nome = "Khusniddin Alikulov"
+  pos = "CB"
+  idade = 27
+  ovr = 61
+  pot = 61
+  valor = 1200000
+  partidas = 9
+  minutos = 770
+  id_fonte = "581429"
+
+  [[clubes.jogadores]]
+  nome = "Tayyip Talha Sanuç"
+  pos = "CB"
+  idade = 26
+  ovr = 61
+  pot = 62
+  valor = 1500000
+  partidas = 1
+  minutos = 79
+  id_fonte = "462772"
+
+  [[clubes.jogadores]]
+  nome = "Taylan Antalyalı"
+  pos = "DM"
+  idade = 31
+  ovr = 60
+  pot = 60
+  valor = 700000
+  partidas = 6
+  minutos = 499
+  gols = 1
+  id_fonte = "204176"
+
+  [[clubes.jogadores]]
+  nome = "Can Bozdogan"
+  pos = "MF"
+  idade = 25
+  ovr = 59
+  pot = 63
+  valor = 2000000
+  partidas = 1
+  minutos = 22
+  id_fonte = "406609"
+
+  [[clubes.jogadores]]
+  nome = "Zafer Görgen"
+  pos = "GK"
+  idade = 26
+  ovr = 59
+  pot = 61
+  valor = 800000
+  id_fonte = "576566"
+
+  [[clubes.jogadores]]
+  nome = "Zakaria Ariss"
+  pos = "FB"
+  idade = 22
+  ovr = 59
+  pot = 63
+  valor = 2000000
+  partidas = 4
+  minutos = 376
+  id_fonte = "982403"
+
+  [[clubes.jogadores]]
+  nome = "Hasan Yağız Döne"
+  pos = "GK"
+  idade = 16
+  ovr = 57
+  pot = 57
+  valor = 394482
+  id_fonte = "1581401"
+
+  [[clubes.jogadores]]
+  nome = "Dal Varesanovic"
+  pos = "AM"
+  idade = 25
+  ovr = 56
+  pot = 60
+  valor = 1200000
+  partidas = 1
+  minutos = 111
+  gols = 1
+  id_fonte = "433105"
+
+  [[clubes.jogadores]]
+  nome = "Adedire Mebude"
+  pos = "WG"
+  idade = 22
+  ovr = 53
+  pot = 60
+  valor = 1500000
+  partidas = 2
+  minutos = 147
+  gols = 2
+  id_fonte = "719672"
+
+  [[clubes.jogadores]]
+  nome = "Siaka Bakayoko"
+  pos = "CB"
+  idade = 21
+  ovr = 52
+  pot = 64
+  valor = 2500000
+  partidas = 2
+  minutos = 18
+  id_fonte = "986258"
+
+  [[clubes.jogadores]]
+  nome = "Emrecan Bulut"
+  pos = "WG"
+  idade = 23
+  ovr = 51
+  pot = 56
+  valor = 600000
+  partidas = 3
+  minutos = 248
+  gols = 2
+  id_fonte = "1050797"
+
+  [[clubes.jogadores]]
+  nome = "Moussa Diakité"
+  pos = "MF"
+  idade = 22
+  ovr = 49
+  pot = 59
+  valor = 1000000
+  partidas = 3
+  minutos = 28
+  id_fonte = "979235"
+
+  [[clubes.jogadores]]
+  nome = "Umut Erdem"
+  pos = "FB"
+  idade = 22
+  ovr = 47
+  pot = 57
+  valor = 600000
+  id_fonte = "875116"
+
+  [[clubes.jogadores]]
+  nome = "Emirhan Yılmaz"
+  pos = "MF"
+  idade = 22
+  ovr = 45
+  pot = 55
+  valor = 394482
+  id_fonte = "951697"
+
+  [[clubes.jogadores]]
+  nome = "Efe Doğan"
+  pos = "GK"
+  idade = 22
+  ovr = 43
+  pot = 53
+  valor = 150000
+  id_fonte = "966488"
+
+  [[clubes.jogadores]]
+  nome = "Iustin Doicaru"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 48
+  valor = 100000
+  partidas = 1
+  minutos = 105
+  gols = 1
+  id_fonte = "1050693"
+
+  [[clubes.jogadores]]
+  nome = "Mustafa Coşkun Tosun"
+  pos = "FW"
+  idade = 17
+  ovr = 40
+  pot = 49
+  valor = 150000
+  partidas = 1
+  minutos = 10
+  id_fonte = "1474364"
+
+  [[clubes.jogadores]]
+  nome = "Yakup Ayan"
+  pos = "CB"
+  idade = 18
+  ovr = 40
+  pot = 56
+  valor = 443793
+  partidas = 1
+  minutos = 9
+  id_fonte = "1351512"
+
+[[clubes]]
+nome = "Samsunspor"
+forca = 63.7
+valor_elenco = 47330000
+cores = ["#A50506", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Okan Kocuk"
+  pos = "GK"
+  idade = 31
+  ovr = 68
+  pot = 68
+  valor = 2000000
+  partidas = 6
+  minutos = 540
+  id_fonte = "204189"
+
+  [[clubes.jogadores]]
+  nome = "Strahinja Erakovic"
+  pos = "CB"
+  idade = 25
+  ovr = 68
+  pot = 71
+  valor = 7000000
+  partidas = 2
+  minutos = 182
+  id_fonte = "574660"
+
+  [[clubes.jogadores]]
+  nome = "Mohamed Bayo"
+  pos = "FW"
+  idade = 28
+  ovr = 67
+  pot = 67
+  valor = 4500000
+  partidas = 1
+  minutos = 112
+  id_fonte = "594991"
+
+  [[clubes.jogadores]]
+  nome = "Logi Tómasson"
+  pos = "FB"
+  idade = 26
+  ovr = 66
+  pot = 67
+  valor = 3000000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "472873"
+
+  [[clubes.jogadores]]
+  nome = "Bilal Bayazıt"
+  pos = "GK"
+  idade = 27
+  ovr = 65
+  pot = 66
+  valor = 1800000
+  id_fonte = "361032"
+
+  [[clubes.jogadores]]
+  nome = "Joe Mendes"
+  pos = "FB"
+  idade = 23
+  ovr = 64
+  pot = 65
+  valor = 2500000
+  partidas = 6
+  minutos = 539
+  gols = 1
+  id_fonte = "579284"
+
+  [[clubes.jogadores]]
+  nome = "Afonso Sousa"
+  pos = "AM"
+  idade = 26
+  ovr = 63
+  pot = 64
+  valor = 2500000
+  partidas = 1
+  minutos = 24
+  gols = 1
+  id_fonte = "375378"
+
+  [[clubes.jogadores]]
+  nome = "Elliot Watt"
+  pos = "DM"
+  idade = 26
+  ovr = 63
+  pot = 64
+  valor = 2000000
+  partidas = 3
+  minutos = 245
+  id_fonte = "403574"
+
+  [[clubes.jogadores]]
+  nome = "Emre Kılınç"
+  pos = "WG"
+  idade = 32
+  ovr = 62
+  pot = 62
+  valor = 1000000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "208848"
+
+  [[clubes.jogadores]]
+  nome = "Gabriele Guarino"
+  pos = "CB"
+  idade = 22
+  ovr = 62
+  pot = 67
+  valor = 3500000
+  partidas = 4
+  minutos = 360
+  id_fonte = "745427"
+
+  [[clubes.jogadores]]
+  nome = "Antoine Sekongo"
+  pos = "MF"
+  idade = 22
+  ovr = 60
+  pot = 67
+  valor = 4000000
+  partidas = 2
+  minutos = 223
+  id_fonte = "1178476"
+
+  [[clubes.jogadores]]
+  nome = "Celil Yüksel"
+  pos = "MF"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 800000
+  partidas = 6
+  minutos = 536
+  gols = 1
+  id_fonte = "336074"
+
+  [[clubes.jogadores]]
+  nome = "Yalçın Kayan"
+  pos = "MF"
+  idade = 27
+  ovr = 60
+  pot = 61
+  valor = 1000000
+  partidas = 4
+  minutos = 377
+  gols = 2
+  id_fonte = "605266"
+
+  [[clubes.jogadores]]
+  nome = "Elayis Tavsan"
+  pos = "WG"
+  idade = 25
+  ovr = 59
+  pot = 61
+  valor = 1500000
+  partidas = 10
+  minutos = 929
+  gols = 2
+  id_fonte = "462086"
+
+  [[clubes.jogadores]]
+  nome = "Tanguy Coulibaly"
+  pos = "WG"
+  idade = 25
+  ovr = 58
+  pot = 60
+  valor = 1200000
+  partidas = 1
+  minutos = 45
+  gols = 2
+  id_fonte = "618425"
+
+  [[clubes.jogadores]]
+  nome = "Jaurès Assoumou"
+  pos = "WG"
+  idade = 23
+  ovr = 56
+  pot = 63
+  valor = 2000000
+  partidas = 6
+  minutos = 582
+  gols = 1
+  id_fonte = "1066904"
+
+  [[clubes.jogadores]]
+  nome = "Fatih Kaya"
+  pos = "FW"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 500000
+  partidas = 1
+  minutos = 126
+  gols = 1
+  id_fonte = "368825"
+
+  [[clubes.jogadores]]
+  nome = "Samed Onur"
+  pos = "MF"
+  idade = 24
+  ovr = 55
+  pot = 59
+  valor = 700000
+  partidas = 3
+  minutos = 256
+  id_fonte = "538864"
+
+  [[clubes.jogadores]]
+  nome = "Yunus Emre Çift"
+  pos = "CB"
+  idade = 23
+  ovr = 55
+  pot = 59
+  valor = 600000
+  partidas = 2
+  minutos = 145
+  id_fonte = "821622"
+
+  [[clubes.jogadores]]
+  nome = "Igor Drapiński"
+  pos = "CB"
+  idade = 22
+  ovr = 53
+  pot = 63
+  valor = 1500000
+  partidas = 1
+  minutos = 13
+  id_fonte = "704970"
+
+  [[clubes.jogadores]]
+  nome = "Oskar Øhlenschlæger"
+  pos = "WG"
+  idade = 22
+  ovr = 53
+  pot = 63
+  valor = 2300000
+  id_fonte = "926953"
+
+  [[clubes.jogadores]]
+  nome = "Saikuba Jarju"
+  pos = "WG"
+  idade = 18
+  ovr = 53
+  pot = 59
+  valor = 1000000
+  partidas = 5
+  minutos = 452
+  id_fonte = "1494766"
+
+  [[clubes.jogadores]]
+  nome = "Efe Berat Töruz"
+  pos = "GK"
+  idade = 20
+  ovr = 44
+  pot = 58
+  valor = 392857
+  id_fonte = "1070009"
+
+  [[clubes.jogadores]]
+  nome = "Kerem Fidan"
+  pos = "CB"
+  idade = 20
+  ovr = 43
+  pot = 57
+  valor = 392857
+  id_fonte = "1173403"
+
+  [[clubes.jogadores]]
+  nome = "Mustafa Tan"
+  pos = "FB"
+  idade = 21
+  ovr = 41
+  pot = 53
+  valor = 175000
+  partidas = 1
+  minutos = 1
+  id_fonte = "1161013"
+
+  [[clubes.jogadores]]
+  nome = "Bedirhan Çetin"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 50
+  valor = 100000
+  id_fonte = "1017551"
+
+  [[clubes.jogadores]]
+  nome = "Efe Yiğit Üstün"
+  pos = "GK"
+  idade = 18
+  ovr = 40
+  pot = 58
+  valor = 392857
+  id_fonte = "1237420"
+
+  [[clubes.jogadores]]
+  nome = "Enes Albak"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 52
+  valor = 150000
+  partidas = 1
+  minutos = 21
+  id_fonte = "1072260"
+
+[[clubes]]
+nome = "Konyaspor"
+forca = 62.5
+valor_elenco = 38300000
+cores = ["#2C6852", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Adil Demirbağ"
+  pos = "CB"
+  idade = 28
+  ovr = 64
+  pot = 64
+  valor = 3000000
+  partidas = 6
+  minutos = 540
+  gols = 2
+  id_fonte = "354173"
+
+  [[clubes.jogadores]]
+  nome = "Arthur Masuaku"
+  pos = "FB"
+  idade = 32
+  ovr = 64
+  pot = 64
+  valor = 2000000
+  partidas = 3
+  minutos = 290
+  id_fonte = "181380"
+
+  [[clubes.jogadores]]
+  nome = "Chidozie Awaziem"
+  pos = "CB"
+  idade = 29
+  ovr = 64
+  pot = 64
+  valor = 2500000
+  partidas = 3
+  minutos = 266
+  id_fonte = "358143"
+
+  [[clubes.jogadores]]
+  nome = "Enis Bardhi"
+  pos = "AM"
+  idade = 31
+  ovr = 63
+  pot = 63
+  valor = 2500000
+  partidas = 1
+  minutos = 72
+  gols = 8
+  id_fonte = "245014"
+
+  [[clubes.jogadores]]
+  nome = "Jean-Luc Dompé"
+  pos = "WG"
+  idade = 31
+  ovr = 63
+  pot = 63
+  valor = 2500000
+  partidas = 1
+  minutos = 57
+  id_fonte = "291222"
+
+  [[clubes.jogadores]]
+  nome = "Mostafa Mohamed"
+  pos = "FW"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 3500000
+  partidas = 1
+  minutos = 68
+  id_fonte = "462348"
+
+  [[clubes.jogadores]]
+  nome = "Diogo Gonçalves"
+  pos = "AM"
+  idade = 29
+  ovr = 62
+  pot = 62
+  valor = 2500000
+  partidas = 5
+  minutos = 437
+  gols = 2
+  id_fonte = "258015"
+
+  [[clubes.jogadores]]
+  nome = "Melih İbrahimoğlu"
+  pos = "MF"
+  idade = 26
+  ovr = 62
+  pot = 62
+  valor = 2500000
+  partidas = 6
+  minutos = 529
+  gols = 1
+  id_fonte = "391555"
+
+  [[clubes.jogadores]]
+  nome = "Uğurcan Yazğılı"
+  pos = "CB"
+  idade = 27
+  ovr = 62
+  pot = 62
+  valor = 2000000
+  partidas = 4
+  minutos = 378
+  id_fonte = "295955"
+
+  [[clubes.jogadores]]
+  nome = "Jackson Muleka"
+  pos = "FW"
+  idade = 26
+  ovr = 61
+  pot = 62
+  valor = 2800000
+  partidas = 6
+  minutos = 500
+  gols = 8
+  id_fonte = "549966"
+
+  [[clubes.jogadores]]
+  nome = "Bahadır Güngördü"
+  pos = "GK"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 700000
+  partidas = 4
+  minutos = 338
+  id_fonte = "388359"
+
+  [[clubes.jogadores]]
+  nome = "Deniz Ertaş"
+  pos = "GK"
+  idade = 21
+  ovr = 59
+  pot = 65
+  valor = 3500000
+  partidas = 2
+  minutos = 202
+  id_fonte = "882568"
+
+  [[clubes.jogadores]]
+  nome = "Rayyan Baniya"
+  pos = "CB"
+  idade = 27
+  ovr = 59
+  pot = 59
+  valor = 1000000
+  partidas = 3
+  minutos = 279
+  id_fonte = "394872"
+
+  [[clubes.jogadores]]
+  nome = "Yhoan Andzouana"
+  pos = "FB"
+  idade = 29
+  ovr = 59
+  pot = 59
+  valor = 800000
+  partidas = 4
+  minutos = 373
+  gols = 2
+  id_fonte = "342218"
+
+  [[clubes.jogadores]]
+  nome = "Ahmet Oğuz"
+  pos = "FB"
+  idade = 33
+  ovr = 58
+  pot = 58
+  valor = 400000
+  id_fonte = "291758"
+
+  [[clubes.jogadores]]
+  nome = "Deniz Türüç"
+  pos = "WG"
+  idade = 33
+  ovr = 57
+  pot = 57
+  valor = 500000
+  partidas = 5
+  minutos = 442
+  gols = 1
+  id_fonte = "216662"
+
+  [[clubes.jogadores]]
+  nome = "Marko Jevtović"
+  pos = "DM"
+  idade = 33
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 4
+  minutos = 367
+  gols = 1
+  id_fonte = "256000"
+
+  [[clubes.jogadores]]
+  nome = "Ebrima Colley"
+  pos = "WG"
+  idade = 26
+  ovr = 55
+  pot = 57
+  valor = 800000
+  partidas = 2
+  minutos = 211
+  gols = 1
+  id_fonte = "567217"
+
+  [[clubes.jogadores]]
+  nome = "Enis Destan"
+  pos = "FW"
+  idade = 24
+  ovr = 55
+  pot = 60
+  valor = 2000000
+  partidas = 1
+  minutos = 75
+  id_fonte = "699980"
+
+  [[clubes.jogadores]]
+  nome = "Emir Gündoğdu"
+  pos = "GK"
+  idade = 16
+  ovr = 54
+  pot = 54
+  valor = 220000
+  id_fonte = "1347138"
+
+  [[clubes.jogadores]]
+  nome = "Rajmund Tóth"
+  pos = "DM"
+  idade = 22
+  ovr = 53
+  pot = 58
+  valor = 900000
+  partidas = 3
+  minutos = 311
+  gols = 1
+  id_fonte = "1138547"
+
+  [[clubes.jogadores]]
+  nome = "Arif Boşluk"
+  pos = "FB"
+  idade = 23
+  ovr = 52
+  pot = 58
+  valor = 800000
+  partidas = 1
+  minutos = 90
+  id_fonte = "801693"
+
+  [[clubes.jogadores]]
+  nome = "Emir Bars"
+  pos = "WG"
+  idade = 21
+  ovr = 42
+  pot = 54
+  valor = 450000
+  partidas = 2
+  minutos = 34
+  id_fonte = "775978"
+
+  [[clubes.jogadores]]
+  nome = "Ata Yanık"
+  pos = "CB"
+  idade = 17
+  ovr = 40
+  pot = 46
+  valor = 50000
+  partidas = 2
+  minutos = 143
+  id_fonte = "1223318"
+
+  [[clubes.jogadores]]
+  nome = "Da Mata"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 53
+  valor = 220000
+  id_fonte = "1005007"
+
+  [[clubes.jogadores]]
+  nome = "Egemen Aydın"
+  pos = "GK"
+  idade = 19
+  ovr = 40
+  pot = 48
+  valor = 50000
+  partidas = 1
+  minutos = 5
+  id_fonte = "1071220"
+
+  [[clubes.jogadores]]
+  nome = "Mücahit Ibrahimoglu"
+  pos = "DM"
+  idade = 21
+  ovr = 40
+  pot = 51
+  valor = 150000
+  partidas = 1
+  minutos = 119
+  id_fonte = "724050"
+
+  [[clubes.jogadores]]
+  nome = "Ömer Çobanoğlu"
+  pos = "DM"
+  idade = 19
+  ovr = 40
+  pot = 52
+  valor = 220000
+  id_fonte = "1304052"
+
+[[clubes]]
+nome = "Kasimpasa"
+forca = 62.2
+valor_elenco = 36300000
+cores = ["#0E2E61", "#FEFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Adrian Benedyczak"
+  pos = "FW"
+  idade = 25
+  ovr = 64
+  pot = 65
+  valor = 5000000
+  partidas = 6
+  minutos = 525
+  gols = 4
+  id_fonte = "454386"
+
+  [[clubes.jogadores]]
+  nome = "Godfried Frimpong"
+  pos = "FB"
+  idade = 27
+  ovr = 63
+  pot = 64
+  valor = 2000000
+  partidas = 24
+  minutos = 2197
+  id_fonte = "364244"
+
+  [[clubes.jogadores]]
+  nome = "Kerem Demirbay"
+  pos = "MF"
+  idade = 33
+  ovr = 63
+  pot = 63
+  valor = 1000000
+  partidas = 5
+  minutos = 429
+  gols = 1
+  id_fonte = "125858"
+
+  [[clubes.jogadores]]
+  nome = "Matei Ilie"
+  pos = "CB"
+  idade = 23
+  ovr = 63
+  pot = 64
+  valor = 2500000
+  partidas = 6
+  minutos = 540
+  id_fonte = "615930"
+
+  [[clubes.jogadores]]
+  nome = "Mortadha Ben Ouanes"
+  pos = "WG"
+  idade = 32
+  ovr = 63
+  pot = 63
+  valor = 1500000
+  partidas = 1
+  minutos = 78
+  gols = 2
+  id_fonte = "230921"
+
+  [[clubes.jogadores]]
+  nome = "Andri Fannar Baldursson"
+  pos = "DM"
+  idade = 24
+  ovr = 62
+  pot = 63
+  valor = 2000000
+  partidas = 4
+  minutos = 319
+  id_fonte = "464446"
+
+  [[clubes.jogadores]]
+  nome = "Cláudio Winck"
+  pos = "FB"
+  idade = 32
+  ovr = 62
+  pot = 62
+  valor = 800000
+  partidas = 6
+  minutos = 535
+  gols = 3
+  id_fonte = "181783"
+
+  [[clubes.jogadores]]
+  nome = "Haris Hajradinovic"
+  pos = "AM"
+  idade = 32
+  ovr = 62
+  pot = 62
+  valor = 1200000
+  partidas = 1
+  minutos = 74
+  gols = 2
+  id_fonte = "215592"
+
+  [[clubes.jogadores]]
+  nome = "Adem Arous"
+  pos = "CB"
+  idade = 22
+  ovr = 61
+  pot = 66
+  valor = 4000000
+  partidas = 4
+  minutos = 363
+  gols = 1
+  id_fonte = "1071742"
+
+  [[clubes.jogadores]]
+  nome = "Kévin Mouanga"
+  pos = "CB"
+  idade = 26
+  ovr = 61
+  pot = 63
+  valor = 1500000
+  partidas = 2
+  minutos = 180
+  id_fonte = "629637"
+
+  [[clubes.jogadores]]
+  nome = "Andreas Gianniotis"
+  pos = "GK"
+  idade = 33
+  ovr = 60
+  pot = 60
+  valor = 300000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "226802"
+
+  [[clubes.jogadores]]
+  nome = "Fousseni Diabaté"
+  pos = "WG"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 800000
+  partidas = 2
+  minutos = 180
+  gols = 1
+  id_fonte = "364861"
+
+  [[clubes.jogadores]]
+  nome = "Güven Yalçın"
+  pos = "FW"
+  idade = 27
+  ovr = 60
+  pot = 60
+  valor = 1000000
+  partidas = 4
+  minutos = 395
+  gols = 2
+  id_fonte = "341019"
+
+  [[clubes.jogadores]]
+  nome = "Jesurun Rak-Sakyi"
+  pos = "WG"
+  idade = 23
+  ovr = 59
+  pot = 66
+  valor = 6000000
+  partidas = 1
+  minutos = 69
+  id_fonte = "586834"
+
+  [[clubes.jogadores]]
+  nome = "Ayberk Karapo"
+  pos = "FB"
+  idade = 22
+  ovr = 57
+  pot = 63
+  valor = 1600000
+  partidas = 3
+  minutos = 280
+  id_fonte = "1045547"
+
+  [[clubes.jogadores]]
+  nome = "Kamil Ahmet Çörekçi"
+  pos = "FB"
+  idade = 34
+  ovr = 56
+  pot = 56
+  valor = 100000
+  partidas = 9
+  minutos = 767
+  id_fonte = "110686"
+
+  [[clubes.jogadores]]
+  nome = "Ali Emre Yanar"
+  pos = "GK"
+  idade = 28
+  ovr = 55
+  pot = 55
+  valor = 100000
+  partidas = 1
+  minutos = 90
+  id_fonte = "435135"
+
+  [[clubes.jogadores]]
+  nome = "Elson Mendes"
+  pos = "DM"
+  idade = 21
+  ovr = 55
+  pot = 60
+  valor = 800000
+  partidas = 4
+  minutos = 387
+  id_fonte = "1173606"
+
+  [[clubes.jogadores]]
+  nome = "Jakob Jessen"
+  pos = "FB"
+  idade = 22
+  ovr = 55
+  pot = 60
+  valor = 800000
+  partidas = 3
+  minutos = 296
+  id_fonte = "735438"
+
+  [[clubes.jogadores]]
+  nome = "Thiemoko Diarra"
+  pos = "WG"
+  idade = 23
+  ovr = 54
+  pot = 61
+  valor = 1500000
+  partidas = 2
+  minutos = 32
+  id_fonte = "922828"
+
+  [[clubes.jogadores]]
+  nome = "Ömer Bayram"
+  pos = "FB"
+  idade = 35
+  ovr = 54
+  pot = 54
+  valor = 50000
+  id_fonte = "117586"
+
+  [[clubes.jogadores]]
+  nome = "Ali Yavuz Kol"
+  pos = "WG"
+  idade = 25
+  ovr = 53
+  pot = 55
+  valor = 250000
+  partidas = 4
+  minutos = 341
+  id_fonte = "477938"
+
+  [[clubes.jogadores]]
+  nome = "Marcus Rafferty"
+  pos = "WG"
+  idade = 21
+  ovr = 51
+  pot = 59
+  valor = 800000
+  partidas = 3
+  minutos = 249
+  id_fonte = "944822"
+
+  [[clubes.jogadores]]
+  nome = "Atakan Müjde"
+  pos = "DM"
+  idade = 22
+  ovr = 44
+  pot = 54
+  valor = 125000
+  partidas = 1
+  minutos = 8
+  id_fonte = "815014"
+
+  [[clubes.jogadores]]
+  nome = "Ahmet Taha Dağbaşı"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 51
+  valor = 50000
+  partidas = 1
+  minutos = 50
+  id_fonte = "1314014"
+
+  [[clubes.jogadores]]
+  nome = "Ege Albayrak"
+  pos = "GK"
+  idade = 19
+  ovr = 40
+  pot = 52
+  valor = 55000
+  id_fonte = "1233283"
+
+  [[clubes.jogadores]]
+  nome = "Emirhan Boz"
+  pos = "DM"
+  idade = 20
+  ovr = 40
+  pot = 53
+  valor = 100000
+  partidas = 1
+  minutos = 71
+  id_fonte = "1313802"
+
+  [[clubes.jogadores]]
+  nome = "Emirhan Yiğit"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 52
+  valor = 100000
+  partidas = 1
+  minutos = 90
+  id_fonte = "1020670"
+
+  [[clubes.jogadores]]
+  nome = "Muhammed Emin Bektaş"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 50
+  valor = 55000
+  id_fonte = "1315482"
+
+  [[clubes.jogadores]]
+  nome = "Salih Arıcı"
+  pos = "CB"
+  idade = 18
+  ovr = 40
+  pot = 51
+  valor = 55000
+  id_fonte = "1438186"
+
+  [[clubes.jogadores]]
+  nome = "Sercan Deniz"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 54
+  valor = 200000
+  id_fonte = "1223585"
+
+  [[clubes.jogadores]]
+  nome = "Sinan Alkaş"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 52
+  valor = 125000
+  partidas = 1
+  minutos = 1
+  id_fonte = "1018802"
+
+[[clubes]]
+nome = "Alanyaspor"
+forca = 61.4
+valor_elenco = 31850000
+cores = ["#F68320", "#FEFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Maestro"
+  pos = "DM"
+  idade = 23
+  ovr = 69
+  pot = 73
+  valor = 7000000
+  partidas = 1
+  minutos = 88
+  gols = 1
+  id_fonte = "666551"
+
+  [[clubes.jogadores]]
+  nome = "Florent Hadergjonaj"
+  pos = "AM"
+  idade = 32
+  ovr = 68
+  pot = 68
+  valor = 1800000
+  partidas = 6
+  minutos = 540
+  gols = 9
+  id_fonte = "238809"
+
+  [[clubes.jogadores]]
+  nome = "Gaius Makouta"
+  pos = "DM"
+  idade = 29
+  ovr = 68
+  pot = 68
+  valor = 2000000
+  partidas = 6
+  minutos = 528
+  gols = 2
+  id_fonte = "450173"
+
+  [[clubes.jogadores]]
+  nome = "Nuno Lima"
+  pos = "CB"
+  idade = 25
+  ovr = 67
+  pot = 68
+  valor = 2000000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "836336"
+
+  [[clubes.jogadores]]
+  nome = "Fidan Aliti"
+  pos = "CB"
+  idade = 32
+  ovr = 66
+  pot = 66
+  valor = 900000
+  partidas = 6
+  minutos = 540
+  id_fonte = "182870"
+
+  [[clubes.jogadores]]
+  nome = "Fatih Aksoy"
+  pos = "CB"
+  idade = 28
+  ovr = 65
+  pot = 65
+  valor = 1000000
+  partidas = 3
+  minutos = 261
+  id_fonte = "338794"
+
+  [[clubes.jogadores]]
+  nome = "Ianis Hagi"
+  pos = "AM"
+  idade = 27
+  ovr = 65
+  pot = 66
+  valor = 1800000
+  partidas = 1
+  minutos = 103
+  gols = 5
+  id_fonte = "282076"
+
+  [[clubes.jogadores]]
+  nome = "Meschack Elia"
+  pos = "AM"
+  idade = 29
+  ovr = 65
+  pot = 65
+  valor = 1500000
+  partidas = 2
+  minutos = 202
+  gols = 3
+  id_fonte = "423678"
+
+  [[clubes.jogadores]]
+  nome = "Ruan"
+  pos = "AM"
+  idade = 21
+  ovr = 65
+  pot = 68
+  valor = 3000000
+  partidas = 5
+  minutos = 492
+  gols = 1
+  id_fonte = "1053933"
+
+  [[clubes.jogadores]]
+  nome = "Paolo Fernandes"
+  pos = "WG"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 1000000
+  partidas = 2
+  minutos = 210
+  gols = 1
+  id_fonte = "284876"
+
+  [[clubes.jogadores]]
+  nome = "Ui-jo Hwang"
+  pos = "AM"
+  idade = 34
+  ovr = 63
+  pot = 63
+  valor = 500000
+  partidas = 3
+  minutos = 276
+  gols = 4
+  id_fonte = "260166"
+
+  [[clubes.jogadores]]
+  nome = "Yusuf Özdemir"
+  pos = "AM"
+  idade = 25
+  ovr = 63
+  pot = 66
+  valor = 2000000
+  partidas = 1
+  minutos = 90
+  gols = 1
+  id_fonte = "652426"
+
+  [[clubes.jogadores]]
+  nome = "İbrahim Kaya"
+  pos = "AM"
+  idade = 25
+  ovr = 63
+  pot = 65
+  valor = 1500000
+  partidas = 3
+  minutos = 250
+  gols = 6
+  id_fonte = "712127"
+
+  [[clubes.jogadores]]
+  nome = "Baran Gezek"
+  pos = "DM"
+  idade = 21
+  ovr = 60
+  pot = 65
+  valor = 1500000
+  partidas = 4
+  minutos = 404
+  id_fonte = "988710"
+
+  [[clubes.jogadores]]
+  nome = "Iván Cédric"
+  pos = "FW"
+  idade = 24
+  ovr = 57
+  pot = 62
+  valor = 1000000
+  partidas = 1
+  minutos = 108
+  id_fonte = "716163"
+
+  [[clubes.jogadores]]
+  nome = "Enes Keskin"
+  pos = "AM"
+  idade = 25
+  ovr = 55
+  pot = 58
+  valor = 350000
+  partidas = 1
+  minutos = 46
+  id_fonte = "742611"
+
+  [[clubes.jogadores]]
+  nome = "Paulo Victor"
+  pos = "GK"
+  idade = 39
+  ovr = 55
+  pot = 55
+  valor = 50000
+  partidas = 6
+  minutos = 540
+  id_fonte = "67886"
+
+  [[clubes.jogadores]]
+  nome = "Omar Ben Ali"
+  pos = "FW"
+  idade = 21
+  ovr = 51
+  pot = 60
+  valor = 750000
+  partidas = 2
+  minutos = 151
+  id_fonte = "1244036"
+
+  [[clubes.jogadores]]
+  nome = "Arda Usluoğlu"
+  pos = "FW"
+  idade = 19
+  ovr = 50
+  pot = 60
+  valor = 700000
+  partidas = 3
+  minutos = 281
+  gols = 2
+  id_fonte = "981928"
+
+  [[clubes.jogadores]]
+  nome = "Emre Demir"
+  pos = "AM"
+  idade = 22
+  ovr = 49
+  pot = 59
+  valor = 500000
+  id_fonte = "637669"
+
+  [[clubes.jogadores]]
+  nome = "Bedirhan Özyurt"
+  pos = "CB"
+  idade = 23
+  ovr = 48
+  pot = 56
+  valor = 200000
+  partidas = 2
+  minutos = 10
+  id_fonte = "710051"
+
+  [[clubes.jogadores]]
+  nome = "Mert Bayram"
+  pos = "GK"
+  idade = 21
+  ovr = 47
+  pot = 59
+  valor = 300000
+  id_fonte = "920138"
+
+  [[clubes.jogadores]]
+  nome = "İzzet Çelik"
+  pos = "MF"
+  idade = 22
+  ovr = 47
+  pot = 56
+  valor = 250000
+  partidas = 1
+  minutos = 12
+  id_fonte = "811841"
+
+  [[clubes.jogadores]]
+  nome = "Şahin Dik"
+  pos = "WG"
+  idade = 22
+  ovr = 44
+  pot = 54
+  valor = 201666
+  id_fonte = "956094"
+
+  [[clubes.jogadores]]
+  nome = "Mahmut Can Kara"
+  pos = "GK"
+  idade = 20
+  ovr = 43
+  pot = 57
+  valor = 201666
+  id_fonte = "1175619"
+
+  [[clubes.jogadores]]
+  nome = "Arouna Soro"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 54
+  valor = 201666
+  id_fonte = "1577095"
+
+  [[clubes.jogadores]]
+  nome = "Bilal Demirağ"
+  pos = "CB"
+  idade = 17
+  ovr = 40
+  pot = 57
+  valor = 250000
+  id_fonte = "1223297"
+
+[[clubes]]
+nome = "Gaziantep FK"
+forca = 61.1
+valor_elenco = 29800000
+cores = ["#AA121E", "#020202"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Kacper Kozłowski"
+  pos = "AM"
+  idade = 22
+  ovr = 65
+  pot = 67
+  valor = 6000000
+  partidas = 6
+  minutos = 510
+  gols = 2
+  id_fonte = "554284"
+
+  [[clubes.jogadores]]
+  nome = "Drissa Camara"
+  pos = "MF"
+  idade = 24
+  ovr = 63
+  pot = 65
+  valor = 3500000
+  partidas = 3
+  minutos = 245
+  gols = 3
+  id_fonte = "614742"
+
+  [[clubes.jogadores]]
+  nome = "Juninho Bacuna"
+  pos = "MF"
+  idade = 29
+  ovr = 63
+  pot = 63
+  valor = 1700000
+  partidas = 2
+  minutos = 154
+  gols = 1
+  id_fonte = "348863"
+
+  [[clubes.jogadores]]
+  nome = "Ulrich Meleke"
+  pos = "DM"
+  idade = 27
+  ovr = 63
+  pot = 63
+  valor = 1500000
+  partidas = 6
+  minutos = 517
+  id_fonte = "581447"
+
+  [[clubes.jogadores]]
+  nome = "Deian Sorescu"
+  pos = "WG"
+  idade = 29
+  ovr = 62
+  pot = 62
+  valor = 1500000
+  partidas = 5
+  minutos = 494
+  gols = 2
+  id_fonte = "379209"
+
+  [[clubes.jogadores]]
+  nome = "Luis Pérez"
+  pos = "FB"
+  idade = 31
+  ovr = 62
+  pot = 62
+  valor = 800000
+  partidas = 6
+  minutos = 510
+  id_fonte = "358115"
+
+  [[clubes.jogadores]]
+  nome = "Myenty Abena"
+  pos = "CB"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 600000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "254003"
+
+  [[clubes.jogadores]]
+  nome = "Arda Kızıldağ"
+  pos = "CB"
+  idade = 27
+  ovr = 60
+  pot = 61
+  valor = 800000
+  partidas = 3
+  minutos = 282
+  gols = 1
+  id_fonte = "532905"
+
+  [[clubes.jogadores]]
+  nome = "Trivante Stewart"
+  pos = "FW"
+  idade = 26
+  ovr = 60
+  pot = 61
+  valor = 1500000
+  partidas = 2
+  minutos = 185
+  id_fonte = "880054"
+
+  [[clubes.jogadores]]
+  nome = "Alexandru Maxim"
+  pos = "AM"
+  idade = 36
+  ovr = 59
+  pot = 59
+  valor = 300000
+  partidas = 5
+  minutos = 463
+  gols = 5
+  id_fonte = "129513"
+
+  [[clubes.jogadores]]
+  nome = "Kacper Tobiasz"
+  pos = "GK"
+  idade = 23
+  ovr = 59
+  pot = 61
+  valor = 700000
+  partidas = 6
+  minutos = 540
+  id_fonte = "658111"
+
+  [[clubes.jogadores]]
+  nome = "Sontje Hansen"
+  pos = "WG"
+  idade = 24
+  ovr = 59
+  pot = 64
+  valor = 3500000
+  partidas = 1
+  minutos = 105
+  id_fonte = "485582"
+
+  [[clubes.jogadores]]
+  nome = "Ogün Özçiçek"
+  pos = "DM"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 500000
+  partidas = 1
+  minutos = 8
+  id_fonte = "701845"
+
+  [[clubes.jogadores]]
+  nome = "Abakar Sylla"
+  pos = "CB"
+  idade = 23
+  ovr = 57
+  pot = 65
+  valor = 2500000
+  partidas = 2
+  minutos = 29
+  id_fonte = "962555"
+
+  [[clubes.jogadores]]
+  nome = "Ataberk Dadakdeniz"
+  pos = "GK"
+  idade = 27
+  ovr = 57
+  pot = 58
+  valor = 250000
+  id_fonte = "330824"
+
+  [[clubes.jogadores]]
+  nome = "Halil Dervişoğlu"
+  pos = "FW"
+  idade = 26
+  ovr = 57
+  pot = 59
+  valor = 700000
+  partidas = 2
+  minutos = 212
+  gols = 1
+  id_fonte = "465606"
+
+  [[clubes.jogadores]]
+  nome = "Nazım Sangaré"
+  pos = "CB"
+  idade = 32
+  ovr = 57
+  pot = 57
+  valor = 200000
+  partidas = 16
+  minutos = 1436
+  gols = 1
+  id_fonte = "157113"
+
+  [[clubes.jogadores]]
+  nome = "Serdar Dursun"
+  pos = "FW"
+  idade = 34
+  ovr = 57
+  pot = 57
+  valor = 250000
+  partidas = 1
+  minutos = 120
+  id_fonte = "80059"
+
+  [[clubes.jogadores]]
+  nome = "Sabahattin Destici"
+  pos = "FB"
+  idade = 26
+  ovr = 55
+  pot = 57
+  valor = 275000
+  partidas = 1
+  minutos = 4
+  id_fonte = "614288"
+
+  [[clubes.jogadores]]
+  nome = "Kerim Çalhanoğlu"
+  pos = "FB"
+  idade = 24
+  ovr = 53
+  pot = 57
+  valor = 300000
+  partidas = 3
+  minutos = 266
+  id_fonte = "553905"
+
+  [[clubes.jogadores]]
+  nome = "Fuat Bavuk"
+  pos = "FW"
+  idade = 26
+  ovr = 52
+  pot = 54
+  valor = 200000
+  partidas = 1
+  minutos = 54
+  id_fonte = "607171"
+
+  [[clubes.jogadores]]
+  nome = "Victor Gidado"
+  pos = "AM"
+  idade = 22
+  ovr = 52
+  pot = 57
+  valor = 400000
+  partidas = 4
+  minutos = 364
+  id_fonte = "1209519"
+
+  [[clubes.jogadores]]
+  nome = "Enver Kulasin"
+  pos = "WG"
+  idade = 23
+  ovr = 51
+  pot = 58
+  valor = 700000
+  partidas = 1
+  minutos = 25
+  gols = 1
+  id_fonte = "672052"
+
+  [[clubes.jogadores]]
+  nome = "Mirza Cihan"
+  pos = "WG"
+  idade = 25
+  ovr = 50
+  pot = 54
+  valor = 200000
+  partidas = 3
+  minutos = 23
+  id_fonte = "583970"
+
+  [[clubes.jogadores]]
+  nome = "Karamba Gassama"
+  pos = "MF"
+  idade = 21
+  ovr = 48
+  pot = 58
+  valor = 500000
+  partidas = 2
+  minutos = 42
+  id_fonte = "1111215"
+
+  [[clubes.jogadores]]
+  nome = "Efe Sarıkaya"
+  pos = "CB"
+  idade = 20
+  ovr = 42
+  pot = 56
+  valor = 250000
+  id_fonte = "975729"
+
+  [[clubes.jogadores]]
+  nome = "Kadir Gümüş"
+  pos = "FW"
+  idade = 22
+  ovr = 42
+  pot = 52
+  valor = 114166
+  id_fonte = "1581187"
+
+  [[clubes.jogadores]]
+  nome = "Ali Osman Kalın"
+  pos = "WG"
+  idade = 18
+  ovr = 40
+  pot = 49
+  valor = 50000
+  partidas = 1
+  minutos = 108
+  id_fonte = "1261143"
+
+  [[clubes.jogadores]]
+  nome = "Burak Enes Yıkıcı"
+  pos = "AM"
+  idade = 22
+  ovr = 40
+  pot = 47
+  valor = 25000
+  id_fonte = "952093"
+
+  [[clubes.jogadores]]
+  nome = "Cemilhan Aslan"
+  pos = "GK"
+  idade = 18
+  ovr = 40
+  pot = 54
+  valor = 114166
+  id_fonte = "1197999"
+
+  [[clubes.jogadores]]
+  nome = "Muhammet Akmelek"
+  pos = "FW"
+  idade = 17
+  ovr = 40
+  pot = 48
+  valor = 50000
+  partidas = 1
+  minutos = 46
+  gols = 1
+  id_fonte = "1474871"
+
+  [[clubes.jogadores]]
+  nome = "Taha Güneş"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 49
+  valor = 50000
+  id_fonte = "1048119"
+
+  [[clubes.jogadores]]
+  nome = "İbrahim Kağan Alkış"
+  pos = "GK"
+  idade = 20
+  ovr = 40
+  pot = 54
+  valor = 114166
+  id_fonte = "1181959"
+
+[[clubes]]
+nome = "Genclerbirligi Ankara"
+forca = 60.9
+valor_elenco = 28850000
+cores = ["#E10812", "#2A2825"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Tiago Gouveia"
+  pos = "WG"
+  idade = 25
+  ovr = 62
+  pot = 63
+  valor = 3500000
+  partidas = 5
+  minutos = 406
+  id_fonte = "479638"
+
+  [[clubes.jogadores]]
+  nome = "İrfan Can Eğribayat"
+  pos = "GK"
+  idade = 28
+  ovr = 62
+  pot = 62
+  valor = 1200000
+  partidas = 6
+  minutos = 540
+  id_fonte = "322873"
+
+  [[clubes.jogadores]]
+  nome = "Adama Traoré"
+  pos = "WG"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 1500000
+  partidas = 5
+  minutos = 462
+  gols = 1
+  id_fonte = "364405"
+
+  [[clubes.jogadores]]
+  nome = "Cheikh Niasse"
+  pos = "DM"
+  idade = 26
+  ovr = 61
+  pot = 63
+  valor = 2000000
+  partidas = 1
+  minutos = 29
+  id_fonte = "644032"
+
+  [[clubes.jogadores]]
+  nome = "Dimitrios Goutas"
+  pos = "CB"
+  idade = 32
+  ovr = 61
+  pot = 61
+  valor = 800000
+  partidas = 6
+  minutos = 540
+  gols = 3
+  id_fonte = "191829"
+
+  [[clubes.jogadores]]
+  nome = "Franco Tongya"
+  pos = "MF"
+  idade = 24
+  ovr = 61
+  pot = 62
+  valor = 2000000
+  partidas = 6
+  minutos = 518
+  gols = 1
+  id_fonte = "530851"
+
+  [[clubes.jogadores]]
+  nome = "Kévin Rodrigues"
+  pos = "FB"
+  idade = 32
+  ovr = 61
+  pot = 61
+  valor = 800000
+  id_fonte = "206947"
+
+  [[clubes.jogadores]]
+  nome = "Pedro Pereira"
+  pos = "FB"
+  idade = 28
+  ovr = 61
+  pot = 61
+  valor = 1200000
+  partidas = 6
+  minutos = 540
+  id_fonte = "314965"
+
+  [[clubes.jogadores]]
+  nome = "Sékou Koïta"
+  pos = "FW"
+  idade = 26
+  ovr = 61
+  pot = 62
+  valor = 2500000
+  partidas = 4
+  minutos = 352
+  gols = 1
+  id_fonte = "402010"
+
+  [[clubes.jogadores]]
+  nome = "Oğulcan Ülgün"
+  pos = "MF"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 1200000
+  partidas = 5
+  minutos = 473
+  gols = 1
+  id_fonte = "440653"
+
+  [[clubes.jogadores]]
+  nome = "Salih Uçan"
+  pos = "MF"
+  idade = 32
+  ovr = 60
+  pot = 60
+  valor = 800000
+  partidas = 1
+  minutos = 85
+  id_fonte = "170838"
+
+  [[clubes.jogadores]]
+  nome = "Thalisson"
+  pos = "CB"
+  idade = 28
+  ovr = 59
+  pot = 59
+  valor = 700000
+  partidas = 3
+  minutos = 265
+  gols = 2
+  id_fonte = "323876"
+
+  [[clubes.jogadores]]
+  nome = "Gökhan Akkan"
+  pos = "GK"
+  idade = 31
+  ovr = 58
+  pot = 58
+  valor = 350000
+  partidas = 4
+  minutos = 360
+  id_fonte = "223025"
+
+  [[clubes.jogadores]]
+  nome = "Pedro Mendes"
+  pos = "FW"
+  idade = 27
+  ovr = 58
+  pot = 59
+  valor = 1200000
+  partidas = 2
+  minutos = 168
+  id_fonte = "498235"
+
+  [[clubes.jogadores]]
+  nome = "Rafael Luís"
+  pos = "DM"
+  idade = 21
+  ovr = 56
+  pot = 66
+  valor = 5000000
+  partidas = 1
+  minutos = 113
+  id_fonte = "637803"
+
+  [[clubes.jogadores]]
+  nome = "Abdurrahim Dursun"
+  pos = "FB"
+  idade = 27
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 5
+  minutos = 465
+  id_fonte = "366194"
+
+  [[clubes.jogadores]]
+  nome = "Metehan Baltacı"
+  pos = "CB"
+  idade = 23
+  ovr = 54
+  pot = 61
+  valor = 1500000
+  partidas = 4
+  minutos = 18
+  id_fonte = "618869"
+
+  [[clubes.jogadores]]
+  nome = "Ousmane Diabate"
+  pos = "DM"
+  idade = 18
+  ovr = 54
+  pot = 59
+  valor = 1000000
+  partidas = 5
+  minutos = 482
+  gols = 1
+  id_fonte = "1489506"
+
+  [[clubes.jogadores]]
+  nome = "Peter Etebo"
+  pos = "DM"
+  idade = 30
+  ovr = 54
+  pot = 54
+  valor = 200000
+  partidas = 1
+  minutos = 15
+  id_fonte = "409106"
+
+  [[clubes.jogadores]]
+  nome = "Fıratcan Üzüm"
+  pos = "FB"
+  idade = 27
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 1
+  minutos = 80
+  gols = 1
+  id_fonte = "508994"
+
+  [[clubes.jogadores]]
+  nome = "Ensar Çavuşoğlu"
+  pos = "CB"
+  idade = 24
+  ovr = 50
+  pot = 56
+  valor = 400000
+  id_fonte = "674369"
+
+  [[clubes.jogadores]]
+  nome = "Arda Çağan Çelik"
+  pos = "CB"
+  idade = 21
+  ovr = 47
+  pot = 58
+  valor = 660000
+  partidas = 2
+  minutos = 180
+  id_fonte = "1078111"
+
+  [[clubes.jogadores]]
+  nome = "Ayaz Özcan"
+  pos = "FW"
+  idade = 16
+  ovr = 45
+  pot = 45
+  valor = 50000
+  partidas = 2
+  minutos = 216
+  id_fonte = "1437503"
+
+  [[clubes.jogadores]]
+  nome = "Göktuğ Erdem"
+  pos = "MF"
+  idade = 23
+  ovr = 43
+  pot = 51
+  valor = 170500
+  id_fonte = "875256"
+
+  [[clubes.jogadores]]
+  nome = "Arda Akgül"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 170500
+  id_fonte = "1210236"
+
+  [[clubes.jogadores]]
+  nome = "Berk Deniz Çukurcu"
+  pos = "GK"
+  idade = 18
+  ovr = 40
+  pot = 53
+  valor = 170500
+  id_fonte = "1189059"
+
+  [[clubes.jogadores]]
+  nome = "Erk Aslan"
+  pos = "WG"
+  idade = 17
+  ovr = 40
+  pot = 50
+  valor = 170500
+  id_fonte = "1438144"
+
+  [[clubes.jogadores]]
+  nome = "Hamza Aydar"
+  pos = "FB"
+  idade = 18
+  ovr = 40
+  pot = 56
+  valor = 495000
+  partidas = 2
+  minutos = 135
+  gols = 1
+  id_fonte = "1417530"
+
+  [[clubes.jogadores]]
+  nome = "Prince Martor Jr."
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 48
+  valor = 100000
+  partidas = 2
+  minutos = 12
+  id_fonte = "1442800"
+
+  [[clubes.jogadores]]
+  nome = "Victor Orakpo"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 54
+  valor = 400000
+  partidas = 1
+  minutos = 8
+  id_fonte = "1231401"
+
+[[clubes]]
+nome = "Amed SK"
+forca = 60.6
+valor_elenco = 27630000
+cores = ["#3D9D01", "#E2E5E0"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Alban Lafont"
+  pos = "GK"
+  idade = 27
+  ovr = 65
+  pot = 66
+  valor = 3000000
+  partidas = 6
+  minutos = 540
+  id_fonte = "357117"
+
+  [[clubes.jogadores]]
+  nome = "David Bates"
+  pos = "CB"
+  idade = 29
+  ovr = 63
+  pot = 63
+  valor = 1800000
+  partidas = 6
+  minutos = 511
+  id_fonte = "272539"
+
+  [[clubes.jogadores]]
+  nome = "Gift Orban"
+  pos = "FW"
+  idade = 24
+  ovr = 63
+  pot = 66
+  valor = 7000000
+  partidas = 5
+  minutos = 419
+  gols = 7
+  id_fonte = "1018259"
+
+  [[clubes.jogadores]]
+  nome = "Lumbardh Dellova"
+  pos = "CB"
+  idade = 27
+  ovr = 61
+  pot = 61
+  valor = 1500000
+  partidas = 6
+  minutos = 540
+  id_fonte = "542469"
+
+  [[clubes.jogadores]]
+  nome = "Gökhan Gül"
+  pos = "DM"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 1300000
+  partidas = 2
+  minutos = 154
+  gols = 1
+  id_fonte = "269171"
+
+  [[clubes.jogadores]]
+  nome = "Rayan Raveloson"
+  pos = "DM"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 1000000
+  partidas = 6
+  minutos = 530
+  id_fonte = "344576"
+
+  [[clubes.jogadores]]
+  nome = "Yira Sor"
+  pos = "WG"
+  idade = 26
+  ovr = 60
+  pot = 62
+  valor = 2500000
+  partidas = 2
+  minutos = 217
+  gols = 1
+  id_fonte = "673382"
+
+  [[clubes.jogadores]]
+  nome = "Dia Saba"
+  pos = "AM"
+  idade = 33
+  ovr = 59
+  pot = 59
+  valor = 700000
+  partidas = 6
+  minutos = 514
+  gols = 3
+  id_fonte = "193928"
+
+  [[clubes.jogadores]]
+  nome = "Mbaye Diagne"
+  pos = "FW"
+  idade = 34
+  ovr = 59
+  pot = 59
+  valor = 700000
+  partidas = 2
+  minutos = 220
+  gols = 1
+  id_fonte = "271966"
+
+  [[clubes.jogadores]]
+  nome = "Mehmet Yeşil"
+  pos = "CB"
+  idade = 28
+  ovr = 59
+  pot = 59
+  valor = 900000
+  partidas = 2
+  minutos = 172
+  gols = 4
+  id_fonte = "381689"
+
+  [[clubes.jogadores]]
+  nome = "Samuel Ballet"
+  pos = "WG"
+  idade = 25
+  ovr = 59
+  pot = 61
+  valor = 2000000
+  partidas = 5
+  minutos = 425
+  id_fonte = "309977"
+
+  [[clubes.jogadores]]
+  nome = "Ermal Krasniqi"
+  pos = "WG"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 1000000
+  partidas = 6
+  minutos = 530
+  id_fonte = "606893"
+
+  [[clubes.jogadores]]
+  nome = "Burak Bozan"
+  pos = "GK"
+  idade = 26
+  ovr = 56
+  pot = 58
+  valor = 600000
+  id_fonte = "587726"
+
+  [[clubes.jogadores]]
+  nome = "Furkan Soyalp"
+  pos = "MF"
+  idade = 31
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 3
+  minutos = 254
+  gols = 1
+  id_fonte = "221285"
+
+  [[clubes.jogadores]]
+  nome = "Umut Meraş"
+  pos = "FB"
+  idade = 30
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 5
+  minutos = 411
+  id_fonte = "341549"
+
+  [[clubes.jogadores]]
+  nome = "Cem Üstündag"
+  pos = "MF"
+  idade = 25
+  ovr = 53
+  pot = 56
+  valor = 550000
+  partidas = 2
+  minutos = 151
+  id_fonte = "445623"
+
+  [[clubes.jogadores]]
+  nome = "Veysel Sapan"
+  pos = "GK"
+  idade = 30
+  ovr = 52
+  pot = 52
+  valor = 100000
+  id_fonte = "338055"
+
+  [[clubes.jogadores]]
+  nome = "Kahraman Demirtaş"
+  pos = "CB"
+  idade = 32
+  ovr = 51
+  pot = 51
+  valor = 100000
+  partidas = 9
+  minutos = 843
+  id_fonte = "403834"
+
+  [[clubes.jogadores]]
+  nome = "Miraç Acer"
+  pos = "CB"
+  idade = 30
+  ovr = 51
+  pot = 51
+  valor = 125000
+  partidas = 1
+  minutos = 2
+  id_fonte = "354197"
+
+  [[clubes.jogadores]]
+  nome = "Rayan Lutin"
+  pos = "AM"
+  idade = 23
+  ovr = 49
+  pot = 57
+  valor = 800000
+  partidas = 1
+  minutos = 52
+  id_fonte = "954090"
+
+  [[clubes.jogadores]]
+  nome = "Mohamed Khalil"
+  pos = "WG"
+  idade = 25
+  ovr = 48
+  pot = 52
+  valor = 250000
+  partidas = 1
+  minutos = 121
+  id_fonte = "453987"
+
+  [[clubes.jogadores]]
+  nome = "Ali Turap Bülbül"
+  pos = "FB"
+  idade = 21
+  ovr = 45
+  pot = 57
+  valor = 600000
+  partidas = 2
+  minutos = 17
+  id_fonte = "942940"
+
+  [[clubes.jogadores]]
+  nome = "Amadou Cissé"
+  pos = "CB"
+  idade = 20
+  ovr = 41
+  pot = 52
+  valor = 200000
+  partidas = 2
+  minutos = 154
+  id_fonte = "1189317"
+
+  [[clubes.jogadores]]
+  nome = "Berat Perçin"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 135535
+  id_fonte = "1506930"
+
+  [[clubes.jogadores]]
+  nome = "Berk Kızıldemir"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 48
+  valor = 135535
+  id_fonte = "1065428"
+
+  [[clubes.jogadores]]
+  nome = "Dilhan Demir"
+  pos = "WG"
+  idade = 23
+  ovr = 40
+  pot = 47
+  valor = 100000
+  id_fonte = "714612"
+
+  [[clubes.jogadores]]
+  nome = "Hasan Yıldırım"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 50
+  valor = 220000
+  partidas = 1
+  minutos = 13
+  id_fonte = "1047511"
+
+  [[clubes.jogadores]]
+  nome = "Muhammed Damar"
+  pos = "GK"
+  idade = 18
+  ovr = 40
+  pot = 51
+  valor = 135535
+  id_fonte = "1583411"
+
+[[clubes]]
+nome = "Erzurumspor FK"
+forca = 60.5
+valor_elenco = 26880000
+cores = ["#0087C5", "#FEFEFD"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Elisha Owusu"
+  pos = "DM"
+  idade = 28
+  ovr = 65
+  pot = 65
+  valor = 4000000
+  partidas = 5
+  minutos = 418
+  id_fonte = "395695"
+
+  [[clubes.jogadores]]
+  nome = "Gyrano Kerk"
+  pos = "WG"
+  idade = 30
+  ovr = 63
+  pot = 63
+  valor = 3000000
+  partidas = 1
+  minutos = 121
+  id_fonte = "268112"
+
+  [[clubes.jogadores]]
+  nome = "Matija Orbanic"
+  pos = "GK"
+  idade = 26
+  ovr = 62
+  pot = 62
+  valor = 1300000
+  partidas = 2
+  minutos = 180
+  id_fonte = "547307"
+
+  [[clubes.jogadores]]
+  nome = "Miguel Cardoso"
+  pos = "WG"
+  idade = 32
+  ovr = 62
+  pot = 62
+  valor = 1500000
+  partidas = 2
+  minutos = 182
+  gols = 1
+  id_fonte = "348425"
+
+  [[clubes.jogadores]]
+  nome = "Nihad Mujakic"
+  pos = "CB"
+  idade = 28
+  ovr = 61
+  pot = 61
+  valor = 1200000
+  partidas = 6
+  minutos = 517
+  id_fonte = "380919"
+
+  [[clubes.jogadores]]
+  nome = "Brandon Baiye"
+  pos = "DM"
+  idade = 25
+  ovr = 60
+  pot = 60
+  valor = 1300000
+  partidas = 6
+  minutos = 540
+  gols = 5
+  id_fonte = "358025"
+
+  [[clubes.jogadores]]
+  nome = "Yakup Kırtay"
+  pos = "CB"
+  idade = 23
+  ovr = 60
+  pot = 61
+  valor = 1500000
+  partidas = 2
+  minutos = 207
+  gols = 1
+  id_fonte = "872080"
+
+  [[clubes.jogadores]]
+  nome = "Mustafa Fettahoğlu"
+  pos = "WG"
+  idade = 25
+  ovr = 59
+  pot = 59
+  valor = 1400000
+  partidas = 3
+  minutos = 304
+  gols = 11
+  id_fonte = "618887"
+
+  [[clubes.jogadores]]
+  nome = "Amar Gerxhaliu"
+  pos = "CB"
+  idade = 24
+  ovr = 58
+  pot = 59
+  valor = 900000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "866177"
+
+  [[clubes.jogadores]]
+  nome = "Festy Ebosele"
+  pos = "FB"
+  idade = 24
+  ovr = 58
+  pot = 63
+  valor = 2500000
+  partidas = 1
+  minutos = 75
+  id_fonte = "586756"
+
+  [[clubes.jogadores]]
+  nome = "Ibrahim Diabate"
+  pos = "FW"
+  idade = 26
+  ovr = 58
+  pot = 60
+  valor = 1500000
+  partidas = 1
+  minutos = 107
+  id_fonte = "620696"
+
+  [[clubes.jogadores]]
+  nome = "Sefa Akgün"
+  pos = "MF"
+  idade = 26
+  ovr = 58
+  pot = 59
+  valor = 1000000
+  partidas = 2
+  minutos = 143
+  gols = 3
+  id_fonte = "321705"
+
+  [[clubes.jogadores]]
+  nome = "Martín Rodríguez"
+  pos = "AM"
+  idade = 32
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 5
+  minutos = 447
+  gols = 6
+  id_fonte = "187309"
+
+  [[clubes.jogadores]]
+  nome = "Guram Giorbelidze"
+  pos = "FB"
+  idade = 30
+  ovr = 56
+  pot = 56
+  valor = 350000
+  partidas = 4
+  minutos = 359
+  id_fonte = "330277"
+
+  [[clubes.jogadores]]
+  nome = "Ertuğrul Taşkıran"
+  pos = "GK"
+  idade = 36
+  ovr = 55
+  pot = 55
+  valor = 100000
+  partidas = 4
+  minutos = 360
+  id_fonte = "91945"
+
+  [[clubes.jogadores]]
+  nome = "Eren Tozlu"
+  pos = "FW"
+  idade = 35
+  ovr = 52
+  pot = 52
+  valor = 100000
+  partidas = 5
+  minutos = 435
+  gols = 2
+  id_fonte = "136212"
+
+  [[clubes.jogadores]]
+  nome = "Erkan Anapa"
+  pos = "GK"
+  idade = 28
+  ovr = 51
+  pot = 51
+  valor = 75000
+  partidas = 9
+  minutos = 826
+  id_fonte = "587903"
+
+  [[clubes.jogadores]]
+  nome = "Mustafa Yumlu"
+  pos = "CB"
+  idade = 38
+  ovr = 51
+  pot = 51
+  valor = 50000
+  partidas = 4
+  minutos = 360
+  gols = 2
+  id_fonte = "76176"
+
+  [[clubes.jogadores]]
+  nome = "Nariman Akhundzada"
+  pos = "FW"
+  idade = 22
+  ovr = 51
+  pot = 60
+  valor = 2000000
+  partidas = 1
+  minutos = 55
+  id_fonte = "865793"
+
+  [[clubes.jogadores]]
+  nome = "Orhan Ovacıklı"
+  pos = "FB"
+  idade = 37
+  ovr = 51
+  pot = 51
+  valor = 50000
+  partidas = 5
+  minutos = 483
+  id_fonte = "170239"
+
+  [[clubes.jogadores]]
+  nome = "Cengizhan Bayrak"
+  pos = "FB"
+  idade = 26
+  ovr = 50
+  pot = 52
+  valor = 150000
+  partidas = 6
+  minutos = 516
+  id_fonte = "620111"
+
+  [[clubes.jogadores]]
+  nome = "Lawrence Agyekum"
+  pos = "MF"
+  idade = 22
+  ovr = 50
+  pot = 60
+  valor = 1500000
+  id_fonte = "733410"
+
+  [[clubes.jogadores]]
+  nome = "Emre Erdem"
+  pos = "CB"
+  idade = 24
+  ovr = 47
+  pot = 52
+  valor = 150000
+  partidas = 3
+  minutos = 300
+  id_fonte = "862859"
+
+  [[clubes.jogadores]]
+  nome = "Emirhan Acar"
+  pos = "MF"
+  idade = 21
+  ovr = 45
+  pot = 57
+  valor = 650000
+  id_fonte = "808651"
+
+  [[clubes.jogadores]]
+  nome = "Taha Rençber"
+  pos = "CB"
+  idade = 18
+  ovr = 40
+  pot = 47
+  valor = 50000
+  id_fonte = "1341829"
+
+  [[clubes.jogadores]]
+  nome = "Yiğit Baran Karaoğlan"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 53
+  valor = 184642
+  partidas = 2
+  minutos = 157
+  id_fonte = "1487376"
+
+  [[clubes.jogadores]]
+  nome = "Ömer Arda Kara"
+  pos = "CB"
+  idade = 18
+  ovr = 40
+  pot = 52
+  valor = 150000
+  partidas = 8
+  minutos = 706
+  id_fonte = "1296109"
+
+  [[clubes.jogadores]]
+  nome = "Şerefhan Sağlık"
+  pos = "GK"
+  idade = 21
+  ovr = 40
+  pot = 48
+  valor = 49107
+  id_fonte = "885682"
+
+[[clubes]]
+nome = "Kocaelispor"
+forca = 60.2
+valor_elenco = 25900000
+cores = ["#00612B", "#67C3DA"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Berkan Kutlu"
+  pos = "MF"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 2500000
+  partidas = 5
+  minutos = 477
+  gols = 2
+  id_fonte = "469787"
+
+  [[clubes.jogadores]]
+  nome = "Anfernee Dijksteel"
+  pos = "FB"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 1200000
+  partidas = 6
+  minutos = 540
+  id_fonte = "428302"
+
+  [[clubes.jogadores]]
+  nome = "Bruno Petkovic"
+  pos = "FW"
+  idade = 32
+  ovr = 61
+  pot = 61
+  valor = 1500000
+  partidas = 17
+  minutos = 1499
+  gols = 7
+  id_fonte = "256358"
+
+  [[clubes.jogadores]]
+  nome = "Florian Ayé"
+  pos = "FW"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 2000000
+  partidas = 3
+  minutos = 264
+  gols = 1
+  id_fonte = "372713"
+
+  [[clubes.jogadores]]
+  nome = "Show"
+  pos = "DM"
+  idade = 27
+  ovr = 61
+  pot = 61
+  valor = 1500000
+  partidas = 6
+  minutos = 540
+  id_fonte = "568216"
+
+  [[clubes.jogadores]]
+  nome = "Aleksandar Jovanović"
+  pos = "GK"
+  idade = 33
+  ovr = 60
+  pot = 60
+  valor = 500000
+  partidas = 18
+  minutos = 1665
+  id_fonte = "256567"
+
+  [[clubes.jogadores]]
+  nome = "Massadio Haïdara"
+  pos = "FB"
+  idade = 33
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 5
+  minutos = 474
+  gols = 1
+  id_fonte = "170929"
+
+  [[clubes.jogadores]]
+  nome = "Matej Maglica"
+  pos = "CB"
+  idade = 27
+  ovr = 60
+  pot = 61
+  valor = 1200000
+  partidas = 3
+  minutos = 290
+  gols = 1
+  id_fonte = "433388"
+
+  [[clubes.jogadores]]
+  nome = "Dan Agyei"
+  pos = "WG"
+  idade = 29
+  ovr = 59
+  pot = 59
+  valor = 1200000
+  partidas = 4
+  minutos = 380
+  gols = 1
+  id_fonte = "367195"
+
+  [[clubes.jogadores]]
+  nome = "Rigoberto Rivas"
+  pos = "WG"
+  idade = 28
+  ovr = 59
+  pot = 59
+  valor = 1200000
+  partidas = 1
+  minutos = 90
+  gols = 1
+  id_fonte = "451353"
+
+  [[clubes.jogadores]]
+  nome = "Makana Baku"
+  pos = "WG"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 800000
+  partidas = 4
+  minutos = 333
+  id_fonte = "336974"
+
+  [[clubes.jogadores]]
+  nome = "Tanguy Zoukrou"
+  pos = "CB"
+  idade = 23
+  ovr = 57
+  pot = 60
+  valor = 1200000
+  partidas = 5
+  minutos = 416
+  id_fonte = "917120"
+
+  [[clubes.jogadores]]
+  nome = "Tayfur Bingöl"
+  pos = "MF"
+  idade = 33
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 1
+  minutos = 92
+  gols = 5
+  id_fonte = "184440"
+
+  [[clubes.jogadores]]
+  nome = "Muharrem Cinan"
+  pos = "FB"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 1
+  minutos = 67
+  id_fonte = "539822"
+
+  [[clubes.jogadores]]
+  nome = "Serhat Öztaşdelen"
+  pos = "GK"
+  idade = 21
+  ovr = 56
+  pot = 58
+  valor = 600000
+  partidas = 6
+  minutos = 540
+  id_fonte = "722650"
+
+  [[clubes.jogadores]]
+  nome = "Gonçalo Sousa"
+  pos = "WG"
+  idade = 20
+  ovr = 55
+  pot = 60
+  valor = 2000000
+  partidas = 5
+  minutos = 427
+  id_fonte = "1050215"
+
+  [[clubes.jogadores]]
+  nome = "Onurcan Piri"
+  pos = "GK"
+  idade = 31
+  ovr = 55
+  pot = 55
+  valor = 200000
+  id_fonte = "199470"
+
+  [[clubes.jogadores]]
+  nome = "Metehan Altunbaş"
+  pos = "FW"
+  idade = 23
+  ovr = 54
+  pot = 61
+  valor = 2000000
+  partidas = 2
+  minutos = 146
+  gols = 1
+  id_fonte = "621603"
+
+  [[clubes.jogadores]]
+  nome = "Tobias Gulliksen"
+  pos = "AM"
+  idade = 23
+  ovr = 54
+  pot = 62
+  valor = 2200000
+  partidas = 1
+  minutos = 22
+  id_fonte = "619657"
+
+  [[clubes.jogadores]]
+  nome = "Uğur Kaan Yıldız"
+  pos = "FB"
+  idade = 24
+  ovr = 54
+  pot = 57
+  valor = 600000
+  partidas = 3
+  minutos = 304
+  id_fonte = "700034"
+
+  [[clubes.jogadores]]
+  nome = "Mahamadou Susoho"
+  pos = "DM"
+  idade = 21
+  ovr = 53
+  pot = 59
+  valor = 1000000
+  partidas = 4
+  minutos = 323
+  id_fonte = "895074"
+
+  [[clubes.jogadores]]
+  nome = "Onur Öztonga"
+  pos = "CB"
+  idade = 26
+  ovr = 53
+  pot = 55
+  valor = 300000
+  partidas = 1
+  minutos = 1
+  id_fonte = "553839"
+
+  [[clubes.jogadores]]
+  nome = "Emir Ortakaya"
+  pos = "CB"
+  idade = 22
+  ovr = 50
+  pot = 57
+  valor = 600000
+  partidas = 2
+  minutos = 195
+  id_fonte = "727081"
+
+  [[clubes.jogadores]]
+  nome = "Arda Özyar"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 45
+  valor = 50000
+  partidas = 2
+  minutos = 9
+  id_fonte = "1303365"
+
+  [[clubes.jogadores]]
+  nome = "Bedirhan Yıldız"
+  pos = "WG"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 182068
+  id_fonte = "1052006"
+
+  [[clubes.jogadores]]
+  nome = "Ege Bilim"
+  pos = "MF"
+  idade = 20
+  ovr = 40
+  pot = 45
+  valor = 50000
+  partidas = 3
+  minutos = 13
+  id_fonte = "1321749"
+
+  [[clubes.jogadores]]
+  nome = "Haydar Karataş"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 47
+  valor = 100000
+  id_fonte = "1243050"
+
+  [[clubes.jogadores]]
+  nome = "Hulusi Destici"
+  pos = "DM"
+  idade = 18
+  ovr = 40
+  pot = 51
+  valor = 182068
+  id_fonte = "1438140"
+
+  [[clubes.jogadores]]
+  nome = "Talha Polat"
+  pos = "GK"
+  idade = 19
+  ovr = 40
+  pot = 53
+  valor = 182068
+  id_fonte = "1423296"
+
+[[clubes]]
+nome = "Eyüpspor"
+forca = 55.5
+valor_elenco = 11500000
+cores = ["#EBBF53", "#5E3181"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Horațiu Moldovan"
+  pos = "GK"
+  idade = 28
+  ovr = 64
+  pot = 64
+  valor = 1800000
+  partidas = 6
+  minutos = 495
+  id_fonte = "525438"
+
+  [[clubes.jogadores]]
+  nome = "Bilal Boutobba"
+  pos = "WG"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 1200000
+  partidas = 4
+  minutos = 331
+  id_fonte = "344151"
+
+  [[clubes.jogadores]]
+  nome = "Abdelhamid Sabiri"
+  pos = "AM"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 850000
+  partidas = 1
+  minutos = 109
+  id_fonte = "340394"
+
+  [[clubes.jogadores]]
+  nome = "Jawad El Yamiq"
+  pos = "CB"
+  idade = 34
+  ovr = 56
+  pot = 56
+  valor = 300000
+  partidas = 4
+  minutos = 405
+  id_fonte = "235412"
+
+  [[clubes.jogadores]]
+  nome = "Chandrel Massanga"
+  pos = "DM"
+  idade = 27
+  ovr = 55
+  pot = 55
+  valor = 500000
+  partidas = 6
+  minutos = 540
+  id_fonte = "752455"
+
+  [[clubes.jogadores]]
+  nome = "Charles-André Raux-Yao"
+  pos = "MF"
+  idade = 24
+  ovr = 54
+  pot = 56
+  valor = 700000
+  partidas = 5
+  minutos = 422
+  gols = 2
+  id_fonte = "976840"
+
+  [[clubes.jogadores]]
+  nome = "Konrad Michalak"
+  pos = "WG"
+  idade = 29
+  ovr = 54
+  pot = 54
+  valor = 500000
+  partidas = 5
+  minutos = 471
+  id_fonte = "387160"
+
+  [[clubes.jogadores]]
+  nome = "Simone Giordano"
+  pos = "FB"
+  idade = 24
+  ovr = 54
+  pot = 56
+  valor = 650000
+  partidas = 4
+  minutos = 362
+  id_fonte = "480046"
+
+  [[clubes.jogadores]]
+  nome = "Talha Ülvan"
+  pos = "FB"
+  idade = 25
+  ovr = 53
+  pot = 54
+  valor = 400000
+  partidas = 6
+  minutos = 527
+  gols = 2
+  id_fonte = "708111"
+
+  [[clubes.jogadores]]
+  nome = "Zak Jules"
+  pos = "CB"
+  idade = 29
+  ovr = 53
+  pot = 53
+  valor = 275000
+  partidas = 6
+  minutos = 540
+  gols = 1
+  id_fonte = "309041"
+
+  [[clubes.jogadores]]
+  nome = "Ahmed Abdullahi"
+  pos = "FW"
+  idade = 22
+  ovr = 52
+  pot = 55
+  valor = 800000
+  partidas = 5
+  minutos = 469
+  gols = 1
+  id_fonte = "1015619"
+
+  [[clubes.jogadores]]
+  nome = "Mete Demir"
+  pos = "WG"
+  idade = 28
+  ovr = 52
+  pot = 52
+  valor = 325000
+  partidas = 2
+  minutos = 35
+  id_fonte = "282615"
+
+  [[clubes.jogadores]]
+  nome = "Taşkın İlter"
+  pos = "DM"
+  idade = 32
+  ovr = 51
+  pot = 51
+  valor = 150000
+  partidas = 1
+  minutos = 45
+  id_fonte = "200082"
+
+  [[clubes.jogadores]]
+  nome = "Anıl Yaşar"
+  pos = "CB"
+  idade = 24
+  ovr = 49
+  pot = 53
+  valor = 300000
+  partidas = 2
+  minutos = 209
+  id_fonte = "685329"
+
+  [[clubes.jogadores]]
+  nome = "David Costa"
+  pos = "AM"
+  idade = 22
+  ovr = 49
+  pot = 53
+  valor = 500000
+  partidas = 4
+  minutos = 370
+  id_fonte = "1160599"
+
+  [[clubes.jogadores]]
+  nome = "Yusuf Barası"
+  pos = "FW"
+  idade = 23
+  ovr = 49
+  pot = 55
+  valor = 800000
+  partidas = 2
+  minutos = 161
+  id_fonte = "566271"
+
+  [[clubes.jogadores]]
+  nome = "Lenny Pintor"
+  pos = "WG"
+  idade = 26
+  ovr = 47
+  pot = 49
+  valor = 200000
+  partidas = 2
+  minutos = 191
+  id_fonte = "418660"
+
+  [[clubes.jogadores]]
+  nome = "Emre Bilgin"
+  pos = "GK"
+  idade = 22
+  ovr = 46
+  pot = 55
+  valor = 400000
+  partidas = 1
+  minutos = 45
+  id_fonte = "727147"
+
+  [[clubes.jogadores]]
+  nome = "Hamza Akman"
+  pos = "MF"
+  idade = 21
+  ovr = 42
+  pot = 53
+  valor = 400000
+  partidas = 1
+  minutos = 82
+  id_fonte = "727152"
+
+  [[clubes.jogadores]]
+  nome = "Yiğit Demir"
+  pos = "CB"
+  idade = 23
+  ovr = 41
+  pot = 49
+  valor = 150000
+  id_fonte = "873533"
+
+  [[clubes.jogadores]]
+  nome = "Abdou Khadre Sy"
+  pos = "FW"
+  idade = 18
+  ovr = 40
+  pot = 44
+  valor = 100000
+  partidas = 2
+  minutos = 195
+  id_fonte = "1414677"
+
+  [[clubes.jogadores]]
+  nome = "Arda Yavuz"
+  pos = "FB"
+  idade = 20
+  ovr = 40
+  pot = 43
+  valor = 50000
+  partidas = 2
+  minutos = 15
+  id_fonte = "1175508"
+
+  [[clubes.jogadores]]
+  nome = "Berhan Kutlay Şatlı"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 52
+  valor = 273035
+  partidas = 3
+  minutos = 226
+  id_fonte = "1178853"
+
+  [[clubes.jogadores]]
+  nome = "Christ Sadia"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 45
+  valor = 100000
+  partidas = 1
+  minutos = 5
+  gols = 1
+  id_fonte = "1458907"
+
+  [[clubes.jogadores]]
+  nome = "Diabel Ndoye"
+  pos = "CB"
+  idade = 19
+  ovr = 40
+  pot = 50
+  valor = 206741
+  partidas = 2
+  minutos = 180
+  id_fonte = "1414664"
+
+  [[clubes.jogadores]]
+  nome = "Musa Eren Karakaş"
+  pos = "WG"
+  idade = 22
+  ovr = 40
+  pot = 42
+  valor = 55000
+  id_fonte = "880414"
+
+  [[clubes.jogadores]]
+  nome = "Umut Keseci"
+  pos = "GK"
+  idade = 22
+  ovr = 40
+  pot = 45
+  valor = 50000
+  id_fonte = "1045821"
+
+  [[clubes.jogadores]]
+  nome = "Ömer Ahmet Ceyhan"
+  pos = "FB"
+  idade = 19
+  ovr = 40
+  pot = 49
+  valor = 165491
+  partidas = 1
+  minutos = 114
+  id_fonte = "1374186"
+

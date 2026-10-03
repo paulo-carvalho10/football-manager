@@ -52,6 +52,39 @@ NACIONAIS = [
      "ligas": [("bolivia_real", "División Profesional")]},
     {"pais": "VEN", "nome": "Venezuela", "cores": ["#cf142b", "#00247d"], "livre": True,
      "ligas": [("venezuela_real", "Liga FUTVE")]},
+    # o resto da Europa (03/10/2026): uma divisao cada, para a Champions e a Liga Europa
+    {"pais": "NED", "nome": "Holanda", "cores": ["#ff6600", "#ffffff"], "livre": True,
+     "ligas": [("holanda_real", "Eredivisie")]},
+    {"pais": "BEL", "nome": "Bélgica", "cores": ["#000000", "#fdda24"], "livre": True,
+     "ligas": [("belgica_real", "Pro League")]},
+    {"pais": "TUR", "nome": "Turquia", "cores": ["#e30a17", "#ffffff"], "livre": True,
+     "ligas": [("turquia_real", "Süper Lig")]},
+    {"pais": "GRE", "nome": "Grécia", "cores": ["#0d5eaf", "#ffffff"], "livre": True,
+     "ligas": [("grecia_real", "Super League")]},
+    {"pais": "UKR", "nome": "Ucrânia", "cores": ["#0057b7", "#ffd700"], "livre": True,
+     "ligas": [("ucrania_real", "Premier Liga")]},
+    {"pais": "RUS", "nome": "Rússia", "cores": ["#ffffff", "#d52b1e"], "livre": True,
+     "ligas": [("russia_real", "Premier Liga Russa")]},
+    {"pais": "AUT", "nome": "Áustria", "cores": ["#ed2939", "#ffffff"], "livre": True,
+     "ligas": [("austria_real", "Bundesliga Austríaca")]},
+    {"pais": "SUI", "nome": "Suíça", "cores": ["#d52b1e", "#ffffff"], "livre": True,
+     "ligas": [("suica_real", "Super League Suíça")]},
+    {"pais": "SCO", "nome": "Escócia", "cores": ["#005eb8", "#ffffff"], "livre": True,
+     "ligas": [("escocia_real", "Premiership")]},
+    {"pais": "DEN", "nome": "Dinamarca", "cores": ["#c60c30", "#ffffff"], "livre": True,
+     "ligas": [("dinamarca_real", "Superliga")]},
+    {"pais": "NOR", "nome": "Noruega", "cores": ["#ba0c2f", "#00205b"], "livre": True,
+     "ligas": [("noruega_real", "Eliteserien")]},
+    {"pais": "SWE", "nome": "Suécia", "cores": ["#006aa7", "#fecc00"], "livre": True,
+     "ligas": [("suecia_real", "Allsvenskan")]},
+    {"pais": "SRB", "nome": "Sérvia", "cores": ["#c6363c", "#0c4076"], "livre": True,
+     "ligas": [("servia_real", "Superliga Sérvia")]},
+    {"pais": "CRO", "nome": "Croácia", "cores": ["#ff0000", "#171796"], "livre": True,
+     "ligas": [("croacia_real", "HNL")]},
+    {"pais": "POL", "nome": "Polônia", "cores": ["#ffffff", "#dc143c"], "livre": True,
+     "ligas": [("polonia_real", "Ekstraklasa")]},
+    {"pais": "CZE", "nome": "República Tcheca", "cores": ["#11457e", "#d7141a"], "livre": True,
+     "ligas": [("tchequia_real", "Chance Liga")]},
 ]
 # Estaduais nao existem no motor. Nao sao "premium": sao trabalho por fazer.
 ESTADUAIS = ["Paulista", "Carioca", "Mineiro", "Gaúcho", "Paranaense", "Baiano",
@@ -67,6 +100,10 @@ COPAS_POR_PAIS = {
     "ARG": ["Copa Libertadores", "Copa Sul-Americana"],
     **{p: ["Copa Libertadores", "Copa Sul-Americana"]
        for p in ("COL", "CHI", "URU", "ECU", "PAR", "PER", "BOL", "VEN")},
+    **{p: ["Liga dos Campeões", "Liga Europa"]
+       for p in ("NED", "BEL", "TUR", "GRE", "UKR", "AUT", "SUI", "SCO", "DEN", "NOR", "SWE",
+                 "SRB", "CRO", "POL", "CZE")},
+    "RUS": [],
 }
 
 

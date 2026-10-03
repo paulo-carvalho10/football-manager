@@ -1,0 +1,35 @@
+# HNL (CRO), clubes e jogadores reais. Criada em 03/10/2026 para a Champions e a
+# Liga Europa: so a primeira divisao, sem acesso e rebaixamento. Quatro turnos, como a liga
+# real joga (36 rodadas); a fase final dividida em grupos (playoff) nao existe no motor.
+id     = "cro_1_real"
+nome   = "HNL"
+pais   = "CRO"
+tier   = 1
+codigo = "KR1"   # competicao na fonte
+clubes = 10
+
+pack        = "croacia_hnl"
+pack_offset = 0
+
+[estilo]
+gols_base = 1.15
+mando     = 0.3
+
+[formato]
+fases  = [ { tipo = "round_robin", voltas = 4 } ]
+acesso = { sobem = 0, descem = 0 }
+
+# Faixas largas, escritas de memoria (os pontos, pelo numero de jogos da liga). Ainda
+# nao foram re-derivadas de tabelas reais: o portao so avisa se algo saiu absurdo.
+[alvos]
+zero_a_zero_pct           = [5.0, 14.0]
+gols_por_jogo             = [2.2, 3.3]
+empate_pct                = [18.0, 32.0]
+vitoria_casa_pct          = [38.0, 54.0]
+vitoria_fora_pct          = [20.0, 36.0]
+margem_3_ou_mais_pct      = [8.0, 20.0]
+margem_4_ou_mais_pct      = [2.0, 9.0]
+cinco_ou_mais_gols_pct    = [5.0, 16.0]
+pontos_do_campeao         = [61.2, 100.8]   # por jogo: 1,7 a 2,8
+pontos_do_lanterna        = [7.2, 43.2]   # por jogo: 0,2 a 1,2
+melhor_elenco_campeao_pct = [15.0, 75.0]

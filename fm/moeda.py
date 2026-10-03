@@ -17,6 +17,16 @@ MOEDAS: dict[str, tuple[str, float]] = {
     "BRL": ("R$", 6.2),
     "GBP": ("£", 0.85),
     "USD": ("US$", 1.08),
+    "TRY": ("₺", 45.0),
+    "UAH": ("₴", 46.0),
+    "RUB": ("₽", 95.0),
+    "CHF": ("CHF", 0.94),
+    "DKK": ("kr", 7.46),
+    "NOK": ("kr", 11.7),
+    "SEK": ("kr", 11.2),
+    "RSD": ("RSD", 117.0),
+    "PLN": ("zł", 4.25),
+    "CZK": ("Kč", 25.0),
 }
 
 # O resto da America do Sul fecha contrato e balanco em dolar (a Argentina, com o peso
@@ -25,6 +35,18 @@ MOEDA_DO_PAIS = {
     "BRA": "BRL", "ENG": "GBP",
     "ARG": "USD", "URU": "USD", "PAR": "USD", "CHI": "USD", "COL": "USD", "PER": "USD",
     "ECU": "USD", "BOL": "USD", "VEN": "USD",
+    # o resto da Europa: quem nao usa euro (Holanda, Belgica, Grecia, Austria e Croacia usam)
+    "TUR": "TRY",
+    "UKR": "UAH",
+    "RUS": "RUB",
+    "SUI": "CHF",
+    "SCO": "GBP",
+    "DEN": "DKK",
+    "NOR": "NOK",
+    "SWE": "SEK",
+    "SRB": "RSD",
+    "POL": "PLN",
+    "CZE": "CZK",
 }
 
 

@@ -1,0 +1,5146 @@
+# UKR1 -- GERADO por fm.importer. Nao editar a mao: rode o importador.
+#
+# Fonte: Transfermarkt (clube, posicao, idade, valor de mercado, jogos, minutos).
+# ovr e pot sao DERIVADOS por fm/ratings.py a partir desses campos. Sao estimativa, nao
+# rating oficial de ninguem, e a conta esta documentada no modulo.
+#
+# forca do clube = nivel_da_liga + 4.5 * z(ln(valor de elenco) dentro da liga).
+# O NIVEL da liga sai do valor medio de elenco na escala global de todas as competicoes
+# importadas, com o melhor clube do mundo ancorado em 90 -- fazer z so por liga apagava a
+# diferenca entre divisoes e o lanterna da Serie B saia mais forte que o da Serie A.
+# O BETA e proprio desta liga e foi ajustado contra os [alvos] do arquivo dela.
+verificado = false
+fonte = "Transfermarkt UKR1 (valores de mercado); ovr/pot derivados por fm.ratings"
+
+[[clubes]]
+nome = "Shakhtar Donetsk"
+forca = 70.8
+valor_elenco = 197600000
+cores = ["#D67024", "#010101"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Mykola Matvienko"
+  pos = "CB"
+  idade = 30
+  ovr = 76
+  pot = 76
+  valor = 12000000
+  partidas = 7
+  minutos = 630
+  id_fonte = "289059"
+
+  [[clubes.jogadores]]
+  nome = "Dmytro Riznyk"
+  pos = "GK"
+  idade = 27
+  ovr = 74
+  pot = 74
+  valor = 8000000
+  partidas = 8
+  minutos = 720
+  id_fonte = "597880"
+
+  [[clubes.jogadores]]
+  nome = "Valeriy Bondar"
+  pos = "CB"
+  idade = 27
+  ovr = 73
+  pot = 73
+  valor = 8000000
+  partidas = 7
+  minutos = 642
+  gols = 4
+  id_fonte = "396394"
+
+  [[clubes.jogadores]]
+  nome = "Pedrinho"
+  pos = "WG"
+  idade = 28
+  ovr = 72
+  pot = 72
+  valor = 10000000
+  partidas = 1
+  minutos = 125
+  gols = 1
+  id_fonte = "515208"
+
+  [[clubes.jogadores]]
+  nome = "Marlon Gomes"
+  pos = "MF"
+  idade = 22
+  ovr = 71
+  pot = 73
+  valor = 12000000
+  partidas = 4
+  minutos = 360
+  gols = 2
+  id_fonte = "668235"
+
+  [[clubes.jogadores]]
+  nome = "Pedro Henrique"
+  pos = "FB"
+  idade = 24
+  ovr = 71
+  pot = 72
+  valor = 8000000
+  partidas = 7
+  minutos = 666
+  gols = 1
+  id_fonte = "858712"
+
+  [[clubes.jogadores]]
+  nome = "Kauã Elias"
+  pos = "FW"
+  idade = 20
+  ovr = 70
+  pot = 73
+  valor = 15000000
+  partidas = 5
+  minutos = 440
+  gols = 3
+  id_fonte = "1119009"
+
+  [[clubes.jogadores]]
+  nome = "Marlon"
+  pos = "CB"
+  idade = 31
+  ovr = 69
+  pot = 69
+  valor = 2500000
+  partidas = 1
+  minutos = 45
+  id_fonte = "273236"
+
+  [[clubes.jogadores]]
+  nome = "Oleg Ocheretko"
+  pos = "AM"
+  idade = 23
+  ovr = 69
+  pot = 70
+  valor = 7000000
+  partidas = 6
+  minutos = 562
+  gols = 2
+  id_fonte = "708241"
+
+  [[clubes.jogadores]]
+  nome = "Vinícius Tobias"
+  pos = "FB"
+  idade = 22
+  ovr = 69
+  pot = 71
+  valor = 6000000
+  partidas = 6
+  minutos = 532
+  gols = 2
+  id_fonte = "743587"
+
+  [[clubes.jogadores]]
+  nome = "Alisson"
+  pos = "WG"
+  idade = 21
+  ovr = 68
+  pot = 72
+  valor = 13000000
+  partidas = 5
+  minutos = 484
+  gols = 2
+  id_fonte = "1083070"
+
+  [[clubes.jogadores]]
+  nome = "Lassina Traoré"
+  pos = "FW"
+  idade = 25
+  ovr = 67
+  pot = 70
+  valor = 7000000
+  partidas = 2
+  minutos = 183
+  gols = 7
+  id_fonte = "551695"
+
+  [[clubes.jogadores]]
+  nome = "Newerton"
+  pos = "WG"
+  idade = 21
+  ovr = 67
+  pot = 70
+  valor = 7000000
+  partidas = 5
+  minutos = 416
+  gols = 2
+  id_fonte = "1082823"
+
+  [[clubes.jogadores]]
+  nome = "Yegor Nazaryna"
+  pos = "MF"
+  idade = 29
+  ovr = 67
+  pot = 67
+  valor = 2500000
+  partidas = 5
+  minutos = 410
+  gols = 2
+  id_fonte = "430190"
+
+  [[clubes.jogadores]]
+  nome = "Dmytro Kryskiv"
+  pos = "MF"
+  idade = 25
+  ovr = 66
+  pot = 68
+  valor = 4000000
+  partidas = 2
+  minutos = 162
+  gols = 1
+  id_fonte = "537852"
+
+  [[clubes.jogadores]]
+  nome = "Isaque"
+  pos = "AM"
+  idade = 19
+  ovr = 66
+  pot = 72
+  valor = 11000000
+  partidas = 4
+  minutos = 372
+  gols = 1
+  id_fonte = "1219752"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Karavaev"
+  pos = "FB"
+  idade = 34
+  ovr = 66
+  pot = 66
+  valor = 1000000
+  partidas = 3
+  minutos = 269
+  id_fonte = "59322"
+
+  [[clubes.jogadores]]
+  nome = "Irakli Azarovi"
+  pos = "FB"
+  idade = 24
+  ovr = 64
+  pot = 67
+  valor = 2500000
+  partidas = 2
+  minutos = 144
+  id_fonte = "530696"
+
+  [[clubes.jogadores]]
+  nome = "Alaa Ghram"
+  pos = "CB"
+  idade = 25
+  ovr = 63
+  pot = 65
+  valor = 1500000
+  partidas = 2
+  minutos = 188
+  gols = 1
+  id_fonte = "657796"
+
+  [[clubes.jogadores]]
+  nome = "Eguinaldo"
+  pos = "WG"
+  idade = 22
+  ovr = 63
+  pot = 68
+  valor = 5000000
+  partidas = 16
+  minutos = 1476
+  gols = 9
+  id_fonte = "1033963"
+
+  [[clubes.jogadores]]
+  nome = "Gleiker Mendoza"
+  pos = "WG"
+  idade = 24
+  ovr = 63
+  pot = 66
+  valor = 3000000
+  partidas = 4
+  minutos = 382
+  gols = 1
+  id_fonte = "1029207"
+
+  [[clubes.jogadores]]
+  nome = "Kiril Fesyun"
+  pos = "GK"
+  idade = 24
+  ovr = 62
+  pot = 66
+  valor = 1500000
+  partidas = 1
+  minutos = 90
+  id_fonte = "751977"
+
+  [[clubes.jogadores]]
+  nome = "Luca Meirelles"
+  pos = "FW"
+  idade = 19
+  ovr = 62
+  pot = 71
+  valor = 10000000
+  partidas = 2
+  minutos = 200
+  gols = 3
+  id_fonte = "1220143"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Ferreira"
+  pos = "WG"
+  idade = 20
+  ovr = 62
+  pot = 70
+  valor = 7000000
+  partidas = 1
+  minutos = 131
+  gols = 3
+  id_fonte = "1219849"
+
+  [[clubes.jogadores]]
+  nome = "Maryan Shved"
+  pos = "WG"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 800000
+  partidas = 4
+  minutos = 316
+  gols = 1
+  id_fonte = "359247"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Carvalho"
+  pos = "WG"
+  idade = 19
+  ovr = 59
+  pot = 72
+  valor = 12000000
+  partidas = 2
+  minutos = 163
+  gols = 1
+  id_fonte = "1089144"
+
+  [[clubes.jogadores]]
+  nome = "Prosper Obah"
+  pos = "WG"
+  idade = 22
+  ovr = 59
+  pot = 67
+  valor = 4000000
+  partidas = 1
+  minutos = 79
+  gols = 3
+  id_fonte = "1041630"
+
+  [[clubes.jogadores]]
+  nome = "Alan Matturro"
+  pos = "CB"
+  idade = 21
+  ovr = 57
+  pot = 69
+  valor = 4000000
+  id_fonte = "861981"
+
+  [[clubes.jogadores]]
+  nome = "Viktor Korniyenko"
+  pos = "FB"
+  idade = 27
+  ovr = 56
+  pot = 57
+  valor = 300000
+  id_fonte = "467243"
+
+  [[clubes.jogadores]]
+  nome = "Bruninho"
+  pos = "WG"
+  idade = 18
+  ovr = 54
+  pot = 69
+  valor = 7000000
+  partidas = 1
+  minutos = 90
+  id_fonte = "1500420"
+
+  [[clubes.jogadores]]
+  nome = "Denys Tvardovskyi"
+  pos = "GK"
+  idade = 23
+  ovr = 52
+  pot = 60
+  valor = 400000
+  partidas = 2
+  minutos = 180
+  id_fonte = "935048"
+
+  [[clubes.jogadores]]
+  nome = "Ryan Roberto"
+  pos = "WG"
+  idade = 18
+  ovr = 49
+  pot = 67
+  valor = 4000000
+  partidas = 1
+  minutos = 25
+  id_fonte = "1275528"
+
+  [[clubes.jogadores]]
+  nome = "Tymur Puzankov"
+  pos = "GK"
+  idade = 23
+  ovr = 48
+  pot = 56
+  valor = 100000
+  id_fonte = "752862"
+
+  [[clubes.jogadores]]
+  nome = "Viktor Tsukanov"
+  pos = "MF"
+  idade = 20
+  ovr = 47
+  pot = 58
+  valor = 500000
+  partidas = 2
+  minutos = 157
+  gols = 1
+  id_fonte = "1057222"
+
+[[clubes]]
+nome = "Dinamo de Kiev"
+forca = 67.5
+valor_elenco = 96400000
+cores = ["#166EC0", "#FDFEFC"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Mykola Shaparenko"
+  pos = "MF"
+  idade = 27
+  ovr = 70
+  pot = 70
+  valor = 8000000
+  partidas = 7
+  minutos = 611
+  gols = 2
+  id_fonte = "368611"
+
+  [[clubes.jogadores]]
+  nome = "Volodymyr Brazhko"
+  pos = "DM"
+  idade = 24
+  ovr = 70
+  pot = 71
+  valor = 10000000
+  partidas = 10
+  minutos = 897
+  gols = 3
+  id_fonte = "669306"
+
+  [[clubes.jogadores]]
+  nome = "Taras Mykhavko"
+  pos = "CB"
+  idade = 21
+  ovr = 69
+  pot = 72
+  valor = 10000000
+  partidas = 13
+  minutos = 1142
+  gols = 6
+  id_fonte = "1067225"
+
+  [[clubes.jogadores]]
+  nome = "Georgiy Bushchan"
+  pos = "GK"
+  idade = 32
+  ovr = 68
+  pot = 68
+  valor = 2000000
+  partidas = 3
+  minutos = 270
+  id_fonte = "206888"
+
+  [[clubes.jogadores]]
+  nome = "Matviy Ponomarenko"
+  pos = "FW"
+  idade = 20
+  ovr = 67
+  pot = 70
+  valor = 12000000
+  partidas = 12
+  minutos = 1052
+  gols = 5
+  id_fonte = "1074053"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Tymchyk"
+  pos = "FB"
+  idade = 29
+  ovr = 67
+  pot = 67
+  valor = 3000000
+  partidas = 2
+  minutos = 140
+  gols = 1
+  id_fonte = "287792"
+
+  [[clubes.jogadores]]
+  nome = "Ruslan Neshcheret"
+  pos = "GK"
+  idade = 24
+  ovr = 67
+  pot = 68
+  valor = 3500000
+  partidas = 3
+  minutos = 300
+  id_fonte = "417242"
+
+  [[clubes.jogadores]]
+  nome = "Tomasz Kędziora"
+  pos = "CB"
+  idade = 32
+  ovr = 67
+  pot = 67
+  valor = 2000000
+  partidas = 9
+  minutos = 796
+  id_fonte = "181118"
+
+  [[clubes.jogadores]]
+  nome = "Vitaliy Buyalskyi"
+  pos = "AM"
+  idade = 33
+  ovr = 67
+  pot = 67
+  valor = 2500000
+  partidas = 4
+  minutos = 355
+  gols = 10
+  id_fonte = "167722"
+
+  [[clubes.jogadores]]
+  nome = "Denys Popov"
+  pos = "CB"
+  idade = 27
+  ovr = 66
+  pot = 66
+  valor = 2500000
+  partidas = 17
+  minutos = 1562
+  gols = 2
+  id_fonte = "404841"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Pikhalyonok"
+  pos = "MF"
+  idade = 29
+  ovr = 66
+  pot = 66
+  valor = 3000000
+  partidas = 4
+  minutos = 318
+  gols = 4
+  id_fonte = "294780"
+
+  [[clubes.jogadores]]
+  nome = "Vladyslav Dubinchak"
+  pos = "FB"
+  idade = 28
+  ovr = 66
+  pot = 66
+  valor = 2500000
+  partidas = 10
+  minutos = 873
+  id_fonte = "366723"
+
+  [[clubes.jogadores]]
+  nome = "Vladyslav Kabaev"
+  pos = "WG"
+  idade = 31
+  ovr = 66
+  pot = 66
+  valor = 2500000
+  partidas = 4
+  minutos = 360
+  gols = 2
+  id_fonte = "210689"
+
+  [[clubes.jogadores]]
+  nome = "Nazar Voloshyn"
+  pos = "WG"
+  idade = 23
+  ovr = 65
+  pot = 67
+  valor = 5000000
+  partidas = 7
+  minutos = 602
+  gols = 8
+  id_fonte = "726034"
+
+  [[clubes.jogadores]]
+  nome = "Kostyantyn Vivcharenko"
+  pos = "FB"
+  idade = 24
+  ovr = 64
+  pot = 65
+  valor = 2500000
+  partidas = 1
+  minutos = 44
+  id_fonte = "636237"
+
+  [[clubes.jogadores]]
+  nome = "Mykola Mykhaylenko"
+  pos = "DM"
+  idade = 25
+  ovr = 64
+  pot = 64
+  valor = 2000000
+  partidas = 1
+  minutos = 118
+  gols = 2
+  id_fonte = "626475"
+
+  [[clubes.jogadores]]
+  nome = "Andriy Yarmolenko"
+  pos = "WG"
+  idade = 36
+  ovr = 63
+  pot = 63
+  valor = 1000000
+  partidas = 5
+  minutos = 448
+  gols = 1
+  id_fonte = "69015"
+
+  [[clubes.jogadores]]
+  nome = "Eduardo Guerrero"
+  pos = "FW"
+  idade = 26
+  ovr = 63
+  pot = 64
+  valor = 2500000
+  partidas = 5
+  minutos = 426
+  gols = 9
+  id_fonte = "502842"
+
+  [[clubes.jogadores]]
+  nome = "Kristian Bilovar"
+  pos = "CB"
+  idade = 25
+  ovr = 63
+  pot = 64
+  valor = 1500000
+  partidas = 6
+  minutos = 574
+  id_fonte = "539436"
+
+  [[clubes.jogadores]]
+  nome = "Justin Lonwijk"
+  pos = "MF"
+  idade = 26
+  ovr = 61
+  pot = 61
+  valor = 1000000
+  partidas = 7
+  minutos = 674
+  gols = 2
+  id_fonte = "357917"
+
+  [[clubes.jogadores]]
+  nome = "Oleksiy Sych"
+  pos = "FB"
+  idade = 25
+  ovr = 61
+  pot = 62
+  valor = 1000000
+  partidas = 8
+  minutos = 696
+  id_fonte = "748939"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Syrota"
+  pos = "CB"
+  idade = 26
+  ovr = 60
+  pot = 62
+  valor = 1000000
+  id_fonte = "505463"
+
+  [[clubes.jogadores]]
+  nome = "Valentyn Rubchynskyi"
+  pos = "MF"
+  idade = 24
+  ovr = 59
+  pot = 60
+  valor = 900000
+  partidas = 6
+  minutos = 550
+  id_fonte = "666943"
+
+  [[clubes.jogadores]]
+  nome = "Aliou Thiaré"
+  pos = "CB"
+  idade = 22
+  ovr = 56
+  pot = 62
+  valor = 1000000
+  partidas = 3
+  minutos = 234
+  gols = 1
+  id_fonte = "949111"
+
+  [[clubes.jogadores]]
+  nome = "Bogdan Redushko"
+  pos = "WG"
+  idade = 19
+  ovr = 55
+  pot = 62
+  valor = 2000000
+  partidas = 5
+  minutos = 434
+  gols = 2
+  id_fonte = "1138725"
+
+  [[clubes.jogadores]]
+  nome = "Vladyslav Supryaga"
+  pos = "FW"
+  idade = 26
+  ovr = 54
+  pot = 56
+  valor = 400000
+  partidas = 1
+  minutos = 22
+  id_fonte = "419061"
+
+  [[clubes.jogadores]]
+  nome = "Navin Malysh"
+  pos = "FB"
+  idade = 23
+  ovr = 53
+  pot = 58
+  valor = 500000
+  partidas = 2
+  minutos = 219
+  id_fonte = "935095"
+
+  [[clubes.jogadores]]
+  nome = "Gustavo Prado"
+  pos = "WG"
+  idade = 21
+  ovr = 52
+  pot = 64
+  valor = 2500000
+  id_fonte = "1095552"
+
+  [[clubes.jogadores]]
+  nome = "Keasse Bah"
+  pos = "WG"
+  idade = 21
+  ovr = 52
+  pot = 63
+  valor = 2000000
+  partidas = 1
+  minutos = 80
+  id_fonte = "1380582"
+
+  [[clubes.jogadores]]
+  nome = "Shola Ogundana"
+  pos = "WG"
+  idade = 21
+  ovr = 52
+  pot = 59
+  valor = 800000
+  partidas = 1
+  minutos = 46
+  gols = 2
+  id_fonte = "998742"
+
+  [[clubes.jogadores]]
+  nome = "Reshat Ramadani"
+  pos = "DM"
+  idade = 23
+  ovr = 51
+  pot = 59
+  valor = 600000
+  id_fonte = "893187"
+
+  [[clubes.jogadores]]
+  nome = "Vladyslav Zakharchenko"
+  pos = "CB"
+  idade = 20
+  ovr = 51
+  pot = 60
+  valor = 700000
+  partidas = 11
+  minutos = 995
+  id_fonte = "1074060"
+
+  [[clubes.jogadores]]
+  nome = "Vyacheslav Surkis"
+  pos = "GK"
+  idade = 20
+  ovr = 51
+  pot = 55
+  valor = 200000
+  partidas = 6
+  minutos = 510
+  id_fonte = "1063685"
+
+  [[clubes.jogadores]]
+  nome = "Maksym Korobov"
+  pos = "FB"
+  idade = 20
+  ovr = 50
+  pot = 60
+  valor = 800000
+  partidas = 8
+  minutos = 727
+  id_fonte = "1074045"
+
+  [[clubes.jogadores]]
+  nome = "Ilya Olkhovyi"
+  pos = "GK"
+  idade = 23
+  ovr = 49
+  pot = 56
+  valor = 200000
+  partidas = 1
+  minutos = 120
+  id_fonte = "911644"
+
+  [[clubes.jogadores]]
+  nome = "Pierre Mounguengue"
+  pos = "FW"
+  idade = 18
+  ovr = 47
+  pot = 62
+  valor = 2000000
+  partidas = 2
+  minutos = 140
+  id_fonte = "1185913"
+
+  [[clubes.jogadores]]
+  nome = "Samba Diallo"
+  pos = "WG"
+  idade = 23
+  ovr = 46
+  pot = 54
+  valor = 300000
+  id_fonte = "649030"
+
+  [[clubes.jogadores]]
+  nome = "Roman Salenko"
+  pos = "MF"
+  idade = 21
+  ovr = 44
+  pot = 56
+  valor = 400000
+  id_fonte = "925401"
+
+  [[clubes.jogadores]]
+  nome = "Vitaliy Lobko"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 51
+  valor = 100000
+  partidas = 1
+  minutos = 79
+  id_fonte = "1074043"
+
+[[clubes]]
+nome = "Polissya Zhytomyr"
+forca = 62.8
+valor_elenco = 34800000
+cores = ["#53CB4C", "#000000"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Eduard Sarapiy"
+  pos = "CB"
+  idade = 27
+  ovr = 67
+  pot = 67
+  valor = 3000000
+  partidas = 6
+  minutos = 540
+  gols = 6
+  id_fonte = "678778"
+
+  [[clubes.jogadores]]
+  nome = "Bogdan Mykhaylichenko"
+  pos = "FB"
+  idade = 29
+  ovr = 66
+  pot = 66
+  valor = 2500000
+  partidas = 10
+  minutos = 881
+  gols = 1
+  id_fonte = "294730"
+
+  [[clubes.jogadores]]
+  nome = "Leandro Andrade"
+  pos = "WG"
+  idade = 26
+  ovr = 66
+  pot = 66
+  valor = 4000000
+  partidas = 7
+  minutos = 672
+  gols = 2
+  id_fonte = "669959"
+
+  [[clubes.jogadores]]
+  nome = "Sergiy Chobotenko"
+  pos = "CB"
+  idade = 29
+  ovr = 65
+  pot = 65
+  valor = 1800000
+  partidas = 9
+  minutos = 810
+  gols = 1
+  id_fonte = "245021"
+
+  [[clubes.jogadores]]
+  nome = "Yevgen Volynets"
+  pos = "GK"
+  idade = 33
+  ovr = 64
+  pot = 64
+  valor = 750000
+  partidas = 26
+  minutos = 2340
+  id_fonte = "166581"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Nazarenko"
+  pos = "WG"
+  idade = 26
+  ovr = 63
+  pot = 63
+  valor = 2500000
+  partidas = 6
+  minutos = 502
+  gols = 1
+  id_fonte = "495920"
+
+  [[clubes.jogadores]]
+  nome = "Mykyta Kravchenko"
+  pos = "FB"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 1000000
+  partidas = 1
+  minutos = 129
+  id_fonte = "370399"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Andriyevskyi"
+  pos = "MF"
+  idade = 32
+  ovr = 61
+  pot = 61
+  valor = 800000
+  partidas = 6
+  minutos = 521
+  gols = 1
+  id_fonte = "207074"
+
+  [[clubes.jogadores]]
+  nome = "Borys Krushynskyi"
+  pos = "DM"
+  idade = 24
+  ovr = 60
+  pot = 62
+  valor = 1500000
+  partidas = 5
+  minutos = 450
+  id_fonte = "844373"
+
+  [[clubes.jogadores]]
+  nome = "Igor Krasnopir"
+  pos = "FW"
+  idade = 23
+  ovr = 60
+  pot = 62
+  valor = 2000000
+  partidas = 7
+  minutos = 634
+  gols = 6
+  id_fonte = "1045187"
+
+  [[clubes.jogadores]]
+  nome = "Ilir Krasniqi"
+  pos = "CB"
+  idade = 26
+  ovr = 60
+  pot = 61
+  valor = 1000000
+  partidas = 4
+  minutos = 396
+  id_fonte = "624808"
+
+  [[clubes.jogadores]]
+  nome = "Oleg Kudryk"
+  pos = "GK"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 5
+  minutos = 450
+  id_fonte = "341485"
+
+  [[clubes.jogadores]]
+  nome = "Lindon Emërllahu"
+  pos = "MF"
+  idade = 23
+  ovr = 59
+  pot = 63
+  valor = 2000000
+  partidas = 4
+  minutos = 396
+  gols = 1
+  id_fonte = "892105"
+
+  [[clubes.jogadores]]
+  nome = "Andrusw Araujo"
+  pos = "DM"
+  idade = 23
+  ovr = 58
+  pot = 64
+  valor = 2000000
+  partidas = 2
+  minutos = 201
+  id_fonte = "892097"
+
+  [[clubes.jogadores]]
+  nome = "Maksym Bragaru"
+  pos = "WG"
+  idade = 24
+  ovr = 58
+  pot = 60
+  valor = 1500000
+  partidas = 4
+  minutos = 317
+  gols = 1
+  id_fonte = "695310"
+
+  [[clubes.jogadores]]
+  nome = "Volodymyr Shepelev"
+  pos = "MF"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 700000
+  partidas = 1
+  minutos = 4
+  id_fonte = "294746"
+
+  [[clubes.jogadores]]
+  nome = "Mykola Gayduchyk"
+  pos = "FW"
+  idade = 26
+  ovr = 57
+  pot = 58
+  valor = 1000000
+  partidas = 3
+  minutos = 309
+  gols = 2
+  id_fonte = "860701"
+
+  [[clubes.jogadores]]
+  nome = "Oleg Fedor"
+  pos = "MF"
+  idade = 22
+  ovr = 57
+  pot = 60
+  valor = 1200000
+  partidas = 6
+  minutos = 537
+  gols = 2
+  id_fonte = "773961"
+
+  [[clubes.jogadores]]
+  nome = "Vladyslav Veleten"
+  pos = "WG"
+  idade = 23
+  ovr = 57
+  pot = 60
+  valor = 1500000
+  partidas = 5
+  minutos = 487
+  gols = 2
+  id_fonte = "729781"
+
+  [[clubes.jogadores]]
+  nome = "Giorgi Maisuradze"
+  pos = "FB"
+  idade = 24
+  ovr = 56
+  pot = 59
+  valor = 800000
+  partidas = 4
+  minutos = 399
+  gols = 1
+  id_fonte = "888342"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Filippov"
+  pos = "FW"
+  idade = 33
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 1
+  minutos = 72
+  gols = 1
+  id_fonte = "237623"
+
+  [[clubes.jogadores]]
+  nome = "Ruslan Babenko"
+  pos = "MF"
+  idade = 34
+  ovr = 56
+  pot = 56
+  valor = 250000
+  partidas = 6
+  minutos = 548
+  id_fonte = "94928"
+
+  [[clubes.jogadores]]
+  nome = "João Vialle"
+  pos = "CB"
+  idade = 24
+  ovr = 50
+  pot = 55
+  valor = 400000
+  partidas = 3
+  minutos = 38
+  id_fonte = "880458"
+
+  [[clubes.jogadores]]
+  nome = "Borel Tomandzoto"
+  pos = "MF"
+  idade = 24
+  ovr = 49
+  pot = 53
+  valor = 300000
+  partidas = 2
+  minutos = 173
+  id_fonte = "836428"
+
+  [[clubes.jogadores]]
+  nome = "Nazar Makarenko"
+  pos = "GK"
+  idade = 19
+  ovr = 42
+  pot = 58
+  valor = 500000
+  id_fonte = "1241968"
+
+  [[clubes.jogadores]]
+  nome = "Béni Makouana"
+  pos = "WG"
+  idade = 23
+  ovr = 41
+  pot = 49
+  valor = 200000
+  id_fonte = "624920"
+
+  [[clubes.jogadores]]
+  nome = "Denys Gryshkevych"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 51
+  valor = 200000
+  partidas = 1
+  minutos = 15
+  id_fonte = "1121513"
+
+  [[clubes.jogadores]]
+  nome = "Kiril Kobernyuk"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 48
+  valor = 100000
+  partidas = 1
+  minutos = 55
+  id_fonte = "1250366"
+
+  [[clubes.jogadores]]
+  nome = "Yaroslav Karaman"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 52
+  valor = 300000
+  partidas = 2
+  minutos = 171
+  id_fonte = "1294033"
+
+[[clubes]]
+nome = "Kharkiv"
+forca = 62.2
+valor_elenco = 30350000
+cores = ["#FEBC02", "#38091D"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Georgiy Yermakov"
+  pos = "GK"
+  idade = 24
+  ovr = 70
+  pot = 71
+  valor = 3000000
+  partidas = 8
+  minutos = 720
+  id_fonte = "775709"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Kalyuzhnyi"
+  pos = "MF"
+  idade = 28
+  ovr = 66
+  pot = 66
+  valor = 2000000
+  partidas = 8
+  minutos = 716
+  gols = 1
+  id_fonte = "343151"
+
+  [[clubes.jogadores]]
+  nome = "Ilya Krupskyi"
+  pos = "FB"
+  idade = 21
+  ovr = 63
+  pot = 65
+  valor = 2000000
+  partidas = 8
+  minutos = 720
+  gols = 1
+  id_fonte = "889438"
+
+  [[clubes.jogadores]]
+  nome = "Yevgen Pavlyuk"
+  pos = "CB"
+  idade = 24
+  ovr = 63
+  pot = 64
+  valor = 1500000
+  partidas = 8
+  minutos = 706
+  gols = 2
+  id_fonte = "771914"
+
+  [[clubes.jogadores]]
+  nome = "Artem Smolyakov"
+  pos = "FB"
+  idade = 23
+  ovr = 62
+  pot = 64
+  valor = 1500000
+  partidas = 7
+  minutos = 617
+  gols = 1
+  id_fonte = "962090"
+
+  [[clubes.jogadores]]
+  nome = "Peter Itodo"
+  pos = "FW"
+  idade = 23
+  ovr = 62
+  pot = 64
+  valor = 2500000
+  partidas = 6
+  minutos = 501
+  gols = 5
+  id_fonte = "1179658"
+
+  [[clubes.jogadores]]
+  nome = "Danylo Varakuta"
+  pos = "GK"
+  idade = 24
+  ovr = 61
+  pot = 62
+  valor = 800000
+  partidas = 32
+  minutos = 2880
+  id_fonte = "678503"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Martynyuk"
+  pos = "FB"
+  idade = 24
+  ovr = 61
+  pot = 64
+  valor = 1500000
+  partidas = 3
+  minutos = 238
+  id_fonte = "719652"
+
+  [[clubes.jogadores]]
+  nome = "Baton Zabergja"
+  pos = "WG"
+  idade = 25
+  ovr = 60
+  pot = 61
+  valor = 1500000
+  partidas = 5
+  minutos = 430
+  gols = 6
+  id_fonte = "755164"
+
+  [[clubes.jogadores]]
+  nome = "Denys Antyukh"
+  pos = "WG"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 1000000
+  partidas = 2
+  minutos = 142
+  gols = 1
+  id_fonte = "383325"
+
+  [[clubes.jogadores]]
+  nome = "Volodymyr Salyuk"
+  pos = "CB"
+  idade = 24
+  ovr = 60
+  pot = 61
+  valor = 1000000
+  partidas = 4
+  minutos = 315
+  gols = 1
+  id_fonte = "930106"
+
+  [[clubes.jogadores]]
+  nome = "Carlos Paraco"
+  pos = "FW"
+  idade = 22
+  ovr = 59
+  pot = 61
+  valor = 1500000
+  partidas = 7
+  minutos = 618
+  gols = 3
+  id_fonte = "885150"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Yatsyk"
+  pos = "MF"
+  idade = 23
+  ovr = 59
+  pot = 64
+  valor = 1800000
+  partidas = 3
+  minutos = 283
+  id_fonte = "726019"
+
+  [[clubes.jogadores]]
+  nome = "Rafael Profini"
+  pos = "DM"
+  idade = 23
+  ovr = 59
+  pot = 65
+  valor = 2000000
+  partidas = 2
+  minutos = 186
+  id_fonte = "1158799"
+
+  [[clubes.jogadores]]
+  nome = "Ermir Rashica"
+  pos = "WG"
+  idade = 22
+  ovr = 57
+  pot = 59
+  valor = 1200000
+  partidas = 2
+  minutos = 209
+  gols = 1
+  id_fonte = "972535"
+
+  [[clubes.jogadores]]
+  nome = "Ramik Gadzhyev"
+  pos = "WG"
+  idade = 21
+  ovr = 56
+  pot = 61
+  valor = 1500000
+  partidas = 5
+  minutos = 483
+  gols = 2
+  id_fonte = "1158515"
+
+  [[clubes.jogadores]]
+  nome = "Artem Shabanov"
+  pos = "CB"
+  idade = 34
+  ovr = 55
+  pot = 55
+  valor = 200000
+  partidas = 6
+  minutos = 576
+  gols = 1
+  id_fonte = "236468"
+
+  [[clubes.jogadores]]
+  nome = "Igor Kogut"
+  pos = "MF"
+  idade = 30
+  ovr = 55
+  pot = 55
+  valor = 400000
+  partidas = 3
+  minutos = 27
+  id_fonte = "448868"
+
+  [[clubes.jogadores]]
+  nome = "Nicolás Arévalo"
+  pos = "DM"
+  idade = 23
+  ovr = 54
+  pot = 60
+  valor = 900000
+  partidas = 3
+  minutos = 34
+  id_fonte = "981181"
+
+  [[clubes.jogadores]]
+  nome = "Valeriy Dubko"
+  pos = "CB"
+  idade = 25
+  ovr = 54
+  pot = 57
+  valor = 500000
+  partidas = 2
+  minutos = 144
+  id_fonte = "787776"
+
+  [[clubes.jogadores]]
+  nome = "Sebastián Castillo"
+  pos = "WG"
+  idade = 21
+  ovr = 47
+  pot = 55
+  valor = 700000
+  partidas = 3
+  minutos = 257
+  gols = 1
+  id_fonte = "1031575"
+
+  [[clubes.jogadores]]
+  nome = "Yaroslav Protsenko"
+  pos = "GK"
+  idade = 24
+  ovr = 47
+  pot = 50
+  valor = 150000
+  partidas = 3
+  minutos = 270
+  id_fonte = "917809"
+
+  [[clubes.jogadores]]
+  nome = "Cauan Baptistella"
+  pos = "AM"
+  idade = 18
+  ovr = 42
+  pot = 58
+  valor = 1000000
+  partidas = 3
+  minutos = 268
+  gols = 1
+  id_fonte = "1275071"
+
+  [[clubes.jogadores]]
+  nome = "Matviy Panchenko"
+  pos = "MF"
+  idade = 20
+  ovr = 40
+  pot = 48
+  valor = 200000
+  partidas = 2
+  minutos = 172
+  id_fonte = "1078831"
+
+[[clubes]]
+nome = "LNZ Cherkasy"
+forca = 60.2
+valor_elenco = 20000000
+cores = ["#624A81", "#B6ABC5"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Denys Kuzyk"
+  pos = "AM"
+  idade = 24
+  ovr = 65
+  pot = 66
+  valor = 2000000
+  partidas = 9
+  minutos = 804
+  gols = 3
+  id_fonte = "723621"
+
+  [[clubes.jogadores]]
+  nome = "Roman Didyk"
+  pos = "CB"
+  idade = 23
+  ovr = 64
+  pot = 66
+  valor = 1500000
+  partidas = 8
+  minutos = 720
+  gols = 1
+  id_fonte = "702561"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Drambayev"
+  pos = "FB"
+  idade = 25
+  ovr = 63
+  pot = 64
+  valor = 1200000
+  partidas = 10
+  minutos = 876
+  id_fonte = "623319"
+
+  [[clubes.jogadores]]
+  nome = "Artur Ryabov"
+  pos = "MF"
+  idade = 26
+  ovr = 62
+  pot = 62
+  valor = 1200000
+  partidas = 10
+  minutos = 920
+  gols = 2
+  id_fonte = "633850"
+
+  [[clubes.jogadores]]
+  nome = "Nazariy Muravskyi"
+  pos = "CB"
+  idade = 26
+  ovr = 62
+  pot = 63
+  valor = 1000000
+  partidas = 9
+  minutos = 840
+  gols = 1
+  id_fonte = "533318"
+
+  [[clubes.jogadores]]
+  nome = "Oleg Gorin"
+  pos = "CB"
+  idade = 26
+  ovr = 62
+  pot = 63
+  valor = 1000000
+  partidas = 2
+  minutos = 210
+  gols = 1
+  id_fonte = "539738"
+
+  [[clubes.jogadores]]
+  nome = "Mark Assinor"
+  pos = "FW"
+  idade = 26
+  ovr = 60
+  pot = 60
+  valor = 1200000
+  partidas = 6
+  minutos = 580
+  gols = 9
+  id_fonte = "1033040"
+
+  [[clubes.jogadores]]
+  nome = "Muharrem Jashari"
+  pos = "AM"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 1000000
+  partidas = 1
+  minutos = 133
+  gols = 3
+  id_fonte = "517284"
+
+  [[clubes.jogadores]]
+  nome = "Yegor Tverdokhlib"
+  pos = "AM"
+  idade = 25
+  ovr = 58
+  pot = 61
+  valor = 1200000
+  partidas = 2
+  minutos = 190
+  gols = 1
+  id_fonte = "758845"
+
+  [[clubes.jogadores]]
+  nome = "Oleksiy Palamarchuk"
+  pos = "GK"
+  idade = 35
+  ovr = 57
+  pot = 57
+  valor = 200000
+  partidas = 4
+  minutos = 390
+  id_fonte = "58939"
+
+  [[clubes.jogadores]]
+  nome = "Adam Yakubu"
+  pos = "DM"
+  idade = 21
+  ovr = 55
+  pot = 57
+  valor = 700000
+  partidas = 9
+  minutos = 782
+  id_fonte = "882089"
+
+  [[clubes.jogadores]]
+  nome = "Dmytro Ledviy"
+  pos = "GK"
+  idade = 23
+  ovr = 55
+  pot = 58
+  valor = 500000
+  partidas = 6
+  minutos = 540
+  id_fonte = "937917"
+
+  [[clubes.jogadores]]
+  nome = "Shota Nonikashvili"
+  pos = "DM"
+  idade = 25
+  ovr = 55
+  pot = 58
+  valor = 700000
+  partidas = 11
+  minutos = 1011
+  gols = 3
+  id_fonte = "530673"
+
+  [[clubes.jogadores]]
+  nome = "Tedi Cara"
+  pos = "WG"
+  idade = 26
+  ovr = 55
+  pot = 57
+  valor = 800000
+  partidas = 4
+  minutos = 379
+  gols = 1
+  id_fonte = "646153"
+
+  [[clubes.jogadores]]
+  nome = "Yevgeniy Pastukh"
+  pos = "AM"
+  idade = 22
+  ovr = 55
+  pot = 58
+  valor = 900000
+  partidas = 6
+  minutos = 538
+  gols = 1
+  id_fonte = "1061628"
+
+  [[clubes.jogadores]]
+  nome = "Talles Brener"
+  pos = "AM"
+  idade = 28
+  ovr = 54
+  pot = 54
+  valor = 500000
+  partidas = 4
+  minutos = 332
+  gols = 2
+  id_fonte = "740732"
+
+  [[clubes.jogadores]]
+  nome = "Gennadiy Pasich"
+  pos = "AM"
+  idade = 33
+  ovr = 53
+  pot = 53
+  valor = 300000
+  partidas = 10
+  minutos = 918
+  gols = 1
+  id_fonte = "315236"
+
+  [[clubes.jogadores]]
+  nome = "Cody David"
+  pos = "FW"
+  idade = 25
+  ovr = 52
+  pot = 55
+  valor = 700000
+  partidas = 3
+  minutos = 269
+  id_fonte = "503727"
+
+  [[clubes.jogadores]]
+  nome = "Ajdi Dajko"
+  pos = "CB"
+  idade = 23
+  ovr = 51
+  pot = 57
+  valor = 600000
+  partidas = 2
+  minutos = 155
+  gols = 1
+  id_fonte = "628329"
+
+  [[clubes.jogadores]]
+  nome = "Artur Mykytyshyn"
+  pos = "WG"
+  idade = 23
+  ovr = 49
+  pot = 54
+  valor = 700000
+  partidas = 2
+  minutos = 208
+  gols = 1
+  id_fonte = "726036"
+
+  [[clubes.jogadores]]
+  nome = "Papa Ndiaga Yade"
+  pos = "WG"
+  idade = 26
+  ovr = 48
+  pot = 50
+  valor = 400000
+  partidas = 2
+  minutos = 175
+  gols = 1
+  id_fonte = "568702"
+
+  [[clubes.jogadores]]
+  nome = "Bogdan Slyubyk"
+  pos = "CB"
+  idade = 22
+  ovr = 47
+  pot = 57
+  valor = 600000
+  partidas = 2
+  minutos = 35
+  id_fonte = "717199"
+
+  [[clubes.jogadores]]
+  nome = "Vitaliy Roman"
+  pos = "FB"
+  idade = 23
+  ovr = 47
+  pot = 55
+  valor = 500000
+  id_fonte = "726038"
+
+  [[clubes.jogadores]]
+  nome = "Kirill Samoylenko"
+  pos = "GK"
+  idade = 25
+  ovr = 44
+  pot = 46
+  valor = 100000
+  id_fonte = "812170"
+
+  [[clubes.jogadores]]
+  nome = "Andriy Kitela"
+  pos = "FB"
+  idade = 21
+  ovr = 43
+  pot = 54
+  valor = 500000
+  partidas = 2
+  minutos = 12
+  id_fonte = "776033"
+
+[[clubes]]
+nome = "Karpaty Lviv"
+forca = 59.2
+valor_elenco = 16000000
+cores = ["#04794D", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Vladyslav Baboglo"
+  pos = "CB"
+  idade = 27
+  ovr = 64
+  pot = 64
+  valor = 1500000
+  partidas = 9
+  minutos = 810
+  gols = 3
+  id_fonte = "567873"
+
+  [[clubes.jogadores]]
+  nome = "Iván Calero"
+  pos = "FB"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 700000
+  partidas = 7
+  minutos = 632
+  gols = 1
+  id_fonte = "212849"
+
+  [[clubes.jogadores]]
+  nome = "Denys Marchenko"
+  pos = "GK"
+  idade = 19
+  ovr = 60
+  pot = 65
+  valor = 1500000
+  partidas = 6
+  minutos = 540
+  id_fonte = "1159511"
+
+  [[clubes.jogadores]]
+  nome = "Roman Vantukh"
+  pos = "FB"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 700000
+  partidas = 6
+  minutos = 556
+  gols = 2
+  id_fonte = "396536"
+
+  [[clubes.jogadores]]
+  nome = "Moha Moukhliss"
+  pos = "MF"
+  idade = 26
+  ovr = 59
+  pot = 59
+  valor = 800000
+  partidas = 8
+  minutos = 710
+  id_fonte = "495622"
+
+  [[clubes.jogadores]]
+  nome = "Xeber Alkain"
+  pos = "WG"
+  idade = 29
+  ovr = 59
+  pot = 59
+  valor = 800000
+  partidas = 7
+  minutos = 655
+  gols = 2
+  id_fonte = "572271"
+
+  [[clubes.jogadores]]
+  nome = "Ambrosiy Chachua"
+  pos = "AM"
+  idade = 32
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 9
+  minutos = 783
+  gols = 2
+  id_fonte = "212232"
+
+  [[clubes.jogadores]]
+  nome = "Denys Miroshnichenko"
+  pos = "FB"
+  idade = 31
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 3
+  minutos = 249
+  gols = 1
+  id_fonte = "244262"
+
+  [[clubes.jogadores]]
+  nome = "Joaquinete"
+  pos = "WG"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 700000
+  partidas = 1
+  minutos = 105
+  id_fonte = "1007020"
+
+  [[clubes.jogadores]]
+  nome = "Nazariy Rusyn"
+  pos = "FW"
+  idade = 27
+  ovr = 58
+  pot = 58
+  valor = 800000
+  partidas = 8
+  minutos = 678
+  gols = 3
+  id_fonte = "366729"
+
+  [[clubes.jogadores]]
+  nome = "Rostyslav Lyakh"
+  pos = "FB"
+  idade = 25
+  ovr = 58
+  pot = 59
+  valor = 700000
+  partidas = 6
+  minutos = 507
+  id_fonte = "533537"
+
+  [[clubes.jogadores]]
+  nome = "Jean Pedroso"
+  pos = "CB"
+  idade = 22
+  ovr = 57
+  pot = 61
+  valor = 900000
+  partidas = 5
+  minutos = 473
+  gols = 3
+  id_fonte = "1090422"
+
+  [[clubes.jogadores]]
+  nome = "Yan Kostenko"
+  pos = "AM"
+  idade = 23
+  ovr = 57
+  pot = 59
+  valor = 1000000
+  partidas = 3
+  minutos = 267
+  gols = 2
+  id_fonte = "794617"
+
+  [[clubes.jogadores]]
+  nome = "Fellipe Vieira"
+  pos = "AM"
+  idade = 21
+  ovr = 55
+  pot = 59
+  valor = 1000000
+  partidas = 6
+  minutos = 516
+  gols = 4
+  id_fonte = "1097103"
+
+  [[clubes.jogadores]]
+  nome = "Tymur Stetskov"
+  pos = "CB"
+  idade = 28
+  ovr = 55
+  pot = 55
+  valor = 300000
+  partidas = 4
+  minutos = 360
+  id_fonte = "549960"
+
+  [[clubes.jogadores]]
+  nome = "Joseph Séry"
+  pos = "FW"
+  idade = 26
+  ovr = 52
+  pot = 53
+  valor = 350000
+  partidas = 4
+  minutos = 357
+  gols = 2
+  id_fonte = "807692"
+
+  [[clubes.jogadores]]
+  nome = "Vitaliy Kholod"
+  pos = "CB"
+  idade = 22
+  ovr = 51
+  pot = 58
+  valor = 600000
+  partidas = 1
+  minutos = 8
+  id_fonte = "1050852"
+
+  [[clubes.jogadores]]
+  nome = "Marko Sapuga"
+  pos = "DM"
+  idade = 23
+  ovr = 50
+  pot = 56
+  valor = 500000
+  partidas = 1
+  minutos = 116
+  id_fonte = "892049"
+
+  [[clubes.jogadores]]
+  nome = "Roman Mysak"
+  pos = "GK"
+  idade = 35
+  ovr = 50
+  pot = 50
+  valor = 50000
+  partidas = 3
+  minutos = 270
+  id_fonte = "117481"
+
+  [[clubes.jogadores]]
+  nome = "Yaroslav Karabin"
+  pos = "FW"
+  idade = 23
+  ovr = 48
+  pot = 54
+  valor = 500000
+  partidas = 1
+  minutos = 64
+  id_fonte = "789583"
+
+  [[clubes.jogadores]]
+  nome = "Bruno Iglesias"
+  pos = "AM"
+  idade = 23
+  ovr = 47
+  pot = 54
+  valor = 400000
+  partidas = 2
+  minutos = 135
+  gols = 1
+  id_fonte = "668182"
+
+  [[clubes.jogadores]]
+  nome = "Yuriy-Volodymyr Gereta"
+  pos = "GK"
+  idade = 22
+  ovr = 47
+  pot = 57
+  valor = 400000
+  id_fonte = "717394"
+
+  [[clubes.jogadores]]
+  nome = "Anton Zhylkin"
+  pos = "GK"
+  idade = 23
+  ovr = 43
+  pot = 51
+  valor = 150000
+  id_fonte = "924466"
+
+  [[clubes.jogadores]]
+  nome = "Eriki"
+  pos = "DM"
+  idade = 21
+  ovr = 42
+  pot = 53
+  valor = 300000
+  partidas = 1
+  minutos = 91
+  id_fonte = "1362423"
+
+  [[clubes.jogadores]]
+  nome = "Andriy Buleza"
+  pos = "FB"
+  idade = 22
+  ovr = 40
+  pot = 47
+  valor = 100000
+  partidas = 1
+  minutos = 19
+  id_fonte = "708242"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Chaban"
+  pos = "MF"
+  idade = 20
+  ovr = 40
+  pot = 46
+  valor = 100000
+  partidas = 1
+  minutos = 26
+  id_fonte = "1073028"
+
+  [[clubes.jogadores]]
+  nome = "Mykola Kyrychok"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 49
+  valor = 150000
+  partidas = 2
+  minutos = 180
+  id_fonte = "1138480"
+
+  [[clubes.jogadores]]
+  nome = "Yuriy Kokodynyak"
+  pos = "FB"
+  idade = 19
+  ovr = 40
+  pot = 47
+  valor = 100000
+  partidas = 1
+  minutos = 90
+  id_fonte = "1290890"
+
+[[clubes]]
+nome = "Zorya Lugansk"
+forca = 58.3
+valor_elenco = 13050000
+cores = ["#4D0B09", "#B9534C"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Jordan"
+  pos = "CB"
+  idade = 27
+  ovr = 62
+  pot = 63
+  valor = 1000000
+  partidas = 7
+  minutos = 630
+  gols = 2
+  id_fonte = "546532"
+
+  [[clubes.jogadores]]
+  nome = "Jakov Basic"
+  pos = "DM"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 700000
+  partidas = 4
+  minutos = 392
+  id_fonte = "656172"
+
+  [[clubes.jogadores]]
+  nome = "Juninho"
+  pos = "FB"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 3
+  minutos = 274
+  gols = 1
+  id_fonte = "606952"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Saputin"
+  pos = "GK"
+  idade = 22
+  ovr = 60
+  pot = 63
+  valor = 900000
+  partidas = 3
+  minutos = 270
+  id_fonte = "936008"
+
+  [[clubes.jogadores]]
+  nome = "Andrija Janjic"
+  pos = "CB"
+  idade = 24
+  ovr = 59
+  pot = 61
+  valor = 800000
+  partidas = 6
+  minutos = 540
+  gols = 2
+  id_fonte = "603126"
+
+  [[clubes.jogadores]]
+  nome = "Bogdan Kushnirenko"
+  pos = "DM"
+  idade = 30
+  ovr = 59
+  pot = 59
+  valor = 500000
+  partidas = 4
+  minutos = 405
+  gols = 1
+  id_fonte = "428603"
+
+  [[clubes.jogadores]]
+  nome = "Artem Machelyuk"
+  pos = "FB"
+  idade = 26
+  ovr = 58
+  pot = 59
+  valor = 600000
+  partidas = 6
+  minutos = 575
+  id_fonte = "807731"
+
+  [[clubes.jogadores]]
+  nome = "Dejan Popara"
+  pos = "DM"
+  idade = 23
+  ovr = 58
+  pot = 60
+  valor = 800000
+  partidas = 6
+  minutos = 525
+  gols = 2
+  id_fonte = "620722"
+
+  [[clubes.jogadores]]
+  nome = "Vasyl Kravets"
+  pos = "FB"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 2
+  minutos = 222
+  id_fonte = "245048"
+
+  [[clubes.jogadores]]
+  nome = "Vladyslav Rybak"
+  pos = "GK"
+  idade = 25
+  ovr = 57
+  pot = 60
+  valor = 500000
+  partidas = 4
+  minutos = 321
+  id_fonte = "880039"
+
+  [[clubes.jogadores]]
+  nome = "Artem Slesar"
+  pos = "WG"
+  idade = 21
+  ovr = 55
+  pot = 57
+  valor = 800000
+  partidas = 5
+  minutos = 483
+  gols = 3
+  id_fonte = "935109"
+
+  [[clubes.jogadores]]
+  nome = "Domagoj Jelavic"
+  pos = "WG"
+  idade = 24
+  ovr = 55
+  pot = 56
+  valor = 600000
+  partidas = 6
+  minutos = 580
+  gols = 1
+  id_fonte = "888190"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Nesterenko"
+  pos = "AM"
+  idade = 23
+  ovr = 55
+  pot = 57
+  valor = 600000
+  partidas = 7
+  minutos = 637
+  gols = 1
+  id_fonte = "887142"
+
+  [[clubes.jogadores]]
+  nome = "Kyrylo Dryshlyuk"
+  pos = "MF"
+  idade = 27
+  ovr = 55
+  pot = 55
+  valor = 400000
+  partidas = 2
+  minutos = 163
+  gols = 1
+  id_fonte = "501417"
+
+  [[clubes.jogadores]]
+  nome = "Pylyp Budkivskyi"
+  pos = "FW"
+  idade = 34
+  ovr = 55
+  pot = 55
+  valor = 250000
+  partidas = 7
+  minutos = 590
+  gols = 3
+  id_fonte = "99863"
+
+  [[clubes.jogadores]]
+  nome = "Gerson Rodrigues"
+  pos = "FW"
+  idade = 31
+  ovr = 54
+  pot = 54
+  valor = 300000
+  partidas = 1
+  minutos = 34
+  id_fonte = "282734"
+
+  [[clubes.jogadores]]
+  nome = "Vladlen Yurchenko"
+  pos = "AM"
+  idade = 32
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 1
+  minutos = 133
+  id_fonte = "157373"
+
+  [[clubes.jogadores]]
+  nome = "Ítalo"
+  pos = "FB"
+  idade = 24
+  ovr = 53
+  pot = 57
+  valor = 500000
+  partidas = 2
+  minutos = 202
+  id_fonte = "1094948"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Eskinja"
+  pos = "CB"
+  idade = 23
+  ovr = 52
+  pot = 58
+  valor = 500000
+  partidas = 2
+  minutos = 180
+  id_fonte = "794896"
+
+  [[clubes.jogadores]]
+  nome = "Igor Perduta"
+  pos = "FB"
+  idade = 35
+  ovr = 52
+  pot = 52
+  valor = 100000
+  partidas = 6
+  minutos = 576
+  gols = 1
+  id_fonte = "201671"
+
+  [[clubes.jogadores]]
+  nome = "Anton Glushchenko"
+  pos = "AM"
+  idade = 22
+  ovr = 50
+  pot = 55
+  valor = 500000
+  partidas = 4
+  minutos = 352
+  gols = 1
+  id_fonte = "717392"
+
+  [[clubes.jogadores]]
+  nome = "Igor Gorbach"
+  pos = "FW"
+  idade = 22
+  ovr = 49
+  pot = 56
+  valor = 600000
+  partidas = 3
+  minutos = 251
+  gols = 3
+  id_fonte = "774067"
+
+  [[clubes.jogadores]]
+  nome = "llya Karavashchenko"
+  pos = "GK"
+  idade = 25
+  ovr = 49
+  pot = 52
+  valor = 150000
+  partidas = 2
+  minutos = 219
+  id_fonte = "623318"
+
+  [[clubes.jogadores]]
+  nome = "Maksym Boyko"
+  pos = "MF"
+  idade = 22
+  ovr = 45
+  pot = 52
+  valor = 250000
+  partidas = 3
+  minutos = 242
+  gols = 1
+  id_fonte = "940850"
+
+  [[clubes.jogadores]]
+  nome = "Artem Serdyuk"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 44
+  valor = 50000
+  partidas = 1
+  minutos = 21
+  id_fonte = "1178141"
+
+  [[clubes.jogadores]]
+  nome = "Fedir Zadorozhnyi"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 44
+  valor = 100000
+  partidas = 1
+  minutos = 93
+  gols = 1
+  id_fonte = "1262359"
+
+  [[clubes.jogadores]]
+  nome = "Sallieu Bah"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 52
+  valor = 300000
+  partidas = 3
+  minutos = 265
+  id_fonte = "1195407"
+
+[[clubes]]
+nome = "Kolos Kovalivka"
+forca = 57.9
+valor_elenco = 11980000
+cores = ["#000404", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Andriy Ponedelnik"
+  pos = "FB"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 700000
+  partidas = 4
+  minutos = 315
+  id_fonte = "522833"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Pakholyuk"
+  pos = "GK"
+  idade = 22
+  ovr = 61
+  pot = 63
+  valor = 1000000
+  partidas = 5
+  minutos = 450
+  id_fonte = "1083190"
+
+  [[clubes.jogadores]]
+  nome = "Elias Telles"
+  pos = "DM"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 750000
+  partidas = 6
+  minutos = 542
+  gols = 3
+  id_fonte = "642947"
+
+  [[clubes.jogadores]]
+  nome = "Mykyta Burda"
+  pos = "CB"
+  idade = 31
+  ovr = 59
+  pot = 59
+  valor = 400000
+  partidas = 3
+  minutos = 278
+  gols = 1
+  id_fonte = "213865"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Demchenko"
+  pos = "DM"
+  idade = 30
+  ovr = 59
+  pot = 59
+  valor = 500000
+  partidas = 7
+  minutos = 621
+  gols = 2
+  id_fonte = "463845"
+
+  [[clubes.jogadores]]
+  nome = "Eduard Kozik"
+  pos = "CB"
+  idade = 23
+  ovr = 58
+  pot = 60
+  valor = 700000
+  partidas = 3
+  minutos = 304
+  gols = 1
+  id_fonte = "708240"
+
+  [[clubes.jogadores]]
+  nome = "Nika Gagnidze"
+  pos = "MF"
+  idade = 25
+  ovr = 58
+  pot = 59
+  valor = 800000
+  partidas = 1
+  minutos = 75
+  id_fonte = "658060"
+
+  [[clubes.jogadores]]
+  nome = "Arinaldo Rrapaj"
+  pos = "AM"
+  idade = 25
+  ovr = 57
+  pot = 58
+  valor = 700000
+  partidas = 6
+  minutos = 560
+  gols = 1
+  id_fonte = "608760"
+
+  [[clubes.jogadores]]
+  nome = "Yuriy Klymchuk"
+  pos = "FW"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 600000
+  partidas = 5
+  minutos = 430
+  gols = 2
+  id_fonte = "501612"
+
+  [[clubes.jogadores]]
+  nome = "Ibrahim Kane"
+  pos = "AM"
+  idade = 26
+  ovr = 56
+  pot = 57
+  valor = 600000
+  partidas = 5
+  minutos = 446
+  gols = 2
+  id_fonte = "543380"
+
+  [[clubes.jogadores]]
+  nome = "Andriy Tsurikov"
+  pos = "FB"
+  idade = 33
+  ovr = 55
+  pot = 55
+  valor = 200000
+  partidas = 6
+  minutos = 505
+  gols = 2
+  id_fonte = "155964"
+
+  [[clubes.jogadores]]
+  nome = "Anton Salabay"
+  pos = "WG"
+  idade = 24
+  ovr = 55
+  pot = 56
+  valor = 600000
+  partidas = 7
+  minutos = 610
+  gols = 1
+  id_fonte = "892025"
+
+  [[clubes.jogadores]]
+  nome = "Roman Goncharenko"
+  pos = "CB"
+  idade = 32
+  ovr = 55
+  pot = 55
+  valor = 200000
+  partidas = 7
+  minutos = 633
+  id_fonte = "382895"
+
+  [[clubes.jogadores]]
+  nome = "Valentyn Morgun"
+  pos = "GK"
+  idade = 25
+  ovr = 55
+  pot = 58
+  valor = 400000
+  partidas = 3
+  minutos = 270
+  id_fonte = "539425"
+
+  [[clubes.jogadores]]
+  nome = "Denys Ndukve"
+  pos = "FW"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 500000
+  partidas = 4
+  minutos = 365
+  gols = 2
+  id_fonte = "808971"
+
+  [[clubes.jogadores]]
+  nome = "Dmytro Matsapura"
+  pos = "GK"
+  idade = 26
+  ovr = 52
+  pot = 54
+  valor = 200000
+  partidas = 2
+  minutos = 180
+  id_fonte = "775832"
+
+  [[clubes.jogadores]]
+  nome = "Irgi Kasalla"
+  pos = "AM"
+  idade = 24
+  ovr = 50
+  pot = 54
+  valor = 400000
+  partidas = 2
+  minutos = 187
+  id_fonte = "1057811"
+
+  [[clubes.jogadores]]
+  nome = "Artem Gusol"
+  pos = "WG"
+  idade = 20
+  ovr = 49
+  pot = 56
+  valor = 700000
+  partidas = 1
+  minutos = 47
+  id_fonte = "1134218"
+
+  [[clubes.jogadores]]
+  nome = "Daniil Khrypchuk"
+  pos = "CB"
+  idade = 22
+  ovr = 49
+  pot = 55
+  valor = 350000
+  partidas = 4
+  minutos = 353
+  gols = 1
+  id_fonte = "884849"
+
+  [[clubes.jogadores]]
+  nome = "Zurab Rukhadze"
+  pos = "FB"
+  idade = 23
+  ovr = 48
+  pot = 54
+  valor = 300000
+  partidas = 3
+  minutos = 260
+  id_fonte = "916226"
+
+  [[clubes.jogadores]]
+  nome = "Luka Stankovski"
+  pos = "AM"
+  idade = 24
+  ovr = 47
+  pot = 52
+  valor = 300000
+  partidas = 2
+  minutos = 31
+  id_fonte = "626771"
+
+  [[clubes.jogadores]]
+  nome = "Ardit Tahiri"
+  pos = "FW"
+  idade = 23
+  ovr = 45
+  pot = 51
+  valor = 300000
+  partidas = 2
+  minutos = 154
+  gols = 2
+  id_fonte = "808465"
+
+  [[clubes.jogadores]]
+  nome = "Yegor Popravka"
+  pos = "FB"
+  idade = 22
+  ovr = 41
+  pot = 51
+  valor = 200000
+  partidas = 1
+  minutos = 90
+  id_fonte = "1263365"
+
+  [[clubes.jogadores]]
+  nome = "Daniil Denysenko"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 49
+  valor = 200000
+  partidas = 4
+  minutos = 42
+  gols = 1
+  id_fonte = "1180068"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Savchuk"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 47
+  valor = 100000
+  partidas = 4
+  minutos = 315
+  id_fonte = "1125320"
+
+  [[clubes.jogadores]]
+  nome = "Oleksiy Bezruchuk"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 43
+  valor = 75000
+  partidas = 2
+  minutos = 42
+  id_fonte = "1293390"
+
+  [[clubes.jogadores]]
+  nome = "Vitaliy Katrych"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 49
+  valor = 150000
+  id_fonte = "1065123"
+
+  [[clubes.jogadores]]
+  nome = "Vladyslav Shershen"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 43
+  valor = 50000
+  id_fonte = "1179117"
+
+[[clubes]]
+nome = "Kryvbas Kryvyi Rig"
+forca = 57.7
+valor_elenco = 11500000
+cores = ["#EE1B23", "#434445"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Kemkin"
+  pos = "GK"
+  idade = 24
+  ovr = 66
+  pot = 67
+  valor = 1200000
+  partidas = 8
+  minutos = 720
+  id_fonte = "729638"
+
+  [[clubes.jogadores]]
+  nome = "Volodymyr Vilivald"
+  pos = "CB"
+  idade = 21
+  ovr = 65
+  pot = 67
+  valor = 1800000
+  partidas = 8
+  minutos = 720
+  gols = 2
+  id_fonte = "1140013"
+
+  [[clubes.jogadores]]
+  nome = "Yaroslav Shevchenko"
+  pos = "MF"
+  idade = 20
+  ovr = 59
+  pot = 61
+  valor = 800000
+  partidas = 8
+  minutos = 693
+  gols = 1
+  id_fonte = "1266282"
+
+  [[clubes.jogadores]]
+  nome = "Bar Lin"
+  pos = "WG"
+  idade = 22
+  ovr = 58
+  pot = 62
+  valor = 1000000
+  partidas = 1
+  minutos = 45
+  gols = 5
+  id_fonte = "966009"
+
+  [[clubes.jogadores]]
+  nome = "Giovany Herbert"
+  pos = "AM"
+  idade = 21
+  ovr = 58
+  pot = 60
+  valor = 700000
+  partidas = 7
+  minutos = 661
+  gols = 2
+  id_fonte = "1101761"
+
+  [[clubes.jogadores]]
+  nome = "Roy Nawi"
+  pos = "DM"
+  idade = 22
+  ovr = 58
+  pot = 60
+  valor = 500000
+  partidas = 8
+  minutos = 686
+  gols = 1
+  id_fonte = "966006"
+
+  [[clubes.jogadores]]
+  nome = "Joseph Jones"
+  pos = "CB"
+  idade = 21
+  ovr = 56
+  pot = 61
+  valor = 600000
+  partidas = 5
+  minutos = 428
+  id_fonte = "1053568"
+
+  [[clubes.jogadores]]
+  nome = "Yackson Rivas"
+  pos = "WG"
+  idade = 24
+  ovr = 56
+  pot = 58
+  valor = 500000
+  partidas = 5
+  minutos = 471
+  gols = 2
+  id_fonte = "633683"
+
+  [[clubes.jogadores]]
+  nome = "Denys Pidgurskyi"
+  pos = "DM"
+  idade = 23
+  ovr = 55
+  pot = 60
+  valor = 500000
+  partidas = 4
+  minutos = 362
+  gols = 1
+  id_fonte = "812755"
+
+  [[clubes.jogadores]]
+  nome = "Thiago Borges"
+  pos = "FB"
+  idade = 21
+  ovr = 55
+  pot = 60
+  valor = 500000
+  partidas = 5
+  minutos = 490
+  id_fonte = "1222645"
+
+  [[clubes.jogadores]]
+  nome = "Assane Seck"
+  pos = "WG"
+  idade = 22
+  ovr = 54
+  pot = 58
+  valor = 500000
+  partidas = 5
+  minutos = 487
+  gols = 1
+  id_fonte = "856056"
+
+  [[clubes.jogadores]]
+  nome = "João Machado"
+  pos = "FB"
+  idade = 21
+  ovr = 51
+  pot = 57
+  valor = 300000
+  partidas = 5
+  minutos = 423
+  id_fonte = "1235464"
+
+  [[clubes.jogadores]]
+  nome = "Jimmy Mpanzu"
+  pos = "CB"
+  idade = 24
+  ovr = 50
+  pot = 55
+  valor = 200000
+  partidas = 1
+  minutos = 113
+  id_fonte = "1029599"
+
+  [[clubes.jogadores]]
+  nome = "Volodymyr Mulyk"
+  pos = "FW"
+  idade = 20
+  ovr = 50
+  pot = 56
+  valor = 400000
+  partidas = 5
+  minutos = 440
+  gols = 1
+  id_fonte = "1179284"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Kamenskyi"
+  pos = "AM"
+  idade = 19
+  ovr = 47
+  pot = 57
+  valor = 400000
+  partidas = 3
+  minutos = 301
+  gols = 1
+  id_fonte = "1293294"
+
+  [[clubes.jogadores]]
+  nome = "Santiago Cuiza"
+  pos = "DM"
+  idade = 21
+  ovr = 47
+  pot = 58
+  valor = 400000
+  partidas = 4
+  minutos = 45
+  gols = 1
+  id_fonte = "1015354"
+
+  [[clubes.jogadores]]
+  nome = "Vyacheslav Kulbachuk"
+  pos = "FB"
+  idade = 22
+  ovr = 47
+  pot = 57
+  valor = 300000
+  id_fonte = "1230568"
+
+  [[clubes.jogadores]]
+  nome = "Bogdan Khoma"
+  pos = "GK"
+  idade = 23
+  ovr = 45
+  pot = 53
+  valor = 100000
+  id_fonte = "978659"
+
+  [[clubes.jogadores]]
+  nome = "Shakeone Satchwell"
+  pos = "FW"
+  idade = 22
+  ovr = 44
+  pot = 52
+  valor = 200000
+  partidas = 2
+  minutos = 136
+  id_fonte = "1122399"
+
+  [[clubes.jogadores]]
+  nome = "Dmytro Godya"
+  pos = "AM"
+  idade = 21
+  ovr = 43
+  pot = 54
+  valor = 250000
+  partidas = 2
+  minutos = 12
+  id_fonte = "1130335"
+
+  [[clubes.jogadores]]
+  nome = "Cyprian Kachwele"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 51
+  valor = 150000
+  id_fonte = "1162090"
+
+  [[clubes.jogadores]]
+  nome = "Matviy Bodnar"
+  pos = "FW"
+  idade = 18
+  ovr = 40
+  pot = 51
+  valor = 150000
+  partidas = 4
+  minutos = 43
+  id_fonte = "1293298"
+
+  [[clubes.jogadores]]
+  nome = "Tymur Butenko"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 45
+  valor = 50000
+  partidas = 1
+  minutos = 7
+  id_fonte = "1268326"
+
+[[clubes]]
+nome = "Bukovina Chernivtsi"
+forca = 56.9
+valor_elenco = 9730000
+cores = ["#FFE108", "#1C1C1B"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Andriy Busko"
+  pos = "CB"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 8
+  minutos = 713
+  id_fonte = "524965"
+
+  [[clubes.jogadores]]
+  nome = "Danylo Karas"
+  pos = "CB"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 7
+  minutos = 627
+  id_fonte = "606248"
+
+  [[clubes.jogadores]]
+  nome = "Maksym Zaderaka"
+  pos = "AM"
+  idade = 32
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 5
+  minutos = 446
+  id_fonte = "325429"
+
+  [[clubes.jogadores]]
+  nome = "Mykyta Bezuglyi"
+  pos = "CB"
+  idade = 31
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "289472"
+
+  [[clubes.jogadores]]
+  nome = "Petro Stasyuk"
+  pos = "FB"
+  idade = 31
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 9
+  minutos = 810
+  gols = 1
+  id_fonte = "343622"
+
+  [[clubes.jogadores]]
+  nome = "Vadym Vitenchuk"
+  pos = "DM"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 9
+  minutos = 776
+  gols = 5
+  id_fonte = "641426"
+
+  [[clubes.jogadores]]
+  nome = "Vyacheslav Tankovskyi"
+  pos = "MF"
+  idade = 31
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 4
+  minutos = 333
+  gols = 1
+  id_fonte = "213980"
+
+  [[clubes.jogadores]]
+  nome = "Ilya Putrya"
+  pos = "FB"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 500000
+  partidas = 2
+  minutos = 180
+  id_fonte = "396400"
+
+  [[clubes.jogadores]]
+  nome = "German Penkov"
+  pos = "GK"
+  idade = 32
+  ovr = 56
+  pot = 56
+  valor = 200000
+  partidas = 7
+  minutos = 630
+  id_fonte = "375659"
+
+  [[clubes.jogadores]]
+  nome = "Oleg Kozhushko"
+  pos = "FW"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 600000
+  partidas = 5
+  minutos = 431
+  gols = 1
+  id_fonte = "343492"
+
+  [[clubes.jogadores]]
+  nome = "Danylo Kanevtsev"
+  pos = "GK"
+  idade = 30
+  ovr = 55
+  pot = 55
+  valor = 200000
+  partidas = 2
+  minutos = 180
+  id_fonte = "248930"
+
+  [[clubes.jogadores]]
+  nome = "Oleg Ilyin"
+  pos = "AM"
+  idade = 29
+  ovr = 55
+  pot = 55
+  valor = 400000
+  partidas = 5
+  minutos = 431
+  gols = 2
+  id_fonte = "495923"
+
+  [[clubes.jogadores]]
+  nome = "Vitaliy Dakhnovskyi"
+  pos = "AM"
+  idade = 27
+  ovr = 55
+  pot = 55
+  valor = 500000
+  partidas = 5
+  minutos = 415
+  gols = 18
+  id_fonte = "688714"
+
+  [[clubes.jogadores]]
+  nome = "Vladyslav Pryimak"
+  pos = "CB"
+  idade = 30
+  ovr = 55
+  pot = 55
+  valor = 300000
+  partidas = 2
+  minutos = 183
+  id_fonte = "517081"
+
+  [[clubes.jogadores]]
+  nome = "Yevgen Pidlepenets"
+  pos = "WG"
+  idade = 27
+  ovr = 55
+  pot = 55
+  valor = 500000
+  partidas = 3
+  minutos = 266
+  gols = 9
+  id_fonte = "678783"
+
+  [[clubes.jogadores]]
+  nome = "Bogdan Boychuk"
+  pos = "WG"
+  idade = 30
+  ovr = 54
+  pot = 54
+  valor = 350000
+  partidas = 18
+  minutos = 1621
+  gols = 9
+  id_fonte = "337198"
+
+  [[clubes.jogadores]]
+  nome = "Taras Sakiv"
+  pos = "FB"
+  idade = 28
+  ovr = 54
+  pot = 54
+  valor = 300000
+  partidas = 15
+  minutos = 1346
+  gols = 1
+  id_fonte = "498899"
+
+  [[clubes.jogadores]]
+  nome = "Vitaliy Grusha"
+  pos = "AM"
+  idade = 32
+  ovr = 53
+  pot = 53
+  valor = 250000
+  partidas = 6
+  minutos = 526
+  gols = 1
+  id_fonte = "522328"
+
+  [[clubes.jogadores]]
+  nome = "Mor Talla"
+  pos = "WG"
+  idade = 27
+  ovr = 52
+  pot = 53
+  valor = 400000
+  partidas = 2
+  minutos = 188
+  id_fonte = "996871"
+
+  [[clubes.jogadores]]
+  nome = "Renat Dadashov"
+  pos = "FW"
+  idade = 27
+  ovr = 52
+  pot = 53
+  valor = 400000
+  partidas = 2
+  minutos = 171
+  id_fonte = "335461"
+
+  [[clubes.jogadores]]
+  nome = "Danylo Kravchuk"
+  pos = "FW"
+  idade = 25
+  ovr = 51
+  pot = 54
+  valor = 500000
+  partidas = 2
+  minutos = 194
+  id_fonte = "751363"
+
+  [[clubes.jogadores]]
+  nome = "Mihael Klepac"
+  pos = "WG"
+  idade = 29
+  ovr = 51
+  pot = 51
+  valor = 250000
+  partidas = 3
+  minutos = 240
+  id_fonte = "510263"
+
+  [[clubes.jogadores]]
+  nome = "Edwin Odinaka"
+  pos = "WG"
+  idade = 22
+  ovr = 49
+  pot = 54
+  valor = 500000
+  partidas = 4
+  minutos = 367
+  id_fonte = "1108564"
+
+  [[clubes.jogadores]]
+  nome = "Dmytro Shynkarenko"
+  pos = "FB"
+  idade = 26
+  ovr = 47
+  pot = 49
+  valor = 150000
+  partidas = 6
+  minutos = 536
+  id_fonte = "809236"
+
+  [[clubes.jogadores]]
+  nome = "Arseniy Kilyevyi"
+  pos = "AM"
+  idade = 22
+  ovr = 40
+  pot = 42
+  valor = 25000
+  partidas = 1
+  minutos = 107
+  id_fonte = "935084"
+
+  [[clubes.jogadores]]
+  nome = "Fedir Babak"
+  pos = "MF"
+  idade = 19
+  ovr = 40
+  pot = 44
+  valor = 100000
+  partidas = 5
+  minutos = 33
+  id_fonte = "1112993"
+
+[[clubes]]
+nome = "Epitsentr Kamyanets-Podilskyi"
+forca = 56.3
+valor_elenco = 8450000
+cores = ["#E696C5", "#26203F"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Nil Coch"
+  pos = "CB"
+  idade = 28
+  ovr = 59
+  pot = 59
+  valor = 500000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "534474"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Klymets"
+  pos = "FB"
+  idade = 26
+  ovr = 59
+  pot = 60
+  valor = 600000
+  partidas = 8
+  minutos = 683
+  gols = 2
+  id_fonte = "419118"
+
+  [[clubes.jogadores]]
+  nome = "Igor Kyryukhantsev"
+  pos = "FB"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 4
+  minutos = 385
+  id_fonte = "203855"
+
+  [[clubes.jogadores]]
+  nome = "Serjan Repaj"
+  pos = "CB"
+  idade = 26
+  ovr = 58
+  pot = 59
+  valor = 500000
+  partidas = 6
+  minutos = 552
+  id_fonte = "629716"
+
+  [[clubes.jogadores]]
+  nome = "Jon Ceberio"
+  pos = "MF"
+  idade = 30
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 3
+  minutos = 303
+  gols = 3
+  id_fonte = "386659"
+
+  [[clubes.jogadores]]
+  nome = "Raúl Tavares"
+  pos = "MF"
+  idade = 27
+  ovr = 57
+  pot = 57
+  valor = 500000
+  partidas = 5
+  minutos = 452
+  id_fonte = "677179"
+
+  [[clubes.jogadores]]
+  nome = "Artem Kozak"
+  pos = "AM"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 500000
+  partidas = 5
+  minutos = 486
+  gols = 3
+  id_fonte = "396530"
+
+  [[clubes.jogadores]]
+  nome = "Mykola Myronyuk"
+  pos = "MF"
+  idade = 23
+  ovr = 56
+  pot = 58
+  valor = 600000
+  partidas = 6
+  minutos = 578
+  gols = 1
+  id_fonte = "814830"
+
+  [[clubes.jogadores]]
+  nome = "Nikita Fedotov"
+  pos = "GK"
+  idade = 26
+  ovr = 56
+  pot = 57
+  valor = 300000
+  partidas = 7
+  minutos = 611
+  id_fonte = "574229"
+
+  [[clubes.jogadores]]
+  nome = "Oleg Bilyk"
+  pos = "GK"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 250000
+  partidas = 2
+  minutos = 199
+  id_fonte = "449084"
+
+  [[clubes.jogadores]]
+  nome = "Valeriy Luchkevych"
+  pos = "FB"
+  idade = 30
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 3
+  minutos = 263
+  id_fonte = "248934"
+
+  [[clubes.jogadores]]
+  nome = "Yevgen Zaporozhets"
+  pos = "MF"
+  idade = 32
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 3
+  minutos = 242
+  id_fonte = "380554"
+
+  [[clubes.jogadores]]
+  nome = "Carlos Rojas"
+  pos = "WG"
+  idade = 24
+  ovr = 53
+  pot = 54
+  valor = 500000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "628473"
+
+  [[clubes.jogadores]]
+  nome = "Vadym Sydun"
+  pos = "FW"
+  idade = 21
+  ovr = 53
+  pot = 55
+  valor = 600000
+  partidas = 7
+  minutos = 666
+  gols = 2
+  id_fonte = "1067497"
+
+  [[clubes.jogadores]]
+  nome = "Nene"
+  pos = "WG"
+  idade = 24
+  ovr = 52
+  pot = 54
+  valor = 500000
+  partidas = 5
+  minutos = 449
+  gols = 1
+  id_fonte = "881542"
+
+  [[clubes.jogadores]]
+  nome = "Stepan Grygorashchuk"
+  pos = "CB"
+  idade = 25
+  ovr = 52
+  pot = 54
+  valor = 300000
+  partidas = 3
+  minutos = 249
+  id_fonte = "918615"
+
+  [[clubes.jogadores]]
+  nome = "Vladyslav Moroz"
+  pos = "CB"
+  idade = 24
+  ovr = 52
+  pot = 54
+  valor = 300000
+  partidas = 20
+  minutos = 1800
+  gols = 1
+  id_fonte = "870177"
+
+  [[clubes.jogadores]]
+  nome = "Andriy Lipovuz"
+  pos = "DM"
+  idade = 28
+  ovr = 50
+  pot = 50
+  valor = 200000
+  partidas = 2
+  minutos = 166
+  id_fonte = "730874"
+
+  [[clubes.jogadores]]
+  nome = "Kyrylo Kovalets"
+  pos = "AM"
+  idade = 33
+  ovr = 50
+  pot = 50
+  valor = 150000
+  partidas = 5
+  minutos = 467
+  gols = 1
+  id_fonte = "140676"
+
+  [[clubes.jogadores]]
+  nome = "Daniil Vashchenko"
+  pos = "DM"
+  idade = 20
+  ovr = 45
+  pot = 54
+  valor = 400000
+  partidas = 3
+  minutos = 266
+  id_fonte = "1134676"
+
+  [[clubes.jogadores]]
+  nome = "Maksym Yevpak"
+  pos = "FW"
+  idade = 24
+  ovr = 43
+  pot = 46
+  valor = 200000
+  partidas = 2
+  minutos = 194
+  id_fonte = "1159024"
+
+  [[clubes.jogadores]]
+  nome = "Arseniy Vavshko"
+  pos = "GK"
+  idade = 21
+  ovr = 40
+  pot = 44
+  valor = 82500
+  partidas = 1
+  minutos = 90
+  id_fonte = "1166036"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Bendera"
+  pos = "WG"
+  idade = 23
+  ovr = 40
+  pot = 42
+  valor = 100000
+  partidas = 1
+  minutos = 60
+  id_fonte = "775723"
+
+  [[clubes.jogadores]]
+  nome = "Vitaliy Gorin"
+  pos = "CB"
+  idade = 19
+  ovr = 40
+  pot = 47
+  valor = 150000
+  partidas = 3
+  minutos = 303
+  id_fonte = "1318854"
+
+[[clubes]]
+nome = "NK Veres Rivne"
+forca = 56.2
+valor_elenco = 8300000
+cores = ["#E31D23", "#161512"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Kai Cipot"
+  pos = "CB"
+  idade = 25
+  ovr = 59
+  pot = 59
+  valor = 700000
+  partidas = 6
+  minutos = 540
+  gols = 3
+  id_fonte = "685375"
+
+  [[clubes.jogadores]]
+  nome = "Semen Vovchenko"
+  pos = "CB"
+  idade = 27
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 8
+  minutos = 720
+  id_fonte = "775830"
+
+  [[clubes.jogadores]]
+  nome = "Igor Kharatin"
+  pos = "DM"
+  idade = 31
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 8
+  minutos = 698
+  gols = 2
+  id_fonte = "213976"
+
+  [[clubes.jogadores]]
+  nome = "Konstantinos Stamoulis"
+  pos = "FB"
+  idade = 25
+  ovr = 58
+  pot = 59
+  valor = 700000
+  partidas = 4
+  minutos = 360
+  gols = 1
+  id_fonte = "567505"
+
+  [[clubes.jogadores]]
+  nome = "Valentyn Gorokh"
+  pos = "GK"
+  idade = 25
+  ovr = 58
+  pot = 59
+  valor = 500000
+  partidas = 8
+  minutos = 720
+  id_fonte = "725356"
+
+  [[clubes.jogadores]]
+  nome = "Vitaliy Boyko"
+  pos = "MF"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 600000
+  partidas = 26
+  minutos = 2356
+  gols = 5
+  id_fonte = "521997"
+
+  [[clubes.jogadores]]
+  nome = "Maksym Smiyan"
+  pos = "FB"
+  idade = 24
+  ovr = 57
+  pot = 58
+  valor = 600000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "951439"
+
+  [[clubes.jogadores]]
+  nome = "Vladyslav Sharay"
+  pos = "WG"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 500000
+  partidas = 6
+  minutos = 548
+  gols = 2
+  id_fonte = "520400"
+
+  [[clubes.jogadores]]
+  nome = "André Gonçalves"
+  pos = "WG"
+  idade = 23
+  ovr = 54
+  pot = 56
+  valor = 600000
+  partidas = 7
+  minutos = 656
+  gols = 2
+  id_fonte = "548993"
+
+  [[clubes.jogadores]]
+  nome = "Fabrício Yan"
+  pos = "AM"
+  idade = 22
+  ovr = 53
+  pot = 55
+  valor = 500000
+  partidas = 7
+  minutos = 610
+  gols = 1
+  id_fonte = "1082597"
+
+  [[clubes.jogadores]]
+  nome = "Nathanael Blair"
+  pos = "FW"
+  idade = 22
+  ovr = 50
+  pot = 54
+  valor = 500000
+  partidas = 5
+  minutos = 432
+  id_fonte = "1023268"
+
+  [[clubes.jogadores]]
+  nome = "Danyil Checher"
+  pos = "CB"
+  idade = 21
+  ovr = 48
+  pot = 54
+  valor = 300000
+  partidas = 5
+  minutos = 415
+  gols = 1
+  id_fonte = "1173335"
+
+  [[clubes.jogadores]]
+  nome = "Wesley Pomba"
+  pos = "WG"
+  idade = 24
+  ovr = 48
+  pot = 52
+  valor = 300000
+  partidas = 1
+  minutos = 49
+  gols = 1
+  id_fonte = "574774"
+
+  [[clubes.jogadores]]
+  nome = "Mykhaylo Protasevych"
+  pos = "FB"
+  idade = 21
+  ovr = 47
+  pot = 53
+  valor = 300000
+  partidas = 4
+  minutos = 386
+  gols = 1
+  id_fonte = "935107"
+
+  [[clubes.jogadores]]
+  nome = "Rostyslav Baran"
+  pos = "MF"
+  idade = 21
+  ovr = 46
+  pot = 52
+  valor = 300000
+  partidas = 4
+  minutos = 389
+  id_fonte = "1209124"
+
+  [[clubes.jogadores]]
+  nome = "David Niyo"
+  pos = "MF"
+  idade = 19
+  ovr = 42
+  pot = 52
+  valor = 300000
+  partidas = 3
+  minutos = 268
+  gols = 1
+  id_fonte = "1522779"
+
+  [[clubes.jogadores]]
+  nome = "Alagie Wally"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 44
+  valor = 100000
+  partidas = 2
+  minutos = 26
+  id_fonte = "1417090"
+
+  [[clubes.jogadores]]
+  nome = "Andrey"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 47
+  valor = 100000
+  partidas = 1
+  minutos = 1
+  id_fonte = "1219485"
+
+  [[clubes.jogadores]]
+  nome = "Guilherme Bahia"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 49
+  valor = 200000
+  partidas = 2
+  minutos = 164
+  gols = 1
+  id_fonte = "1253920"
+
+  [[clubes.jogadores]]
+  nome = "Mykyta Aleksandrov"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 44
+  valor = 100000
+  partidas = 2
+  minutos = 211
+  id_fonte = "1122007"
+
+  [[clubes.jogadores]]
+  nome = "Pavlo Bagriy"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 47
+  valor = 100000
+  partidas = 1
+  minutos = 51
+  gols = 1
+  id_fonte = "1291383"
+
+  [[clubes.jogadores]]
+  nome = "Pavlo Stefanyuk"
+  pos = "GK"
+  idade = 21
+  ovr = 40
+  pot = 45
+  valor = 55000
+  id_fonte = "1081969"
+
+[[clubes]]
+nome = "Chornomorets Odesa"
+forca = 55.6
+valor_elenco = 7250000
+cores = ["#21488F", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Maksym Koval"
+  pos = "GK"
+  idade = 33
+  ovr = 63
+  pot = 63
+  valor = 250000
+  partidas = 2
+  minutos = 180
+  id_fonte = "120211"
+
+  [[clubes.jogadores]]
+  nome = "Vasyl Kurko"
+  pos = "DM"
+  idade = 31
+  ovr = 62
+  pot = 62
+  valor = 400000
+  partidas = 5
+  minutos = 436
+  id_fonte = "512496"
+
+  [[clubes.jogadores]]
+  nome = "Chijioke Aniagboso"
+  pos = "GK"
+  idade = 22
+  ovr = 59
+  pot = 61
+  valor = 400000
+  partidas = 7
+  minutos = 630
+  id_fonte = "1111147"
+
+  [[clubes.jogadores]]
+  nome = "Artur Avagimyan"
+  pos = "AM"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 300000
+  partidas = 4
+  minutos = 381
+  id_fonte = "244904"
+
+  [[clubes.jogadores]]
+  nome = "Danyil Alefirenko"
+  pos = "WG"
+  idade = 26
+  ovr = 57
+  pot = 59
+  valor = 500000
+  partidas = 4
+  minutos = 329
+  id_fonte = "755174"
+
+  [[clubes.jogadores]]
+  nome = "Dmytro Klyots"
+  pos = "MF"
+  idade = 30
+  ovr = 57
+  pot = 57
+  valor = 250000
+  partidas = 3
+  minutos = 244
+  id_fonte = "294188"
+
+  [[clubes.jogadores]]
+  nome = "Maryan Faryna"
+  pos = "CB"
+  idade = 23
+  ovr = 57
+  pot = 59
+  valor = 400000
+  partidas = 6
+  minutos = 540
+  id_fonte = "935039"
+
+  [[clubes.jogadores]]
+  nome = "Moses Jarju"
+  pos = "CB"
+  idade = 22
+  ovr = 57
+  pot = 59
+  valor = 400000
+  partidas = 7
+  minutos = 630
+  id_fonte = "936859"
+
+  [[clubes.jogadores]]
+  nome = "Mykola Kogut"
+  pos = "AM"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 350000
+  partidas = 5
+  minutos = 442
+  gols = 1
+  id_fonte = "426011"
+
+  [[clubes.jogadores]]
+  nome = "Vladyslav Klymenko"
+  pos = "MF"
+  idade = 32
+  ovr = 57
+  pot = 57
+  valor = 200000
+  partidas = 4
+  minutos = 389
+  gols = 1
+  id_fonte = "321146"
+
+  [[clubes.jogadores]]
+  nome = "Christian Mba"
+  pos = "FW"
+  idade = 26
+  ovr = 55
+  pot = 57
+  valor = 400000
+  partidas = 2
+  minutos = 158
+  id_fonte = "1045884"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Kogut"
+  pos = "AM"
+  idade = 28
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 1
+  minutos = 64
+  gols = 3
+  id_fonte = "426008"
+
+  [[clubes.jogadores]]
+  nome = "Oleksiy Gusev"
+  pos = "FB"
+  idade = 21
+  ovr = 52
+  pot = 60
+  valor = 500000
+  partidas = 3
+  minutos = 241
+  id_fonte = "955349"
+
+  [[clubes.jogadores]]
+  nome = "Giorgi Robakidze"
+  pos = "MF"
+  idade = 21
+  ovr = 51
+  pot = 55
+  valor = 300000
+  partidas = 6
+  minutos = 503
+  gols = 1
+  id_fonte = "983434"
+
+  [[clubes.jogadores]]
+  nome = "Kiril Popov"
+  pos = "FW"
+  idade = 23
+  ovr = 51
+  pot = 54
+  valor = 300000
+  partidas = 6
+  minutos = 499
+  gols = 1
+  id_fonte = "726035"
+
+  [[clubes.jogadores]]
+  nome = "Vitaliy Faraseyenko"
+  pos = "AM"
+  idade = 23
+  ovr = 51
+  pot = 55
+  valor = 300000
+  partidas = 5
+  minutos = 407
+  gols = 1
+  id_fonte = "923514"
+
+  [[clubes.jogadores]]
+  nome = "Andriy Khoma"
+  pos = "FW"
+  idade = 24
+  ovr = 50
+  pot = 54
+  valor = 300000
+  partidas = 1
+  minutos = 66
+  gols = 4
+  id_fonte = "702335"
+
+  [[clubes.jogadores]]
+  nome = "Vladyslav Gerych"
+  pos = "WG"
+  idade = 20
+  ovr = 49
+  pot = 54
+  valor = 300000
+  partidas = 1
+  minutos = 90
+  gols = 8
+  id_fonte = "1141487"
+
+  [[clubes.jogadores]]
+  nome = "Maksym Melnychenko"
+  pos = "DM"
+  idade = 21
+  ovr = 44
+  pot = 56
+  valor = 300000
+  id_fonte = "717391"
+
+  [[clubes.jogadores]]
+  nome = "Sergiy Korniychuk"
+  pos = "FB"
+  idade = 22
+  ovr = 44
+  pot = 52
+  valor = 150000
+  partidas = 2
+  minutos = 155
+  id_fonte = "1159925"
+
+  [[clubes.jogadores]]
+  nome = "Jerry Yoka"
+  pos = "FW"
+  idade = 20
+  ovr = 43
+  pot = 52
+  valor = 250000
+  partidas = 3
+  minutos = 276
+  id_fonte = "1284125"
+
+  [[clubes.jogadores]]
+  nome = "Nazar Bayda"
+  pos = "GK"
+  idade = 25
+  ovr = 43
+  pot = 47
+  valor = 50000
+  id_fonte = "926641"
+
+  [[clubes.jogadores]]
+  nome = "Oleg Pushkaryov"
+  pos = "WG"
+  idade = 22
+  ovr = 43
+  pot = 49
+  valor = 150000
+  partidas = 4
+  minutos = 324
+  id_fonte = "717413"
+
+  [[clubes.jogadores]]
+  nome = "Magomed Kratov"
+  pos = "CB"
+  idade = 22
+  ovr = 42
+  pot = 49
+  valor = 100000
+  partidas = 8
+  minutos = 725
+  id_fonte = "1165884"
+
+  [[clubes.jogadores]]
+  nome = "Muhammed Jobe"
+  pos = "DM"
+  idade = 22
+  ovr = 41
+  pot = 49
+  valor = 113928
+  partidas = 1
+  minutos = 127
+  id_fonte = "1111910"
+
+  [[clubes.jogadores]]
+  nome = "Yevgeniy Ryazantsev"
+  pos = "WG"
+  idade = 24
+  ovr = 41
+  pot = 46
+  valor = 100000
+  partidas = 2
+  minutos = 202
+  gols = 1
+  id_fonte = "669312"
+
+  [[clubes.jogadores]]
+  nome = "Artem Prysyazhnyuk"
+  pos = "MF"
+  idade = 21
+  ovr = 40
+  pot = 43
+  valor = 55000
+  id_fonte = "1240467"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Pshenychnyuk"
+  pos = "AM"
+  idade = 20
+  ovr = 40
+  pot = 47
+  valor = 100000
+  partidas = 1
+  minutos = 62
+  id_fonte = "1290268"
+
+[[clubes]]
+nome = "Obolon Kyiv"
+forca = 55.1
+valor_elenco = 6550000
+cores = ["#E02328", "#225231"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Nazariy Fedorivskyi"
+  pos = "GK"
+  idade = 30
+  ovr = 63
+  pot = 63
+  valor = 500000
+  partidas = 6
+  minutos = 585
+  gols = 1
+  id_fonte = "305418"
+
+  [[clubes.jogadores]]
+  nome = "Pavlo Polegenko"
+  pos = "FB"
+  idade = 31
+  ovr = 57
+  pot = 57
+  valor = 300000
+  partidas = 6
+  minutos = 555
+  gols = 1
+  id_fonte = "216579"
+
+  [[clubes.jogadores]]
+  nome = "Kyrylo Prokopchuk"
+  pos = "CB"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 300000
+  partidas = 8
+  minutos = 720
+  id_fonte = "572399"
+
+  [[clubes.jogadores]]
+  nome = "Maksym Chekh"
+  pos = "DM"
+  idade = 27
+  ovr = 56
+  pot = 57
+  valor = 400000
+  partidas = 4
+  minutos = 372
+  gols = 1
+  id_fonte = "396401"
+
+  [[clubes.jogadores]]
+  nome = "Yevgeniy Shevchenko"
+  pos = "FB"
+  idade = 30
+  ovr = 56
+  pot = 56
+  valor = 300000
+  partidas = 3
+  minutos = 255
+  id_fonte = "363740"
+
+  [[clubes.jogadores]]
+  nome = "Dmytro Myshnyov"
+  pos = "MF"
+  idade = 32
+  ovr = 55
+  pot = 55
+  valor = 250000
+  partidas = 5
+  minutos = 437
+  id_fonte = "212243"
+
+  [[clubes.jogadores]]
+  nome = "Dmytro Kapinus"
+  pos = "FB"
+  idade = 23
+  ovr = 54
+  pot = 56
+  valor = 400000
+  partidas = 6
+  minutos = 585
+  id_fonte = "718408"
+
+  [[clubes.jogadores]]
+  nome = "Taras Moroz"
+  pos = "DM"
+  idade = 30
+  ovr = 54
+  pot = 54
+  valor = 250000
+  partidas = 3
+  minutos = 259
+  id_fonte = "522832"
+
+  [[clubes.jogadores]]
+  nome = "Denys Ustymenko"
+  pos = "FW"
+  idade = 27
+  ovr = 53
+  pot = 54
+  valor = 400000
+  partidas = 5
+  minutos = 438
+  gols = 6
+  id_fonte = "622410"
+
+  [[clubes.jogadores]]
+  nome = "Oleg Slobodyan"
+  pos = "AM"
+  idade = 29
+  ovr = 53
+  pot = 53
+  valor = 300000
+  partidas = 5
+  minutos = 473
+  gols = 2
+  id_fonte = "320248"
+
+  [[clubes.jogadores]]
+  nome = "Roman Volokhatyi"
+  pos = "MF"
+  idade = 26
+  ovr = 52
+  pot = 53
+  valor = 300000
+  partidas = 3
+  minutos = 305
+  gols = 2
+  id_fonte = "729196"
+
+  [[clubes.jogadores]]
+  nome = "Sergiy Sukhanov"
+  pos = "FW"
+  idade = 31
+  ovr = 52
+  pot = 52
+  valor = 250000
+  partidas = 4
+  minutos = 321
+  gols = 4
+  id_fonte = "491264"
+
+  [[clubes.jogadores]]
+  nome = "Yegor Prokopenko"
+  pos = "FB"
+  idade = 28
+  ovr = 52
+  pot = 52
+  valor = 200000
+  partidas = 15
+  minutos = 1364
+  id_fonte = "537538"
+
+  [[clubes.jogadores]]
+  nome = "Vitaliy Yermakov"
+  pos = "CB"
+  idade = 34
+  ovr = 51
+  pot = 51
+  valor = 100000
+  partidas = 7
+  minutos = 630
+  id_fonte = "169260"
+
+  [[clubes.jogadores]]
+  nome = "Yevgeniy Morozko"
+  pos = "FB"
+  idade = 33
+  ovr = 50
+  pot = 50
+  valor = 100000
+  partidas = 2
+  minutos = 196
+  id_fonte = "380376"
+
+  [[clubes.jogadores]]
+  nome = "Artem Shulyanskyi"
+  pos = "WG"
+  idade = 25
+  ovr = 47
+  pot = 49
+  valor = 250000
+  partidas = 4
+  minutos = 367
+  id_fonte = "261780"
+
+  [[clubes.jogadores]]
+  nome = "Igor Medynskyi"
+  pos = "WG"
+  idade = 33
+  ovr = 47
+  pot = 47
+  valor = 100000
+  partidas = 2
+  minutos = 144
+  id_fonte = "168830"
+
+  [[clubes.jogadores]]
+  nome = "Maksym Grysyo"
+  pos = "FB"
+  idade = 30
+  ovr = 47
+  pot = 47
+  valor = 100000
+  partidas = 1
+  minutos = 85
+  id_fonte = "448783"
+
+  [[clubes.jogadores]]
+  nome = "Artem Kulakovskyi"
+  pos = "MF"
+  idade = 24
+  ovr = 45
+  pot = 49
+  valor = 200000
+  partidas = 1
+  minutos = 129
+  id_fonte = "745252"
+
+  [[clubes.jogadores]]
+  nome = "Denys Shostak"
+  pos = "AM"
+  idade = 23
+  ovr = 44
+  pot = 51
+  valor = 300000
+  partidas = 1
+  minutos = 90
+  id_fonte = "726016"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Zhovtenko"
+  pos = "CB"
+  idade = 21
+  ovr = 44
+  pot = 52
+  valor = 250000
+  partidas = 3
+  minutos = 262
+  gols = 1
+  id_fonte = "1249850"
+
+  [[clubes.jogadores]]
+  nome = "Andriy Lomnytskyi"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 50
+  valor = 200000
+  partidas = 6
+  minutos = 526
+  id_fonte = "1061435"
+
+  [[clubes.jogadores]]
+  nome = "Andriy Matkevych"
+  pos = "WG"
+  idade = 21
+  ovr = 40
+  pot = 47
+  valor = 200000
+  partidas = 3
+  minutos = 297
+  gols = 1
+  id_fonte = "955213"
+
+  [[clubes.jogadores]]
+  nome = "Denys Teslyuk"
+  pos = "FW"
+  idade = 23
+  ovr = 40
+  pot = 47
+  valor = 200000
+  partidas = 2
+  minutos = 31
+  gols = 1
+  id_fonte = "882717"
+
+  [[clubes.jogadores]]
+  nome = "Kyrylo Barantsov"
+  pos = "GK"
+  idade = 23
+  ovr = 40
+  pot = 47
+  valor = 100000
+  partidas = 2
+  minutos = 135
+  id_fonte = "1171181"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Feshchenko"
+  pos = "CB"
+  idade = 19
+  ovr = 40
+  pot = 40
+  valor = 50000
+  partidas = 1
+  minutos = 46
+  id_fonte = "1293451"
+
+  [[clubes.jogadores]]
+  nome = "Taras Lyakh"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 44
+  valor = 150000
+  partidas = 2
+  minutos = 218
+  gols = 3
+  id_fonte = "1187437"
+
+  [[clubes.jogadores]]
+  nome = "Vadym Stashkiv"
+  pos = "GK"
+  idade = 19
+  ovr = 40
+  pot = 46
+  valor = 100000
+  partidas = 3
+  minutos = 270
+  id_fonte = "1159736"
+
+[[clubes]]
+nome = "Livyi Bereg Kyiv"
+forca = 55.0
+valor_elenco = 6450000
+cores = ["#FDCB17", "#2C6031"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Andriy Yakymiv"
+  pos = "CB"
+  idade = 29
+  ovr = 59
+  pot = 59
+  valor = 400000
+  partidas = 7
+  minutos = 630
+  gols = 1
+  id_fonte = "521841"
+
+  [[clubes.jogadores]]
+  nome = "Oleg Sokolov"
+  pos = "FB"
+  idade = 27
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 7
+  minutos = 628
+  id_fonte = "577844"
+
+  [[clubes.jogadores]]
+  nome = "Roman Zhmurko"
+  pos = "GK"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 250000
+  partidas = 7
+  minutos = 630
+  id_fonte = "524021"
+
+  [[clubes.jogadores]]
+  nome = "Sidnney"
+  pos = "FB"
+  idade = 26
+  ovr = 57
+  pot = 58
+  valor = 400000
+  partidas = 6
+  minutos = 495
+  gols = 1
+  id_fonte = "662418"
+
+  [[clubes.jogadores]]
+  nome = "Dmytro Shastal"
+  pos = "WG"
+  idade = 30
+  ovr = 56
+  pot = 56
+  valor = 350000
+  partidas = 5
+  minutos = 491
+  gols = 1
+  id_fonte = "359796"
+
+  [[clubes.jogadores]]
+  nome = "Valeriy Bondarenko"
+  pos = "CB"
+  idade = 32
+  ovr = 56
+  pot = 56
+  valor = 200000
+  partidas = 4
+  minutos = 360
+  id_fonte = "365540"
+
+  [[clubes.jogadores]]
+  nome = "Nazariy Vorobchak"
+  pos = "AM"
+  idade = 26
+  ovr = 55
+  pot = 55
+  valor = 350000
+  partidas = 7
+  minutos = 658
+  gols = 2
+  id_fonte = "765401"
+
+  [[clubes.jogadores]]
+  nome = "Valeriy Samar"
+  pos = "CB"
+  idade = 25
+  ovr = 55
+  pot = 56
+  valor = 300000
+  partidas = 2
+  minutos = 156
+  gols = 2
+  id_fonte = "825229"
+
+  [[clubes.jogadores]]
+  nome = "Ilya Kvasnytsya"
+  pos = "WG"
+  idade = 23
+  ovr = 54
+  pot = 59
+  valor = 700000
+  partidas = 4
+  minutos = 324
+  id_fonte = "936825"
+
+  [[clubes.jogadores]]
+  nome = "Artem Chelyadin"
+  pos = "DM"
+  idade = 26
+  ovr = 53
+  pot = 54
+  valor = 250000
+  partidas = 2
+  minutos = 218
+  id_fonte = "511909"
+
+  [[clubes.jogadores]]
+  nome = "Ilya Kovalenko"
+  pos = "CB"
+  idade = 25
+  ovr = 53
+  pot = 55
+  valor = 250000
+  partidas = 5
+  minutos = 446
+  id_fonte = "775904"
+
+  [[clubes.jogadores]]
+  nome = "Sergiy Kosovskyi"
+  pos = "DM"
+  idade = 28
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 2
+  minutos = 171
+  gols = 1
+  id_fonte = "343316"
+
+  [[clubes.jogadores]]
+  nome = "Diego Henrique"
+  pos = "AM"
+  idade = 23
+  ovr = 52
+  pot = 55
+  valor = 400000
+  partidas = 5
+  minutos = 425
+  gols = 3
+  id_fonte = "1375876"
+
+  [[clubes.jogadores]]
+  nome = "Nicholas Osei Bonsu"
+  pos = "FB"
+  idade = 25
+  ovr = 52
+  pot = 54
+  valor = 250000
+  partidas = 3
+  minutos = 285
+  id_fonte = "955684"
+
+  [[clubes.jogadores]]
+  nome = "Yevgen Banada"
+  pos = "MF"
+  idade = 34
+  ovr = 52
+  pot = 52
+  valor = 100000
+  partidas = 5
+  minutos = 487
+  gols = 1
+  id_fonte = "242272"
+
+  [[clubes.jogadores]]
+  nome = "Vikentiy Voloshyn"
+  pos = "AM"
+  idade = 25
+  ovr = 50
+  pot = 52
+  valor = 250000
+  partidas = 3
+  minutos = 311
+  gols = 2
+  id_fonte = "470831"
+
+  [[clubes.jogadores]]
+  nome = "Ernest Astakhov"
+  pos = "FB"
+  idade = 28
+  ovr = 49
+  pot = 49
+  valor = 100000
+  partidas = 1
+  minutos = 12
+  id_fonte = "702562"
+
+  [[clubes.jogadores]]
+  nome = "Bogdan Chuev"
+  pos = "CB"
+  idade = 26
+  ovr = 47
+  pot = 49
+  valor = 100000
+  partidas = 5
+  minutos = 491
+  id_fonte = "539435"
+
+  [[clubes.jogadores]]
+  nome = "Nazar Voloshyn"
+  pos = "FW"
+  idade = 26
+  ovr = 47
+  pot = 48
+  valor = 150000
+  partidas = 2
+  minutos = 158
+  gols = 4
+  id_fonte = "1165942"
+
+  [[clubes.jogadores]]
+  nome = "Wendell"
+  pos = "FW"
+  idade = 20
+  ovr = 47
+  pot = 52
+  valor = 300000
+  partidas = 4
+  minutos = 381
+  gols = 5
+  id_fonte = "1224806"
+
+  [[clubes.jogadores]]
+  nome = "Oleg Kryvoruchko"
+  pos = "MF"
+  idade = 21
+  ovr = 45
+  pot = 51
+  valor = 200000
+  partidas = 2
+  minutos = 153
+  gols = 2
+  id_fonte = "964036"
+
+  [[clubes.jogadores]]
+  nome = "Séverin Tatolna"
+  pos = "FB"
+  idade = 24
+  ovr = 43
+  pot = 48
+  valor = 100000
+  partidas = 2
+  minutos = 173
+  id_fonte = "958383"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Domolega"
+  pos = "GK"
+  idade = 23
+  ovr = 42
+  pot = 50
+  valor = 100000
+  id_fonte = "1072234"
+
+  [[clubes.jogadores]]
+  nome = "Denys Ignatenko"
+  pos = "GK"
+  idade = 23
+  ovr = 40
+  pot = 45
+  valor = 50000
+  partidas = 1
+  minutos = 90
+  id_fonte = "726012"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Kotukha"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 42
+  valor = 50000
+  partidas = 2
+  minutos = 3
+  id_fonte = "1289131"
+
+  [[clubes.jogadores]]
+  nome = "Pape Fall"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 44
+  valor = 100000
+  partidas = 2
+  minutos = 216
+  id_fonte = "1543501"
+
+  [[clubes.jogadores]]
+  nome = "Roman Geresh"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 44
+  valor = 100000
+  partidas = 1
+  minutos = 15
+  id_fonte = "1116893"
+
+  [[clubes.jogadores]]
+  nome = "Vitaliy Tishchenko"
+  pos = "DM"
+  idade = 20
+  ovr = 40
+  pot = 42
+  valor = 50000
+  partidas = 1
+  minutos = 6
+  id_fonte = "1293328"
+
+[[clubes]]
+nome = "Kudrivka"
+forca = 54.6
+valor_elenco = 5950000
+cores = ["#0D459C", "#FDFEFD"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Myroslav Serdyuk"
+  pos = "CB"
+  idade = 27
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 5
+  minutos = 457
+  id_fonte = "1052387"
+
+  [[clubes.jogadores]]
+  nome = "Artur Dumanyuk"
+  pos = "DM"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 350000
+  partidas = 5
+  minutos = 479
+  gols = 1
+  id_fonte = "522329"
+
+  [[clubes.jogadores]]
+  nome = "Bogdan Veklyak"
+  pos = "CB"
+  idade = 27
+  ovr = 56
+  pot = 56
+  valor = 300000
+  partidas = 4
+  minutos = 358
+  gols = 1
+  id_fonte = "752691"
+
+  [[clubes.jogadores]]
+  nome = "Anton Yashkov"
+  pos = "GK"
+  idade = 34
+  ovr = 55
+  pot = 55
+  valor = 100000
+  partidas = 6
+  minutos = 540
+  id_fonte = "225632"
+
+  [[clubes.jogadores]]
+  nome = "Dmytro Semenov"
+  pos = "CB"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 300000
+  partidas = 2
+  minutos = 225
+  id_fonte = "495918"
+
+  [[clubes.jogadores]]
+  nome = "Maksym Melnychuk"
+  pos = "FB"
+  idade = 27
+  ovr = 55
+  pot = 56
+  valor = 300000
+  partidas = 1
+  minutos = 90
+  id_fonte = "461666"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Belyaev"
+  pos = "AM"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 400000
+  partidas = 6
+  minutos = 533
+  gols = 2
+  id_fonte = "524031"
+
+  [[clubes.jogadores]]
+  nome = "Yevgeniy Smyrnyi"
+  pos = "MF"
+  idade = 28
+  ovr = 55
+  pot = 55
+  valor = 300000
+  partidas = 5
+  minutos = 452
+  gols = 2
+  id_fonte = "396532"
+
+  [[clubes.jogadores]]
+  nome = "Kaya Makosso"
+  pos = "DM"
+  idade = 28
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 2
+  minutos = 135
+  id_fonte = "548653"
+
+  [[clubes.jogadores]]
+  nome = "Raymond Owusu"
+  pos = "FW"
+  idade = 24
+  ovr = 53
+  pot = 55
+  valor = 400000
+  partidas = 6
+  minutos = 546
+  gols = 1
+  id_fonte = "837005"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Petryak"
+  pos = "WG"
+  idade = 32
+  ovr = 52
+  pot = 52
+  valor = 150000
+  partidas = 5
+  minutos = 422
+  id_fonte = "203074"
+
+  [[clubes.jogadores]]
+  nome = "Mykola Ogarkov"
+  pos = "FB"
+  idade = 21
+  ovr = 52
+  pot = 57
+  valor = 400000
+  partidas = 6
+  minutos = 504
+  gols = 1
+  id_fonte = "935053"
+
+  [[clubes.jogadores]]
+  nome = "Yevgeniy Pasich"
+  pos = "FB"
+  idade = 33
+  ovr = 52
+  pot = 52
+  valor = 100000
+  partidas = 6
+  minutos = 540
+  id_fonte = "315237"
+
+  [[clubes.jogadores]]
+  nome = "Denys Svityukha"
+  pos = "WG"
+  idade = 24
+  ovr = 51
+  pot = 54
+  valor = 350000
+  partidas = 4
+  minutos = 400
+  gols = 1
+  id_fonte = "722371"
+
+  [[clubes.jogadores]]
+  nome = "Yuriy Potimkov"
+  pos = "CB"
+  idade = 24
+  ovr = 50
+  pot = 53
+  valor = 200000
+  partidas = 4
+  minutos = 360
+  id_fonte = "951690"
+
+  [[clubes.jogadores]]
+  nome = "Kostyantyn Bychek"
+  pos = "WG"
+  idade = 26
+  ovr = 49
+  pot = 51
+  valor = 200000
+  partidas = 1
+  minutos = 87
+  id_fonte = "913115"
+
+  [[clubes.jogadores]]
+  nome = "Mykola Vechurko"
+  pos = "MF"
+  idade = 34
+  ovr = 48
+  pot = 48
+  valor = 50000
+  partidas = 1
+  minutos = 125
+  id_fonte = "216842"
+
+  [[clubes.jogadores]]
+  nome = "Reynaldiño Verley"
+  pos = "FW"
+  idade = 24
+  ovr = 47
+  pot = 52
+  valor = 250000
+  partidas = 2
+  minutos = 223
+  gols = 1
+  id_fonte = "942475"
+
+  [[clubes.jogadores]]
+  nome = "Kyrylo Lavuta"
+  pos = "GK"
+  idade = 24
+  ovr = 46
+  pot = 50
+  valor = 100000
+  partidas = 2
+  minutos = 180
+  id_fonte = "1080041"
+
+  [[clubes.jogadores]]
+  nome = "Rodion Plaksa"
+  pos = "AM"
+  idade = 24
+  ovr = 46
+  pot = 51
+  valor = 200000
+  partidas = 2
+  minutos = 155
+  id_fonte = "830079"
+
+  [[clubes.jogadores]]
+  nome = "Kyrylo Sigeev"
+  pos = "MF"
+  idade = 22
+  ovr = 45
+  pot = 51
+  valor = 200000
+  partidas = 3
+  minutos = 288
+  id_fonte = "935047"
+
+  [[clubes.jogadores]]
+  nome = "Sergiy Sten"
+  pos = "WG"
+  idade = 24
+  ovr = 45
+  pot = 50
+  valor = 200000
+  partidas = 1
+  minutos = 59
+  id_fonte = "923512"
+
+  [[clubes.jogadores]]
+  nome = "Roman Solodarenko"
+  pos = "FW"
+  idade = 42
+  ovr = 43
+  pot = 43
+  valor = 27500
+  id_fonte = "1175525"
+
+  [[clubes.jogadores]]
+  nome = "Matías Rosales"
+  pos = "FB"
+  idade = 21
+  ovr = 42
+  pot = 50
+  valor = 150000
+  partidas = 3
+  minutos = 254
+  id_fonte = "1270732"
+
+  [[clubes.jogadores]]
+  nome = "Victor Adeoye"
+  pos = "DM"
+  idade = 20
+  ovr = 42
+  pot = 52
+  valor = 200000
+  partidas = 3
+  minutos = 226
+  id_fonte = "1448405"
+
+  [[clubes.jogadores]]
+  nome = "Anton Demchenko"
+  pos = "FW"
+  idade = 21
+  ovr = 40
+  pot = 41
+  valor = 50000
+  partidas = 1
+  minutos = 98
+  id_fonte = "1186330"
+
+  [[clubes.jogadores]]
+  nome = "Demyan Yesin"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 42
+  valor = 50000
+  partidas = 2
+  minutos = 28
+  gols = 1
+  id_fonte = "1138724"
+
+  [[clubes.jogadores]]
+  nome = "Mykhaylo Kulyk"
+  pos = "GK"
+  idade = 21
+  ovr = 40
+  pot = 42
+  valor = 27500
+  id_fonte = "1240468"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Yushchenko"
+  pos = "WG"
+  idade = 21
+  ovr = 40
+  pot = 41
+  valor = 50000
+  partidas = 1
+  minutos = 123
+  id_fonte = "935051"
+

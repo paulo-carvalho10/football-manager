@@ -1,0 +1,4883 @@
+# NO1 -- GERADO por fm.importer. Nao editar a mao: rode o importador.
+#
+# Fonte: Transfermarkt (clube, posicao, idade, valor de mercado, jogos, minutos).
+# ovr e pot sao DERIVADOS por fm/ratings.py a partir desses campos. Sao estimativa, nao
+# rating oficial de ninguem, e a conta esta documentada no modulo.
+#
+# forca do clube = nivel_da_liga + 4.0 * z(ln(valor de elenco) dentro da liga).
+# O NIVEL da liga sai do valor medio de elenco na escala global de todas as competicoes
+# importadas, com o melhor clube do mundo ancorado em 90 -- fazer z so por liga apagava a
+# diferenca entre divisoes e o lanterna da Serie B saia mais forte que o da Serie A.
+# O BETA e proprio desta liga e foi ajustado contra os [alvos] do arquivo dela.
+verificado = false
+fonte = "Transfermarkt NO1 (valores de mercado); ovr/pot derivados por fm.ratings"
+
+[[clubes]]
+nome = "FK Bodø/Glimt"
+forca = 69.3
+valor_elenco = 79180000
+cores = ["#FEE200", "#231F1F"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Patrick Berg"
+  pos = "DM"
+  idade = 28
+  ovr = 74
+  pot = 74
+  valor = 12000000
+  partidas = 38
+  minutos = 3418
+  gols = 2
+  id_fonte = "308439"
+
+  [[clubes.jogadores]]
+  nome = "Jens Petter Hauge"
+  pos = "WG"
+  idade = 26
+  ovr = 72
+  pot = 72
+  valor = 12000000
+  partidas = 31
+  minutos = 2755
+  gols = 12
+  id_fonte = "422355"
+
+  [[clubes.jogadores]]
+  nome = "Fredrik Sjøvold"
+  pos = "FB"
+  idade = 23
+  ovr = 71
+  pot = 72
+  valor = 10000000
+  partidas = 39
+  minutos = 3466
+  gols = 4
+  id_fonte = "912959"
+
+  [[clubes.jogadores]]
+  nome = "Nikita Haikin"
+  pos = "GK"
+  idade = 31
+  ovr = 71
+  pot = 71
+  valor = 3000000
+  partidas = 36
+  minutos = 3285
+  id_fonte = "255440"
+
+  [[clubes.jogadores]]
+  nome = "Odin Bjørtuft"
+  pos = "CB"
+  idade = 27
+  ovr = 70
+  pot = 70
+  valor = 5000000
+  partidas = 40
+  minutos = 3630
+  gols = 2
+  id_fonte = "502558"
+
+  [[clubes.jogadores]]
+  nome = "Fredrik Bjørkan"
+  pos = "FB"
+  idade = 28
+  ovr = 69
+  pot = 69
+  valor = 3500000
+  partidas = 27
+  minutos = 2460
+  gols = 2
+  id_fonte = "364938"
+
+  [[clubes.jogadores]]
+  nome = "Håkon Evjen"
+  pos = "MF"
+  idade = 26
+  ovr = 69
+  pot = 70
+  valor = 5000000
+  partidas = 24
+  minutos = 2130
+  gols = 8
+  id_fonte = "394688"
+
+  [[clubes.jogadores]]
+  nome = "Ole Didrik Blomberg"
+  pos = "WG"
+  idade = 26
+  ovr = 68
+  pot = 69
+  valor = 5000000
+  partidas = 29
+  minutos = 2573
+  gols = 7
+  id_fonte = "644607"
+
+  [[clubes.jogadores]]
+  nome = "Jostein Gundersen"
+  pos = "CB"
+  idade = 30
+  ovr = 67
+  pot = 67
+  valor = 1500000
+  partidas = 14
+  minutos = 1218
+  id_fonte = "342129"
+
+  [[clubes.jogadores]]
+  nome = "Andreas Helmersen"
+  pos = "FW"
+  idade = 28
+  ovr = 66
+  pot = 66
+  valor = 2500000
+  partidas = 15
+  minutos = 1319
+  gols = 15
+  id_fonte = "333012"
+
+  [[clubes.jogadores]]
+  nome = "Isak Dybvik Määttä"
+  pos = "FB"
+  idade = 25
+  ovr = 66
+  pot = 67
+  valor = 2000000
+  partidas = 17
+  minutos = 1573
+  gols = 1
+  id_fonte = "664809"
+
+  [[clubes.jogadores]]
+  nome = "Sondre Auklend"
+  pos = "MF"
+  idade = 23
+  ovr = 66
+  pot = 68
+  valor = 3500000
+  partidas = 25
+  minutos = 2266
+  gols = 4
+  id_fonte = "581112"
+
+  [[clubes.jogadores]]
+  nome = "Sondre Brunstad Fet"
+  pos = "MF"
+  idade = 29
+  ovr = 66
+  pot = 66
+  valor = 1800000
+  partidas = 28
+  minutos = 2495
+  gols = 8
+  id_fonte = "335298"
+
+  [[clubes.jogadores]]
+  nome = "Ola Brynhildsen"
+  pos = "FW"
+  idade = 27
+  ovr = 65
+  pot = 66
+  valor = 2500000
+  partidas = 8
+  minutos = 713
+  gols = 2
+  id_fonte = "499759"
+
+  [[clubes.jogadores]]
+  nome = "Joshua Kitolano"
+  pos = "DM"
+  idade = 25
+  ovr = 64
+  pot = 67
+  valor = 2500000
+  partidas = 2
+  minutos = 196
+  id_fonte = "432694"
+
+  [[clubes.jogadores]]
+  nome = "Ulrik Saltnes"
+  pos = "MF"
+  idade = 33
+  ovr = 63
+  pot = 63
+  valor = 500000
+  partidas = 6
+  minutos = 565
+  gols = 1
+  id_fonte = "201865"
+
+  [[clubes.jogadores]]
+  nome = "Haitam Aleesami"
+  pos = "CB"
+  idade = 35
+  ovr = 61
+  pot = 61
+  valor = 225000
+  partidas = 21
+  minutos = 1927
+  gols = 2
+  id_fonte = "230166"
+
+  [[clubes.jogadores]]
+  nome = "Julian Faye Lund"
+  pos = "GK"
+  idade = 27
+  ovr = 60
+  pot = 61
+  valor = 300000
+  partidas = 4
+  minutos = 405
+  id_fonte = "358726"
+
+  [[clubes.jogadores]]
+  nome = "Villads Nielsen"
+  pos = "CB"
+  idade = 21
+  ovr = 58
+  pot = 67
+  valor = 2300000
+  partidas = 6
+  minutos = 567
+  id_fonte = "953067"
+
+  [[clubes.jogadores]]
+  nome = "August Mikkelsen"
+  pos = "FW"
+  idade = 25
+  ovr = 56
+  pot = 60
+  valor = 500000
+  partidas = 1
+  minutos = 6
+  id_fonte = "600732"
+
+  [[clubes.jogadores]]
+  nome = "Joel Mvuka"
+  pos = "WG"
+  idade = 23
+  ovr = 56
+  pot = 64
+  valor = 1500000
+  partidas = 3
+  minutos = 43
+  id_fonte = "700078"
+
+  [[clubes.jogadores]]
+  nome = "Magnus Riisnæs"
+  pos = "MF"
+  idade = 21
+  ovr = 54
+  pot = 66
+  valor = 2000000
+  partidas = 2
+  minutos = 153
+  gols = 1
+  id_fonte = "715508"
+
+  [[clubes.jogadores]]
+  nome = "Kasper Solhaug"
+  pos = "FB"
+  idade = 19
+  ovr = 42
+  pot = 58
+  valor = 235400
+  id_fonte = "1213616"
+
+  [[clubes.jogadores]]
+  nome = "Assan Sanyang"
+  pos = "MF"
+  idade = 18
+  ovr = 40
+  pot = 57
+  valor = 235400
+  id_fonte = "1594547"
+
+  [[clubes.jogadores]]
+  nome = "Isak Sjong"
+  pos = "GK"
+  idade = 19
+  ovr = 40
+  pot = 54
+  valor = 50000
+  id_fonte = "1109643"
+
+[[clubes]]
+nome = "Viking FK"
+forca = 67.0
+valor_elenco = 56000000
+cores = ["#72121C", "#D4B462"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Henrik Falchener"
+  pos = "CB"
+  idade = 23
+  ovr = 74
+  pot = 75
+  valor = 10000000
+  partidas = 18
+  minutos = 1604
+  gols = 2
+  id_fonte = "743088"
+
+  [[clubes.jogadores]]
+  nome = "Peter Christiansen"
+  pos = "FW"
+  idade = 26
+  ovr = 70
+  pot = 70
+  valor = 6000000
+  partidas = 20
+  minutos = 1812
+  gols = 11
+  id_fonte = "542462"
+
+  [[clubes.jogadores]]
+  nome = "Joe Bell"
+  pos = "DM"
+  idade = 27
+  ovr = 69
+  pot = 70
+  valor = 3500000
+  partidas = 15
+  minutos = 1366
+  id_fonte = "345700"
+
+  [[clubes.jogadores]]
+  nome = "Kristoffer Askildsen"
+  pos = "MF"
+  idade = 25
+  ovr = 69
+  pot = 70
+  valor = 4000000
+  partidas = 23
+  minutos = 2026
+  gols = 5
+  id_fonte = "574495"
+
+  [[clubes.jogadores]]
+  nome = "Gianni Stensness"
+  pos = "CB"
+  idade = 27
+  ovr = 67
+  pot = 67
+  valor = 1800000
+  partidas = 19
+  minutos = 1731
+  gols = 4
+  id_fonte = "627472"
+
+  [[clubes.jogadores]]
+  nome = "Simen Kvia-Egeskog"
+  pos = "MF"
+  idade = 23
+  ovr = 67
+  pot = 69
+  valor = 3500000
+  partidas = 21
+  minutos = 1878
+  gols = 8
+  id_fonte = "893547"
+
+  [[clubes.jogadores]]
+  nome = "Erik Botheim"
+  pos = "FW"
+  idade = 26
+  ovr = 66
+  pot = 68
+  valor = 3500000
+  partidas = 2
+  minutos = 169
+  gols = 2
+  id_fonte = "418559"
+
+  [[clubes.jogadores]]
+  nome = "Henrik Bjørdal"
+  pos = "MF"
+  idade = 29
+  ovr = 66
+  pot = 66
+  valor = 1800000
+  partidas = 2
+  minutos = 218
+  gols = 2
+  id_fonte = "268620"
+
+  [[clubes.jogadores]]
+  nome = "Henrik Heggheim"
+  pos = "FB"
+  idade = 25
+  ovr = 65
+  pot = 66
+  valor = 1800000
+  partidas = 20
+  minutos = 1832
+  gols = 5
+  id_fonte = "790245"
+
+  [[clubes.jogadores]]
+  nome = "Jesper Daland"
+  pos = "CB"
+  idade = 26
+  ovr = 64
+  pot = 66
+  valor = 1500000
+  partidas = 2
+  minutos = 138
+  id_fonte = "418553"
+
+  [[clubes.jogadores]]
+  nome = "Tobias Moi"
+  pos = "MF"
+  idade = 20
+  ovr = 64
+  pot = 71
+  valor = 6000000
+  partidas = 11
+  minutos = 1007
+  id_fonte = "990983"
+
+  [[clubes.jogadores]]
+  nome = "Zlatko Tripic"
+  pos = "WG"
+  idade = 33
+  ovr = 64
+  pot = 64
+  valor = 1000000
+  partidas = 22
+  minutos = 2003
+  gols = 7
+  id_fonte = "195274"
+
+  [[clubes.jogadores]]
+  nome = "Kristoffer Haugen"
+  pos = "FB"
+  idade = 32
+  ovr = 63
+  pot = 63
+  valor = 650000
+  partidas = 15
+  minutos = 1312
+  gols = 3
+  id_fonte = "225823"
+
+  [[clubes.jogadores]]
+  nome = "Lubomir Belko"
+  pos = "GK"
+  idade = 24
+  ovr = 63
+  pot = 66
+  valor = 1200000
+  partidas = 12
+  minutos = 1080
+  id_fonte = "546819"
+
+  [[clubes.jogadores]]
+  nome = "Martin Ove Roseth"
+  pos = "CB"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 800000
+  partidas = 2
+  minutos = 152
+  id_fonte = "392275"
+
+  [[clubes.jogadores]]
+  nome = "Anders Bærtelsen"
+  pos = "CB"
+  idade = 26
+  ovr = 61
+  pot = 62
+  valor = 700000
+  partidas = 12
+  minutos = 1081
+  gols = 1
+  id_fonte = "422947"
+
+  [[clubes.jogadores]]
+  nome = "Arild Østbø"
+  pos = "GK"
+  idade = 35
+  ovr = 59
+  pot = 59
+  valor = 150000
+  partidas = 13
+  minutos = 1170
+  id_fonte = "73327"
+
+  [[clubes.jogadores]]
+  nome = "Sondre Bjørshol"
+  pos = "FB"
+  idade = 32
+  ovr = 59
+  pot = 59
+  valor = 300000
+  partidas = 7
+  minutos = 657
+  gols = 2
+  id_fonte = "338939"
+
+  [[clubes.jogadores]]
+  nome = "Veton Berisha"
+  pos = "FW"
+  idade = 32
+  ovr = 59
+  pot = 59
+  valor = 450000
+  partidas = 2
+  minutos = 159
+  id_fonte = "181985"
+
+  [[clubes.jogadores]]
+  nome = "Herman Haugen"
+  pos = "FB"
+  idade = 26
+  ovr = 58
+  pot = 60
+  valor = 500000
+  partidas = 8
+  minutos = 698
+  gols = 1
+  id_fonte = "674288"
+
+  [[clubes.jogadores]]
+  nome = "Nick D'Agostino"
+  pos = "FW"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 500000
+  partidas = 2
+  minutos = 22
+  id_fonte = "399165"
+
+  [[clubes.jogadores]]
+  nome = "Viljar Vevatne"
+  pos = "FB"
+  idade = 31
+  ovr = 58
+  pot = 58
+  valor = 250000
+  partidas = 3
+  minutos = 285
+  gols = 1
+  id_fonte = "240012"
+
+  [[clubes.jogadores]]
+  nome = "Erlend Jacobsen"
+  pos = "GK"
+  idade = 27
+  ovr = 56
+  pot = 57
+  valor = 222750
+  id_fonte = "510272"
+
+  [[clubes.jogadores]]
+  nome = "Niklas Fuglestad"
+  pos = "WG"
+  idade = 20
+  ovr = 56
+  pot = 64
+  valor = 1800000
+  partidas = 11
+  minutos = 955
+  gols = 3
+  id_fonte = "1253757"
+
+  [[clubes.jogadores]]
+  nome = "Vetle Auklend"
+  pos = "FB"
+  idade = 21
+  ovr = 55
+  pot = 61
+  valor = 700000
+  partidas = 11
+  minutos = 978
+  id_fonte = "1120134"
+
+  [[clubes.jogadores]]
+  nome = "Romano Postema"
+  pos = "FW"
+  idade = 24
+  ovr = 54
+  pot = 60
+  valor = 900000
+  partidas = 1
+  minutos = 70
+  id_fonte = "513330"
+
+  [[clubes.jogadores]]
+  nome = "Jakob Segadal Hansen"
+  pos = "AM"
+  idade = 21
+  ovr = 53
+  pot = 62
+  valor = 1200000
+  partidas = 5
+  minutos = 453
+  id_fonte = "1027708"
+
+  [[clubes.jogadores]]
+  nome = "Essien Bassey"
+  pos = "FB"
+  idade = 19
+  ovr = 46
+  pot = 62
+  valor = 900000
+  id_fonte = "957242"
+
+  [[clubes.jogadores]]
+  nome = "Amin Cosic"
+  pos = "WG"
+  idade = 20
+  ovr = 45
+  pot = 58
+  valor = 600000
+  partidas = 1
+  minutos = 90
+  id_fonte = "1062729"
+
+  [[clubes.jogadores]]
+  nome = "Kelvin Frimpong"
+  pos = "WG"
+  idade = 18
+  ovr = 40
+  pot = 53
+  valor = 222750
+  id_fonte = "1525226"
+
+[[clubes]]
+nome = "Molde FK"
+forca = 65.7
+valor_elenco = 45900000
+cores = ["#156FC3", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Emil Breivik"
+  pos = "AM"
+  idade = 26
+  ovr = 71
+  pot = 71
+  valor = 4000000
+  partidas = 23
+  minutos = 2094
+  gols = 8
+  id_fonte = "538670"
+
+  [[clubes.jogadores]]
+  nome = "Sivert Sira Hansen"
+  pos = "CB"
+  idade = 24
+  ovr = 70
+  pot = 71
+  valor = 3000000
+  partidas = 18
+  minutos = 1646
+  id_fonte = "920456"
+
+  [[clubes.jogadores]]
+  nome = "Birk Risa"
+  pos = "CB"
+  idade = 28
+  ovr = 68
+  pot = 68
+  valor = 1500000
+  partidas = 18
+  minutos = 1619
+  id_fonte = "331575"
+
+  [[clubes.jogadores]]
+  nome = "Samukele Kabini"
+  pos = "FB"
+  idade = 22
+  ovr = 67
+  pot = 70
+  valor = 2500000
+  partidas = 17
+  minutos = 1546
+  gols = 1
+  id_fonte = "1175086"
+
+  [[clubes.jogadores]]
+  nome = "Caleb Zady Sery"
+  pos = "WG"
+  idade = 26
+  ovr = 65
+  pot = 66
+  valor = 1500000
+  partidas = 9
+  minutos = 815
+  gols = 1
+  id_fonte = "617699"
+
+  [[clubes.jogadores]]
+  nome = "Jalal Abdullai"
+  pos = "FW"
+  idade = 21
+  ovr = 65
+  pot = 70
+  valor = 4500000
+  partidas = 12
+  minutos = 1054
+  gols = 4
+  id_fonte = "1152491"
+
+  [[clubes.jogadores]]
+  nome = "Mats Møller Dæhli"
+  pos = "MF"
+  idade = 31
+  ovr = 65
+  pot = 65
+  valor = 700000
+  partidas = 8
+  minutos = 760
+  id_fonte = "190831"
+
+  [[clubes.jogadores]]
+  nome = "Eirik Haugan"
+  pos = "CB"
+  idade = 29
+  ovr = 64
+  pot = 64
+  valor = 600000
+  partidas = 5
+  minutos = 466
+  id_fonte = "308444"
+
+  [[clubes.jogadores]]
+  nome = "Sondre Granaas"
+  pos = "MF"
+  idade = 20
+  ovr = 64
+  pot = 69
+  valor = 3000000
+  partidas = 14
+  minutos = 1236
+  gols = 3
+  id_fonte = "1029788"
+
+  [[clubes.jogadores]]
+  nome = "Albert Posiadala"
+  pos = "GK"
+  idade = 23
+  ovr = 63
+  pot = 66
+  valor = 800000
+  partidas = 16
+  minutos = 1457
+  id_fonte = "712378"
+
+  [[clubes.jogadores]]
+  nome = "Fredrik Kristensen Dahl"
+  pos = "CB"
+  idade = 27
+  ovr = 63
+  pot = 63
+  valor = 600000
+  partidas = 2
+  minutos = 170
+  id_fonte = "578703"
+
+  [[clubes.jogadores]]
+  nome = "Mathias Løvik"
+  pos = "FB"
+  idade = 22
+  ovr = 63
+  pot = 71
+  valor = 3500000
+  partidas = 4
+  minutos = 361
+  id_fonte = "661212"
+
+  [[clubes.jogadores]]
+  nome = "Halldor Stenevik"
+  pos = "AM"
+  idade = 26
+  ovr = 62
+  pot = 62
+  valor = 700000
+  partidas = 13
+  minutos = 1171
+  id_fonte = "400121"
+
+  [[clubes.jogadores]]
+  nome = "Oskar Spiten"
+  pos = "WG"
+  idade = 19
+  ovr = 62
+  pot = 72
+  valor = 6000000
+  partidas = 9
+  minutos = 786
+  gols = 3
+  id_fonte = "1007817"
+
+  [[clubes.jogadores]]
+  nome = "Vebjørn Hoff"
+  pos = "DM"
+  idade = 30
+  ovr = 62
+  pot = 62
+  valor = 450000
+  partidas = 10
+  minutos = 926
+  gols = 1
+  id_fonte = "271755"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Daga"
+  pos = "MF"
+  idade = 19
+  ovr = 61
+  pot = 71
+  valor = 4000000
+  partidas = 9
+  minutos = 778
+  gols = 2
+  id_fonte = "1015612"
+
+  [[clubes.jogadores]]
+  nome = "Eirik Hestad"
+  pos = "WG"
+  idade = 31
+  ovr = 61
+  pot = 61
+  valor = 450000
+  partidas = 14
+  minutos = 1218
+  gols = 8
+  id_fonte = "228069"
+
+  [[clubes.jogadores]]
+  nome = "Mads Kikkenborg"
+  pos = "GK"
+  idade = 26
+  ovr = 61
+  pot = 63
+  valor = 400000
+  partidas = 5
+  minutos = 433
+  id_fonte = "537566"
+
+  [[clubes.jogadores]]
+  nome = "Martin Linnes"
+  pos = "FB"
+  idade = 35
+  ovr = 61
+  pot = 61
+  valor = 200000
+  partidas = 9
+  minutos = 850
+  gols = 1
+  id_fonte = "137582"
+
+  [[clubes.jogadores]]
+  nome = "Kristian Lonebu"
+  pos = "FW"
+  idade = 20
+  ovr = 55
+  pot = 68
+  valor = 3000000
+  partidas = 1
+  minutos = 46
+  gols = 2
+  id_fonte = "1130922"
+
+  [[clubes.jogadores]]
+  nome = "Sander Kilen"
+  pos = "WG"
+  idade = 21
+  ovr = 54
+  pot = 65
+  valor = 1500000
+  partidas = 1
+  minutos = 91
+  id_fonte = "1129400"
+
+  [[clubes.jogadores]]
+  nome = "Niklas Ødegård"
+  pos = "MF"
+  idade = 22
+  ovr = 53
+  pot = 62
+  valor = 600000
+  partidas = 3
+  minutos = 290
+  id_fonte = "914949"
+
+  [[clubes.jogadores]]
+  nome = "Trent Koné-Doherty"
+  pos = "WG"
+  idade = 20
+  ovr = 52
+  pot = 62
+  valor = 800000
+  partidas = 7
+  minutos = 608
+  gols = 6
+  id_fonte = "944140"
+
+  [[clubes.jogadores]]
+  nome = "Seydina Diop"
+  pos = "WG"
+  idade = 21
+  ovr = 50
+  pot = 62
+  valor = 800000
+  partidas = 1
+  minutos = 55
+  gols = 1
+  id_fonte = "1316045"
+
+  [[clubes.jogadores]]
+  nome = "Viktor Bender"
+  pos = "MF"
+  idade = 19
+  ovr = 45
+  pot = 60
+  valor = 400000
+  partidas = 3
+  minutos = 226
+  id_fonte = "1051639"
+
+  [[clubes.jogadores]]
+  nome = "Peder Hoel Lervik"
+  pos = "GK"
+  idade = 21
+  ovr = 44
+  pot = 55
+  valor = 100000
+  partidas = 1
+  minutos = 90
+  id_fonte = "900794"
+
+  [[clubes.jogadores]]
+  nome = "Mads Eikrem Myklebust"
+  pos = "GK"
+  idade = 19
+  ovr = 41
+  pot = 57
+  valor = 153620
+  id_fonte = "1068116"
+
+  [[clubes.jogadores]]
+  nome = "Igor Gosik"
+  pos = "FW"
+  idade = 18
+  ovr = 40
+  pot = 57
+  valor = 300000
+  partidas = 1
+  minutos = 65
+  id_fonte = "1317350"
+
+  [[clubes.jogadores]]
+  nome = "Jonathan Fugelsnes"
+  pos = "WG"
+  idade = 18
+  ovr = 40
+  pot = 54
+  valor = 153620
+  id_fonte = "1191229"
+
+[[clubes]]
+nome = "Rosenborg BK"
+forca = 63.0
+valor_elenco = 30750000
+cores = ["#000000", "#FEFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Amin Chiakha"
+  pos = "FW"
+  idade = 20
+  ovr = 68
+  pot = 71
+  valor = 8000000
+  partidas = 21
+  minutos = 1889
+  gols = 14
+  id_fonte = "1017261"
+
+  [[clubes.jogadores]]
+  nome = "Mads Bomholt"
+  pos = "MF"
+  idade = 20
+  ovr = 66
+  pot = 69
+  valor = 4000000
+  partidas = 20
+  minutos = 1841
+  gols = 2
+  id_fonte = "1048392"
+
+  [[clubes.jogadores]]
+  nome = "Tomas Nemcik"
+  pos = "CB"
+  idade = 25
+  ovr = 66
+  pot = 67
+  valor = 2200000
+  partidas = 24
+  minutos = 2172
+  id_fonte = "482829"
+
+  [[clubes.jogadores]]
+  nome = "Emil Konradsen Ceide"
+  pos = "WG"
+  idade = 25
+  ovr = 64
+  pot = 65
+  valor = 2500000
+  partidas = 26
+  minutos = 2344
+  gols = 6
+  id_fonte = "508371"
+
+  [[clubes.jogadores]]
+  nome = "Simen Bolkan Nordli"
+  pos = "WG"
+  idade = 26
+  ovr = 64
+  pot = 65
+  valor = 2200000
+  partidas = 15
+  minutos = 1341
+  gols = 6
+  id_fonte = "418751"
+
+  [[clubes.jogadores]]
+  nome = "Adrian Pereira"
+  pos = "FB"
+  idade = 27
+  ovr = 62
+  pot = 62
+  valor = 1000000
+  partidas = 16
+  minutos = 1470
+  gols = 1
+  id_fonte = "507310"
+
+  [[clubes.jogadores]]
+  nome = "Leopold Wahlstedt"
+  pos = "GK"
+  idade = 27
+  ovr = 62
+  pot = 63
+  valor = 750000
+  partidas = 22
+  minutos = 2010
+  id_fonte = "441892"
+
+  [[clubes.jogadores]]
+  nome = "Jonas Svensson"
+  pos = "FB"
+  idade = 33
+  ovr = 61
+  pot = 61
+  valor = 450000
+  partidas = 9
+  minutos = 798
+  gols = 1
+  id_fonte = "136184"
+
+  [[clubes.jogadores]]
+  nome = "Ole Selnæs"
+  pos = "DM"
+  idade = 32
+  ovr = 61
+  pot = 61
+  valor = 600000
+  partidas = 21
+  minutos = 1917
+  gols = 1
+  id_fonte = "175961"
+
+  [[clubes.jogadores]]
+  nome = "Aslak Witry"
+  pos = "FB"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 18
+  minutos = 1662
+  gols = 1
+  id_fonte = "313944"
+
+  [[clubes.jogadores]]
+  nome = "Mikkel Konradsen Ceide"
+  pos = "CB"
+  idade = 25
+  ovr = 59
+  pot = 60
+  valor = 700000
+  partidas = 19
+  minutos = 1724
+  gols = 1
+  id_fonte = "794757"
+
+  [[clubes.jogadores]]
+  nome = "Dino Islamovic"
+  pos = "FW"
+  idade = 32
+  ovr = 58
+  pot = 58
+  valor = 450000
+  partidas = 14
+  minutos = 1242
+  gols = 10
+  id_fonte = "208095"
+
+  [[clubes.jogadores]]
+  nome = "Iver Fossum"
+  pos = "MF"
+  idade = 30
+  ovr = 58
+  pot = 58
+  valor = 450000
+  partidas = 13
+  minutos = 1127
+  gols = 3
+  id_fonte = "226450"
+
+  [[clubes.jogadores]]
+  nome = "Mathias Kjølø"
+  pos = "DM"
+  idade = 25
+  ovr = 58
+  pot = 62
+  valor = 1000000
+  partidas = 1
+  minutos = 80
+  id_fonte = "528652"
+
+  [[clubes.jogadores]]
+  nome = "David Duris"
+  pos = "WG"
+  idade = 27
+  ovr = 57
+  pot = 58
+  valor = 700000
+  partidas = 10
+  minutos = 916
+  gols = 1
+  id_fonte = "497543"
+
+  [[clubes.jogadores]]
+  nome = "Jonas Mortensen"
+  pos = "FB"
+  idade = 25
+  ovr = 55
+  pot = 58
+  valor = 500000
+  partidas = 7
+  minutos = 615
+  id_fonte = "492492"
+
+  [[clubes.jogadores]]
+  nome = "Rasmus Sandberg"
+  pos = "GK"
+  idade = 25
+  ovr = 53
+  pot = 57
+  valor = 300000
+  id_fonte = "464467"
+
+  [[clubes.jogadores]]
+  nome = "Tobias Solheim Dahl"
+  pos = "FB"
+  idade = 21
+  ovr = 51
+  pot = 58
+  valor = 600000
+  partidas = 9
+  minutos = 837
+  id_fonte = "932960"
+
+  [[clubes.jogadores]]
+  nome = "Håkon Volden"
+  pos = "CB"
+  idade = 19
+  ovr = 50
+  pot = 62
+  valor = 1000000
+  partidas = 7
+  minutos = 613
+  id_fonte = "1126113"
+
+  [[clubes.jogadores]]
+  nome = "Mark Mampassi"
+  pos = "CB"
+  idade = 23
+  ovr = 49
+  pot = 57
+  valor = 400000
+  partidas = 2
+  minutos = 34
+  id_fonte = "712857"
+
+  [[clubes.jogadores]]
+  nome = "Jesper Reitan-Sunde"
+  pos = "WG"
+  idade = 20
+  ovr = 48
+  pot = 58
+  valor = 800000
+  partidas = 7
+  minutos = 592
+  id_fonte = "944446"
+
+  [[clubes.jogadores]]
+  nome = "Noah Sahsah"
+  pos = "WG"
+  idade = 21
+  ovr = 48
+  pot = 56
+  valor = 600000
+  partidas = 7
+  minutos = 632
+  gols = 5
+  id_fonte = "802516"
+
+  [[clubes.jogadores]]
+  nome = "Johan Bakke"
+  pos = "MF"
+  idade = 22
+  ovr = 47
+  pot = 56
+  valor = 450000
+  partidas = 4
+  minutos = 329
+  id_fonte = "712880"
+
+  [[clubes.jogadores]]
+  nome = "Haakon Sørum"
+  pos = "GK"
+  idade = 20
+  ovr = 41
+  pot = 55
+  valor = 247500
+  id_fonte = "1242549"
+
+  [[clubes.jogadores]]
+  nome = "Aleksander Borgersen"
+  pos = "AM"
+  idade = 17
+  ovr = 40
+  pot = 52
+  valor = 300000
+  id_fonte = "1259945"
+
+  [[clubes.jogadores]]
+  nome = "Elias Slørdal"
+  pos = "MF"
+  idade = 17
+  ovr = 40
+  pot = 52
+  valor = 247500
+  id_fonte = "1272398"
+
+  [[clubes.jogadores]]
+  nome = "Maciej Soboczynski"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 49
+  valor = 200000
+  partidas = 1
+  minutos = 49
+  id_fonte = "1254204"
+
+  [[clubes.jogadores]]
+  nome = "Ulrik Hald-Hernes"
+  pos = "CB"
+  idade = 17
+  ovr = 40
+  pot = 53
+  valor = 247500
+  id_fonte = "1259990"
+
+[[clubes]]
+nome = "SK Brann"
+forca = 62.0
+valor_elenco = 26100000
+cores = ["#E62C31", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Noah Holm"
+  pos = "FW"
+  idade = 25
+  ovr = 68
+  pot = 69
+  valor = 4000000
+  partidas = 29
+  minutos = 2630
+  gols = 9
+  id_fonte = "494177"
+
+  [[clubes.jogadores]]
+  nome = "Jacob Lungi Sørensen"
+  pos = "DM"
+  idade = 28
+  ovr = 65
+  pot = 65
+  valor = 1500000
+  partidas = 34
+  minutos = 3041
+  gols = 3
+  id_fonte = "390664"
+
+  [[clubes.jogadores]]
+  nome = "Kristall Máni Ingason"
+  pos = "AM"
+  idade = 24
+  ovr = 64
+  pot = 66
+  valor = 2500000
+  partidas = 15
+  minutos = 1332
+  gols = 7
+  id_fonte = "490971"
+
+  [[clubes.jogadores]]
+  nome = "Mathias Dyngeland"
+  pos = "GK"
+  idade = 30
+  ovr = 63
+  pot = 63
+  valor = 700000
+  partidas = 32
+  minutos = 2892
+  id_fonte = "228006"
+
+  [[clubes.jogadores]]
+  nome = "Sondre Tronstad"
+  pos = "MF"
+  idade = 31
+  ovr = 63
+  pot = 63
+  valor = 1000000
+  id_fonte = "210348"
+
+  [[clubes.jogadores]]
+  nome = "Sævar Atli Magnússon"
+  pos = "WG"
+  idade = 26
+  ovr = 61
+  pot = 62
+  valor = 1500000
+  partidas = 7
+  minutos = 652
+  gols = 5
+  id_fonte = "399151"
+
+  [[clubes.jogadores]]
+  nome = "Fredrik Pallesen Knudsen"
+  pos = "CB"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 33
+  minutos = 3008
+  gols = 1
+  id_fonte = "347849"
+
+  [[clubes.jogadores]]
+  nome = "Joachim Soltvedt"
+  pos = "FB"
+  idade = 31
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 29
+  minutos = 2571
+  gols = 7
+  id_fonte = "326875"
+
+  [[clubes.jogadores]]
+  nome = "Vetle Dragsnes"
+  pos = "FB"
+  idade = 32
+  ovr = 60
+  pot = 60
+  valor = 500000
+  partidas = 24
+  minutos = 2155
+  gols = 2
+  id_fonte = "320046"
+
+  [[clubes.jogadores]]
+  nome = "Kristian Eriksen"
+  pos = "AM"
+  idade = 31
+  ovr = 59
+  pot = 59
+  valor = 700000
+  partidas = 13
+  minutos = 1211
+  gols = 4
+  id_fonte = "321644"
+
+  [[clubes.jogadores]]
+  nome = "Neraysho Kasanwirjo"
+  pos = "CB"
+  idade = 24
+  ovr = 59
+  pot = 65
+  valor = 1500000
+  partidas = 2
+  minutos = 184
+  id_fonte = "503640"
+
+  [[clubes.jogadores]]
+  nome = "Niklas Castro"
+  pos = "WG"
+  idade = 30
+  ovr = 59
+  pot = 59
+  valor = 800000
+  partidas = 12
+  minutos = 1062
+  gols = 3
+  id_fonte = "410557"
+
+  [[clubes.jogadores]]
+  nome = "Simen Vidtun Nilsen"
+  pos = "GK"
+  idade = 26
+  ovr = 59
+  pot = 60
+  valor = 600000
+  partidas = 10
+  minutos = 858
+  id_fonte = "736962"
+
+  [[clubes.jogadores]]
+  nome = "Thore Pedersen"
+  pos = "CB"
+  idade = 30
+  ovr = 59
+  pot = 59
+  valor = 500000
+  partidas = 28
+  minutos = 2549
+  id_fonte = "268151"
+
+  [[clubes.jogadores]]
+  nome = "Bård Finne"
+  pos = "FW"
+  idade = 31
+  ovr = 58
+  pot = 58
+  valor = 700000
+  partidas = 14
+  minutos = 1271
+  gols = 6
+  id_fonte = "202925"
+
+  [[clubes.jogadores]]
+  nome = "Eggert Aron Gudmundsson"
+  pos = "AM"
+  idade = 22
+  ovr = 58
+  pot = 62
+  valor = 1500000
+  partidas = 14
+  minutos = 1257
+  gols = 1
+  id_fonte = "751105"
+
+  [[clubes.jogadores]]
+  nome = "Leo Cornic"
+  pos = "FB"
+  idade = 25
+  ovr = 57
+  pot = 61
+  valor = 900000
+  partidas = 2
+  minutos = 164
+  id_fonte = "501629"
+
+  [[clubes.jogadores]]
+  nome = "Niklas Jensen Wassberg"
+  pos = "MF"
+  idade = 22
+  ovr = 57
+  pot = 63
+  valor = 1500000
+  partidas = 9
+  minutos = 854
+  id_fonte = "892045"
+
+  [[clubes.jogadores]]
+  nome = "Ulrik Mathisen"
+  pos = "WG"
+  idade = 27
+  ovr = 57
+  pot = 57
+  valor = 800000
+  partidas = 23
+  minutos = 2099
+  gols = 2
+  id_fonte = "430031"
+
+  [[clubes.jogadores]]
+  nome = "Nana Kwame Boakye"
+  pos = "CB"
+  idade = 20
+  ovr = 55
+  pot = 64
+  valor = 1500000
+  partidas = 8
+  minutos = 727
+  gols = 1
+  id_fonte = "1281099"
+
+  [[clubes.jogadores]]
+  nome = "Sakarias Opsahl"
+  pos = "MF"
+  idade = 27
+  ovr = 49
+  pot = 50
+  valor = 250000
+  id_fonte = "503256"
+
+  [[clubes.jogadores]]
+  nome = "Kjartan Már Kjartansson"
+  pos = "DM"
+  idade = 20
+  ovr = 43
+  pot = 56
+  valor = 600000
+  partidas = 3
+  minutos = 26
+  id_fonte = "1015874"
+
+  [[clubes.jogadores]]
+  nome = "Jonas Torsvik"
+  pos = "FB"
+  idade = 21
+  ovr = 42
+  pot = 54
+  valor = 400000
+  partidas = 1
+  minutos = 96
+  gols = 1
+  id_fonte = "923538"
+
+  [[clubes.jogadores]]
+  nome = "Chinedu Cyprain Ononogbo"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 48
+  valor = 275000
+  id_fonte = "1513693"
+
+  [[clubes.jogadores]]
+  nome = "Håkon Hellesøy"
+  pos = "GK"
+  idade = 17
+  ovr = 40
+  pot = 53
+  valor = 275000
+  id_fonte = "1450600"
+
+  [[clubes.jogadores]]
+  nome = "Julian Lægreid"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 56
+  valor = 800000
+  partidas = 5
+  minutos = 39
+  id_fonte = "1069171"
+
+  [[clubes.jogadores]]
+  nome = "Tom Bramel"
+  pos = "GK"
+  idade = 21
+  ovr = 40
+  pot = 49
+  valor = 150000
+  partidas = 1
+  minutos = 90
+  id_fonte = "738480"
+
+[[clubes]]
+nome = "Tromsø IL"
+forca = 60.6
+valor_elenco = 21350000
+cores = ["#F9B731", "#050402"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Alexander Warneryd"
+  pos = "FB"
+  idade = 21
+  ovr = 66
+  pot = 69
+  valor = 3500000
+  partidas = 18
+  minutos = 1609
+  gols = 5
+  id_fonte = "1110611"
+
+  [[clubes.jogadores]]
+  nome = "Jakob Haugaard"
+  pos = "GK"
+  idade = 34
+  ovr = 63
+  pot = 63
+  valor = 400000
+  partidas = 21
+  minutos = 1921
+  id_fonte = "138335"
+
+  [[clubes.jogadores]]
+  nome = "David Edvardsson"
+  pos = "MF"
+  idade = 24
+  ovr = 62
+  pot = 63
+  valor = 1500000
+  partidas = 21
+  minutos = 1872
+  gols = 1
+  id_fonte = "532965"
+
+  [[clubes.jogadores]]
+  nome = "Heine Åsen Larsen"
+  pos = "FW"
+  idade = 24
+  ovr = 62
+  pot = 64
+  valor = 2000000
+  partidas = 17
+  minutos = 1574
+  gols = 10
+  id_fonte = "933835"
+
+  [[clubes.jogadores]]
+  nome = "Isak Vådebu"
+  pos = "CB"
+  idade = 23
+  ovr = 61
+  pot = 63
+  valor = 1200000
+  partidas = 18
+  minutos = 1662
+  gols = 1
+  id_fonte = "822103"
+
+  [[clubes.jogadores]]
+  nome = "Morten Bjørlo"
+  pos = "MF"
+  idade = 30
+  ovr = 61
+  pot = 61
+  valor = 800000
+  partidas = 2
+  minutos = 209
+  gols = 1
+  id_fonte = "230361"
+
+  [[clubes.jogadores]]
+  nome = "Vetle Skjærvik"
+  pos = "CB"
+  idade = 26
+  ovr = 61
+  pot = 62
+  valor = 900000
+  partidas = 15
+  minutos = 1362
+  gols = 1
+  id_fonte = "639327"
+
+  [[clubes.jogadores]]
+  nome = "Vegard Erlien"
+  pos = "FW"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 1000000
+  partidas = 2
+  minutos = 189
+  gols = 1
+  id_fonte = "333016"
+
+  [[clubes.jogadores]]
+  nome = "Lars Olden Larsen"
+  pos = "FW"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 600000
+  partidas = 16
+  minutos = 1482
+  gols = 1
+  id_fonte = "432682"
+
+  [[clubes.jogadores]]
+  nome = "Ole Kristian Lauvli"
+  pos = "GK"
+  idade = 32
+  ovr = 57
+  pot = 57
+  valor = 200000
+  partidas = 2
+  minutos = 149
+  id_fonte = "394733"
+
+  [[clubes.jogadores]]
+  nome = "Casper Øyvann"
+  pos = "CB"
+  idade = 26
+  ovr = 56
+  pot = 58
+  valor = 450000
+  partidas = 1
+  minutos = 5
+  id_fonte = "595594"
+
+  [[clubes.jogadores]]
+  nome = "Leon Hien"
+  pos = "CB"
+  idade = 25
+  ovr = 56
+  pot = 59
+  valor = 600000
+  partidas = 5
+  minutos = 443
+  id_fonte = "664349"
+
+  [[clubes.jogadores]]
+  nome = "Troy Nyhammer"
+  pos = "AM"
+  idade = 20
+  ovr = 56
+  pot = 64
+  valor = 2000000
+  partidas = 9
+  minutos = 827
+  gols = 4
+  id_fonte = "923505"
+
+  [[clubes.jogadores]]
+  nome = "Ruben Yttergård Jenssen"
+  pos = "MF"
+  idade = 38
+  ovr = 55
+  pot = 55
+  valor = 150000
+  partidas = 21
+  minutos = 1911
+  gols = 1
+  id_fonte = "41335"
+
+  [[clubes.jogadores]]
+  nome = "Isak Dahlqvist"
+  pos = "AM"
+  idade = 24
+  ovr = 54
+  pot = 59
+  valor = 800000
+  partidas = 2
+  minutos = 215
+  id_fonte = "501054"
+
+  [[clubes.jogadores]]
+  nome = "Mathias Tønnessen"
+  pos = "CB"
+  idade = 22
+  ovr = 54
+  pot = 63
+  valor = 1200000
+  partidas = 3
+  minutos = 282
+  id_fonte = "1022746"
+
+  [[clubes.jogadores]]
+  nome = "Sander Håvik Innvær"
+  pos = "FB"
+  idade = 21
+  ovr = 51
+  pot = 59
+  valor = 600000
+  partidas = 8
+  minutos = 702
+  gols = 1
+  id_fonte = "1002038"
+
+  [[clubes.jogadores]]
+  nome = "Musa Jatta"
+  pos = "CB"
+  idade = 21
+  ovr = 50
+  pot = 61
+  valor = 900000
+  partidas = 2
+  minutos = 135
+  id_fonte = "1158937"
+
+  [[clubes.jogadores]]
+  nome = "Nikolai Hristov"
+  pos = "FW"
+  idade = 26
+  ovr = 50
+  pot = 52
+  valor = 250000
+  partidas = 2
+  minutos = 13
+  id_fonte = "671536"
+
+  [[clubes.jogadores]]
+  nome = "Benjamin Myrvold"
+  pos = "CB"
+  idade = 16
+  ovr = 49
+  pot = 49
+  valor = 110000
+  id_fonte = "1428444"
+
+  [[clubes.jogadores]]
+  nome = "Jesper Grundt"
+  pos = "MF"
+  idade = 23
+  ovr = 49
+  pot = 57
+  valor = 500000
+  partidas = 1
+  minutos = 93
+  id_fonte = "798819"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Braut"
+  pos = "FW"
+  idade = 21
+  ovr = 47
+  pot = 55
+  valor = 500000
+  partidas = 7
+  minutos = 670
+  gols = 5
+  id_fonte = "993703"
+
+  [[clubes.jogadores]]
+  nome = "Vince Osuji"
+  pos = "CB"
+  idade = 20
+  ovr = 47
+  pot = 60
+  valor = 800000
+  partidas = 2
+  minutos = 137
+  id_fonte = "1285176"
+
+  [[clubes.jogadores]]
+  nome = "Aleksander Elvebu"
+  pos = "AM"
+  idade = 17
+  ovr = 40
+  pot = 48
+  valor = 125277
+  partidas = 1
+  minutos = 1
+  id_fonte = "1320505"
+
+  [[clubes.jogadores]]
+  nome = "Mads Mikkelsen"
+  pos = "FB"
+  idade = 18
+  ovr = 40
+  pot = 54
+  valor = 300000
+  partidas = 3
+  minutos = 5
+  id_fonte = "1391842"
+
+  [[clubes.jogadores]]
+  nome = "Sigurd Prestmo"
+  pos = "MF"
+  idade = 19
+  ovr = 40
+  pot = 51
+  valor = 200000
+  partidas = 3
+  minutos = 26
+  id_fonte = "1025261"
+
+  [[clubes.jogadores]]
+  nome = "Øystein Norheim"
+  pos = "GK"
+  idade = 18
+  ovr = 40
+  pot = 51
+  valor = 110000
+  id_fonte = "1158557"
+
+[[clubes]]
+nome = "Sarpsborg 08 FF"
+forca = 59.3
+valor_elenco = 17500000
+cores = ["#2747A3", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Karlsbakk"
+  pos = "FW"
+  idade = 23
+  ovr = 68
+  pot = 69
+  valor = 4500000
+  partidas = 21
+  minutos = 1852
+  gols = 7
+  id_fonte = "661205"
+
+  [[clubes.jogadores]]
+  nome = "Aimar Sher"
+  pos = "MF"
+  idade = 23
+  ovr = 62
+  pot = 63
+  valor = 1500000
+  partidas = 18
+  minutos = 1645
+  gols = 1
+  id_fonte = "579294"
+
+  [[clubes.jogadores]]
+  nome = "Sigurd Rosted"
+  pos = "CB"
+  idade = 32
+  ovr = 62
+  pot = 62
+  valor = 600000
+  partidas = 7
+  minutos = 614
+  id_fonte = "230336"
+
+  [[clubes.jogadores]]
+  nome = "Leander Øy"
+  pos = "GK"
+  idade = 22
+  ovr = 61
+  pot = 67
+  valor = 1500000
+  partidas = 11
+  minutos = 990
+  id_fonte = "905220"
+
+  [[clubes.jogadores]]
+  nome = "Bjørn Inge Utvik"
+  pos = "CB"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 21
+  minutos = 1890
+  id_fonte = "226530"
+
+  [[clubes.jogadores]]
+  nome = "Anders Hiim"
+  pos = "FB"
+  idade = 24
+  ovr = 59
+  pot = 61
+  valor = 900000
+  partidas = 22
+  minutos = 2010
+  gols = 1
+  id_fonte = "993704"
+
+  [[clubes.jogadores]]
+  nome = "Marius Lode"
+  pos = "CB"
+  idade = 33
+  ovr = 59
+  pot = 59
+  valor = 350000
+  partidas = 7
+  minutos = 653
+  id_fonte = "223197"
+
+  [[clubes.jogadores]]
+  nome = "Sander Christiansen"
+  pos = "MF"
+  idade = 25
+  ovr = 59
+  pot = 60
+  valor = 900000
+  partidas = 18
+  minutos = 1593
+  gols = 1
+  id_fonte = "432697"
+
+  [[clubes.jogadores]]
+  nome = "Claus Niyukuri"
+  pos = "FB"
+  idade = 26
+  ovr = 57
+  pot = 58
+  valor = 600000
+  partidas = 16
+  minutos = 1408
+  gols = 2
+  id_fonte = "700673"
+
+  [[clubes.jogadores]]
+  nome = "Jacob Pryts"
+  pos = "GK"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 300000
+  id_fonte = "303157"
+
+  [[clubes.jogadores]]
+  nome = "Victor Halvorsen"
+  pos = "MF"
+  idade = 22
+  ovr = 56
+  pot = 59
+  valor = 900000
+  partidas = 15
+  minutos = 1335
+  gols = 3
+  id_fonte = "939217"
+
+  [[clubes.jogadores]]
+  nome = "Andreas Nibe"
+  pos = "AM"
+  idade = 23
+  ovr = 55
+  pot = 57
+  valor = 700000
+  partidas = 18
+  minutos = 1635
+  gols = 4
+  id_fonte = "594812"
+
+  [[clubes.jogadores]]
+  nome = "Eirik Wichne"
+  pos = "FB"
+  idade = 29
+  ovr = 55
+  pot = 55
+  valor = 350000
+  partidas = 7
+  minutos = 614
+  id_fonte = "351524"
+
+  [[clubes.jogadores]]
+  nome = "Sondre Sørli"
+  pos = "WG"
+  idade = 30
+  ovr = 55
+  pot = 55
+  valor = 450000
+  partidas = 21
+  minutos = 1860
+  gols = 5
+  id_fonte = "320140"
+
+  [[clubes.jogadores]]
+  nome = "Olaus Skarsem"
+  pos = "MF"
+  idade = 28
+  ovr = 54
+  pot = 54
+  valor = 400000
+  partidas = 6
+  minutos = 546
+  gols = 1
+  id_fonte = "429287"
+
+  [[clubes.jogadores]]
+  nome = "Noa Williams"
+  pos = "WG"
+  idade = 24
+  ovr = 52
+  pot = 56
+  valor = 700000
+  partidas = 9
+  minutos = 767
+  id_fonte = "501065"
+
+  [[clubes.jogadores]]
+  nome = "Peter Reinhardsen"
+  pos = "FB"
+  idade = 27
+  ovr = 52
+  pot = 53
+  valor = 300000
+  partidas = 2
+  minutos = 167
+  id_fonte = "599489"
+
+  [[clubes.jogadores]]
+  nome = "Michael Opoku"
+  pos = "WG"
+  idade = 21
+  ovr = 46
+  pot = 56
+  valor = 700000
+  partidas = 4
+  minutos = 362
+  id_fonte = "695226"
+
+  [[clubes.jogadores]]
+  nome = "Frederik Carstensen"
+  pos = "WG"
+  idade = 24
+  ovr = 45
+  pot = 51
+  valor = 350000
+  id_fonte = "514894"
+
+  [[clubes.jogadores]]
+  nome = "Bop Guèye"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 50
+  valor = 300000
+  partidas = 1
+  minutos = 75
+  id_fonte = "1414671"
+
+  [[clubes.jogadores]]
+  nome = "Camil Mmaee"
+  pos = "WG"
+  idade = 22
+  ovr = 40
+  pot = 49
+  valor = 300000
+  partidas = 3
+  minutos = 29
+  id_fonte = "808767"
+
+  [[clubes.jogadores]]
+  nome = "Luca Høyland"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 52
+  valor = 300000
+  id_fonte = "1198153"
+
+[[clubes]]
+nome = "Sandefjord Fotball"
+forca = 58.4
+valor_elenco = 15400000
+cores = ["#045795", "#C5102E"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Elias Hadaya"
+  pos = "GK"
+  idade = 28
+  ovr = 65
+  pot = 65
+  valor = 700000
+  partidas = 21
+  minutos = 1890
+  id_fonte = "272542"
+
+  [[clubes.jogadores]]
+  nome = "Vetle Walle Egeli"
+  pos = "FB"
+  idade = 22
+  ovr = 63
+  pot = 65
+  valor = 1200000
+  partidas = 19
+  minutos = 1725
+  id_fonte = "894382"
+
+  [[clubes.jogadores]]
+  nome = "Xander Lambrix"
+  pos = "CB"
+  idade = 26
+  ovr = 62
+  pot = 62
+  valor = 700000
+  partidas = 20
+  minutos = 1792
+  id_fonte = "547312"
+
+  [[clubes.jogadores]]
+  nome = "Evangelos Patoulidis"
+  pos = "WG"
+  idade = 24
+  ovr = 60
+  pot = 62
+  valor = 1200000
+  partidas = 15
+  minutos = 1376
+  gols = 4
+  id_fonte = "375718"
+
+  [[clubes.jogadores]]
+  nome = "Edvard Sundbø Pettersen"
+  pos = "MF"
+  idade = 20
+  ovr = 59
+  pot = 63
+  valor = 1200000
+  partidas = 15
+  minutos = 1333
+  gols = 2
+  id_fonte = "939565"
+
+  [[clubes.jogadores]]
+  nome = "Sander Risan Mørk"
+  pos = "DM"
+  idade = 25
+  ovr = 59
+  pot = 60
+  valor = 600000
+  partidas = 21
+  minutos = 1857
+  gols = 1
+  id_fonte = "622421"
+
+  [[clubes.jogadores]]
+  nome = "Fredrik Carson Pedersen"
+  pos = "FB"
+  idade = 23
+  ovr = 58
+  pot = 60
+  valor = 600000
+  partidas = 21
+  minutos = 1869
+  id_fonte = "721784"
+
+  [[clubes.jogadores]]
+  nome = "Jakob Dunsby"
+  pos = "WG"
+  idade = 26
+  ovr = 57
+  pot = 59
+  valor = 700000
+  partidas = 10
+  minutos = 922
+  gols = 1
+  id_fonte = "582923"
+
+  [[clubes.jogadores]]
+  nome = "Tobias Børkeeiet"
+  pos = "DM"
+  idade = 27
+  ovr = 57
+  pot = 58
+  valor = 450000
+  partidas = 4
+  minutos = 360
+  gols = 1
+  id_fonte = "458537"
+
+  [[clubes.jogadores]]
+  nome = "Ervin Gigović"
+  pos = "MF"
+  idade = 23
+  ovr = 55
+  pot = 62
+  valor = 1000000
+  partidas = 2
+  minutos = 155
+  gols = 1
+  id_fonte = "1040401"
+
+  [[clubes.jogadores]]
+  nome = "Marcus Melchior"
+  pos = "MF"
+  idade = 25
+  ovr = 54
+  pot = 57
+  valor = 450000
+  partidas = 8
+  minutos = 712
+  id_fonte = "582100"
+
+  [[clubes.jogadores]]
+  nome = "Nikolaj Möller"
+  pos = "FW"
+  idade = 24
+  ovr = 54
+  pot = 57
+  valor = 600000
+  partidas = 12
+  minutos = 1055
+  gols = 3
+  id_fonte = "606389"
+
+  [[clubes.jogadores]]
+  nome = "Oscar Kapskarmo"
+  pos = "FW"
+  idade = 26
+  ovr = 53
+  pot = 55
+  valor = 450000
+  partidas = 4
+  minutos = 395
+  gols = 1
+  id_fonte = "519293"
+
+  [[clubes.jogadores]]
+  nome = "Jakob Vester"
+  pos = "MF"
+  idade = 21
+  ovr = 52
+  pot = 59
+  valor = 700000
+  partidas = 8
+  minutos = 763
+  gols = 1
+  id_fonte = "898781"
+
+  [[clubes.jogadores]]
+  nome = "Devon Koswal"
+  pos = "CB"
+  idade = 23
+  ovr = 50
+  pot = 58
+  valor = 450000
+  id_fonte = "748604"
+
+  [[clubes.jogadores]]
+  nome = "Rasmus Holten"
+  pos = "CB"
+  idade = 21
+  ovr = 49
+  pot = 58
+  valor = 500000
+  partidas = 6
+  minutos = 496
+  id_fonte = "919675"
+
+  [[clubes.jogadores]]
+  nome = "Bendik Berntsen"
+  pos = "WG"
+  idade = 19
+  ovr = 48
+  pot = 57
+  valor = 700000
+  partidas = 10
+  minutos = 862
+  gols = 2
+  id_fonte = "1256182"
+
+  [[clubes.jogadores]]
+  nome = "Filip Loftesnes-Bjune"
+  pos = "FB"
+  idade = 21
+  ovr = 46
+  pot = 58
+  valor = 500000
+  partidas = 3
+  minutos = 24
+  id_fonte = "966295"
+
+  [[clubes.jogadores]]
+  nome = "Håkon Krogelien"
+  pos = "CB"
+  idade = 22
+  ovr = 46
+  pot = 54
+  valor = 300000
+  partidas = 3
+  minutos = 290
+  id_fonte = "901544"
+
+  [[clubes.jogadores]]
+  nome = "Martin Hellan"
+  pos = "FB"
+  idade = 23
+  ovr = 45
+  pot = 53
+  valor = 250000
+  partidas = 1
+  minutos = 62
+  id_fonte = "1098471"
+
+  [[clubes.jogadores]]
+  nome = "Sebastian Holm Mathisen"
+  pos = "WG"
+  idade = 21
+  ovr = 45
+  pot = 54
+  valor = 450000
+  partidas = 5
+  minutos = 419
+  gols = 2
+  id_fonte = "1012838"
+
+  [[clubes.jogadores]]
+  nome = "Foster Apetorgbor"
+  pos = "WG"
+  idade = 18
+  ovr = 41
+  pot = 57
+  valor = 700000
+  partidas = 3
+  minutos = 234
+  gols = 1
+  id_fonte = "1241202"
+
+  [[clubes.jogadores]]
+  nome = "Mathias Sauer"
+  pos = "WG"
+  idade = 22
+  ovr = 41
+  pot = 51
+  valor = 300000
+  partidas = 1
+  minutos = 71
+  gols = 1
+  id_fonte = "678277"
+
+  [[clubes.jogadores]]
+  nome = "Alf Lukas Grønneberg"
+  pos = "GK"
+  idade = 22
+  ovr = 40
+  pot = 48
+  valor = 100000
+  partidas = 1
+  minutos = 90
+  id_fonte = "1021867"
+
+  [[clubes.jogadores]]
+  nome = "Christopher Abanga"
+  pos = "CB"
+  idade = 18
+  ovr = 40
+  pot = 47
+  valor = 125277
+  id_fonte = "1595588"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Skaarud"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 55
+  valor = 500000
+  partidas = 2
+  minutos = 21
+  id_fonte = "1007809"
+
+  [[clubes.jogadores]]
+  nome = "Gustav Højbjerg"
+  pos = "FB"
+  idade = 22
+  ovr = 40
+  pot = 45
+  valor = 100000
+  partidas = 2
+  minutos = 151
+  id_fonte = "656179"
+
+[[clubes]]
+nome = "Lillestrøm SK"
+forca = 58.3
+valor_elenco = 14980000
+cores = ["#F6DA13", "#000000"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Pontus Dahlberg"
+  pos = "GK"
+  idade = 27
+  ovr = 65
+  pot = 65
+  valor = 800000
+  partidas = 23
+  minutos = 2070
+  id_fonte = "365544"
+
+  [[clubes.jogadores]]
+  nome = "Lars Ranger"
+  pos = "FB"
+  idade = 27
+  ovr = 63
+  pot = 64
+  valor = 1000000
+  partidas = 21
+  minutos = 1932
+  gols = 2
+  id_fonte = "545648"
+
+  [[clubes.jogadores]]
+  nome = "Felix Vá"
+  pos = "WG"
+  idade = 28
+  ovr = 62
+  pot = 62
+  valor = 1200000
+  partidas = 22
+  minutos = 1961
+  gols = 7
+  id_fonte = "497799"
+
+  [[clubes.jogadores]]
+  nome = "Gustav Nyheim"
+  pos = "AM"
+  idade = 20
+  ovr = 62
+  pot = 67
+  valor = 2000000
+  partidas = 15
+  minutos = 1306
+  gols = 4
+  id_fonte = "923527"
+
+  [[clubes.jogadores]]
+  nome = "Filip Ottosson"
+  pos = "DM"
+  idade = 30
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 1
+  minutos = 109
+  id_fonte = "369911"
+
+  [[clubes.jogadores]]
+  nome = "Eric Kitolano"
+  pos = "AM"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 600000
+  partidas = 12
+  minutos = 1075
+  id_fonte = "367232"
+
+  [[clubes.jogadores]]
+  nome = "Fredrik Gulbrandsen"
+  pos = "FW"
+  idade = 34
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 4
+  minutos = 354
+  gols = 2
+  id_fonte = "110708"
+
+  [[clubes.jogadores]]
+  nome = "Ruben Gabrielsen"
+  pos = "CB"
+  idade = 34
+  ovr = 55
+  pot = 55
+  valor = 225000
+  partidas = 18
+  minutos = 1595
+  gols = 1
+  id_fonte = "107662"
+
+  [[clubes.jogadores]]
+  nome = "Sander Moen Foss"
+  pos = "CB"
+  idade = 27
+  ovr = 55
+  pot = 55
+  valor = 450000
+  partidas = 13
+  minutos = 1211
+  id_fonte = "440972"
+
+  [[clubes.jogadores]]
+  nome = "Stian Kristiansen"
+  pos = "CB"
+  idade = 27
+  ovr = 55
+  pot = 56
+  valor = 500000
+  partidas = 6
+  minutos = 537
+  id_fonte = "519291"
+
+  [[clubes.jogadores]]
+  nome = "Yaw Paintsil"
+  pos = "FB"
+  idade = 27
+  ovr = 55
+  pot = 56
+  valor = 500000
+  partidas = 12
+  minutos = 1052
+  id_fonte = "525731"
+
+  [[clubes.jogadores]]
+  nome = "Ylldren Ibrahimaj"
+  pos = "MF"
+  idade = 30
+  ovr = 55
+  pot = 55
+  valor = 450000
+  partidas = 20
+  minutos = 1823
+  id_fonte = "230845"
+
+  [[clubes.jogadores]]
+  nome = "Espen Garnås"
+  pos = "CB"
+  idade = 31
+  ovr = 54
+  pot = 54
+  valor = 300000
+  partidas = 7
+  minutos = 592
+  id_fonte = "269010"
+
+  [[clubes.jogadores]]
+  nome = "Sturla Ottesen"
+  pos = "FB"
+  idade = 25
+  ovr = 53
+  pot = 55
+  valor = 500000
+  partidas = 11
+  minutos = 994
+  id_fonte = "666526"
+
+  [[clubes.jogadores]]
+  nome = "Thomas Lehne Olsen"
+  pos = "FW"
+  idade = 35
+  ovr = 53
+  pot = 53
+  valor = 300000
+  partidas = 13
+  minutos = 1162
+  gols = 6
+  id_fonte = "103598"
+
+  [[clubes.jogadores]]
+  nome = "Frederik Elkær"
+  pos = "FB"
+  idade = 24
+  ovr = 52
+  pot = 55
+  valor = 500000
+  partidas = 11
+  minutos = 980
+  gols = 1
+  id_fonte = "578926"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Krygård"
+  pos = "DM"
+  idade = 26
+  ovr = 50
+  pot = 52
+  valor = 400000
+  partidas = 5
+  minutos = 406
+  id_fonte = "418563"
+
+  [[clubes.jogadores]]
+  nome = "Stefan Hagerup"
+  pos = "GK"
+  idade = 32
+  ovr = 50
+  pot = 50
+  valor = 150000
+  partidas = 3
+  minutos = 270
+  id_fonte = "298678"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Bassi"
+  pos = "WG"
+  idade = 21
+  ovr = 49
+  pot = 60
+  valor = 1200000
+  partidas = 3
+  minutos = 259
+  id_fonte = "1015245"
+
+  [[clubes.jogadores]]
+  nome = "Gustav Nordh"
+  pos = "WG"
+  idade = 26
+  ovr = 49
+  pot = 51
+  valor = 500000
+  partidas = 1
+  minutos = 57
+  id_fonte = "458011"
+
+  [[clubes.jogadores]]
+  nome = "Henrik Melland"
+  pos = "MF"
+  idade = 21
+  ovr = 49
+  pot = 60
+  valor = 1000000
+  partidas = 1
+  minutos = 103
+  id_fonte = "901766"
+
+  [[clubes.jogadores]]
+  nome = "Camil Jebara"
+  pos = "WG"
+  idade = 23
+  ovr = 44
+  pot = 50
+  valor = 500000
+  partidas = 5
+  minutos = 413
+  gols = 1
+  id_fonte = "936439"
+
+  [[clubes.jogadores]]
+  nome = "Linus Alperud"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 49
+  valor = 500000
+  partidas = 4
+  minutos = 362
+  gols = 1
+  id_fonte = "1338121"
+
+  [[clubes.jogadores]]
+  nome = "Seun Akanji"
+  pos = "WG"
+  idade = 18
+  ovr = 40
+  pot = 46
+  valor = 400000
+  id_fonte = "1578107"
+
+[[clubes]]
+nome = "Kristiansund BK"
+forca = 58.1
+valor_elenco = 14600000
+cores = ["#003975", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Leander Alvheim"
+  pos = "FW"
+  idade = 22
+  ovr = 65
+  pot = 67
+  valor = 2800000
+  partidas = 18
+  minutos = 1650
+  gols = 10
+  id_fonte = "1032405"
+
+  [[clubes.jogadores]]
+  nome = "Wilfred George Igor"
+  pos = "DM"
+  idade = 21
+  ovr = 65
+  pot = 67
+  valor = 2000000
+  partidas = 18
+  minutos = 1655
+  gols = 1
+  id_fonte = "1167645"
+
+  [[clubes.jogadores]]
+  nome = "Zymer Bytyqi"
+  pos = "WG"
+  idade = 30
+  ovr = 62
+  pot = 62
+  valor = 1000000
+  partidas = 3
+  minutos = 228
+  id_fonte = "213555"
+
+  [[clubes.jogadores]]
+  nome = "Adrian Sæther"
+  pos = "GK"
+  idade = 25
+  ovr = 61
+  pot = 63
+  valor = 700000
+  partidas = 12
+  minutos = 1080
+  id_fonte = "946000"
+
+  [[clubes.jogadores]]
+  nome = "Michael Lansing"
+  pos = "GK"
+  idade = 32
+  ovr = 60
+  pot = 60
+  valor = 300000
+  partidas = 9
+  minutos = 810
+  id_fonte = "448696"
+
+  [[clubes.jogadores]]
+  nome = "Heine Gikling Bruseth"
+  pos = "MF"
+  idade = 22
+  ovr = 58
+  pot = 61
+  valor = 900000
+  partidas = 15
+  minutos = 1372
+  id_fonte = "909663"
+
+  [[clubes.jogadores]]
+  nome = "Sander Svendsen"
+  pos = "WG"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 600000
+  partidas = 6
+  minutos = 549
+  gols = 1
+  id_fonte = "269503"
+
+  [[clubes.jogadores]]
+  nome = "Júlíus Mar Júlíusson"
+  pos = "CB"
+  idade = 22
+  ovr = 57
+  pot = 59
+  valor = 600000
+  partidas = 19
+  minutos = 1738
+  id_fonte = "984628"
+
+  [[clubes.jogadores]]
+  nome = "Marius Elvius"
+  pos = "AM"
+  idade = 24
+  ovr = 55
+  pot = 60
+  valor = 900000
+  partidas = 3
+  minutos = 270
+  id_fonte = "599634"
+
+  [[clubes.jogadores]]
+  nome = "Jesper Isaksen"
+  pos = "MF"
+  idade = 26
+  ovr = 54
+  pot = 56
+  valor = 400000
+  partidas = 10
+  minutos = 935
+  id_fonte = "451040"
+
+  [[clubes.jogadores]]
+  nome = "Tobias Svendsen"
+  pos = "MF"
+  idade = 27
+  ovr = 54
+  pot = 55
+  valor = 350000
+  partidas = 5
+  minutos = 436
+  gols = 1
+  id_fonte = "367250"
+
+  [[clubes.jogadores]]
+  nome = "Frederik Flex"
+  pos = "FB"
+  idade = 22
+  ovr = 53
+  pot = 58
+  valor = 500000
+  partidas = 13
+  minutos = 1172
+  id_fonte = "824077"
+
+  [[clubes.jogadores]]
+  nome = "Dan Peter Ulvestad"
+  pos = "CB"
+  idade = 37
+  ovr = 52
+  pot = 52
+  valor = 100000
+  partidas = 18
+  minutos = 1632
+  id_fonte = "155555"
+
+  [[clubes.jogadores]]
+  nome = "John Kitolano"
+  pos = "FB"
+  idade = 26
+  ovr = 51
+  pot = 53
+  valor = 250000
+  partidas = 2
+  minutos = 176
+  id_fonte = "412597"
+
+  [[clubes.jogadores]]
+  nome = "Adrian Kurd Rønning"
+  pos = "AM"
+  idade = 20
+  ovr = 50
+  pot = 57
+  valor = 600000
+  partidas = 12
+  minutos = 1075
+  gols = 1
+  id_fonte = "1006939"
+
+  [[clubes.jogadores]]
+  nome = "Max Williamsen"
+  pos = "CB"
+  idade = 23
+  ovr = 50
+  pot = 56
+  valor = 400000
+  partidas = 4
+  minutos = 338
+  id_fonte = "698969"
+
+  [[clubes.jogadores]]
+  nome = "Syver Skeide"
+  pos = "DM"
+  idade = 22
+  ovr = 49
+  pot = 55
+  valor = 400000
+  partidas = 7
+  minutos = 670
+  id_fonte = "751474"
+
+  [[clubes.jogadores]]
+  nome = "David Tufekcic"
+  pos = "WG"
+  idade = 22
+  ovr = 47
+  pot = 56
+  valor = 600000
+  partidas = 2
+  minutos = 206
+  gols = 1
+  id_fonte = "915537"
+
+  [[clubes.jogadores]]
+  nome = "Haakon Haugen"
+  pos = "FB"
+  idade = 19
+  ovr = 44
+  pot = 56
+  valor = 400000
+  partidas = 7
+  minutos = 605
+  id_fonte = "1189987"
+
+  [[clubes.jogadores]]
+  nome = "Gustav Christensen"
+  pos = "WG"
+  idade = 22
+  ovr = 43
+  pot = 52
+  valor = 350000
+  partidas = 3
+  minutos = 231
+  id_fonte = "685680"
+
+  [[clubes.jogadores]]
+  nome = "Anders Børset"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 49
+  valor = 150000
+  partidas = 1
+  minutos = 50
+  id_fonte = "923499"
+
+  [[clubes.jogadores]]
+  nome = "Eron Isufi"
+  pos = "DM"
+  idade = 18
+  ovr = 40
+  pot = 53
+  valor = 300000
+  id_fonte = "1291128"
+
+  [[clubes.jogadores]]
+  nome = "Isak Hagen Aalberg"
+  pos = "CB"
+  idade = 21
+  ovr = 40
+  pot = 48
+  valor = 127934
+  id_fonte = "913412"
+
+[[clubes]]
+nome = "Fredrikstad FK"
+forca = 58.0
+valor_elenco = 14300000
+cores = ["#DA1F26", "#FEFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Ulrik Fredriksen"
+  pos = "CB"
+  idade = 27
+  ovr = 63
+  pot = 63
+  valor = 750000
+  partidas = 24
+  minutos = 2155
+  gols = 1
+  id_fonte = "501989"
+
+  [[clubes.jogadores]]
+  nome = "Martin Børsheim"
+  pos = "GK"
+  idade = 21
+  ovr = 62
+  pot = 65
+  valor = 800000
+  partidas = 28
+  minutos = 2520
+  id_fonte = "955389"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Eid"
+  pos = "FB"
+  idade = 27
+  ovr = 61
+  pot = 61
+  valor = 650000
+  partidas = 25
+  minutos = 2214
+  gols = 3
+  id_fonte = "471127"
+
+  [[clubes.jogadores]]
+  nome = "Leonard Owusu"
+  pos = "DM"
+  idade = 29
+  ovr = 61
+  pot = 61
+  valor = 600000
+  partidas = 14
+  minutos = 1274
+  id_fonte = "579628"
+
+  [[clubes.jogadores]]
+  nome = "Samuel Leach Holm"
+  pos = "MF"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 650000
+  partidas = 13
+  minutos = 1189
+  gols = 1
+  id_fonte = "300086"
+
+  [[clubes.jogadores]]
+  nome = "Sondre Sørløkk"
+  pos = "FB"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 500000
+  partidas = 18
+  minutos = 1620
+  gols = 2
+  id_fonte = "350709"
+
+  [[clubes.jogadores]]
+  nome = "Fredrik Holmé"
+  pos = "CB"
+  idade = 25
+  ovr = 59
+  pot = 60
+  valor = 600000
+  partidas = 20
+  minutos = 1796
+  gols = 3
+  id_fonte = "584228"
+
+  [[clubes.jogadores]]
+  nome = "Isak Helstad Amundsen"
+  pos = "CB"
+  idade = 26
+  ovr = 59
+  pot = 61
+  valor = 600000
+  partidas = 6
+  minutos = 537
+  id_fonte = "746604"
+
+  [[clubes.jogadores]]
+  nome = "Sigurd Kvile"
+  pos = "CB"
+  idade = 26
+  ovr = 59
+  pot = 61
+  valor = 600000
+  partidas = 1
+  minutos = 64
+  id_fonte = "400109"
+
+  [[clubes.jogadores]]
+  nome = "Solomon Owusu"
+  pos = "CB"
+  idade = 30
+  ovr = 59
+  pot = 59
+  valor = 400000
+  partidas = 12
+  minutos = 1069
+  gols = 2
+  id_fonte = "487114"
+
+  [[clubes.jogadores]]
+  nome = "Henrik Skogvold"
+  pos = "FW"
+  idade = 22
+  ovr = 56
+  pot = 58
+  valor = 800000
+  partidas = 22
+  minutos = 2021
+  gols = 2
+  id_fonte = "894372"
+
+  [[clubes.jogadores]]
+  nome = "Max Nilsson"
+  pos = "MF"
+  idade = 21
+  ovr = 56
+  pot = 62
+  valor = 1000000
+  partidas = 11
+  minutos = 965
+  gols = 2
+  id_fonte = "1111164"
+
+  [[clubes.jogadores]]
+  nome = "Johannes Nuñez"
+  pos = "FW"
+  idade = 29
+  ovr = 55
+  pot = 55
+  valor = 450000
+  partidas = 6
+  minutos = 496
+  gols = 1
+  id_fonte = "501818"
+
+  [[clubes.jogadores]]
+  nome = "Salim Laghzaoui"
+  pos = "AM"
+  idade = 20
+  ovr = 54
+  pot = 61
+  valor = 1000000
+  partidas = 11
+  minutos = 988
+  id_fonte = "1129395"
+
+  [[clubes.jogadores]]
+  nome = "Simen Rafn"
+  pos = "CB"
+  idade = 34
+  ovr = 54
+  pot = 54
+  valor = 150000
+  partidas = 12
+  minutos = 1097
+  gols = 1
+  id_fonte = "146790"
+
+  [[clubes.jogadores]]
+  nome = "Benjamin Faraas"
+  pos = "AM"
+  idade = 21
+  ovr = 52
+  pot = 59
+  valor = 800000
+  partidas = 9
+  minutos = 774
+  gols = 3
+  id_fonte = "918494"
+
+  [[clubes.jogadores]]
+  nome = "Fanuel Ghebreyohannes"
+  pos = "FB"
+  idade = 19
+  ovr = 50
+  pot = 60
+  valor = 700000
+  partidas = 9
+  minutos = 802
+  id_fonte = "949173"
+
+  [[clubes.jogadores]]
+  nome = "Jakub Jezierski"
+  pos = "DM"
+  idade = 22
+  ovr = 49
+  pot = 58
+  valor = 600000
+  partidas = 1
+  minutos = 111
+  id_fonte = "825994"
+
+  [[clubes.jogadores]]
+  nome = "Bryan Fiabema"
+  pos = "FW"
+  idade = 23
+  ovr = 45
+  pot = 53
+  valor = 450000
+  partidas = 2
+  minutos = 191
+  gols = 1
+  id_fonte = "581113"
+
+  [[clubes.jogadores]]
+  nome = "Jasper Silva Torkildsen"
+  pos = "GK"
+  idade = 22
+  ovr = 44
+  pot = 54
+  valor = 250000
+  id_fonte = "690743"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Wesseh"
+  pos = "AM"
+  idade = 18
+  ovr = 42
+  pot = 57
+  valor = 700000
+  partidas = 3
+  minutos = 270
+  gols = 1
+  id_fonte = "1396131"
+
+  [[clubes.jogadores]]
+  nome = "Chris Pondy"
+  pos = "CB"
+  idade = 18
+  ovr = 40
+  pot = 45
+  valor = 137500
+  id_fonte = "1388870"
+
+  [[clubes.jogadores]]
+  nome = "Joachim Nysveen"
+  pos = "FB"
+  idade = 20
+  ovr = 40
+  pot = 50
+  valor = 250000
+  partidas = 3
+  minutos = 36
+  id_fonte = "1213685"
+
+  [[clubes.jogadores]]
+  nome = "Kennedy Okpaleke"
+  pos = "CB"
+  idade = 17
+  ovr = 40
+  pot = 52
+  valor = 300000
+  partidas = 2
+  minutos = 2
+  id_fonte = "1172437"
+
+  [[clubes.jogadores]]
+  nome = "Liam West"
+  pos = "WG"
+  idade = 18
+  ovr = 40
+  pot = 55
+  valor = 600000
+  partidas = 1
+  minutos = 70
+  id_fonte = "1068117"
+
+  [[clubes.jogadores]]
+  nome = "Ole Langbråten"
+  pos = "GK"
+  idade = 23
+  ovr = 40
+  pot = 45
+  valor = 100000
+  id_fonte = "909673"
+
+[[clubes]]
+nome = "Aalesunds FK"
+forca = 58.0
+valor_elenco = 14300000
+cores = ["#3176B4", "#937E4F"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Mathias Christensen"
+  pos = "MF"
+  idade = 24
+  ovr = 64
+  pot = 65
+  valor = 1500000
+  partidas = 23
+  minutos = 2091
+  gols = 9
+  id_fonte = "660989"
+
+  [[clubes.jogadores]]
+  nome = "Uba Charles"
+  pos = "FB"
+  idade = 23
+  ovr = 61
+  pot = 63
+  valor = 900000
+  partidas = 18
+  minutos = 1641
+  gols = 1
+  id_fonte = "892417"
+
+  [[clubes.jogadores]]
+  nome = "Elias Hagen"
+  pos = "DM"
+  idade = 26
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 19
+  minutos = 1751
+  gols = 3
+  id_fonte = "566410"
+
+  [[clubes.jogadores]]
+  nome = "Stefano Vecchia"
+  pos = "WG"
+  idade = 31
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 1
+  minutos = 27
+  id_fonte = "295572"
+
+  [[clubes.jogadores]]
+  nome = "Endre Osenbroch"
+  pos = "MF"
+  idade = 22
+  ovr = 59
+  pot = 62
+  valor = 1000000
+  partidas = 14
+  minutos = 1292
+  gols = 5
+  id_fonte = "1117557"
+
+  [[clubes.jogadores]]
+  nome = "Aleksander Hammer Kjelsen"
+  pos = "CB"
+  idade = 20
+  ovr = 58
+  pot = 61
+  valor = 700000
+  partidas = 18
+  minutos = 1638
+  gols = 1
+  id_fonte = "903556"
+
+  [[clubes.jogadores]]
+  nome = "Sander Kartum"
+  pos = "AM"
+  idade = 30
+  ovr = 57
+  pot = 57
+  valor = 400000
+  partidas = 1
+  minutos = 133
+  id_fonte = "437852"
+
+  [[clubes.jogadores]]
+  nome = "Marius Andresen"
+  pos = "FB"
+  idade = 26
+  ovr = 56
+  pot = 57
+  valor = 350000
+  partidas = 13
+  minutos = 1205
+  gols = 1
+  id_fonte = "678360"
+
+  [[clubes.jogadores]]
+  nome = "Ólafur Gudmundsson"
+  pos = "CB"
+  idade = 24
+  ovr = 56
+  pot = 58
+  valor = 400000
+  partidas = 18
+  minutos = 1650
+  id_fonte = "540109"
+
+  [[clubes.jogadores]]
+  nome = "Emil Engqvist"
+  pos = "CB"
+  idade = 27
+  ovr = 55
+  pot = 56
+  valor = 300000
+  partidas = 8
+  minutos = 735
+  id_fonte = "619884"
+
+  [[clubes.jogadores]]
+  nome = "Håkon Butli Hammer"
+  pos = "DM"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 350000
+  partidas = 13
+  minutos = 1127
+  id_fonte = "464478"
+
+  [[clubes.jogadores]]
+  nome = "Marcus Reed"
+  pos = "FW"
+  idade = 18
+  ovr = 55
+  pot = 65
+  valor = 2000000
+  partidas = 10
+  minutos = 862
+  gols = 4
+  id_fonte = "1341717"
+
+  [[clubes.jogadores]]
+  nome = "Philip Aukland"
+  pos = "CB"
+  idade = 27
+  ovr = 55
+  pot = 56
+  valor = 300000
+  partidas = 5
+  minutos = 463
+  id_fonte = "469918"
+
+  [[clubes.jogadores]]
+  nome = "Simen Haram"
+  pos = "CB"
+  idade = 21
+  ovr = 55
+  pot = 59
+  valor = 500000
+  partidas = 15
+  minutos = 1389
+  id_fonte = "1098950"
+
+  [[clubes.jogadores]]
+  nome = "Paul Ngongo"
+  pos = "FW"
+  idade = 26
+  ovr = 54
+  pot = 56
+  valor = 500000
+  partidas = 2
+  minutos = 225
+  gols = 2
+  id_fonte = "542511"
+
+  [[clubes.jogadores]]
+  nome = "Tor Erik Larsen"
+  pos = "GK"
+  idade = 27
+  ovr = 54
+  pot = 55
+  valor = 200000
+  partidas = 7
+  minutos = 630
+  id_fonte = "526434"
+
+  [[clubes.jogadores]]
+  nome = "Cheikh Mbacké Diop"
+  pos = "CB"
+  idade = 20
+  ovr = 53
+  pot = 65
+  valor = 1200000
+  partidas = 4
+  minutos = 360
+  id_fonte = "1371221"
+
+  [[clubes.jogadores]]
+  nome = "Kristoffer Nessø"
+  pos = "AM"
+  idade = 33
+  ovr = 53
+  pot = 53
+  valor = 150000
+  partidas = 15
+  minutos = 1315
+  id_fonte = "268491"
+
+  [[clubes.jogadores]]
+  nome = "Luca Podlech"
+  pos = "GK"
+  idade = 21
+  ovr = 53
+  pot = 61
+  valor = 500000
+  partidas = 8
+  minutos = 720
+  id_fonte = "774531"
+
+  [[clubes.jogadores]]
+  nome = "Jakob Nyland Ørsahl"
+  pos = "AM"
+  idade = 25
+  ovr = 52
+  pot = 54
+  valor = 350000
+  partidas = 10
+  minutos = 879
+  gols = 3
+  id_fonte = "623495"
+
+  [[clubes.jogadores]]
+  nome = "Mathias Kristensen"
+  pos = "AM"
+  idade = 29
+  ovr = 52
+  pot = 52
+  valor = 200000
+  partidas = 1
+  minutos = 13
+  id_fonte = "283214"
+
+  [[clubes.jogadores]]
+  nome = "Isak Gabriel Skotheim"
+  pos = "WG"
+  idade = 25
+  ovr = 50
+  pot = 54
+  valor = 350000
+  partidas = 2
+  minutos = 223
+  gols = 1
+  id_fonte = "520184"
+
+  [[clubes.jogadores]]
+  nome = "Ulrik Syversen"
+  pos = "CB"
+  idade = 23
+  ovr = 47
+  pot = 52
+  valor = 200000
+  partidas = 7
+  minutos = 646
+  id_fonte = "619659"
+
+  [[clubes.jogadores]]
+  nome = "Elias Myrlid"
+  pos = "FW"
+  idade = 24
+  ovr = 46
+  pot = 51
+  valor = 250000
+  partidas = 4
+  minutos = 340
+  gols = 1
+  id_fonte = "966074"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Djantou"
+  pos = "FW"
+  idade = 24
+  ovr = 46
+  pot = 51
+  valor = 250000
+  partidas = 4
+  minutos = 325
+  gols = 2
+  id_fonte = "1074629"
+
+  [[clubes.jogadores]]
+  nome = "Janus Seehusen"
+  pos = "DM"
+  idade = 23
+  ovr = 45
+  pot = 53
+  valor = 250000
+  partidas = 1
+  minutos = 26
+  id_fonte = "801961"
+
+  [[clubes.jogadores]]
+  nome = "Nicholas Alme Bakke"
+  pos = "CB"
+  idade = 17
+  ovr = 40
+  pot = 48
+  valor = 107053
+  id_fonte = "1392248"
+
+  [[clubes.jogadores]]
+  nome = "Tobias Leikanger"
+  pos = "AM"
+  idade = 18
+  ovr = 40
+  pot = 45
+  valor = 110000
+  partidas = 1
+  minutos = 4
+  id_fonte = "1263189"
+
+[[clubes]]
+nome = "Vålerenga Fotball Elite"
+forca = 57.9
+valor_elenco = 14130000
+cores = ["#2D2F8B", "#C5A0B7"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Fidel Brice Ambina"
+  pos = "DM"
+  idade = 24
+  ovr = 60
+  pot = 64
+  valor = 1800000
+  partidas = 7
+  minutos = 593
+  id_fonte = "863901"
+
+  [[clubes.jogadores]]
+  nome = "Kolbeinn Finnsson"
+  pos = "FB"
+  idade = 27
+  ovr = 60
+  pot = 60
+  valor = 900000
+  partidas = 20
+  minutos = 1765
+  id_fonte = "320421"
+
+  [[clubes.jogadores]]
+  nome = "Oscar Hedvall"
+  pos = "GK"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 600000
+  partidas = 22
+  minutos = 1980
+  id_fonte = "325179"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Näsberg"
+  pos = "CB"
+  idade = 30
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 14
+  minutos = 1299
+  gols = 1
+  id_fonte = "239046"
+
+  [[clubes.jogadores]]
+  nome = "Lucas Haren"
+  pos = "WG"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 900000
+  partidas = 15
+  minutos = 1315
+  gols = 8
+  id_fonte = "355516"
+
+  [[clubes.jogadores]]
+  nome = "Aaron Kiil Olsen"
+  pos = "CB"
+  idade = 25
+  ovr = 57
+  pot = 58
+  valor = 700000
+  partidas = 20
+  minutos = 1778
+  id_fonte = "633546"
+
+  [[clubes.jogadores]]
+  nome = "Carl Lange"
+  pos = "AM"
+  idade = 27
+  ovr = 57
+  pot = 57
+  valor = 800000
+  partidas = 20
+  minutos = 1786
+  gols = 6
+  id_fonte = "503325"
+
+  [[clubes.jogadores]]
+  nome = "Magnus Westergaard"
+  pos = "MF"
+  idade = 28
+  ovr = 57
+  pot = 57
+  valor = 650000
+  partidas = 15
+  minutos = 1319
+  gols = 1
+  id_fonte = "542842"
+
+  [[clubes.jogadores]]
+  nome = "Mathias Grundetjern"
+  pos = "FW"
+  idade = 26
+  ovr = 57
+  pot = 58
+  valor = 1000000
+  partidas = 17
+  minutos = 1503
+  gols = 5
+  id_fonte = "578928"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Tshiembe"
+  pos = "CB"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 450000
+  partidas = 5
+  minutos = 414
+  id_fonte = "387745"
+
+  [[clubes.jogadores]]
+  nome = "Elbasan Rashani"
+  pos = "WG"
+  idade = 33
+  ovr = 55
+  pot = 55
+  valor = 400000
+  partidas = 1
+  minutos = 6
+  id_fonte = "149579"
+
+  [[clubes.jogadores]]
+  nome = "Ghayas Zahid"
+  pos = "AM"
+  idade = 32
+  ovr = 55
+  pot = 55
+  valor = 400000
+  partidas = 2
+  minutos = 213
+  id_fonte = "236693"
+
+  [[clubes.jogadores]]
+  nome = "Håkon Sjåtil"
+  pos = "FB"
+  idade = 23
+  ovr = 55
+  pot = 58
+  valor = 750000
+  partidas = 15
+  minutos = 1356
+  id_fonte = "944803"
+
+  [[clubes.jogadores]]
+  nome = "Petter Strand"
+  pos = "MF"
+  idade = 32
+  ovr = 55
+  pot = 55
+  valor = 350000
+  partidas = 8
+  minutos = 718
+  gols = 3
+  id_fonte = "319661"
+
+  [[clubes.jogadores]]
+  nome = "Sebastian Jarl"
+  pos = "CB"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 500000
+  partidas = 9
+  minutos = 841
+  gols = 1
+  id_fonte = "501833"
+
+  [[clubes.jogadores]]
+  nome = "Ole Sæter"
+  pos = "FW"
+  idade = 30
+  ovr = 54
+  pot = 54
+  valor = 500000
+  partidas = 2
+  minutos = 184
+  id_fonte = "664521"
+
+  [[clubes.jogadores]]
+  nome = "Håvard Nielsen"
+  pos = "FW"
+  idade = 33
+  ovr = 53
+  pot = 53
+  valor = 300000
+  partidas = 1
+  minutos = 61
+  id_fonte = "136181"
+
+  [[clubes.jogadores]]
+  nome = "Vegar Hedenstad"
+  pos = "FB"
+  idade = 35
+  ovr = 52
+  pot = 52
+  valor = 150000
+  partidas = 2
+  minutos = 186
+  id_fonte = "73333"
+
+  [[clubes.jogadores]]
+  nome = "Odin Thiago Holm"
+  pos = "MF"
+  idade = 23
+  ovr = 50
+  pot = 57
+  valor = 800000
+  partidas = 3
+  minutos = 277
+  id_fonte = "581109"
+
+  [[clubes.jogadores]]
+  nome = "Dennis Gjengaar"
+  pos = "WG"
+  idade = 22
+  ovr = 48
+  pot = 57
+  valor = 1000000
+  partidas = 2
+  minutos = 163
+  id_fonte = "670111"
+
+  [[clubes.jogadores]]
+  nome = "Gabriel Rajković"
+  pos = "WG"
+  idade = 15
+  ovr = 48
+  pot = 48
+  valor = 330000
+  partidas = 3
+  minutos = 310
+  gols = 2
+  id_fonte = "1470255"
+
+  [[clubes.jogadores]]
+  nome = "Sander Lønning"
+  pos = "GK"
+  idade = 24
+  ovr = 46
+  pot = 52
+  valor = 225000
+  id_fonte = "698624"
+
+  [[clubes.jogadores]]
+  nome = "Alexander Ordal"
+  pos = "GK"
+  idade = 18
+  ovr = 40
+  pot = 49
+  valor = 189444
+  id_fonte = "1325991"
+
+  [[clubes.jogadores]]
+  nome = "Even Forcha"
+  pos = "MF"
+  idade = 17
+  ovr = 40
+  pot = 46
+  valor = 189444
+  id_fonte = "1279638"
+
+  [[clubes.jogadores]]
+  nome = "Lorents Apold-Aasen"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 42
+  valor = 150000
+  id_fonte = "1123729"
+
+  [[clubes.jogadores]]
+  nome = "Mario Gomes"
+  pos = "CB"
+  idade = 19
+  ovr = 40
+  pot = 47
+  valor = 189444
+  id_fonte = "1514701"
+
+  [[clubes.jogadores]]
+  nome = "Omar Bully"
+  pos = "MF"
+  idade = 23
+  ovr = 40
+  pot = 47
+  valor = 200000
+  id_fonte = "689080"
+
+[[clubes]]
+nome = "Hamarkameratene"
+forca = 56.4
+valor_elenco = 11350000
+cores = ["#23B368", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Aksel Baran Potur"
+  pos = "MF"
+  idade = 23
+  ovr = 61
+  pot = 63
+  valor = 1500000
+  partidas = 17
+  minutos = 1570
+  gols = 4
+  id_fonte = "877320"
+
+  [[clubes.jogadores]]
+  nome = "Ethan Amundsen-Day"
+  pos = "CB"
+  idade = 21
+  ovr = 59
+  pot = 61
+  valor = 1000000
+  partidas = 21
+  minutos = 1878
+  gols = 1
+  id_fonte = "795430"
+
+  [[clubes.jogadores]]
+  nome = "Martin Gjone"
+  pos = "CB"
+  idade = 21
+  ovr = 59
+  pot = 61
+  valor = 1000000
+  partidas = 18
+  minutos = 1616
+  gols = 3
+  id_fonte = "1006799"
+
+  [[clubes.jogadores]]
+  nome = "Marcus Sandberg"
+  pos = "GK"
+  idade = 35
+  ovr = 58
+  pot = 58
+  valor = 200000
+  partidas = 23
+  minutos = 2070
+  id_fonte = "63443"
+
+  [[clubes.jogadores]]
+  nome = "Fredrik Sjølstad"
+  pos = "CB"
+  idade = 32
+  ovr = 57
+  pot = 57
+  valor = 300000
+  partidas = 17
+  minutos = 1486
+  id_fonte = "180064"
+
+  [[clubes.jogadores]]
+  nome = "Anders Trondsen"
+  pos = "MF"
+  idade = 31
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 8
+  minutos = 690
+  gols = 1
+  id_fonte = "228042"
+
+  [[clubes.jogadores]]
+  nome = "Luc Mares"
+  pos = "DM"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 13
+  minutos = 1211
+  id_fonte = "315733"
+
+  [[clubes.jogadores]]
+  nome = "Patrick Metcalfe"
+  pos = "MF"
+  idade = 27
+  ovr = 56
+  pot = 56
+  valor = 500000
+  partidas = 15
+  minutos = 1394
+  gols = 1
+  id_fonte = "501710"
+
+  [[clubes.jogadores]]
+  nome = "Danilo Al-Saed"
+  pos = "WG"
+  idade = 27
+  ovr = 55
+  pot = 56
+  valor = 600000
+  partidas = 1
+  minutos = 113
+  gols = 1
+  id_fonte = "866082"
+
+  [[clubes.jogadores]]
+  nome = "Henrik Udahl"
+  pos = "FW"
+  idade = 29
+  ovr = 55
+  pot = 55
+  valor = 500000
+  partidas = 16
+  minutos = 1419
+  gols = 5
+  id_fonte = "436959"
+
+  [[clubes.jogadores]]
+  nome = "Snorre Strand-Nilsen"
+  pos = "CB"
+  idade = 29
+  ovr = 53
+  pot = 53
+  valor = 250000
+  partidas = 8
+  minutos = 708
+  id_fonte = "379604"
+
+  [[clubes.jogadores]]
+  nome = "Loris Mettler"
+  pos = "AM"
+  idade = 27
+  ovr = 52
+  pot = 53
+  valor = 350000
+  partidas = 6
+  minutos = 548
+  gols = 1
+  id_fonte = "449526"
+
+  [[clubes.jogadores]]
+  nome = "Mohamed Ofkir"
+  pos = "WG"
+  idade = 30
+  ovr = 52
+  pot = 52
+  valor = 300000
+  partidas = 2
+  minutos = 204
+  gols = 2
+  id_fonte = "369650"
+
+  [[clubes.jogadores]]
+  nome = "Markus Johnsgård"
+  pos = "AM"
+  idade = 27
+  ovr = 51
+  pot = 51
+  valor = 300000
+  partidas = 10
+  minutos = 928
+  gols = 2
+  id_fonte = "459209"
+
+  [[clubes.jogadores]]
+  nome = "Vidar Ari Jónsson"
+  pos = "AM"
+  idade = 32
+  ovr = 51
+  pot = 51
+  valor = 200000
+  partidas = 13
+  minutos = 1131
+  id_fonte = "178918"
+
+  [[clubes.jogadores]]
+  nome = "Duarte Moreira"
+  pos = "FW"
+  idade = 24
+  ovr = 49
+  pot = 55
+  valor = 600000
+  partidas = 2
+  minutos = 154
+  id_fonte = "500640"
+
+  [[clubes.jogadores]]
+  nome = "Halvor Rødølen Opsahl"
+  pos = "CB"
+  idade = 23
+  ovr = 48
+  pot = 54
+  valor = 350000
+  partidas = 4
+  minutos = 353
+  id_fonte = "893787"
+
+  [[clubes.jogadores]]
+  nome = "Aleksander Andresen"
+  pos = "FB"
+  idade = 21
+  ovr = 47
+  pot = 58
+  valor = 650000
+  partidas = 2
+  minutos = 186
+  id_fonte = "902487"
+
+  [[clubes.jogadores]]
+  nome = "João Barros"
+  pos = "FB"
+  idade = 25
+  ovr = 44
+  pot = 48
+  valor = 150000
+  id_fonte = "950918"
+
+  [[clubes.jogadores]]
+  nome = "Blerton Isufi"
+  pos = "AM"
+  idade = 20
+  ovr = 42
+  pot = 54
+  valor = 500000
+  partidas = 4
+  minutos = 364
+  gols = 1
+  id_fonte = "1264058"
+
+  [[clubes.jogadores]]
+  nome = "William Osnes-Ringen"
+  pos = "MF"
+  idade = 19
+  ovr = 41
+  pot = 53
+  valor = 400000
+  partidas = 6
+  minutos = 513
+  id_fonte = "923532"
+
+  [[clubes.jogadores]]
+  nome = "David Benjamin"
+  pos = "FW"
+  idade = 18
+  ovr = 40
+  pot = 51
+  valor = 400000
+  partidas = 4
+  minutos = 377
+  id_fonte = "1314154"
+
+  [[clubes.jogadores]]
+  nome = "David de Ornelas"
+  pos = "WG"
+  idade = 18
+  ovr = 40
+  pot = 49
+  valor = 300000
+  id_fonte = "1282666"
+
+  [[clubes.jogadores]]
+  nome = "Mamadou Diop"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 45
+  valor = 165000
+  id_fonte = "1589295"
+
+  [[clubes.jogadores]]
+  nome = "Markus Østerud"
+  pos = "FW"
+  idade = 18
+  ovr = 40
+  pot = 45
+  valor = 165000
+  id_fonte = "1272138"
+
+  [[clubes.jogadores]]
+  nome = "Olav Dobloug Mengshoel"
+  pos = "FW"
+  idade = 18
+  ovr = 40
+  pot = 41
+  valor = 100000
+  id_fonte = "1276670"
+
+  [[clubes.jogadores]]
+  nome = "Sander Østraat"
+  pos = "GK"
+  idade = 21
+  ovr = 40
+  pot = 47
+  valor = 100000
+  id_fonte = "1056641"
+
+  [[clubes.jogadores]]
+  nome = "Simon Elias Rusen"
+  pos = "GK"
+  idade = 19
+  ovr = 40
+  pot = 50
+  valor = 165000
+  id_fonte = "1405428"
+
+[[clubes]]
+nome = "KFUM-Kameratene Oslo"
+forca = 55.7
+valor_elenco = 10250000
+cores = ["#E2242B", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Schneider"
+  pos = "CB"
+  idade = 24
+  ovr = 60
+  pot = 61
+  valor = 700000
+  partidas = 22
+  minutos = 1994
+  gols = 1
+  id_fonte = "944800"
+
+  [[clubes.jogadores]]
+  nome = "Emil Ødegaard"
+  pos = "GK"
+  idade = 27
+  ovr = 60
+  pot = 60
+  valor = 450000
+  partidas = 13
+  minutos = 1200
+  id_fonte = "367243"
+
+  [[clubes.jogadores]]
+  nome = "Eirik Saunes"
+  pos = "FB"
+  idade = 28
+  ovr = 58
+  pot = 58
+  valor = 450000
+  partidas = 20
+  minutos = 1812
+  id_fonte = "502907"
+
+  [[clubes.jogadores]]
+  nome = "Fredrik Berglie"
+  pos = "CB"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 16
+  minutos = 1445
+  id_fonte = "526489"
+
+  [[clubes.jogadores]]
+  nome = "Robin Rasch"
+  pos = "DM"
+  idade = 32
+  ovr = 58
+  pot = 58
+  valor = 350000
+  partidas = 11
+  minutos = 1000
+  id_fonte = "264295"
+
+  [[clubes.jogadores]]
+  nome = "Håvar Jenssen"
+  pos = "GK"
+  idade = 30
+  ovr = 57
+  pot = 57
+  valor = 250000
+  partidas = 9
+  minutos = 810
+  id_fonte = "258957"
+
+  [[clubes.jogadores]]
+  nome = "Brage Skaret"
+  pos = "CB"
+  idade = 24
+  ovr = 54
+  pot = 57
+  valor = 450000
+  partidas = 13
+  minutos = 1137
+  id_fonte = "539662"
+
+  [[clubes.jogadores]]
+  nome = "Håkon Helland Hoseth"
+  pos = "AM"
+  idade = 27
+  ovr = 54
+  pot = 54
+  valor = 400000
+  partidas = 17
+  minutos = 1567
+  gols = 4
+  id_fonte = "523052"
+
+  [[clubes.jogadores]]
+  nome = "Jonas Lange Hjorth"
+  pos = "FB"
+  idade = 25
+  ovr = 54
+  pot = 56
+  valor = 400000
+  partidas = 15
+  minutos = 1360
+  gols = 1
+  id_fonte = "686005"
+
+  [[clubes.jogadores]]
+  nome = "Tore André Sørås"
+  pos = "MF"
+  idade = 28
+  ovr = 54
+  pot = 54
+  valor = 350000
+  partidas = 9
+  minutos = 814
+  gols = 1
+  id_fonte = "459390"
+
+  [[clubes.jogadores]]
+  nome = "Magnus Grødem"
+  pos = "FW"
+  idade = 28
+  ovr = 53
+  pot = 53
+  valor = 400000
+  partidas = 8
+  minutos = 683
+  gols = 2
+  id_fonte = "343064"
+
+  [[clubes.jogadores]]
+  nome = "Magnus Wolff Eikrem"
+  pos = "FW"
+  idade = 36
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 6
+  minutos = 566
+  gols = 2
+  id_fonte = "54775"
+
+  [[clubes.jogadores]]
+  nome = "Rasmus Eggen Vinge"
+  pos = "WG"
+  idade = 25
+  ovr = 53
+  pot = 54
+  valor = 500000
+  partidas = 13
+  minutos = 1160
+  gols = 3
+  id_fonte = "912480"
+
+  [[clubes.jogadores]]
+  nome = "Ayoub Aleesami"
+  pos = "CB"
+  idade = 30
+  ovr = 52
+  pot = 52
+  valor = 200000
+  partidas = 1
+  minutos = 27
+  id_fonte = "501821"
+
+  [[clubes.jogadores]]
+  nome = "Martin Tangen Vinjor"
+  pos = "AM"
+  idade = 26
+  ovr = 52
+  pot = 52
+  valor = 350000
+  partidas = 16
+  minutos = 1469
+  id_fonte = "440319"
+
+  [[clubes.jogadores]]
+  nome = "Sander Sjøkvist"
+  pos = "AM"
+  idade = 27
+  ovr = 51
+  pot = 51
+  valor = 300000
+  partidas = 13
+  minutos = 1209
+  gols = 1
+  id_fonte = "663257"
+
+  [[clubes.jogadores]]
+  nome = "David Hickson"
+  pos = "WG"
+  idade = 29
+  ovr = 50
+  pot = 50
+  valor = 250000
+  partidas = 5
+  minutos = 459
+  id_fonte = "410547"
+
+  [[clubes.jogadores]]
+  nome = "Bilal Njie"
+  pos = "WG"
+  idade = 28
+  ovr = 49
+  pot = 49
+  valor = 250000
+  partidas = 12
+  minutos = 1100
+  gols = 6
+  id_fonte = "503258"
+
+  [[clubes.jogadores]]
+  nome = "Håkon Røsten"
+  pos = "CB"
+  idade = 21
+  ovr = 48
+  pot = 57
+  valor = 500000
+  partidas = 4
+  minutos = 400
+  id_fonte = "905378"
+
+  [[clubes.jogadores]]
+  nome = "Bjørn Martin Kristensen"
+  pos = "FW"
+  idade = 24
+  ovr = 47
+  pot = 50
+  valor = 300000
+  partidas = 11
+  minutos = 1014
+  gols = 4
+  id_fonte = "877339"
+
+  [[clubes.jogadores]]
+  nome = "Jacob Blixt Flaten"
+  pos = "MF"
+  idade = 24
+  ovr = 45
+  pot = 50
+  valor = 250000
+  partidas = 2
+  minutos = 196
+  id_fonte = "795921"
+
+  [[clubes.jogadores]]
+  nome = "Ola Visted"
+  pos = "AM"
+  idade = 21
+  ovr = 45
+  pot = 56
+  valor = 600000
+  partidas = 1
+  minutos = 123
+  id_fonte = "1204043"
+
+  [[clubes.jogadores]]
+  nome = "Amin Nouri"
+  pos = "FB"
+  idade = 36
+  ovr = 44
+  pot = 44
+  valor = 50000
+  partidas = 2
+  minutos = 206
+  id_fonte = "89647"
+
+  [[clubes.jogadores]]
+  nome = "Julian Gonstad"
+  pos = "FW"
+  idade = 20
+  ovr = 43
+  pot = 56
+  valor = 700000
+  partidas = 2
+  minutos = 180
+  gols = 1
+  id_fonte = "923530"
+
+  [[clubes.jogadores]]
+  nome = "Isaiah Skovsgaard"
+  pos = "FW"
+  idade = 15
+  ovr = 41
+  pot = 41
+  valor = 129642
+  partidas = 2
+  minutos = 30
+  id_fonte = "1534698"
+
+  [[clubes.jogadores]]
+  nome = "Brage Tobiassen"
+  pos = "MF"
+  idade = 19
+  ovr = 40
+  pot = 55
+  valor = 500000
+  partidas = 3
+  minutos = 38
+  id_fonte = "1017377"
+
+  [[clubes.jogadores]]
+  nome = "Mostafa Najafzadeh"
+  pos = "WG"
+  idade = 18
+  ovr = 40
+  pot = 41
+  valor = 100000
+  partidas = 1
+  minutos = 1
+  id_fonte = "1133856"
+
+  [[clubes.jogadores]]
+  nome = "Promise Meliga Jr."
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 55
+  valor = 600000
+  id_fonte = "1125601"
+
+[[clubes]]
+nome = "IK Start"
+forca = 55.5
+valor_elenco = 9830000
+cores = ["#3D7FC6", "#FEFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Filip Manojlovic"
+  pos = "GK"
+  idade = 30
+  ovr = 61
+  pot = 61
+  valor = 500000
+  partidas = 4
+  minutos = 360
+  id_fonte = "333323"
+
+  [[clubes.jogadores]]
+  nome = "Jesper Cornelius"
+  pos = "FW"
+  idade = 25
+  ovr = 60
+  pot = 60
+  valor = 1200000
+  partidas = 18
+  minutos = 1602
+  gols = 5
+  id_fonte = "1230462"
+
+  [[clubes.jogadores]]
+  nome = "Erlend Dahl Reitan"
+  pos = "FB"
+  idade = 29
+  ovr = 58
+  pot = 58
+  valor = 450000
+  partidas = 19
+  minutos = 1720
+  gols = 2
+  id_fonte = "369100"
+
+  [[clubes.jogadores]]
+  nome = "John Olav Norheim"
+  pos = "CB"
+  idade = 31
+  ovr = 56
+  pot = 56
+  valor = 300000
+  partidas = 14
+  minutos = 1216
+  id_fonte = "268325"
+
+  [[clubes.jogadores]]
+  nome = "Kristoffer Tønnessen"
+  pos = "FB"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 5
+  minutos = 444
+  id_fonte = "375403"
+
+  [[clubes.jogadores]]
+  nome = "Erlend Segberg"
+  pos = "DM"
+  idade = 29
+  ovr = 55
+  pot = 55
+  valor = 350000
+  partidas = 19
+  minutos = 1727
+  gols = 2
+  id_fonte = "369101"
+
+  [[clubes.jogadores]]
+  nome = "Eirik Schulze"
+  pos = "MF"
+  idade = 33
+  ovr = 54
+  pot = 54
+  valor = 200000
+  partidas = 11
+  minutos = 952
+  gols = 1
+  id_fonte = "203659"
+
+  [[clubes.jogadores]]
+  nome = "Fredrik Pålerud"
+  pos = "FB"
+  idade = 32
+  ovr = 54
+  pot = 54
+  valor = 200000
+  partidas = 2
+  minutos = 163
+  id_fonte = "284867"
+
+  [[clubes.jogadores]]
+  nome = "Håkon Lorentzen"
+  pos = "FW"
+  idade = 29
+  ovr = 54
+  pot = 54
+  valor = 400000
+  partidas = 16
+  minutos = 1414
+  gols = 3
+  id_fonte = "269502"
+
+  [[clubes.jogadores]]
+  nome = "Jens Husebø"
+  pos = "CB"
+  idade = 27
+  ovr = 54
+  pot = 54
+  valor = 300000
+  partidas = 7
+  minutos = 621
+  id_fonte = "507309"
+
+  [[clubes.jogadores]]
+  nome = "Mikael Ugland"
+  pos = "MF"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 400000
+  partidas = 15
+  minutos = 1379
+  id_fonte = "418556"
+
+  [[clubes.jogadores]]
+  nome = "Steve Mvoué"
+  pos = "MF"
+  idade = 24
+  ovr = 54
+  pot = 57
+  valor = 600000
+  partidas = 10
+  minutos = 931
+  gols = 2
+  id_fonte = "666953"
+
+  [[clubes.jogadores]]
+  nome = "Ousmane Diallo"
+  pos = "FB"
+  idade = 23
+  ovr = 53
+  pot = 56
+  valor = 450000
+  partidas = 14
+  minutos = 1218
+  gols = 3
+  id_fonte = "795918"
+
+  [[clubes.jogadores]]
+  nome = "Altin Ujkani"
+  pos = "CB"
+  idade = 26
+  ovr = 52
+  pot = 53
+  valor = 250000
+  partidas = 7
+  minutos = 626
+  gols = 1
+  id_fonte = "581636"
+
+  [[clubes.jogadores]]
+  nome = "Magnus Sjøeng"
+  pos = "GK"
+  idade = 24
+  ovr = 52
+  pot = 58
+  valor = 400000
+  partidas = 1
+  minutos = 90
+  id_fonte = "794456"
+
+  [[clubes.jogadores]]
+  nome = "Sebastian Griesbeck"
+  pos = "CB"
+  idade = 35
+  ovr = 52
+  pot = 52
+  valor = 100000
+  partidas = 5
+  minutos = 407
+  id_fonte = "153555"
+
+  [[clubes.jogadores]]
+  nome = "Nikolas Koutsakos"
+  pos = "FW"
+  idade = 22
+  ovr = 48
+  pot = 57
+  valor = 750000
+  partidas = 3
+  minutos = 231
+  id_fonte = "840819"
+
+  [[clubes.jogadores]]
+  nome = "Sander Granheim"
+  pos = "CB"
+  idade = 19
+  ovr = 47
+  pot = 62
+  valor = 1000000
+  partidas = 2
+  minutos = 180
+  id_fonte = "1226239"
+
+  [[clubes.jogadores]]
+  nome = "Nikola Jojic"
+  pos = "WG"
+  idade = 23
+  ovr = 46
+  pot = 54
+  valor = 500000
+  partidas = 1
+  minutos = 12
+  id_fonte = "827783"
+
+  [[clubes.jogadores]]
+  nome = "Johan Meyer"
+  pos = "CB"
+  idade = 22
+  ovr = 45
+  pot = 55
+  valor = 350000
+  partidas = 3
+  minutos = 25
+  id_fonte = "926951"
+
+  [[clubes.jogadores]]
+  nome = "Deni Dashaev"
+  pos = "FB"
+  idade = 21
+  ovr = 44
+  pot = 53
+  valor = 300000
+  partidas = 6
+  minutos = 502
+  gols = 1
+  id_fonte = "1022715"
+
+  [[clubes.jogadores]]
+  nome = "Filip Strømland Lien"
+  pos = "MF"
+  idade = 17
+  ovr = 40
+  pot = 44
+  valor = 100000
+  partidas = 2
+  minutos = 7
+  id_fonte = "1473172"
+
+  [[clubes.jogadores]]
+  nome = "Marius Nordal"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 42
+  valor = 75000
+  partidas = 1
+  minutos = 90
+  id_fonte = "1068115"
+
+  [[clubes.jogadores]]
+  nome = "Santino Samuyiwa"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 45
+  valor = 150000
+  partidas = 1
+  minutos = 63
+  id_fonte = "1064249"
+
+  [[clubes.jogadores]]
+  nome = "Storm Strand-Kolbjørnsen"
+  pos = "GK"
+  idade = 22
+  ovr = 40
+  pot = 48
+  valor = 100000
+  partidas = 2
+  minutos = 180
+  id_fonte = "670098"
+

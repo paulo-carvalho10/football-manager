@@ -1,0 +1,3620 @@
+# KR1 -- GERADO por fm.importer. Nao editar a mao: rode o importador.
+#
+# Fonte: Transfermarkt (clube, posicao, idade, valor de mercado, jogos, minutos).
+# ovr e pot sao DERIVADOS por fm/ratings.py a partir desses campos. Sao estimativa, nao
+# rating oficial de ninguem, e a conta esta documentada no modulo.
+#
+# forca do clube = nivel_da_liga + 5.0 * z(ln(valor de elenco) dentro da liga).
+# O NIVEL da liga sai do valor medio de elenco na escala global de todas as competicoes
+# importadas, com o melhor clube do mundo ancorado em 90 -- fazer z so por liga apagava a
+# diferenca entre divisoes e o lanterna da Serie B saia mais forte que o da Serie A.
+# O BETA e proprio desta liga e foi ajustado contra os [alvos] do arquivo dela.
+verificado = false
+fonte = "Transfermarkt KR1 (valores de mercado); ovr/pot derivados por fm.ratings"
+
+[[clubes]]
+nome = "GNK Dinamo Zagreb"
+forca = 69.2
+valor_elenco = 70950000
+cores = ["#004699", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Dion Beljo"
+  pos = "FW"
+  idade = 24
+  ovr = 72
+  pot = 73
+  valor = 12000000
+  partidas = 12
+  minutos = 1043
+  gols = 11
+  id_fonte = "618350"
+
+  [[clubes.jogadores]]
+  nome = "Dominik Kotarski"
+  pos = "GK"
+  idade = 26
+  ovr = 72
+  pot = 73
+  valor = 5000000
+  partidas = 4
+  minutos = 360
+  id_fonte = "370997"
+
+  [[clubes.jogadores]]
+  nome = "Scott McKenna"
+  pos = "CB"
+  idade = 29
+  ovr = 71
+  pot = 71
+  valor = 4000000
+  partidas = 10
+  minutos = 885
+  gols = 1
+  id_fonte = "255906"
+
+  [[clubes.jogadores]]
+  nome = "Sergi Domínguez"
+  pos = "CB"
+  idade = 21
+  ovr = 71
+  pot = 74
+  valor = 9000000
+  partidas = 10
+  minutos = 886
+  gols = 2
+  id_fonte = "741258"
+
+  [[clubes.jogadores]]
+  nome = "Stjepan Radeljic"
+  pos = "CB"
+  idade = 29
+  ovr = 70
+  pot = 70
+  valor = 2800000
+  partidas = 6
+  minutos = 541
+  id_fonte = "384568"
+
+  [[clubes.jogadores]]
+  nome = "Luka Stojkovic"
+  pos = "AM"
+  idade = 22
+  ovr = 69
+  pot = 71
+  valor = 7000000
+  partidas = 8
+  minutos = 690
+  gols = 1
+  id_fonte = "665266"
+
+  [[clubes.jogadores]]
+  nome = "Arbër Hoxha"
+  pos = "WG"
+  idade = 27
+  ovr = 68
+  pot = 68
+  valor = 3000000
+  partidas = 8
+  minutos = 745
+  gols = 2
+  id_fonte = "458367"
+
+  [[clubes.jogadores]]
+  nome = "Luka Ivanušec"
+  pos = "AM"
+  idade = 27
+  ovr = 68
+  pot = 68
+  valor = 3000000
+  partidas = 2
+  minutos = 208
+  gols = 2
+  id_fonte = "387105"
+
+  [[clubes.jogadores]]
+  nome = "Niko Galesic"
+  pos = "CB"
+  idade = 25
+  ovr = 68
+  pot = 70
+  valor = 3000000
+  partidas = 6
+  minutos = 565
+  gols = 2
+  id_fonte = "528835"
+
+  [[clubes.jogadores]]
+  nome = "Bruno Goda"
+  pos = "FB"
+  idade = 28
+  ovr = 67
+  pot = 67
+  valor = 1500000
+  partidas = 6
+  minutos = 507
+  gols = 1
+  id_fonte = "414956"
+
+  [[clubes.jogadores]]
+  nome = "Miha Zajc"
+  pos = "MF"
+  idade = 32
+  ovr = 67
+  pot = 67
+  valor = 1200000
+  partidas = 9
+  minutos = 780
+  gols = 3
+  id_fonte = "149829"
+
+  [[clubes.jogadores]]
+  nome = "Moris Valincic"
+  pos = "FB"
+  idade = 23
+  ovr = 67
+  pot = 68
+  valor = 2500000
+  partidas = 10
+  minutos = 871
+  gols = 1
+  id_fonte = "502686"
+
+  [[clubes.jogadores]]
+  nome = "Josip Misic"
+  pos = "DM"
+  idade = 32
+  ovr = 66
+  pot = 66
+  valor = 1000000
+  partidas = 13
+  minutos = 1136
+  gols = 1
+  id_fonte = "227035"
+
+  [[clubes.jogadores]]
+  nome = "Matteo Pérez Vinlöf"
+  pos = "FB"
+  idade = 20
+  ovr = 65
+  pot = 68
+  valor = 2500000
+  partidas = 10
+  minutos = 873
+  id_fonte = "920283"
+
+  [[clubes.jogadores]]
+  nome = "Mislav Orsic"
+  pos = "WG"
+  idade = 33
+  ovr = 65
+  pot = 65
+  valor = 900000
+  partidas = 6
+  minutos = 515
+  id_fonte = "119150"
+
+  [[clubes.jogadores]]
+  nome = "Robert Mudrazija"
+  pos = "AM"
+  idade = 29
+  ovr = 64
+  pot = 64
+  valor = 900000
+  partidas = 2
+  minutos = 150
+  gols = 1
+  id_fonte = "339584"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Filipovic"
+  pos = "GK"
+  idade = 31
+  ovr = 63
+  pot = 63
+  valor = 350000
+  partidas = 6
+  minutos = 512
+  id_fonte = "234187"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Nevistic"
+  pos = "GK"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 500000
+  partidas = 6
+  minutos = 506
+  id_fonte = "293185"
+
+  [[clubes.jogadores]]
+  nome = "Mateo Lisica"
+  pos = "WG"
+  idade = 23
+  ovr = 63
+  pot = 65
+  valor = 1500000
+  partidas = 9
+  minutos = 850
+  gols = 2
+  id_fonte = "665275"
+
+  [[clubes.jogadores]]
+  nome = "Smail Prevljak"
+  pos = "FW"
+  idade = 31
+  ovr = 62
+  pot = 62
+  valor = 600000
+  partidas = 3
+  minutos = 268
+  gols = 4
+  id_fonte = "328264"
+
+  [[clubes.jogadores]]
+  nome = "Kirill Kravtsov"
+  pos = "DM"
+  idade = 24
+  ovr = 60
+  pot = 65
+  valor = 1200000
+  partidas = 2
+  minutos = 157
+  id_fonte = "607814"
+
+  [[clubes.jogadores]]
+  nome = "Lukas Kacavenda"
+  pos = "AM"
+  idade = 23
+  ovr = 59
+  pot = 61
+  valor = 600000
+  partidas = 8
+  minutos = 741
+  gols = 4
+  id_fonte = "846545"
+
+  [[clubes.jogadores]]
+  nome = "Fran Topic"
+  pos = "WG"
+  idade = 22
+  ovr = 57
+  pot = 63
+  valor = 1000000
+  partidas = 4
+  minutos = 340
+  gols = 4
+  id_fonte = "927306"
+
+  [[clubes.jogadores]]
+  nome = "Paul Tabinas"
+  pos = "FB"
+  idade = 24
+  ovr = 57
+  pot = 57
+  valor = 150000
+  partidas = 4
+  minutos = 360
+  id_fonte = "828467"
+
+  [[clubes.jogadores]]
+  nome = "Danijel Zagorac"
+  pos = "GK"
+  idade = 39
+  ovr = 56
+  pot = 56
+  valor = 50000
+  id_fonte = "131310"
+
+  [[clubes.jogadores]]
+  nome = "Iker Almena"
+  pos = "WG"
+  idade = 22
+  ovr = 55
+  pot = 64
+  valor = 1200000
+  partidas = 1
+  minutos = 130
+  id_fonte = "1061656"
+
+  [[clubes.jogadores]]
+  nome = "Aleks Stojakovic"
+  pos = "FW"
+  idade = 22
+  ovr = 53
+  pot = 63
+  valor = 1000000
+  id_fonte = "1156640"
+
+  [[clubes.jogadores]]
+  nome = "Dani Rodríguez"
+  pos = "WG"
+  idade = 21
+  ovr = 51
+  pot = 63
+  valor = 1000000
+  id_fonte = "834470"
+
+  [[clubes.jogadores]]
+  nome = "Noah Nsoki"
+  pos = "WG"
+  idade = 19
+  ovr = 48
+  pot = 63
+  valor = 1000000
+  partidas = 1
+  minutos = 65
+  id_fonte = "1077674"
+
+  [[clubes.jogadores]]
+  nome = "Noa Mikic"
+  pos = "FB"
+  idade = 19
+  ovr = 46
+  pot = 60
+  valor = 400000
+  partidas = 5
+  minutos = 438
+  id_fonte = "1107315"
+
+  [[clubes.jogadores]]
+  nome = "Sven Sunta"
+  pos = "AM"
+  idade = 19
+  ovr = 44
+  pot = 59
+  valor = 400000
+  partidas = 2
+  minutos = 26
+  id_fonte = "1009603"
+
+  [[clubes.jogadores]]
+  nome = "Borna Orlic"
+  pos = "CB"
+  idade = 20
+  ovr = 41
+  pot = 55
+  valor = 100000
+  id_fonte = "1267602"
+
+  [[clubes.jogadores]]
+  nome = "Egor Molchan"
+  pos = "AM"
+  idade = 18
+  ovr = 41
+  pot = 59
+  valor = 400000
+  id_fonte = "1122786"
+
+  [[clubes.jogadores]]
+  nome = "Lautaro Ultra"
+  pos = "DM"
+  idade = 19
+  ovr = 41
+  pot = 57
+  valor = 200000
+  id_fonte = "1258790"
+
+[[clubes]]
+nome = "HNK Rijeka"
+forca = 65.2
+valor_elenco = 38330000
+cores = ["#B99C55", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Toni Fruk"
+  pos = "AM"
+  idade = 25
+  ovr = 71
+  pot = 72
+  valor = 9000000
+  partidas = 10
+  minutos = 930
+  gols = 3
+  id_fonte = "432758"
+
+  [[clubes.jogadores]]
+  nome = "Tiago Dantas"
+  pos = "MF"
+  idade = 25
+  ovr = 69
+  pot = 69
+  valor = 4000000
+  partidas = 12
+  minutos = 1059
+  gols = 2
+  id_fonte = "429987"
+
+  [[clubes.jogadores]]
+  nome = "Niko Jankovic"
+  pos = "AM"
+  idade = 25
+  ovr = 68
+  pot = 68
+  valor = 3500000
+  partidas = 9
+  minutos = 805
+  gols = 1
+  id_fonte = "403760"
+
+  [[clubes.jogadores]]
+  nome = "Ante Orec"
+  pos = "FB"
+  idade = 25
+  ovr = 66
+  pot = 67
+  valor = 2000000
+  partidas = 11
+  minutos = 1013
+  gols = 3
+  id_fonte = "745248"
+
+  [[clubes.jogadores]]
+  nome = "Mohammad Mohebi"
+  pos = "WG"
+  idade = 27
+  ovr = 66
+  pot = 67
+  valor = 2500000
+  partidas = 3
+  minutos = 41
+  id_fonte = "603149"
+
+  [[clubes.jogadores]]
+  nome = "Mladen Devetak"
+  pos = "FB"
+  idade = 27
+  ovr = 65
+  pot = 65
+  valor = 1200000
+  partidas = 7
+  minutos = 671
+  gols = 1
+  id_fonte = "376452"
+
+  [[clubes.jogadores]]
+  nome = "Daniel Adu-Adjei"
+  pos = "FW"
+  idade = 21
+  ovr = 64
+  pot = 66
+  valor = 2500000
+  partidas = 11
+  minutos = 949
+  gols = 6
+  id_fonte = "963878"
+
+  [[clubes.jogadores]]
+  nome = "Anel Husic"
+  pos = "CB"
+  idade = 25
+  ovr = 63
+  pot = 64
+  valor = 850000
+  partidas = 6
+  minutos = 522
+  gols = 1
+  id_fonte = "365107"
+
+  [[clubes.jogadores]]
+  nome = "Ante Majstorovic"
+  pos = "CB"
+  idade = 32
+  ovr = 63
+  pot = 63
+  valor = 450000
+  partidas = 13
+  minutos = 1170
+  gols = 1
+  id_fonte = "207025"
+
+  [[clubes.jogadores]]
+  nome = "Igor Vekic"
+  pos = "GK"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 500000
+  partidas = 4
+  minutos = 360
+  id_fonte = "341535"
+
+  [[clubes.jogadores]]
+  nome = "Alfonso Barco"
+  pos = "DM"
+  idade = 24
+  ovr = 62
+  pot = 63
+  valor = 850000
+  partidas = 8
+  minutos = 678
+  id_fonte = "671538"
+
+  [[clubes.jogadores]]
+  nome = "Amer Gojak"
+  pos = "AM"
+  idade = 29
+  ovr = 62
+  pot = 62
+  valor = 600000
+  partidas = 5
+  minutos = 453
+  gols = 5
+  id_fonte = "293210"
+
+  [[clubes.jogadores]]
+  nome = "Justas Lasickas"
+  pos = "FB"
+  idade = 28
+  ovr = 62
+  pot = 62
+  valor = 500000
+  partidas = 8
+  minutos = 693
+  gols = 2
+  id_fonte = "345311"
+
+  [[clubes.jogadores]]
+  nome = "Samuele Vignato"
+  pos = "AM"
+  idade = 22
+  ovr = 61
+  pot = 66
+  valor = 2000000
+  partidas = 5
+  minutos = 466
+  gols = 2
+  id_fonte = "650966"
+
+  [[clubes.jogadores]]
+  nome = "David Nwolokor"
+  pos = "GK"
+  idade = 30
+  ovr = 59
+  pot = 59
+  valor = 150000
+  id_fonte = "358195"
+
+  [[clubes.jogadores]]
+  nome = "Jakov Puljic"
+  pos = "FW"
+  idade = 33
+  ovr = 59
+  pot = 59
+  valor = 250000
+  partidas = 3
+  minutos = 310
+  gols = 1
+  id_fonte = "217751"
+
+  [[clubes.jogadores]]
+  nome = "Ante Matej Juric"
+  pos = "FW"
+  idade = 23
+  ovr = 58
+  pot = 62
+  valor = 850000
+  partidas = 1
+  minutos = 50
+  gols = 5
+  id_fonte = "927331"
+
+  [[clubes.jogadores]]
+  nome = "Branko Pavic"
+  pos = "DM"
+  idade = 19
+  ovr = 58
+  pot = 62
+  valor = 600000
+  partidas = 12
+  minutos = 1102
+  id_fonte = "1009485"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Cubelic"
+  pos = "AM"
+  idade = 23
+  ovr = 57
+  pot = 61
+  valor = 550000
+  partidas = 5
+  minutos = 455
+  id_fonte = "580443"
+
+  [[clubes.jogadores]]
+  nome = "Aleksa Todorovic"
+  pos = "GK"
+  idade = 22
+  ovr = 56
+  pot = 58
+  valor = 150000
+  partidas = 9
+  minutos = 810
+  id_fonte = "750003"
+
+  [[clubes.jogadores]]
+  nome = "Junior Ligue"
+  pos = "FB"
+  idade = 21
+  ovr = 56
+  pot = 68
+  valor = 2500000
+  id_fonte = "862744"
+
+  [[clubes.jogadores]]
+  nome = "Yusuf Kabadayi"
+  pos = "WG"
+  idade = 22
+  ovr = 54
+  pot = 63
+  valor = 1200000
+  partidas = 1
+  minutos = 109
+  id_fonte = "604359"
+
+  [[clubes.jogadores]]
+  nome = "Noel Bodetic"
+  pos = "FB"
+  idade = 22
+  ovr = 53
+  pot = 61
+  valor = 500000
+  partidas = 6
+  minutos = 498
+  id_fonte = "927834"
+
+  [[clubes.jogadores]]
+  nome = "Téo Barišić"
+  pos = "FB"
+  idade = 21
+  ovr = 52
+  pot = 62
+  valor = 700000
+  partidas = 6
+  minutos = 500
+  id_fonte = "979773"
+
+  [[clubes.jogadores]]
+  nome = "Moreno Zivkovic"
+  pos = "CB"
+  idade = 22
+  ovr = 51
+  pot = 60
+  valor = 350000
+  partidas = 1
+  minutos = 67
+  id_fonte = "844946"
+
+  [[clubes.jogadores]]
+  nome = "Florent Shehu"
+  pos = "AM"
+  idade = 24
+  ovr = 49
+  pot = 50
+  valor = 25000
+  id_fonte = "610163"
+
+  [[clubes.jogadores]]
+  nome = "Roko Valincic"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 52
+  valor = 50000
+  id_fonte = "1056490"
+
+  [[clubes.jogadores]]
+  nome = "Talib Sibi"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 56
+  valor = 172857
+  id_fonte = "1523683"
+
+[[clubes]]
+nome = "HNK Hajduk Split"
+forca = 63.2
+valor_elenco = 28230000
+cores = ["#003A86", "#FFFFFF"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Marko Livaja"
+  pos = "FW"
+  idade = 33
+  ovr = 67
+  pot = 67
+  valor = 2800000
+  partidas = 6
+  minutos = 533
+  gols = 3
+  id_fonte = "95438"
+
+  [[clubes.jogadores]]
+  nome = "Leander Dendoncker"
+  pos = "DM"
+  idade = 31
+  ovr = 66
+  pot = 66
+  valor = 1800000
+  id_fonte = "168157"
+
+  [[clubes.jogadores]]
+  nome = "Ivica Ivusic"
+  pos = "GK"
+  idade = 31
+  ovr = 65
+  pot = 65
+  valor = 1000000
+  partidas = 20
+  minutos = 1770
+  id_fonte = "160482"
+
+  [[clubes.jogadores]]
+  nome = "Dario Maresic"
+  pos = "CB"
+  idade = 26
+  ovr = 64
+  pot = 65
+  valor = 1800000
+  partidas = 14
+  minutos = 1215
+  id_fonte = "307807"
+
+  [[clubes.jogadores]]
+  nome = "Simun Hrgovic"
+  pos = "FB"
+  idade = 22
+  ovr = 64
+  pot = 66
+  valor = 3000000
+  partidas = 14
+  minutos = 1253
+  gols = 1
+  id_fonte = "921553"
+
+  [[clubes.jogadores]]
+  nome = "Dennis Hadzikadunic"
+  pos = "CB"
+  idade = 28
+  ovr = 63
+  pot = 63
+  valor = 1200000
+  partidas = 1
+  minutos = 132
+  gols = 1
+  id_fonte = "322065"
+
+  [[clubes.jogadores]]
+  nome = "Michele Sego"
+  pos = "WG"
+  idade = 26
+  ovr = 63
+  pot = 63
+  valor = 2000000
+  partidas = 13
+  minutos = 1154
+  gols = 10
+  id_fonte = "371012"
+
+  [[clubes.jogadores]]
+  nome = "Adrion Pajaziti"
+  pos = "DM"
+  idade = 23
+  ovr = 62
+  pot = 63
+  valor = 1500000
+  partidas = 13
+  minutos = 1147
+  gols = 1
+  id_fonte = "626301"
+
+  [[clubes.jogadores]]
+  nome = "Dante Stipica"
+  pos = "GK"
+  idade = 35
+  ovr = 62
+  pot = 62
+  valor = 323529
+  partidas = 1
+  minutos = 90
+  id_fonte = "86635"
+
+  [[clubes.jogadores]]
+  nome = "Alec Van Hoorenbeeck"
+  pos = "CB"
+  idade = 27
+  ovr = 61
+  pot = 61
+  valor = 700000
+  partidas = 10
+  minutos = 926
+  gols = 1
+  id_fonte = "405892"
+
+  [[clubes.jogadores]]
+  nome = "Dario Melnjak"
+  pos = "FB"
+  idade = 33
+  ovr = 61
+  pot = 61
+  valor = 500000
+  partidas = 8
+  minutos = 762
+  gols = 2
+  id_fonte = "238500"
+
+  [[clubes.jogadores]]
+  nome = "Toni Silic"
+  pos = "GK"
+  idade = 22
+  ovr = 61
+  pot = 63
+  valor = 1000000
+  partidas = 17
+  minutos = 1500
+  id_fonte = "833313"
+
+  [[clubes.jogadores]]
+  nome = "Alberto del Moral"
+  pos = "DM"
+  idade = 26
+  ovr = 60
+  pot = 61
+  valor = 800000
+  partidas = 7
+  minutos = 655
+  id_fonte = "635347"
+
+  [[clubes.jogadores]]
+  nome = "Marin Soticek"
+  pos = "WG"
+  idade = 22
+  ovr = 60
+  pot = 62
+  valor = 1500000
+  partidas = 9
+  minutos = 788
+  gols = 2
+  id_fonte = "945345"
+
+  [[clubes.jogadores]]
+  nome = "Abdoulie Sanyang"
+  pos = "WG"
+  idade = 27
+  ovr = 59
+  pot = 60
+  valor = 800000
+  partidas = 8
+  minutos = 717
+  gols = 1
+  id_fonte = "693906"
+
+  [[clubes.jogadores]]
+  nome = "Dalisson de Almeida"
+  pos = "AM"
+  idade = 26
+  ovr = 58
+  pot = 59
+  valor = 600000
+  partidas = 11
+  minutos = 1017
+  gols = 4
+  id_fonte = "644900"
+
+  [[clubes.jogadores]]
+  nome = "Carlos Martín"
+  pos = "WG"
+  idade = 24
+  ovr = 57
+  pot = 62
+  valor = 1500000
+  partidas = 2
+  minutos = 161
+  id_fonte = "618813"
+
+  [[clubes.jogadores]]
+  nome = "Mathieu Acapandié"
+  pos = "FB"
+  idade = 21
+  ovr = 57
+  pot = 60
+  valor = 700000
+  partidas = 12
+  minutos = 1055
+  id_fonte = "944355"
+
+  [[clubes.jogadores]]
+  nome = "Ron Raci"
+  pos = "CB"
+  idade = 24
+  ovr = 57
+  pot = 59
+  valor = 450000
+  partidas = 8
+  minutos = 702
+  gols = 1
+  id_fonte = "815041"
+
+  [[clubes.jogadores]]
+  nome = "Khalil Fayad"
+  pos = "MF"
+  idade = 22
+  ovr = 55
+  pot = 63
+  valor = 1500000
+  partidas = 3
+  minutos = 226
+  gols = 1
+  id_fonte = "782630"
+
+  [[clubes.jogadores]]
+  nome = "Roko Brajkovic"
+  pos = "WG"
+  idade = 21
+  ovr = 54
+  pot = 60
+  valor = 1000000
+  partidas = 3
+  minutos = 244
+  gols = 1
+  id_fonte = "724273"
+
+  [[clubes.jogadores]]
+  nome = "Andjelo Sutalo"
+  pos = "AM"
+  idade = 19
+  ovr = 51
+  pot = 58
+  valor = 550000
+  partidas = 6
+  minutos = 508
+  id_fonte = "1133053"
+
+  [[clubes.jogadores]]
+  nome = "Etnik Brruti"
+  pos = "MF"
+  idade = 22
+  ovr = 51
+  pot = 59
+  valor = 700000
+  partidas = 2
+  minutos = 172
+  gols = 1
+  id_fonte = "815036"
+
+  [[clubes.jogadores]]
+  nome = "Luka Hodak"
+  pos = "FB"
+  idade = 20
+  ovr = 51
+  pot = 60
+  valor = 800000
+  partidas = 3
+  minutos = 274
+  id_fonte = "892168"
+
+  [[clubes.jogadores]]
+  nome = "Marino Skelin"
+  pos = "CB"
+  idade = 20
+  ovr = 43
+  pot = 55
+  valor = 200000
+  partidas = 1
+  minutos = 118
+  id_fonte = "1048583"
+
+  [[clubes.jogadores]]
+  nome = "Adam Guram"
+  pos = "AM"
+  idade = 17
+  ovr = 42
+  pot = 53
+  valor = 200000
+  partidas = 4
+  minutos = 381
+  gols = 1
+  id_fonte = "1375377"
+
+  [[clubes.jogadores]]
+  nome = "Raymond Anthony"
+  pos = "FB"
+  idade = 20
+  ovr = 42
+  pot = 56
+  valor = 257205
+  id_fonte = "1587317"
+
+  [[clubes.jogadores]]
+  nome = "Peter Nnaemeka Ugwuodo"
+  pos = "FW"
+  idade = 20
+  ovr = 41
+  pot = 54
+  valor = 281470
+  partidas = 1
+  minutos = 18
+  gols = 1
+  id_fonte = "1506539"
+
+  [[clubes.jogadores]]
+  nome = "Davyd Fesyuk"
+  pos = "GK"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 50000
+  id_fonte = "955285"
+
+  [[clubes.jogadores]]
+  nome = "Dominik Babic"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 47
+  valor = 25000
+  id_fonte = "892179"
+
+  [[clubes.jogadores]]
+  nome = "Duje Milisic"
+  pos = "FB"
+  idade = 19
+  ovr = 40
+  pot = 56
+  valor = 257205
+  id_fonte = "1137942"
+
+  [[clubes.jogadores]]
+  nome = "Duje Pranic"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 54
+  valor = 257205
+  id_fonte = "1305641"
+
+  [[clubes.jogadores]]
+  nome = "Roko Gabric"
+  pos = "CB"
+  idade = 19
+  ovr = 40
+  pot = 52
+  valor = 100000
+  partidas = 2
+  minutos = 225
+  id_fonte = "1411272"
+
+  [[clubes.jogadores]]
+  nome = "Sebastijan Kajtazi"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 54
+  valor = 257205
+  id_fonte = "1301010"
+
+[[clubes]]
+nome = "NK Lokomotiva Zagreb"
+forca = 57.2
+valor_elenco = 11400000
+cores = ["#475A79", "#FBFDFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Fran Karacic"
+  pos = "FB"
+  idade = 30
+  ovr = 62
+  pot = 62
+  valor = 600000
+  partidas = 4
+  minutos = 337
+  id_fonte = "367795"
+
+  [[clubes.jogadores]]
+  nome = "Josip Posavec"
+  pos = "GK"
+  idade = 30
+  ovr = 60
+  pot = 60
+  valor = 300000
+  partidas = 8
+  minutos = 720
+  id_fonte = "255322"
+
+  [[clubes.jogadores]]
+  nome = "Marijan Cabraja"
+  pos = "FB"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 400000
+  partidas = 4
+  minutos = 360
+  id_fonte = "355651"
+
+  [[clubes.jogadores]]
+  nome = "Dusan Vukovic"
+  pos = "WG"
+  idade = 24
+  ovr = 59
+  pot = 60
+  valor = 800000
+  partidas = 8
+  minutos = 680
+  gols = 3
+  id_fonte = "747417"
+
+  [[clubes.jogadores]]
+  nome = "Marko Pajac"
+  pos = "FB"
+  idade = 33
+  ovr = 58
+  pot = 58
+  valor = 200000
+  partidas = 3
+  minutos = 270
+  gols = 6
+  id_fonte = "190634"
+
+  [[clubes.jogadores]]
+  nome = "Marko Vesovic"
+  pos = "FB"
+  idade = 35
+  ovr = 58
+  pot = 58
+  valor = 150000
+  partidas = 5
+  minutos = 408
+  gols = 1
+  id_fonte = "98101"
+
+  [[clubes.jogadores]]
+  nome = "Mirko Marić"
+  pos = "FW"
+  idade = 31
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 3
+  minutos = 307
+  gols = 1
+  id_fonte = "215649"
+
+  [[clubes.jogadores]]
+  nome = "Dimitrije Kamenovic"
+  pos = "FB"
+  idade = 26
+  ovr = 57
+  pot = 59
+  valor = 400000
+  partidas = 8
+  minutos = 747
+  gols = 1
+  id_fonte = "465565"
+
+  [[clubes.jogadores]]
+  nome = "Leon Belcar"
+  pos = "DM"
+  idade = 24
+  ovr = 57
+  pot = 61
+  valor = 650000
+  partidas = 3
+  minutos = 304
+  gols = 1
+  id_fonte = "844375"
+
+  [[clubes.jogadores]]
+  nome = "Matija Subotic"
+  pos = "DM"
+  idade = 18
+  ovr = 57
+  pot = 62
+  valor = 850000
+  partidas = 6
+  minutos = 581
+  id_fonte = "1133013"
+
+  [[clubes.jogadores]]
+  nome = "Athanasios Triantafyllou"
+  pos = "CB"
+  idade = 23
+  ovr = 55
+  pot = 56
+  valor = 250000
+  partidas = 9
+  minutos = 782
+  gols = 1
+  id_fonte = "940526"
+
+  [[clubes.jogadores]]
+  nome = "Erbol Atabaev"
+  pos = "MF"
+  idade = 25
+  ovr = 55
+  pot = 59
+  valor = 500000
+  id_fonte = "914997"
+
+  [[clubes.jogadores]]
+  nome = "Jakov-Anton Vasilj"
+  pos = "AM"
+  idade = 24
+  ovr = 54
+  pot = 57
+  valor = 400000
+  partidas = 4
+  minutos = 325
+  gols = 4
+  id_fonte = "618353"
+
+  [[clubes.jogadores]]
+  nome = "Kristijan Cabrajic"
+  pos = "FB"
+  idade = 22
+  ovr = 54
+  pot = 58
+  valor = 350000
+  partidas = 6
+  minutos = 540
+  id_fonte = "945348"
+
+  [[clubes.jogadores]]
+  nome = "Krunoslav Hendija"
+  pos = "GK"
+  idade = 37
+  ovr = 54
+  pot = 54
+  valor = 50000
+  id_fonte = "46560"
+
+  [[clubes.jogadores]]
+  nome = "Feta Fetai"
+  pos = "DM"
+  idade = 21
+  ovr = 52
+  pot = 60
+  valor = 600000
+  partidas = 3
+  minutos = 266
+  id_fonte = "1059579"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Katic"
+  pos = "DM"
+  idade = 20
+  ovr = 52
+  pot = 59
+  valor = 500000
+  partidas = 5
+  minutos = 478
+  gols = 1
+  id_fonte = "1173856"
+
+  [[clubes.jogadores]]
+  nome = "Mario Situm"
+  pos = "FB"
+  idade = 34
+  ovr = 52
+  pot = 52
+  valor = 50000
+  partidas = 8
+  minutos = 700
+  id_fonte = "138741"
+
+  [[clubes.jogadores]]
+  nome = "Franjo Posavac"
+  pos = "FB"
+  idade = 24
+  ovr = 50
+  pot = 56
+  valor = 250000
+  partidas = 2
+  minutos = 138
+  id_fonte = "940800"
+
+  [[clubes.jogadores]]
+  nome = "Jakov Gurlica"
+  pos = "CB"
+  idade = 22
+  ovr = 50
+  pot = 59
+  valor = 400000
+  partidas = 1
+  minutos = 118
+  id_fonte = "985061"
+
+  [[clubes.jogadores]]
+  nome = "Luka Savatovic"
+  pos = "GK"
+  idade = 22
+  ovr = 48
+  pot = 56
+  valor = 200000
+  partidas = 1
+  minutos = 90
+  id_fonte = "1046001"
+
+  [[clubes.jogadores]]
+  nome = "Marcel Lorber"
+  pos = "MF"
+  idade = 22
+  ovr = 48
+  pot = 54
+  valor = 200000
+  partidas = 4
+  minutos = 322
+  id_fonte = "996391"
+
+  [[clubes.jogadores]]
+  nome = "Mate Antunovic"
+  pos = "FW"
+  idade = 22
+  ovr = 46
+  pot = 55
+  valor = 300000
+  partidas = 1
+  minutos = 99
+  id_fonte = "921551"
+
+  [[clubes.jogadores]]
+  nome = "Dominik Thaqi"
+  pos = "WG"
+  idade = 19
+  ovr = 45
+  pot = 56
+  valor = 350000
+  partidas = 3
+  minutos = 292
+  id_fonte = "1277268"
+
+  [[clubes.jogadores]]
+  nome = "Noel Djurkovic"
+  pos = "FW"
+  idade = 19
+  ovr = 45
+  pot = 55
+  valor = 300000
+  partidas = 4
+  minutos = 348
+  gols = 2
+  id_fonte = "1267443"
+
+  [[clubes.jogadores]]
+  nome = "Ante Utrobicic"
+  pos = "FB"
+  idade = 20
+  ovr = 44
+  pot = 58
+  valor = 400000
+  id_fonte = "1009494"
+
+  [[clubes.jogadores]]
+  nome = "Dardan Morina"
+  pos = "AM"
+  idade = 20
+  ovr = 44
+  pot = 56
+  valor = 350000
+  partidas = 2
+  minutos = 143
+  id_fonte = "1160173"
+
+  [[clubes.jogadores]]
+  nome = "Mody Boune"
+  pos = "FB"
+  idade = 24
+  ovr = 43
+  pot = 48
+  valor = 50000
+  partidas = 3
+  minutos = 290
+  gols = 1
+  id_fonte = "855614"
+
+  [[clubes.jogadores]]
+  nome = "Lovre Kulusic"
+  pos = "FW"
+  idade = 19
+  ovr = 41
+  pot = 56
+  valor = 400000
+  partidas = 1
+  minutos = 28
+  id_fonte = "1151870"
+
+  [[clubes.jogadores]]
+  nome = "Amad Keita"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 45
+  valor = 50000
+  id_fonte = "1406422"
+
+  [[clubes.jogadores]]
+  nome = "Anes Huskic"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 46
+  valor = 50000
+  partidas = 3
+  minutos = 44
+  id_fonte = "1151872"
+
+  [[clubes.jogadores]]
+  nome = "Armando Pernar"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 46
+  valor = 58928
+  id_fonte = "1335665"
+
+  [[clubes.jogadores]]
+  nome = "Duje Reic"
+  pos = "MF"
+  idade = 20
+  ovr = 40
+  pot = 47
+  valor = 50000
+  partidas = 1
+  minutos = 23
+  id_fonte = "892172"
+
+  [[clubes.jogadores]]
+  nome = "Kayke"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 52
+  valor = 165000
+  partidas = 2
+  minutos = 159
+  id_fonte = "1370309"
+
+  [[clubes.jogadores]]
+  nome = "Lorenzo"
+  pos = "CB"
+  idade = 19
+  ovr = 40
+  pot = 49
+  valor = 58928
+  id_fonte = "1474152"
+
+  [[clubes.jogadores]]
+  nome = "Luka Curkovic"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 48
+  valor = 50000
+  id_fonte = "1048807"
+
+  [[clubes.jogadores]]
+  nome = "Marko Batur"
+  pos = "FW"
+  idade = 22
+  ovr = 40
+  pot = 47
+  valor = 58928
+  id_fonte = "945318"
+
+  [[clubes.jogadores]]
+  nome = "Noa Godec"
+  pos = "FB"
+  idade = 19
+  ovr = 40
+  pot = 53
+  valor = 150000
+  partidas = 2
+  minutos = 135
+  id_fonte = "1151871"
+
+  [[clubes.jogadores]]
+  nome = "Pavle Smiljanic"
+  pos = "MF"
+  idade = 18
+  ovr = 40
+  pot = 56
+  valor = 300000
+  partidas = 1
+  minutos = 103
+  id_fonte = "1072018"
+
+  [[clubes.jogadores]]
+  nome = "Petar Zvonimir Kostelac"
+  pos = "FB"
+  idade = 18
+  ovr = 40
+  pot = 47
+  valor = 50000
+  id_fonte = "1072020"
+
+  [[clubes.jogadores]]
+  nome = "Roko Pavlovic"
+  pos = "FB"
+  idade = 19
+  ovr = 40
+  pot = 48
+  valor = 58928
+  id_fonte = "1133009"
+
+  [[clubes.jogadores]]
+  nome = "Teodor Kralevski"
+  pos = "CB"
+  idade = 19
+  ovr = 40
+  pot = 48
+  valor = 50000
+  partidas = 2
+  minutos = 150
+  id_fonte = "1374904"
+
+[[clubes]]
+nome = "NK Varazdin"
+forca = 57.0
+valor_elenco = 11000000
+cores = ["#0563A3", "#FDFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Frane Maglica"
+  pos = "FB"
+  idade = 29
+  ovr = 60
+  pot = 60
+  valor = 850000
+  partidas = 10
+  minutos = 863
+  id_fonte = "340775"
+
+  [[clubes.jogadores]]
+  nome = "Iuri Tavares"
+  pos = "WG"
+  idade = 25
+  ovr = 60
+  pot = 61
+  valor = 1800000
+  partidas = 8
+  minutos = 760
+  gols = 1
+  id_fonte = "549016"
+
+  [[clubes.jogadores]]
+  nome = "Robby McCrorie"
+  pos = "GK"
+  idade = 28
+  ovr = 60
+  pot = 60
+  valor = 600000
+  id_fonte = "244260"
+
+  [[clubes.jogadores]]
+  nome = "Aleksa Latkovic"
+  pos = "AM"
+  idade = 25
+  ovr = 58
+  pot = 59
+  valor = 1000000
+  partidas = 8
+  minutos = 749
+  gols = 2
+  id_fonte = "530038"
+
+  [[clubes.jogadores]]
+  nome = "Luka Skaricic"
+  pos = "CB"
+  idade = 24
+  ovr = 57
+  pot = 59
+  valor = 800000
+  partidas = 3
+  minutos = 289
+  gols = 3
+  id_fonte = "619277"
+
+  [[clubes.jogadores]]
+  nome = "Mateo Barac"
+  pos = "CB"
+  idade = 32
+  ovr = 57
+  pot = 57
+  valor = 300000
+  partidas = 9
+  minutos = 797
+  gols = 1
+  id_fonte = "329629"
+
+  [[clubes.jogadores]]
+  nome = "Luka Mamic"
+  pos = "AM"
+  idade = 24
+  ovr = 56
+  pot = 58
+  valor = 800000
+  partidas = 10
+  minutos = 880
+  gols = 4
+  id_fonte = "921790"
+
+  [[clubes.jogadores]]
+  nome = "Petar Bockaj"
+  pos = "FB"
+  idade = 30
+  ovr = 56
+  pot = 56
+  valor = 350000
+  partidas = 5
+  minutos = 470
+  gols = 1
+  id_fonte = "292666"
+
+  [[clubes.jogadores]]
+  nome = "Tomislav Duvnjak"
+  pos = "DM"
+  idade = 23
+  ovr = 56
+  pot = 58
+  valor = 700000
+  partidas = 3
+  minutos = 303
+  gols = 2
+  id_fonte = "580482"
+
+  [[clubes.jogadores]]
+  nome = "Matej Vuk"
+  pos = "WG"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 600000
+  partidas = 2
+  minutos = 203
+  gols = 3
+  id_fonte = "371004"
+
+  [[clubes.jogadores]]
+  nome = "David Puclin"
+  pos = "DM"
+  idade = 34
+  ovr = 54
+  pot = 54
+  valor = 150000
+  partidas = 1
+  minutos = 18
+  gols = 1
+  id_fonte = "197078"
+
+  [[clubes.jogadores]]
+  nome = "Gregor Sikosek"
+  pos = "FB"
+  idade = 32
+  ovr = 54
+  pot = 54
+  valor = 200000
+  partidas = 7
+  minutos = 642
+  id_fonte = "224892"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Canjuga"
+  pos = "DM"
+  idade = 20
+  ovr = 53
+  pot = 55
+  valor = 450000
+  partidas = 10
+  minutos = 873
+  gols = 3
+  id_fonte = "982829"
+
+  [[clubes.jogadores]]
+  nome = "Mario Mladenovski"
+  pos = "CB"
+  idade = 26
+  ovr = 53
+  pot = 54
+  valor = 250000
+  partidas = 8
+  minutos = 675
+  gols = 2
+  id_fonte = "570787"
+
+  [[clubes.jogadores]]
+  nome = "Novak Tepsic"
+  pos = "CB"
+  idade = 24
+  ovr = 53
+  pot = 55
+  valor = 350000
+  partidas = 7
+  minutos = 662
+  id_fonte = "808070"
+
+  [[clubes.jogadores]]
+  nome = "Roberto Puncec"
+  pos = "CB"
+  idade = 34
+  ovr = 53
+  pot = 53
+  valor = 100000
+  partidas = 3
+  minutos = 242
+  id_fonte = "92120"
+
+  [[clubes.jogadores]]
+  nome = "Josip Silic"
+  pos = "GK"
+  idade = 26
+  ovr = 52
+  pot = 52
+  valor = 150000
+  partidas = 10
+  minutos = 900
+  id_fonte = "543098"
+
+  [[clubes.jogadores]]
+  nome = "Mario Marina"
+  pos = "DM"
+  idade = 37
+  ovr = 52
+  pot = 52
+  valor = 100000
+  partidas = 7
+  minutos = 648
+  gols = 1
+  id_fonte = "206939"
+
+  [[clubes.jogadores]]
+  nome = "Stipe Juric"
+  pos = "FW"
+  idade = 27
+  ovr = 51
+  pot = 52
+  valor = 250000
+  partidas = 2
+  minutos = 202
+  gols = 1
+  id_fonte = "465593"
+
+  [[clubes.jogadores]]
+  nome = "Elvir Durakovic"
+  pos = "FB"
+  idade = 26
+  ovr = 49
+  pot = 51
+  valor = 150000
+  partidas = 2
+  minutos = 135
+  id_fonte = "429390"
+
+  [[clubes.jogadores]]
+  nome = "Luka Posinkovic"
+  pos = "FB"
+  idade = 23
+  ovr = 46
+  pot = 53
+  valor = 250000
+  partidas = 2
+  minutos = 37
+  id_fonte = "941457"
+
+  [[clubes.jogadores]]
+  nome = "Sven Lesjak"
+  pos = "CB"
+  idade = 20
+  ovr = 45
+  pot = 55
+  valor = 400000
+  partidas = 1
+  minutos = 92
+  gols = 1
+  id_fonte = "1173480"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Posavec"
+  pos = "AM"
+  idade = 28
+  ovr = 44
+  pot = 44
+  valor = 50000
+  partidas = 3
+  minutos = 33
+  id_fonte = "458540"
+
+  [[clubes.jogadores]]
+  nome = "Silvio Ilinkovic"
+  pos = "MF"
+  idade = 23
+  ovr = 42
+  pot = 50
+  valor = 150000
+  partidas = 2
+  minutos = 189
+  id_fonte = "652758"
+
+  [[clubes.jogadores]]
+  nome = "Domagoj Begonja"
+  pos = "FB"
+  idade = 21
+  ovr = 40
+  pot = 50
+  valor = 150000
+  partidas = 1
+  minutos = 112
+  id_fonte = "1079530"
+
+  [[clubes.jogadores]]
+  nome = "Emmanuel Uchegbu"
+  pos = "WG"
+  idade = 21
+  ovr = 40
+  pot = 47
+  valor = 114583
+  partidas = 1
+  minutos = 120
+  id_fonte = "869522"
+
+  [[clubes.jogadores]]
+  nome = "Filipe Jose Quissequel"
+  pos = "FW"
+  idade = 18
+  ovr = 40
+  pot = 43
+  valor = 50000
+  partidas = 3
+  minutos = 16
+  id_fonte = "1522139"
+
+  [[clubes.jogadores]]
+  nome = "Tajio James"
+  pos = "AM"
+  idade = 22
+  ovr = 40
+  pot = 44
+  valor = 55000
+  id_fonte = "898936"
+
+  [[clubes.jogadores]]
+  nome = "Teo Novak"
+  pos = "GK"
+  idade = 19
+  ovr = 40
+  pot = 47
+  valor = 55000
+  id_fonte = "1088886"
+
+  [[clubes.jogadores]]
+  nome = "Valentin Akrap"
+  pos = "FW"
+  idade = 23
+  ovr = 40
+  pot = 45
+  valor = 82500
+  partidas = 1
+  minutos = 50
+  gols = 1
+  id_fonte = "602619"
+
+[[clubes]]
+nome = "NK Osijek"
+forca = 56.6
+valor_elenco = 10450000
+cores = ["#3EB3E1", "#FEFEFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Luka Jelenic"
+  pos = "CB"
+  idade = 26
+  ovr = 61
+  pot = 62
+  valor = 850000
+  partidas = 8
+  minutos = 675
+  gols = 3
+  id_fonte = "370999"
+
+  [[clubes.jogadores]]
+  nome = "Oleksandr Petrusenko"
+  pos = "DM"
+  idade = 28
+  ovr = 61
+  pot = 61
+  valor = 750000
+  partidas = 2
+  minutos = 163
+  gols = 1
+  id_fonte = "461657"
+
+  [[clubes.jogadores]]
+  nome = "Marko Malenica"
+  pos = "GK"
+  idade = 32
+  ovr = 60
+  pot = 60
+  valor = 300000
+  partidas = 8
+  minutos = 720
+  id_fonte = "179894"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Dolcek"
+  pos = "WG"
+  idade = 26
+  ovr = 59
+  pot = 60
+  valor = 900000
+  partidas = 4
+  minutos = 331
+  gols = 1
+  id_fonte = "554565"
+
+  [[clubes.jogadores]]
+  nome = "Luka Vrbancic"
+  pos = "DM"
+  idade = 21
+  ovr = 58
+  pot = 60
+  valor = 800000
+  partidas = 8
+  minutos = 720
+  gols = 1
+  id_fonte = "946959"
+
+  [[clubes.jogadores]]
+  nome = "Marcel Heister"
+  pos = "FB"
+  idade = 34
+  ovr = 57
+  pot = 57
+  valor = 200000
+  partidas = 5
+  minutos = 479
+  id_fonte = "109830"
+
+  [[clubes.jogadores]]
+  nome = "Domagoj Bukvic"
+  pos = "WG"
+  idade = 22
+  ovr = 56
+  pot = 58
+  valor = 700000
+  partidas = 8
+  minutos = 765
+  gols = 1
+  id_fonte = "921251"
+
+  [[clubes.jogadores]]
+  nome = "Jay Kruiver"
+  pos = "FB"
+  idade = 25
+  ovr = 55
+  pot = 59
+  valor = 500000
+  partidas = 2
+  minutos = 167
+  id_fonte = "533172"
+
+  [[clubes.jogadores]]
+  nome = "Álex Cantero"
+  pos = "WG"
+  idade = 26
+  ovr = 54
+  pot = 55
+  valor = 400000
+  partidas = 1
+  minutos = 27
+  id_fonte = "638235"
+
+  [[clubes.jogadores]]
+  nome = "Armando León"
+  pos = "FW"
+  idade = 26
+  ovr = 53
+  pot = 54
+  valor = 300000
+  partidas = 8
+  minutos = 684
+  gols = 5
+  id_fonte = "760988"
+
+  [[clubes.jogadores]]
+  nome = "Anton Matkovic"
+  pos = "FW"
+  idade = 20
+  ovr = 52
+  pot = 62
+  valor = 1500000
+  partidas = 12
+  minutos = 1056
+  gols = 1
+  id_fonte = "1121427"
+
+  [[clubes.jogadores]]
+  nome = "Nikola Curcija"
+  pos = "GK"
+  idade = 25
+  ovr = 52
+  pot = 55
+  valor = 200000
+  partidas = 1
+  minutos = 90
+  id_fonte = "768378"
+
+  [[clubes.jogadores]]
+  nome = "Emin Hasic"
+  pos = "CB"
+  idade = 23
+  ovr = 51
+  pot = 56
+  valor = 300000
+  partidas = 1
+  minutos = 91
+  id_fonte = "615235"
+
+  [[clubes.jogadores]]
+  nome = "Simun Mikolcic"
+  pos = "AM"
+  idade = 22
+  ovr = 50
+  pot = 57
+  valor = 500000
+  partidas = 4
+  minutos = 315
+  gols = 2
+  id_fonte = "895515"
+
+  [[clubes.jogadores]]
+  nome = "David Mejía"
+  pos = "DM"
+  idade = 23
+  ovr = 49
+  pot = 55
+  valor = 300000
+  partidas = 8
+  minutos = 741
+  id_fonte = "990110"
+
+  [[clubes.jogadores]]
+  nome = "Ivano Kolarik"
+  pos = "CB"
+  idade = 19
+  ovr = 49
+  pot = 55
+  valor = 300000
+  partidas = 6
+  minutos = 563
+  id_fonte = "1133007"
+
+  [[clubes.jogadores]]
+  nome = "Senad Mustafic"
+  pos = "FB"
+  idade = 21
+  ovr = 47
+  pot = 54
+  valor = 250000
+  partidas = 4
+  minutos = 347
+  id_fonte = "805121"
+
+  [[clubes.jogadores]]
+  nome = "Justice Ohajunwa"
+  pos = "FW"
+  idade = 25
+  ovr = 46
+  pot = 50
+  valor = 150000
+  id_fonte = "699784"
+
+  [[clubes.jogadores]]
+  nome = "Vito Caic"
+  pos = "DM"
+  idade = 21
+  ovr = 44
+  pot = 55
+  valor = 300000
+  partidas = 1
+  minutos = 45
+  id_fonte = "982366"
+
+  [[clubes.jogadores]]
+  nome = "Balelo"
+  pos = "FW"
+  idade = 24
+  ovr = 43
+  pot = 48
+  valor = 119166
+  partidas = 1
+  minutos = 108
+  id_fonte = "1063934"
+
+  [[clubes.jogadores]]
+  nome = "Balázs Bakti"
+  pos = "AM"
+  idade = 21
+  ovr = 41
+  pot = 52
+  valor = 200000
+  partidas = 2
+  minutos = 138
+  id_fonte = "648899"
+
+  [[clubes.jogadores]]
+  nome = "Luka Tunjic"
+  pos = "AM"
+  idade = 20
+  ovr = 41
+  pot = 54
+  valor = 300000
+  partidas = 1
+  minutos = 63
+  id_fonte = "915445"
+
+  [[clubes.jogadores]]
+  nome = "Admir Ljatifi"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 47
+  valor = 100000
+  partidas = 4
+  minutos = 335
+  id_fonte = "1183763"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Baric"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 51
+  valor = 200000
+  partidas = 1
+  minutos = 98
+  id_fonte = "1172610"
+
+  [[clubes.jogadores]]
+  nome = "Jan Hlapcic"
+  pos = "GK"
+  idade = 20
+  ovr = 40
+  pot = 47
+  valor = 50000
+  id_fonte = "892142"
+
+  [[clubes.jogadores]]
+  nome = "Jona Jezic"
+  pos = "AM"
+  idade = 17
+  ovr = 40
+  pot = 44
+  valor = 50000
+  partidas = 5
+  minutos = 421
+  gols = 2
+  id_fonte = "1468844"
+
+  [[clubes.jogadores]]
+  nome = "Niko Farkas"
+  pos = "DM"
+  idade = 19
+  ovr = 40
+  pot = 45
+  valor = 50000
+  partidas = 2
+  minutos = 136
+  gols = 1
+  id_fonte = "1271373"
+
+[[clubes]]
+nome = "NK Istra 1961"
+forca = 56.4
+valor_elenco = 10050000
+cores = ["#037A42", "#EABB15"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Josip Radosevic"
+  pos = "DM"
+  idade = 32
+  ovr = 62
+  pot = 62
+  valor = 800000
+  partidas = 32
+  minutos = 2919
+  gols = 1
+  id_fonte = "160506"
+
+  [[clubes.jogadores]]
+  nome = "Advan Kadusic"
+  pos = "FB"
+  idade = 28
+  ovr = 59
+  pot = 59
+  valor = 600000
+  partidas = 3
+  minutos = 230
+  gols = 1
+  id_fonte = "318829"
+
+  [[clubes.jogadores]]
+  nome = "Emil Frederiksen"
+  pos = "WG"
+  idade = 26
+  ovr = 58
+  pot = 59
+  valor = 800000
+  partidas = 8
+  minutos = 684
+  gols = 7
+  id_fonte = "422941"
+
+  [[clubes.jogadores]]
+  nome = "Franko Kolic"
+  pos = "GK"
+  idade = 23
+  ovr = 58
+  pot = 59
+  valor = 500000
+  partidas = 8
+  minutos = 720
+  id_fonte = "663899"
+
+  [[clubes.jogadores]]
+  nome = "Antonio Mauric"
+  pos = "DM"
+  idade = 22
+  ovr = 56
+  pot = 60
+  valor = 800000
+  partidas = 5
+  minutos = 414
+  gols = 2
+  id_fonte = "945489"
+
+  [[clubes.jogadores]]
+  nome = "Mohamed Nasraoui"
+  pos = "CB"
+  idade = 24
+  ovr = 56
+  pot = 58
+  valor = 500000
+  partidas = 6
+  minutos = 547
+  id_fonte = "939479"
+
+  [[clubes.jogadores]]
+  nome = "Raul Kumar"
+  pos = "CB"
+  idade = 18
+  ovr = 55
+  pot = 63
+  valor = 1500000
+  partidas = 5
+  minutos = 464
+  id_fonte = "1137273"
+
+  [[clubes.jogadores]]
+  nome = "Silvio Gorican"
+  pos = "WG"
+  idade = 26
+  ovr = 55
+  pot = 56
+  valor = 500000
+  partidas = 3
+  minutos = 43
+  id_fonte = "393825"
+
+  [[clubes.jogadores]]
+  nome = "Daouda Doumbia"
+  pos = "MF"
+  idade = 24
+  ovr = 54
+  pot = 56
+  valor = 400000
+  partidas = 6
+  minutos = 580
+  id_fonte = "1054933"
+
+  [[clubes.jogadores]]
+  nome = "Niko Sepic"
+  pos = "FB"
+  idade = 20
+  ovr = 54
+  pot = 56
+  valor = 400000
+  partidas = 8
+  minutos = 735
+  id_fonte = "1083702"
+
+  [[clubes.jogadores]]
+  nome = "Samuli Miettinen"
+  pos = "CB"
+  idade = 22
+  ovr = 53
+  pot = 57
+  valor = 400000
+  partidas = 6
+  minutos = 533
+  id_fonte = "807247"
+
+  [[clubes.jogadores]]
+  nome = "Vinko Rozic"
+  pos = "WG"
+  idade = 23
+  ovr = 53
+  pot = 57
+  valor = 600000
+  partidas = 3
+  minutos = 245
+  gols = 3
+  id_fonte = "663897"
+
+  [[clubes.jogadores]]
+  nome = "Isaac"
+  pos = "FW"
+  idade = 22
+  ovr = 50
+  pot = 57
+  valor = 700000
+  partidas = 3
+  minutos = 232
+  gols = 3
+  id_fonte = "1083069"
+
+  [[clubes.jogadores]]
+  nome = "Hamza Jaganjac"
+  pos = "FW"
+  idade = 22
+  ovr = 49
+  pot = 52
+  valor = 250000
+  partidas = 7
+  minutos = 627
+  gols = 5
+  id_fonte = "798026"
+
+  [[clubes.jogadores]]
+  nome = "Dukan Ahmeti"
+  pos = "AM"
+  idade = 18
+  ovr = 46
+  pot = 54
+  valor = 350000
+  partidas = 5
+  minutos = 478
+  gols = 2
+  id_fonte = "1199576"
+
+  [[clubes.jogadores]]
+  nome = "Gustavo Albarracín"
+  pos = "MF"
+  idade = 20
+  ovr = 46
+  pot = 53
+  valor = 250000
+  partidas = 5
+  minutos = 426
+  id_fonte = "1074967"
+
+  [[clubes.jogadores]]
+  nome = "Rene Hrvatin"
+  pos = "FB"
+  idade = 19
+  ovr = 46
+  pot = 52
+  valor = 150000
+  partidas = 6
+  minutos = 580
+  id_fonte = "981083"
+
+  [[clubes.jogadores]]
+  nome = "Jan Paus-Kunst"
+  pos = "GK"
+  idade = 25
+  ovr = 45
+  pot = 49
+  valor = 50000
+  partidas = 1
+  minutos = 90
+  id_fonte = "830280"
+
+  [[clubes.jogadores]]
+  nome = "Nik Skafar Zuzic"
+  pos = "WG"
+  idade = 17
+  ovr = 42
+  pot = 51
+  valor = 200000
+  partidas = 6
+  minutos = 504
+  gols = 1
+  id_fonte = "1454692"
+
+  [[clubes.jogadores]]
+  nome = "Baba Yatera"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 44
+  valor = 48125
+  id_fonte = "1464866"
+
+  [[clubes.jogadores]]
+  nome = "Demirel Hodzic"
+  pos = "MF"
+  idade = 21
+  ovr = 40
+  pot = 51
+  valor = 150000
+  id_fonte = "980081"
+
+  [[clubes.jogadores]]
+  nome = "Dominik Celija"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 45
+  valor = 50000
+  partidas = 1
+  minutos = 75
+  id_fonte = "1174877"
+
+  [[clubes.jogadores]]
+  nome = "Matija Kablar"
+  pos = "DM"
+  idade = 18
+  ovr = 40
+  pot = 51
+  valor = 137500
+  partidas = 2
+  minutos = 201
+  id_fonte = "1304692"
+
+  [[clubes.jogadores]]
+  nome = "Stipe Ukich"
+  pos = "FW"
+  idade = 19
+  ovr = 40
+  pot = 48
+  valor = 100000
+  partidas = 1
+  minutos = 121
+  gols = 1
+  id_fonte = "1137125"
+
+[[clubes]]
+nome = "HNK Gorica"
+forca = 55.8
+valor_elenco = 9260000
+cores = ["#E7B256", "#1F1C1E"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Davor Matijas"
+  pos = "GK"
+  idade = 27
+  ovr = 58
+  pot = 58
+  valor = 400000
+  partidas = 4
+  minutos = 360
+  id_fonte = "357780"
+
+  [[clubes.jogadores]]
+  nome = "Ante Kavelj"
+  pos = "AM"
+  idade = 21
+  ovr = 57
+  pot = 59
+  valor = 1000000
+  partidas = 5
+  minutos = 447
+  gols = 4
+  id_fonte = "1082114"
+
+  [[clubes.jogadores]]
+  nome = "Fran Brodic"
+  pos = "FW"
+  idade = 29
+  ovr = 57
+  pot = 57
+  valor = 600000
+  partidas = 2
+  minutos = 196
+  id_fonte = "226060"
+
+  [[clubes.jogadores]]
+  nome = "Gonçalo Costa"
+  pos = "FB"
+  idade = 26
+  ovr = 57
+  pot = 59
+  valor = 600000
+  partidas = 1
+  minutos = 125
+  id_fonte = "383014"
+
+  [[clubes.jogadores]]
+  nome = "Bruno Bogojevic"
+  pos = "WG"
+  idade = 28
+  ovr = 56
+  pot = 56
+  valor = 500000
+  partidas = 8
+  minutos = 700
+  gols = 4
+  id_fonte = "464604"
+
+  [[clubes.jogadores]]
+  nome = "Jakov Filipovic"
+  pos = "CB"
+  idade = 33
+  ovr = 56
+  pot = 56
+  valor = 200000
+  partidas = 8
+  minutos = 723
+  gols = 2
+  id_fonte = "339727"
+
+  [[clubes.jogadores]]
+  nome = "Stefan Peric"
+  pos = "CB"
+  idade = 29
+  ovr = 56
+  pot = 56
+  valor = 350000
+  partidas = 7
+  minutos = 586
+  id_fonte = "223973"
+
+  [[clubes.jogadores]]
+  nome = "Dusan Stevanovic"
+  pos = "CB"
+  idade = 30
+  ovr = 55
+  pot = 55
+  valor = 275000
+  partidas = 6
+  minutos = 497
+  id_fonte = "286037"
+
+  [[clubes.jogadores]]
+  nome = "Patrik Mijic"
+  pos = "FW"
+  idade = 27
+  ovr = 54
+  pot = 54
+  valor = 450000
+  partidas = 8
+  minutos = 697
+  gols = 1
+  id_fonte = "696246"
+
+  [[clubes.jogadores]]
+  nome = "Renato Josipovic"
+  pos = "GK"
+  idade = 25
+  ovr = 54
+  pot = 56
+  valor = 300000
+  partidas = 5
+  minutos = 480
+  id_fonte = "432745"
+
+  [[clubes.jogadores]]
+  nome = "Tom Lacoux"
+  pos = "DM"
+  idade = 24
+  ovr = 54
+  pot = 58
+  valor = 600000
+  partidas = 4
+  minutos = 369
+  id_fonte = "847759"
+
+  [[clubes.jogadores]]
+  nome = "Domagoj Pavicic"
+  pos = "MF"
+  idade = 32
+  ovr = 53
+  pot = 53
+  valor = 200000
+  partidas = 7
+  minutos = 641
+  gols = 4
+  id_fonte = "131326"
+
+  [[clubes.jogadores]]
+  nome = "Jakov Pranjic"
+  pos = "AM"
+  idade = 25
+  ovr = 52
+  pot = 54
+  valor = 400000
+  partidas = 4
+  minutos = 368
+  gols = 2
+  id_fonte = "653719"
+
+  [[clubes.jogadores]]
+  nome = "Kevin Custovic"
+  pos = "AM"
+  idade = 26
+  ovr = 51
+  pot = 53
+  valor = 300000
+  partidas = 4
+  minutos = 349
+  id_fonte = "523947"
+
+  [[clubes.jogadores]]
+  nome = "Filip Braut"
+  pos = "FB"
+  idade = 24
+  ovr = 50
+  pot = 51
+  valor = 200000
+  partidas = 8
+  minutos = 709
+  id_fonte = "587509"
+
+  [[clubes.jogadores]]
+  nome = "Ognjen Bakic"
+  pos = "MF"
+  idade = 23
+  ovr = 50
+  pot = 55
+  valor = 400000
+  partidas = 2
+  minutos = 170
+  gols = 2
+  id_fonte = "724666"
+
+  [[clubes.jogadores]]
+  nome = "Darijan Zarkov"
+  pos = "GK"
+  idade = 34
+  ovr = 49
+  pot = 49
+  valor = 50000
+  partidas = 1
+  minutos = 90
+  id_fonte = "236918"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Cvijanovic"
+  pos = "FB"
+  idade = 22
+  ovr = 48
+  pot = 51
+  valor = 200000
+  partidas = 7
+  minutos = 641
+  gols = 1
+  id_fonte = "744078"
+
+  [[clubes.jogadores]]
+  nome = "Ante Erceg"
+  pos = "FW"
+  idade = 36
+  ovr = 45
+  pot = 45
+  valor = 50000
+  partidas = 13
+  minutos = 1203
+  gols = 8
+  id_fonte = "131303"
+
+  [[clubes.jogadores]]
+  nome = "Luka Vrzic"
+  pos = "WG"
+  idade = 19
+  ovr = 45
+  pot = 54
+  valor = 500000
+  partidas = 4
+  minutos = 347
+  gols = 1
+  id_fonte = "1234664"
+
+  [[clubes.jogadores]]
+  nome = "Bartol Kardum"
+  pos = "FW"
+  idade = 20
+  ovr = 43
+  pot = 56
+  valor = 700000
+  partidas = 1
+  minutos = 70
+  id_fonte = "892185"
+
+  [[clubes.jogadores]]
+  nome = "Juraj Frigan"
+  pos = "DM"
+  idade = 17
+  ovr = 43
+  pot = 52
+  valor = 238906
+  partidas = 6
+  minutos = 527
+  id_fonte = "1265307"
+
+  [[clubes.jogadores]]
+  nome = "Hadji Issa Moustapha"
+  pos = "CB"
+  idade = 22
+  ovr = 42
+  pot = 51
+  valor = 200000
+  partidas = 1
+  minutos = 3
+  id_fonte = "1112528"
+
+  [[clubes.jogadores]]
+  nome = "Wisdom Aondowase Sule"
+  pos = "FW"
+  idade = 22
+  ovr = 42
+  pot = 50
+  valor = 250000
+  partidas = 6
+  minutos = 568
+  gols = 1
+  id_fonte = "1233166"
+
+  [[clubes.jogadores]]
+  nome = "David Sim"
+  pos = "FB"
+  idade = 22
+  ovr = 40
+  pot = 40
+  valor = 10000
+  id_fonte = "945237"
+
+  [[clubes.jogadores]]
+  nome = "Keenan Carole"
+  pos = "WG"
+  idade = 22
+  ovr = 40
+  pot = 46
+  valor = 125000
+  partidas = 1
+  minutos = 45
+  id_fonte = "805888"
+
+  [[clubes.jogadores]]
+  nome = "Lovro Dukic"
+  pos = "MF"
+  idade = 20
+  ovr = 40
+  pot = 45
+  valor = 84218
+  id_fonte = "1277089"
+
+  [[clubes.jogadores]]
+  nome = "Luka Brlek"
+  pos = "AM"
+  idade = 22
+  ovr = 40
+  pot = 44
+  valor = 84218
+  id_fonte = "945242"
+
+  [[clubes.jogadores]]
+  nome = "Medin Gashi"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 50
+  valor = 250000
+  partidas = 1
+  minutos = 87
+  gols = 1
+  id_fonte = "1068860"
+
+  [[clubes.jogadores]]
+  nome = "Stjepan Kucis"
+  pos = "DM"
+  idade = 19
+  ovr = 40
+  pot = 49
+  valor = 150000
+  partidas = 1
+  minutos = 104
+  gols = 1
+  id_fonte = "1277081"
+
+  [[clubes.jogadores]]
+  nome = "Tin Dosen"
+  pos = "GK"
+  idade = 20
+  ovr = 40
+  pot = 48
+  valor = 84218
+  id_fonte = "1046021"
+
+  [[clubes.jogadores]]
+  nome = "Tomislav Prgomet"
+  pos = "DM"
+  idade = 19
+  ovr = 40
+  pot = 45
+  valor = 84218
+  id_fonte = "1300981"
+
+[[clubes]]
+nome = "Slaven Belupo Koprivnica"
+forca = 55.0
+valor_elenco = 8230000
+cores = ["#0F4CA2", "#DCCCAD"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Dominik Kovacic"
+  pos = "CB"
+  idade = 32
+  ovr = 59
+  pot = 59
+  valor = 500000
+  partidas = 9
+  minutos = 789
+  gols = 1
+  id_fonte = "258898"
+
+  [[clubes.jogadores]]
+  nome = "Josip Mitrovic"
+  pos = "WG"
+  idade = 26
+  ovr = 58
+  pot = 58
+  valor = 1000000
+  partidas = 8
+  minutos = 746
+  gols = 2
+  id_fonte = "464332"
+
+  [[clubes.jogadores]]
+  nome = "Ljuban Crepulja"
+  pos = "DM"
+  idade = 33
+  ovr = 58
+  pot = 58
+  valor = 350000
+  partidas = 6
+  minutos = 540
+  gols = 3
+  id_fonte = "238474"
+
+  [[clubes.jogadores]]
+  nome = "Alen Grgic"
+  pos = "WG"
+  idade = 32
+  ovr = 56
+  pot = 56
+  valor = 400000
+  partidas = 4
+  minutos = 347
+  gols = 2
+  id_fonte = "285077"
+
+  [[clubes.jogadores]]
+  nome = "Itsuki Urata"
+  pos = "FB"
+  idade = 29
+  ovr = 55
+  pot = 55
+  valor = 300000
+  partidas = 2
+  minutos = 164
+  id_fonte = "351557"
+
+  [[clubes.jogadores]]
+  nome = "Jon Mersinaj"
+  pos = "CB"
+  idade = 27
+  ovr = 55
+  pot = 56
+  valor = 400000
+  partidas = 2
+  minutos = 155
+  id_fonte = "540935"
+
+  [[clubes.jogadores]]
+  nome = "Karlo Sentic"
+  pos = "GK"
+  idade = 25
+  ovr = 55
+  pot = 57
+  valor = 350000
+  partidas = 7
+  minutos = 630
+  id_fonte = "632355"
+
+  [[clubes.jogadores]]
+  nome = "Filip Kruselj"
+  pos = "FB"
+  idade = 21
+  ovr = 54
+  pot = 56
+  valor = 500000
+  partidas = 5
+  minutos = 450
+  gols = 2
+  id_fonte = "987719"
+
+  [[clubes.jogadores]]
+  nome = "Marko Dabro"
+  pos = "FW"
+  idade = 29
+  ovr = 54
+  pot = 54
+  valor = 400000
+  partidas = 6
+  minutos = 524
+  gols = 3
+  id_fonte = "226065"
+
+  [[clubes.jogadores]]
+  nome = "Lovro Banovec"
+  pos = "WG"
+  idade = 24
+  ovr = 53
+  pot = 56
+  valor = 600000
+  partidas = 5
+  minutos = 439
+  gols = 1
+  id_fonte = "937973"
+
+  [[clubes.jogadores]]
+  nome = "Ilija Nestorovski"
+  pos = "FW"
+  idade = 36
+  ovr = 52
+  pot = 52
+  valor = 150000
+  partidas = 7
+  minutos = 611
+  gols = 7
+  id_fonte = "54581"
+
+  [[clubes.jogadores]]
+  nome = "Mihail Caimacov"
+  pos = "MF"
+  idade = 28
+  ovr = 52
+  pot = 52
+  valor = 200000
+  partidas = 10
+  minutos = 910
+  gols = 2
+  id_fonte = "414933"
+
+  [[clubes.jogadores]]
+  nome = "Vinko Medjimorec"
+  pos = "CB"
+  idade = 30
+  ovr = 52
+  pot = 52
+  valor = 150000
+  partidas = 11
+  minutos = 989
+  id_fonte = "381004"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Covic"
+  pos = "GK"
+  idade = 36
+  ovr = 51
+  pot = 51
+  valor = 50000
+  partidas = 2
+  minutos = 180
+  id_fonte = "76254"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Cvetko"
+  pos = "CB"
+  idade = 20
+  ovr = 50
+  pot = 56
+  valor = 450000
+  partidas = 6
+  minutos = 540
+  id_fonte = "1045324"
+
+  [[clubes.jogadores]]
+  nome = "Karlo Isasegi"
+  pos = "FB"
+  idade = 26
+  ovr = 50
+  pot = 51
+  valor = 150000
+  partidas = 4
+  minutos = 377
+  id_fonte = "574085"
+
+  [[clubes.jogadores]]
+  nome = "Adetunji Rasaq Adeshina"
+  pos = "DM"
+  idade = 21
+  ovr = 49
+  pot = 54
+  valor = 350000
+  partidas = 6
+  minutos = 516
+  id_fonte = "1108321"
+
+  [[clubes.jogadores]]
+  nome = "Leonard Zuta"
+  pos = "FB"
+  idade = 34
+  ovr = 49
+  pot = 49
+  valor = 50000
+  partidas = 16
+  minutos = 1482
+  gols = 2
+  id_fonte = "214625"
+
+  [[clubes.jogadores]]
+  nome = "Tomislav Bozic"
+  pos = "CB"
+  idade = 38
+  ovr = 49
+  pot = 49
+  valor = 50000
+  partidas = 3
+  minutos = 278
+  gols = 1
+  id_fonte = "34577"
+
+  [[clubes.jogadores]]
+  nome = "Antonio Jakir"
+  pos = "FB"
+  idade = 23
+  ovr = 47
+  pot = 52
+  valor = 200000
+  partidas = 2
+  minutos = 135
+  id_fonte = "941456"
+
+  [[clubes.jogadores]]
+  nome = "David Bosak"
+  pos = "DM"
+  idade = 20
+  ovr = 47
+  pot = 54
+  valor = 350000
+  partidas = 5
+  minutos = 446
+  id_fonte = "1045514"
+
+  [[clubes.jogadores]]
+  nome = "Matija Jesenovic"
+  pos = "GK"
+  idade = 28
+  ovr = 47
+  pot = 47
+  valor = 50000
+  id_fonte = "442192"
+
+  [[clubes.jogadores]]
+  nome = "Filip Mazar"
+  pos = "AM"
+  idade = 21
+  ovr = 46
+  pot = 54
+  valor = 400000
+  partidas = 3
+  minutos = 304
+  gols = 1
+  id_fonte = "946963"
+
+  [[clubes.jogadores]]
+  nome = "Leon Bosnjak"
+  pos = "DM"
+  idade = 20
+  ovr = 45
+  pot = 52
+  valor = 250000
+  partidas = 5
+  minutos = 435
+  id_fonte = "1124490"
+
+  [[clubes.jogadores]]
+  nome = "Arnór Gauti Jónsson"
+  pos = "DM"
+  idade = 24
+  ovr = 43
+  pot = 48
+  valor = 100000
+  partidas = 1
+  minutos = 110
+  id_fonte = "652274"
+
+  [[clubes.jogadores]]
+  nome = "Maj Pavli"
+  pos = "GK"
+  idade = 24
+  ovr = 41
+  pot = 47
+  valor = 55000
+  id_fonte = "912881"
+
+  [[clubes.jogadores]]
+  nome = "Ante Bilobrk"
+  pos = "CB"
+  idade = 19
+  ovr = 40
+  pot = 41
+  valor = 25000
+  id_fonte = "1286790"
+
+  [[clubes.jogadores]]
+  nome = "Filip Bosnjak"
+  pos = "DM"
+  idade = 22
+  ovr = 40
+  pot = 45
+  valor = 55000
+  id_fonte = "950289"
+
+  [[clubes.jogadores]]
+  nome = "Joseph Essomba Essomba"
+  pos = "FW"
+  idade = 22
+  ovr = 40
+  pot = 43
+  valor = 55000
+  id_fonte = "1581432"
+
+  [[clubes.jogadores]]
+  nome = "Leon Geci"
+  pos = "AM"
+  idade = 18
+  ovr = 40
+  pot = 43
+  valor = 50000
+  partidas = 3
+  minutos = 10
+  id_fonte = "1534923"
+
+  [[clubes.jogadores]]
+  nome = "Losika Ratshukudu"
+  pos = "FW"
+  idade = 20
+  ovr = 40
+  pot = 43
+  valor = 50000
+  partidas = 2
+  minutos = 29
+  id_fonte = "1491276"
+
+  [[clubes.jogadores]]
+  nome = "Lovre Loncar"
+  pos = "WG"
+  idade = 20
+  ovr = 40
+  pot = 43
+  valor = 55000
+  id_fonte = "1009487"
+
+  [[clubes.jogadores]]
+  nome = "Lukas Zahora"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 48
+  valor = 150000
+  id_fonte = "1174895"
+
+  [[clubes.jogadores]]
+  nome = "Marko Petrovic"
+  pos = "CB"
+  idade = 20
+  ovr = 40
+  pot = 48
+  valor = 100000
+  partidas = 1
+  minutos = 16
+  id_fonte = "1173472"
+
+  [[clubes.jogadores]]
+  nome = "Patrik Maric"
+  pos = "WG"
+  idade = 19
+  ovr = 40
+  pot = 43
+  valor = 55000
+  partidas = 1
+  minutos = 1
+  id_fonte = "1133057"
+
+  [[clubes.jogadores]]
+  nome = "Teo Kolar"
+  pos = "GK"
+  idade = 19
+  ovr = 40
+  pot = 47
+  valor = 55000
+  id_fonte = "1123887"
+
+  [[clubes.jogadores]]
+  nome = "Vito Medic"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 47
+  valor = 100000
+  id_fonte = "1112996"
+
+[[clubes]]
+nome = "NK Rudes"
+forca = 52.4
+valor_elenco = 5480000
+cores = ["#0D1795", "#FDFDFE"]
+padrao = "liso"
+
+  [[clubes.jogadores]]
+  nome = "Marko Stolnik"
+  pos = "CB"
+  idade = 30
+  ovr = 55
+  pot = 55
+  valor = 250000
+  partidas = 7
+  minutos = 671
+  id_fonte = "226095"
+
+  [[clubes.jogadores]]
+  nome = "Vedran Celjak"
+  pos = "FB"
+  idade = 35
+  ovr = 55
+  pot = 55
+  valor = 150000
+  partidas = 6
+  minutos = 530
+  gols = 2
+  id_fonte = "86640"
+
+  [[clubes.jogadores]]
+  nome = "Lovre Rogic"
+  pos = "GK"
+  idade = 31
+  ovr = 54
+  pot = 54
+  valor = 150000
+  partidas = 8
+  minutos = 720
+  id_fonte = "314616"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Djoric"
+  pos = "DM"
+  idade = 31
+  ovr = 53
+  pot = 53
+  valor = 175000
+  partidas = 6
+  minutos = 501
+  gols = 1
+  id_fonte = "380097"
+
+  [[clubes.jogadores]]
+  nome = "Jakov Blagaic"
+  pos = "AM"
+  idade = 26
+  ovr = 53
+  pot = 54
+  valor = 400000
+  partidas = 3
+  minutos = 286
+  id_fonte = "434711"
+
+  [[clubes.jogadores]]
+  nome = "Stefan Vukic"
+  pos = "FW"
+  idade = 31
+  ovr = 53
+  pot = 53
+  valor = 250000
+  partidas = 1
+  minutos = 126
+  gols = 1
+  id_fonte = "690479"
+
+  [[clubes.jogadores]]
+  nome = "Jurica Poldrugac"
+  pos = "AM"
+  idade = 29
+  ovr = 52
+  pot = 52
+  valor = 250000
+  partidas = 5
+  minutos = 485
+  gols = 5
+  id_fonte = "610045"
+
+  [[clubes.jogadores]]
+  nome = "Bruno Unusic"
+  pos = "FB"
+  idade = 24
+  ovr = 51
+  pot = 53
+  valor = 275000
+  partidas = 6
+  minutos = 566
+  id_fonte = "619276"
+
+  [[clubes.jogadores]]
+  nome = "Felipe Curcio"
+  pos = "FB"
+  idade = 33
+  ovr = 51
+  pot = 51
+  valor = 100000
+  partidas = 2
+  minutos = 222
+  id_fonte = "331467"
+
+  [[clubes.jogadores]]
+  nome = "Kristijan Lovric"
+  pos = "WG"
+  idade = 30
+  ovr = 51
+  pot = 51
+  valor = 200000
+  partidas = 3
+  minutos = 44
+  id_fonte = "294401"
+
+  [[clubes.jogadores]]
+  nome = "Slavko Bralic"
+  pos = "CB"
+  idade = 33
+  ovr = 51
+  pot = 51
+  valor = 100000
+  id_fonte = "206956"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Tomecak"
+  pos = "FB"
+  idade = 36
+  ovr = 50
+  pot = 50
+  valor = 75000
+  partidas = 21
+  minutos = 1920
+  id_fonte = "49985"
+
+  [[clubes.jogadores]]
+  nome = "Josip Pejic"
+  pos = "WG"
+  idade = 25
+  ovr = 48
+  pot = 52
+  valor = 300000
+  partidas = 3
+  minutos = 35
+  id_fonte = "955598"
+
+  [[clubes.jogadores]]
+  nome = "Toni Kolega"
+  pos = "WG"
+  idade = 27
+  ovr = 47
+  pot = 48
+  valor = 150000
+  partidas = 4
+  minutos = 384
+  id_fonte = "532770"
+
+  [[clubes.jogadores]]
+  nome = "Xavi"
+  pos = "MF"
+  idade = 28
+  ovr = 47
+  pot = 47
+  valor = 100000
+  partidas = 6
+  minutos = 533
+  gols = 1
+  id_fonte = "588097"
+
+  [[clubes.jogadores]]
+  nome = "Filip Taraba"
+  pos = "FB"
+  idade = 20
+  ovr = 46
+  pot = 57
+  valor = 500000
+  partidas = 3
+  minutos = 244
+  id_fonte = "891575"
+
+  [[clubes.jogadores]]
+  nome = "Cherno Saho"
+  pos = "FW"
+  idade = 21
+  ovr = 45
+  pot = 53
+  valor = 400000
+  partidas = 3
+  minutos = 306
+  gols = 1
+  id_fonte = "1373497"
+
+  [[clubes.jogadores]]
+  nome = "Junior Fernandes"
+  pos = "FW"
+  idade = 38
+  ovr = 45
+  pot = 45
+  valor = 50000
+  partidas = 2
+  minutos = 15
+  id_fonte = "89708"
+
+  [[clubes.jogadores]]
+  nome = "Vid Seitz"
+  pos = "DM"
+  idade = 16
+  ovr = 45
+  pot = 45
+  valor = 82500
+  partidas = 2
+  minutos = 206
+  id_fonte = "1552791"
+
+  [[clubes.jogadores]]
+  nome = "Frane Barbic"
+  pos = "GK"
+  idade = 26
+  ovr = 44
+  pot = 45
+  valor = 50000
+  partidas = 13
+  minutos = 1171
+  id_fonte = "554574"
+
+  [[clubes.jogadores]]
+  nome = "Marko Zebic"
+  pos = "CB"
+  idade = 19
+  ovr = 44
+  pot = 57
+  valor = 500000
+  partidas = 2
+  minutos = 180
+  gols = 1
+  id_fonte = "1121428"
+
+  [[clubes.jogadores]]
+  nome = "Noa Skoko"
+  pos = "AM"
+  idade = 20
+  ovr = 43
+  pot = 49
+  valor = 200000
+  partidas = 6
+  minutos = 531
+  gols = 1
+  id_fonte = "1056486"
+
+  [[clubes.jogadores]]
+  nome = "Ante Susak"
+  pos = "FB"
+  idade = 20
+  ovr = 42
+  pot = 51
+  valor = 200000
+  partidas = 4
+  minutos = 333
+  gols = 1
+  id_fonte = "1009496"
+
+  [[clubes.jogadores]]
+  nome = "Lenny Ilecic"
+  pos = "WG"
+  idade = 22
+  ovr = 42
+  pot = 47
+  valor = 150000
+  partidas = 5
+  minutos = 447
+  gols = 2
+  id_fonte = "1024368"
+
+  [[clubes.jogadores]]
+  nome = "Saad El Haddad"
+  pos = "AM"
+  idade = 21
+  ovr = 42
+  pot = 52
+  valor = 300000
+  partidas = 2
+  minutos = 150
+  gols = 1
+  id_fonte = "936684"
+
+  [[clubes.jogadores]]
+  nome = "Ivan Zutic"
+  pos = "FB"
+  idade = 25
+  ovr = 41
+  pot = 43
+  valor = 50000
+  partidas = 14
+  minutos = 1218
+  id_fonte = "921806"
+
+  [[clubes.jogadores]]
+  nome = "Allyson"
+  pos = "WG"
+  idade = 25
+  ovr = 40
+  pot = 41
+  valor = 50000
+  partidas = 11
+  minutos = 957
+  gols = 4
+  id_fonte = "1025713"
+
+  [[clubes.jogadores]]
+  nome = "Cheick Tidiane Diabate"
+  pos = "MF"
+  idade = 19
+  ovr = 40
+  pot = 42
+  valor = 55000
+  partidas = 1
+  minutos = 90
+  id_fonte = "1567412"
+
+  [[clubes.jogadores]]
+  nome = "Filip Holjevac"
+  pos = "GK"
+  idade = 19
+  ovr = 40
+  pot = 41
+  valor = 27500
+  id_fonte = "1242321"
+
+  [[clubes.jogadores]]
+  nome = "Josip Bralic"
+  pos = "FW"
+  idade = 18
+  ovr = 40
+  pot = 40
+  valor = 52782
+  partidas = 1
+  minutos = 57
+  gols = 1
+  id_fonte = "1138265"
+
+  [[clubes.jogadores]]
+  nome = "Josip Radman"
+  pos = "AM"
+  idade = 19
+  ovr = 40
+  pot = 41
+  valor = 55000
+  partidas = 1
+  minutos = 90
+  id_fonte = "1304678"
+

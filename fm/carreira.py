@@ -61,6 +61,11 @@ COPAS_POR_PAIS = {
     "ARG": ("libertadores", "sudamericana"),
     **{p: ("libertadores", "sudamericana")
        for p in ("COL", "CHI", "URU", "ECU", "PAR", "PER", "BOL", "VEN")},
+    **{p: ("champions", "europa_league")
+       for p in ("NED", "BEL", "TUR", "GRE", "UKR", "AUT", "SUI", "SCO", "DEN", "NOR", "SWE",
+                 "SRB", "CRO", "POL", "CZE")},
+    # a UEFA exclui os clubes russos desde 2022: a liga existe, as copas europeias nao
+    "RUS": (),
 }
 COPAS = COPAS_POR_PAIS["BRA"]
 

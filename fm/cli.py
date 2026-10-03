@@ -198,6 +198,22 @@ SAIDA_PADRAO = {
     "per_1": ("peru_primera", "peru_real"),
     "bol_1": ("bolivia_primera", "bolivia_real"),
     "ven_1": ("venezuela_primera", "venezuela_real"),
+    "ned_1": ("holanda_eredivisie", "holanda_real"),
+    "bel_1": ("belgica_pro_league", "belgica_real"),
+    "tur_1": ("turquia_super_lig", "turquia_real"),
+    "gre_1": ("grecia_super_league", "grecia_real"),
+    "ukr_1": ("ucrania_premier_liga", "ucrania_real"),
+    "rus_1": ("russia_premier_liga", "russia_real"),
+    "aut_1": ("austria_bundesliga", "austria_real"),
+    "sui_1": ("suica_super_league", "suica_real"),
+    "sco_1": ("escocia_premiership", "escocia_real"),
+    "den_1": ("dinamarca_superliga", "dinamarca_real"),
+    "nor_1": ("noruega_eliteserien", "noruega_real"),
+    "swe_1": ("suecia_allsvenskan", "suecia_real"),
+    "srb_1": ("servia_superliga", "servia_real"),
+    "cro_1": ("croacia_hnl", "croacia_real"),
+    "pol_1": ("polonia_ekstraklasa", "polonia_real"),
+    "cze_1": ("tchequia_chance_liga", "tchequia_real"),
 }
 
 
@@ -219,7 +235,9 @@ def cmd_importar(args):
     )
     from fm.importer.transfermarkt import COMPETICOES
 
-    alvos = sorted(COMPETICOES) if args.competicao == "todas" else [args.competicao]
+    # "todas", uma competicao, ou varias separadas por virgula ("ned_1,bel_1")
+    alvos = (sorted(COMPETICOES) if args.competicao == "todas"
+             else [x.strip() for x in args.competicao.split(",") if x.strip()])
     for c in alvos:
         if c not in COMPETICOES:
             raise SystemExit(f"competicao desconhecida; use 'todas' ou {sorted(COMPETICOES)}")
