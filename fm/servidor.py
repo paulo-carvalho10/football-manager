@@ -890,6 +890,10 @@ def partida_atual(jogo: Jogo) -> dict:
             jogo.pos_jogo = telas.pos_jogo(jogo.c, partida, resultados, competicao, tipo,
                                            lambda cid: _clube(jogo.c, cid),
                                            getattr(jogo, "posicao_antes", None))
+            # a competicao da partida que acabou: e a tabela dela que o pos-jogo mostra
+            tipo_, onde = jogo.c.ultimo_compromisso
+            jogo.pos_jogo["comp_id"] = (onde if tipo_ == "copa" and onde in jogo.c.copas
+                                        else jogo.c.liga)
         if jogo.pos_jogo is not None:
             retrato["impacto"] = jogo.pos_jogo.get("impacto")
         retrato["estado"] = estado(jogo)

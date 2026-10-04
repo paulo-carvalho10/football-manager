@@ -179,6 +179,12 @@ table.grade { width: 100%; border-collapse: collapse; font-size: .88rem; }
 .nome-celula b { font-weight: 600; color: var(--branco); overflow: hidden; text-overflow: ellipsis; }
 .zona { display: inline-block; width: 1.7rem; text-align: center; border-radius: 3px; font-family: var(--fonte-numero); font-weight: 700; }
 .zona.continental { background: #1f4f8f; color: #fff; }
+/* a tabela do pos-jogo cabe na coluna estreita: nome longo vira reticencias */
+.tabela-pos { table-layout: fixed; width: 100%; }
+.tabela-pos th:first-child { width: 2.2rem; }
+.tabela-pos th.n { width: 2.4rem; }
+.tabela-pos .nome-celula { min-width: 0; }
+.tabela-pos .nome-celula b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 /* o relatorio do olheiro */
 .necessidade { display: flex; justify-content: space-between; align-items: center; gap: .5rem;
   padding: .45rem .6rem; margin-bottom: .35rem; border: 1px solid var(--linha); border-left: 3px solid var(--ouro);

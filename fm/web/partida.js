@@ -759,25 +759,62 @@ async function abrirPosJogo() {
       <span class="espaco"></span><button class="btn primario grande" id="pos-continuar">Continuar »</button></footer>`;
   $("#pos-continuar").addEventListener("click", () => irParaModo("jogo", "calendario"));
   POS.rodada = p.rodada;
+  POS.comp = p.comp_id;
   $$("[data-paba]").forEach((b) => b.addEventListener("click", () => abaDoPosJogo(b.dataset.paba)));
   abaDoPosJogo(PARAMS.get("aba") || "rodada");
 }
 
-const POS = {rodada: [], aba: "rodada"};
+const POS = {rodada: [], aba: "rodada", comp: null};
 
-/** A tabela da divisao do usuario como ficou depois da rodada. */
-async function tabelaCompacta() {
-  const d = await api.get("/api/classificacao");
+/** A tabela da competicao da partida que acabou: a liga, ou a parte da copa em que o
+ *  usuario esta -- o grupo dele, a tabela da fase de liga ou os confrontos do mata-mata. */
+async function tabelaCompacta(comp) {
+  const d = await api.get(`/api/classificacao${comp ? `?comp=${encodeURIComponent(comp)}` : ""}`);
+  if (d.tipo === "copa") return tabelaDaCopaCompacta(d);
   const z = d.zonas, n = d.linhas.length;
-  const zona = (i) => i <= z.continental ? "continental" : i <= z.acesso ? "acesso"
-    : i > n - z.rebaixamento ? "rebaixamento" : "";
-  return `<table class="grade compacta"><thead><tr><th class="c">#</th><th>${escapar(d.nome)}</th>
+  const faixa = (i) => (z.faixas || []).find((f) => i >= f.de && i <= f.ate);
+  const zona = (i) => faixa(i) ? faixa(i).classe : i <= z.continental ? "continental"
+    : i <= z.acesso ? "acesso" : i > n - z.rebaixamento ? "rebaixamento" : "";
+  return `<table class="grade compacta tabela-pos"><thead><tr><th class="c">#</th><th>${escapar(d.nome)}</th>
       <th class="n">J</th><th class="n">SG</th><th class="n">P</th></tr></thead>
     <tbody>${d.linhas.map((l, i) => `<tr class="${l.eu ? "eu" : ""}">
       <td class="c"><span class="zona ${zona(i + 1)}">${i + 1}</span></td>
       <td><div class="nome-celula">${escudo(l.clube, "1.2rem")}<b>${escapar(l.clube.nome)}</b></div></td>
       <td class="n">${l.jogos}</td><td class="n">${l.saldo > 0 ? "+" : ""}${l.saldo}</td>
       <td class="n"><b>${l.pontos}</b></td></tr>`).join("")}</tbody></table>`;
+}
+
+function tabelaDaCopaCompacta(d) {
+  const linhas = (lista, avancam, titulo) => `<table class="grade compacta tabela-pos"><thead><tr><th class="c">#</th>
+      <th>${escapar(titulo)}</th><th class="n">J</th><th class="n">SG</th><th class="n">P</th></tr></thead>
+    <tbody>${lista.map((l) => `<tr class="${l.eu ? "eu" : ""}">
+      <td class="c"><span class="zona ${l.posicao <= avancam ? "acesso" : ""}">${l.posicao}</span></td>
+      <td><div class="nome-celula">${escudo(l.clube, "1.2rem")}<b title="${escapar(l.clube.nome)}">${escapar(l.clube.nome)}</b></div></td>
+      <td class="n">${l.jogos}</td><td class="n">${l.saldo > 0 ? "+" : ""}${l.saldo}</td>
+      <td class="n"><b>${l.pontos}</b></td></tr>`).join("")}</tbody></table>`;
+  // a secao em andamento; com a copa parada entre fases, a ultima que teve jogo
+  const secoes = d.secoes || [];
+  const sec = secoes.find((x) => x.estado === "em_curso")
+    || [...secoes].reverse().find((x) => x.fases.length || (x.rodadas || []).some((r) => r.confrontos.some((k) => k.casa)));
+  if (!sec) return '<div class="vazio">A competição ainda não começou.</div>';
+  const titulo = sec.nome;
+  if (sec.tipo === "grupos" && sec.fases.length) {
+    const f = sec.fases[sec.fases.length - 1];
+    const meu = f.grupos.find((g) => g.linhas.some((l) => l.eu)) || f.grupos[0];
+    return linhas(meu.linhas, f.avancam, meu.nome);
+  }
+  if (sec.tipo === "liga" && sec.fases.length) {
+    const f = sec.fases[sec.fases.length - 1];
+    return linhas(f.linhas, f.avancam, titulo);
+  }
+  // mata-mata: a rodada em que o usuario esta (ou a ultima jogada)
+  const rodadas = sec.tipo === "chave" ? sec.rodadas
+    : sec.fases.map((f) => ({nome: f.nome, confrontos: f.confrontos}));
+  const jogadas = rodadas.filter((r) => r.confrontos.some((k) => k.casa && k.fora));
+  const r = jogadas.find((x) => x.confrontos.some((k) => k.meu)) || jogadas[jogadas.length - 1];
+  if (!r) return '<div class="vazio">Os confrontos saem depois do sorteio.</div>';
+  return `<div style="padding:.6rem .8rem"><h3 class="titulo-secao" style="margin-bottom:.5rem">${escapar(d.nome)} · ${escapar(r.nome)}</h3>
+    <div class="cartas" style="display:flex;flex-direction:column;gap:.5rem">${r.confrontos.map(cartaoDeConfronto).join("")}</div></div>`;
 }
 
 async function abaDoPosJogo(aba) {
@@ -796,7 +833,7 @@ async function abaDoPosJogo(aba) {
     return;
   }
   if (aba === "tabela") {
-    alvo.innerHTML = await tabelaCompacta();
+    alvo.innerHTML = await tabelaCompacta(POS.comp);
     $("#pos-lateral tr.eu")?.scrollIntoView({block: "center"});
     return;
   }
