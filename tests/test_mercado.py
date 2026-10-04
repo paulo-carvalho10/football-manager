@@ -240,3 +240,26 @@ def test_o_craque_sobe_e_o_reserva_desce(carreira):
     para_cima = [t for t in feitas
                  if t.jogador in de_b and c.world.clubs[t.para].league_id == a]
     assert para_cima, "nenhum jogador da segunda divisao subiu: o mercado e' de mao unica"
+
+
+def test_o_caixa_parado_da_ia_vira_investimento():
+    """REGRESSAO: o rico nao tinha onde gastar -- em 6 temporadas o caixa do mundo foi de 12
+    a 40 bilhoes e o Manchester City guardava 2,2 anos de receita. O que passa de um ano de
+    receita vira investimento na virada; o caixa do usuario nao e tocado."""
+    from fm.financas import CAIXA_SEM_INVESTIR, Balanco, investimento
+
+    assert investimento(50_000_000, 100_000_000) == 0
+    assert investimento(250_000_000, 100_000_000) == int(250_000_000 - CAIXA_SEM_INVESTIR * 100_000_000)
+    b = Balanco(clube=1, receita=100, premiacao=0, folha=50, operacao=40, investimento=30)
+    assert b.saldo == -20
+
+    c = Carreira.nova(["brasil_real", "brasil_b_real"], "Palmeiras", seed=3)
+    ids = c.world.leagues[c._id("brasil_real")].club_ids
+    rico = next(k for k in ids if k != c.clube_id)
+    c.world.clubs[rico].balance = 5_000_000_000
+    c.clube.balance = 5_000_000_000
+    while not c.acabou:
+        c.avancar()
+    resumo = c.virar_o_ano()
+    assert resumo["balanco"].investimento == 0, "o caixa do usuario e decisao dele"
+    assert c.world.clubs[rico].balance < 1_500_000_000, "o caixa parado da IA nao foi investido"

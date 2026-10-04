@@ -146,10 +146,11 @@ class Balanco:
     premiacao: int
     folha: int
     operacao: int
+    investimento: int = 0     # estrutura: o destino do caixa parado (so da IA)
 
     @property
     def saldo(self) -> int:
-        return self.receita + self.premiacao - self.folha - self.operacao
+        return self.receita + self.premiacao - self.folha - self.operacao - self.investimento
 
 
 def folha_anual(world: World, clube_id: int) -> int:
@@ -232,11 +233,28 @@ def mover_reputacao(world: World, tabelas: dict[str, list[Row]]) -> None:
                 max(REPUTACAO_PISO, min(REPUTACAO_TETO, club.reputation + passo - vies))))
 
 
+# O DESTINO DO CAIXA PARADO. O clube rico tem folha de metade da receita, ganha a premiacao
+# da Champions e vende mais reserva do que compra -- e, ja sendo o melhor, quase nao acha
+# reforco que valha. Medido em 6 temporadas com as 40 ligas: o caixa do mundo foi de 12 a
+# 40 bilhoes de euros, o Manchester City de 300 milhoes a 1,3 bilhao (2,2 anos de receita).
+# No futebol, esse dinheiro vira estadio, centro de treinamento, estrutura. Aqui ele vira
+# despesa: o que passa de um ano de receita em caixa e investido, metade por ano. So na IA
+# -- o caixa do usuario e decisao dele, como o elenco.
+CAIXA_SEM_INVESTIR = 1.0          # anos de receita que o clube guarda sem investir
+INVESTIMENTO_DO_EXCEDENTE = 1.0   # fracao do excedente investida por ano
+
+
+def investimento(caixa: int, receita: int) -> int:
+    excedente = caixa - CAIXA_SEM_INVESTIR * receita
+    return int(excedente * INVESTIMENTO_DO_EXCEDENTE) if excedente > 0 else 0
+
+
 def fechar_o_ano(world: World, tabelas: dict[str, list[Row]],
                  cfgs: dict[str, dict],
                  extras: dict[int, int] | None = None,
                  jogos_extras: dict[int, int] | None = None,
-                 valores: dict[int, int] | None = None) -> dict[int, Balanco]:
+                 valores: dict[int, int] | None = None,
+                 clube_usuario: int | None = None) -> dict[int, Balanco]:
     """Credita e debita o ano de cada clube. Chamado uma vez, na virada.
 
     Roda ANTES do acesso e do rebaixamento: o ano que acabou foi jogado na divisao antiga,
@@ -262,6 +280,8 @@ def fechar_o_ano(world: World, tabelas: dict[str, list[Row]],
             # do mundo inteiro subia sem parar
             b.operacao = int((b.receita + b.premiacao) * CUSTO_DE_OPERACAO
                              + (jogos_extras or {}).get(cid, 0) * CUSTO_POR_JOGO_EXTRA)
+            if cid != clube_usuario:
+                b.investimento = investimento(world.clubs[cid].balance + b.saldo, receita)
             world.clubs[cid].balance += b.saldo
             balancos[cid] = b
     mover_reputacao(world, tabelas)

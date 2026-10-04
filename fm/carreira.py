@@ -1662,7 +1662,7 @@ class Carreira:
         premios_de_copa = self._premiar_copas()
         balancos = fechar_o_ano(self.world, tabelas, cfgs, extras=premios_de_copa,
                                 jogos_extras=self._jogos_de_copa(),
-                                valores=self.valor_de_elenco)
+                                valores=self.valor_de_elenco, clube_usuario=self.clube_id)
         mudancas = acesso_e_rebaixamento(self.world, self.ligas, tabelas, cfgs)
         self._atualizar_tecnicos(dados, mudancas, cfgs)
         rng = self.streams.get("virada", self.temporada)
