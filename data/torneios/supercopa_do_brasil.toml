@@ -1,0 +1,32 @@
+# Supercopa do Brasil: o campeao brasileiro contra o campeao da Copa do Brasil, no comeco
+# do ano. Jogo unico em campo neutro. Se o mesmo clube ganhou os dois, entra o vice do
+# Brasileirao (a vaga de copa ja classificada desce na tabela: fm.torneio).
+id   = "supercopa_do_brasil"
+nome = "Supercopa do Brasil"
+
+[estilo]
+gols_base = 1.20
+mando     = 0.0     # campo neutro
+
+[mentalidade]
+gols_mult  = 0.90
+compressao = 0.18
+
+[[classificacao]]
+fonte    = "BRA1"
+vagas    = 1
+entra_em = "final"
+
+[[classificacao]]
+fonte    = "copa_do_brasil"
+reservas = ["BRA1"]       # primeiro ano sem campeao, ou campeao repetido: desce na tabela
+vagas    = 1
+entra_em = "final"
+
+[[formato.fases]]
+nome    = "Final"
+janela  = ["01-27", "02-03"]   # dias reais da fase (fm.agenda)
+tipo    = "knockout"
+maos    = 1
+rodadas = 1
+entram  = [ { classificacao = "final" } ]

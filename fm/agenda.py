@@ -31,7 +31,18 @@ FIM_DAS_LIGAS = (12, 6)
 # outras dividem o dia a vontade -- Libertadores e Sul-Americana, Champions e Liga Europa
 # nunca tem o mesmo clube na mesma semana.
 CONFLITOS = {frozenset({"copa_do_brasil", "libertadores"}),
-             frozenset({"copa_do_brasil", "sudamericana"})}
+             frozenset({"copa_do_brasil", "sudamericana"}),
+             # as copas nacionais e as supercopas com as continentais do mesmo clube
+             *(frozenset({nacional, continental})
+               for nacional in ("fa_cup", "copa_del_rey", "coppa_italia", "dfb_pokal",
+                                "coupe_de_france", "taca_de_portugal", "supercopa_uefa")
+               for continental in ("champions", "europa_league", "conference_league")),
+             *(frozenset({nacional, continental})
+               for nacional in ("copa_argentina", "recopa", "supercopa_do_brasil",
+                                "copa_do_brasil")
+               for continental in ("libertadores", "sudamericana")),
+             frozenset({"supercopa_do_brasil", "copa_do_brasil"}),
+             frozenset({"recopa", "copa_do_brasil"})}
 
 # O dia da semana preferido de cada copa (0 = segunda), na ordem de tentativa.
 DIAS_PREFERIDOS = {

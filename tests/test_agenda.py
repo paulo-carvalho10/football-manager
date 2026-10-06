@@ -18,10 +18,12 @@ def carreira():
     return Carreira.nova(["brasil_real", "brasil_b_real"], "Palmeiras", seed=21)
 
 
-def test_a_temporada_vai_de_fevereiro_a_dezembro(carreira):
+def test_a_temporada_vai_do_fim_de_janeiro_a_dezembro(carreira):
+    """A Supercopa do Brasil abre o ano no fim de janeiro; o resto comeca em fevereiro."""
     c = carreira
     assert c.dias == sorted(c.dias)
-    assert c.dias[0].month == 2 and c.dias[0].year == c.temporada
+    assert c.dias[0] >= date(c.temporada, 1, 20)
+    assert c.agenda[0] == ("copa", "supercopa_do_brasil")
     assert c.dias[-1] <= date(c.temporada, 12, 31)
 
 

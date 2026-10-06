@@ -16,6 +16,7 @@ duplicado: o que muda e quem controla o relogio.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 
 import numpy as np
@@ -120,10 +121,17 @@ def chave_de_exportacao(andamento: Andamento, regra: dict) -> str:
     return f"{andamento.torneio.id}:{regra['para']}"
 
 
+# "Porto B", "Real Sociedad SS B (Sanse)", "Bayern II": o time B de alguem
+FILIAL = re.compile(r"(\sB|\sII)(\s|$)")
+
+
 def _entrantes(world: World, andamento: Andamento, fase: dict,
                tabelas: dict[str, list[int]]) -> list[int]:
     novos = resolver_entradas(world, fase.get("entram", []), tabelas,
                               andamento.classificados)
+    if fase.get("sem_filiais"):
+        # time B (Porto B, Real Sociedad B) nao disputa a copa nacional: a vaga e do proximo
+        novos = [c for c in novos if not FILIAL.search(world.clubs[c].name)]
     entram = [c for c in novos
               if c not in andamento.vivos and c not in andamento.ja_entraram]
     andamento.ja_entraram.update(entram)

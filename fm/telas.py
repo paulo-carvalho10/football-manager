@@ -89,18 +89,19 @@ NACIONAIS = [
 # Estaduais nao existem no motor. Nao sao "premium": sao trabalho por fazer.
 ESTADUAIS = ["Paulista", "Carioca", "Mineiro", "Gaúcho", "Paranaense", "Baiano",
              "Pernambucano", "Catarinense", "Goiano", "Cearense"]
+_UEFA = ["Liga dos Campeões", "Liga Europa", "Conference League", "Supercopa da UEFA"]
+_CONMEBOL = ["Copa Libertadores", "Copa Sul-Americana", "Recopa Sul-Americana"]
 COPAS_POR_PAIS = {
-    "BRA": ["Copa do Brasil", "Copa Libertadores", "Copa Sul-Americana"],
-    "ESP": ["Liga dos Campeões", "Liga Europa"],
-    "ENG": ["Liga dos Campeões", "Liga Europa"],
-    "ITA": ["Liga dos Campeões", "Liga Europa"],
-    "GER": ["Liga dos Campeões", "Liga Europa"],
-    "FRA": ["Liga dos Campeões", "Liga Europa"],
-    "POR": ["Liga dos Campeões", "Liga Europa"],
-    "ARG": ["Copa Libertadores", "Copa Sul-Americana"],
-    **{p: ["Copa Libertadores", "Copa Sul-Americana"]
-       for p in ("COL", "CHI", "URU", "ECU", "PAR", "PER", "BOL", "VEN")},
-    **{p: ["Liga dos Campeões", "Liga Europa"]
+    "BRA": ["Copa do Brasil", "Supercopa do Brasil", *_CONMEBOL],
+    "ESP": [*_UEFA, "Copa del Rey"],
+    "ENG": [*_UEFA, "FA Cup"],
+    "ITA": [*_UEFA, "Coppa Italia"],
+    "GER": [*_UEFA, "DFB-Pokal"],
+    "FRA": [*_UEFA, "Coupe de France"],
+    "POR": [*_UEFA, "Taça de Portugal"],
+    "ARG": [*_CONMEBOL, "Copa Argentina"],
+    **{p: list(_CONMEBOL) for p in ("COL", "CHI", "URU", "ECU", "PAR", "PER", "BOL", "VEN")},
+    **{p: list(_UEFA)
        for p in ("NED", "BEL", "TUR", "GRE", "UKR", "AUT", "SUI", "SCO", "DEN", "NOR", "SWE",
                  "SRB", "CRO", "POL", "CZE")},
     "RUS": [],

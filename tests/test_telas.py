@@ -86,6 +86,9 @@ def _iniciar_ate_ter_jogo(jogo) -> dict:
 
 def test_partida_ao_vivo_do_apito_ao_pos_jogo(jogo):
     c = jogo.c
+    # o Flamengo abre o ano na Supercopa (jogo sem rodada ao lado); este teste e da liga
+    while c.agenda[c.data][0] != "liga":
+        c.avancar()
     r = _iniciar_ate_ter_jogo(jogo)
     data_do_jogo = c.data
     assert r["minuto"] == 5 and not r["fim"]

@@ -47,27 +47,42 @@ LIGAS_DA_CONFEDERACAO = {
     "CONMEBOL": ("brasil_real", "argentina_real", "colombia_real", "chile_real",
                  "uruguai_real", "equador_real", "paraguai_real", "peru_real",
                  "bolivia_real", "venezuela_real"),
+    # a UEFA so serve de RANKING (a reserva da Supercopa da UEFA no primeiro ano): as ligas
+    # dela nunca sao carregadas como pano de fundo, por isso nao entra em COPAS_DA_CONFEDERACAO
+    "UEFA": ("espanha_real", "inglaterra_real", "italia_real", "alemanha_real", "franca_real",
+             "portugal_real", "holanda_real", "belgica_real", "turquia_real", "grecia_real",
+             "ucrania_real", "austria_real", "suica_real", "escocia_real", "dinamarca_real",
+             "noruega_real", "suecia_real", "servia_real", "croacia_real", "polonia_real",
+             "tchequia_real"),
 }
-COPAS_DA_CONFEDERACAO = {"libertadores": "CONMEBOL", "sudamericana": "CONMEBOL"}
+COPAS_DA_CONFEDERACAO = {"libertadores": "CONMEBOL", "sudamericana": "CONMEBOL",
+                         "recopa": "CONMEBOL"}
 
+# A ordem importa: as vagas continentais sao distribuidas nesta ordem com `ocupados`
+# compartilhado, entao a Champions escolhe antes da Liga Europa, e esta antes da
+# Conference League. As supercopas e as copas nacionais nao disputam vaga com ninguem.
+_UEFA = ("champions", "europa_league", "conference_league", "supercopa_uefa")
+_CONMEBOL = ("libertadores", "sudamericana", "recopa")
 COPAS_POR_PAIS = {
-    "BRA": ("copa_do_brasil", "libertadores", "sudamericana"),
-    "ESP": ("champions", "europa_league"),
-    "ENG": ("champions", "europa_league"),
-    "ITA": ("champions", "europa_league"),
-    "GER": ("champions", "europa_league"),
-    "FRA": ("champions", "europa_league"),
-    "POR": ("champions", "europa_league"),
-    "ARG": ("libertadores", "sudamericana"),
-    **{p: ("libertadores", "sudamericana")
-       for p in ("COL", "CHI", "URU", "ECU", "PAR", "PER", "BOL", "VEN")},
-    **{p: ("champions", "europa_league")
+    "BRA": ("copa_do_brasil", "supercopa_do_brasil", *_CONMEBOL),
+    "ESP": (*_UEFA, "copa_del_rey"),
+    "ENG": (*_UEFA, "fa_cup"),
+    "ITA": (*_UEFA, "coppa_italia"),
+    "GER": (*_UEFA, "dfb_pokal"),
+    "FRA": (*_UEFA, "coupe_de_france"),
+    "POR": (*_UEFA, "taca_de_portugal"),
+    "ARG": (*_CONMEBOL, "copa_argentina"),
+    **{p: _CONMEBOL for p in ("COL", "CHI", "URU", "ECU", "PAR", "PER", "BOL", "VEN")},
+    **{p: _UEFA
        for p in ("NED", "BEL", "TUR", "GRE", "UKR", "AUT", "SUI", "SCO", "DEN", "NOR", "SWE",
                  "SRB", "CRO", "POL", "CZE")},
     # a UEFA exclui os clubes russos desde 2022: a liga existe, as copas europeias nao
     "RUS": (),
 }
 COPAS = COPAS_POR_PAIS["BRA"]
+# As copas continentais em que um clube so pode estar em UMA: a vaga em uma tira da outra.
+DISPUTAM_VAGA = {"libertadores", "sudamericana", "champions", "europa_league",
+                 "conference_league"}
 
 MAX_TROCAS = 5
 
@@ -271,7 +286,13 @@ class Carreira:
                 t = carregar(nome)
             except FileNotFoundError:
                 continue
-            self.copas[nome] = comecar(self.world, t, tabelas, ocupados=ocupados)
+            # So as copas que DISPUTAM vaga entre si dividem `ocupados` (quem esta na
+            # Champions nao entra na Liga Europa). REGRESSAO: as supercopas tambem
+            # dividiam, e a Recopa de 2028 ficou com Fortaleza x Sport em vez dos campeoes
+            # -- que ja estavam na Libertadores; e quem entrava na Supercopa do Brasil
+            # perdia a vaga na Libertadores.
+            self.copas[nome] = comecar(self.world, t, tabelas,
+                                       ocupados=ocupados if nome in DISPUTAM_VAGA else set())
 
         copas = {}
         for nome, a in self.copas.items():

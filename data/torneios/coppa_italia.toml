@@ -1,0 +1,34 @@
+# Coppa Italia, a copa nacional da Itália, com os clubes que o jogo tem: a primeira e a
+# segunda divisao. Como a Copa do Brasil: a segunda divisao entra primeiro, e a primeira se
+# junta na fase seguinte. Jogo unico do comeco ao fim; empate vai para os penaltis.
+#
+# Aproximacao consciente: a copa real tem as divisoes de baixo (amadores, terceira e quarta
+# divisao), que nao estao importadas. A primeira fase delas vira uma fase so da segunda.
+id   = "coppa_italia"
+nome = "Coppa Italia"
+
+[estilo]
+gols_base = 1.20
+mando     = 0.34
+
+[mentalidade]
+gols_mult  = 0.90
+compressao = 0.20   # jogo unico: o pequeno se fecha
+
+[[formato.fases]]
+nome    = "Primeira fase"
+janela  = ["04-28", "05-06"]   # dias reais da fase (fm.agenda)
+tipo    = "knockout"
+maos    = 1
+sem_filiais = true   # time B nao disputa a copa nacional
+rodadas = 1
+entram  = [ { liga = "IT2", de = 1, ate = 20 } ]
+
+[[formato.fases]]
+nome    = "Segunda fase em diante"
+janela  = ["05-26", "11-25"]   # dias reais da fase (fm.agenda)
+tipo    = "knockout"
+maos    = 1
+sem_filiais = true   # time B nao disputa a copa nacional
+# a primeira divisao entra so agora, como os grandes na Copa do Brasil
+entram  = [ { liga = "IT1" } ]

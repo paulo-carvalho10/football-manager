@@ -84,6 +84,18 @@ PREMIO_DE_COPA = {
     "champions": 120_000_000,
     "europa_league": 35_000_000,
     "intercontinental": 5_000_000,
+    # (06/10/2026) as copas que faltavam, em euros, pelo que o campeao acumula
+    "conference_league": 20_000_000,
+    "supercopa_uefa": 5_000_000,
+    "recopa": 2_500_000,
+    "supercopa_do_brasil": 2_000_000,
+    "fa_cup": 6_000_000,
+    "copa_del_rey": 3_000_000,
+    "coppa_italia": 8_000_000,
+    "dfb_pokal": 12_000_000,
+    "coupe_de_france": 3_000_000,
+    "taca_de_portugal": 2_000_000,
+    "copa_argentina": 2_000_000,
 }
 
 # Quanto da campanha ja esta pago so por entrar, e como o resto se concentra no fim. Com

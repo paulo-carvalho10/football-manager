@@ -624,6 +624,10 @@ def _copa_ainda_me_envolve(c: Carreira, a) -> str | None:
             return None
         if me in b.vivos:
             return b.fase
+        if me in b.ja_entraram:
+            # ja entrou e caiu: a fase que repete rodada a rodada (o mata-mata "ate
+            # sobrar um" da FA Cup) listaria o clube de novo como entrante
+            return None
         for k in range(b.fase + (1 if b.pendentes else 0), len(b.torneio.fases)):
             if me in resolver_entradas(c.world, b.torneio.fases[k].get("entram", []),
                                        tabelas, b.classificados):

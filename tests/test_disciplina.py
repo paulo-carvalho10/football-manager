@@ -90,7 +90,8 @@ def test_cartoes_sorteados_respeitam_a_regra_do_segundo_amarelo():
 def test_uma_temporada_tem_ganchos_para_todo_lado():
     """Nao e so o usuario que perde jogador: os adversarios tambem levam cartao."""
     c = Carreira.nova("brasil_real", "Santos", seed=6)
-    for _ in range(15):
+    # quinze rodadas DA LIGA: as datas de copa do comeco do ano nao contam
+    while len(c.jogos("brasil_real")) < 15 * 10:
         c.avancar()
     caderno = c.estatisticas_por_comp["brasil_real"].por_jogador
     clubes_com_cartao = {c.world.players[p].club_id for p, x in caderno.items()

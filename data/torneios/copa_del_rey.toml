@@ -1,0 +1,34 @@
+# Copa del Rey, a copa nacional da Espanha, com os clubes que o jogo tem: a primeira e a
+# segunda divisao. Como a Copa do Brasil: a segunda divisao entra primeiro, e a primeira se
+# junta na fase seguinte. Jogo unico do comeco ao fim; empate vai para os penaltis.
+#
+# Aproximacao consciente: a copa real tem as divisoes de baixo (amadores, terceira e quarta
+# divisao), que nao estao importadas. A primeira fase delas vira uma fase so da segunda.
+id   = "copa_del_rey"
+nome = "Copa del Rey"
+
+[estilo]
+gols_base = 1.20
+mando     = 0.34
+
+[mentalidade]
+gols_mult  = 0.90
+compressao = 0.20   # jogo unico: o pequeno se fecha
+
+[[formato.fases]]
+nome    = "Primeira fase"
+janela  = ["04-28", "05-06"]   # dias reais da fase (fm.agenda)
+tipo    = "knockout"
+maos    = 1
+sem_filiais = true   # time B nao disputa a copa nacional
+rodadas = 1
+entram  = [ { liga = "ES2", de = 1, ate = 22 } ]
+
+[[formato.fases]]
+nome    = "Segunda fase em diante"
+janela  = ["05-26", "11-25"]   # dias reais da fase (fm.agenda)
+tipo    = "knockout"
+maos    = 1
+sem_filiais = true   # time B nao disputa a copa nacional
+# a primeira divisao entra so agora, como os grandes na Copa do Brasil
+entram  = [ { liga = "ES1" } ]

@@ -1,0 +1,133 @@
+# Conference League, a terceira copa da UEFA, no formato atual: 36 clubes numa fase de liga
+# de 6 jogos (contra 6 adversarios, 3 em casa e 3 fora); do 1o ao 8o direto as oitavas, do
+# 9o ao 24o um playoff, o resto esta fora. Mata-mata em chave fixa e final em jogo unico.
+#
+# As vagas sao as seguintes de cada pais, depois da Champions e da Liga Europa: a cascata
+# pula quem ja se classificou para uma delas. NAO CONFERIDO: a divisao por liga e estimativa.
+id   = "conference_league"
+nome = "Conference League"
+
+[estilo]
+gols_base = 1.27
+mando     = 0.30
+
+[mentalidade]
+gols_mult  = 0.93
+compressao = 0.15
+
+[[classificacao]]
+fonte = "GB1"
+vagas = 1
+entra_em = "liga"
+[[classificacao]]
+fonte = "ES1"
+vagas = 1
+entra_em = "liga"
+[[classificacao]]
+fonte = "IT1"
+vagas = 1
+entra_em = "liga"
+[[classificacao]]
+fonte = "L1"
+vagas = 1
+entra_em = "liga"
+[[classificacao]]
+fonte = "FR1"
+vagas = 1
+entra_em = "liga"
+[[classificacao]]
+fonte = "PO1"
+vagas = 1
+entra_em = "liga"
+[[classificacao]]
+fonte = "NL1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "BE1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "TR1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "GR1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "UKR1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "A1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "C1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "SC1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "DK1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "NO1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "SE1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "SER1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "KR1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "PL1"
+vagas = 2
+entra_em = "liga"
+[[classificacao]]
+fonte = "TS1"
+vagas = 2
+entra_em = "liga"
+
+[[formato.fases]]
+nome        = "Fase de liga"
+janela  = ["05-14", "09-03"]   # dias reais da fase (fm.agenda)
+tipo        = "liga_suica"
+adversarios = 6
+potes       = 6
+avancam     = 24
+entram      = [ { classificacao = "liga" } ]
+
+[[formato.fases]]
+nome    = "Playoff"
+janela  = ["09-17", "09-24"]   # dias reais da fase (fm.agenda)
+tipo    = "knockout"
+maos    = 2
+rodadas = 1
+isentos = 8
+
+[[formato.fases]]
+nome     = "Mata-mata"
+janela  = ["10-08", "11-19"]   # dias reais da fase (fm.agenda)
+chave    = "fixa"
+tipo     = "knockout"
+maos     = 2
+rodadas  = 3
+
+[[formato.fases]]
+nome     = "Final"
+janela  = ["11-26", "11-26"]   # dias reais da fase (fm.agenda)
+tipo     = "knockout"
+maos     = 1
+rodadas  = 1

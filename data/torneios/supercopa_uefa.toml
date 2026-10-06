@@ -1,0 +1,32 @@
+# Supercopa da UEFA: o campeao da Champions contra o da Liga Europa, jogo unico em campo
+# neutro, abrindo o ano europeu. No primeiro ano da carreira as vagas vao aos mais fortes.
+id   = "supercopa_uefa"
+nome = "Supercopa da UEFA"
+
+[estilo]
+gols_base = 1.28
+mando     = 0.0     # campo neutro
+
+[mentalidade]
+gols_mult  = 0.92
+compressao = 0.12
+
+[[classificacao]]
+fonte    = "champions"
+reservas = ["UEFA"]
+vagas    = 1
+entra_em = "final"
+
+[[classificacao]]
+fonte    = "europa_league"
+reservas = ["UEFA"]
+vagas    = 1
+entra_em = "final"
+
+[[formato.fases]]
+nome    = "Final"
+janela  = ["04-14", "04-23"]   # dias reais da fase (fm.agenda)
+tipo    = "knockout"
+maos    = 1
+rodadas = 1
+entram  = [ { classificacao = "final" } ]

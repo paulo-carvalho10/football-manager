@@ -42,7 +42,7 @@ crível**.
 | | |
 |---|---|
 | 🏟️ **Partida ao vivo** | O relógio para a cada 5 minutos. Dá para fazer substituições, mudar a tática e escolher quem bate o pênalti. Os outros jogos da rodada aparecem em paralelo. |
-| 🏆 **Competições reais** | Série A e B, Copa do Brasil, Libertadores e Sul-Americana no formato da Conmebol: grupos sorteados por potes e chave fixa das oitavas à final. Tem ainda a fase de liga da Champions e a Liga Europa. Os mata-matas são em ida e volta, em datas separadas, e o empate no agregado vai para os pênaltis, cobrança a cobrança. |
+| 🏆 **Competições reais** | Série A e B, Copa do Brasil, Libertadores e Sul-Americana no formato da Conmebol: grupos sorteados por potes e chave fixa das oitavas à final. Tem ainda a Champions, a Liga Europa e a Conference League com fase de liga, as copas nacionais (FA Cup, Copa del Rey, Coppa Italia, DFB-Pokal, Coupe de France, Taça de Portugal, Copa Argentina) e as supercopas (do Brasil, Recopa e da UEFA). Os mata-matas são em ida e volta, em datas separadas, e o empate no agregado vai para os pênaltis, cobrança a cobrança. |
 | 📅 **Calendário real** | A temporada vai de fevereiro a dezembro. As ligas jogam aos domingos e as copas no meio de semana, cada fase na janela de verdade: a pré-Libertadores em fevereiro, os grupos em abril e maio, a final em novembro. |
 | 💸 **Mercado** | Propostas, contrapropostas, contrato, renovação e empréstimo. A IA também negocia entre si, e os clubes grandes às vezes perdem jogador para um menor. |
 | 📊 **Finanças reais** | Receita, folha e prêmios na escala dos balanços de verdade. O valor de mercado aparece em **euro**. O caixa e os salários aparecem na **moeda do clube**: R$, £, US$ ou €. |
