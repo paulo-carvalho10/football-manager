@@ -59,6 +59,21 @@ CAUTELA_DO_AMARELADO = 0.3
 # Penalti: perto de 0,28 por jogo no futebol de verdade, 3 em cada 4 convertidos.
 PENALTIS_POR_TIME = 0.14
 CONVERSAO_PENALTI = 0.76
+# Bola parada (07/10/2026). Falta direta: cerca de 0,9 cobranca no gol por time e jogo e
+# 1 gol a cada ~18 cobrancas -- um time faz uns dois gols de falta por temporada, o
+# especialista faz mais. Escanteio: perto de 8% dos gols do futebol de verdade. Os dois
+# saem de dentro do xG, como o penalti: a media de gols do jogo continua a calibrada, e o
+# que muda e QUEM faz e QUANTO o cobrador e a bola aerea pesam.
+FALTAS_DIRETAS_POR_TIME = 0.9
+CONVERSAO_FALTA = 0.05
+CONVERSAO_FALTA_MAXIMA = 0.16
+PARCELA_ESCANTEIO = 0.08
+# o meio do mundo, medido no melhor cobrador de cada time e nos goleiros titulares
+# (Brasil A/B, Espanha, Inglaterra e Portugal): e em volta disto que o efeito se centra
+FALTA_TIPICA, GOLEIRO_TIPICO, CRUZAMENTO_TIPICO = 77.0, 81.0, 78.0
+# Quem sobe para cabecear: zagueiro e centroavante; o peso do jogo aereo vem por cima.
+PESO_DE_CABECEIO = {"CB": 3.0, "FW": 3.0, "DM": 1.2, "MF": 0.8, "FB": 0.8, "AM": 0.5,
+                    "WG": 0.5, "GK": 0.0}
 DESARMES_BASE = 16.0
 FALTAS_BASE = 12.0
 IMPEDIMENTOS_BASE = 2.2
@@ -190,6 +205,7 @@ def simular_partida(
     substituicoes=None, papeis: dict[int, str] | None = None,
     cobradores: dict[int, list[int]] | None = None, penaltis=None,
     bancos: dict[int, list[int]] | None = None, max_trocas: int = 5,
+    batedores: dict[int, dict[str, int]] | None = None,
 ) -> Partida:
     """Partida minuto a minuto.
 
@@ -208,11 +224,16 @@ def simular_partida(
     por ela que a tela pausa e o treinador escolhe quem bate. None usa a ordem de
     cobradores, e sem ordem, o melhor finalizador em campo.
 
+    `batedores` e quem cobra falta e escanteio, por clube: {clube: {"faltas": id,
+    "escanteios": id}}. Quem nao estiver em campo, ou o clube sem escolha, cobra pelo
+    melhor em campo naquilo (fm.eventos.batedor_de).
+
     `bancos` sao os reservas de cada clube. So servem para a LESAO: quem se machuca e
     trocado no fim do bloco, se o treinador nao trocou antes (pelo `substituicoes`). Sem
     reserva ou sem troca sobrando, o time fica com um a menos.
     """
     cobradores = cobradores or {}
+    batedores = batedores or {}
     bancos = {k: list(v) for k, v in (bancos or {}).items()}
     p = Partida(casa=casa, fora=fora,
                 em_campo_casa=list(onze_casa), em_campo_fora=list(onze_fora))
@@ -230,11 +251,18 @@ def simular_partida(
         peso = PESO_DO_BLOCO[bloco] / PESO_DO_BLOCO.sum()
         xg_c = float(lc) * mult_casa * peso
         xg_f = float(lf) * mult_fora * peso
-        # O penalti sai de dentro do xG, nao por cima: o que ele converte em media e
-        # descontado do jogo corrido, e a media de gols continua a do motor calibrado.
+        # O penalti e a bola parada saem de dentro do xG, nao por cima: o que eles
+        # convertem em media e descontado do jogo corrido, e a media de gols continua a do
+        # motor calibrado.
         pen = PENALTIS_POR_TIME / BLOCOS
-        gc = int(rng.poisson(max(0.0, xg_c - pen * CONVERSAO_PENALTI)))
-        gf = int(rng.poisson(max(0.0, xg_f - pen * CONVERSAO_PENALTI)))
+        falta = FALTAS_DIRETAS_POR_TIME / BLOCOS
+        parado = pen * CONVERSAO_PENALTI + falta * CONVERSAO_FALTA
+        gc = int(rng.poisson(max(0.0, xg_c * (1 - PARCELA_ESCANTEIO) - parado)))
+        gf = int(rng.poisson(max(0.0, xg_f * (1 - PARCELA_ESCANTEIO) - parado)))
+        ec = int(rng.poisson(xg_c * PARCELA_ESCANTEIO * _peso_do_escanteio(
+            world, p.em_campo_casa, p.em_campo_fora, batedores.get(casa, {}))))
+        ef = int(rng.poisson(xg_f * PARCELA_ESCANTEIO * _peso_do_escanteio(
+            world, p.em_campo_fora, p.em_campo_casa, batedores.get(fora, {}))))
 
         # Gols, cartoes e lances do bloco sao sorteados JUNTOS e processados em ordem de
         # minuto. Separados, saiam fora de causalidade: um jogador levava vermelho aos
@@ -248,9 +276,12 @@ def simular_partida(
 
         agendar("gol", casa, gc)
         agendar("gol", fora, gf)
+        agendar("gol_de_escanteio", casa, ec)
+        agendar("gol_de_escanteio", fora, ef)
         for clube_lado in (casa, fora):
             agendar("cartao", clube_lado, int(rng.poisson(AMARELOS_POR_TIME / BLOCOS)))
             agendar("penalti", clube_lado, int(rng.poisson(pen)))
+            agendar("falta_direta", clube_lado, int(rng.poisson(falta)))
             agendar("lesao", clube_lado, int(rng.poisson(LESOES_POR_TIME / BLOCOS)))
         # Os lances que nao sao gol saem do MESMO xG do bloco: quem finaliza muito e quem
         # tinha mais chance de marcar. A estatistica ao vivo conta estes lances, entao a
@@ -276,6 +307,12 @@ def simular_partida(
                          cobradores.get(clube_lado, []), penaltis)
             elif tipo == "lesao":
                 _lesao(p, world, rng, clube_lado, em_campo, minuto)
+            elif tipo == "falta_direta":
+                _falta_direta(p, world, rng, clube_lado, em_campo, minuto,
+                              batedores.get(clube_lado, {}).get("faltas"))
+            elif tipo == "gol_de_escanteio":
+                _gol_de_escanteio(p, world, rng, clube_lado, em_campo, minuto,
+                                  batedores.get(clube_lado, {}).get("escanteios"))
             else:
                 _lance(p, world, rng, tipo, clube_lado, em_campo, minuto)
 
@@ -318,6 +355,110 @@ def chance_de_converter(batedor, goleiro) -> float:
     reflexo = goleiro.reflexes if goleiro is not None else 60
     return float(np.clip(CONVERSAO_PENALTI + (mira - 75) * 0.005 - (reflexo - 75) * 0.004,
                          0.55, 0.93))
+
+
+def mira_na_falta(jogador) -> float:
+    """Cobranca de falta: mais tecnica que forca de chute."""
+    return 0.6 * jogador.technique + 0.4 * jogador.finishing
+
+
+def cruzamento(jogador) -> float:
+    """Cobranca de escanteio: o passe e a tecnica de quem poe a bola na area."""
+    return 0.5 * jogador.passing + 0.5 * jogador.technique
+
+
+def batedor_de(world: World, em_campo: list[int], escolhido: int | None, conta) -> int | None:
+    """Quem cobra: o escolhido, se estiver em campo; senao o melhor na `conta`, sem goleiro."""
+    if escolhido in em_campo:
+        return escolhido
+    campo = [i for i in em_campo if world.players[i].position != "GK"] or em_campo
+    return max(campo, key=lambda i: conta(world.players[i])) if campo else None
+
+
+def _goleiro(world: World, ids: list[int]):
+    return next((world.players[i] for i in ids if world.players[i].position == "GK"), None)
+
+
+def chance_de_gol_de_falta(batedor, goleiro) -> float:
+    """O especialista contra o goleiro. Um cobrador 9 pontos acima do tipico converte ~40%
+    mais; o melhor do mundo contra um goleiro comum, mais que o dobro."""
+    reflexo = goleiro.reflexes if goleiro is not None else 60
+    vies = 0.035 * ((mira_na_falta(batedor) - FALTA_TIPICA) - 0.6 * (reflexo - GOLEIRO_TIPICO))
+    return float(min(CONVERSAO_FALTA * np.exp(vies), CONVERSAO_FALTA_MAXIMA))
+
+
+def _aereo(world: World, ids: list[int]) -> float:
+    """O jogo aereo de um time: a media dos quatro melhores de cabeca em campo."""
+    alturas = sorted(world.players[i].aerial for i in ids
+                     if world.players[i].position != "GK")[-4:]
+    return sum(alturas) / len(alturas) if alturas else 60.0
+
+
+def _peso_do_escanteio(world: World, ataque: list[int], defesa: list[int],
+                       escolhidos: dict[str, int]) -> float:
+    """Quanto o escanteio deste time rende acima ou abaixo do tipico: quem cobra e quem
+    cabeceia, contra quem defende a area. Centrado no meio do mundo."""
+    if not ataque:
+        return 0.0
+    quem = batedor_de(world, ataque, escolhidos.get("escanteios"), cruzamento)
+    bola = cruzamento(world.players[quem]) - CRUZAMENTO_TIPICO if quem is not None else 0.0
+    return float(np.exp(0.02 * bola + 0.03 * (_aereo(world, ataque) - _aereo(world, defesa))))
+
+
+def _falta_direta(p: Partida, world, rng, clube: int, em_campo: list[int], minuto: int,
+                  escolhido: int | None) -> None:
+    """Falta perigosa: o cobrador contra o goleiro. Gol de vez em quando, e do especialista."""
+    if not em_campo:
+        return
+    quem = batedor_de(world, em_campo, escolhido, mira_na_falta)
+    rival = p.em_campo_fora if clube == p.casa else p.em_campo_casa
+    goleiro = _goleiro(world, rival)
+    batedor = world.players[quem]
+    st = p.stats_casa if clube == p.casa else p.stats_fora
+    outro = p.stats_fora if clube == p.casa else p.stats_casa
+    outro.faltas += 1            # a falta cometida e do outro time
+    st.finalizacoes += 1
+    if rng.random() < chance_de_gol_de_falta(batedor, goleiro):
+        if clube == p.casa:
+            p.gols_casa += 1
+        else:
+            p.gols_fora += 1
+        st.no_gol += 1
+        p.eventos.append(Evento(minuto, "gol", clube, jogador=quem,
+                                texto=f"GOL! {batedor.name} (falta)"))
+    elif rng.random() < 0.45 and goleiro is not None:
+        st.no_gol += 1
+        p.eventos.append(Evento(minuto, "falta_defendida", clube, jogador=quem,
+                                segundo=goleiro.id,
+                                texto=f"{batedor.name} cobra a falta e {goleiro.name} "
+                                      f"espalma"))
+    else:
+        onde = "na barreira" if rng.random() < 0.5 else "por cima"
+        p.eventos.append(Evento(minuto, "falta_fora", clube, jogador=quem,
+                                texto=f"{batedor.name} cobra a falta {onde}"))
+
+
+def _gol_de_escanteio(p: Partida, world, rng, clube: int, em_campo: list[int],
+                      minuto: int, escolhido: int | None) -> None:
+    """Escanteio que vira gol: o cobrador da a assistencia e quem e bom de cabeca marca."""
+    quem = batedor_de(world, em_campo, escolhido, cruzamento)
+    area = [i for i in em_campo if i != quem and world.players[i].position != "GK"]
+    if quem is None or not area:
+        return
+    pesos = np.array([PESO_DE_CABECEIO.get(p.papeis.get(i, world.players[i].position_detail),
+                                           0.8)
+                      * np.exp((world.players[i].aerial - 74.0) / 10.0) for i in area])
+    autor = area[int(rng.choice(len(area), p=pesos / pesos.sum()))]
+    if clube == p.casa:
+        p.gols_casa += 1
+    else:
+        p.gols_fora += 1
+    st = p.stats_casa if clube == p.casa else p.stats_fora
+    st.escanteios += 1
+    st.finalizacoes += 1
+    st.no_gol += 1
+    p.eventos.append(Evento(minuto, "gol", clube, jogador=autor, segundo=quem,
+                            texto=f"GOL! {world.players[autor].name} (escanteio)"))
 
 
 def _penalti(p: Partida, world, rng, clube: int, em_campo: list[int], minuto: int,
@@ -381,7 +522,12 @@ def _tirar_lesionados(p: Partida, world, bancos: dict[int, list[int]],
             banco = [i for i in bancos.get(clube, []) if i not in p.entrada]
             if feitas < max_trocas and banco:
                 setor = world.players[sai].position
-                entra = next((i for i in banco if world.players[i].position == setor), banco[0])
+                # sem ninguem do setor, o melhor de linha -- nunca o goleiro reserva no
+                # lugar de quem nao e goleiro (o banco comeca pelo goleiro)
+                entra = next((i for i in banco if world.players[i].position == setor), None)
+                if entra is None:
+                    entra = next((i for i in banco if world.players[i].position != "GK"
+                                  or setor == "GK"), banco[0])
                 lista[lista.index(sai)] = entra
                 p.entrada[entra] = p.minuto
                 if sai in p.papeis:

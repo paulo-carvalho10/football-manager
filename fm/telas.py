@@ -1180,7 +1180,8 @@ def pos_jogo(c: Carreira, partida, resultados, competicao: str, tipo: str,
                    if e.tipo == "gol" and e.segundo else None}
                   for e in partida.eventos
                   if e.tipo in ("gol", "amarelo", "vermelho", "substituicao",
-                                "penalti_defendido", "penalti_fora", "lesao")]
+                                "penalti_defendido", "penalti_fora", "lesao",
+                                "falta_defendida", "falta_fora")]
     sc, sf = partida.stats_casa, partida.stats_fora
     melhor = max(notas, key=notas.get) if notas else None
     impacto = (impacto_na_tabela(c.world.clubs[c.clube_id].name, posicao_antes, c.posicao())

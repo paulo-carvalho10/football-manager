@@ -433,6 +433,7 @@ function pintar() {
 }
 
 const ICONE_LANCE = {gol: "⚽", penalti: "◎", penalti_defendido: "🧤", penalti_fora: "✗",
+                     falta_defendida: "🧤", falta_fora: "✗",
                      lesao: '<span class="ic-lesao">✚</span>', lesao_sem_troca: '<span class="ic-lesao">✚</span>',amarelo: '<span class="cartao am" style="width:.72rem;height:1rem"></span>',
                      vermelho: '<span class="cartao vm" style="width:.72rem;height:1rem"></span>', substituicao: "⇅", defesa: "✋", chute: "↗",
                      escanteio: "⚑", impedimento: "⚐", falta: "!"};
@@ -440,7 +441,8 @@ const ICONE_LANCE = {gol: "⚽", penalti: "◎", penalti_defendido: "🧤", pena
 // o lance a lance mostra so o que muda o jogo; finalizacao, escanteio, falta e impedimento
 // ficam nas estatisticas
 const TIPOS_DO_FEED = new Set(["gol", "amarelo", "vermelho", "substituicao", "lesao",
-                               "lesao_sem_troca", "penalti_defendido", "penalti_fora"]);
+                               "lesao_sem_troca", "penalti_defendido", "penalti_fora",
+                               "falta_defendida", "falta_fora"]);
 
 function pintarFeed(todos) {
   const s = VIVO.s;
@@ -464,8 +466,10 @@ function pintarFeed(todos) {
     let sub = `<span class="lado" style="background:${clube.cor}"></span>${escapar(clube.nome)}`;
     if (e.tipo === "gol") {
       const assist = e.segundo ? nomeDoJogador(e.segundo) : null;
-      txt = `GOL! ${escapar(nomeDoJogador(e.jogador) || e.texto.replace("GOL! ", ""))}${e.texto.includes("(pênalti)") ? " (pênalti)" : ""}`;
-      if (assist) sub += ` · assistência de ${escapar(assist)}`;
+      // "(pênalti)", "(falta)", "(escanteio)": como o gol saiu
+      const como = (e.texto.match(/ \((pênalti|falta|escanteio)\)$/) || [""])[0];
+      txt = `GOL! ${escapar(nomeDoJogador(e.jogador) || e.texto.replace("GOL! ", ""))}${como}`;
+      if (assist) sub += ` · ${e.texto.endsWith("(escanteio)") ? "cobrança" : "assistência"} de ${escapar(assist)}`;
     }
     linhas.push(`<div class="lance ${e.tipo}"><span class="min">${e.minuto}'</span>
       <span class="ic">${ICONE_LANCE[e.tipo] ?? ""}</span><span class="txt">${txt}<small>${sub}</small></span></div>`);
@@ -721,7 +725,8 @@ async function abrirPosJogo() {
   const evs = p.eventos.map((e) => {
     const conteudo = `<b>${escapar(e.texto.replace("GOL! ", ""))}</b>${e.assistencia ? `<small>assist. ${escapar(e.assistencia)}</small>` : ""}`;
     const ic = {gol: "⚽", amarelo: '<span class="cartao am"></span>', vermelho: '<span class="cartao vm"></span>', substituicao: "⇅",
-                penalti_defendido: "🧤", penalti_fora: "✗", lesao: '<span class="ic-lesao">✚</span>'}[e.tipo];
+                penalti_defendido: "🧤", penalti_fora: "✗", falta_defendida: "🧤", falta_fora: "✗",
+                lesao: '<span class="ic-lesao">✚</span>'}[e.tipo];
     return `<div class="ev ${e.tipo}"><span class="casa">${e.lado === "casa" ? `${conteudo} ${ic}` : ""}</span>
       <span class="m">${e.minuto}'</span><span>${e.lado === "fora" ? `${ic} ${conteudo}` : ""}</span></div>`;
   }).join("") + cobrancas || '<div class="vazio">Sem lances para a súmula.</div>';

@@ -19,9 +19,22 @@ import numpy as np
 
 from fm.disciplina import sortear_cartoes
 from fm.estatisticas import CHANCE_DE_ASSISTENCIA, PESO_DA_ASSISTENCIA, PESO_DO_GOL, _pesos
-from fm.eventos import PESO_DO_BLOCO
+from fm.eventos import (
+    FALTAS_DIRETAS_POR_TIME,
+    PARCELA_ESCANTEIO,
+    PESO_DE_CABECEIO,
+    PESO_DO_BLOCO,
+    batedor_de,
+    chance_de_gol_de_falta,
+    cruzamento,
+    mira_na_falta,
+)
 from fm.lesoes import LESOES_POR_TIME, peso_do_desgaste
 from fm.model import World
+
+# Gols por time e jogo no motor rapido, para converter a falta direta do motor de eventos
+# (cobrancas x conversao) em parcela dos gols de quem joga no rapido.
+GOLS_POR_TIME = 1.3
 
 TROCAS_POR_TIME = (2, 5)          # quantas trocas cada time faz, no intervalo
 JANELA_DE_TROCAS = (46, 88)       # entre que minutos
@@ -60,9 +73,22 @@ def detalhar(world: World, r, rng: np.random.Generator,
         if gols:
             p_gol = _pesos(world, onze, PESO_DO_GOL)
             p_ass = _pesos(world, onze, PESO_DA_ASSISTENCIA)
+            de_falta, de_escanteio = _bola_parada(world, clube, r, onze)
             for autor in rng.choice(onze, size=int(gols), p=p_gol / p_gol.sum()):
                 autor = int(autor)
                 assist = None
+                # como no motor de eventos: parte dos gols e de falta, do cobrador, e
+                # parte de escanteio, de cabeca, com o cobrador dando a assistencia
+                como = rng.random()
+                if como < de_falta[0]:
+                    lances.append(Lance(_minuto(rng), "gol", clube, de_falta[1], None))
+                    continue
+                if como < de_falta[0] + PARCELA_ESCANTEIO and de_escanteio[1]:
+                    cabeca = de_escanteio[1]
+                    pesos = np.array([w for _, w in cabeca])
+                    quem = cabeca[int(rng.choice(len(cabeca), p=pesos / pesos.sum()))][0]
+                    lances.append(Lance(_minuto(rng), "gol", clube, quem, de_escanteio[0]))
+                    continue
                 if rng.random() < CHANCE_DE_ASSISTENCIA:
                     sem_autor = p_ass.copy()
                     sem_autor[onze.index(autor)] = 0.0
@@ -88,6 +114,24 @@ def detalhar(world: World, r, rng: np.random.Generator,
     _coerencia(lances)
     lances.sort(key=lambda x: (x.minuto, {"gol": 0, "lesao": 1}.get(x.tipo, 2)))
     return lances
+
+
+def _bola_parada(world: World, clube: int, r, onze: list[int]):
+    """((parcela dos gols que sai de falta, cobrador), (cobrador de escanteio, [(quem
+    cabeceia, peso)])). A parcela da falta depende do cobrador contra o goleiro rival: o
+    especialista faz mais gols de falta tambem nos jogos que o usuario nao ve."""
+    rival = r.away if clube == r.home else r.home
+    goleiro = next((p for p in world.best_xi(rival) if p.position == "GK"), None) \
+        if rival in world.clubs else None
+    cobra_falta = batedor_de(world, onze, None, mira_na_falta)
+    parcela = (FALTAS_DIRETAS_POR_TIME
+               * chance_de_gol_de_falta(world.players[cobra_falta], goleiro) / GOLS_POR_TIME
+               if cobra_falta is not None else 0.0)
+    cobra_escanteio = batedor_de(world, onze, None, cruzamento)
+    area = [(i, PESO_DE_CABECEIO.get(world.players[i].position_detail, 0.8)
+             * float(np.exp((world.players[i].aerial - 74.0) / 10.0)))
+            for i in onze if i != cobra_escanteio and world.players[i].position != "GK"]
+    return (parcela, cobra_falta), (cobra_escanteio, [x for x in area if x[1] > 0])
 
 
 def _lesoes(world: World, r, rng: np.random.Generator, lances: list[Lance]) -> None:

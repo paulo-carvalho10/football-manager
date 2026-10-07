@@ -36,7 +36,7 @@ def _partidas(n, bancos=True):
 
 
 def test_o_machucado_sai_de_campo_no_fim_do_bloco():
-    vistos = 0
+    vistos = mesmo_setor = 0
     for w, p in _partidas(150):
         for pid in p.lesionados:
             ev = next(e for e in p.eventos if e.tipo == "lesao" and e.jogador == pid)
@@ -45,9 +45,14 @@ def test_o_machucado_sai_de_campo_no_fim_do_bloco():
             vistos += 1
             assert pid not in p.em_campo_casa + p.em_campo_fora
             troca = next(e for e in p.eventos if e.tipo == "substituicao" and e.jogador == pid)
-            # entra alguem do mesmo setor sempre que o banco tem
-            assert w.players[troca.segundo].position == w.players[pid].position
+            # entra alguem do mesmo setor sempre que o banco tem; sem ninguem do setor, um
+            # jogador de linha -- REGRESSAO: entrava o goleiro reserva no lugar do atacante
+            setor = w.players[pid].position
+            entrou = w.players[troca.segundo].position
+            assert entrou == setor or (setor != "GK" and entrou != "GK")
+            mesmo_setor += entrou == setor
     assert vistos > 30
+    assert mesmo_setor > 0.9 * vistos
 
 
 def test_sem_banco_o_time_fica_com_um_a_menos():

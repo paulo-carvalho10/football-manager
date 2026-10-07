@@ -50,7 +50,7 @@ def notas_da_partida(world: World, partida) -> dict[int, float]:
             if e.jogador == pid:
                 if e.tipo == "gol":
                     nota += POR_GOL
-                elif e.tipo == "defesa":
+                elif e.tipo in ("defesa", "falta_defendida"):
                     nota += POR_FINALIZACAO_NO_ALVO
                 elif e.tipo == "amarelo":
                     nota += AMARELO

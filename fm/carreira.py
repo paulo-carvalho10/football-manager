@@ -184,8 +184,8 @@ class Carreira:
     # os lances (gols com autor e minuto, cartoes, trocas) dos jogos do motor rapido na data
     # que esta sendo jogada, por (mandante, visitante). E a central da rodada.
     lances_da_data: dict = field(default_factory=dict)
-    # Capitao e cobradores. Os de penalti (penaltis, penaltis2, penaltis3) o motor le;
-    # capitao, faltas e escanteios ainda nao: nao ha bola parada alem do penalti.
+    # Capitao e cobradores. O motor le os de falta, escanteio e penalti (penaltis,
+    # penaltis2, penaltis3); o capitao e so a braçadeira.
     funcoes: dict[str, int] = field(default_factory=dict)
     # quem decide o batedor na hora do penalti, so durante um avancar(); nao vai ao save
     _pedido_de_penalti: object = field(default=None, repr=False, compare=False)
@@ -1118,6 +1118,8 @@ class Carreira:
             substituicoes=self._no_banco(substituicoes, chave, sou_casa),
             papeis=papeis,
             cobradores={self.clube_id: self.cobradores()},
+            batedores={self.clube_id: {k: self.funcoes[k] for k in ("faltas", "escanteios")
+                                       if k in self.funcoes}},
             penaltis=self._na_marca(chave),
             bancos={jogo.home: self.banco(jogo.home), jogo.away: self.banco(jogo.away)},
             max_trocas=MAX_TROCAS)
