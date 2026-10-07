@@ -36,6 +36,7 @@ class PartidaAoVivo:
         # o penalti do meu time esperando o treinador escolher o batedor (ou None)
         self.penalti: dict | None = None
         self.perguntar_penalti = True
+        self._da_selecao = False
         self._pronto = threading.Event()
         self._seguir = threading.Event()
         self._thread = threading.Thread(target=self._rodar, daemon=True)
@@ -93,6 +94,9 @@ class PartidaAoVivo:
     def _no_fim_do_bloco(self, partida, minuto):
         """Chamada pelo motor. Publica o retrato e dorme ate o navegador mandar seguir."""
         self.partida = partida
+        if self.c._em_campo is not None and not self._da_selecao:
+            # a partida e da selecao: a tatica que a tela mostra e a dela
+            self.tatica, self._da_selecao = self.c.tatica_da_selecao_atual(), True
         if self._ate_o_fim:
             return None
         self._seguir.clear()
@@ -105,7 +109,7 @@ class PartidaAoVivo:
         """Penalti na minha partida. So o do MEU time para o jogo: a tela pergunta quem
         bate. O do rival nao espera ninguem -- a tela segura o relogio sozinha."""
         self.partida = partida
-        if clube != self.c.clube_id or self._ate_o_fim or not self.perguntar_penalti:
+        if clube != self.c.time_em_campo or self._ate_o_fim or not self.perguntar_penalti:
             return None
         self.penalti = {"minuto": minuto}
         self._seguir.clear()
@@ -118,11 +122,11 @@ class PartidaAoVivo:
         return escolha
 
     def _candidatos(self, p) -> list[dict]:
-        em_campo = p.em_campo_casa if p.casa == self.c.clube_id else p.em_campo_fora
-        rival = p.em_campo_fora if p.casa == self.c.clube_id else p.em_campo_casa
+        em_campo = p.em_campo_casa if p.casa == self.c.time_em_campo else p.em_campo_fora
+        rival = p.em_campo_fora if p.casa == self.c.time_em_campo else p.em_campo_casa
         w = self.c.world
         goleiro = next((w.players[i] for i in rival if w.players[i].position == "GK"), None)
-        ordem = self.c.cobradores()
+        ordem = self.c.cobradores() if self.c._em_campo is None else []
         fora = []
         for pid in em_campo:
             j = w.players[pid]
@@ -153,7 +157,7 @@ class PartidaAoVivo:
             return {"sem_jogo": True, "fim": True}
         fim = self.resultado is not None
         minuto = 90 if fim else p.minuto
-        meu_lado = "casa" if p.casa == c.clube_id else "fora"
+        meu_lado = "casa" if p.casa == c.time_em_campo else "fora"
         nomes = c.world.players
 
         def lado(clube: int) -> str:
@@ -167,7 +171,7 @@ class PartidaAoVivo:
         sairam = {e.jogador for e in p.eventos if e.tipo == "substituicao"}
 
         def escalacao(clube: int, em_campo: list[int]) -> list[dict]:
-            ids = [pid for pid in p.entrada if nomes[pid].club_id == clube]
+            ids = [pid for pid in p.entrada if p.lado_de(pid, c.world) == clube]
             ordem = {"GK": 0, "DF": 1, "MF": 2, "FW": 3}
             fora = []
             for pid in sorted(ids, key=lambda i: (i not in em_campo,
@@ -187,10 +191,10 @@ class PartidaAoVivo:
         banco = [{"id": j.id, "nome": j.name, "posicao": j.position,
                   "overall": exibir(j.overall), "energia": j.condition}
                  # o mesmo banco do motor: suspenso e lesionado nao foram relacionados
-                 for j in (nomes[i] for i in c.banco(c.clube_id))
+                 for j in (nomes[i] for i in c.banco(c.time_em_campo))
                  if j.id not in p.entrada]
         feitas = sum(1 for e in p.eventos
-                     if e.tipo == "substituicao" and e.clube == c.clube_id)
+                     if e.tipo == "substituicao" and e.clube == c.time_em_campo)
         sc, sf = p.stats_casa, p.stats_fora
         return {
             "fim": fim, "minuto": minuto,
@@ -237,7 +241,7 @@ class PartidaAoVivo:
                               for x in d["cobrancas"]]}
 
     def _goleiro_rival(self, p) -> str | None:
-        rival = p.em_campo_fora if p.casa == self.c.clube_id else p.em_campo_casa
+        rival = p.em_campo_fora if p.casa == self.c.time_em_campo else p.em_campo_casa
         w = self.c.world
         return next((w.players[i].name for i in rival if w.players[i].position == "GK"), None)
 

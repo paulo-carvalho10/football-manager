@@ -821,12 +821,119 @@ def classificacao(c: Carreira, liga: str | None, clube_json) -> dict:
 
 
 def competicoes(c: Carreira) -> list[dict]:
-    """O que o seletor da tela de Tabela oferece: as divisoes e as copas do ano."""
+    """O que o seletor da tela de Tabela oferece: as divisoes, as copas do ano e as
+    competicoes de selecao em curso (fm.fifa), com o id "fifa:<torneio>"."""
     fora = [{"id": n, "nome": nome_da_liga(n), "tipo": "liga"} for n in c.ligas]
     fora += [{"id": k, "nome": a.torneio.nome, "tipo": "copa",
               "minha": c.clube_id in a.ja_entraram or c.clube_id in a.vivos}
              for k, a in c.copas.items()]
+    if c.fifa is not None:
+        fora += [{"id": f"fifa:{k}", "nome": f"{a.torneio.nome} {c.fifa.ciclo_de.get(k, '')}",
+                  "tipo": "copa", "minha": False}
+                 for k, a in c.fifa.competicoes.items()]
     return fora
+
+
+def selecao_nacional(c: Carreira, clube_json) -> dict:
+    """A tela da selecao: o convite, a selecao do treinador (convocacao, onze, tatica,
+    proximo jogo), o ranking do mundo e as Copas que ja passaram."""
+    from fm.calendario import texto as texto_de_data
+    from fm.ratings import exibir
+    from fm.selecoes import (
+        CONVOCADOS,
+        MINIMO_DE_JOGADORES,
+        confederacao,
+        convocar,
+        convocar_todas,
+        forca,
+        id_da_selecao,
+        mundo_das_selecoes,
+        ranking,
+    )
+    from fm.tatica import FORMACOES
+    f = c.fifa
+    mundo = (f.mundo if f is not None and f.mundo is not None
+             else mundo_das_selecoes(c.world, convocar_todas(c.world)))
+    ordem = ranking(mundo)
+    w = c.world
+    lesionados = set(c.medico.lesionados) if c.medico else set()
+
+    def jogador(pid: int) -> dict:
+        p = w.players[pid]
+        return {"id": pid, "nome": p.name, "posicao": p.position,
+                "detalhe": p.position_detail, "overall": exibir(p.overall),
+                "idade": p.age(c.temporada),
+                "clube": w.clubs[p.club_id].name if p.club_id in w.clubs else "",
+                "lesionado": pid in lesionados}
+
+    minha = None
+    pais = c.selecao_do_usuario
+    if pais:
+        sid = id_da_selecao(pais)
+        convocados = (list(c.convocacao_do_usuario)
+                      or list((f.convocacoes.get(pais) if f else None) or [])
+                      or convocar(w, pais, lesionados))
+        elegiveis = sorted((p for p in w.players.values()
+                            if p.nationality == pais and p.club_id in w.clubs),
+                           key=lambda p: (-p.overall, p.id))[:80]
+        ordem_pos = {"GK": 0, "DF": 1, "MF": 2, "FW": 3}
+        proximo = None
+        prox = c.proximo_jogo_da_selecao()
+        if prox is not None:
+            from fm.torneio import carregar
+            i, nome = prox
+            rival = f.proximo_rival(pais, nome) if f else None
+            proximo = {"competicao": carregar(nome).nome, "id": f"fifa:{nome}",
+                       "dia": texto_de_data(c.dia(i)),
+                       "rival": clube_json(rival)["nome"] if rival is not None else None}
+        resultados = []
+        for i in sorted(c.jogos_da_selecao):
+            r = c.jogos_da_selecao[i]
+            casa = r.home == sid
+            meus, deles = ((r.goals_home, r.goals_away) if casa else (r.goals_away, r.goals_home))
+            resultados.append({"dia": texto_de_data(c.dia(i)),
+                               "rival": clube_json(r.away if casa else r.home)["nome"],
+                               "casa": casa, "placar": f"{meus} x {deles}",
+                               "resultado": "V" if meus > deles else "E" if meus == deles else "D"})
+        minha = {
+            "pais": pais, "selecao": clube_json(sid) if sid in mundo.clubs else None,
+            "confederacao": confederacao(pais),
+            "forca": round(forca(mundo, sid), 1) if sid in mundo.clubs else None,
+            "posicao": ordem.index(pais) + 1 if pais in ordem else None,
+            "convocados": sorted((jogador(p) for p in convocados if p in w.players),
+                                 key=lambda j: (ordem_pos.get(j["posicao"], 9), -j["overall"])),
+            "lista_propria": bool(c.convocacao_do_usuario),
+            "elegiveis": [jogador(p.id) for p in elegiveis],
+            "onze": [p for p in c.escalacao_da_selecao if p in convocados],
+            "tatica": {k: getattr(c.tatica_da_selecao_atual(), k)
+                       for k in ("formacao", "marcacao", "estilo")},
+            "formacoes": sorted(FORMACOES),
+            "limites": {"minimo": MINIMO_DE_JOGADORES, "maximo": CONVOCADOS},
+            "proximo": proximo,
+            "resultados": resultados,
+        }
+    return {
+        "minha": minha,
+        "convite": clube_json(id_da_selecao(c.convite_selecao)) if c.convite_selecao
+        and id_da_selecao(c.convite_selecao) in mundo.clubs else (
+            {"nome": c.convite_selecao} if c.convite_selecao else None),
+        "dispensado": c.demissao_da_selecao,
+        "ranking": [{"posicao": i + 1, "pais": p, "confederacao": confederacao(p),
+                     "forca": round(mundo.clubs[id_da_selecao(p)].designed_strength, 1),
+                     "minha": p == pais}
+                    for i, p in enumerate(ordem[:40])],
+        "historico": list(f.historico) if f else [],
+        "competicoes": [x for x in competicoes(c) if x["id"].startswith("fifa:")],
+    }
+
+
+def andamento_de(c: Carreira, chave: str):
+    """O andamento de uma copa de clube ou de uma competicao de selecao ("fifa:...")."""
+    if chave in c.copas:
+        return c.copas[chave]
+    if chave and chave.startswith("fifa:") and c.fifa is not None:
+        return c.fifa.competicoes.get(chave[len("fifa:"):])
+    return None
 
 
 def _linhas_curtas(ids: list[int], resultados, c: Carreira, clube_json) -> list[dict]:
@@ -935,7 +1042,7 @@ def _rodadas_que_faltam(a, agora: dict | None) -> list[str]:
 def copa(c: Carreira, chave: str, clube_json) -> dict:
     """Uma copa inteira: as fases encerradas, a em curso e as que ainda vem."""
     from fm.copa import foto_da_fase
-    a = c.copas[chave]
+    a = andamento_de(c, chave)
     fases = [_fase_json(f, c, clube_json, False) for f in a.historico]
     agora = foto_da_fase(a)
     # a fase em curso so aparece com jogo marcado (pendentes): antes do sorteio nao ha o
@@ -955,9 +1062,12 @@ def copa(c: Carreira, chave: str, clube_json) -> dict:
             if p is not None and p.club_id in c.world.clubs:
                 individuais.append({"nome": p.name, "clube": clube_json(p.club_id)["nome"],
                                     "gols": x.gols, "meu": p.club_id == c.clube_id})
+    campeao = None
+    if a.campeao is not None and (a.campeao in c.world.clubs or chave.startswith("fifa:")):
+        campeao = clube_json(a.campeao)
     return {"tipo": "copa", "id": chave, "nome": a.torneio.nome,
             "fase_atual": a.nome_da_fase,
-            "campeao": clube_json(a.campeao) if a.campeao in c.world.clubs else None,
+            "campeao": campeao,
             "fases": fases, "a_sortear": restantes, "artilheiros": individuais,
             "secoes": secoes_da_copa(c, a, fases, clube_json),
             "competicoes": competicoes(c)}
@@ -1161,7 +1271,7 @@ def pos_jogo(c: Carreira, partida, resultados, competicao: str, tipo: str,
     jogadores = c.world.players
 
     def time(clube):
-        ids = [pid for pid in partida.entrada if jogadores[pid].club_id == clube]
+        ids = [pid for pid in partida.entrada if partida.lado_de(pid, c.world) == clube]
         ordem = {"GK": 0, "DF": 1, "MF": 2, "FW": 3}
         ids.sort(key=lambda i: (partida.entrada[i] > 0, ordem.get(jogadores[i].position, 9)))
         return [{"id": i, "nome": jogadores[i].name, "posicao": jogadores[i].position,

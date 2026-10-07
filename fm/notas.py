@@ -33,7 +33,7 @@ def notas_da_partida(world: World, partida) -> dict[int, float]:
               if e.tipo in ("substituicao", "vermelho")}
     for pid, entrou in partida.entrada.items():
         p = world.players[pid]
-        casa = pid in _lado(partida, partida.casa, world)
+        casa = _do_lado(partida, pid, world) == partida.casa
         meus = partida.gols_casa if casa else partida.gols_fora
         deles = partida.gols_fora if casa else partida.gols_casa
         # o CONTEXTO (placar, gols sofridos) pesa pelo tempo em campo: vinte minutos
@@ -66,8 +66,10 @@ def notas_da_partida(world: World, partida) -> dict[int, float]:
     return notas
 
 
-def _lado(partida, clube: int, world: World) -> set[int]:
-    return {pid for pid in partida.entrada if world.players[pid].club_id == clube}
+def _do_lado(partida, pid: int, world: World) -> int | None:
+    """Por quem o jogador jogou: pela partida, que sabe (a selecao), ou pelo clube dele."""
+    lado_de = getattr(partida, "lado_de", None)
+    return lado_de(pid, world) if lado_de else world.players[pid].club_id
 
 
 def nota_estimada(p, meus: int, deles: int, gols: int, assistencias: int) -> float:

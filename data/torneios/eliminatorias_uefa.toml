@@ -1,0 +1,31 @@
+# Eliminatorias europeias: grupos de quatro no ano Y-1, turno e returno, nas datas FIFA
+# de marco a novembro (fm.fifa). O numero de grupos sai de quantas selecoes a Europa tem
+# no mundo do jogo (fm.fifa ajusta `grupos`); as que nao fecham um grupo inteiro, as mais
+# fracas, ficam de fora. Vao a Copa os primeiros de cada grupo e os
+# melhores segundos ate fechar as vagas da UEFA; a repescagem de marco nao existe aqui.
+id   = "eliminatorias_uefa"
+nome = "Eliminatórias Europeias"
+
+[estilo]
+gols_base = 1.22
+mando     = 0.30
+
+[mentalidade]
+gols_mult  = 0.92
+compressao = -1.0   # AMPLIA a diferenca: entre selecoes ela pesa mais que entre
+                    # clubes (o motor rapido foi calibrado em liga). Com 0, o Brasil
+                    # (85) vencia a Venezuela (68) 51% das vezes; assim, 65%
+
+[[classificacao]]
+fonte    = "UEFA"
+vagas    = 60
+entra_em = "grupos"
+
+[[formato.fases]]
+nome    = "Fase de grupos"
+tipo    = "groups"
+grupos  = 7
+voltas  = 2
+avancam = 1
+potes   = true
+entram  = [ { classificacao = "grupos" } ]

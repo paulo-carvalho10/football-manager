@@ -282,6 +282,13 @@ def repor_elencos(world: World, rng: np.random.Generator, temporada: int,
             p = _make_player(proximo, rng, clube.country, temporada, overall, grupo,
                              idade, clube.id)
             p.potential = potencial
+            # A nacionalidade herda a mistura do elenco (07/10/2026). Nascendo todo mundo
+            # do pais da liga, em vinte anos os paises sem liga no jogo (Suriname, Kosovo,
+            # Japao...) ficavam sem jogador e sem selecao. Sorteio a parte, pelo id do
+            # garoto: o gerador do mundo nao muda.
+            if elenco:
+                quem = np.random.default_rng([temporada, clube.id, proximo, 31337])
+                p.nationality = elenco[int(quem.integers(len(elenco)))].nationality
             world.players[proximo] = p
             clube.player_ids.append(proximo)
             proximo += 1

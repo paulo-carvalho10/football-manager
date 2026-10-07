@@ -111,6 +111,7 @@ function sobrenome(nome) {
  * Desenhados para o jogo, traco simples de 24px. Nenhum vem de biblioteca de marca. */
 
 const ICONES = {
+  bandeira: '<path d="M5 21V4"/><path d="M5 4.5h11.5l-2.2 3.7 2.2 3.8H5"/>',
   elenco: '<path d="M8 3 4 5.5 2.5 10l3 1.2V21h13v-9.8l3-1.2L20 5.5 16 3c-.6 1.6-2.2 2.7-4 2.7S8.6 4.6 8 3Z"/>',
   campo: '<rect x="3" y="3" width="18" height="18" rx="1.5"/><path d="M3 12h18"/><circle cx="12" cy="12" r="3"/><path d="M8 3v3.5h8V3M8 21v-3.5h8V21"/>',
   tatica: '<rect x="4.5" y="3.5" width="15" height="18" rx="2"/><path d="M9 2.5h6v3H9z"/><path d="M8 16.5 11.5 12l3 2L17 9.5"/><path d="M14.8 9.4H17v2.2"/><circle cx="8.5" cy="9" r="1"/>',

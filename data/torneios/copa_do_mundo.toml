@@ -1,0 +1,39 @@
+# Copa do Mundo no formato de 48 selecoes (2026 em diante): 12 grupos de 4 em turno unico,
+# passam os dois primeiros e os 8 melhores terceiros; dai, mata-mata em jogo unico de 32
+# ate a final, com prorrogacao resolvida nos penaltis. Quem vai: as sedes, os
+# classificados das eliminatorias e as vagas das outras confederacoes pelo ranking
+# (fm.fifa, `classificados_para_a_copa`).
+id   = "copa_do_mundo"
+nome = "Copa do Mundo"
+
+[estilo]
+gols_base = 1.18
+mando     = 0.05   # campo neutro; so as sedes jogam em casa de verdade
+
+[mentalidade]
+gols_mult  = 0.92
+compressao = -1.0   # AMPLIA a diferenca: entre selecoes ela pesa mais que entre
+                    # clubes (o motor rapido foi calibrado em liga). Com 0, o Brasil
+                    # (85) vencia a Venezuela (68) 51% das vezes; assim, 65%
+
+[[classificacao]]
+fonte    = "MUNDIAL"
+vagas    = 48
+entra_em = "grupos"
+
+[[formato.fases]]
+nome               = "Fase de grupos"
+tipo               = "groups"
+grupos             = 12
+voltas             = 1
+avancam            = 2
+melhores_seguintes = 8
+potes              = true
+entram             = [ { classificacao = "grupos" } ]
+
+[[formato.fases]]
+nome    = "Mata-mata"
+tipo    = "knockout"
+chave   = "fixa"
+maos    = 1
+rodadas = 5

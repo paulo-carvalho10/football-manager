@@ -26,7 +26,9 @@ def test_o_save_reproduz_trocas_e_tatica_feitas_no_meio_do_jogo(tmp_path, monkey
                 "tatica": {"formacao": "4-4-2", "marcacao": "forte", "estilo": "ofensivo"}}
 
     jogada = _primeira_partida(c, pedido)
-    assert sum(1 for e in jogada.eventos if e.tipo == "substituicao") == 3
+    # as tres pedidas; a troca de quem se machuca (fm.eventos) nao conta
+    assert sum(1 for e in jogada.eventos
+               if e.tipo == "substituicao" and "machucado" not in e.texto) == 3
     c.salvar("ao_vivo")
     assert "ao_vivo" in saves_disponiveis()
 

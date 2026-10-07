@@ -11,6 +11,7 @@ const ABAS = [
   {id: "escalacao", rotulo: "Escalação", icone: "tatica"},
   {id: "transferencias", rotulo: "Transferências", icone: "mercado"},
   {id: "classificacao", rotulo: "Tabela", icone: "tabela"},
+  {id: "selecao", rotulo: "Seleção", icone: "bandeira"},
   {id: "calendario", rotulo: "Calendário", icone: "calendario"},
   {id: "financas", rotulo: "Finanças", icone: "financas"},
   {id: "mensagens", rotulo: "Mensagens", icone: "mensagens"},
@@ -74,6 +75,14 @@ function textoDoProximo(e) {
     const fora = p.casa ? p.rival.nome : e.clube.nome;
     return {rotulo: `${p.competicao} · rodada ${p.rodada}`, texto: `${casa} x ${fora}`, botao: "Jogar ›"};
   }
+  if (p && p.tipo === "selecao") {
+    // o jogo e da selecao que o treinador comanda, nao do clube
+    const eu = p.selecao ? p.selecao.nome : "Seleção";
+    if (!p.rival) return {rotulo: `${p.competicao}${p.fase ? ` · ${p.fase}` : ""}`, texto: `${eu} · data FIFA`, botao: "Jogar ›"};
+    const casa = p.casa ? eu : p.rival.nome;
+    const fora = p.casa ? p.rival.nome : eu;
+    return {rotulo: `${p.competicao}${p.fase ? ` · ${p.fase}` : ""}`, texto: `${casa} x ${fora}`, botao: "Jogar ›"};
+  }
   if (p && p.rival) {
     const casa = p.casa ? e.clube.nome : p.rival.nome;
     const fora = p.casa ? p.rival.nome : e.clube.nome;
@@ -101,6 +110,8 @@ function trilho(rotulo, v) {
 
 function desenharLateral(e) {
   const p = e.proximo;
+  // na data FIFA o "meu time" do proximo jogo e a selecao que o treinador comanda
+  const meu = p && p.tipo === "selecao" && p.selecao ? p.selecao : e.clube;
   let prox = `<div class="vazio">Sem jogo marcado.</div>`;
   if (p && p.tipo === "liga") {
     const [casa, fora] = p.casa ? [e.clube, p.rival] : [p.rival, e.clube];
@@ -111,7 +122,7 @@ function desenharLateral(e) {
       <div class="onde">${escapar(p.competicao)} · rodada ${p.rodada} · ${p.casa ? "em casa" : "fora"}</div>`;
   } else if (p && p.rival) {
     // copa com o confronto ja sorteado (a volta, ou a fase que ja tem jogos marcados)
-    const [casa, fora] = p.casa ? [e.clube, p.rival] : [p.rival, e.clube];
+    const [casa, fora] = p.casa ? [meu, p.rival] : [p.rival, meu];
     prox = `<div class="confronto">
         <div>${escudo(casa)}<span>${escapar(casa.nome)}</span></div>
         <span class="x">×</span>
@@ -119,7 +130,7 @@ function desenharLateral(e) {
       <div class="onde">${escapar(p.competicao)} · ${escapar(p.fase)}${p.volta ? " · volta" : ""} · ${p.casa ? "em casa" : "fora"}</div>
       ${p.ida ? `<div class="onde ida">Ida: ${escapar(p.ida.casa)} ${p.ida.gols_casa} × ${p.ida.gols_fora} ${escapar(p.ida.fora)}</div>` : ""}`;
   } else if (p) {
-    prox = `<div class="confronto"><div>${escudo(e.clube)}<span>${escapar(e.clube.nome)}</span></div>
+    prox = `<div class="confronto"><div>${escudo(meu)}<span>${escapar(meu.nome)}</span></div>
       <span class="x">×</span><div>${escudo({nome: "?", cor: "#25302a", cor2: "#71897a"})}<span>sorteio da fase</span></div></div>
       <div class="onde">${escapar(p.competicao)} · ${escapar(p.fase)}</div>`;
   } else if (e.acabou) {
@@ -140,9 +151,9 @@ function desenharLateral(e) {
     </div>
     <div class="painel fixo"><div class="cab"><h2>Próxima partida</h2></div>
       <div class="prox-jogo">${prox}
-        <button class="btn azul bloco" id="btn-escalar">${icone("tatica")} Escalar time</button></div></div>
+        <button class="btn azul bloco" id="btn-escalar">${icone("tatica")} ${meu === e.clube ? "Escalar time" : "Escalar seleção"}</button></div></div>
     <div class="painel fixo" id="resumo-jogador"></div>`;
-  $("#btn-escalar").addEventListener("click", () => irPara("escalacao"));
+  $("#btn-escalar").addEventListener("click", () => irPara(meu === e.clube ? "escalacao" : "selecao"));
   desenharResumoJogador();
 }
 
@@ -1387,3 +1398,122 @@ TELAS.destaques = async function () {
   $("#art-temporada").addEventListener("change", (ev) => { DEST.temporada = +ev.target.value; DEST.comp = null; TELAS.destaques(); });
   $("#premio-ano")?.addEventListener("change", (ev) => { DEST.anoPremio = +ev.target.value; TELAS.destaques(); });
 };
+
+/* ------------------------------------------------------------------ selecao
+ * A selecao (fm.fifa): o convite, a convocacao e o onze de quem treina uma, o ranking do
+ * mundo e as Copas que passaram. A selecao joga nas datas FIFA, quando nenhum clube joga. */
+
+const SEL = {marcados: null, onze: null};
+
+TELAS.selecao = async function () {
+  const d = await api.get("/api/selecao_nacional");
+  desenharSelecao(d);
+};
+
+function desenharSelecao(d) {
+  const m = d.minha;
+  if (m && (SEL.marcados === null || SEL.pais !== m.pais)) {
+    SEL.pais = m.pais;
+    SEL.marcados = new Set(m.convocados.map((j) => j.id));
+    SEL.onze = new Set(m.onze);
+  }
+  const convite = d.convite ? `
+    <div class="painel fixo destaque-convite"><div class="cab"><h2>Convite</h2></div>
+      <div class="corpo"><p>A seleção <b>${escapar(d.convite.nome)}</b> quer você como treinador.
+        Você continua no clube: a seleção joga nas datas FIFA.</p>
+        <div class="acoes"><button class="btn primario" id="sel-aceitar">Aceitar</button>
+          <button class="btn" id="sel-recusar">Recusar</button></div></div></div>` : "";
+  const dispensado = d.dispensado && !m ? `<div class="painel fixo"><div class="corpo dica">
+    A seleção ${escapar(d.dispensado)} não foi à Copa e trocou de treinador.</div></div>` : "";
+  const ranking = `<div class="painel"><div class="cab"><h2>Ranking das seleções</h2>
+      <span class="dica">pela força do onze convocado</span></div>
+    <div class="corpo sem-margem"><table class="grade compacta"><tbody>
+    ${d.ranking.map((x) => `<tr class="${x.minha ? "eu" : ""}"><td class="n">${x.posicao}</td>
+      <td><b>${escapar(x.pais)}</b></td><td class="dica">${escapar(x.confederacao || "")}</td>
+      <td class="n">${x.forca.toFixed(1).replace(".", ",")}</td></tr>`).join("")}</tbody></table></div></div>`;
+  const historico = `<div class="painel fixo"><div class="cab"><h2>Copas do Mundo</h2></div>
+    <div class="corpo">${d.historico.length ? d.historico.map((h) => `<div class="linha-t">
+      <span>${h.ano}</span><b>${escapar(h.campeao || "?")}</b><span class="dica">vice: ${escapar(h.vice || "?")}</span></div>`).join("")
+      : '<div class="vazio">A primeira é a de 2030: eliminatórias sul-americanas desde setembro de 2027, europeias em 2029.</div>'}
+      ${d.competicoes.length ? `<div class="acoes">${d.competicoes.map((c) =>
+        `<button class="btn" data-comp-fifa="${escapar(c.id)}">${escapar(c.nome)}</button>`).join("")}</div>` : ""}</div></div>`;
+
+  let minha = `<div class="painel fixo"><div class="cab"><h2>Seleção</h2></div>
+    <div class="corpo dica">Você ainda não treina uma seleção. O convite vem pela reputação,
+      na virada do ano: quanto maior ela, maior a seleção que chama.</div></div>`;
+  if (m) {
+    const n = SEL.marcados.size, k = SEL.onze.size;
+    const proximo = m.proximo ? `${escapar(m.proximo.dia)} · ${escapar(m.proximo.competicao)}${m.proximo.rival ? ` · contra ${escapar(m.proximo.rival)}` : ""}` : "sem jogo neste ano";
+    const conv = m.elegiveis.map((j) => `<tr class="${SEL.marcados.has(j.id) ? "eu" : ""}">
+      <td><input type="checkbox" data-conv="${j.id}" ${SEL.marcados.has(j.id) ? "checked" : ""}></td>
+      <td>${pos(j.posicao)}</td><td><b>${escapar(j.nome)}</b>${j.lesionado ? ' <span class="chip">lesionado</span>' : ""}</td>
+      <td class="dica">${escapar(j.clube)}</td><td class="n">${ovr(j.overall)}</td><td class="n dica">${j.idade}a</td></tr>`).join("");
+    const doOnze = m.convocados.filter((j) => SEL.marcados.has(j.id)).map((j) => `<tr>
+      <td><input type="checkbox" data-onze="${j.id}" ${SEL.onze.has(j.id) ? "checked" : ""}></td>
+      <td>${pos(j.posicao)}</td><td><b>${escapar(j.nome)}</b></td><td class="n">${ovr(j.overall)}</td></tr>`).join("");
+    const opc = (campo, ops, rot = {}) => `<select data-sel-tatica="${campo}">${ops.map((o) =>
+      `<option value="${o}" ${m.tatica[campo] === o ? "selected" : ""}>${escapar(rot[o] || o)}</option>`).join("")}</select>`;
+    minha = `<div class="painel fixo"><div class="cab"><h2>${escapar(m.pais)}</h2>
+        <span class="dica">${escapar(m.confederacao || "")} · ${m.posicao ? `${m.posicao}º do ranking` : ""}
+          ${m.forca ? ` · força ${m.forca.toFixed(1).replace(".", ",")}` : ""}</span></div>
+      <div class="corpo"><div class="linha-t"><span>Próximo</span><b>${proximo}</b></div>
+        ${m.resultados.length ? `<div class="linha-t"><span>Jogos</span><span>${m.resultados.map((r) =>
+          `<span class="chip ${r.resultado === "V" ? "ouro" : ""}" title="${escapar(r.dia)}">${r.resultado} ${escapar(r.placar)} ${escapar(r.rival)}</span>`).join(" ")}</span></div>` : ""}
+        <div class="acoes"><button class="btn" id="sel-deixar">Deixar a seleção</button></div></div></div>
+      <div class="painel"><div class="cab"><h2>Convocação</h2>
+          <span class="dica">${n}/${m.limites.maximo} · ${m.lista_propria ? "sua lista" : "sugestão da comissão"}</span>
+          <button class="btn primario" id="sel-convocar">Salvar convocação</button></div>
+        <div class="corpo sem-margem" style="max-height:22rem;overflow:auto"><table class="grade compacta"><tbody>${conv}</tbody></table></div></div>
+      <div class="painel"><div class="cab"><h2>Escalação</h2><span class="dica">${k}/11 · vazio: os melhores</span>
+          <button class="btn primario" id="sel-escalar">Salvar escalação</button></div>
+        <div class="corpo" style="flex:0 0 auto"><div class="taticas-sel">
+          <label class="campo"><span>Formação</span>${opc("formacao", m.formacoes)}</label>
+          <label class="campo"><span>Mentalidade</span>${opc("estilo", ["retrancado", "defensivo", "equilibrado", "ofensivo", "all-out"],
+            {"retrancado": "Retranca", "defensivo": "Defensiva", "equilibrado": "Equilíbrio", "ofensivo": "Ofensiva", "all-out": "Tudo"})}</label>
+          <label class="campo"><span>Marcação</span>${opc("marcacao", ["leve", "normal", "forte"], {leve: "Leve", normal: "Normal", forte: "Pressão alta"})}</label></div></div>
+        <div class="corpo sem-margem" style="max-height:18rem;overflow:auto"><table class="grade compacta"><tbody>${doOnze}</tbody></table></div></div>`;
+  }
+  $("#tela-selecao").innerHTML = `<div class="coluna">${convite}${dispensado}${minha}</div>
+    <div class="coluna">${ranking}${historico}</div>`;
+  ligarSelecao(d);
+}
+
+async function acaoDaSelecao(corpo) {
+  const r = await api.post("/api/selecao_nacional", corpo);
+  if (r.erro) { avisar(r.erro, 4000); return; }
+  if (r.mensagem) avisar(r.mensagem);
+  if (r.estado) aplicarEstado(r.estado);
+  SEL.marcados = null;
+  desenharSelecao(r.selecao);
+}
+
+function ligarSelecao(d) {
+  const m = d.minha;
+  const em = (id, f) => { const el = $(id); if (el) el.addEventListener("click", f); };
+  em("#sel-aceitar", () => acaoDaSelecao({acao: "assumir", pais: d.convite.nome}));
+  em("#sel-recusar", () => acaoDaSelecao({acao: "recusar"}));
+  em("#sel-deixar", () => acaoDaSelecao({acao: "deixar"}));
+  $$("[data-comp-fifa]").forEach((b) => b.addEventListener("click", () => {
+    CLASS.comp = b.dataset.compFifa;
+    irPara("classificacao");
+  }));
+  if (!m) return;
+  $$("[data-conv]").forEach((x) => x.addEventListener("change", () => {
+    const id = +x.dataset.conv;
+    if (x.checked) SEL.marcados.add(id); else { SEL.marcados.delete(id); SEL.onze.delete(id); }
+    desenharSelecao(d);
+  }));
+  $$("[data-onze]").forEach((x) => x.addEventListener("change", () => {
+    const id = +x.dataset.onze;
+    if (x.checked) SEL.onze.add(id); else SEL.onze.delete(id);
+    desenharSelecao(d);
+  }));
+  em("#sel-convocar", () => acaoDaSelecao({acao: "convocar", jogadores: [...SEL.marcados]}));
+  em("#sel-escalar", () => {
+    const tatica = {};
+    $$("[data-sel-tatica]").forEach((s) => { tatica[s.dataset.selTatica] = s.value; });
+    const onze = SEL.onze.size === 11 ? [...SEL.onze] : [];
+    if (SEL.onze.size && SEL.onze.size !== 11) { avisar("Marque 11 jogadores, ou nenhum para a comissão escolher."); return; }
+    acaoDaSelecao({acao: "escalar", onze, tatica});
+  });
+}

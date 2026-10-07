@@ -237,9 +237,13 @@ def test_o_calendario_nao_lista_copa_de_outro_clube():
 
     c = Carreira.nova(["espanha_real", "espanha_b_real"], "Real Madrid", seed=2)
     nomes = {x["competicao"] for x in calendario(Jogo(c))["datas"] if x["tipo"] == "copa"}
-    # a Copa del Rey e a Supercopa da UEFA (vaga pelo ranking no primeiro ano) sao dele
-    assert nomes == {c.copas[n].torneio.nome
-                     for n in ("champions", "copa_del_rey", "supercopa_uefa")}
+    # a Copa del Rey e dele; a Supercopa da UEFA so se o ranking do primeiro ano (a
+    # Europa inteira, desde que o mundo todo carrega) o colocar nela
+    deles = ["champions", "copa_del_rey"]
+    sup = c.copas["supercopa_uefa"]
+    if c.clube_id in {k for v in sup.classificados.values() for k in v}:
+        deles.append("supercopa_uefa")
+    assert nomes == {c.copas[n].torneio.nome for n in deles}
 
 
 def test_as_financas_batem_com_o_motor(jogo):

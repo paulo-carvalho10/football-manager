@@ -51,7 +51,10 @@ def test_cada_fase_da_libertadores_na_janela_dela(carreira):
         if quem == "libertadores" and not reserva:
             por_fase.setdefault(fase, []).append(dia)
     meses = {k: {d.month for d in v} for k, v in por_fase.items()}
-    assert meses[0] | meses[1] | meses[2] <= {2, 3}
+    # a janela FIFA de marco (fm.fifa) para tudo: a volta da terceira fase pode cair no
+    # comeco de abril
+    assert meses[0] | meses[1] <= {2, 3}
+    assert meses[2] <= {3, 4}
     assert meses[3] <= {4, 5, 6}
     assert meses[4] <= {8, 9, 10, 11}
     assert meses[5] <= {11, 12}

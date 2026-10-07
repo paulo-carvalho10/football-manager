@@ -69,7 +69,7 @@ def test_ninguem_e_eliminado_e_volta(carreira):
 def test_a_temporada_tem_liga_e_copa(carreira):
     c = carreira
     tipos = {t for t, _ in c.agenda}
-    assert tipos == {"liga", "copa"}
+    assert tipos == {"liga", "copa", "selecao"}      # selecao: as datas FIFA (fm.fifa)
     assert sum(1 for t, _ in c.agenda if t == "liga") == c.total_de_rodadas
     assert set(c.copas) <= set(COPAS)
 

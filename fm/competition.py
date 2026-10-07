@@ -108,7 +108,18 @@ def play_fixtures(
     from fm.tatica import Tatica, confronto
     t = taticas or {}
     padrao = Tatica()
-    pares = [confronto(t.get(f.home, padrao), t.get(f.away, padrao)) for f in fixtures]
+    # o confronto e o mesmo para o mesmo par de taticas: sem tatica escolhida (quase
+    # todo jogo do mundo) e padrao contra padrao, e calcular de novo a cada partida era
+    # o grosso da temporada simulada das ligas de fora
+    ja: dict[tuple[int, int], tuple] = {}
+
+    def par(a, b):
+        chave = (id(a), id(b))
+        if chave not in ja:
+            ja[chave] = confronto(a, b)
+        return ja[chave]
+
+    pares = [par(t.get(f.home, padrao), t.get(f.away, padrao)) for f in fixtures]
     mc = np.array([p[0] for p in pares])
     mf = np.array([p[1] for p in pares])
     gh, ga = simulate(rh, ra, rng, style, mentality, mult_casa=mc, mult_fora=mf)

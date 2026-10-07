@@ -387,11 +387,16 @@ def _encerrar_fase(world: World, andamento: Andamento, rng: np.random.Generator,
 
     if tipo == "groups" and andamento.grupos:
         avancam, passa = int(fase.get("avancam", 2)), []
+        # `melhores_seguintes`: os melhores do lugar logo abaixo tambem passam (os 8
+        # melhores terceiros da Copa de 48), por pontos, saldo e gols
+        seguintes = []
         for gi, ids in enumerate(andamento.grupos):
             do_grupo = [r for r in andamento.resultados
                         if r.home in ids and r.away in ids]
             tabela = build_table(ids, do_grupo)
             passa += [linha.club_id for linha in tabela[:avancam]]
+            if len(tabela) > avancam:
+                seguintes.append(tabela[avancam])
             for pos, linha in enumerate(tabela, 1):
                 andamento.campanha[linha.club_id] = {
                     "grupo": gi, "pos": pos, "pts": linha.points,
@@ -402,6 +407,11 @@ def _encerrar_fase(world: World, andamento: Andamento, rng: np.random.Generator,
                 if pos and pos <= len(tabela) and exportados is not None:
                     exportados.setdefault(chave_de_exportacao(andamento, regra),
                                           []).append(tabela[pos - 1].club_id)
+        extra = int(fase.get("melhores_seguintes", 0))
+        if extra:
+            seguintes.sort(key=lambda x: (-x.points, -(x.goals_for - x.goals_against),
+                                          -x.goals_for, x.club_id))
+            passa += [linha.club_id for linha in seguintes[:extra]]
         andamento.eliminados_na_fase = [c for c in andamento.vivos if c not in passa]
         andamento.vivos = passa
 

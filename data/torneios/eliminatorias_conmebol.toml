@@ -1,0 +1,30 @@
+# Eliminatorias sul-americanas para a Copa do Mundo: as 10 selecoes num turno e returno,
+# 18 rodadas nas datas FIFA de setembro do ano Y-3 a marco de Y-1 (fm.fifa). Os seis
+# primeiros vao a Copa.
+#
+# Aproximacao consciente: a Copa de 2030 tem Argentina, Uruguai e Paraguai nos jogos do
+# centenario, e a regra das vagas sul-americanas daquela Copa nao estava fechada. Aqui os
+# tres disputam as eliminatorias normalmente.
+id   = "eliminatorias_conmebol"
+nome = "Eliminatórias Sul-Americanas"
+
+[estilo]
+gols_base = 1.10
+mando     = 0.45   # altitude de La Paz e Quito, viagem longa
+
+[mentalidade]
+gols_mult  = 0.90
+compressao = -1.0   # AMPLIA a diferenca: entre selecoes ela pesa mais que entre
+                    # clubes (o motor rapido foi calibrado em liga). Com 0, o Brasil
+                    # (85) vencia a Venezuela (68) 51% das vezes; assim, 65%
+
+[[classificacao]]
+fonte    = "CONMEBOL"
+vagas    = 10
+entra_em = "liga"
+
+[[formato.fases]]
+nome   = "Pontos corridos"
+tipo   = "round_robin"
+voltas = 2
+entram = [ { classificacao = "liga" } ]

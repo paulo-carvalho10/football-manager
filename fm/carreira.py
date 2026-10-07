@@ -204,6 +204,26 @@ class Carreira:
     selecoes: dict = field(default_factory=dict)
     # cartoes acumulados e suspensoes, por competicao (fm.disciplina)
     disciplina: object | None = None
+    # as selecoes, as eliminatorias e a Copa do Mundo (fm.fifa): atravessa as temporadas
+    fifa: object | None = None
+    # A selecao que o usuario treina (o pais), o convite em aberto, e o que ele decidiu
+    # para ela: a convocacao, o onze e a tatica (vazio = a IA decide). Tudo isso vem das
+    # acoes gravadas (`executar`), entao o replay refaz igual.
+    selecao_do_usuario: str | None = None
+    convite_selecao: str | None = None
+    convocacao_do_usuario: list[int] = field(default_factory=list)
+    escalacao_da_selecao: list[int] = field(default_factory=list)
+    tatica_da_selecao: dict = field(default_factory=dict)
+    # a selecao que dispensou o usuario (nao se classificou para a Copa), para a mensagem
+    demissao_da_selecao: str | None = None
+    # os jogos da selecao do usuario no ano, por data -- a parte dos do clube (a campanha
+    # do clube nao mistura com a da selecao)
+    jogos_da_selecao: dict = field(default_factory=dict)
+    competicoes_da_selecao: dict = field(default_factory=dict)
+    # Durante a partida da selecao, e ate a data seguinte: (id da selecao, mundo das
+    # selecoes). E por aqui que a tela ao vivo, o banco e as trocas sabem qual e o "meu
+    # time" -- no resto do tempo, o clube.
+    _em_campo: tuple | None = field(default=None, repr=False, compare=False)
     # quem esta machucado e por quantos jogos (fm.lesoes). Como o gancho, nao vai ao
     # save: o replay refaz as mesmas lesoes.
     medico: object | None = None
@@ -257,11 +277,15 @@ class Carreira:
         self.streams = streams
         if self.clube_inicial is None:
             self.clube_inicial = self.clube_id
+        if self.fifa is None:
+            from fm.fifa import Fifa
+            self.fifa = Fifa()
         self._carregar_ligas_de_fora()
         self._novo_calendario()
         self.tecnicos = gerar(world, {self._id(n) for n in self.ligas},
                               streams.get("tecnicos"), self.temporada, self.clube_id,
                               self.treinador)
+        self.convidar_para_selecao()
 
     def _novo_calendario(self) -> None:
         self.calendarios = {}
@@ -280,6 +304,8 @@ class Carreira:
             assert world_ids is not None
         self.data = 0
         self.jogos_do_usuario = {}
+        self.jogos_da_selecao = {}
+        self.competicoes_da_selecao = {}
         self._montar_agenda()
         # o valor de elenco do INICIO do ano e o que paga a receita: sem congelar, comprar
         # jogador aumentaria o faturamento do mesmo ano e o clube rico viraria bola de neve
@@ -309,6 +335,7 @@ class Carreira:
         """
         from fm.agenda import clubes_por_fase, etapas_por_fase, montar
         from fm.copa import comecar
+        from fm.fifa import bloqueios, dias_de_selecao
         from fm.torneio import carregar, resolver_entradas
 
         self.copas = {}
@@ -339,7 +366,8 @@ class Carreira:
 
         rodadas = {nome: max((f.matchday for f in cal), default=0)
                    for nome, cal in self.calendarios.items()}
-        datas, mapa = montar(self.temporada, rodadas, copas)
+        datas, mapa = montar(self.temporada, rodadas, copas,
+                             dias_de_selecao(self.temporada), bloqueios(self.temporada))
         self.agenda = [(d.tipo, d.quem) for d in datas]
         self.dias = [d.dia for d in datas]
         self.fases_da_agenda = [d.fase for d in datas]
@@ -694,13 +722,20 @@ class Carreira:
         return fora
 
     def _carregar_ligas_de_fora(self) -> None:
-        """Os clubes das ligas da confederacao que a carreira nao joga. Depois das ligas da
-        carreira, com ids novos: os clubes e jogadores de sempre nao mudam de id."""
+        """Os clubes das ligas que a carreira nao joga: primeiro as da confederacao (os
+        rivais da Libertadores), depois o resto do mundo (07/10/2026), porque a selecao e
+        feita de quem joga em qualquer lugar -- a do Brasil sem quem esta na Europa nao e
+        a do Brasil. Depois das ligas da carreira, com ids novos: os clubes e jogadores
+        de sempre nao mudam de id."""
         from fm.generate import generate_league
+        from fm.telas import NACIONAIS
         confederacoes = {COPAS_DA_CONFEDERACAO[c] for c in self.copas_do_pais()
                          if c in COPAS_DA_CONFEDERACAO}
         self.ligas_de_fora = [n for conf in sorted(confederacoes)
                               for n in LIGAS_DA_CONFEDERACAO[conf] if n not in self.ligas]
+        self.ligas_de_fora += [liga for n in NACIONAIS for liga, _ in n["ligas"]
+                               if liga and liga not in self.ligas
+                               and liga not in self.ligas_de_fora]
         for nome in self.ligas_de_fora:
             cfg = load_league(nome)
             if cfg["id"] in self.world.leagues:
@@ -813,6 +848,18 @@ class Carreira:
     def _chave(self, rodada: int | None = None) -> str:
         return f"{self.temporada}:{self.rodada + 1 if rodada is None else rodada}"
 
+    @property
+    def time_em_campo(self) -> int:
+        """O time do usuario na partida em curso: a selecao, na data dela; senao o clube."""
+        return self._em_campo[0] if self._em_campo else self.clube_id
+
+    @property
+    def mundo_em_campo(self) -> World:
+        return self._em_campo[1] if self._em_campo else self.world
+
+    def tatica_da_selecao_atual(self) -> Tatica:
+        return Tatica(**self.tatica_da_selecao) if self.tatica_da_selecao else Tatica()
+
     def tatica_atual(self) -> Tatica:
         """A tatica da proxima rodada: a decidida para ela ou, se nao houver, a ultima que
         o treinador deixou -- mudar para 3-5-2 antes de um jogo nao volta ao 4-3-3 no
@@ -858,6 +905,12 @@ class Carreira:
         rodada = self.rodada
         for i in range(self.data, len(self.agenda)):
             tipo, quem = self.agenda[i]
+            if tipo == "selecao":
+                if self.selecao_do_usuario and self.fifa is not None:
+                    nome = self.fifa.joga_em(self.selecao_do_usuario, self.dias[i])
+                    if nome:
+                        return tipo, nome, None
+                continue
             if tipo == "liga":
                 # a liga do usuario pode folgar nesta data da grade (o Paraguai, com 22
                 # rodadas, nao joga todo domingo)
@@ -946,6 +999,7 @@ class Carreira:
         # dos dois lados (a tela pausa nos dois); so a resposta para o MEU clube vale
         self._pedido_de_penalti = penaltis
         self._no_meio_da_data = True
+        self._em_campo = None
         try:
             saida = self._avancar_data(substituicoes)
             self._novas_propostas()
@@ -961,6 +1015,15 @@ class Carreira:
             if tipo == "liga":
                 self.ultimo_compromisso = (tipo, quem)
                 return self._jogar_rodada(substituicoes)
+            if tipo == "selecao":
+                # data FIFA: as selecoes jogam e nenhum clube entra em campo. So para a
+                # tela se a selecao do usuario jogou.
+                self.ultimo_compromisso = (tipo, quem)
+                saida = self._jogar_data_fifa(substituicoes)
+                self.data += 1
+                if saida is not None:
+                    return saida
+                continue
             # antes de jogar: durante a partida ao vivo, e daqui que a tela sabe qual e a
             # competicao (o sorteio da copa so acontece no dia)
             self.ultimo_compromisso = (tipo, quem)
@@ -974,6 +1037,97 @@ class Carreira:
                 return saida
             # torneio ja encerrado: a data reservada simplesmente nao acontece
         return [], None
+
+    def _jogar_data_fifa(self, substituicoes=None) -> tuple[list[Result], Partida] | None:
+        """Os jogos de selecao do dia (fm.fifa); o da selecao do usuario em detalhe."""
+        rng = self.streams.get("selecoes", self.temporada, self.data)
+        fora = set(self.medico.lesionados) if self.medico else set()
+
+        def meu_jogo(mundo, f, andamento, outros):
+            return self._partida_da_selecao(mundo, f, andamento, outros, substituicoes)
+
+        resultados, detalhada = self.fifa.jogar(
+            self.world, self.dia(), rng, fora, usuario=self.selecao_do_usuario,
+            convocacao=self.convocacao_do_usuario,
+            meu_jogo=meu_jogo if self.selecao_do_usuario else None)
+        self._demitir_da_selecao_se_ficou_fora()
+        if detalhada is None:
+            return None
+        return resultados, detalhada
+
+    def _onze_da_selecao(self, mundo, sid: int, tatica: Tatica) -> list[int]:
+        """O onze escolhido, se ele ainda vale (todos convocados); senao os melhores."""
+        from fm.tatica import arrumar_no_campo
+        convocados = set(mundo.clubs[sid].player_ids)
+        escolhidos = [p for p in self.escalacao_da_selecao if p in convocados]
+        if len(escolhidos) == 11:
+            jogadores = [mundo.players[p] for p in escolhidos]
+        else:
+            mundo.escalacao_fixa.pop(sid, None)
+            jogadores = mundo.best_xi(sid, tatica.vagas)
+        return [p.id for p in arrumar_no_campo(jogadores, tatica.vagas_do_campo())]
+
+    def _partida_da_selecao(self, mundo, f: Fixture, andamento, outros: list[Result],
+                            substituicoes) -> tuple[Result, Partida]:
+        """A partida da selecao do usuario: o motor de eventos, como a do clube, com a
+        convocacao, o onze e a tatica dele -- e a tela ao vivo, as trocas e o penalti."""
+        from fm.central import detalhar
+        from fm.selecoes import id_da_selecao
+        from fm.tatica import confronto, papeis_em_campo
+        sid = id_da_selecao(self.selecao_do_usuario)
+        sou_casa = f.home == sid
+        tatica = self.tatica_da_selecao_atual()
+        onze = self._onze_da_selecao(mundo, sid, tatica)
+        mundo.escalacao_fixa[sid] = onze
+        rival = f.away if sou_casa else f.home
+        onze_rival = [p.id for p in mundo.best_xi(rival)]
+        # os outros jogos do dia, para a rodada ao vivo: fluxo proprio, nada muda no placar
+        rng_lances = self.streams.get("selecoes_lances", self.temporada, self.data)
+        self.parciais = list(outros)
+        self.lances_da_data = {(r.home, r.away): detalhar(mundo, r, rng_lances)
+                               for r in outros}
+        ma, md = confronto(tatica, Tatica()) if sou_casa else confronto(Tatica(), tatica)
+        chave = f"{self.temporada}:{self.data}"
+        t = andamento.torneio
+        self._em_campo = (sid, mundo)
+        partida = simular_partida(
+            mundo, f.home, f.away, onze if sou_casa else onze_rival,
+            onze_rival if sou_casa else onze,
+            self.streams.get("partida_da_selecao", self.temporada, self.data),
+            t.style, t.mentality, mult_casa=ma, mult_fora=md,
+            substituicoes=self._no_banco(substituicoes, chave, sou_casa),
+            papeis=papeis_em_campo(onze, tatica.vagas_do_campo()),
+            penaltis=self._na_marca(chave),
+            bancos={f.home: self.banco(f.home), f.away: self.banco(f.away)},
+            max_trocas=MAX_TROCAS)
+        self._penaltis_se_empatou(andamento, partida)
+        r = Result(f.home, f.away, partida.gols_casa, partida.gols_fora, f.matchday)
+        self.jogos_da_selecao[self.data] = r
+        self.competicoes_da_selecao[self.data] = self.fifa.torneio_do_usuario
+        return r, partida
+
+    def proximo_jogo_da_selecao(self) -> tuple[int, str] | None:
+        """(indice da data, competicao) do proximo jogo da selecao do usuario no ano."""
+        if not self.selecao_do_usuario or self.fifa is None:
+            return None
+        for i in range(self.data, len(self.agenda)):
+            if self.agenda[i][0] == "selecao":
+                nome = self.fifa.joga_em(self.selecao_do_usuario, self.dias[i])
+                if nome:
+                    return i, nome
+        return None
+
+    def _demitir_da_selecao_se_ficou_fora(self) -> None:
+        """A selecao que nao se classificou para a Copa troca de treinador."""
+        pais = self.selecao_do_usuario
+        if not pais or self.fifa is None:
+            return
+        for ciclo, classificados in self.fifa.classificados.items():
+            if ciclo == self.temporada and pais not in classificados \
+                    and self.fifa.ciclo_de.get("copa_do_mundo") == ciclo:
+                self.selecao_do_usuario = None
+                self.convocacao_do_usuario, self.escalacao_da_selecao = [], []
+                self.demissao_da_selecao = pais
 
     def _jogar_rodada(self, substituicoes=None) -> tuple[list[Result], Partida | None]:
         n = self.rodada + 1
@@ -1128,9 +1282,10 @@ class Carreira:
         """Os reservas relacionados: 12, fora do onze e disponiveis, com o goleiro
         reserva sempre entre eles -- sem ele, goleiro machucado virava meia no gol. E o
         banco da tela ao vivo e o de onde sai quem entra no lugar do machucado."""
-        onze = {p.id for p in self.world.best_xi(clube)}
-        livres = [p for p in sorted(self.world.squad(clube), key=lambda p: -p.overall)
-                  if p.id not in onze and p.id not in self.world.indisponiveis]
+        mundo = self.mundo_em_campo if clube in self.mundo_em_campo.clubs else self.world
+        onze = {p.id for p in mundo.best_xi(clube)}
+        livres = [p for p in sorted(mundo.squad(clube), key=lambda p: -p.overall)
+                  if p.id not in onze and p.id not in mundo.indisponiveis]
         goleiro = next((p for p in livres if p.position == "GK"), None)
         resto = [p for p in livres if p is not goleiro]
         return ([goleiro.id] if goleiro else []) + [p.id for p in resto][:12 - bool(goleiro)]
@@ -1195,12 +1350,13 @@ class Carreira:
                     trocas = [tuple(t) for t in resposta.get("trocas", [])]
                     nova = resposta.get("tatica")
                 else:
-                    trocas = [(s, e) for cl, s, e in resposta if cl == self.clube_id]
+                    trocas = [(s, e) for cl, s, e in resposta if cl == self.time_em_campo]
                     nova = None
+            meu, mundo = self.time_em_campo, self.mundo_em_campo
             feitas = sum(1 for e in partida.eventos
-                         if e.tipo == "substituicao" and e.clube == self.clube_id)
+                         if e.tipo == "substituicao" and e.clube == meu)
             em_campo = partida.em_campo_casa if sou_casa else partida.em_campo_fora
-            elenco = {p.id for p in self.world.squad(self.clube_id)}
+            elenco = {p.id for p in mundo.squad(meu)}
             validas: list[tuple[int, int]] = []
             for sai, entra in trocas:
                 if feitas + len(validas) >= MAX_TROCAS:
@@ -1209,10 +1365,10 @@ class Carreira:
                 # o suspenso tambem nao entra: a regra fica aqui, e nao so na tela, para
                 # valer do terminal, do navegador e do replay do save
                 if (sai in em_campo and entra in elenco and entra not in partida.entrada
-                        and entra not in self.world.indisponiveis
+                        and entra not in mundo.indisponiveis
                         and sai not in ja_vai and entra not in ja_vai):
                     validas.append((int(sai), int(entra)))
-            ajuste = Ajuste(trocas=[(self.clube_id, s, e) for s, e in validas])
+            ajuste = Ajuste(trocas=[(meu, s, e) for s, e in validas])
             t = None
             if nova is not None:
                 t = nova if isinstance(nova, Tatica) else Tatica(**nova)
@@ -1317,6 +1473,12 @@ class Carreira:
         tipo = acao.get("tipo")
         w = self.world
         resultado: dict
+        if tipo in ("assumir_selecao", "recusar_selecao", "deixar_selecao",
+                    "convocar_selecao", "escalar_selecao"):
+            resultado = self._acao_da_selecao(tipo, acao)
+            if "erro" not in resultado:
+                self.acoes.append({**acao, "temporada": self.temporada, "data": self.data})
+            return resultado
         if tipo == "assumir":
             clube = int(acao["clube"])
             if clube not in self.convites:
@@ -1441,6 +1603,79 @@ class Carreira:
         self.acoes.append({**acao, "temporada": self.temporada, "data": self.data})
         return resultado
 
+    def _acao_da_selecao(self, tipo: str, acao: dict) -> dict:
+        from fm.selecoes import CONVOCADOS, MINIMO_DE_JOGADORES
+        pais = self.selecao_do_usuario
+        if tipo == "assumir_selecao":
+            if acao.get("pais") != self.convite_selecao:
+                return {"erro": "essa selecao nao esta mais chamando"}
+            self.selecao_do_usuario, self.convite_selecao = self.convite_selecao, None
+            self.convocacao_do_usuario, self.escalacao_da_selecao = [], []
+            self.tatica_da_selecao = {}
+            return {"ok": True,
+                    "mensagem": f"Voce agora treina a selecao: {self.selecao_do_usuario}."}
+        if tipo == "recusar_selecao":
+            self.convite_selecao = None
+            return {"ok": True}
+        if pais is None:
+            return {"erro": "voce nao treina nenhuma selecao"}
+        if tipo == "deixar_selecao":
+            self.selecao_do_usuario = None
+            self.convocacao_do_usuario, self.escalacao_da_selecao = [], []
+            return {"ok": True, "mensagem": f"Voce deixou a selecao: {pais}."}
+        if tipo == "convocar_selecao":
+            ids = [int(x) for x in acao.get("jogadores", [])]
+            w = self.world
+            if len(set(ids)) != len(ids):
+                return {"erro": "jogador repetido na convocacao"}
+            if not MINIMO_DE_JOGADORES <= len(ids) <= CONVOCADOS:
+                return {"erro": f"convoque de {MINIMO_DE_JOGADORES} a {CONVOCADOS} jogadores"}
+            if any(i not in w.players or w.players[i].nationality != pais
+                   or w.players[i].club_id not in w.clubs for i in ids):
+                return {"erro": f"so jogadores com nacionalidade de {pais}"}
+            if sum(1 for i in ids if w.players[i].position == "GK") < 2:
+                return {"erro": "convoque pelo menos dois goleiros"}
+            self.convocacao_do_usuario = ids
+            self.escalacao_da_selecao = [p for p in self.escalacao_da_selecao if p in ids]
+            return {"ok": True}
+        # escalar_selecao: o onze (entre os convocados) e a tatica
+        pedida = {k: v for k, v in (acao.get("tatica") or {}).items()
+                  if k in ("formacao", "marcacao", "estilo")}
+        tatica = Tatica(**{**asdict(Tatica()), **pedida})
+        tatica.validar()
+        onze = [int(x) for x in acao.get("onze", [])]
+        if onze and (len(onze) != 11 or len(set(onze)) != 11):
+            return {"erro": "o onze precisa de 11 jogadores diferentes"}
+        convocados = set(self.convocacao_do_usuario) or set(
+            (self.fifa.convocacoes.get(pais) if self.fifa else None) or [])
+        if any(p not in convocados for p in onze):
+            return {"erro": "so convocados podem ser escalados"}
+        self.escalacao_da_selecao = onze
+        self.tatica_da_selecao = {k: getattr(tatica, k) for k in ("formacao", "marcacao", "estilo")}
+        return {"ok": True}
+
+    def convidar_para_selecao(self) -> None:
+        """O convite de uma selecao, pela reputacao do treinador. Uma vez por ano, na
+        virada (e no comeco da carreira). A melhor selecao que aceita alguem do tamanho
+        dele: a primeira do ranking pede reputacao 88; a ultima, 30."""
+        from fm import tecnicos as tec
+        from fm.selecoes import SUSPENSAS, convocar_todas, mundo_das_selecoes, ranking
+        if self.selecao_do_usuario or self.demitido:
+            self.convite_selecao = None
+            return
+        eu = self.tecnicos.get(tec.USUARIO) if self.tecnicos else None
+        if eu is None:
+            return
+        rng = self.streams.get("convite_selecao", self.temporada)
+        mundo = (self.fifa.mundo if self.fifa is not None and self.fifa.mundo is not None
+                 else mundo_das_selecoes(self.world, convocar_todas(self.world)))
+        ordem = [p for p in ranking(mundo) if p not in SUSPENSAS]
+        n = max(len(ordem) - 1, 1)
+        aceitam = [p for i, p in enumerate(ordem) if 88 - 58 * i / n <= eu.reputacao]
+        self.convite_selecao = None
+        if aceitam and rng.random() < 0.6:
+            self.convite_selecao = aceitam[int(rng.integers(min(3, len(aceitam))))]
+
     def _registrar_movimento(self, sentido: str, pid: int, outro: int | None, valor: int):
         p = self.world.players[pid]
         self.movimentos.append({
@@ -1473,6 +1708,8 @@ class Carreira:
         tipo, onde, _ = self.proximo_jogo()
         if tipo == "liga":
             return self.liga
+        if tipo == "selecao":
+            return f"fifa:{onde}"      # a chave da tabela da selecao (fm.telas.andamento_de)
         return onde or None
 
     def suspensos_do_proximo(self) -> set[int]:
@@ -1886,6 +2123,8 @@ class Carreira:
         resumo["premios"] = premios_do_ano
         self._mercado_de_tecnicos(dados)
         resumo["convites"] = list(self.convites)
+        self.convidar_para_selecao()
+        resumo["convite_selecao"] = self.convite_selecao
 
         self.tabelas_do_ano_anterior = self._tabelas_para_classificacao(
             {**tabelas, **tabelas_de_fora}, titulos)

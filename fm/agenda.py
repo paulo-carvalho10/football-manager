@@ -84,7 +84,12 @@ def _espalhar(n: int, total: int) -> list[int]:
     return sorted({round(i * (total - 1) / (n - 1)) for i in range(n)})
 
 
-def grade_das_ligas(temporada: int, rodadas: dict[str, int]
+def _bloqueado(d: date, bloqueios) -> bool:
+    return any(a <= d <= b for a, b in bloqueios)
+
+
+def grade_das_ligas(temporada: int, rodadas: dict[str, int],
+                    bloqueios: list[tuple[date, date]] | tuple = ()
                     ) -> tuple[list[date], dict[str, list[int]]]:
     """(datas da grade, {liga: indice na grade de cada rodada, em ordem}).
 
@@ -97,12 +102,15 @@ def grade_das_ligas(temporada: int, rodadas: dict[str, int]
     domingos = []
     d = inicio
     while d <= fim:
-        domingos.append(d)
+        # data FIFA e mes da Copa: nenhuma liga joga (fm.fifa)
+        if not _bloqueado(d, bloqueios):
+            domingos.append(d)
         d += timedelta(days=7)
     maior = max(rodadas.values(), default=0)
     extras_pedidas = max(0, maior - len(domingos))
     # quartas entre o segundo e o penultimo domingo, espalhadas
-    quartas_possiveis = [x + timedelta(days=3) for x in domingos[1:-1]]
+    quartas_possiveis = [x + timedelta(days=3) for x in domingos[1:-1]
+                         if not _bloqueado(x + timedelta(days=3), bloqueios)]
     quartas = [quartas_possiveis[i] for i in _espalhar(min(extras_pedidas, len(quartas_possiveis)),
                                                       len(quartas_possiveis))]
     grade = sorted(domingos + quartas)
@@ -141,20 +149,27 @@ def _alvos_da_fase(inicio: date, fim: date, fase: dict, etapas: int) -> list[dat
 
 
 def montar(temporada: int, rodadas: dict[str, int],
-           copas: dict[str, list[tuple[dict, int]]]) -> tuple[list[Data], dict[str, list[int]]]:
+           copas: dict[str, list[tuple[dict, int]]],
+           selecoes: list[date] | tuple = (),
+           bloqueios: list[tuple[date, date]] | tuple = ()
+           ) -> tuple[list[Data], dict[str, list[int]]]:
     """A agenda da temporada e o mapa das rodadas de cada liga na grade.
 
     `rodadas` e {liga: quantas rodadas}; `copas` e {copa: [(fase, etapas previstas)]}, com a
     janela de cada fase no proprio dict da fase. Devolve as datas em ordem cronologica e
     {liga: [indice da DATA DE LIGA (0, 1, 2...) de cada rodada]}.
+
+    `selecoes` sao os dias de jogo de selecao (fm.fifa) e `bloqueios`, os periodos em que
+    clube nao joga: nem a liga nem as copas caem neles.
     """
-    grade, mapa = grade_das_ligas(temporada, rodadas)
+    grade, mapa = grade_das_ligas(temporada, rodadas, bloqueios)
     usados_liga = set(grade)
     ocupado: dict[str, set[date]] = {}        # por copa: os dias com etapa
     datas: list[Data] = [Data(dia=d, tipo="liga") for d in grade]
 
     def livre(d: date, copa: str) -> bool:
-        if d.weekday() not in DIAS_DE_MEIO_DE_SEMANA or d in usados_liga:
+        if (d.weekday() not in DIAS_DE_MEIO_DE_SEMANA or d in usados_liga
+                or _bloqueado(d, bloqueios)):
             return False
         # a copa que divide clube com esta nao pode estar no dia nem colada nele
         for outra, dias in ocupado.items():
@@ -206,6 +221,7 @@ def montar(temporada: int, rodadas: dict[str, int],
                               reserva=True))
             ultimo = d
 
+    datas += [Data(dia=d, tipo="selecao", quem="fifa") for d in selecoes]
     datas.sort(key=lambda x: (x.dia, x.tipo != "copa", x.quem))
     return datas, mapa
 

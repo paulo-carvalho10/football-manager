@@ -151,6 +151,15 @@ class Partida:
     # a disputa de penaltis depois do apito (fm.disputa), quando o mata-mata empatou no
     # agregado. Quem decide que ela existe e a carreira, que sabe o placar da ida
     disputa: dict | None = None
+    # {jogador: o time por quem ele jogou}. Na selecao o jogador continua do clube dele,
+    # entao o lado nao sai de `club_id` (fm.selecoes)
+    time_de: dict[int, int] = field(default_factory=dict)
+
+    def lado_de(self, pid: int, world=None) -> int | None:
+        """Por quem o jogador entrou em campo."""
+        if pid in self.time_de:
+            return self.time_de[pid]
+        return world.players[pid].club_id if world is not None else None
 
     @property
     def placar(self) -> str:
@@ -238,6 +247,7 @@ def simular_partida(
     p = Partida(casa=casa, fora=fora,
                 em_campo_casa=list(onze_casa), em_campo_fora=list(onze_fora))
     p.entrada = {pid: 0 for pid in onze_casa + onze_fora}
+    p.time_de = {**{pid: casa for pid in onze_casa}, **{pid: fora for pid in onze_fora}}
     p.papeis = dict(papeis or {})
     amarelados: set[int] = set()
 
@@ -334,6 +344,7 @@ def simular_partida(
                 if sai in lista and entra not in p.entrada:
                     lista[lista.index(sai)] = entra
                     p.entrada[entra] = p.minuto
+                    p.time_de[entra] = clube
                     if sai in p.papeis:            # quem entra assume a vaga de quem saiu
                         p.papeis[entra] = p.papeis[sai]
                     p.eventos.append(Evento(
@@ -530,6 +541,7 @@ def _tirar_lesionados(p: Partida, world, bancos: dict[int, list[int]],
                                   or setor == "GK"), banco[0])
                 lista[lista.index(sai)] = entra
                 p.entrada[entra] = p.minuto
+                p.time_de[entra] = clube
                 if sai in p.papeis:
                     p.papeis[entra] = p.papeis[sai]
                 p.eventos.append(Evento(

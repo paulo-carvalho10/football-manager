@@ -236,7 +236,9 @@ def test_o_craque_sobe_e_o_reserva_desce(carreira):
     de_b = {pid for cid in c.world.leagues[b].club_ids
             for pid in c.world.clubs[cid].player_ids}
     rng = c.streams.get("teste_mercado", c.temporada)
-    feitas = janela(c.world, rng, c.temporada)
+    # como a carreira chama: so os clubes das ligas dela (o mundo inteiro e pano de fundo)
+    da_carreira = {k for n in c.ligas for k in c.world.leagues[load_league(n)["id"]].club_ids}
+    feitas = janela(c.world, rng, c.temporada, da_carreira)
     para_cima = [t for t in feitas
                  if t.jogador in de_b and c.world.clubs[t.para].league_id == a]
     assert para_cima, "nenhum jogador da segunda divisao subiu: o mercado e' de mao unica"

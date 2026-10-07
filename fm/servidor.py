@@ -137,6 +137,12 @@ def _lesao_do(c: Carreira, pid: int) -> dict | None:
 
 
 def _clube(c: Carreira, cid: int) -> dict:
+    # a selecao e um clube do mundo das selecoes (fm.selecoes), nao do mundo dos clubes;
+    # antes da primeira data FIFA esse mundo nem existe, e ela sai so do nome e das cores
+    if cid not in c.world.clubs:
+        from fm.selecoes import e_selecao, pais_da_selecao
+        if e_selecao(cid):
+            return _selecao_json(c, pais_da_selecao(cid))
     return _clube_do_mundo(c.world, cid)
 
 
@@ -163,6 +169,68 @@ def _tabelas(c: Carreira):
     forca, caras (o mundo inteiro ordenado): quem pergunta por varias copas cria UMA e
     passa adiante, e ela so e calculada se alguma copa precisar."""
     return c.tabelas_do_ano_anterior or TabelasPreguicosas(c._tabelas_por_forca)
+
+
+def _selecao_json(c: Carreira, pais: str | None) -> dict | None:
+    """A selecao como a tela desenha um clube: nome, cores e o escudo gerado."""
+    if not pais:
+        return None
+    from fm.selecoes import _cores, id_da_selecao
+    sid = id_da_selecao(pais)
+    if c.fifa is not None and c.fifa.mundo is not None and sid in c.fifa.mundo.clubs:
+        return _clube_do_mundo(c.fifa.mundo, sid)
+    cor, cor2 = _cores(pais)
+    return {"id": sid, "nome": pais, "cor": cor, "cor2": cor2, "camisa": cor,
+            "camisa2": cor2, "padrao": "liso", "escudo": False,
+            "moeda": json_da_moeda("")}
+
+
+def _linha_da_selecao(c: Carreira, i: int) -> dict | None:
+    """A data FIFA no calendario: so as da selecao do usuario, jogadas ou por jogar. O
+    rival e o resultado sao do ponto de vista da SELECAO, nao do clube."""
+    from fm.selecoes import id_da_selecao, pais_da_selecao
+    from fm.torneio import carregar
+    r = c.jogos_da_selecao.get(i)
+    nome = c.competicoes_da_selecao.get(i)
+    if r is None:
+        if i < c.data or not c.selecao_do_usuario or c.fifa is None:
+            return None
+        nome = c.fifa.joga_em(c.selecao_do_usuario, c.dias[i])
+        if nome is None:
+            return None
+    eu = id_da_selecao(c.selecao_do_usuario) if c.selecao_do_usuario else None
+    rival, resultado = None, None
+    if r is not None:
+        if eu not in (r.home, r.away):          # treinava outra selecao nesta data
+            eu = r.home
+        casa = r.home == eu
+        outro = r.away if casa else r.home
+        rival = {"nome": pais_da_selecao(outro), "clube": _clube(c, outro), "casa": casa}
+        meus, deles = (r.goals_home, r.goals_away) if casa else (r.goals_away, r.goals_home)
+        resultado = {"casa": pais_da_selecao(r.home), "fora": pais_da_selecao(r.away),
+                     "clube_casa": _clube(c, r.home), "clube_fora": _clube(c, r.away),
+                     "gols_casa": r.goals_home, "gols_fora": r.goals_away,
+                     "resultado": "V" if meus > deles else "E" if meus == deles else "D"}
+    return {"ordem": i, "tipo": "selecao", "dia": texto(c.dia(i)),
+            "competicao": (f"{pais_da_selecao(eu) if eu else ''} · {carregar(nome).nome}"
+                           if nome else "Seleção"),
+            "rodada": None, "rival": rival, "resultado": resultado, "passou": i < c.data}
+
+
+def _proximo_da_selecao(c: Carreira, nome: str) -> dict:
+    from fm.torneio import carregar
+    rival = c.fifa.proximo_rival(c.selecao_do_usuario, nome) if c.fifa else None
+    a = c.fifa.competicoes.get(nome) if c.fifa else None
+    casa = None
+    if a is not None and a.pendentes and rival is not None:
+        from fm.selecoes import id_da_selecao
+        sid = id_da_selecao(c.selecao_do_usuario)
+        f = next((f for f in a.pendentes[0] if sid in (f.home, f.away)), None)
+        casa = bool(f and f.home == sid)
+    return {"tipo": "selecao", "competicao": carregar(nome).nome, "id": f"fifa:{nome}",
+            "fase": a.nome_da_fase if a is not None else "",
+            "selecao": _selecao_json(c, c.selecao_do_usuario),
+            "rival": _clube(c, rival) if rival is not None else None, "casa": casa}
 
 
 def _situacao_na_copa(c: Carreira, a, tabelas=None) -> str:
@@ -228,6 +296,8 @@ def estado(jogo: Jogo) -> dict:
                    "casa": jogo_.home == c.clube_id,
                    # a rodada DA LIGA (a 12a do Brasileirao), nao a data da grade
                    "rodada": c.rodada_da_liga(data_de_liga=jogo_.matchday)}
+    elif tipo == "selecao":
+        proximo = _proximo_da_selecao(c, onde)
     elif tipo == "copa":
         a = c.copas[onde]
         f, ida = _jogo_de_copa(c, a)
@@ -299,6 +369,8 @@ def estado(jogo: Jogo) -> dict:
         "temporadas": len(c.historico) + 1,
         # a tela abre a janela de "proposta recebida" sozinha quando ha uma aqui
         "propostas_pendentes": [_proposta_json(c, x) for x in c.propostas_pendentes()],
+        "selecao": _selecao_json(c, c.selecao_do_usuario),
+        "convite_selecao": _selecao_json(c, c.convite_selecao),
         "copas": [
             {"id": nome, "nome": a.torneio.nome, "fase": a.nome_da_fase,
              "vivo": a.esta_vivo(c.clube_id), "acabou": a.acabou,
@@ -680,6 +752,11 @@ def calendario(jogo: Jogo) -> dict:
             proxima_da_copa.setdefault(quem, i)
     linhas, data_de_liga = [], 0
     for i, (tipo, quem) in enumerate(c.agenda):
+        if tipo == "selecao":
+            linha = _linha_da_selecao(c, i)
+            if linha is not None:
+                linhas.append(linha)
+            continue
         if tipo == "liga":
             data_de_liga += 1
             # cada liga tem as suas rodadas na grade: a do clube folga em algumas datas
@@ -780,8 +857,19 @@ def _trocar_de_carreira(jogo: Jogo, c: Carreira) -> None:
 
 # ------------------------------------------------------------------ partida ao vivo
 
+def _rotulo_da_selecao(c: Carreira, nome: str | None) -> str:
+    from fm.torneio import carregar
+    if not nome:
+        return c.selecao_do_usuario or ""
+    a = c.fifa.competicoes.get(nome) if c.fifa else None
+    fase = f" · {a.nome_da_fase}" if a is not None and a.nome_da_fase else ""
+    return f"{c.selecao_do_usuario} · {carregar(nome).nome}{fase}"
+
+
 def _competicao_da_proxima(c: Carreira) -> tuple[str, str]:
     tipo, onde, _ = c.proximo_jogo()
+    if tipo == "selecao":
+        return tipo, _rotulo_da_selecao(c, onde)
     if tipo == "liga":
         from fm.config import load_league
         jogo_ = c.proxima_partida_da_liga()
@@ -801,6 +889,10 @@ def _competicao_em_campo(c: Carreira) -> tuple[str, str] | None:
     previsto (_competicao_da_proxima) erra na copa: o sorteio so sai no dia, e a partida
     de copa aparecia como a proxima rodada da liga."""
     tipo, onde = c.ultimo_compromisso
+    if tipo == "selecao":
+        if c._em_campo is None:
+            return None
+        return tipo, _rotulo_da_selecao(c, c.fifa.torneio_do_usuario if c.fifa else None)
     if tipo == "liga":
         jogo_ = c.proxima_partida_da_liga()
         n = c.rodada_da_liga(data_de_liga=jogo_.matchday) if jogo_ else c.rodada_da_liga() + 1
@@ -907,6 +999,8 @@ def partida_atual(jogo: Jogo) -> dict:
             tipo_, onde = jogo.c.ultimo_compromisso
             jogo.pos_jogo["comp_id"] = (onde if tipo_ == "copa" and onde in jogo.c.copas
                                         else jogo.c.liga)
+            if tipo_ == "selecao" and jogo.c.fifa and jogo.c.fifa.torneio_do_usuario:
+                jogo.pos_jogo["comp_id"] = f"fifa:{jogo.c.fifa.torneio_do_usuario}"
         if jogo.pos_jogo is not None:
             retrato["impacto"] = jogo.pos_jogo.get("impacto")
         retrato["estado"] = estado(jogo)
@@ -1044,6 +1138,17 @@ def emprestar(jogo: Jogo, corpo: dict) -> dict:
     return {"resultado": "concluida", "mensagem": feito["mensagem"], "estado": estado(jogo)}
 
 
+def _acao_da_selecao(jogo: Jogo, corpo: dict) -> dict:
+    """assumir, recusar, deixar, convocar {jogadores} e escalar {onze, tatica}."""
+    acao = {"tipo": f"{corpo.get('acao', '')}_selecao"}
+    for k in ("pais", "jogadores", "onze", "tatica"):
+        if k in corpo:
+            acao[k] = corpo[k]
+    r = jogo.c.executar(acao)
+    return {**r, "selecao": telas.selecao_nacional(jogo.c, lambda cid: _clube(jogo.c, cid)),
+            "estado": estado(jogo)}
+
+
 def tabela_da_competicao(jogo: Jogo, q: dict) -> dict:
     """`?comp=auto` abre na competicao do proximo jogo; `?comp=<liga ou copa>` escolhe;
     sem nada (ou `?liga=`) e a tabela da divisao, como sempre foi."""
@@ -1052,7 +1157,7 @@ def tabela_da_competicao(jogo: Jogo, q: dict) -> dict:
     if comp == "auto":
         comp = c.competicao_do_proximo() or c.liga
     clube = lambda cid: _clube(c, cid)  # noqa: E731
-    if comp in c.copas:
+    if comp in c.copas or telas.andamento_de(c, comp) is not None:
         return telas.copa(c, comp, clube)
     return telas.classificacao(c, comp, clube)
 
@@ -1152,6 +1257,8 @@ ROTAS_GET = {
     "/api/mercado": lambda jogo, q: telas.mercado(jogo.c, q, lambda cid: _clube(jogo.c, cid)),
     "/api/olheiro": lambda jogo, q: telas.olheiro(jogo.c, lambda cid: _clube(jogo.c, cid)),
     "/api/trofeus": lambda jogo, q: telas.sala_de_trofeus(jogo.c),
+    "/api/selecao_nacional": lambda jogo, q: telas.selecao_nacional(
+        jogo.c, lambda cid: _clube(jogo.c, cid)),
     "/api/propostas": lambda jogo, q: propostas(jogo),
     "/api/renovacao": lambda jogo, q: renovacao_info(jogo, _inteiro(q, "jogador")),
     "/api/contrato": lambda jogo, q: contrato_info(jogo, _inteiro(q, "jogador")),
@@ -1198,6 +1305,7 @@ ROTAS_POST = {
     "/api/partida/seguir": partida_seguir,
     "/api/avancar": lambda jogo, corpo: avancar(jogo),
     "/api/escalar": escalar,
+    "/api/selecao_nacional": lambda jogo, corpo: _acao_da_selecao(jogo, corpo),
     "/api/virar": lambda jogo, corpo: virar_o_ano(jogo),
     "/api/salvar": lambda jogo, corpo: {
         "arquivo": str(jogo.c.salvar(corpo.get("nome", "carreira")))},
