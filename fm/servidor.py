@@ -23,7 +23,7 @@ from urllib.parse import urlparse
 from fm import telas
 from fm.ratings import exibir
 from fm.calendario import texto
-from fm.carreira import Carreira, saves_disponiveis
+from fm.carreira import Carreira, TabelasPreguicosas, saves_disponiveis
 from fm.moeda import json_da_moeda
 from fm.moral import rotulo_da_moral
 from fm.tatica import DESENHOS, ESTILOS, FORMACOES, MARCACOES, PONTOS, Tatica, arrumar_no_campo
@@ -158,7 +158,14 @@ def _nome_da_liga(chave: str) -> str:
     return telas.nome_da_liga(chave)
 
 
-def _situacao_na_copa(c: Carreira, a) -> str:
+def _tabelas(c: Carreira):
+    """As tabelas que decidem quem entra nas fases seguintes. No primeiro ano sao as de
+    forca, caras (o mundo inteiro ordenado): quem pergunta por varias copas cria UMA e
+    passa adiante, e ela so e calculada se alguma copa precisar."""
+    return c.tabelas_do_ano_anterior or TabelasPreguicosas(c._tabelas_por_forca)
+
+
+def _situacao_na_copa(c: Carreira, a, tabelas=None) -> str:
     """Onde o usuario esta na copa. "fora" so para quem entrou e caiu: o clube que ainda
     vai entrar numa fase adiante (a Serie A entra na Copa do Brasil depois) nao esta fora."""
     from fm.torneio import resolver_entradas
@@ -171,7 +178,7 @@ def _situacao_na_copa(c: Carreira, a) -> str:
         return "eliminado"
     if a.acabou:
         return "não disputou"
-    tabelas = c.tabelas_do_ano_anterior or c._tabelas_por_forca()
+    tabelas = tabelas or _tabelas(c)
     for fase in a.torneio.fases[a.fase + 1:]:
         try:
             if eu in resolver_entradas(c.world, fase.get("entram", []), tabelas,
@@ -207,6 +214,7 @@ def estado(jogo: Jogo) -> dict:
     comp_prox = c.competicao_do_proximo()
     suspensos_prox = c.suspensos_do_proximo()
     tatica = c.tatica_atual()
+    tabelas = _tabelas(c)
     onze = set(c.escalacao_atual())
     elenco = sorted(c.world.squad(c.clube_id),
                     key=lambda p: (POSICAO_ORDEM.get(p.position, 9), -p.overall))
@@ -294,7 +302,7 @@ def estado(jogo: Jogo) -> dict:
         "copas": [
             {"id": nome, "nome": a.torneio.nome, "fase": a.nome_da_fase,
              "vivo": a.esta_vivo(c.clube_id), "acabou": a.acabou,
-             "situacao": _situacao_na_copa(c, a),
+             "situacao": _situacao_na_copa(c, a, tabelas),
              "campeao": _clube(c, a.campeao)["nome"] if a.campeao else None}
             for nome, a in c.copas.items()
         ],
@@ -608,14 +616,14 @@ def _rival(c: Carreira, casa: int, fora: int) -> dict:
     return {"nome": _clube(c, outro)["nome"], "clube": _clube(c, outro), "casa": casa == c.clube_id}
 
 
-def _copa_ainda_me_envolve(c: Carreira, a) -> str | None:
+def _copa_ainda_me_envolve(c: Carreira, a, tabelas=None) -> str | None:
     """Como a copa ainda envolve o clube do usuario: None (nao envolve), "" (ele esta nela
     ou entra numa fase ja decidida) ou o nome da copa de onde ele ainda pode cair nesta --
     o 3o do grupo da Libertadores vai ao playoff da Sul-Americana."""
     from fm.torneio import resolver_entradas
 
     me = c.clube_id
-    tabelas = c.tabelas_do_ano_anterior or c._tabelas_por_forca()
+    tabelas = tabelas or _tabelas(c)
 
     def minha_fase(b) -> int | None:
         """A primeira fase de `b` que o clube disputa daqui em diante. A tabela que decide
@@ -659,7 +667,8 @@ def calendario(jogo: Jogo) -> dict:
     metade delas de Champions e Liga Europa. A data de copa so entra se o clube jogou nela
     ou se a copa ainda o envolve; o resto era uma fileira de "sem jogo do clube"."""
     c = jogo.c
-    envolve = {nome: _copa_ainda_me_envolve(c, a) for nome, a in c.copas.items()}
+    tabelas = _tabelas(c)
+    envolve = {nome: _copa_ainda_me_envolve(c, a, tabelas) for nome, a in c.copas.items()}
     jogados = {}
     for r in c.jogos():
         if c.clube_id in (r.home, r.away):

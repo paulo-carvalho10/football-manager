@@ -50,7 +50,7 @@ def _apply_condition(world: World, fixtures: list[Fixture]) -> None:
         for p in world.squad(club_id):
             recupera = TAXA_DE_RECUPERACAO * (100 - p.condition)
             delta = recupera - (CONDITION_COST if p.id in xi else 0)
-            p.condition = int(np.clip(p.condition + delta, 25, 100))
+            p.condition = int(min(max(p.condition + delta, 25), 100))
 
 
 def play_league_season(

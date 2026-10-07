@@ -35,10 +35,10 @@ Formato:
 from __future__ import annotations
 
 import re
-import tomllib
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from fm.arquivos import ler_pack
 from fm.model import POSICAO_DETALHE
 
 PACKS_DIR = Path(__file__).resolve().parent.parent / "data" / "packs"
@@ -124,8 +124,7 @@ def load_pack(name: str) -> Pack:
     if not path.exists():
         raise FileNotFoundError(
             f"pack {name!r} nao encontrado. Disponiveis: {available_packs()}")
-    with path.open("rb") as fh:
-        raw = tomllib.load(fh)
+    raw = ler_pack(path)
 
     clubes = []
     for c in raw.get("clubes", []):

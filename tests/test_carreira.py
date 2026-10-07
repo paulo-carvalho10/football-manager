@@ -212,6 +212,7 @@ def test_o_retrato_carrega_o_mesmo_mundo_que_o_replay(tmp_path, monkeypatch):
         c.avancar()
     c.salvar("r")
     assert (tmp_path / "r.retrato").exists()
+    (tmp_path / "r.ponto").unlink()      # o ponto do save tem teste proprio, abaixo
 
     chamadas = []
     original = mod.build_world
@@ -225,3 +226,53 @@ def test_o_retrato_carrega_o_mesmo_mundo_que_o_replay(tmp_path, monkeypatch):
     completo = Carreira.carregar("r")
     assert chamadas, "retrato de outra versao do jogo nao pode valer"
     assert _foto(completo) == _foto(c)
+
+
+def test_o_ponto_do_save_abre_sem_refazer_nada(tmp_path, monkeypatch):
+    """O ponto e a carreira na hora do save: abrir por ele nao refaz nenhuma data, da o
+    mesmo mundo do replay e o jogo segue igual pelos dois caminhos."""
+    import fm.carreira as mod
+    monkeypatch.setattr(mod, "SAVES_DIR", tmp_path)
+    c = Carreira.nova(["brasil_real", "brasil_b_real"], "Santos", seed=8)
+    for _ in range(20):
+        c.avancar()
+    c.salvar("p")
+    assert (tmp_path / "p.ponto").exists()
+
+    datas = []
+    original = mod.Carreira.avancar
+    monkeypatch.setattr(mod.Carreira, "avancar",
+                        lambda self, *a, **k: datas.append(1) or original(self, *a, **k))
+    pelo_ponto = Carreira.carregar("p")
+    assert not datas, "com o ponto valido nenhuma data e refeita"
+    assert _foto(pelo_ponto) == _foto(c)
+
+    (tmp_path / "p.ponto").rename(tmp_path / "guardado")
+    pelo_replay = Carreira.carregar("p")
+    assert datas, "sem o ponto o replay roda"
+    assert _foto(pelo_replay) == _foto(c)
+    for x in (pelo_ponto, pelo_replay):
+        for _ in range(3):
+            x.avancar()
+    assert _foto(pelo_ponto) == _foto(pelo_replay)
+
+    # o ponto e de UM save: o mesmo arquivo com outro save ao lado nao vale
+    (tmp_path / "guardado").rename(tmp_path / "p.ponto")
+    texto = (tmp_path / "p.json").read_text(encoding="utf-8")
+    (tmp_path / "p.json").write_text(texto.replace('"treinador": "', '"treinador": "X'),
+                                     encoding="utf-8")
+    datas.clear()
+    Carreira.carregar("p")
+    assert datas, "ponto de outro save nao pode valer"
+
+
+def test_salvar_no_meio_da_partida_nao_grava_ponto(tmp_path, monkeypatch):
+    """A partida ao vivo roda numa thread; salvar no intervalo pegaria meia data."""
+    import fm.carreira as mod
+    monkeypatch.setattr(mod, "SAVES_DIR", tmp_path)
+    c = Carreira.nova(["brasil_real", "brasil_b_real"], "Santos", seed=8)
+    c.salvar("m")
+    assert (tmp_path / "m.ponto").exists()
+    c._no_meio_da_data = True
+    c.salvar("m")
+    assert not (tmp_path / "m.ponto").exists(), "o ponto antigo tambem nao vale mais"

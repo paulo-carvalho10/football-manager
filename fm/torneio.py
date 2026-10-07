@@ -8,12 +8,12 @@ tabela" para virar classificacao de verdade, sem mexer no resto.
 
 from __future__ import annotations
 
-import tomllib
 from dataclasses import dataclass, field
 from pathlib import Path
 
 import numpy as np
 
+from fm.arquivos import ler_toml
 from fm.competition import (
     Fixture,
     group_stage,
@@ -49,8 +49,7 @@ def carregar(nome: str) -> Torneio:
     if not caminho.exists():
         disponiveis = sorted(p.stem for p in TORNEIOS_DIR.glob("*.toml"))
         raise FileNotFoundError(f"torneio {nome!r} nao existe. Ha: {disponiveis}")
-    with caminho.open("rb") as fh:
-        cfg = tomllib.load(fh)
+    cfg = ler_toml(caminho)
     e = cfg.get("estilo", {})
     m = cfg.get("mentalidade", {})
     return Torneio(

@@ -151,8 +151,13 @@ class World:
         formation = formation or self.formacao_fixa.get(club_id) or FORMATION_DEFAULT
         # ordena pelo overall EFETIVO: jogador desgastado perde a vaga para o reserva
         # inteiro, e a rotacao passa a ser decisao de verdade.
-        pool = sorted((p for p in self.squad(club_id) if p.id not in self.indisponiveis),
-                      key=lambda p: -p.effective_overall)
+        # a conta de `effective_overall` por extenso: a propriedade custa duas chamadas
+        # por jogador, e isto roda ~8 vezes por clube em cada rodada do mundo inteiro
+        fora = self.indisponiveis
+        pool = sorted((self.players[i] for i in self.clubs[club_id].player_ids
+                       if i not in fora),
+                      key=lambda p: -(p.overall - max(
+                          0.0, (100.0 - p.condition) / 60.0 * MAX_FATIGUE_PENALTY)))
         need = dict(formation)
         xi: list[Player] = []
         for p in pool:

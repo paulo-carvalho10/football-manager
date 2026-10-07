@@ -17,6 +17,7 @@ from functools import lru_cache
 
 import numpy as np
 
+from fm import moral
 from fm.model import World
 
 TITULARES_POR_GRUPO = {"GK": 1, "DF": 4, "MF": 3, "FW": 3}
@@ -61,8 +62,7 @@ IDADE_DO_VETERANO = 31
 
 
 def insatisfeito(p) -> bool:
-    from fm.moral import INSATISFEITO
-    return p.morale < INSATISFEITO
+    return p.morale < moral.INSATISFEITO
 
 
 def abatido(p) -> bool:
@@ -209,6 +209,10 @@ def janela(world: World, rng: np.random.Generator, temporada: int,
                     if p.id in travados or p.club_id != dono or dono == comprador:
                         continue
                     if p.overall <= corte:
+                        continue
+                    # so troca de escolhido quem e MELHOR que o atual: o resto nem precisa
+                    # ter preco calculado (era o grosso dos 10 s da janela do mundo inteiro)
+                    if melhor is not None and p.overall <= melhor.overall:
                         continue
                     salto = niveis[comprador] - niveis.get(dono, 0)
                     # o clube no vermelho nao esta em posicao de recusar: o titular dele sai

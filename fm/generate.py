@@ -104,7 +104,8 @@ def _attributes(rng: np.random.Generator, overall: int, position: str) -> dict[s
     }[position]
     keys = ("finishing", "passing", "dribbling", "marking", "pace", "strength", "stamina",
             "technique", "positioning", "vision", "reflexes", "aerial")
-    return {k: int(np.clip(round(overall + bias.get(k, 0) + rng.normal(0, 4)), 20, 99))
+    # min/max, nao np.clip: com o mundo inteiro sao 250 mil atributos
+    return {k: int(min(max(round(overall + bias.get(k, 0) + rng.normal(0, 4)), 20), 99))
             for k in keys}
 
 
@@ -225,8 +226,8 @@ def _build_squad(world, club, pack_club, strength, rng, next_id, country, season
     for i, j in enumerate(nominais):
         pid = next_id[0]
         next_id[0] += 1
-        ovr = j.ovr if j.ovr is not None else int(np.clip(
-            round(strength + curve_delta(i) - xi_offset + rng.normal(0, 1.2)), 35, 95))
+        ovr = j.ovr if j.ovr is not None else int(min(max(
+            round(strength + curve_delta(i) - xi_offset + rng.normal(0, 1.2)), 35), 95))
         idade = j.age_in(season_year) or AGE_SHAPE[min(i, len(AGE_SHAPE) - 1)]
         jogador = _make_player(pid, rng, country, season_year, ovr,
                                j.pos or "MF", int(idade), club.id, name=j.nome)
@@ -240,8 +241,8 @@ def _build_squad(world, club, pack_club, strength, rng, next_id, country, season
 
     for k, pos in enumerate(reserva_pos):
         slot = len(nominais) + k
-        ovr = int(np.clip(
-            round(strength + curve_delta(slot) - xi_offset + rng.normal(0, 1.2)), 35, 95))
+        ovr = int(min(max(
+            round(strength + curve_delta(slot) - xi_offset + rng.normal(0, 1.2)), 35), 95))
         pid = next_id[0]
         next_id[0] += 1
         world.players[pid] = _make_player(

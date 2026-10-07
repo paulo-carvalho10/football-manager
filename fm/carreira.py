@@ -10,11 +10,10 @@ divergisse, o determinismo estaria quebrado e o save seria a primeira vitima.
 from __future__ import annotations
 
 import json
+from collections.abc import Callable, Iterator, Mapping
 from dataclasses import asdict, dataclass, field
 from datetime import date
 from pathlib import Path
-
-import numpy as np
 
 from fm.calendario import dia_da_data
 from fm.competition import Fixture, Result, play_fixtures, round_robin
@@ -85,6 +84,37 @@ DISPUTAM_VAGA = {"libertadores", "sudamericana", "champions", "europa_league",
                  "conference_league"}
 
 MAX_TROCAS = 5
+
+
+class TabelasPreguicosas(Mapping):
+    """As tabelas por forca, calculadas so quando alguem olha.
+
+    Ordenar os 700 clubes do mundo pela forca do onze custa ~0,1 s, e a copa so precisa
+    disso no dia em que uma fase nova puxa clubes de uma liga -- nas outras datas o calculo
+    era jogado fora. O resultado e o mesmo de calcular na hora da chamada: entre ela e a
+    primeira consulta nenhuma partida e jogada.
+    """
+
+    def __init__(self, calcular: Callable[[], dict[str, list[int]]]) -> None:
+        self._calcular = calcular
+        self._tabelas: dict[str, list[int]] | None = None
+
+    def _todas(self) -> dict[str, list[int]]:
+        if self._tabelas is None:
+            self._tabelas = self._calcular()
+        return self._tabelas
+
+    def __getitem__(self, chave: str) -> list[int]:
+        return self._todas()[chave]
+
+    def __iter__(self) -> Iterator[str]:
+        return iter(self._todas())
+
+    def __len__(self) -> int:
+        return len(self._todas())
+
+    def __bool__(self) -> bool:
+        return True       # `tabelas or {}` nao pode forcar o calculo
 
 
 @dataclass(slots=True)
@@ -159,6 +189,9 @@ class Carreira:
     funcoes: dict[str, int] = field(default_factory=dict)
     # quem decide o batedor na hora do penalti, so durante um avancar(); nao vai ao save
     _pedido_de_penalti: object = field(default=None, repr=False, compare=False)
+    # no meio de um avancar() -- a partida ao vivo roda numa thread e pode ser salva no
+    # intervalo: ai o estado e de meia data e nao vira ponto do save
+    _no_meio_da_data: bool = field(default=False, repr=False, compare=False)
     # a lista de observacao do mercado
     observados: list[int] = field(default_factory=list)
     # A tatica escolhida vale ate a proxima mudanca, e nao so na rodada em que foi feita.
@@ -692,25 +725,39 @@ class Carreira:
             fora[nome] = build_table(ids, resultados)
         return fora
 
-    def _ranking_da_confederacao(self) -> dict[str, list[int]]:
+    def _forca_memorizada(self) -> Callable[[int], float]:
+        """`team_rating` com memoria, para UMA consulta: o ranking da confederacao e a
+        tabela da liga perguntam a forca do mesmo clube, e cada pergunta escolhe o onze."""
+        nivel: dict[int, float] = {}
+
+        def forca(cid: int) -> float:
+            if cid not in nivel:
+                nivel[cid] = self.world.team_rating(cid)
+            return nivel[cid]
+        return forca
+
+    def _ranking_da_confederacao(self, forca: Callable[[int], float] | None = None
+                                 ) -> dict[str, list[int]]:
         """"CONMEBOL": os clubes de primeira divisao da confederacao, do mais forte ao mais
         fraco. E a reserva das vagas de campeao da Libertadores e da Sul-Americana no
         primeiro ano da carreira, quando ainda nao ha campeao."""
+        forca = forca or self._forca_memorizada()
         fora = {}
         for conf, ligas in LIGAS_DA_CONFEDERACAO.items():
             ids = [k for n in ligas if n in self.ligas or n in self.ligas_de_fora
                    for k in self.world.leagues[load_league(n)["id"]].club_ids]
             if ids:
-                fora[conf] = sorted(ids, key=lambda k: (-self.world.team_rating(k), k))
+                fora[conf] = sorted(ids, key=lambda k: (-forca(k), k))
         return fora
 
     def _tabelas_por_forca(self) -> dict[str, list[int]]:
         """Sem temporada anterior, a ordem por forca do elenco faz as vezes de tabela."""
-        fora: dict[str, list[int]] = self._ranking_da_confederacao()
+        forca = self._forca_memorizada()
+        fora: dict[str, list[int]] = self._ranking_da_confederacao(forca)
         for nome in [*self.ligas, *self.ligas_de_fora]:
             cfg = load_league(nome)
             ordem = sorted(self.world.leagues[cfg["id"]].club_ids,
-                           key=lambda cid: -self.world.team_rating(cid))
+                           key=lambda cid: -forca(cid))
             fora[cfg["id"]] = ordem
             if cfg.get("codigo"):
                 fora[cfg["codigo"]] = ordem
@@ -898,11 +945,13 @@ class Carreira:
         # `penaltis(partida, minuto, clube)` e chamado em todo penalti da minha partida,
         # dos dois lados (a tela pausa nos dois); so a resposta para o MEU clube vale
         self._pedido_de_penalti = penaltis
+        self._no_meio_da_data = True
         try:
             saida = self._avancar_data(substituicoes)
+            self._novas_propostas()
         finally:
             self._pedido_de_penalti = None
-        self._novas_propostas()
+            self._no_meio_da_data = False
         return saida
 
     def _avancar_data(self, substituicoes=None) -> tuple[list[Result], Partida | None]:
@@ -1186,7 +1235,7 @@ class Carreira:
         if andamento is None:
             return None
         rng = self.streams.get("copa", self.temporada, self.data, nome)
-        tabelas = self.tabelas_do_ano_anterior or self._tabelas_por_forca()
+        tabelas = self.tabelas_do_ano_anterior or TabelasPreguicosas(self._tabelas_por_forca)
         self._repassar_exportados(andamento)
         if self._esperando_outro_torneio(andamento):
             return None                 # a data desta copa passa sem jogo
@@ -1612,7 +1661,9 @@ class Carreira:
             for p in self.world.squad(club_id):
                 recupera = taxa * (100 - p.condition)
                 delta = recupera - (custo if p.id in onze else 0.0)
-                p.condition = int(np.clip(p.condition + delta, 25, 100))
+                # min/max, nao np.clip: num numero solto o clip custa 20x mais, e aqui
+                # ele rodava 4 milhoes de vezes por temporada com o mundo inteiro
+                p.condition = int(min(max(p.condition + delta, 25), 100))
 
     # ---------------------------------------------------------------- virar o ano
 
@@ -1854,6 +1905,7 @@ class Carreira:
     def salvar(self, nome: str) -> Path:
         SAVES_DIR.mkdir(parents=True, exist_ok=True)
         destino = SAVES_DIR / f"{nome}.json"
+        _arquivo_do_ponto(nome).unlink(missing_ok=True)   # o ponto antigo nao vale mais
         destino.write_text(json.dumps({
             "seed": self.seed, "ligas": self.ligas, "clube_id": self.clube_id,
             "clube_inicial": self.clube_inicial,
@@ -1872,6 +1924,8 @@ class Carreira:
         if self.retrato is not None:
             _gravar_retrato(nome, self.temporada, self.retrato,
                             json.loads(destino.read_text(encoding="utf-8")))
+        if not self._no_meio_da_data:
+            _gravar_ponto(nome, self, destino.read_text(encoding="utf-8"))
         return destino
 
     @classmethod
@@ -1879,7 +1933,11 @@ class Carreira:
         origem = SAVES_DIR / f"{nome}.json"
         if not origem.exists():
             raise FileNotFoundError(f"save {nome!r} nao existe. Ha: {saves_disponiveis()}")
-        d = _atualizar_save(json.loads(origem.read_text(encoding="utf-8")))
+        texto = origem.read_text(encoding="utf-8")
+        pronta = _do_ponto(nome, texto)
+        if pronta is not None:
+            return pronta
+        d = _atualizar_save(json.loads(texto))
         atalho = _do_retrato(nome, d)
         if atalho is not None:
             # as decisoes do ano em curso vem do save; as de antes ja estao no retrato
@@ -2007,8 +2065,8 @@ def _gravar_retrato(nome: str, temporada: int, retrato: bytes | None, d: dict) -
         pass
 
 
-def _do_retrato(nome: str, d: dict) -> Carreira | None:
-    """A carreira do retrato, se ele valer para este save; senao None (replay completo)."""
+def _retrato_valido(nome: str, d: dict) -> bytes | None:
+    """O estado guardado no retrato, se ele valer para este save; senao None."""
     import gzip
     import pickle
     arq = _arquivo_do_retrato(nome)
@@ -2020,10 +2078,72 @@ def _do_retrato(nome: str, d: dict) -> Carreira | None:
             return None
         if dados.get("chave") != _chave_do_retrato(d, dados["temporada"]):
             return None
-        c = pickle.loads(dados["estado"])
+        return dados["estado"]
     except Exception:                     # retrato corrompido ou de outra versao
         return None
-    c.retrato = dados["estado"]
+
+
+def _do_retrato(nome: str, d: dict) -> Carreira | None:
+    """A carreira do retrato, se ele valer para este save; senao None (replay completo)."""
+    import pickle
+    estado = _retrato_valido(nome, d)
+    if estado is None:
+        return None
+    try:
+        c = pickle.loads(estado)
+    except Exception:
+        return None
+    c.retrato = estado
+    return c
+
+
+# ---------------------------------------------------------------- o ponto do save
+#
+# O retrato e o comeco da temporada; o save no meio dela ainda refazia todas as datas ate
+# ali -- com o mundo inteiro, ~20 s para abrir um save de novembro. O PONTO e a carreira
+# exatamente como estava na hora de salvar. Vale so para aquele save, naquela versao do
+# jogo: a chave e o texto do save mais a impressao digital do motor. Qualquer diferenca e
+# o caminho de sempre (retrato + replay), que da o mesmo mundo, so que mais devagar.
+
+
+def _arquivo_do_ponto(nome: str) -> Path:
+    return SAVES_DIR / f"{nome}.ponto"
+
+
+def _chave_do_ponto(texto_do_save: str) -> str:
+    import hashlib
+    return hashlib.sha256((_impressao_digital() + texto_do_save).encode()).hexdigest()
+
+
+def _gravar_ponto(nome: str, c: Carreira, texto_do_save: str) -> None:
+    """Falhar aqui nao derruba o save: sem ponto, carregar so fica mais lento."""
+    import gzip
+    import pickle
+    try:
+        estado = c._fotografar()          # sem o retrato dentro: ele tem arquivo proprio
+        conteudo = pickle.dumps({"chave": _chave_do_ponto(texto_do_save),
+                                 "estado": estado}, protocol=5)
+        _arquivo_do_ponto(nome).write_bytes(gzip.compress(conteudo, compresslevel=1))
+    except (OSError, pickle.PicklingError, TypeError, AttributeError):
+        _arquivo_do_ponto(nome).unlink(missing_ok=True)
+
+
+def _do_ponto(nome: str, texto_do_save: str) -> Carreira | None:
+    """A carreira do ponto, se ele for deste save e desta versao; senao None."""
+    import gzip
+    import pickle
+    arq = _arquivo_do_ponto(nome)
+    if not arq.exists():
+        return None
+    try:
+        dados = pickle.loads(gzip.decompress(arq.read_bytes()))
+        if dados.get("chave") != _chave_do_ponto(texto_do_save):
+            return None
+        c = pickle.loads(dados["estado"])
+    except Exception:                     # ponto corrompido ou de outra versao
+        return None
+    # o retrato do comeco do ano volta do arquivo dele: e o que o proximo save regrava
+    c.retrato = _retrato_valido(nome, _atualizar_save(json.loads(texto_do_save)))
     return c
 
 

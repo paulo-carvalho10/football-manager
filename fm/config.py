@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-import tomllib
 from pathlib import Path
 
+from fm.arquivos import ler_toml
 from fm.match import Mentality, Style
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data" / "leagues"
@@ -15,8 +15,7 @@ def load_league(name: str) -> dict:
     if not path.exists():
         disponiveis = sorted(p.stem for p in DATA_DIR.glob("*.toml"))
         raise FileNotFoundError(f"liga {name!r} nao encontrada. Disponiveis: {disponiveis}")
-    with path.open("rb") as fh:
-        return tomllib.load(fh)
+    return ler_toml(path)
 
 
 def available() -> list[str]:
