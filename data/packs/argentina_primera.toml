@@ -29,6 +29,7 @@ padrao = "liso"
   partidas = 39
   minutos = 3491
   id_fonte = "1138089"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Thiago Almada"
@@ -41,6 +42,7 @@ padrao = "liso"
   minutos = 568
   gols = 2
   id_fonte = "576028"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ángel Correa"
@@ -53,6 +55,7 @@ padrao = "liso"
   minutos = 883
   gols = 3
   id_fonte = "266807"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Aníbal Moreno"
@@ -64,6 +67,7 @@ padrao = "liso"
   partidas = 30
   minutos = 2689
   id_fonte = "642758"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Francisco Ortega"
@@ -75,6 +79,7 @@ padrao = "liso"
   partidas = 3
   minutos = 296
   id_fonte = "553663"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mauro Arambarri"
@@ -86,6 +91,7 @@ padrao = "liso"
   partidas = 2
   minutos = 212
   id_fonte = "290249"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Montiel"
@@ -98,6 +104,7 @@ padrao = "liso"
   minutos = 2476
   gols = 6
   id_fonte = "402733"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Martínez Quarta"
@@ -110,6 +117,7 @@ padrao = "liso"
   minutos = 3174
   gols = 3
   id_fonte = "373373"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Fausto Vera"
@@ -122,6 +130,7 @@ padrao = "liso"
   minutos = 2291
   gols = 1
   id_fonte = "491701"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Rivero"
@@ -134,6 +143,7 @@ padrao = "liso"
   minutos = 2261
   gols = 1
   id_fonte = "1261395"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Sebastián Driussi"
@@ -146,6 +156,7 @@ padrao = "liso"
   minutos = 1508
   gols = 9
   id_fonte = "294853"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Giovanni González"
@@ -157,6 +168,7 @@ padrao = "liso"
   partidas = 3
   minutos = 240
   id_fonte = "339699"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Rafael Santos Borré"
@@ -169,6 +181,7 @@ padrao = "liso"
   minutos = 451
   gols = 1
   id_fonte = "323831"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Lucas Beltrán"
@@ -180,6 +193,7 @@ padrao = "liso"
   partidas = 6
   minutos = 555
   id_fonte = "628366"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Galván"
@@ -192,6 +206,7 @@ padrao = "liso"
   minutos = 2700
   gols = 6
   id_fonte = "893850"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Carlos Portillo"
@@ -203,6 +218,7 @@ padrao = "liso"
   partidas = 1
   minutos = 7
   id_fonte = "830842"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Marcos Acuña"
@@ -215,6 +231,7 @@ padrao = "liso"
   minutos = 1818
   gols = 1
   id_fonte = "60410"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Otamendi"
@@ -226,6 +243,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1080
   id_fonte = "54781"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ezequiel Centurión"
@@ -235,6 +253,7 @@ padrao = "liso"
   pot = 64
   valor = 1200000
   id_fonte = "626917"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tobías Andrada"
@@ -247,6 +266,7 @@ padrao = "liso"
   minutos = 671
   gols = 1
   id_fonte = "1384266"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tobías Ramírez"
@@ -258,6 +278,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "1000684"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Ruberto"
@@ -269,6 +290,7 @@ padrao = "liso"
   partidas = 3
   minutos = 229
   id_fonte = "1000688"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Cruz Meza"
@@ -280,6 +302,7 @@ padrao = "liso"
   partidas = 8
   minutos = 710
   id_fonte = "1231221"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo González"
@@ -291,6 +314,7 @@ padrao = "liso"
   partidas = 6
   minutos = 510
   id_fonte = "1000666"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Pereyra"
@@ -303,6 +327,7 @@ padrao = "liso"
   minutos = 265
   gols = 1
   id_fonte = "1264645"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Silva"
@@ -315,6 +340,7 @@ padrao = "liso"
   minutos = 393
   gols = 1
   id_fonte = "1418875"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Boca Juniors"
@@ -334,6 +360,7 @@ padrao = "liso"
   minutos = 2600
   gols = 3
   id_fonte = "166237"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ayrton Costa"
@@ -345,6 +372,7 @@ padrao = "liso"
   partidas = 25
   minutos = 2280
   id_fonte = "842910"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Ascacíbar"
@@ -357,6 +385,7 @@ padrao = "liso"
   minutos = 2585
   gols = 8
   id_fonte = "423436"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Sebastián Villa"
@@ -369,6 +398,7 @@ padrao = "liso"
   minutos = 784
   gols = 1
   id_fonte = "493000"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Lautaro Di Lollo"
@@ -381,6 +411,7 @@ padrao = "liso"
   minutos = 2742
   gols = 2
   id_fonte = "1019744"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Milton Delgado"
@@ -393,6 +424,7 @@ padrao = "liso"
   minutos = 2692
   gols = 1
   id_fonte = "1236677"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Álvaro Montero"
@@ -404,6 +436,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1440
   id_fonte = "292985"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Lautaro Blanco"
@@ -416,6 +449,7 @@ padrao = "liso"
   minutos = 3234
   gols = 1
   id_fonte = "831161"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leandro Lozano"
@@ -428,6 +462,7 @@ padrao = "liso"
   minutos = 895
   gols = 2
   id_fonte = "665101"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Miguel Merentiel"
@@ -440,6 +475,7 @@ padrao = "liso"
   minutos = 2516
   gols = 12
   id_fonte = "481367"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Tomás Aranda"
@@ -452,6 +488,7 @@ padrao = "liso"
   minutos = 2066
   gols = 1
   id_fonte = "1322355"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Adam Bareiro"
@@ -464,6 +501,7 @@ padrao = "liso"
   minutos = 979
   gols = 6
   id_fonte = "514120"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Malcom Braida"
@@ -475,6 +513,7 @@ padrao = "liso"
   partidas = 9
   minutos = 799
   id_fonte = "552185"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Belmonte"
@@ -487,6 +526,7 @@ padrao = "liso"
   minutos = 1246
   gols = 1
   id_fonte = "483446"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Marchesín"
@@ -498,6 +538,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1084
   id_fonte = "54534"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Carlos Palacios"
@@ -509,6 +550,7 @@ padrao = "liso"
   partidas = 2
   minutos = 158
   id_fonte = "571219"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Marco Pellegrino"
@@ -520,6 +562,7 @@ padrao = "liso"
   partidas = 11
   minutos = 1005
   id_fonte = "776303"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Milton Giménez"
@@ -532,6 +575,7 @@ padrao = "liso"
   minutos = 634
   gols = 4
   id_fonte = "730779"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Enner Valencia"
@@ -544,6 +588,7 @@ padrao = "liso"
   minutos = 276
   gols = 1
   id_fonte = "139503"
+  nacionalidade = "Equador"
 
   [[clubes.jogadores]]
   nome = "Williams Alarcón"
@@ -555,6 +600,7 @@ padrao = "liso"
   partidas = 6
   minutos = 569
   id_fonte = "599552"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Alan Velasco"
@@ -567,6 +613,7 @@ padrao = "liso"
   minutos = 1099
   gols = 6
   id_fonte = "661154"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leandro Brey"
@@ -578,6 +625,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1220
   id_fonte = "982633"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Battaglia"
@@ -587,6 +635,7 @@ padrao = "liso"
   pot = 62
   valor = 500000
   id_fonte = "89297"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonel Flores"
@@ -599,6 +648,7 @@ padrao = "liso"
   minutos = 1167
   gols = 2
   id_fonte = "1291699"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Herrera"
@@ -610,6 +660,7 @@ padrao = "liso"
   partidas = 5
   minutos = 484
   id_fonte = "1291698"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Figal"
@@ -621,6 +672,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1108
   id_fonte = "334055"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ángel Romero"
@@ -633,6 +685,7 @@ padrao = "liso"
   minutos = 593
   gols = 3
   id_fonte = "262262"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Dylan Gorosito"
@@ -644,6 +697,7 @@ padrao = "liso"
   partidas = 7
   minutos = 638
   id_fonte = "1000669"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Ramírez"
@@ -653,6 +707,7 @@ padrao = "liso"
   pot = 55
   valor = 150000
   id_fonte = "190756"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Javier García"
@@ -664,6 +719,7 @@ padrao = "liso"
   partidas = 1
   minutos = 66
   id_fonte = "7966"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Camilo Rey Domenech"
@@ -675,6 +731,7 @@ padrao = "liso"
   partidas = 4
   minutos = 356
   id_fonte = "1000671"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Satas"
@@ -686,6 +743,7 @@ padrao = "liso"
   partidas = 1
   minutos = 91
   id_fonte = "1243852"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Rosario Central"
@@ -704,6 +762,7 @@ padrao = "liso"
   partidas = 34
   minutos = 3052
   id_fonte = "741685"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Conan Ledesma"
@@ -715,6 +774,7 @@ padrao = "liso"
   partidas = 32
   minutos = 2910
   id_fonte = "284342"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Emanuel Coronel"
@@ -726,6 +786,7 @@ padrao = "liso"
   partidas = 26
   minutos = 2384
   id_fonte = "565194"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Ovando"
@@ -738,6 +799,7 @@ padrao = "liso"
   minutos = 2973
   gols = 4
   id_fonte = "1297993"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jáminton Campaz"
@@ -750,6 +812,7 @@ padrao = "liso"
   minutos = 1985
   gols = 3
   id_fonte = "491553"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Gastón Ávila"
@@ -762,6 +825,7 @@ padrao = "liso"
   minutos = 2639
   gols = 3
   id_fonte = "748601"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Vicente Pizarro"
@@ -774,6 +838,7 @@ padrao = "liso"
   minutos = 3015
   gols = 2
   id_fonte = "662740"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Ángel Di María"
@@ -786,6 +851,7 @@ padrao = "liso"
   minutos = 2573
   gols = 10
   id_fonte = "45320"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Sández"
@@ -797,6 +863,7 @@ padrao = "liso"
   partidas = 27
   minutos = 2393
   id_fonte = "847023"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Alexis Soto"
@@ -809,6 +876,7 @@ padrao = "liso"
   minutos = 1324
   gols = 1
   id_fonte = "409272"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Enzo Copetti"
@@ -821,6 +889,7 @@ padrao = "liso"
   minutos = 1954
   gols = 7
   id_fonte = "504254"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Mallo"
@@ -832,6 +901,7 @@ padrao = "liso"
   partidas = 11
   minutos = 972
   id_fonte = "347193"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Tomás Badaloni"
@@ -843,6 +913,7 @@ padrao = "liso"
   partidas = 3
   minutos = 290
   id_fonte = "568546"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alan Rodríguez"
@@ -855,6 +926,7 @@ padrao = "liso"
   minutos = 439
   gols = 1
   id_fonte = "465817"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Federico Navarro"
@@ -866,6 +938,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "632131"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Axel Werner"
@@ -877,6 +950,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "236734"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Cervi"
@@ -888,6 +962,7 @@ padrao = "liso"
   partidas = 1
   minutos = 19
   id_fonte = "341110"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Cruz Komar"
@@ -897,6 +972,7 @@ padrao = "liso"
   pot = 61
   valor = 500000
   id_fonte = "319691"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Julián Fernández"
@@ -909,6 +985,7 @@ padrao = "liso"
   minutos = 1300
   gols = 3
   id_fonte = "984053"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Pol Fernández"
@@ -920,6 +997,7 @@ padrao = "liso"
   partidas = 10
   minutos = 941
   id_fonte = "220647"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Sebastián Zaracho"
@@ -931,6 +1009,7 @@ padrao = "liso"
   partidas = 1
   minutos = 91
   id_fonte = "750754"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Giovanni Cantizano"
@@ -943,6 +1022,7 @@ padrao = "liso"
   minutos = 769
   gols = 1
   id_fonte = "1213079"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gaspar Duarte"
@@ -954,6 +1034,7 @@ padrao = "liso"
   partidas = 5
   minutos = 424
   id_fonte = "1297988"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Giménez"
@@ -965,6 +1046,7 @@ padrao = "liso"
   partidas = 1
   minutos = 59
   id_fonte = "1000686"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Marco Ruben"
@@ -977,6 +1059,7 @@ padrao = "liso"
   minutos = 150
   gols = 1
   id_fonte = "30825"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ulises Ciccioli"
@@ -986,6 +1069,7 @@ padrao = "liso"
   pot = 59
   valor = 400000
   id_fonte = "917826"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Damián Fernández"
@@ -995,6 +1079,7 @@ padrao = "liso"
   pot = 55
   valor = 115500
   id_fonte = "1297991"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luca Raffin"
@@ -1006,6 +1091,7 @@ padrao = "liso"
   partidas = 2
   minutos = 210
   id_fonte = "1186213"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Elías Verón"
@@ -1018,6 +1104,7 @@ padrao = "liso"
   minutos = 389
   gols = 1
   id_fonte = "1428253"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Segovia"
@@ -1029,6 +1116,7 @@ padrao = "liso"
   partidas = 1
   minutos = 78
   id_fonte = "1197922"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Racing Club"
@@ -1047,6 +1135,7 @@ padrao = "liso"
   partidas = 35
   minutos = 3180
   id_fonte = "435001"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gastón Lodico"
@@ -1058,6 +1147,7 @@ padrao = "liso"
   partidas = 4
   minutos = 393
   id_fonte = "563878"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Marco Di Césare"
@@ -1070,6 +1160,7 @@ padrao = "liso"
   minutos = 1629
   gols = 2
   id_fonte = "839029"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Adrián Martínez"
@@ -1082,6 +1173,7 @@ padrao = "liso"
   minutos = 2376
   gols = 10
   id_fonte = "598769"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Zaracho"
@@ -1094,6 +1186,7 @@ padrao = "liso"
   minutos = 1422
   gols = 3
   id_fonte = "480774"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nazareno Colombo"
@@ -1106,6 +1199,7 @@ padrao = "liso"
   minutos = 1068
   gols = 1
   id_fonte = "688207"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ezequiel Cannavo"
@@ -1118,6 +1212,7 @@ padrao = "liso"
   minutos = 2283
   gols = 1
   id_fonte = "844791"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matko Miljevic"
@@ -1130,6 +1225,7 @@ padrao = "liso"
   minutos = 1524
   gols = 4
   id_fonte = "632797"
+  nacionalidade = "Estados Unidos"
 
   [[clubes.jogadores]]
   nome = "Matías Pérez"
@@ -1141,6 +1237,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "744416"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ulises Ortegoza"
@@ -1153,6 +1250,7 @@ padrao = "liso"
   minutos = 760
   gols = 1
   id_fonte = "654814"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Duván Vergara"
@@ -1165,6 +1263,7 @@ padrao = "liso"
   minutos = 805
   gols = 4
   id_fonte = "413658"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Matías Tagliamonte"
@@ -1176,6 +1275,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "552638"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Conechny"
@@ -1188,6 +1288,7 @@ padrao = "liso"
   minutos = 1681
   gols = 4
   id_fonte = "401571"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alfonso Espino"
@@ -1199,6 +1300,7 @@ padrao = "liso"
   partidas = 3
   minutos = 249
   id_fonte = "311044"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Juan Barinaga"
@@ -1210,6 +1312,7 @@ padrao = "liso"
   partidas = 1
   minutos = 46
   id_fonte = "701491"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Díaz"
@@ -1221,6 +1324,7 @@ padrao = "liso"
   partidas = 6
   minutos = 560
   id_fonte = "720294"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Kranevitter"
@@ -1232,6 +1336,7 @@ padrao = "liso"
   partidas = 3
   minutos = 284
   id_fonte = "240900"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonel Pérez"
@@ -1244,6 +1349,7 @@ padrao = "liso"
   minutos = 556
   gols = 1
   id_fonte = "839031"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Rodríguez"
@@ -1256,6 +1362,7 @@ padrao = "liso"
   minutos = 1200
   gols = 1
   id_fonte = "881014"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Adrián Fernández"
@@ -1268,6 +1375,7 @@ padrao = "liso"
   minutos = 1112
   gols = 2
   id_fonte = "877208"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Valentín Carboni"
@@ -1279,6 +1387,7 @@ padrao = "liso"
   partidas = 2
   minutos = 204
   id_fonte = "787618"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Marcos Rojo"
@@ -1291,6 +1400,7 @@ padrao = "liso"
   minutos = 1632
   gols = 2
   id_fonte = "93176"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Elías Torres"
@@ -1302,6 +1412,7 @@ padrao = "liso"
   partidas = 2
   minutos = 157
   id_fonte = "1014363"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alan Forneris"
@@ -1313,6 +1424,7 @@ padrao = "liso"
   partidas = 5
   minutos = 424
   id_fonte = "1240382"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mateo Martínez"
@@ -1324,6 +1436,7 @@ padrao = "liso"
   partidas = 5
   minutos = 434
   id_fonte = "1231193"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Francisco Gómez"
@@ -1333,6 +1446,7 @@ padrao = "liso"
   pot = 55
   valor = 151724
   id_fonte = "997500"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leandro Córdoba"
@@ -1342,6 +1456,7 @@ padrao = "liso"
   pot = 55
   valor = 300000
   id_fonte = "1515981"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alejandro Tello"
@@ -1353,6 +1468,7 @@ padrao = "liso"
   partidas = 6
   minutos = 512
   id_fonte = "1231222"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Escudero"
@@ -1365,6 +1481,7 @@ padrao = "liso"
   minutos = 364
   gols = 1
   id_fonte = "1119049"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Club Estudiantes de La Plata"
@@ -1384,6 +1501,7 @@ padrao = "liso"
   minutos = 2439
   gols = 1
   id_fonte = "993645"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Eric Meza"
@@ -1395,6 +1513,7 @@ padrao = "liso"
   partidas = 27
   minutos = 2400
   id_fonte = "830857"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Eros Mancuso"
@@ -1407,6 +1526,7 @@ padrao = "liso"
   minutos = 1449
   gols = 1
   id_fonte = "888545"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Arzamendia"
@@ -1416,6 +1536,7 @@ padrao = "liso"
   pot = 66
   valor = 2300000
   id_fonte = "520947"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Edwuin Cetré"
@@ -1427,6 +1548,7 @@ padrao = "liso"
   partidas = 15
   minutos = 1350
   id_fonte = "470390"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Fernando Muslera"
@@ -1438,6 +1560,7 @@ padrao = "liso"
   partidas = 30
   minutos = 2655
   id_fonte = "58088"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Jalil Elías"
@@ -1449,6 +1572,7 @@ padrao = "liso"
   partidas = 1
   minutos = 101
   id_fonte = "376859"
+  nacionalidade = "Síria"
 
   [[clubes.jogadores]]
   nome = "Santiago Núñez"
@@ -1461,6 +1585,7 @@ padrao = "liso"
   minutos = 2151
   gols = 1
   id_fonte = "959208"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tiago Palacios"
@@ -1473,6 +1598,7 @@ padrao = "liso"
   minutos = 1687
   gols = 8
   id_fonte = "755457"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Alexis Castro"
@@ -1485,6 +1611,7 @@ padrao = "liso"
   minutos = 1944
   gols = 7
   id_fonte = "364602"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ezequiel Piovi"
@@ -1497,6 +1624,7 @@ padrao = "liso"
   minutos = 2755
   gols = 1
   id_fonte = "487346"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gabriel Neves"
@@ -1508,6 +1636,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1404
   id_fonte = "454181"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Gastón Benedetti"
@@ -1519,6 +1648,7 @@ padrao = "liso"
   partidas = 29
   minutos = 2581
   id_fonte = "843156"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Joaquín Correa"
@@ -1531,6 +1661,7 @@ padrao = "liso"
   minutos = 589
   gols = 1
   id_fonte = "227081"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leandro González Pírez"
@@ -1543,6 +1674,7 @@ padrao = "liso"
   minutos = 2414
   gols = 2
   id_fonte = "113130"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Adolfo Gaich"
@@ -1555,6 +1687,7 @@ padrao = "liso"
   minutos = 792
   gols = 4
   id_fonte = "608469"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Baltasar Rodríguez"
@@ -1567,6 +1700,7 @@ padrao = "liso"
   minutos = 551
   gols = 1
   id_fonte = "1015246"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Brian Aguirre"
@@ -1579,6 +1713,7 @@ padrao = "liso"
   minutos = 841
   gols = 1
   id_fonte = "668549"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Joaquín Tobio Burgos"
@@ -1591,6 +1726,7 @@ padrao = "liso"
   minutos = 1424
   gols = 2
   id_fonte = "1298369"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Fabricio Pérez"
@@ -1603,6 +1739,7 @@ padrao = "liso"
   minutos = 1432
   gols = 3
   id_fonte = "1298374"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Guido Carrillo"
@@ -1615,6 +1752,7 @@ padrao = "liso"
   minutos = 2435
   gols = 9
   id_fonte = "184672"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Alario"
@@ -1627,6 +1765,7 @@ padrao = "liso"
   minutos = 348
   gols = 1
   id_fonte = "193782"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Fabricio Iacovich"
@@ -1638,6 +1777,7 @@ padrao = "liso"
   partidas = 10
   minutos = 945
   id_fonte = "1050051"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Miguel Monsalve"
@@ -1647,6 +1787,7 @@ padrao = "liso"
   pot = 66
   valor = 3500000
   id_fonte = "828045"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Bautista Kociubinski"
@@ -1658,6 +1799,7 @@ padrao = "liso"
   partidas = 1
   minutos = 8
   id_fonte = "830318"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "José Sosa"
@@ -1669,6 +1811,7 @@ padrao = "liso"
   partidas = 5
   minutos = 462
   id_fonte = "20137"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ramiro Funes Mori"
@@ -1680,6 +1823,7 @@ padrao = "liso"
   partidas = 5
   minutos = 447
   id_fonte = "11111"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Valente Pierani"
@@ -1691,6 +1835,7 @@ padrao = "liso"
   partidas = 2
   minutos = 220
   id_fonte = "1000685"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Borzone"
@@ -1700,6 +1845,7 @@ padrao = "liso"
   pot = 54
   valor = 93500
   id_fonte = "1181926"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Joaquín Pereyra"
@@ -1711,6 +1857,7 @@ padrao = "liso"
   partidas = 3
   minutos = 296
   id_fonte = "1243110"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Independiente Rivadavia"
@@ -1730,6 +1877,7 @@ padrao = "liso"
   minutos = 2794
   gols = 2
   id_fonte = "1190390"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Fernández"
@@ -1742,6 +1890,7 @@ padrao = "liso"
   minutos = 2711
   gols = 3
   id_fonte = "707153"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Álex Arce"
@@ -1754,6 +1903,7 @@ padrao = "liso"
   minutos = 2058
   gols = 20
   id_fonte = "970518"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Maximiliano Salas"
@@ -1765,6 +1915,7 @@ padrao = "liso"
   partidas = 8
   minutos = 718
   id_fonte = "442231"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "José Florentín"
@@ -1777,6 +1928,7 @@ padrao = "liso"
   minutos = 3142
   gols = 7
   id_fonte = "741965"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Nicolás Bolcato"
@@ -1788,6 +1940,7 @@ padrao = "liso"
   partidas = 37
   minutos = 3316
   id_fonte = "1301353"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Fabrizio Sartori"
@@ -1800,6 +1953,7 @@ padrao = "liso"
   minutos = 2251
   gols = 9
   id_fonte = "978970"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Ríos"
@@ -1812,6 +1966,7 @@ padrao = "liso"
   minutos = 1808
   gols = 5
   id_fonte = "907834"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Iván Villalba"
@@ -1823,6 +1978,7 @@ padrao = "liso"
   partidas = 26
   minutos = 2380
   id_fonte = "312562"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Tomás Bottari"
@@ -1834,6 +1990,7 @@ padrao = "liso"
   partidas = 27
   minutos = 2396
   id_fonte = "840860"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonard Costa"
@@ -1846,6 +2003,7 @@ padrao = "liso"
   minutos = 2651
   gols = 1
   id_fonte = "800720"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Alejo Osella"
@@ -1858,6 +2016,7 @@ padrao = "liso"
   minutos = 1390
   gols = 4
   id_fonte = "990550"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luciano Gómez"
@@ -1870,6 +2029,7 @@ padrao = "liso"
   minutos = 1417
   gols = 2
   id_fonte = "423705"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ramiro Macagno"
@@ -1881,6 +2041,7 @@ padrao = "liso"
   partidas = 1
   minutos = 14
   id_fonte = "401913"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Elordi"
@@ -1893,6 +2054,7 @@ padrao = "liso"
   minutos = 2401
   gols = 1
   id_fonte = "728602"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonel Bucca"
@@ -1905,6 +2067,7 @@ padrao = "liso"
   minutos = 1020
   gols = 5
   id_fonte = "830841"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alex Vigo"
@@ -1916,6 +2079,7 @@ padrao = "liso"
   partidas = 4
   minutos = 389
   id_fonte = "648520"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Atencio"
@@ -1927,6 +2091,7 @@ padrao = "liso"
   partidas = 11
   minutos = 965
   id_fonte = "1013922"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Stefano Moreyra"
@@ -1938,6 +2103,7 @@ padrao = "liso"
   partidas = 2
   minutos = 145
   id_fonte = "830855"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Diego Crego"
@@ -1950,6 +2116,7 @@ padrao = "liso"
   minutos = 450
   gols = 1
   id_fonte = "1110580"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ezequiel Bonifacio"
@@ -1961,6 +2128,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1293
   id_fonte = "334224"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Kevin Vázquez"
@@ -1972,6 +2140,7 @@ padrao = "liso"
   partidas = 3
   minutos = 311
   id_fonte = "1064181"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Victorio Ramis"
@@ -1983,6 +2152,7 @@ padrao = "liso"
   partidas = 1
   minutos = 69
   id_fonte = "381065"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Emmanuel Gómez Riga"
@@ -1994,6 +2164,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "987126"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luis Sequeira"
@@ -2005,6 +2176,7 @@ padrao = "liso"
   partidas = 3
   minutos = 240
   id_fonte = "668550"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alessandro Riep"
@@ -2016,6 +2188,7 @@ padrao = "liso"
   partidas = 3
   minutos = 253
   id_fonte = "912306"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luis Díaz"
@@ -2027,6 +2200,7 @@ padrao = "liso"
   partidas = 1
   minutos = 48
   id_fonte = "926365"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Santiago Cena"
@@ -2036,6 +2210,7 @@ padrao = "liso"
   pot = 49
   valor = 55000
   id_fonte = "1377146"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "San Lorenzo de Almagro"
@@ -2054,6 +2229,7 @@ padrao = "liso"
   partidas = 9
   minutos = 799
   id_fonte = "665277"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alexis Cuello"
@@ -2066,6 +2242,7 @@ padrao = "liso"
   minutos = 2868
   gols = 7
   id_fonte = "636783"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Tripichio"
@@ -2078,6 +2255,7 @@ padrao = "liso"
   minutos = 2944
   gols = 1
   id_fonte = "275614"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Auzmendi"
@@ -2090,6 +2268,7 @@ padrao = "liso"
   minutos = 1974
   gols = 8
   id_fonte = "690727"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ezequiel Herrera"
@@ -2102,6 +2281,7 @@ padrao = "liso"
   minutos = 2705
   gols = 1
   id_fonte = "966316"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Danilo Arboleda"
@@ -2113,6 +2293,7 @@ padrao = "liso"
   partidas = 7
   minutos = 630
   id_fonte = "364586"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Matías Reali"
@@ -2125,6 +2306,7 @@ padrao = "liso"
   minutos = 1043
   gols = 2
   id_fonte = "984692"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Abrego"
@@ -2136,6 +2318,7 @@ padrao = "liso"
   partidas = 8
   minutos = 761
   id_fonte = "836493"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gustavo del Prete"
@@ -2147,6 +2330,7 @@ padrao = "liso"
   partidas = 1
   minutos = 117
   id_fonte = "671951"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "José Devecchi"
@@ -2158,6 +2342,7 @@ padrao = "liso"
   partidas = 8
   minutos = 747
   id_fonte = "282684"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Manuel Insaurralde"
@@ -2170,6 +2355,7 @@ padrao = "liso"
   minutos = 1399
   gols = 1
   id_fonte = "627237"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Emiliano Amor"
@@ -2181,6 +2367,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "348273"
+  nacionalidade = "Síria"
 
   [[clubes.jogadores]]
   nome = "Facundo Altamirano"
@@ -2192,6 +2379,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "362358"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Gulli"
@@ -2203,6 +2391,7 @@ padrao = "liso"
   partidas = 18
   minutos = 1610
   id_fonte = "1296404"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Perruzzi"
@@ -2214,6 +2403,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1422
   id_fonte = "1296409"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mathías De Ritis"
@@ -2226,6 +2416,7 @@ padrao = "liso"
   minutos = 1906
   gols = 1
   id_fonte = "981054"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Nahuel Barrios"
@@ -2237,6 +2428,7 @@ padrao = "liso"
   partidas = 8
   minutos = 756
   id_fonte = "503377"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Farías"
@@ -2249,6 +2441,7 @@ padrao = "liso"
   minutos = 222
   gols = 1
   id_fonte = "728221"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Martín Río"
@@ -2260,6 +2453,7 @@ padrao = "liso"
   partidas = 1
   minutos = 79
   id_fonte = "816843"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Diego Herazo"
@@ -2272,6 +2466,7 @@ padrao = "liso"
   minutos = 181
   gols = 1
   id_fonte = "384580"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Guzmán Corujo"
@@ -2284,6 +2479,7 @@ padrao = "liso"
   minutos = 557
   gols = 1
   id_fonte = "486210"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Teo Rodríguez Pagano"
@@ -2295,6 +2491,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1158
   id_fonte = "1282698"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ezequiel Cerutti"
@@ -2306,6 +2503,7 @@ padrao = "liso"
   partidas = 5
   minutos = 432
   id_fonte = "267882"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Pablo Álvarez"
@@ -2317,6 +2515,7 @@ padrao = "liso"
   partidas = 3
   minutos = 257
   id_fonte = "534615"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Lorenzon"
@@ -2328,6 +2527,7 @@ padrao = "liso"
   partidas = 4
   minutos = 315
   id_fonte = "987198"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Daniel Herrera"
@@ -2337,6 +2537,7 @@ padrao = "liso"
   pot = 61
   valor = 900000
   id_fonte = "1250374"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mauricio Cardillo"
@@ -2348,6 +2549,7 @@ padrao = "liso"
   partidas = 4
   minutos = 331
   id_fonte = "1115518"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mateo Clemente"
@@ -2357,6 +2559,7 @@ padrao = "liso"
   pot = 53
   valor = 105147
   id_fonte = "987849"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Ladstatter"
@@ -2368,6 +2571,7 @@ padrao = "liso"
   partidas = 6
   minutos = 574
   id_fonte = "1296393"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Rattalino"
@@ -2379,6 +2583,7 @@ padrao = "liso"
   partidas = 5
   minutos = 418
   id_fonte = "1296399"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alejo Córdoba"
@@ -2390,6 +2595,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "1296391"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nahuel Arias"
@@ -2401,6 +2607,7 @@ padrao = "liso"
   partidas = 1
   minutos = 53
   id_fonte = "1131419"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Branco Salinardi"
@@ -2410,6 +2617,7 @@ padrao = "liso"
   pot = 54
   valor = 300000
   id_fonte = "1296408"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Alassia"
@@ -2421,6 +2629,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "868501"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Vélez Sarsfield"
@@ -2439,6 +2648,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1170
   id_fonte = "596909"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Diego Valdés"
@@ -2451,6 +2661,7 @@ padrao = "liso"
   minutos = 898
   gols = 4
   id_fonte = "249776"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Emanuel Mammana"
@@ -2462,6 +2673,7 @@ padrao = "liso"
   partidas = 19
   minutos = 1728
   id_fonte = "275512"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ronaldo Martínez"
@@ -2474,6 +2686,7 @@ padrao = "liso"
   minutos = 314
   gols = 4
   id_fonte = "567736"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Joaquín García"
@@ -2486,6 +2699,7 @@ padrao = "liso"
   minutos = 2239
   gols = 2
   id_fonte = "829433"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Claudio Baeza"
@@ -2497,6 +2711,7 @@ padrao = "liso"
   partidas = 15
   minutos = 1345
   id_fonte = "248346"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Elías Gómez"
@@ -2508,6 +2723,7 @@ padrao = "liso"
   partidas = 29
   minutos = 2578
   id_fonte = "302139"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lisandro Magallán"
@@ -2519,6 +2735,7 @@ padrao = "liso"
   partidas = 23
   minutos = 2037
   id_fonte = "66736"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Robertone"
@@ -2531,6 +2748,7 @@ padrao = "liso"
   minutos = 1567
   gols = 1
   id_fonte = "457221"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Manuel Lanzini"
@@ -2543,6 +2761,7 @@ padrao = "liso"
   minutos = 2302
   gols = 6
   id_fonte = "135853"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Sanguinetti"
@@ -2552,6 +2771,7 @@ padrao = "liso"
   pot = 66
   valor = 2500000
   id_fonte = "870032"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Pellegrini"
@@ -2564,6 +2784,7 @@ padrao = "liso"
   minutos = 1708
   gols = 3
   id_fonte = "606267"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Thiago Silvero"
@@ -2576,6 +2797,7 @@ padrao = "liso"
   minutos = 1274
   gols = 1
   id_fonte = "1285238"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Aliendro"
@@ -2588,6 +2810,7 @@ padrao = "liso"
   minutos = 1914
   gols = 1
   id_fonte = "424045"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jano Gordon"
@@ -2600,6 +2823,7 @@ padrao = "liso"
   minutos = 259
   gols = 1
   id_fonte = "1285237"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Dilan Godoy"
@@ -2612,6 +2836,7 @@ padrao = "liso"
   minutos = 1022
   gols = 2
   id_fonte = "1379348"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Simón Escobar"
@@ -2623,6 +2848,7 @@ padrao = "liso"
   partidas = 5
   minutos = 461
   id_fonte = "1310741"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Álex Verón"
@@ -2634,6 +2860,7 @@ padrao = "liso"
   partidas = 5
   minutos = 418
   id_fonte = "1231224"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luca Feler"
@@ -2645,6 +2872,7 @@ padrao = "liso"
   partidas = 2
   minutos = 184
   id_fonte = "1516245"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Joaquín Vaquero"
@@ -2654,6 +2882,7 @@ padrao = "liso"
   pot = 50
   valor = 25000
   id_fonte = "1290990"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Thiago Aguirre"
@@ -2666,6 +2895,7 @@ padrao = "liso"
   minutos = 215
   gols = 1
   id_fonte = "1456581"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Cruz Policella"
@@ -2678,6 +2908,7 @@ padrao = "liso"
   minutos = 208
   gols = 1
   id_fonte = "1264647"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leo Cristaldo"
@@ -2687,6 +2918,7 @@ padrao = "liso"
   pot = 57
   valor = 244200
   id_fonte = "1307323"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Matías Arias"
@@ -2698,6 +2930,7 @@ padrao = "liso"
   partidas = 1
   minutos = 134
   id_fonte = "1379347"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Álvaro Busso"
@@ -2707,6 +2940,7 @@ padrao = "liso"
   pot = 54
   valor = 100000
   id_fonte = "1291030"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Club Atlético Tigre"
@@ -2725,6 +2959,7 @@ padrao = "liso"
   partidas = 36
   minutos = 3240
   id_fonte = "826527"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alan Barrionuevo"
@@ -2737,6 +2972,7 @@ padrao = "liso"
   minutos = 3237
   gols = 3
   id_fonte = "865491"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Russo"
@@ -2749,6 +2985,7 @@ padrao = "liso"
   minutos = 3096
   gols = 11
   id_fonte = "833130"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Bruno Leyes"
@@ -2760,6 +2997,7 @@ padrao = "liso"
   partidas = 23
   minutos = 2057
   id_fonte = "910641"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jabes Saralegui"
@@ -2772,6 +3010,7 @@ padrao = "liso"
   minutos = 1990
   gols = 1
   id_fonte = "1174943"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mauro Méndez"
@@ -2784,6 +3023,7 @@ padrao = "liso"
   minutos = 435
   gols = 1
   id_fonte = "675468"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Santiago López"
@@ -2796,6 +3036,7 @@ padrao = "liso"
   minutos = 2361
   gols = 2
   id_fonte = "1000687"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nahuel Banegas"
@@ -2807,6 +3048,7 @@ padrao = "liso"
   partidas = 15
   minutos = 1388
   id_fonte = "697041"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Federico Álvarez"
@@ -2818,6 +3060,7 @@ padrao = "liso"
   partidas = 23
   minutos = 2041
   id_fonte = "289117"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Martínez"
@@ -2830,6 +3073,7 @@ padrao = "liso"
   minutos = 903
   gols = 3
   id_fonte = "281405"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Martín Garay"
@@ -2842,6 +3086,7 @@ padrao = "liso"
   minutos = 1995
   gols = 2
   id_fonte = "696730"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Valentín Moreno"
@@ -2854,6 +3099,7 @@ padrao = "liso"
   minutos = 2103
   gols = 1
   id_fonte = "1238749"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Guillermo Soto"
@@ -2865,6 +3111,7 @@ padrao = "liso"
   partidas = 6
   minutos = 502
   id_fonte = "534909"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Joaquín Laso"
@@ -2876,6 +3123,7 @@ padrao = "liso"
   partidas = 23
   minutos = 2104
   id_fonte = "360797"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Morales"
@@ -2887,6 +3135,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "576023"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ramón Arias"
@@ -2899,6 +3148,7 @@ padrao = "liso"
   minutos = 740
   gols = 1
   id_fonte = "131095"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Santiago González"
@@ -2910,6 +3160,7 @@ padrao = "liso"
   partidas = 7
   minutos = 643
   id_fonte = "1249779"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alfio Oviedo"
@@ -2922,6 +3173,7 @@ padrao = "liso"
   minutos = 578
   gols = 1
   id_fonte = "518354"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Tiago Serrago"
@@ -2934,6 +3186,7 @@ padrao = "liso"
   minutos = 1084
   gols = 1
   id_fonte = "1231128"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Sebastián Medina"
@@ -2945,6 +3198,7 @@ padrao = "liso"
   partidas = 4
   minutos = 378
   id_fonte = "840774"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Requena"
@@ -2956,6 +3210,7 @@ padrao = "liso"
   partidas = 1
   minutos = 82
   id_fonte = "1120902"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Dubersarsky"
@@ -2967,6 +3222,7 @@ padrao = "liso"
   partidas = 1
   minutos = 5
   id_fonte = "1207586"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ian Subiabre"
@@ -2978,6 +3234,7 @@ padrao = "liso"
   partidas = 2
   minutos = 146
   id_fonte = "1074969"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Simón Rivero"
@@ -2987,6 +3244,7 @@ padrao = "liso"
   pot = 57
   valor = 300000
   id_fonte = "912009"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jerónimo Dómina"
@@ -2999,6 +3257,7 @@ padrao = "liso"
   minutos = 53
   gols = 1
   id_fonte = "1103986"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Villalba"
@@ -3010,6 +3269,7 @@ padrao = "liso"
   partidas = 9
   minutos = 785
   id_fonte = "1005800"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luciano Minniti"
@@ -3019,6 +3279,7 @@ padrao = "liso"
   pot = 54
   valor = 110000
   id_fonte = "1322847"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Manuel Fernández"
@@ -3030,6 +3291,7 @@ padrao = "liso"
   partidas = 1
   minutos = 127
   id_fonte = "1322217"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Fernández"
@@ -3039,6 +3301,7 @@ padrao = "liso"
   pot = 49
   valor = 25000
   id_fonte = "1153735"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ángelo Marchese"
@@ -3048,6 +3311,7 @@ padrao = "liso"
   pot = 49
   valor = 25000
   id_fonte = "1264276"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Talleres"
@@ -3066,6 +3330,7 @@ padrao = "liso"
   partidas = 10
   minutos = 900
   id_fonte = "337600"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Cristaldo"
@@ -3078,6 +3343,7 @@ padrao = "liso"
   minutos = 1445
   gols = 1
   id_fonte = "332259"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Galarza"
@@ -3089,6 +3355,7 @@ padrao = "liso"
   partidas = 25
   minutos = 2240
   id_fonte = "909737"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rick"
@@ -3101,6 +3368,7 @@ padrao = "liso"
   minutos = 1846
   gols = 4
   id_fonte = "645955"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Federico Fattori"
@@ -3112,6 +3380,7 @@ padrao = "liso"
   partidas = 6
   minutos = 567
   id_fonte = "357956"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Augusto Schott"
@@ -3124,6 +3393,7 @@ padrao = "liso"
   minutos = 2324
   gols = 3
   id_fonte = "670566"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Diego Valoyes"
@@ -3135,6 +3405,7 @@ padrao = "liso"
   partidas = 4
   minutos = 337
   id_fonte = "413983"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Gabriel Báez"
@@ -3146,6 +3417,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1218
   id_fonte = "376858"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Catalán"
@@ -3157,6 +3429,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1909
   id_fonte = "237051"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Santiago Fernández"
@@ -3169,6 +3442,7 @@ padrao = "liso"
   minutos = 1601
   gols = 1
   id_fonte = "1106217"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Álvarez"
@@ -3181,6 +3455,7 @@ padrao = "liso"
   minutos = 324
   gols = 2
   id_fonte = "812625"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Juan Sforza"
@@ -3192,6 +3467,7 @@ padrao = "liso"
   partidas = 15
   minutos = 1341
   id_fonte = "659264"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Román Riquelme"
@@ -3203,6 +3479,7 @@ padrao = "liso"
   partidas = 6
   minutos = 513
   id_fonte = "909736"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alexandro Maidana"
@@ -3215,6 +3492,7 @@ padrao = "liso"
   minutos = 1066
   gols = 3
   id_fonte = "1371519"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Valentín Depietri"
@@ -3227,6 +3505,7 @@ padrao = "liso"
   minutos = 1089
   gols = 5
   id_fonte = "697056"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Valentín Fascendini"
@@ -3238,6 +3517,7 @@ padrao = "liso"
   partidas = 7
   minutos = 643
   id_fonte = "1149559"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mateo Cáceres"
@@ -3249,6 +3529,7 @@ padrao = "liso"
   partidas = 9
   minutos = 774
   id_fonte = "907835"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Giovanni Baroni"
@@ -3261,6 +3542,7 @@ padrao = "liso"
   minutos = 926
   gols = 1
   id_fonte = "1265841"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Valentín Dávila"
@@ -3273,6 +3555,7 @@ padrao = "liso"
   minutos = 774
   gols = 4
   id_fonte = "1280274"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Timoteo Chamorro"
@@ -3284,6 +3567,7 @@ padrao = "liso"
   partidas = 6
   minutos = 575
   id_fonte = "1296330"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santino Barbi"
@@ -3293,6 +3577,7 @@ padrao = "liso"
   pot = 58
   valor = 200000
   id_fonte = "1197308"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Olmos"
@@ -3302,6 +3587,7 @@ padrao = "liso"
   pot = 56
   valor = 150000
   id_fonte = "1126741"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jeremías Gallard"
@@ -3311,6 +3597,7 @@ padrao = "liso"
   pot = 51
   valor = 25000
   id_fonte = "1271301"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Bruno Trey"
@@ -3322,6 +3609,7 @@ padrao = "liso"
   partidas = 1
   minutos = 29
   id_fonte = "1296310"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Emiliano Chiavassa"
@@ -3333,6 +3621,7 @@ padrao = "liso"
   partidas = 2
   minutos = 150
   id_fonte = "1296331"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Nuccio"
@@ -3342,6 +3631,7 @@ padrao = "liso"
   pot = 54
   valor = 66000
   id_fonte = "1429844"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Alastra"
@@ -3351,6 +3641,7 @@ padrao = "liso"
   pot = 52
   valor = 50000
   id_fonte = "1378149"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Ortiz"
@@ -3362,6 +3653,7 @@ padrao = "liso"
   partidas = 1
   minutos = 91
   id_fonte = "1241455"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Gómez"
@@ -3373,6 +3665,7 @@ padrao = "liso"
   partidas = 1
   minutos = 82
   id_fonte = "1150517"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Thiago Baroni"
@@ -3382,6 +3675,7 @@ padrao = "liso"
   pot = 54
   valor = 66000
   id_fonte = "1516248"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Lanús"
@@ -3400,6 +3694,7 @@ padrao = "liso"
   partidas = 36
   minutos = 3270
   id_fonte = "323918"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Marcelino Moreno"
@@ -3412,6 +3707,7 @@ padrao = "liso"
   minutos = 1143
   gols = 5
   id_fonte = "456617"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Sasha Marcich"
@@ -3424,6 +3720,7 @@ padrao = "liso"
   minutos = 3298
   gols = 1
   id_fonte = "867621"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Cardozo"
@@ -3436,6 +3733,7 @@ padrao = "liso"
   minutos = 2958
   gols = 1
   id_fonte = "469762"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "José Canale"
@@ -3448,6 +3746,7 @@ padrao = "liso"
   minutos = 2587
   gols = 1
   id_fonte = "402627"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Franco Petroli"
@@ -3459,6 +3758,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "401587"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Felipe Peña Biafore"
@@ -3471,6 +3771,7 @@ padrao = "liso"
   minutos = 1804
   gols = 3
   id_fonte = "894194"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Guidara"
@@ -3482,6 +3783,7 @@ padrao = "liso"
   partidas = 29
   minutos = 2601
   id_fonte = "355900"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Medina"
@@ -3494,6 +3796,7 @@ padrao = "liso"
   minutos = 1840
   gols = 1
   id_fonte = "1294453"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Eduardo Salvio"
@@ -3506,6 +3809,7 @@ padrao = "liso"
   minutos = 2642
   gols = 2
   id_fonte = "84535"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ramiro Carrera"
@@ -3518,6 +3822,7 @@ padrao = "liso"
   minutos = 2172
   gols = 3
   id_fonte = "282283"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Carlos Izquierdoz"
@@ -3530,6 +3835,7 @@ padrao = "liso"
   minutos = 3133
   gols = 3
   id_fonte = "116968"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Sepúlveda"
@@ -3541,6 +3847,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1246
   id_fonte = "511436"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Ronaldo Dejesús"
@@ -3552,6 +3859,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1282
   id_fonte = "847074"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Pérez"
@@ -3563,6 +3871,7 @@ padrao = "liso"
   partidas = 11
   minutos = 996
   id_fonte = "799594"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Raúl Loaiza"
@@ -3572,6 +3881,7 @@ padrao = "liso"
   pot = 60
   valor = 400000
   id_fonte = "260898"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Nicolás Morgantini"
@@ -3583,6 +3893,7 @@ padrao = "liso"
   partidas = 3
   minutos = 246
   id_fonte = "615253"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Allan Wlk"
@@ -3595,6 +3906,7 @@ padrao = "liso"
   minutos = 620
   gols = 3
   id_fonte = "1065388"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Yoshan Valois"
@@ -3607,6 +3919,7 @@ padrao = "liso"
   minutos = 1116
   gols = 5
   id_fonte = "1258292"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Franco Watson"
@@ -3619,6 +3932,7 @@ padrao = "liso"
   minutos = 938
   gols = 1
   id_fonte = "654733"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Besozzi"
@@ -3631,6 +3945,7 @@ padrao = "liso"
   minutos = 1104
   gols = 1
   id_fonte = "829381"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Octavio Ontivero"
@@ -3640,6 +3955,7 @@ padrao = "liso"
   pot = 56
   valor = 175000
   id_fonte = "1000668"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Sánchez"
@@ -3651,6 +3967,7 @@ padrao = "liso"
   partidas = 2
   minutos = 203
   id_fonte = "1240378"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luciano Romero"
@@ -3662,6 +3979,7 @@ padrao = "liso"
   partidas = 1
   minutos = 80
   id_fonte = "1005803"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Benjamín Acosta"
@@ -3673,6 +3991,7 @@ padrao = "liso"
   partidas = 1
   minutos = 64
   id_fonte = "1119045"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jeremías Chavero"
@@ -3682,6 +4001,7 @@ padrao = "liso"
   pot = 52
   valor = 75000
   id_fonte = "1299458"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Thiago Laplace"
@@ -3693,6 +4013,7 @@ padrao = "liso"
   partidas = 2
   minutos = 13
   id_fonte = "1197918"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "AA Argentinos Juniors"
@@ -3712,6 +4033,7 @@ padrao = "liso"
   minutos = 2729
   gols = 3
   id_fonte = "565766"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Brayan Cortés"
@@ -3723,6 +4045,7 @@ padrao = "liso"
   partidas = 33
   minutos = 2940
   id_fonte = "248352"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Hernán López Muñoz"
@@ -3735,6 +4058,7 @@ padrao = "liso"
   minutos = 1706
   gols = 4
   id_fonte = "665309"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Kevin Gutiérrez"
@@ -3746,6 +4070,7 @@ padrao = "liso"
   partidas = 9
   minutos = 812
   id_fonte = "554799"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Molina"
@@ -3758,6 +4083,7 @@ padrao = "liso"
   minutos = 2069
   gols = 5
   id_fonte = "429591"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Oroz"
@@ -3770,6 +4096,7 @@ padrao = "liso"
   minutos = 2329
   gols = 2
   id_fonte = "332250"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Giménez"
@@ -3782,6 +4109,7 @@ padrao = "liso"
   minutos = 181
   gols = 1
   id_fonte = "656112"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gastón Verón"
@@ -3794,6 +4122,7 @@ padrao = "liso"
   minutos = 631
   gols = 4
   id_fonte = "564001"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Érik Godoy"
@@ -3806,6 +4135,7 @@ padrao = "liso"
   minutos = 822
   gols = 1
   id_fonte = "225479"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Claudio Bravo"
@@ -3817,6 +4147,7 @@ padrao = "liso"
   partidas = 4
   minutos = 404
   id_fonte = "441408"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Sebastián Prieto"
@@ -3829,6 +4160,7 @@ padrao = "liso"
   minutos = 2360
   gols = 2
   id_fonte = "613708"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Paredes"
@@ -3840,6 +4172,7 @@ padrao = "liso"
   partidas = 2
   minutos = 198
   id_fonte = "749016"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gabriel Florentín"
@@ -3851,6 +4184,7 @@ padrao = "liso"
   partidas = 3
   minutos = 298
   id_fonte = "675341"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Emiliano Viveros"
@@ -3863,6 +4197,7 @@ padrao = "liso"
   minutos = 1079
   gols = 1
   id_fonte = "907313"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Vázquez"
@@ -3874,6 +4209,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "1240379"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Joaquín Gho"
@@ -3883,6 +4219,7 @@ padrao = "liso"
   pot = 63
   valor = 1800000
   id_fonte = "842589"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Kevin Coronel"
@@ -3894,6 +4231,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1213
   id_fonte = "1198369"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Federico Mancuello"
@@ -3903,6 +4241,7 @@ padrao = "liso"
   pot = 53
   valor = 50000
   id_fonte = "96313"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luciano Sánchez"
@@ -3912,6 +4251,7 @@ padrao = "liso"
   pot = 53
   valor = 50000
   id_fonte = "444495"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mateo Mendoza"
@@ -3921,6 +4261,7 @@ padrao = "liso"
   pot = 65
   valor = 2500000
   id_fonte = "1103933"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Jainikoski"
@@ -3933,6 +4274,7 @@ padrao = "liso"
   minutos = 900
   gols = 1
   id_fonte = "1310744"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Diego Porcel"
@@ -3945,6 +4287,7 @@ padrao = "liso"
   minutos = 804
   gols = 2
   id_fonte = "1269429"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alan Núñez"
@@ -3954,6 +4297,7 @@ padrao = "liso"
   pot = 62
   valor = 1000000
   id_fonte = "912703"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Gino Infantino"
@@ -3965,6 +4309,7 @@ padrao = "liso"
   partidas = 1
   minutos = 51
   id_fonte = "831162"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Siri"
@@ -3974,6 +4319,7 @@ padrao = "liso"
   pot = 58
   valor = 250000
   id_fonte = "1225292"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Mangiaut"
@@ -3983,6 +4329,7 @@ padrao = "liso"
   pot = 56
   valor = 163281
   id_fonte = "1298341"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alan Alcaraz"
@@ -3994,6 +4341,7 @@ padrao = "liso"
   partidas = 1
   minutos = 75
   id_fonte = "1309716"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Carrizo"
@@ -4005,6 +4353,7 @@ padrao = "liso"
   partidas = 3
   minutos = 26
   id_fonte = "1401625"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gastón Bouhier"
@@ -4014,6 +4363,7 @@ padrao = "liso"
   pot = 54
   valor = 163281
   id_fonte = "1352891"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ryoga Kida"
@@ -4026,6 +4376,7 @@ padrao = "liso"
   minutos = 89
   gols = 1
   id_fonte = "916601"
+  nacionalidade = "Japão"
 
   [[clubes.jogadores]]
   nome = "Santiago Silveira"
@@ -4035,6 +4386,7 @@ padrao = "liso"
   pot = 55
   valor = 163281
   id_fonte = "1310739"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santino Gianini"
@@ -4046,6 +4398,7 @@ padrao = "liso"
   partidas = 1
   minutos = 71
   id_fonte = "1428950"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Newell's Old Boys"
@@ -4064,6 +4417,7 @@ padrao = "liso"
   partidas = 9
   minutos = 830
   id_fonte = "225963"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Solari"
@@ -4076,6 +4430,7 @@ padrao = "liso"
   minutos = 233
   gols = 1
   id_fonte = "866059"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luca Regiardo"
@@ -4088,6 +4443,7 @@ padrao = "liso"
   minutos = 1945
   gols = 1
   id_fonte = "1328380"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Walter Mazzantti"
@@ -4100,6 +4456,7 @@ padrao = "liso"
   minutos = 1543
   gols = 2
   id_fonte = "477458"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Josué Reinatti"
@@ -4111,6 +4468,7 @@ padrao = "liso"
   partidas = 15
   minutos = 1350
   id_fonte = "1229028"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Cóccaro"
@@ -4123,6 +4481,7 @@ padrao = "liso"
   minutos = 1240
   gols = 6
   id_fonte = "454625"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Oscar Salomón"
@@ -4135,6 +4494,7 @@ padrao = "liso"
   minutos = 577
   gols = 2
   id_fonte = "698323"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Herrera"
@@ -4146,6 +4506,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1410
   id_fonte = "842141"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Saúl Salcedo"
@@ -4157,6 +4518,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1260
   id_fonte = "353035"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Bruno Cabrera"
@@ -4169,6 +4531,7 @@ padrao = "liso"
   minutos = 815
   gols = 1
   id_fonte = "840764"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Guch"
@@ -4181,6 +4544,7 @@ padrao = "liso"
   minutos = 1731
   gols = 2
   id_fonte = "1377866"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Escobar"
@@ -4192,6 +4556,7 @@ padrao = "liso"
   partidas = 5
   minutos = 431
   id_fonte = "338169"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Ramírez"
@@ -4204,6 +4569,7 @@ padrao = "liso"
   minutos = 768
   gols = 4
   id_fonte = "402079"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Lucas Carrizo"
@@ -4215,6 +4581,7 @@ padrao = "liso"
   partidas = 5
   minutos = 426
   id_fonte = "522204"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Martín Ortega"
@@ -4226,6 +4593,7 @@ padrao = "liso"
   partidas = 9
   minutos = 800
   id_fonte = "663118"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mateo García"
@@ -4237,6 +4605,7 @@ padrao = "liso"
   partidas = 1
   minutos = 103
   id_fonte = "441287"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alejo Montero"
@@ -4246,6 +4615,7 @@ padrao = "liso"
   pot = 60
   valor = 600000
   id_fonte = "649998"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gabriel Arias"
@@ -4257,6 +4627,7 @@ padrao = "liso"
   partidas = 7
   minutos = 613
   id_fonte = "54330"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Nicolás Goitea"
@@ -4268,6 +4639,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1061
   id_fonte = "840768"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jeronimo Russo"
@@ -4280,6 +4652,7 @@ padrao = "liso"
   minutos = 1366
   gols = 1
   id_fonte = "1139402"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alan Soñora"
@@ -4292,6 +4665,7 @@ padrao = "liso"
   minutos = 50
   gols = 1
   id_fonte = "688779"
+  nacionalidade = "Estados Unidos"
 
   [[clubes.jogadores]]
   nome = "Ian Glavinovich"
@@ -4301,6 +4675,7 @@ padrao = "liso"
   pot = 61
   valor = 900000
   id_fonte = "1027881"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Walter Núñez"
@@ -4313,6 +4688,7 @@ padrao = "liso"
   minutos = 968
   gols = 1
   id_fonte = "1020838"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jerónimo Gómez Mattar"
@@ -4324,6 +4700,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1084
   id_fonte = "1241453"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Valentino Acuña"
@@ -4335,6 +4712,7 @@ padrao = "liso"
   partidas = 4
   minutos = 341
   id_fonte = "1074966"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "David Sotelo"
@@ -4346,6 +4724,7 @@ padrao = "liso"
   partidas = 5
   minutos = 483
   id_fonte = "1061839"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Marcelo Esponda"
@@ -4357,6 +4736,7 @@ padrao = "liso"
   partidas = 2
   minutos = 200
   id_fonte = "978973"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Martín Luciano"
@@ -4368,6 +4748,7 @@ padrao = "liso"
   partidas = 6
   minutos = 504
   id_fonte = "883670"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Gómez"
@@ -4379,6 +4760,7 @@ padrao = "liso"
   partidas = 3
   minutos = 26
   id_fonte = "1225293"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Thomas Rios"
@@ -4390,6 +4772,7 @@ padrao = "liso"
   partidas = 5
   minutos = 418
   id_fonte = "1454724"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Fabricio Tirado"
@@ -4399,6 +4782,7 @@ padrao = "liso"
   pot = 48
   valor = 50000
   id_fonte = "1248383"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Francisco Scarpeccio"
@@ -4411,6 +4795,7 @@ padrao = "liso"
   minutos = 270
   gols = 1
   id_fonte = "1329650"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Club Atlético Platense"
@@ -4429,6 +4814,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1260
   id_fonte = "570470"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Vázquez"
@@ -4441,6 +4827,7 @@ padrao = "liso"
   minutos = 2493
   gols = 1
   id_fonte = "552635"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Guido Mainero"
@@ -4453,6 +4840,7 @@ padrao = "liso"
   minutos = 2537
   gols = 4
   id_fonte = "441270"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Zapiola"
@@ -4465,6 +4853,7 @@ padrao = "liso"
   minutos = 2166
   gols = 5
   id_fonte = "909349"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Ignacio Saborido"
@@ -4476,6 +4865,7 @@ padrao = "liso"
   partidas = 24
   minutos = 2174
   id_fonte = "866094"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gastón Togni"
@@ -4487,6 +4877,7 @@ padrao = "liso"
   partidas = 5
   minutos = 444
   id_fonte = "503342"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Maximiliano Amarfil"
@@ -4498,6 +4889,7 @@ padrao = "liso"
   partidas = 18
   minutos = 1591
   id_fonte = "990429"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Silva"
@@ -4510,6 +4902,7 @@ padrao = "liso"
   minutos = 2605
   gols = 1
   id_fonte = "984072"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Iván Gómez"
@@ -4521,6 +4914,7 @@ padrao = "liso"
   partidas = 15
   minutos = 1312
   id_fonte = "459318"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonardo Heredia"
@@ -4532,6 +4926,7 @@ padrao = "liso"
   partidas = 11
   minutos = 969
   id_fonte = "538367"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás López"
@@ -4543,6 +4938,7 @@ padrao = "liso"
   partidas = 3
   minutos = 243
   id_fonte = "185593"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Nicolás Retamar"
@@ -4555,6 +4951,7 @@ padrao = "liso"
   minutos = 1843
   gols = 3
   id_fonte = "991849"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Brian Bustos"
@@ -4564,6 +4961,7 @@ padrao = "liso"
   pot = 59
   valor = 375000
   id_fonte = "660734"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Eugenio Raggio"
@@ -4575,6 +4973,7 @@ padrao = "liso"
   partidas = 10
   minutos = 925
   id_fonte = "1108130"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Martín Barrios"
@@ -4586,6 +4985,7 @@ padrao = "liso"
   partidas = 19
   minutos = 1717
   id_fonte = "565981"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Pablo Ferreira"
@@ -4597,6 +4997,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1536
   id_fonte = "1006239"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Lencina"
@@ -4609,6 +5010,7 @@ padrao = "liso"
   minutos = 899
   gols = 1
   id_fonte = "660338"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Victor Cuesta"
@@ -4621,6 +5023,7 @@ padrao = "liso"
   minutos = 2340
   gols = 1
   id_fonte = "104326"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Augusto Lotti"
@@ -4633,6 +5036,7 @@ padrao = "liso"
   minutos = 355
   gols = 3
   id_fonte = "406296"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Bautista Merlini"
@@ -4645,6 +5049,7 @@ padrao = "liso"
   minutos = 1136
   gols = 2
   id_fonte = "431737"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Sumavil"
@@ -4656,6 +5061,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "923940"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Lagos"
@@ -4668,6 +5074,7 @@ padrao = "liso"
   minutos = 1392
   gols = 1
   id_fonte = "698551"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Bruno Sepúlveda"
@@ -4680,6 +5087,7 @@ padrao = "liso"
   minutos = 278
   gols = 1
   id_fonte = "690718"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Goñi"
@@ -4689,6 +5097,7 @@ padrao = "liso"
   pot = 55
   valor = 300000
   id_fonte = "594104"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Carlos Gauto"
@@ -4700,6 +5109,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1536
   id_fonte = "847283"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Nasif"
@@ -4712,6 +5122,7 @@ padrao = "liso"
   minutos = 773
   gols = 3
   id_fonte = "1291055"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Héctor Bobadilla"
@@ -4724,6 +5135,7 @@ padrao = "liso"
   minutos = 102
   gols = 1
   id_fonte = "905417"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Luciano Giménez"
@@ -4736,6 +5148,7 @@ padrao = "liso"
   minutos = 405
   gols = 2
   id_fonte = "985755"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mateo Mendía"
@@ -4748,6 +5161,7 @@ padrao = "liso"
   minutos = 1416
   gols = 1
   id_fonte = "1197773"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Quirós"
@@ -4759,6 +5173,7 @@ padrao = "liso"
   partidas = 3
   minutos = 298
   id_fonte = "961786"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Fabricio López"
@@ -4768,6 +5183,7 @@ padrao = "liso"
   pot = 56
   valor = 400000
   id_fonte = "1123346"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Felipe Bussio"
@@ -4779,6 +5195,7 @@ padrao = "liso"
   partidas = 6
   minutos = 581
   id_fonte = "1285240"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Celías Ingenthron"
@@ -4790,6 +5207,7 @@ padrao = "liso"
   partidas = 5
   minutos = 471
   id_fonte = "1305389"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Minerva"
@@ -4801,6 +5219,7 @@ padrao = "liso"
   partidas = 2
   minutos = 31
   id_fonte = "1268653"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Manuel Tucker"
@@ -4812,6 +5231,7 @@ padrao = "liso"
   partidas = 2
   minutos = 171
   id_fonte = "1207136"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Dalmasso"
@@ -4823,6 +5243,7 @@ padrao = "liso"
   partidas = 3
   minutos = 226
   id_fonte = "1236679"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Independiente"
@@ -4841,6 +5262,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "320739"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Rey"
@@ -4852,6 +5274,7 @@ padrao = "liso"
   partidas = 28
   minutos = 2520
   id_fonte = "166591"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Arias"
@@ -4863,6 +5286,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1446
   id_fonte = "120443"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Matías Abaldo"
@@ -4875,6 +5299,7 @@ padrao = "liso"
   minutos = 2027
   gols = 5
   id_fonte = "928647"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Santiago Montiel"
@@ -4887,6 +5312,7 @@ padrao = "liso"
   minutos = 1679
   gols = 5
   id_fonte = "974336"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Sebastián Valdez"
@@ -4898,6 +5324,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1416
   id_fonte = "538374"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Zabala"
@@ -4909,6 +5336,7 @@ padrao = "liso"
   partidas = 24
   minutos = 2173
   id_fonte = "660140"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Calderón"
@@ -4920,6 +5348,7 @@ padrao = "liso"
   partidas = 1
   minutos = 4
   id_fonte = "667616"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonardo Godoy"
@@ -4932,6 +5361,7 @@ padrao = "liso"
   minutos = 1237
   gols = 1
   id_fonte = "369556"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Chimy Ávila"
@@ -4943,6 +5373,7 @@ padrao = "liso"
   partidas = 1
   minutos = 132
   id_fonte = "167721"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Iván Marcone"
@@ -4955,6 +5386,7 @@ padrao = "liso"
   minutos = 2352
   gols = 1
   id_fonte = "90451"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Iván Morales"
@@ -4966,6 +5398,7 @@ padrao = "liso"
   partidas = 1
   minutos = 71
   id_fonte = "461608"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Luciano Cabral"
@@ -4978,6 +5411,7 @@ padrao = "liso"
   minutos = 376
   gols = 2
   id_fonte = "322610"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Maximiliano Meza"
@@ -4990,6 +5424,7 @@ padrao = "liso"
   minutos = 451
   gols = 1
   id_fonte = "282476"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Fedorco"
@@ -5002,6 +5437,7 @@ padrao = "liso"
   minutos = 1421
   gols = 1
   id_fonte = "997070"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Millán"
@@ -5014,6 +5450,7 @@ padrao = "liso"
   minutos = 1152
   gols = 3
   id_fonte = "1240381"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Mateo Pérez Curci"
@@ -5025,6 +5462,7 @@ padrao = "liso"
   partidas = 15
   minutos = 1364
   id_fonte = "1298516"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "David Martínez"
@@ -5036,6 +5474,7 @@ padrao = "liso"
   partidas = 1
   minutos = 101
   id_fonte = "1123368"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Joaquín Blázquez"
@@ -5047,6 +5486,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "668996"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Imanol Machuca"
@@ -5056,6 +5496,7 @@ padrao = "liso"
   pot = 50
   valor = 65576
   id_fonte = "829968"
+  nacionalidade = "Malásia"
 
   [[clubes.jogadores]]
   nome = "Juan Miguel Arrayago"
@@ -5068,6 +5509,7 @@ padrao = "liso"
   minutos = 556
   gols = 1
   id_fonte = "1533085"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Márquez"
@@ -5077,6 +5519,7 @@ padrao = "liso"
   pot = 52
   valor = 100000
   id_fonte = "909735"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Josias Palais"
@@ -5088,6 +5531,7 @@ padrao = "liso"
   partidas = 3
   minutos = 298
   id_fonte = "1298503"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jonathan De Irastorza"
@@ -5097,6 +5541,7 @@ padrao = "liso"
   pot = 54
   valor = 125000
   id_fonte = "1240380"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Felipe Tempone"
@@ -5109,6 +5554,7 @@ padrao = "liso"
   minutos = 285
   gols = 1
   id_fonte = "1377262"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Joel Medina"
@@ -5120,6 +5566,7 @@ padrao = "liso"
   partidas = 1
   minutos = 22
   id_fonte = "1298534"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Defensa y Justicia"
@@ -5138,6 +5585,7 @@ padrao = "liso"
   partidas = 10
   minutos = 900
   id_fonte = "592427"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Aarón Molinas"
@@ -5150,6 +5598,7 @@ padrao = "liso"
   minutos = 1440
   gols = 4
   id_fonte = "575999"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Sosa"
@@ -5161,6 +5610,7 @@ padrao = "liso"
   partidas = 24
   minutos = 2202
   id_fonte = "1253317"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Damián Fernández"
@@ -5173,6 +5623,7 @@ padrao = "liso"
   minutos = 1840
   gols = 1
   id_fonte = "706562"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "David Martínez"
@@ -5185,6 +5636,7 @@ padrao = "liso"
   minutos = 1833
   gols = 1
   id_fonte = "401576"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Domingo Blanco"
@@ -5196,6 +5648,7 @@ padrao = "liso"
   partidas = 2
   minutos = 219
   id_fonte = "285127"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Gutiérrez"
@@ -5208,6 +5661,7 @@ padrao = "liso"
   minutos = 2352
   gols = 4
   id_fonte = "581321"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Ayrton Portillo"
@@ -5220,6 +5674,7 @@ padrao = "liso"
   minutos = 1173
   gols = 3
   id_fonte = "841207"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "César Pérez"
@@ -5232,6 +5687,7 @@ padrao = "liso"
   minutos = 1119
   gols = 1
   id_fonte = "662746"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Éver Banega"
@@ -5243,6 +5699,7 @@ padrao = "liso"
   partidas = 5
   minutos = 414
   id_fonte = "12249"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "David Barbona"
@@ -5255,6 +5712,7 @@ padrao = "liso"
   minutos = 1131
   gols = 4
   id_fonte = "356089"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Fernando Román"
@@ -5267,6 +5725,7 @@ padrao = "liso"
   minutos = 665
   gols = 1
   id_fonte = "836251"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Julián López"
@@ -5278,6 +5737,7 @@ padrao = "liso"
   partidas = 4
   minutos = 339
   id_fonte = "625203"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leandro Fernández"
@@ -5290,6 +5750,7 @@ padrao = "liso"
   minutos = 796
   gols = 4
   id_fonte = "131840"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Souto"
@@ -5302,6 +5763,7 @@ padrao = "liso"
   minutos = 1663
   gols = 1
   id_fonte = "699689"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Amadé"
@@ -5313,6 +5775,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "844790"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Altamira"
@@ -5324,6 +5787,7 @@ padrao = "liso"
   partidas = 2
   minutos = 161
   id_fonte = "923459"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Hausch"
@@ -5336,6 +5800,7 @@ padrao = "liso"
   minutos = 1123
   gols = 2
   id_fonte = "668514"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tiziano Perrotta"
@@ -5347,6 +5812,7 @@ padrao = "liso"
   partidas = 3
   minutos = 267
   id_fonte = "1324736"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ezequiel Burdín"
@@ -5358,6 +5824,7 @@ padrao = "liso"
   partidas = 3
   minutos = 10
   id_fonte = "1054439"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Samuel Lucero"
@@ -5369,6 +5836,7 @@ padrao = "liso"
   partidas = 7
   minutos = 642
   id_fonte = "1068089"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Palavecino"
@@ -5378,6 +5846,7 @@ padrao = "liso"
   pot = 53
   valor = 150000
   id_fonte = "912504"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Máximo Rodríguez"
@@ -5389,6 +5858,7 @@ padrao = "liso"
   partidas = 3
   minutos = 304
   id_fonte = "1307242"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Valentín Loza"
@@ -5400,6 +5870,7 @@ padrao = "liso"
   partidas = 6
   minutos = 508
   id_fonte = "1337257"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Pérez"
@@ -5412,6 +5883,7 @@ padrao = "liso"
   minutos = 54
   gols = 1
   id_fonte = "1142432"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Demián Domínguez"
@@ -5423,6 +5895,7 @@ padrao = "liso"
   partidas = 1
   minutos = 21
   id_fonte = "1290950"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jeremías Lucco"
@@ -5435,6 +5908,7 @@ padrao = "liso"
   minutos = 271
   gols = 1
   id_fonte = "1173444"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mateo Aguiar"
@@ -5446,6 +5920,7 @@ padrao = "liso"
   partidas = 2
   minutos = 151
   id_fonte = "1253294"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Maximiliano Porcel"
@@ -5457,6 +5932,7 @@ padrao = "liso"
   partidas = 1
   minutos = 100
   id_fonte = "1074965"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nazareno Roselli"
@@ -5468,6 +5944,7 @@ padrao = "liso"
   partidas = 4
   minutos = 26
   id_fonte = "1263453"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Club de Gimnasia y Esgrima La Plata"
@@ -5486,6 +5963,7 @@ padrao = "liso"
   partidas = 27
   minutos = 2458
   id_fonte = "660280"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Marcelo Torres"
@@ -5498,6 +5976,7 @@ padrao = "liso"
   minutos = 1657
   gols = 9
   id_fonte = "480778"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alexis Steimbach"
@@ -5510,6 +5989,7 @@ padrao = "liso"
   minutos = 2081
   gols = 2
   id_fonte = "1046802"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Enzo Martínez"
@@ -5522,6 +6002,7 @@ padrao = "liso"
   minutos = 2395
   gols = 2
   id_fonte = "578737"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Nicolás Barros Schelotto"
@@ -5534,6 +6015,7 @@ padrao = "liso"
   minutos = 1628
   gols = 4
   id_fonte = "1123309"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Auzmendi"
@@ -5546,6 +6028,7 @@ padrao = "liso"
   minutos = 1738
   gols = 7
   id_fonte = "732442"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Miramón"
@@ -5558,6 +6041,7 @@ padrao = "liso"
   minutos = 1807
   gols = 1
   id_fonte = "836518"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Pedro Silva Torrejón"
@@ -5570,6 +6054,7 @@ padrao = "liso"
   minutos = 2612
   gols = 1
   id_fonte = "438927"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Renzo Giampaoli"
@@ -5582,6 +6067,7 @@ padrao = "liso"
   minutos = 1672
   gols = 1
   id_fonte = "838405"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Harlen Castillo"
@@ -5593,6 +6079,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "652707"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Manuel Panaro"
@@ -5605,6 +6092,7 @@ padrao = "liso"
   minutos = 940
   gols = 1
   id_fonte = "836252"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nacho Fernández"
@@ -5617,6 +6105,7 @@ padrao = "liso"
   minutos = 2390
   gols = 3
   id_fonte = "50669"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Bautista Barros Schelotto"
@@ -5629,6 +6118,7 @@ padrao = "liso"
   minutos = 914
   gols = 1
   id_fonte = "852761"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Germán Conti"
@@ -5641,6 +6131,7 @@ padrao = "liso"
   minutos = 961
   gols = 1
   id_fonte = "284321"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Janson"
@@ -5652,6 +6143,7 @@ padrao = "liso"
   partidas = 4
   minutos = 379
   id_fonte = "238448"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Melluso"
@@ -5663,6 +6155,7 @@ padrao = "liso"
   partidas = 2
   minutos = 138
   id_fonte = "564216"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Augusto Max"
@@ -5674,6 +6167,7 @@ padrao = "liso"
   partidas = 18
   minutos = 1598
   id_fonte = "149770"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Torres"
@@ -5686,6 +6180,7 @@ padrao = "liso"
   minutos = 793
   gols = 4
   id_fonte = "909789"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mateo Seoane"
@@ -5698,6 +6193,7 @@ padrao = "liso"
   minutos = 1140
   gols = 1
   id_fonte = "850433"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Errecalde"
@@ -5709,6 +6205,7 @@ padrao = "liso"
   partidas = 3
   minutos = 230
   id_fonte = "909170"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Maximiliano Zalazar"
@@ -5721,6 +6218,7 @@ padrao = "liso"
   minutos = 594
   gols = 2
   id_fonte = "757175"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Colazo"
@@ -5733,6 +6231,7 @@ padrao = "liso"
   minutos = 391
   gols = 2
   id_fonte = "842808"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ivo Mammini"
@@ -5742,6 +6241,7 @@ padrao = "liso"
   pot = 54
   valor = 250000
   id_fonte = "748065"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Cortazzo"
@@ -5753,6 +6253,7 @@ padrao = "liso"
   partidas = 5
   minutos = 446
   id_fonte = "1224924"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jeremías Merlo"
@@ -5764,6 +6265,7 @@ padrao = "liso"
   partidas = 3
   minutos = 230
   id_fonte = "1283982"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Di Biasi"
@@ -5773,6 +6275,7 @@ padrao = "liso"
   pot = 56
   valor = 300000
   id_fonte = "1305326"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Pérez"
@@ -5784,6 +6287,7 @@ padrao = "liso"
   partidas = 2
   minutos = 205
   id_fonte = "1087316"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Fabricio Corbalán"
@@ -5793,6 +6297,7 @@ padrao = "liso"
   pot = 51
   valor = 75000
   id_fonte = "1283981"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Julián Kadijevic"
@@ -5804,6 +6309,7 @@ padrao = "liso"
   partidas = 2
   minutos = 152
   id_fonte = "1085432"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leandro Mamut"
@@ -5813,6 +6319,7 @@ padrao = "liso"
   pot = 48
   valor = 50000
   id_fonte = "865201"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Villarreal"
@@ -5824,6 +6331,7 @@ padrao = "liso"
   partidas = 1
   minutos = 51
   id_fonte = "1305339"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Belgrano"
@@ -5842,6 +6350,7 @@ padrao = "liso"
   partidas = 32
   minutos = 2910
   id_fonte = "294843"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Lucas Zelarayán"
@@ -5854,6 +6363,7 @@ padrao = "liso"
   minutos = 2252
   gols = 4
   id_fonte = "230030"
+  nacionalidade = "Armênia"
 
   [[clubes.jogadores]]
   nome = "Adrián Sánchez"
@@ -5866,6 +6376,7 @@ padrao = "liso"
   minutos = 2460
   gols = 1
   id_fonte = "744279"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Fernández"
@@ -5878,6 +6389,7 @@ padrao = "liso"
   minutos = 1645
   gols = 6
   id_fonte = "333921"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Francisco González Metilli"
@@ -5890,6 +6402,7 @@ padrao = "liso"
   minutos = 1186
   gols = 5
   id_fonte = "442679"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Longo"
@@ -5901,6 +6414,7 @@ padrao = "liso"
   partidas = 11
   minutos = 973
   id_fonte = "697065"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonardo Morales"
@@ -5913,6 +6427,7 @@ padrao = "liso"
   minutos = 2625
   gols = 1
   id_fonte = "457061"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Passerini"
@@ -5925,6 +6440,7 @@ padrao = "liso"
   minutos = 1280
   gols = 4
   id_fonte = "334586"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alexis Maldonado"
@@ -5936,6 +6452,7 @@ padrao = "liso"
   partidas = 19
   minutos = 1754
   id_fonte = "444100"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Emiliano Rigoni"
@@ -5948,6 +6465,7 @@ padrao = "liso"
   minutos = 2419
   gols = 4
   id_fonte = "282544"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Vázquez"
@@ -5960,6 +6478,7 @@ padrao = "liso"
   minutos = 2086
   gols = 2
   id_fonte = "76163"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alcides Benítez"
@@ -5971,6 +6490,7 @@ padrao = "liso"
   partidas = 18
   minutos = 1601
   id_fonte = "980793"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Federico Ricca"
@@ -5982,6 +6502,7 @@ padrao = "liso"
   partidas = 11
   minutos = 1032
   id_fonte = "285322"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Lisandro López"
@@ -5994,6 +6515,7 @@ padrao = "liso"
   minutos = 2204
   gols = 1
   id_fonte = "125019"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Adrián Spörle"
@@ -6005,6 +6527,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1919
   id_fonte = "440371"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Manuel Vicentini"
@@ -6016,6 +6539,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "239697"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ramiro Hernandes"
@@ -6028,6 +6552,7 @@ padrao = "liso"
   minutos = 1239
   gols = 3
   id_fonte = "1273494"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Velázquez"
@@ -6039,6 +6564,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1107
   id_fonte = "1264273"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Álvaro Ocampo"
@@ -6050,6 +6576,7 @@ padrao = "liso"
   partidas = 6
   minutos = 520
   id_fonte = "1322673"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Falcón"
@@ -6061,6 +6588,7 @@ padrao = "liso"
   partidas = 6
   minutos = 531
   id_fonte = "1379586"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Gutiérrez"
@@ -6073,6 +6601,7 @@ padrao = "liso"
   minutos = 571
   gols = 4
   id_fonte = "1293765"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Daniele"
@@ -6082,6 +6611,7 @@ padrao = "liso"
   pot = 51
   valor = 37950
   id_fonte = "1225348"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Melano"
@@ -6091,6 +6621,7 @@ padrao = "liso"
   pot = 49
   valor = 37950
   id_fonte = "1377439"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Zelarayán"
@@ -6102,6 +6633,7 @@ padrao = "liso"
   partidas = 4
   minutos = 36
   id_fonte = "1292347"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ramiro Tulián"
@@ -6114,6 +6646,7 @@ padrao = "liso"
   minutos = 67
   gols = 1
   id_fonte = "1377440"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Huracán"
@@ -6132,6 +6665,7 @@ padrao = "liso"
   partidas = 24
   minutos = 2121
   id_fonte = "674391"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Blondel"
@@ -6144,6 +6678,7 @@ padrao = "liso"
   minutos = 1914
   gols = 3
   id_fonte = "503348"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Facundo Waller"
@@ -6156,6 +6691,7 @@ padrao = "liso"
   minutos = 1896
   gols = 2
   id_fonte = "322696"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Jordy Caicedo"
@@ -6168,6 +6704,7 @@ padrao = "liso"
   minutos = 2163
   gols = 13
   id_fonte = "360412"
+  nacionalidade = "Equador"
 
   [[clubes.jogadores]]
   nome = "Ignacio Pussetto"
@@ -6180,6 +6717,7 @@ padrao = "liso"
   minutos = 207
   gols = 1
   id_fonte = "283528"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Óscar Cortés"
@@ -6192,6 +6730,7 @@ padrao = "liso"
   minutos = 2128
   gols = 3
   id_fonte = "975689"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Federico Vera"
@@ -6203,6 +6742,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "829967"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Hernán Galíndez"
@@ -6214,6 +6754,7 @@ padrao = "liso"
   partidas = 28
   minutos = 2490
   id_fonte = "77127"
+  nacionalidade = "Equador"
 
   [[clubes.jogadores]]
   nome = "Juan Bisanz"
@@ -6226,6 +6767,7 @@ padrao = "liso"
   minutos = 1248
   gols = 2
   id_fonte = "866061"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonardo Gil"
@@ -6238,6 +6780,7 @@ padrao = "liso"
   minutos = 2075
   gols = 1
   id_fonte = "125907"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Máximo Palazzo"
@@ -6249,6 +6792,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1513
   id_fonte = "1225847"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Fernández Cedrés"
@@ -6260,6 +6804,7 @@ padrao = "liso"
   partidas = 7
   minutos = 625
   id_fonte = "458047"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Óscar Romero"
@@ -6272,6 +6817,7 @@ padrao = "liso"
   minutos = 792
   gols = 3
   id_fonte = "217886"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Emmanuel Ojeda"
@@ -6283,6 +6829,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1430
   id_fonte = "471657"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Hugo Nervo"
@@ -6295,6 +6842,7 @@ padrao = "liso"
   minutos = 1056
   gols = 1
   id_fonte = "107503"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Sebastián Meza"
@@ -6306,6 +6854,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "839030"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Bruno Barticciotto"
@@ -6317,6 +6866,7 @@ padrao = "liso"
   partidas = 2
   minutos = 45
   id_fonte = "737920"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Fabio Pereyra"
@@ -6328,6 +6878,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1929
   id_fonte = "610248"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Kalinger"
@@ -6339,6 +6890,7 @@ padrao = "liso"
   partidas = 11
   minutos = 960
   id_fonte = "1299661"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Campo"
@@ -6351,6 +6903,7 @@ padrao = "liso"
   minutos = 958
   gols = 1
   id_fonte = "1225538"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leandro Lescano"
@@ -6362,6 +6915,7 @@ padrao = "liso"
   partidas = 3
   minutos = 305
   id_fonte = "1174823"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Luján"
@@ -6371,6 +6925,7 @@ padrao = "liso"
   pot = 50
   valor = 100000
   id_fonte = "1005166"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Thaiel Peralta"
@@ -6383,6 +6938,7 @@ padrao = "liso"
   minutos = 577
   gols = 2
   id_fonte = "1299761"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Daniel Zabala"
@@ -6392,6 +6948,7 @@ padrao = "liso"
   pot = 51
   valor = 100000
   id_fonte = "1203749"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Mora"
@@ -6403,6 +6960,7 @@ padrao = "liso"
   partidas = 3
   minutos = 238
   id_fonte = "1299759"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nazareno Durán"
@@ -6412,6 +6970,7 @@ padrao = "liso"
   pot = 49
   valor = 55000
   id_fonte = "1157436"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Uribe"
@@ -6423,6 +6982,7 @@ padrao = "liso"
   partidas = 1
   minutos = 92
   id_fonte = "1299767"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Gimnasia y Esgrima (Mendoza)"
@@ -6441,6 +7001,7 @@ padrao = "liso"
   partidas = 2
   minutos = 176
   id_fonte = "376211"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Módica"
@@ -6453,6 +7014,7 @@ padrao = "liso"
   minutos = 1566
   gols = 12
   id_fonte = "1184570"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Facundo Lencioni"
@@ -6465,6 +7027,7 @@ padrao = "liso"
   minutos = 2100
   gols = 4
   id_fonte = "888761"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ulises Sánchez"
@@ -6476,6 +7039,7 @@ padrao = "liso"
   partidas = 10
   minutos = 919
   id_fonte = "724220"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Imanol González"
@@ -6487,6 +7051,7 @@ padrao = "liso"
   partidas = 6
   minutos = 578
   id_fonte = "426529"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Recalde"
@@ -6498,6 +7063,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1440
   id_fonte = "870219"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Diego Mondino"
@@ -6509,6 +7075,7 @@ padrao = "liso"
   partidas = 18
   minutos = 1598
   id_fonte = "279793"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Germán Guiffrey"
@@ -6520,6 +7087,7 @@ padrao = "liso"
   partidas = 2
   minutos = 162
   id_fonte = "610616"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Rodríguez"
@@ -6532,6 +7100,7 @@ padrao = "liso"
   minutos = 709
   gols = 1
   id_fonte = "439437"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Esteban Fernández"
@@ -6544,6 +7113,7 @@ padrao = "liso"
   minutos = 1073
   gols = 2
   id_fonte = "908102"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Fermín Antonini"
@@ -6555,6 +7125,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1543
   id_fonte = "433926"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luciano Paredes"
@@ -6567,6 +7138,7 @@ padrao = "liso"
   minutos = 1492
   gols = 1
   id_fonte = "1108415"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Franco"
@@ -6578,6 +7150,7 @@ padrao = "liso"
   partidas = 7
   minutos = 650
   id_fonte = "331245"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Lautaro Petruchi"
@@ -6589,6 +7162,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "667653"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Blas Armoa"
@@ -6601,6 +7175,7 @@ padrao = "liso"
   minutos = 320
   gols = 1
   id_fonte = "491603"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "César Rigamonti"
@@ -6612,6 +7187,7 @@ padrao = "liso"
   partidas = 24
   minutos = 2160
   id_fonte = "76159"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ezequiel Muñoz"
@@ -6624,6 +7200,7 @@ padrao = "liso"
   minutos = 2105
   gols = 2
   id_fonte = "75127"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Brian Andrada"
@@ -6635,6 +7212,7 @@ padrao = "liso"
   partidas = 4
   minutos = 403
   id_fonte = "361467"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Saavedra"
@@ -6646,6 +7224,7 @@ padrao = "liso"
   partidas = 11
   minutos = 1030
   id_fonte = "992528"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Sabatini"
@@ -6658,6 +7237,7 @@ padrao = "liso"
   minutos = 801
   gols = 1
   id_fonte = "847934"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nahuel Barboza"
@@ -6669,6 +7249,7 @@ padrao = "liso"
   partidas = 8
   minutos = 739
   id_fonte = "1105937"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ismael Cortéz"
@@ -6680,6 +7261,7 @@ padrao = "liso"
   partidas = 4
   minutos = 366
   id_fonte = "945274"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luciano Cingolani"
@@ -6692,6 +7274,7 @@ padrao = "liso"
   minutos = 884
   gols = 2
   id_fonte = "847293"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás O'Connor"
@@ -6703,6 +7286,7 @@ padrao = "liso"
   partidas = 5
   minutos = 479
   id_fonte = "1027880"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Julián Ceballos"
@@ -6714,6 +7298,7 @@ padrao = "liso"
   partidas = 8
   minutos = 726
   id_fonte = "1149569"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Ortiz"
@@ -6725,6 +7310,7 @@ padrao = "liso"
   partidas = 2
   minutos = 38
   id_fonte = "639384"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Valentino Simoni"
@@ -6737,6 +7323,7 @@ padrao = "liso"
   minutos = 712
   gols = 1
   id_fonte = "1182161"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Romano"
@@ -6748,6 +7335,7 @@ padrao = "liso"
   partidas = 1
   minutos = 21
   id_fonte = "624095"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Carrera"
@@ -6759,6 +7347,7 @@ padrao = "liso"
   partidas = 7
   minutos = 605
   id_fonte = "1225789"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gerónimo Patritti"
@@ -6770,6 +7359,7 @@ padrao = "liso"
   partidas = 1
   minutos = 11
   id_fonte = "1512081"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Barracas Central"
@@ -6789,6 +7379,7 @@ padrao = "liso"
   minutos = 2778
   gols = 3
   id_fonte = "721235"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Kevin Jappert"
@@ -6801,6 +7392,7 @@ padrao = "liso"
   minutos = 1686
   gols = 1
   id_fonte = "1020837"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Bruera"
@@ -6813,6 +7405,7 @@ padrao = "liso"
   minutos = 1848
   gols = 3
   id_fonte = "538880"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Maroni"
@@ -6825,6 +7418,7 @@ padrao = "liso"
   minutos = 1132
   gols = 2
   id_fonte = "441385"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Espínola"
@@ -6836,6 +7430,7 @@ padrao = "liso"
   partidas = 10
   minutos = 910
   id_fonte = "532557"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Marcelo Miño"
@@ -6847,6 +7442,7 @@ padrao = "liso"
   partidas = 25
   minutos = 2240
   id_fonte = "508135"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Iván Tapia"
@@ -6859,6 +7455,7 @@ padrao = "liso"
   minutos = 2612
   gols = 3
   id_fonte = "697405"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Capraro"
@@ -6870,6 +7467,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1553
   id_fonte = "992818"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Demartini"
@@ -6882,6 +7480,7 @@ padrao = "liso"
   minutos = 2316
   gols = 1
   id_fonte = "537257"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Porra"
@@ -6894,6 +7493,7 @@ padrao = "liso"
   minutos = 2566
   gols = 1
   id_fonte = "856593"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jhonatan Candia"
@@ -6906,6 +7506,7 @@ padrao = "liso"
   minutos = 1416
   gols = 1
   id_fonte = "259917"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Elías Pereyra"
@@ -6917,6 +7518,7 @@ padrao = "liso"
   partidas = 4
   minutos = 331
   id_fonte = "576027"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Esteban Rolón"
@@ -6928,6 +7530,7 @@ padrao = "liso"
   partidas = 3
   minutos = 244
   id_fonte = "399887"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Bogarín"
@@ -6940,6 +7543,7 @@ padrao = "liso"
   minutos = 501
   gols = 1
   id_fonte = "418859"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Yonatthan Rak"
@@ -6951,6 +7555,7 @@ padrao = "liso"
   partidas = 11
   minutos = 968
   id_fonte = "227781"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Fernando Tobio"
@@ -6963,6 +7568,7 @@ padrao = "liso"
   minutos = 2057
   gols = 2
   id_fonte = "69802"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gastón Campi"
@@ -6974,6 +7580,7 @@ padrao = "liso"
   partidas = 10
   minutos = 863
   id_fonte = "292174"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Orsini"
@@ -6985,6 +7592,7 @@ padrao = "liso"
   partidas = 1
   minutos = 15
   id_fonte = "289149"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Damián Martínez"
@@ -6997,6 +7605,7 @@ padrao = "liso"
   minutos = 1223
   gols = 2
   id_fonte = "107282"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Yeison Gordillo"
@@ -7006,6 +7615,7 @@ padrao = "liso"
   pot = 54
   valor = 100000
   id_fonte = "147670"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Dardo Miloc"
@@ -7017,6 +7627,7 @@ padrao = "liso"
   partidas = 26
   minutos = 2358
   id_fonte = "118375"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Morales"
@@ -7029,6 +7640,7 @@ padrao = "liso"
   minutos = 933
   gols = 3
   id_fonte = "1064936"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Barbieri"
@@ -7040,6 +7652,7 @@ padrao = "liso"
   partidas = 3
   minutos = 25
   id_fonte = "984675"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Norberto Briasco"
@@ -7052,6 +7665,7 @@ padrao = "liso"
   minutos = 1439
   gols = 1
   id_fonte = "457218"
+  nacionalidade = "Armênia"
 
   [[clubes.jogadores]]
   nome = "Rafael Barrios"
@@ -7063,6 +7677,7 @@ padrao = "liso"
   partidas = 15
   minutos = 1328
   id_fonte = "334057"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Gamba"
@@ -7075,6 +7690,7 @@ padrao = "liso"
   minutos = 173
   gols = 1
   id_fonte = "125906"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Manuel Duarte"
@@ -7086,6 +7702,7 @@ padrao = "liso"
   partidas = 2
   minutos = 152
   id_fonte = "891804"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Carlos Arce"
@@ -7097,6 +7714,7 @@ padrao = "liso"
   partidas = 1
   minutos = 3
   id_fonte = "697402"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Iván Guaraz"
@@ -7108,6 +7726,7 @@ padrao = "liso"
   partidas = 6
   minutos = 546
   id_fonte = "1306829"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Maximiliano Puig"
@@ -7119,6 +7738,7 @@ padrao = "liso"
   partidas = 5
   minutos = 37
   id_fonte = "888453"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Enzo Taborda"
@@ -7130,6 +7750,7 @@ padrao = "liso"
   partidas = 3
   minutos = 302
   id_fonte = "1298505"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Pablo Insúa"
@@ -7139,6 +7760,7 @@ padrao = "liso"
   pot = 48
   valor = 41250
   id_fonte = "1307273"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Lavezzi"
@@ -7148,6 +7770,7 @@ padrao = "liso"
   pot = 46
   valor = 41250
   id_fonte = "1322309"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Wilfredo Rivera"
@@ -7157,6 +7780,7 @@ padrao = "liso"
   pot = 49
   valor = 100000
   id_fonte = "750537"
+  nacionalidade = "Porto Rico"
 
 [[clubes]]
 nome = "Instituto ACC"
@@ -7176,6 +7800,7 @@ padrao = "liso"
   minutos = 2071
   gols = 7
   id_fonte = "843126"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Fernando Alarcón"
@@ -7188,6 +7813,7 @@ padrao = "liso"
   minutos = 2086
   gols = 2
   id_fonte = "376853"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Marcos Ledesma"
@@ -7199,6 +7825,7 @@ padrao = "liso"
   partidas = 11
   minutos = 990
   id_fonte = "344421"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Giuliano Cerato"
@@ -7211,6 +7838,7 @@ padrao = "liso"
   minutos = 2567
   gols = 6
   id_fonte = "971423"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Diego Sosa"
@@ -7223,6 +7851,7 @@ padrao = "liso"
   minutos = 2541
   gols = 1
   id_fonte = "464365"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonel Mosevich"
@@ -7235,6 +7864,7 @@ padrao = "liso"
   minutos = 2610
   gols = 2
   id_fonte = "407517"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Moyano"
@@ -7246,6 +7876,7 @@ padrao = "liso"
   partidas = 1
   minutos = 129
   id_fonte = "480764"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jhon Córdoba"
@@ -7258,6 +7889,7 @@ padrao = "liso"
   minutos = 1629
   gols = 2
   id_fonte = "628879"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Jonatan Galván"
@@ -7269,6 +7901,7 @@ padrao = "liso"
   partidas = 22
   minutos = 1973
   id_fonte = "216730"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gustavo Abregú"
@@ -7280,6 +7913,7 @@ padrao = "liso"
   partidas = 24
   minutos = 2180
   id_fonte = "486030"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Ignacio Méndez"
@@ -7291,6 +7925,7 @@ padrao = "liso"
   partidas = 9
   minutos = 852
   id_fonte = "508134"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Tissera"
@@ -7303,6 +7938,7 @@ padrao = "liso"
   minutos = 950
   gols = 3
   id_fonte = "503001"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Suárez"
@@ -7315,6 +7951,7 @@ padrao = "liso"
   minutos = 173
   gols = 1
   id_fonte = "702259"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Hernán de la Fuente"
@@ -7327,6 +7964,7 @@ padrao = "liso"
   minutos = 78
   gols = 1
   id_fonte = "552628"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jonás Acevedo"
@@ -7338,6 +7976,7 @@ padrao = "liso"
   partidas = 3
   minutos = 243
   id_fonte = "538530"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Sanseviero"
@@ -7349,6 +7988,7 @@ padrao = "liso"
   partidas = 1
   minutos = 23
   id_fonte = "970866"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Andrés Meli"
@@ -7358,6 +7998,7 @@ padrao = "liso"
   pot = 56
   valor = 350000
   id_fonte = "935331"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Guerra"
@@ -7370,6 +8011,7 @@ padrao = "liso"
   minutos = 712
   gols = 1
   id_fonte = "534037"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Matías Gallardo"
@@ -7382,6 +8024,7 @@ padrao = "liso"
   minutos = 963
   gols = 1
   id_fonte = "990785"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Wílder Viera"
@@ -7391,6 +8034,7 @@ padrao = "liso"
   pot = 58
   valor = 750000
   id_fonte = "661223"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Matías Fonseca"
@@ -7403,6 +8047,7 @@ padrao = "liso"
   minutos = 593
   gols = 1
   id_fonte = "538919"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Agustín Massaccesi"
@@ -7414,6 +8059,7 @@ padrao = "liso"
   partidas = 6
   minutos = 566
   id_fonte = "1221014"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jeremías Lázaro"
@@ -7426,6 +8072,7 @@ padrao = "liso"
   minutos = 847
   gols = 2
   id_fonte = "1227286"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Bravo"
@@ -7437,6 +8084,7 @@ padrao = "liso"
   partidas = 1
   minutos = 106
   id_fonte = "868503"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Emanuel Sittaro"
@@ -7448,6 +8096,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "717685"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Joaquín Medina"
@@ -7457,6 +8106,7 @@ padrao = "liso"
   pot = 50
   valor = 110000
   id_fonte = "1322189"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lorenzo Albarracín"
@@ -7466,6 +8116,7 @@ padrao = "liso"
   pot = 44
   valor = 25000
   id_fonte = "1295877"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luca Rafaelli"
@@ -7478,6 +8129,7 @@ padrao = "liso"
   minutos = 263
   gols = 1
   id_fonte = "1402952"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Unión (Santa Fé)"
@@ -7496,6 +8148,7 @@ padrao = "liso"
   partidas = 30
   minutos = 2700
   id_fonte = "731722"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Pablo Ludueña"
@@ -7508,6 +8161,7 @@ padrao = "liso"
   minutos = 2493
   gols = 1
   id_fonte = "1103988"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Julián Palacios"
@@ -7520,6 +8174,7 @@ padrao = "liso"
   minutos = 2185
   gols = 3
   id_fonte = "728262"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Vargas"
@@ -7531,6 +8186,7 @@ padrao = "liso"
   partidas = 22
   minutos = 1974
   id_fonte = "1159650"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Pintado"
@@ -7542,6 +8198,7 @@ padrao = "liso"
   partidas = 6
   minutos = 547
   id_fonte = "410456"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Marcelo Estigarribia"
@@ -7554,6 +8211,7 @@ padrao = "liso"
   minutos = 1895
   gols = 5
   id_fonte = "610266"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Brahian Cuello"
@@ -7566,6 +8224,7 @@ padrao = "liso"
   minutos = 1278
   gols = 4
   id_fonte = "494219"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Eric Ramírez"
@@ -7578,6 +8237,7 @@ padrao = "liso"
   minutos = 117
   gols = 2
   id_fonte = "364945"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Bruno Pittón"
@@ -7589,6 +8249,7 @@ padrao = "liso"
   partidas = 6
   minutos = 537
   id_fonte = "395216"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Malcorra"
@@ -7601,6 +8262,7 @@ padrao = "liso"
   minutos = 535
   gols = 1
   id_fonte = "87518"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Franco Fragapane"
@@ -7612,6 +8274,7 @@ padrao = "liso"
   partidas = 2
   minutos = 195
   id_fonte = "226005"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Cristian Tarragona"
@@ -7624,6 +8287,7 @@ padrao = "liso"
   minutos = 2538
   gols = 16
   id_fonte = "422698"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mauro Luna Diale"
@@ -7635,6 +8299,7 @@ padrao = "liso"
   partidas = 3
   minutos = 289
   id_fonte = "653266"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Augusto Solari"
@@ -7646,6 +8311,7 @@ padrao = "liso"
   partidas = 3
   minutos = 260
   id_fonte = "282694"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Menossi"
@@ -7658,6 +8324,7 @@ padrao = "liso"
   minutos = 1052
   gols = 4
   id_fonte = "225481"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Rocha"
@@ -7669,6 +8336,7 @@ padrao = "liso"
   partidas = 1
   minutos = 91
   id_fonte = "821824"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Joaquín Mosqueira"
@@ -7681,6 +8349,7 @@ padrao = "liso"
   minutos = 331
   gols = 1
   id_fonte = "1118712"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Ayala"
@@ -7692,6 +8361,7 @@ padrao = "liso"
   partidas = 7
   minutos = 661
   id_fonte = "1305781"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Meuli"
@@ -7701,6 +8371,7 @@ padrao = "liso"
   pot = 50
   valor = 51826
   id_fonte = "1118707"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tobías Rubio"
@@ -7710,6 +8381,7 @@ padrao = "liso"
   pot = 55
   valor = 300000
   id_fonte = "849534"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Emilio Giaccone"
@@ -7721,6 +8393,7 @@ padrao = "liso"
   partidas = 5
   minutos = 467
   id_fonte = "1305779"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Federico Gomes Gerth"
@@ -7730,6 +8403,7 @@ padrao = "liso"
   pot = 53
   valor = 100000
   id_fonte = "826528"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Misael Aguirre"
@@ -7742,6 +8416,7 @@ padrao = "liso"
   minutos = 566
   gols = 1
   id_fonte = "1322306"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Grella"
@@ -7753,6 +8428,7 @@ padrao = "liso"
   partidas = 1
   minutos = 75
   id_fonte = "1305778"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomas Fagioli"
@@ -7764,6 +8440,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "1408856"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Valentín Cerrudo"
@@ -7775,6 +8452,7 @@ padrao = "liso"
   partidas = 2
   minutos = 25
   id_fonte = "1161766"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Club Atlético Tucumán"
@@ -7793,6 +8471,7 @@ padrao = "liso"
   partidas = 29
   minutos = 2610
   id_fonte = "552636"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Clever Ferreira"
@@ -7805,6 +8484,7 @@ padrao = "liso"
   minutos = 1913
   gols = 4
   id_fonte = "1244188"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Nicolás Laméndola"
@@ -7817,6 +8497,7 @@ padrao = "liso"
   minutos = 2156
   gols = 4
   id_fonte = "756809"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Renzo Tesuri"
@@ -7829,6 +8510,7 @@ padrao = "liso"
   minutos = 2300
   gols = 3
   id_fonte = "457666"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ezequiel Ham"
@@ -7840,6 +8522,7 @@ padrao = "liso"
   partidas = 9
   minutos = 840
   id_fonte = "321612"
+  nacionalidade = "Síria"
 
   [[clubes.jogadores]]
   nome = "Kevin Ortiz"
@@ -7851,6 +8534,7 @@ padrao = "liso"
   partidas = 10
   minutos = 860
   id_fonte = "984079"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gastón Suso"
@@ -7862,6 +8546,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1508
   id_fonte = "469776"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Infante"
@@ -7873,6 +8558,7 @@ padrao = "liso"
   partidas = 3
   minutos = 294
   id_fonte = "615255"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Julián Fernández"
@@ -7884,6 +8570,7 @@ padrao = "liso"
   partidas = 3
   minutos = 231
   id_fonte = "275319"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leandro Díaz"
@@ -7896,6 +8583,7 @@ padrao = "liso"
   minutos = 1860
   gols = 8
   id_fonte = "140214"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Durso"
@@ -7907,6 +8595,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "534625"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gianluca Ferrari"
@@ -7918,6 +8607,7 @@ padrao = "liso"
   partidas = 9
   minutos = 811
   id_fonte = "340507"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Gabriel Rodríguez"
@@ -7927,6 +8617,7 @@ padrao = "liso"
   pot = 57
   valor = 250000
   id_fonte = "189448"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Godoy"
@@ -7939,6 +8630,7 @@ padrao = "liso"
   minutos = 1597
   gols = 2
   id_fonte = "1098440"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Martín Benítez"
@@ -7951,6 +8643,7 @@ padrao = "liso"
   minutos = 94
   gols = 1
   id_fonte = "189418"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Maximiliano Villa"
@@ -7963,6 +8656,7 @@ padrao = "liso"
   minutos = 1492
   gols = 1
   id_fonte = "521234"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Franco Nicola"
@@ -7975,6 +8669,7 @@ padrao = "liso"
   minutos = 1885
   gols = 3
   id_fonte = "1015626"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Ignacio Galván"
@@ -7986,6 +8681,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1854
   id_fonte = "863140"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonel Di Plácido"
@@ -7997,6 +8693,7 @@ padrao = "liso"
   partidas = 15
   minutos = 1367
   id_fonte = "322843"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luciano Vallejo"
@@ -8009,6 +8706,7 @@ padrao = "liso"
   minutos = 1509
   gols = 1
   id_fonte = "1327411"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonel Vega"
@@ -8020,6 +8718,7 @@ padrao = "liso"
   partidas = 15
   minutos = 1320
   id_fonte = "1224637"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alexis Canelo"
@@ -8032,6 +8731,7 @@ padrao = "liso"
   minutos = 113
   gols = 1
   id_fonte = "249789"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gabriel Compagnucci"
@@ -8043,6 +8743,7 @@ padrao = "liso"
   partidas = 5
   minutos = 409
   id_fonte = "538608"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ramiro Ruiz Rodríguez"
@@ -8055,6 +8756,7 @@ padrao = "liso"
   minutos = 565
   gols = 1
   id_fonte = "633048"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Patricio Albornoz"
@@ -8064,6 +8766,7 @@ padrao = "liso"
   pot = 51
   valor = 58104
   id_fonte = "1068088"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Moisés Brandán"
@@ -8073,6 +8776,7 @@ padrao = "liso"
   pot = 50
   valor = 75000
   id_fonte = "908390"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Manuel Brondo"
@@ -8085,6 +8789,7 @@ padrao = "liso"
   minutos = 369
   gols = 1
   id_fonte = "1103930"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gabriel Abeldaño"
@@ -8097,6 +8802,7 @@ padrao = "liso"
   minutos = 576
   gols = 1
   id_fonte = "1327450"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ezequiel Godoy"
@@ -8106,6 +8812,7 @@ padrao = "liso"
   pot = 48
   valor = 58104
   id_fonte = "668511"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Pimienta"
@@ -8117,6 +8824,7 @@ padrao = "liso"
   partidas = 2
   minutos = 13
   id_fonte = "1162321"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ramiro Paunero"
@@ -8128,6 +8836,7 @@ padrao = "liso"
   partidas = 1
   minutos = 70
   id_fonte = "1306601"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Sarmiento (Junín)"
@@ -8147,6 +8856,7 @@ padrao = "liso"
   minutos = 2125
   gols = 13
   id_fonte = "567737"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Cristian Zabala"
@@ -8159,6 +8869,7 @@ padrao = "liso"
   minutos = 2354
   gols = 1
   id_fonte = "613095"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Julián Mavilla"
@@ -8171,6 +8882,7 @@ padrao = "liso"
   minutos = 655
   gols = 3
   id_fonte = "1144681"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Nadruz"
@@ -8182,6 +8894,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "445283"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Lucas Suárez"
@@ -8194,6 +8907,7 @@ padrao = "liso"
   minutos = 1364
   gols = 1
   id_fonte = "322190"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mauricio Martínez"
@@ -8206,6 +8920,7 @@ padrao = "liso"
   minutos = 1612
   gols = 2
   id_fonte = "309388"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Renzo Orihuela"
@@ -8218,6 +8933,7 @@ padrao = "liso"
   minutos = 1485
   gols = 1
   id_fonte = "737892"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Santiago Salle"
@@ -8229,6 +8945,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1848
   id_fonte = "1108153"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Thyago Ayala"
@@ -8240,6 +8957,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "1157864"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Carlos Villalba"
@@ -8252,6 +8970,7 @@ padrao = "liso"
   minutos = 577
   gols = 1
   id_fonte = "652968"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Iván Arboleda"
@@ -8263,6 +8982,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "260740"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Jonathan Herrera"
@@ -8275,6 +8995,7 @@ padrao = "liso"
   minutos = 625
   gols = 1
   id_fonte = "485880"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Manuel García"
@@ -8286,6 +9007,7 @@ padrao = "liso"
   partidas = 11
   minutos = 995
   id_fonte = "869941"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gabriel Díaz"
@@ -8297,6 +9019,7 @@ padrao = "liso"
   partidas = 6
   minutos = 501
   id_fonte = "906940"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Pasquini"
@@ -8309,6 +9032,7 @@ padrao = "liso"
   minutos = 790
   gols = 1
   id_fonte = "270987"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Thiago Santamaría"
@@ -8320,6 +9044,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1193
   id_fonte = "1225290"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gastón González"
@@ -8332,6 +9057,7 @@ padrao = "liso"
   minutos = 184
   gols = 1
   id_fonte = "689052"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Julián Contrera"
@@ -8343,6 +9069,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1488
   id_fonte = "978967"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gastón Arturia"
@@ -8354,6 +9081,7 @@ padrao = "liso"
   partidas = 6
   minutos = 503
   id_fonte = "971529"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Manuel Insaurralde"
@@ -8365,6 +9093,7 @@ padrao = "liso"
   partidas = 24
   minutos = 2138
   id_fonte = "65072"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Pablo Magnin"
@@ -8377,6 +9106,7 @@ padrao = "liso"
   minutos = 375
   gols = 2
   id_fonte = "144236"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Yair Arismendi"
@@ -8388,6 +9118,7 @@ padrao = "liso"
   partidas = 7
   minutos = 596
   id_fonte = "440006"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Diego Churín"
@@ -8400,6 +9131,7 @@ padrao = "liso"
   minutos = 914
   gols = 2
   id_fonte = "68747"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Manuel Cabrera"
@@ -8411,6 +9143,7 @@ padrao = "liso"
   partidas = 4
   minutos = 361
   id_fonte = "1029002"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Elián Giménez"
@@ -8422,6 +9155,7 @@ padrao = "liso"
   partidas = 3
   minutos = 251
   id_fonte = "1290521"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Joel Godoy"
@@ -8431,6 +9165,7 @@ padrao = "liso"
   pot = 58
   valor = 600000
   id_fonte = "1270723"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Seyral"
@@ -8442,6 +9177,7 @@ padrao = "liso"
   partidas = 9
   minutos = 809
   id_fonte = "1263525"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jhon Rentería"
@@ -8453,6 +9189,7 @@ padrao = "liso"
   partidas = 5
   minutos = 467
   id_fonte = "1289854"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Ulises Giménez"
@@ -8464,6 +9201,7 @@ padrao = "liso"
   partidas = 2
   minutos = 200
   id_fonte = "1005802"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Brandon Márquez"
@@ -8475,6 +9213,7 @@ padrao = "liso"
   partidas = 1
   minutos = 55
   id_fonte = "1270722"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jeremías Vallejos"
@@ -8484,6 +9223,7 @@ padrao = "liso"
   pot = 46
   valor = 50000
   id_fonte = "1227611"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Osmar Giménez"
@@ -8493,6 +9233,7 @@ padrao = "liso"
   pot = 56
   valor = 500000
   id_fonte = "1226344"
+  nacionalidade = "Paraguai"
 
 [[clubes]]
 nome = "Banfield"
@@ -8511,6 +9252,7 @@ padrao = "liso"
   partidas = 28
   minutos = 2543
   id_fonte = "985269"
+  nacionalidade = "Síria"
 
   [[clubes.jogadores]]
   nome = "Santiago López García"
@@ -8523,6 +9265,7 @@ padrao = "liso"
   minutos = 2562
   gols = 2
   id_fonte = "654813"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Diego Rodríguez"
@@ -8534,6 +9277,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "90800"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Pais"
@@ -8545,6 +9289,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1444
   id_fonte = "491702"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Meriano"
@@ -8556,6 +9301,7 @@ padrao = "liso"
   partidas = 22
   minutos = 1968
   id_fonte = "941511"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Adrián Balboa"
@@ -8567,6 +9313,7 @@ padrao = "liso"
   partidas = 3
   minutos = 257
   id_fonte = "252209"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Neyder Moreno"
@@ -8579,6 +9326,7 @@ padrao = "liso"
   minutos = 284
   gols = 1
   id_fonte = "571908"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Gino Santilli"
@@ -8590,6 +9338,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "881009"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nehuén Paz"
@@ -8599,6 +9348,7 @@ padrao = "liso"
   pot = 56
   valor = 175000
   id_fonte = "284724"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Ríos"
@@ -8610,6 +9360,7 @@ padrao = "liso"
   partidas = 3
   minutos = 300
   id_fonte = "878220"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Adoryán"
@@ -8622,6 +9373,7 @@ padrao = "liso"
   minutos = 1365
   gols = 2
   id_fonte = "1115868"
+  nacionalidade = "Armênia"
 
   [[clubes.jogadores]]
   nome = "Juan Luis Alfaro"
@@ -8633,6 +9385,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "997374"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Gómez"
@@ -8645,6 +9398,7 @@ padrao = "liso"
   minutos = 1296
   gols = 5
   id_fonte = "1232512"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Renzo Malanca"
@@ -8656,6 +9410,7 @@ padrao = "liso"
   partidas = 2
   minutos = 225
   id_fonte = "746958"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alexander Machado"
@@ -8668,6 +9423,7 @@ padrao = "liso"
   minutos = 634
   gols = 2
   id_fonte = "657755"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "David Zalazar"
@@ -8680,6 +9436,7 @@ padrao = "liso"
   minutos = 1241
   gols = 2
   id_fonte = "983867"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Federico Anselmo"
@@ -8692,6 +9449,7 @@ padrao = "liso"
   minutos = 186
   gols = 1
   id_fonte = "343163"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Villegas"
@@ -8703,6 +9461,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1063
   id_fonte = "883411"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Thomas Rodríguez"
@@ -8714,6 +9473,7 @@ padrao = "liso"
   partidas = 3
   minutos = 27
   id_fonte = "402581"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Favio Álvarez"
@@ -8725,6 +9485,7 @@ padrao = "liso"
   partidas = 3
   minutos = 269
   id_fonte = "280149"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Cano"
@@ -8736,6 +9497,7 @@ padrao = "liso"
   partidas = 2
   minutos = 216
   id_fonte = "677957"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Esquivel"
@@ -8747,6 +9509,7 @@ padrao = "liso"
   partidas = 11
   minutos = 958
   id_fonte = "1301391"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Brandon Oviedo"
@@ -8758,6 +9521,7 @@ padrao = "liso"
   partidas = 10
   minutos = 874
   id_fonte = "1322606"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Daniele"
@@ -8769,6 +9533,7 @@ padrao = "liso"
   partidas = 11
   minutos = 954
   id_fonte = "1281969"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Manuel Arteaga"
@@ -8778,6 +9543,7 @@ padrao = "liso"
   pot = 46
   valor = 44354
   id_fonte = "850381"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Lisandro Piñero"
@@ -8789,6 +9555,7 @@ padrao = "liso"
   partidas = 9
   minutos = 808
   id_fonte = "1301427"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Federico Medina"
@@ -8800,6 +9567,7 @@ padrao = "liso"
   partidas = 4
   minutos = 359
   id_fonte = "1228198"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Joaquín Molina"
@@ -8809,6 +9577,7 @@ padrao = "liso"
   pot = 48
   valor = 44354
   id_fonte = "1301444"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Iribarren"
@@ -8818,6 +9587,7 @@ padrao = "liso"
   pot = 47
   valor = 50000
   id_fonte = "1232511"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Palavecino"
@@ -8829,6 +9599,7 @@ padrao = "liso"
   partidas = 1
   minutos = 83
   id_fonte = "1073555"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Hernández"
@@ -8841,6 +9612,7 @@ padrao = "liso"
   minutos = 270
   gols = 1
   id_fonte = "1029496"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Club Deportivo Riestra"
@@ -8859,6 +9631,7 @@ padrao = "liso"
   partidas = 33
   minutos = 2970
   id_fonte = "131206"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Miño"
@@ -8870,6 +9643,7 @@ padrao = "liso"
   partidas = 26
   minutos = 2367
   id_fonte = "865442"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alexander Díaz"
@@ -8882,6 +9656,7 @@ padrao = "liso"
   minutos = 1491
   gols = 3
   id_fonte = "618986"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Antony Alonso"
@@ -8894,6 +9669,7 @@ padrao = "liso"
   minutos = 2087
   gols = 4
   id_fonte = "844800"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Cristian Paz"
@@ -8905,6 +9681,7 @@ padrao = "liso"
   partidas = 28
   minutos = 2550
   id_fonte = "357338"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Pedro Ramírez"
@@ -8917,6 +9694,7 @@ padrao = "liso"
   minutos = 1533
   gols = 1
   id_fonte = "832088"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Watson"
@@ -8928,6 +9706,7 @@ padrao = "liso"
   partidas = 20
   minutos = 1773
   id_fonte = "697045"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Pablo Monje"
@@ -8939,6 +9718,7 @@ padrao = "liso"
   partidas = 22
   minutos = 2000
   id_fonte = "992605"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Randazzo"
@@ -8951,6 +9731,7 @@ padrao = "liso"
   minutos = 1561
   gols = 3
   id_fonte = "283398"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mariano Bracamonte"
@@ -8963,6 +9744,7 @@ padrao = "liso"
   minutos = 1607
   gols = 1
   id_fonte = "662756"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Sansotre"
@@ -8974,6 +9756,7 @@ padrao = "liso"
   partidas = 26
   minutos = 2312
   id_fonte = "441341"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Yonatan Goitía"
@@ -8985,6 +9768,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1889
   id_fonte = "553854"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Graneros"
@@ -8996,6 +9780,7 @@ padrao = "liso"
   partidas = 1
   minutos = 100
   id_fonte = "851121"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Benegas"
@@ -9008,6 +9793,7 @@ padrao = "liso"
   minutos = 1110
   gols = 2
   id_fonte = "438926"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Gariglio"
@@ -9019,6 +9805,7 @@ padrao = "liso"
   partidas = 6
   minutos = 554
   id_fonte = "830848"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Marino Arzamendia"
@@ -9030,6 +9817,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "480417"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Milton Céliz"
@@ -9042,6 +9830,7 @@ padrao = "liso"
   minutos = 966
   gols = 1
   id_fonte = "260652"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Carlos Quintana"
@@ -9053,6 +9842,7 @@ padrao = "liso"
   partidas = 7
   minutos = 620
   id_fonte = "54596"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Braian Sánchez"
@@ -9065,6 +9855,7 @@ padrao = "liso"
   minutos = 465
   gols = 1
   id_fonte = "540163"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gabriel Obredor"
@@ -9076,6 +9867,7 @@ padrao = "liso"
   partidas = 11
   minutos = 1025
   id_fonte = "1118715"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Gallo"
@@ -9087,6 +9879,7 @@ padrao = "liso"
   partidas = 8
   minutos = 759
   id_fonte = "852747"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Eric Tovo"
@@ -9098,6 +9891,7 @@ padrao = "liso"
   partidas = 1
   minutos = 61
   id_fonte = "697418"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Iván López"
@@ -9109,6 +9903,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "486236"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás González"
@@ -9121,6 +9916,7 @@ padrao = "liso"
   minutos = 579
   gols = 3
   id_fonte = "989579"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ángel Almada"
@@ -9132,6 +9928,7 @@ padrao = "liso"
   partidas = 2
   minutos = 45
   id_fonte = "996005"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ángel Stringa"
@@ -9144,6 +9941,7 @@ padrao = "liso"
   minutos = 534
   gols = 2
   id_fonte = "988734"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mauro Smarra"
@@ -9155,6 +9953,7 @@ padrao = "liso"
   partidas = 5
   minutos = 414
   id_fonte = "1169692"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Yeison Murillo"
@@ -9164,6 +9963,7 @@ padrao = "liso"
   pot = 45
   valor = 25000
   id_fonte = "439088"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Flores"
@@ -9175,6 +9975,7 @@ padrao = "liso"
   partidas = 4
   minutos = 394
   id_fonte = "900895"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Bravo"
@@ -9184,6 +9985,7 @@ padrao = "liso"
   pot = 43
   valor = 25000
   id_fonte = "464349"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Thiago Lauro"
@@ -9195,6 +9997,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "1246521"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Central Córdoba (SdE)"
@@ -9214,6 +10017,7 @@ padrao = "liso"
   minutos = 2250
   gols = 1
   id_fonte = "535033"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas González"
@@ -9225,6 +10029,7 @@ padrao = "liso"
   partidas = 18
   minutos = 1627
   id_fonte = "688778"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Vera"
@@ -9237,6 +10042,7 @@ padrao = "liso"
   minutos = 2177
   gols = 1
   id_fonte = "368801"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Mansilla"
@@ -9249,6 +10055,7 @@ padrao = "liso"
   minutos = 1854
   gols = 1
   id_fonte = "833783"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Moyano"
@@ -9260,6 +10067,7 @@ padrao = "liso"
   partidas = 20
   minutos = 1779
   id_fonte = "568551"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alan Aguerre"
@@ -9271,6 +10079,7 @@ padrao = "liso"
   partidas = 24
   minutos = 2119
   id_fonte = "269784"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Fernando Juárez"
@@ -9282,6 +10091,7 @@ padrao = "liso"
   partidas = 4
   minutos = 343
   id_fonte = "439627"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Marco Iacobellis"
@@ -9294,6 +10104,7 @@ padrao = "liso"
   minutos = 1146
   gols = 2
   id_fonte = "699886"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Michael Santos"
@@ -9306,6 +10117,7 @@ padrao = "liso"
   minutos = 1562
   gols = 7
   id_fonte = "178107"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Diego Barrera"
@@ -9318,6 +10130,7 @@ padrao = "liso"
   minutos = 1892
   gols = 3
   id_fonte = "1103406"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Felipe Aguilar"
@@ -9327,6 +10140,7 @@ padrao = "liso"
   pot = 54
   valor = 200000
   id_fonte = "260377"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Fernando Martínez"
@@ -9339,6 +10153,7 @@ padrao = "liso"
   minutos = 1495
   gols = 1
   id_fonte = "880025"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonardo Sequeira"
@@ -9351,6 +10166,7 @@ padrao = "liso"
   minutos = 329
   gols = 1
   id_fonte = "384761"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Darío Cáceres"
@@ -9362,6 +10178,7 @@ padrao = "liso"
   partidas = 6
   minutos = 518
   id_fonte = "567663"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Horacio Tijanovich"
@@ -9373,6 +10190,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1079
   id_fonte = "380974"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ezequiel Naya"
@@ -9385,6 +10203,7 @@ padrao = "liso"
   minutos = 1064
   gols = 2
   id_fonte = "909314"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "José Gómez"
@@ -9396,6 +10215,7 @@ padrao = "liso"
   partidas = 1
   minutos = 113
   id_fonte = "953947"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Pablo Pignani"
@@ -9407,6 +10227,7 @@ padrao = "liso"
   partidas = 8
   minutos = 692
   id_fonte = "984882"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tiago Cravero"
@@ -9418,6 +10239,7 @@ padrao = "liso"
   partidas = 10
   minutos = 866
   id_fonte = "891681"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Yuri Casermeiro"
@@ -9429,6 +10251,7 @@ padrao = "liso"
   partidas = 7
   minutos = 656
   id_fonte = "1130336"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Varaldo"
@@ -9440,6 +10263,7 @@ padrao = "liso"
   partidas = 5
   minutos = 437
   id_fonte = "718206"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonardo Marchi"
@@ -9451,6 +10275,7 @@ padrao = "liso"
   partidas = 5
   minutos = 412
   id_fonte = "642521"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Cardozo"
@@ -9462,6 +10287,7 @@ padrao = "liso"
   partidas = 6
   minutos = 520
   id_fonte = "912696"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Javier Vallejos"
@@ -9473,6 +10299,7 @@ padrao = "liso"
   partidas = 3
   minutos = 311
   id_fonte = "1157296"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alan Daian Laprida"
@@ -9484,6 +10311,7 @@ padrao = "liso"
   partidas = 5
   minutos = 413
   id_fonte = "1322290"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Joaquín Flores"
@@ -9495,6 +10323,7 @@ padrao = "liso"
   partidas = 2
   minutos = 146
   id_fonte = "1203752"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Bernabéu"
@@ -9504,6 +10333,7 @@ padrao = "liso"
   pot = 42
   valor = 27500
   id_fonte = "1170351"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Martín Cuitiño"
@@ -9516,6 +10346,7 @@ padrao = "liso"
   minutos = 116
   gols = 1
   id_fonte = "1518691"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Aldosivi"
@@ -9535,6 +10366,7 @@ padrao = "liso"
   minutos = 601
   gols = 4
   id_fonte = "486926"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Braian Cufré"
@@ -9546,6 +10378,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "401521"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Acosta"
@@ -9557,6 +10390,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "296799"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Zalazar"
@@ -9568,6 +10402,7 @@ padrao = "liso"
   partidas = 20
   minutos = 1814
   id_fonte = "471640"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ignacio Chicco"
@@ -9579,6 +10414,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "503329"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Linares"
@@ -9590,6 +10426,7 @@ padrao = "liso"
   partidas = 2
   minutos = 170
   id_fonte = "534616"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Néstor Breitenbruch"
@@ -9601,6 +10438,7 @@ padrao = "liso"
   partidas = 10
   minutos = 925
   id_fonte = "334056"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Joaquín Pombo"
@@ -9613,6 +10451,7 @@ padrao = "liso"
   minutos = 1035
   gols = 1
   id_fonte = "849258"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rodrigo González"
@@ -9624,6 +10463,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1465
   id_fonte = "659589"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Rodríguez"
@@ -9635,6 +10475,7 @@ padrao = "liso"
   partidas = 8
   minutos = 722
   id_fonte = "171593"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás Fernández"
@@ -9647,6 +10488,7 @@ padrao = "liso"
   minutos = 1037
   gols = 6
   id_fonte = "613364"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Federico Gino"
@@ -9659,6 +10501,7 @@ padrao = "liso"
   minutos = 1053
   gols = 2
   id_fonte = "273130"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Lucas Castro"
@@ -9671,6 +10514,7 @@ padrao = "liso"
   minutos = 905
   gols = 1
   id_fonte = "105892"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Cordero"
@@ -9683,6 +10527,7 @@ padrao = "liso"
   minutos = 1414
   gols = 3
   id_fonte = "652948"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Sebastián Moyano"
@@ -9692,6 +10537,7 @@ padrao = "liso"
   pot = 52
   valor = 75000
   id_fonte = "148789"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Elías López"
@@ -9703,6 +10549,7 @@ padrao = "liso"
   partidas = 6
   minutos = 576
   id_fonte = "491691"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alan Sosa"
@@ -9715,6 +10562,7 @@ padrao = "liso"
   minutos = 1105
   gols = 2
   id_fonte = "1103941"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonardo Sigali"
@@ -9726,6 +10574,7 @@ padrao = "liso"
   partidas = 3
   minutos = 290
   id_fonte = "54570"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Godoy"
@@ -9737,6 +10586,7 @@ padrao = "liso"
   partidas = 6
   minutos = 580
   id_fonte = "582168"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Natanael Guzmán"
@@ -9748,6 +10598,7 @@ padrao = "liso"
   partidas = 6
   minutos = 514
   id_fonte = "741105"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Moya"
@@ -9760,6 +10611,7 @@ padrao = "liso"
   minutos = 1049
   gols = 1
   id_fonte = "885621"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Palavecino"
@@ -9771,6 +10623,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1206
   id_fonte = "943969"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Francisco Perruzzi"
@@ -9782,6 +10635,7 @@ padrao = "liso"
   partidas = 2
   minutos = 149
   id_fonte = "963139"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nico Gaitán"
@@ -9794,6 +10648,7 @@ padrao = "liso"
   minutos = 543
   gols = 1
   id_fonte = "75442"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Andrés Chávez"
@@ -9805,6 +10660,7 @@ padrao = "liso"
   partidas = 2
   minutos = 170
   id_fonte = "193768"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Roberto Bochi"
@@ -9816,6 +10672,7 @@ padrao = "liso"
   partidas = 8
   minutos = 675
   id_fonte = "267387"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Martín García"
@@ -9827,6 +10684,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1066
   id_fonte = "1282681"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Bautista Dadín"
@@ -9838,6 +10696,7 @@ padrao = "liso"
   partidas = 3
   minutos = 282
   id_fonte = "1000691"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Federico Laurelli"
@@ -9849,6 +10708,7 @@ padrao = "liso"
   partidas = 4
   minutos = 331
   id_fonte = "1059224"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lautaro Chávez"
@@ -9858,6 +10718,7 @@ padrao = "liso"
   pot = 43
   valor = 50000
   id_fonte = "566712"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "AA Estudiantes (Río Cuarto)"
@@ -9876,6 +10737,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "469761"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alejandro Cabrera"
@@ -9887,6 +10749,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1162
   id_fonte = "671895"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gabriel Alanís"
@@ -9899,6 +10762,7 @@ padrao = "liso"
   minutos = 1592
   gols = 2
   id_fonte = "342149"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Siro Rosané"
@@ -9910,6 +10774,7 @@ padrao = "liso"
   partidas = 11
   minutos = 987
   id_fonte = "836253"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mateo Bajamich"
@@ -9922,6 +10787,7 @@ padrao = "liso"
   minutos = 988
   gols = 1
   id_fonte = "610228"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tomás González"
@@ -9933,6 +10799,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1851
   id_fonte = "1117221"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Facundo Cobos"
@@ -9945,6 +10812,7 @@ padrao = "liso"
   minutos = 764
   gols = 1
   id_fonte = "440146"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Francisco Romero"
@@ -9956,6 +10824,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1163
   id_fonte = "426533"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Maffini"
@@ -9967,6 +10836,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1890
   id_fonte = "844242"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nicolás Talpone"
@@ -9978,6 +10848,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1133
   id_fonte = "440865"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Antonini"
@@ -9989,6 +10860,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1223
   id_fonte = "667375"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Martín Garnerone"
@@ -10001,6 +10873,7 @@ padrao = "liso"
   minutos = 1004
   gols = 2
   id_fonte = "724219"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Ruiz Díaz"
@@ -10012,6 +10885,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "535029"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Raúl Lozano"
@@ -10023,6 +10897,7 @@ padrao = "liso"
   partidas = 7
   minutos = 630
   id_fonte = "613093"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Lastra"
@@ -10034,6 +10909,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1170
   id_fonte = "911960"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas González"
@@ -10045,6 +10921,7 @@ padrao = "liso"
   partidas = 1
   minutos = 99
   id_fonte = "660198"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Yeison Moreno"
@@ -10056,6 +10933,7 @@ padrao = "liso"
   partidas = 3
   minutos = 307
   id_fonte = "655431"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Juan Garro"
@@ -10067,6 +10945,7 @@ padrao = "liso"
   partidas = 2
   minutos = 197
   id_fonte = "174042"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Valenti"
@@ -10078,6 +10957,7 @@ padrao = "liso"
   partidas = 18
   minutos = 1580
   id_fonte = "1214798"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Agustín Quiroga"
@@ -10089,6 +10969,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "1126191"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gonzalo González"
@@ -10100,6 +10981,7 @@ padrao = "liso"
   partidas = 9
   minutos = 774
   id_fonte = "1029299"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ibrahim Hesar"
@@ -10112,6 +10994,7 @@ padrao = "liso"
   minutos = 565
   gols = 1
   id_fonte = "695346"
+  nacionalidade = "Síria"
 
   [[clubes.jogadores]]
   nome = "Mauro Valiente"
@@ -10124,6 +11007,7 @@ padrao = "liso"
   minutos = 1097
   gols = 1
   id_fonte = "621403"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Sergio Ojeda"
@@ -10136,6 +11020,7 @@ padrao = "liso"
   minutos = 1294
   gols = 1
   id_fonte = "261240"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Javier Ferreira"
@@ -10147,6 +11032,7 @@ padrao = "liso"
   partidas = 7
   minutos = 620
   id_fonte = "635107"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Fernando Rodríguez"
@@ -10158,6 +11044,7 @@ padrao = "liso"
   partidas = 6
   minutos = 510
   id_fonte = "951909"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ramón Ábila"
@@ -10169,6 +11056,7 @@ padrao = "liso"
   partidas = 2
   minutos = 191
   id_fonte = "88049"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Juan Chala"
@@ -10180,6 +11068,7 @@ padrao = "liso"
   partidas = 2
   minutos = 30
   id_fonte = "1289809"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Valentín Fenoglio"
@@ -10189,6 +11078,7 @@ padrao = "liso"
   pot = 52
   valor = 200000
   id_fonte = "1145392"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Francesco Lo Celso"
@@ -10200,6 +11090,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "642757"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Francisco Gualtieri"
@@ -10209,6 +11100,7 @@ padrao = "liso"
   pot = 43
   valor = 27500
   id_fonte = "1015898"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Lucas Baños"
@@ -10218,6 +11110,7 @@ padrao = "liso"
   pot = 42
   valor = 27500
   id_fonte = "1230924"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Mauro Molina"
@@ -10227,4 +11120,5 @@ padrao = "liso"
   pot = 40
   valor = 25000
   id_fonte = "556050"
+  nacionalidade = "Argentina"
 

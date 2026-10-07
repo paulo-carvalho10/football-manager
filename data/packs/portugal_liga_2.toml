@@ -29,6 +29,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "1083369"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Costa"
@@ -40,6 +41,7 @@ padrao = "liso"
   partidas = 10
   minutos = 900
   id_fonte = "198638"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Teixeira"
@@ -52,6 +54,7 @@ padrao = "liso"
   minutos = 137
   gols = 2
   id_fonte = "644255"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Kauê"
@@ -64,6 +67,7 @@ padrao = "liso"
   minutos = 236
   gols = 2
   id_fonte = "834467"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Dinis"
@@ -76,6 +80,7 @@ padrao = "liso"
   minutos = 516
   gols = 1
   id_fonte = "741536"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Mateus Mide"
@@ -88,6 +93,7 @@ padrao = "liso"
   minutos = 452
   gols = 2
   id_fonte = "1075878"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Eirik Granaas"
@@ -99,6 +105,7 @@ padrao = "liso"
   partidas = 1
   minutos = 109
   id_fonte = "1390964"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Gabriel Veron"
@@ -110,6 +117,7 @@ padrao = "liso"
   partidas = 1
   minutos = 29
   id_fonte = "627221"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Gonçalo Ribeiro"
@@ -121,6 +129,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1435
   id_fonte = "929334"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Bernardo Lima"
@@ -133,6 +142,7 @@ padrao = "liso"
   minutos = 494
   gols = 2
   id_fonte = "1076056"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Duarte Cunha"
@@ -145,6 +155,7 @@ padrao = "liso"
   minutos = 326
   gols = 1
   id_fonte = "1182538"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Domingos Muxito"
@@ -156,6 +167,7 @@ padrao = "liso"
   partidas = 1
   minutos = 99
   id_fonte = "1572899"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Luís Gomes"
@@ -167,6 +179,7 @@ padrao = "liso"
   partidas = 3
   minutos = 284
   id_fonte = "942925"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Martim Cunha"
@@ -179,6 +192,7 @@ padrao = "liso"
   minutos = 473
   gols = 1
   id_fonte = "1121435"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Tiago Ferreira"
@@ -190,6 +204,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "149721"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Trofim Melnichenko"
@@ -202,6 +217,7 @@ padrao = "liso"
   minutos = 242
   gols = 2
   id_fonte = "981868"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Mame Niang"
@@ -213,6 +229,7 @@ padrao = "liso"
   partidas = 1
   minutos = 80
   id_fonte = "1310998"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Tiago Silva"
@@ -225,6 +242,7 @@ padrao = "liso"
   minutos = 354
   gols = 1
   id_fonte = "1137979"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "André Miranda"
@@ -237,6 +255,7 @@ padrao = "liso"
   minutos = 918
   gols = 2
   id_fonte = "1083389"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "António Ribeiro"
@@ -248,6 +267,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "670712"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "André Oliveira"
@@ -260,6 +280,7 @@ padrao = "liso"
   minutos = 485
   gols = 1
   id_fonte = "637783"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Anhá Cande"
@@ -271,6 +292,7 @@ padrao = "liso"
   partidas = 2
   minutos = 159
   id_fonte = "1108856"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Eduardo Ferreira"
@@ -283,6 +305,7 @@ padrao = "liso"
   minutos = 281
   gols = 1
   id_fonte = "1471256"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Cardoso Varela"
@@ -294,6 +317,7 @@ padrao = "liso"
   partidas = 2
   minutos = 148
   id_fonte = "1134201"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Yoan Pereira"
@@ -305,6 +329,7 @@ padrao = "liso"
   partidas = 1
   minutos = 67
   id_fonte = "1342817"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Brayan Caicedo"
@@ -317,6 +342,7 @@ padrao = "liso"
   minutos = 481
   gols = 2
   id_fonte = "1088389"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Chelmik"
@@ -328,6 +354,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1092992"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Gonçalo Silva"
@@ -339,6 +366,7 @@ padrao = "liso"
   partidas = 1
   minutos = 5
   id_fonte = "1333529"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Emanuel"
@@ -350,6 +378,7 @@ padrao = "liso"
   partidas = 1
   minutos = 10
   id_fonte = "1225769"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Hjalte Froholdt"
@@ -359,6 +388,7 @@ padrao = "liso"
   pot = 54
   valor = 99000
   id_fonte = "1259958"
+  nacionalidade = "Dinamarca"
 
 [[clubes]]
 nome = "Benfica B"
@@ -377,6 +407,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "801446"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Daniel Banjaqui"
@@ -388,6 +419,7 @@ padrao = "liso"
   partidas = 3
   minutos = 250
   id_fonte = "1134199"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Fonseca"
@@ -400,6 +432,7 @@ padrao = "liso"
   minutos = 540
   gols = 2
   id_fonte = "983554"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Nuno Félix"
@@ -411,6 +444,7 @@ padrao = "liso"
   partidas = 5
   minutos = 486
   id_fonte = "858251"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Gonçalo Moreira"
@@ -423,6 +457,7 @@ padrao = "liso"
   minutos = 349
   gols = 2
   id_fonte = "1061744"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Martim Ferreira"
@@ -434,6 +469,7 @@ padrao = "liso"
   partidas = 1
   minutos = 3
   id_fonte = "937726"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rui Silva"
@@ -446,6 +482,7 @@ padrao = "liso"
   minutos = 161
   gols = 1
   id_fonte = "958934"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "José Neto"
@@ -458,6 +495,7 @@ padrao = "liso"
   minutos = 231
   gols = 1
   id_fonte = "1233701"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Anísio Cabral"
@@ -469,6 +507,7 @@ padrao = "liso"
   partidas = 2
   minutos = 166
   id_fonte = "1092964"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Miguel Figueiredo"
@@ -481,6 +520,7 @@ padrao = "liso"
   minutos = 311
   gols = 1
   id_fonte = "1439651"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Tiago Freitas"
@@ -493,6 +533,7 @@ padrao = "liso"
   minutos = 341
   gols = 3
   id_fonte = "937720"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Duarte Soares"
@@ -504,6 +545,7 @@ padrao = "liso"
   partidas = 3
   minutos = 289
   id_fonte = "1006453"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Capucho"
@@ -515,6 +557,7 @@ padrao = "liso"
   partidas = 3
   minutos = 288
   id_fonte = "958935"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Olivio Tomé"
@@ -527,6 +570,7 @@ padrao = "liso"
   minutos = 319
   gols = 1
   id_fonte = "801435"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rafael Quintas"
@@ -538,6 +582,7 @@ padrao = "liso"
   partidas = 3
   minutos = 257
   id_fonte = "1092997"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Francisco Silva"
@@ -550,6 +595,7 @@ padrao = "liso"
   minutos = 321
   gols = 1
   id_fonte = "801445"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Arnas Voitinovičius"
@@ -561,6 +607,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "819383"
+  nacionalidade = "Lituânia"
 
   [[clubes.jogadores]]
   nome = "Bernardes"
@@ -573,6 +620,7 @@ padrao = "liso"
   minutos = 257
   gols = 1
   id_fonte = "1093812"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Federico Coletta"
@@ -584,6 +632,7 @@ padrao = "liso"
   partidas = 2
   minutos = 43
   id_fonte = "1008569"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Kevin Pinto"
@@ -595,6 +644,7 @@ padrao = "liso"
   partidas = 8
   minutos = 699
   id_fonte = "1050218"
+  nacionalidade = "Inglaterra"
 
   [[clubes.jogadores]]
   nome = "Gabriel Índio"
@@ -606,6 +656,7 @@ padrao = "liso"
   partidas = 4
   minutos = 405
   id_fonte = "1464920"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Felipe Lima"
@@ -618,6 +669,7 @@ padrao = "liso"
   minutos = 85
   gols = 1
   id_fonte = "923299"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Peter Edokpolor"
@@ -630,6 +682,7 @@ padrao = "liso"
   minutos = 9
   gols = 3
   id_fonte = "1371116"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Leandro Martins"
@@ -641,6 +694,7 @@ padrao = "liso"
   partidas = 2
   minutos = 39
   id_fonte = "983556"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Dudu"
@@ -652,6 +706,7 @@ padrao = "liso"
   partidas = 3
   minutos = 282
   id_fonte = "958933"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Gonçalo da Silva"
@@ -661,6 +716,7 @@ padrao = "liso"
   pot = 61
   valor = 110000
   id_fonte = "1165820"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Tomás Soares"
@@ -673,6 +729,7 @@ padrao = "liso"
   minutos = 179
   gols = 1
   id_fonte = "1075888"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Stevan"
@@ -684,6 +741,7 @@ padrao = "liso"
   partidas = 1
   minutos = 71
   id_fonte = "1075887"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Diogo Coelho"
@@ -693,6 +751,7 @@ padrao = "liso"
   pot = 60
   valor = 110000
   id_fonte = "1355072"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Tiago Rodrigues"
@@ -702,6 +761,7 @@ padrao = "liso"
   pot = 58
   valor = 110000
   id_fonte = "1210904"
+  nacionalidade = "Portugal"
 
 [[clubes]]
 nome = "Sporting CP B"
@@ -721,6 +781,7 @@ padrao = "liso"
   minutos = 263
   gols = 2
   id_fonte = "1057523"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Samuel Justo"
@@ -733,6 +794,7 @@ padrao = "liso"
   minutos = 488
   gols = 1
   id_fonte = "726705"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Muniz"
@@ -744,6 +806,7 @@ padrao = "liso"
   partidas = 20
   minutos = 1755
   id_fonte = "984439"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Paulo Cardoso"
@@ -756,6 +819,7 @@ padrao = "liso"
   minutos = 28
   gols = 5
   id_fonte = "1319390"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Dias"
@@ -768,6 +832,7 @@ padrao = "liso"
   minutos = 315
   gols = 1
   id_fonte = "1086722"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Mauro Couto"
@@ -780,6 +845,7 @@ padrao = "liso"
   minutos = 518
   gols = 2
   id_fonte = "1056907"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Eduardo Felicíssimo"
@@ -791,6 +857,7 @@ padrao = "liso"
   partidas = 4
   minutos = 380
   id_fonte = "1081566"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Mateo Tanlongo"
@@ -803,6 +870,7 @@ padrao = "liso"
   minutos = 534
   gols = 1
   id_fonte = "851804"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Bruno Ramos"
@@ -815,6 +883,7 @@ padrao = "liso"
   minutos = 1494
   gols = 1
   id_fonte = "1092432"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Salvador Blopa"
@@ -827,6 +896,7 @@ padrao = "liso"
   minutos = 1042
   gols = 2
   id_fonte = "1294105"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Micael Sanhá"
@@ -838,6 +908,7 @@ padrao = "liso"
   partidas = 5
   minutos = 435
   id_fonte = "1294122"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Lucas Anjos"
@@ -850,6 +921,7 @@ padrao = "liso"
   minutos = 47
   gols = 4
   id_fonte = "670686"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Guilherme Pires"
@@ -861,6 +933,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "984573"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Francisco Silva"
@@ -872,6 +945,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "741492"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Kauã Oliveira"
@@ -883,6 +957,7 @@ padrao = "liso"
   partidas = 2
   minutos = 214
   id_fonte = "1097470"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Atanásio"
@@ -895,6 +970,7 @@ padrao = "liso"
   minutos = 245
   gols = 1
   id_fonte = "1070477"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Lucas Taibo"
@@ -906,6 +982,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "1062520"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Rodrigues"
@@ -917,6 +994,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "1333982"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rafael Besugo"
@@ -928,6 +1006,7 @@ padrao = "liso"
   partidas = 4
   minutos = 379
   id_fonte = "950377"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Gabriel Silva"
@@ -940,6 +1019,7 @@ padrao = "liso"
   minutos = 126
   gols = 1
   id_fonte = "1006454"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ivanildo"
@@ -951,6 +1031,7 @@ padrao = "liso"
   partidas = 1
   minutos = 124
   id_fonte = "848090"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Rafael Mota"
@@ -962,6 +1043,7 @@ padrao = "liso"
   partidas = 2
   minutos = 209
   id_fonte = "958975"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Bidu"
@@ -974,6 +1056,7 @@ padrao = "liso"
   minutos = 152
   gols = 1
   id_fonte = "1500575"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Daniel Costa"
@@ -985,6 +1068,7 @@ padrao = "liso"
   partidas = 1
   minutos = 113
   id_fonte = "1083412"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Zaïd Bafdili"
@@ -996,6 +1080,7 @@ padrao = "liso"
   partidas = 3
   minutos = 9
   id_fonte = "981397"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Miguel Alves"
@@ -1007,6 +1092,7 @@ padrao = "liso"
   partidas = 1
   minutos = 53
   id_fonte = "1072812"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Víctor Guzmán"
@@ -1018,6 +1104,7 @@ padrao = "liso"
   partidas = 2
   minutos = 175
   id_fonte = "1076589"
+  nacionalidade = "Peru"
 
   [[clubes.jogadores]]
   nome = "Afonso Lee"
@@ -1029,6 +1116,7 @@ padrao = "liso"
   partidas = 1
   minutos = 72
   id_fonte = "1302174"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Miguel Almeida"
@@ -1040,6 +1128,7 @@ padrao = "liso"
   partidas = 1
   minutos = 83
   id_fonte = "1058191"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Manuel Kissanga"
@@ -1051,6 +1140,7 @@ padrao = "liso"
   partidas = 2
   minutos = 12
   id_fonte = "1193421"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Miguel Gouveia"
@@ -1060,6 +1150,7 @@ padrao = "liso"
   pot = 57
   valor = 82500
   id_fonte = "1121498"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rayhan Momade"
@@ -1071,6 +1162,7 @@ padrao = "liso"
   partidas = 1
   minutos = 3
   id_fonte = "937721"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Catarino"
@@ -1080,6 +1172,7 @@ padrao = "liso"
   pot = 55
   valor = 82500
   id_fonte = "1438171"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Djibril Gueye"
@@ -1089,6 +1182,7 @@ padrao = "liso"
   pot = 56
   valor = 82500
   id_fonte = "1476611"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Leonardo Varela"
@@ -1100,6 +1194,7 @@ padrao = "liso"
   partidas = 1
   minutos = 25
   id_fonte = "1527204"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rafael Camacho"
@@ -1109,6 +1204,7 @@ padrao = "liso"
   pot = 55
   valor = 82500
   id_fonte = "958973"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Sebastián Osorio"
@@ -1118,6 +1214,7 @@ padrao = "liso"
   pot = 49
   valor = 25000
   id_fonte = "1379864"
+  nacionalidade = "Colômbia"
 
 [[clubes]]
 nome = "União Torreense"
@@ -1137,6 +1234,7 @@ padrao = "liso"
   minutos = 422
   gols = 4
   id_fonte = "461866"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lucas Paes"
@@ -1148,6 +1246,7 @@ padrao = "liso"
   partidas = 37
   minutos = 3300
   id_fonte = "407841"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Adriel"
@@ -1159,6 +1258,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "808445"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Mohamed Ali Diadié"
@@ -1171,6 +1271,7 @@ padrao = "liso"
   minutos = 414
   gols = 1
   id_fonte = "1069037"
+  nacionalidade = "Mauritânia"
 
   [[clubes.jogadores]]
   nome = "Dany Jean"
@@ -1183,6 +1284,7 @@ padrao = "liso"
   minutos = 675
   gols = 2
   id_fonte = "628835"
+  nacionalidade = "Haiti"
 
   [[clubes.jogadores]]
   nome = "Manu Pozo"
@@ -1195,6 +1297,7 @@ padrao = "liso"
   minutos = 292
   gols = 2
   id_fonte = "635881"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Amine Oudrhiri"
@@ -1206,6 +1309,7 @@ padrao = "liso"
   partidas = 4
   minutos = 358
   id_fonte = "306668"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Volnei"
@@ -1217,6 +1321,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "813229"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Alejandro Alfaro"
@@ -1229,6 +1334,7 @@ padrao = "liso"
   minutos = 702
   gols = 1
   id_fonte = "720488"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "André Simões"
@@ -1241,6 +1347,7 @@ padrao = "liso"
   minutos = 194
   gols = 1
   id_fonte = "914629"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Marques"
@@ -1252,6 +1359,7 @@ padrao = "liso"
   partidas = 1
   minutos = 108
   id_fonte = "891971"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Musa Drammeh"
@@ -1264,6 +1372,7 @@ padrao = "liso"
   minutos = 476
   gols = 9
   id_fonte = "882708"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jorge Aguirre"
@@ -1273,6 +1382,7 @@ padrao = "liso"
   pot = 60
   valor = 600000
   id_fonte = "629385"
+  nacionalidade = "Cuba"
 
   [[clubes.jogadores]]
   nome = "Juan María Alcedo"
@@ -1284,6 +1394,7 @@ padrao = "liso"
   partidas = 3
   minutos = 298
   id_fonte = "628923"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Costinha"
@@ -1296,6 +1407,7 @@ padrao = "liso"
   minutos = 182
   gols = 1
   id_fonte = "236886"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Jonathan Mutombo"
@@ -1308,6 +1420,7 @@ padrao = "liso"
   minutos = 253
   gols = 1
   id_fonte = "721952"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Malik Abubakari"
@@ -1320,6 +1433,7 @@ padrao = "liso"
   minutos = 125
   gols = 1
   id_fonte = "682794"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "David Bruno"
@@ -1332,6 +1446,7 @@ padrao = "liso"
   minutos = 467
   gols = 1
   id_fonte = "126964"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Danilo"
@@ -1344,6 +1459,7 @@ padrao = "liso"
   minutos = 898
   gols = 1
   id_fonte = "1093703"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Stopira"
@@ -1356,6 +1472,7 @@ padrao = "liso"
   minutos = 525
   gols = 4
   id_fonte = "80486"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Vando Félix"
@@ -1367,6 +1484,7 @@ padrao = "liso"
   partidas = 1
   minutos = 7
   id_fonte = "830452"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Brian Agbor"
@@ -1378,6 +1496,7 @@ padrao = "liso"
   partidas = 5
   minutos = 440
   id_fonte = "719384"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Lisandru Olmeta"
@@ -1387,6 +1506,7 @@ padrao = "liso"
   pot = 62
   valor = 500000
   id_fonte = "810789"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Luis Quintero"
@@ -1399,6 +1519,7 @@ padrao = "liso"
   minutos = 219
   gols = 1
   id_fonte = "742864"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Hugo Pérez"
@@ -1410,6 +1531,7 @@ padrao = "liso"
   partidas = 1
   minutos = 77
   id_fonte = "718027"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Joel Romero"
@@ -1421,6 +1543,7 @@ padrao = "liso"
   partidas = 1
   minutos = 58
   id_fonte = "1343067"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Carlos Reina"
@@ -1430,6 +1553,7 @@ padrao = "liso"
   pot = 56
   valor = 300000
   id_fonte = "1061281"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Karem Zoabi"
@@ -1441,6 +1565,7 @@ padrao = "liso"
   partidas = 1
   minutos = 69
   id_fonte = "982557"
+  nacionalidade = "Israel"
 
   [[clubes.jogadores]]
   nome = "Nuha Jatta"
@@ -1452,6 +1577,7 @@ padrao = "liso"
   partidas = 3
   minutos = 278
   id_fonte = "974561"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Jérémy Mounsesse"
@@ -1461,6 +1587,7 @@ padrao = "liso"
   pot = 57
   valor = 250000
   id_fonte = "1004291"
+  nacionalidade = "Congo"
 
   [[clubes.jogadores]]
   nome = "Adama Baradji"
@@ -1472,6 +1599,7 @@ padrao = "liso"
   partidas = 2
   minutos = 209
   id_fonte = "1131160"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Carraro Injai"
@@ -1481,6 +1609,7 @@ padrao = "liso"
   pot = 47
   valor = 25000
   id_fonte = "1175184"
+  nacionalidade = "França"
 
 [[clubes]]
 nome = "Vizela"
@@ -1500,6 +1629,7 @@ padrao = "liso"
   minutos = 143
   gols = 1
   id_fonte = "250945"
+  nacionalidade = "República Dominicana"
 
   [[clubes.jogadores]]
   nome = "Antonio Gomis"
@@ -1511,6 +1641,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "930415"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Bright Godwin"
@@ -1522,6 +1653,7 @@ padrao = "liso"
   partidas = 7
   minutos = 602
   id_fonte = "783502"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Ismaël Diallo"
@@ -1531,6 +1663,7 @@ padrao = "liso"
   pot = 59
   valor = 400000
   id_fonte = "375881"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Miguel Pires"
@@ -1543,6 +1676,7 @@ padrao = "liso"
   minutos = 478
   gols = 1
   id_fonte = "1056441"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Aleksandar Vulic"
@@ -1554,6 +1688,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "706555"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Thio"
@@ -1566,6 +1701,7 @@ padrao = "liso"
   minutos = 310
   gols = 1
   id_fonte = "693358"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Jean-Pierre Rhyner"
@@ -1578,6 +1714,7 @@ padrao = "liso"
   minutos = 580
   gols = 1
   id_fonte = "203981"
+  nacionalidade = "Peru"
 
   [[clubes.jogadores]]
   nome = "Jójó"
@@ -1589,6 +1726,7 @@ padrao = "liso"
   partidas = 5
   minutos = 484
   id_fonte = "681827"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Aliou Traoré"
@@ -1600,6 +1738,7 @@ padrao = "liso"
   partidas = 1
   minutos = 15
   id_fonte = "495668"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Giovani Bamba"
@@ -1611,6 +1750,7 @@ padrao = "liso"
   partidas = 6
   minutos = 562
   id_fonte = "460347"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Matías Lacava"
@@ -1623,6 +1763,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "642721"
+  nacionalidade = "Venezuela"
 
   [[clubes.jogadores]]
   nome = "Miguel Tavares"
@@ -1635,6 +1776,7 @@ padrao = "liso"
   minutos = 277
   gols = 2
   id_fonte = "544792"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Andrea Hristov"
@@ -1646,6 +1788,7 @@ padrao = "liso"
   partidas = 4
   minutos = 327
   id_fonte = "415520"
+  nacionalidade = "Bulgária"
 
   [[clubes.jogadores]]
   nome = "Angel Bastunov"
@@ -1658,6 +1801,7 @@ padrao = "liso"
   minutos = 456
   gols = 1
   id_fonte = "584487"
+  nacionalidade = "Bulgária"
 
   [[clubes.jogadores]]
   nome = "José Sampaio"
@@ -1670,6 +1814,7 @@ padrao = "liso"
   minutos = 91
   gols = 3
   id_fonte = "1073604"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Anthony Carter"
@@ -1682,6 +1827,7 @@ padrao = "liso"
   minutos = 247
   gols = 2
   id_fonte = "303385"
+  nacionalidade = "Austrália"
 
   [[clubes.jogadores]]
   nome = "Yassin Fortuné"
@@ -1694,6 +1840,7 @@ padrao = "liso"
   minutos = 326
   gols = 3
   id_fonte = "342878"
+  nacionalidade = "Haiti"
 
   [[clubes.jogadores]]
   nome = "Abdul Awudu"
@@ -1703,6 +1850,7 @@ padrao = "liso"
   pot = 54
   valor = 400000
   id_fonte = "706176"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Cristián Cañozales"
@@ -1714,6 +1862,7 @@ padrao = "liso"
   partidas = 1
   minutos = 25
   id_fonte = "756981"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Manu Garrido"
@@ -1726,6 +1875,7 @@ padrao = "liso"
   minutos = 59
   gols = 2
   id_fonte = "789328"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Luís Rocha"
@@ -1738,6 +1888,7 @@ padrao = "liso"
   minutos = 263
   gols = 1
   id_fonte = "131658"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Neto"
@@ -1750,6 +1901,7 @@ padrao = "liso"
   minutos = 233
   gols = 1
   id_fonte = "291968"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Ramos"
@@ -1762,6 +1914,7 @@ padrao = "liso"
   minutos = 135
   gols = 1
   id_fonte = "1042940"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Alfred Caicedo"
@@ -1773,6 +1926,7 @@ padrao = "liso"
   partidas = 1
   minutos = 57
   id_fonte = "885179"
+  nacionalidade = "Equador"
 
   [[clubes.jogadores]]
   nome = "Pedro Souza"
@@ -1782,6 +1936,7 @@ padrao = "liso"
   pot = 49
   valor = 100000
   id_fonte = "718216"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Lucas Antañón"
@@ -1791,6 +1946,7 @@ padrao = "liso"
   pot = 50
   valor = 250000
   id_fonte = "1155470"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Luis Mina"
@@ -1800,6 +1956,7 @@ padrao = "liso"
   pot = 54
   valor = 300000
   id_fonte = "1286427"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Dani"
@@ -1809,6 +1966,7 @@ padrao = "liso"
   pot = 48
   valor = 137500
   id_fonte = "1379097"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Moustapha Sanogo"
@@ -1818,6 +1976,7 @@ padrao = "liso"
   pot = 48
   valor = 137500
   id_fonte = "1445756"
+  nacionalidade = "Costa do Marfim"
 
 [[clubes]]
 nome = "Clube Desportivo Tondela"
@@ -1836,6 +1995,7 @@ padrao = "liso"
   partidas = 2
   minutos = 207
   id_fonte = "989929"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Christian Marques"
@@ -1847,6 +2007,7 @@ padrao = "liso"
   partidas = 5
   minutos = 446
   id_fonte = "539807"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Cícero"
@@ -1859,6 +2020,7 @@ padrao = "liso"
   minutos = 320
   gols = 1
   id_fonte = "476355"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Cascavel"
@@ -1871,6 +2033,7 @@ padrao = "liso"
   minutos = 561
   gols = 1
   id_fonte = "1038290"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Yaya Sithole"
@@ -1883,6 +2046,7 @@ padrao = "liso"
   minutos = 142
   gols = 2
   id_fonte = "401736"
+  nacionalidade = "África do Sul"
 
   [[clubes.jogadores]]
   nome = "Hugo Félix"
@@ -1895,6 +2059,7 @@ padrao = "liso"
   minutos = 555
   gols = 1
   id_fonte = "670683"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Zé Ricardo"
@@ -1906,6 +2071,7 @@ padrao = "liso"
   partidas = 7
   minutos = 627
   id_fonte = "519748"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Ruly García"
@@ -1915,6 +2081,7 @@ padrao = "liso"
   pot = 58
   valor = 300000
   id_fonte = "577869"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lucas Cañizares"
@@ -1926,6 +2093,7 @@ padrao = "liso"
   partidas = 3
   minutos = 249
   id_fonte = "568154"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Tiago Dias"
@@ -1937,6 +2105,7 @@ padrao = "liso"
   partidas = 1
   minutos = 113
   id_fonte = "314886"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Carlão"
@@ -1948,6 +2117,7 @@ padrao = "liso"
   partidas = 4
   minutos = 378
   id_fonte = "985208"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Farru"
@@ -1960,6 +2130,7 @@ padrao = "liso"
   minutos = 519
   gols = 1
   id_fonte = "720410"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Tomané"
@@ -1972,6 +2143,7 @@ padrao = "liso"
   minutos = 314
   gols = 1
   id_fonte = "139393"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Arjen van der Heide"
@@ -1984,6 +2156,7 @@ padrao = "liso"
   minutos = 187
   gols = 3
   id_fonte = "462087"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Bebeto"
@@ -1996,6 +2169,7 @@ padrao = "liso"
   minutos = 114
   gols = 1
   id_fonte = "124548"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Gastón Novero"
@@ -2007,6 +2181,7 @@ padrao = "liso"
   partidas = 3
   minutos = 259
   id_fonte = "997765"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "João Afonso"
@@ -2019,6 +2194,7 @@ padrao = "liso"
   minutos = 180
   gols = 1
   id_fonte = "211107"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Mateus Sarará"
@@ -2031,6 +2207,7 @@ padrao = "liso"
   minutos = 209
   gols = 1
   id_fonte = "874853"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Carraça"
@@ -2042,6 +2219,7 @@ padrao = "liso"
   partidas = 6
   minutos = 532
   id_fonte = "291941"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Hélder Tavares"
@@ -2053,6 +2231,7 @@ padrao = "liso"
   partidas = 4
   minutos = 329
   id_fonte = "134608"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "João Lima"
@@ -2065,6 +2244,7 @@ padrao = "liso"
   minutos = 356
   gols = 3
   id_fonte = "840426"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Xabi Huarte"
@@ -2076,6 +2256,7 @@ padrao = "liso"
   partidas = 2
   minutos = 159
   id_fonte = "634125"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Bruno Almeida"
@@ -2087,6 +2268,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "696688"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Henry Addo"
@@ -2096,6 +2278,7 @@ padrao = "liso"
   pot = 56
   valor = 500000
   id_fonte = "947166"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Gabriel Ramalho"
@@ -2105,6 +2288,7 @@ padrao = "liso"
   pot = 47
   valor = 52155
   id_fonte = "1460195"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ian Kamga"
@@ -2116,6 +2300,7 @@ padrao = "liso"
   partidas = 1
   minutos = 3
   id_fonte = "1103180"
+  nacionalidade = "Inglaterra"
 
   [[clubes.jogadores]]
   nome = "Leonardo Silva"
@@ -2125,6 +2310,7 @@ padrao = "liso"
   pot = 46
   valor = 52155
   id_fonte = "1455799"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Richarllyson"
@@ -2136,6 +2322,7 @@ padrao = "liso"
   partidas = 1
   minutos = 60
   id_fonte = "1355783"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Rodrigo da Silva"
@@ -2145,6 +2332,7 @@ padrao = "liso"
   pot = 49
   valor = 52155
   id_fonte = "1268186"
+  nacionalidade = "Portugal"
 
 [[clubes]]
 nome = "Leiria"
@@ -2164,6 +2352,7 @@ padrao = "liso"
   minutos = 522
   gols = 3
   id_fonte = "268958"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Christian Joel"
@@ -2175,6 +2364,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "531373"
+  nacionalidade = "Cuba"
 
   [[clubes.jogadores]]
   nome = "Maga"
@@ -2187,6 +2377,7 @@ padrao = "liso"
   minutos = 630
   gols = 3
   id_fonte = "527881"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Marc Baró"
@@ -2198,6 +2389,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "388512"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Zé Pedro"
@@ -2210,6 +2402,7 @@ padrao = "liso"
   minutos = 360
   gols = 4
   id_fonte = "744072"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Pablo Fernández"
@@ -2222,6 +2415,7 @@ padrao = "liso"
   minutos = 482
   gols = 4
   id_fonte = "368582"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Reko"
@@ -2233,6 +2427,7 @@ padrao = "liso"
   partidas = 2
   minutos = 10
   id_fonte = "290262"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ibrahima Guirassy"
@@ -2244,6 +2439,7 @@ padrao = "liso"
   partidas = 6
   minutos = 533
   id_fonte = "710292"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Jair Silva"
@@ -2256,6 +2452,7 @@ padrao = "liso"
   minutos = 232
   gols = 1
   id_fonte = "933547"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Jordan van der Gaag"
@@ -2268,6 +2465,7 @@ padrao = "liso"
   minutos = 2065
   gols = 4
   id_fonte = "377725"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Damien Loppy"
@@ -2279,6 +2477,7 @@ padrao = "liso"
   partidas = 1
   minutos = 105
   id_fonte = "590840"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Miguel Nóbrega"
@@ -2290,6 +2489,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "409884"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Eboue Kouassi"
@@ -2301,6 +2501,7 @@ padrao = "liso"
   partidas = 1
   minutos = 105
   id_fonte = "314137"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Hugo Masaki"
@@ -2312,6 +2513,7 @@ padrao = "liso"
   partidas = 5
   minutos = 455
   id_fonte = "1280355"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Jakob Odehnal"
@@ -2323,6 +2525,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "526353"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Albert Lottin"
@@ -2335,6 +2538,7 @@ padrao = "liso"
   minutos = 381
   gols = 1
   id_fonte = "540659"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Diogo Martins"
@@ -2347,6 +2551,7 @@ padrao = "liso"
   minutos = 228
   gols = 1
   id_fonte = "548332"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Jaiminho"
@@ -2358,6 +2563,7 @@ padrao = "liso"
   partidas = 3
   minutos = 234
   id_fonte = "418425"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Marcelo"
@@ -2370,6 +2576,7 @@ padrao = "liso"
   minutos = 630
   gols = 1
   id_fonte = "190185"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Bernardo Gomes"
@@ -2382,6 +2589,7 @@ padrao = "liso"
   minutos = 6
   gols = 2
   id_fonte = "927713"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Diogo Amado"
@@ -2393,6 +2601,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "72835"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Borislav Rupanov"
@@ -2402,6 +2611,7 @@ padrao = "liso"
   pot = 56
   valor = 600000
   id_fonte = "1006467"
+  nacionalidade = "Bulgária"
 
   [[clubes.jogadores]]
   nome = "Samuel Ntanda"
@@ -2414,6 +2624,7 @@ padrao = "liso"
   minutos = 297
   gols = 1
   id_fonte = "641036"
+  nacionalidade = "RD do Congo"
 
   [[clubes.jogadores]]
   nome = "Famana Quizera"
@@ -2425,6 +2636,7 @@ padrao = "liso"
   partidas = 2
   minutos = 187
   id_fonte = "504089"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Kikín"
@@ -2434,6 +2646,7 @@ padrao = "liso"
   pot = 50
   valor = 150000
   id_fonte = "971775"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Tharlley"
@@ -2445,6 +2658,7 @@ padrao = "liso"
   partidas = 2
   minutos = 149
   id_fonte = "978845"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Leo Mascaró"
@@ -2454,6 +2668,7 @@ padrao = "liso"
   pot = 49
   valor = 100000
   id_fonte = "927821"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Nabil Ondó"
@@ -2466,6 +2681,7 @@ padrao = "liso"
   minutos = 419
   gols = 2
   id_fonte = "1174322"
+  nacionalidade = "Guiné Equatorial"
 
   [[clubes.jogadores]]
   nome = "Pedro Oliveira"
@@ -2477,6 +2693,7 @@ padrao = "liso"
   partidas = 2
   minutos = 30
   id_fonte = "1294215"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Stefan"
@@ -2488,6 +2705,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "1481324"
+  nacionalidade = "Moçambique"
 
   [[clubes.jogadores]]
   nome = "Victor Silva"
@@ -2500,6 +2718,7 @@ padrao = "liso"
   minutos = 229
   gols = 1
   id_fonte = "1093870"
+  nacionalidade = "Brasil"
 
 [[clubes]]
 nome = "GD Chaves"
@@ -2519,6 +2738,7 @@ padrao = "liso"
   minutos = 251
   gols = 1
   id_fonte = "657386"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Néstor Araújo"
@@ -2528,6 +2748,7 @@ padrao = "liso"
   pot = 61
   valor = 350000
   id_fonte = "64134"
+  nacionalidade = "México"
 
   [[clubes.jogadores]]
   nome = "Aílson Tavares"
@@ -2539,6 +2760,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "486766"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Gilberto García"
@@ -2550,6 +2772,7 @@ padrao = "liso"
   partidas = 2
   minutos = 206
   id_fonte = "778418"
+  nacionalidade = "México"
 
   [[clubes.jogadores]]
   nome = "João Valido"
@@ -2561,6 +2784,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "532900"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Léo Alaba"
@@ -2572,6 +2796,7 @@ padrao = "liso"
   partidas = 5
   minutos = 455
   id_fonte = "864733"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Dru Yearwood"
@@ -2583,6 +2808,7 @@ padrao = "liso"
   partidas = 1
   minutos = 116
   id_fonte = "526597"
+  nacionalidade = "Inglaterra"
 
   [[clubes.jogadores]]
   nome = "Tiago Simões"
@@ -2595,6 +2821,7 @@ padrao = "liso"
   minutos = 360
   gols = 4
   id_fonte = "825847"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Kiko"
@@ -2606,6 +2833,7 @@ padrao = "liso"
   partidas = 3
   minutos = 300
   id_fonte = "952730"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Aarón Romero"
@@ -2618,6 +2846,7 @@ padrao = "liso"
   minutos = 203
   gols = 1
   id_fonte = "623802"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Moura"
@@ -2627,6 +2856,7 @@ padrao = "liso"
   pot = 55
   valor = 150000
   id_fonte = "543103"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Marko Gudžulić"
@@ -2638,6 +2868,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "831591"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Pedro Pelágio"
@@ -2649,6 +2880,7 @@ padrao = "liso"
   partidas = 1
   minutos = 63
   id_fonte = "606050"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ivo Vázquez"
@@ -2660,6 +2892,7 @@ padrao = "liso"
   partidas = 2
   minutos = 28
   id_fonte = "692582"
+  nacionalidade = "México"
 
   [[clubes.jogadores]]
   nome = "André Rodrigues"
@@ -2672,6 +2905,7 @@ padrao = "liso"
   minutos = 402
   gols = 2
   id_fonte = "381312"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Teixeira"
@@ -2684,6 +2918,7 @@ padrao = "liso"
   minutos = 30
   gols = 1
   id_fonte = "182710"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "GB"
@@ -2693,6 +2928,7 @@ padrao = "liso"
   pot = 63
   valor = 2000000
   id_fonte = "1083962"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Mamadou Tounkara"
@@ -2704,6 +2940,7 @@ padrao = "liso"
   partidas = 4
   minutos = 377
   id_fonte = "820070"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Robyn Esajas"
@@ -2716,6 +2953,7 @@ padrao = "liso"
   minutos = 361
   gols = 1
   id_fonte = "591876"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Costinha"
@@ -2727,6 +2965,7 @@ padrao = "liso"
   partidas = 3
   minutos = 268
   id_fonte = "700936"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Marquinhos"
@@ -2739,6 +2978,7 @@ padrao = "liso"
   minutos = 312
   gols = 1
   id_fonte = "1084075"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Wilson Tavares"
@@ -2751,6 +2991,7 @@ padrao = "liso"
   minutos = 297
   gols = 4
   id_fonte = "1207608"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Roberto"
@@ -2763,6 +3004,7 @@ padrao = "liso"
   minutos = 389
   gols = 12
   id_fonte = "194330"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ricardo Alves"
@@ -2774,6 +3016,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "118323"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Armando Jr"
@@ -2785,6 +3028,7 @@ padrao = "liso"
   partidas = 1
   minutos = 74
   id_fonte = "967688"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mohamed Fofana"
@@ -2796,6 +3040,7 @@ padrao = "liso"
   partidas = 1
   minutos = 61
   id_fonte = "1162593"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Antony Herbert"
@@ -2807,6 +3052,7 @@ padrao = "liso"
   partidas = 2
   minutos = 44
   id_fonte = "1126512"
+  nacionalidade = "Panamá"
 
   [[clubes.jogadores]]
   nome = "Brice Eboudjé"
@@ -2818,6 +3064,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "1110112"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Di Cardoso"
@@ -2829,6 +3076,7 @@ padrao = "liso"
   partidas = 1
   minutos = 6
   id_fonte = "1086572"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Divin Muteba"
@@ -2840,6 +3088,7 @@ padrao = "liso"
   partidas = 1
   minutos = 24
   id_fonte = "1454921"
+  nacionalidade = "RD do Congo"
 
   [[clubes.jogadores]]
   nome = "Lucas Lima"
@@ -2849,6 +3098,7 @@ padrao = "liso"
   pot = 46
   valor = 71328
   id_fonte = "1333951"
+  nacionalidade = "Canadá"
 
   [[clubes.jogadores]]
   nome = "Thiago Pereira"
@@ -2858,6 +3108,7 @@ padrao = "liso"
   pot = 50
   valor = 71328
   id_fonte = "726706"
+  nacionalidade = "Portugal"
 
 [[clubes]]
 nome = "Farense"
@@ -2876,6 +3127,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "248349"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Claudio Falcão"
@@ -2888,6 +3140,7 @@ padrao = "liso"
   minutos = 354
   gols = 1
   id_fonte = "437566"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Nermin Zolotic"
@@ -2899,6 +3152,7 @@ padrao = "liso"
   partidas = 6
   minutos = 535
   id_fonte = "131740"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Alex Pinto"
@@ -2910,6 +3164,7 @@ padrao = "liso"
   partidas = 5
   minutos = 449
   id_fonte = "415645"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Gonçalo Silva"
@@ -2922,6 +3177,7 @@ padrao = "liso"
   minutos = 436
   gols = 1
   id_fonte = "194214"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Jakob Tånnander"
@@ -2933,6 +3189,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "369522"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mattheus"
@@ -2945,6 +3202,7 @@ padrao = "liso"
   minutos = 493
   gols = 2
   id_fonte = "226138"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Miguel Menino"
@@ -2957,6 +3215,7 @@ padrao = "liso"
   minutos = 208
   gols = 1
   id_fonte = "808574"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Borges"
@@ -2968,6 +3227,7 @@ padrao = "liso"
   partidas = 2
   minutos = 10
   id_fonte = "351751"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Sarpreet Singh"
@@ -2979,6 +3239,7 @@ padrao = "liso"
   partidas = 3
   minutos = 227
   id_fonte = "350357"
+  nacionalidade = "Nova Zelândia"
 
   [[clubes.jogadores]]
   nome = "Toni Herrero"
@@ -2991,6 +3252,7 @@ padrao = "liso"
   minutos = 481
   gols = 1
   id_fonte = "611495"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "André Candeias"
@@ -3003,6 +3265,7 @@ padrao = "liso"
   minutos = 406
   gols = 1
   id_fonte = "925413"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Derick Poloni"
@@ -3015,6 +3278,7 @@ padrao = "liso"
   minutos = 216
   gols = 2
   id_fonte = "429564"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Nélson Oliveira"
@@ -3026,6 +3290,7 @@ padrao = "liso"
   partidas = 1
   minutos = 62
   id_fonte = "72768"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Gabriel Barbosa"
@@ -3037,6 +3302,7 @@ padrao = "liso"
   partidas = 2
   minutos = 157
   id_fonte = "534024"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Lucas D'Agrella"
@@ -3048,6 +3314,7 @@ padrao = "liso"
   partidas = 1
   minutos = 103
   id_fonte = "1215539"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Edi Semedo"
@@ -3057,6 +3324,7 @@ padrao = "liso"
   pot = 50
   valor = 250000
   id_fonte = "504107"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Joseph Nduquidi"
@@ -3068,6 +3336,7 @@ padrao = "liso"
   partidas = 4
   minutos = 365
   id_fonte = "919620"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "João Resende"
@@ -3079,6 +3348,7 @@ padrao = "liso"
   partidas = 5
   minutos = 435
   id_fonte = "575715"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Cuba"
@@ -3090,6 +3360,7 @@ padrao = "liso"
   partidas = 3
   minutos = 312
   id_fonte = "567489"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Dário Miranda"
@@ -3101,6 +3372,7 @@ padrao = "liso"
   partidas = 1
   minutos = 46
   id_fonte = "1037751"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rafinha"
@@ -3112,6 +3384,7 @@ padrao = "liso"
   partidas = 1
   minutos = 7
   id_fonte = "1189523"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Gastão"
@@ -3123,6 +3396,7 @@ padrao = "liso"
   partidas = 3
   minutos = 44
   id_fonte = "1321718"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Kauã Paes"
@@ -3132,6 +3406,7 @@ padrao = "liso"
   pot = 46
   valor = 91666
   id_fonte = "1220324"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Leonardo Oliveira"
@@ -3144,6 +3419,7 @@ padrao = "liso"
   minutos = 1
   gols = 2
   id_fonte = "957736"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Laranjeira"
@@ -3153,6 +3429,7 @@ padrao = "liso"
   pot = 42
   valor = 91666
   id_fonte = "1584195"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Victor Barbara"
@@ -3164,6 +3441,7 @@ padrao = "liso"
   partidas = 1
   minutos = 47
   id_fonte = "1091037"
+  nacionalidade = "Brasil"
 
 [[clubes]]
 nome = "Avs Futebol"
@@ -3183,6 +3461,7 @@ padrao = "liso"
   minutos = 478
   gols = 2
   id_fonte = "725049"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Raul"
@@ -3194,6 +3473,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "520093"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Lazar Rosic"
@@ -3205,6 +3485,7 @@ padrao = "liso"
   partidas = 6
   minutos = 511
   id_fonte = "198053"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Fernando Almeida"
@@ -3216,6 +3497,7 @@ padrao = "liso"
   partidas = 7
   minutos = 612
   id_fonte = "933988"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Daniel Rivas"
@@ -3227,6 +3509,7 @@ padrao = "liso"
   partidas = 5
   minutos = 439
   id_fonte = "690124"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Mateus Pivô"
@@ -3238,6 +3521,7 @@ padrao = "liso"
   partidas = 5
   minutos = 488
   id_fonte = "978615"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "André Sousa"
@@ -3249,6 +3533,7 @@ padrao = "liso"
   partidas = 2
   minutos = 208
   id_fonte = "372459"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Dani Rebollo"
@@ -3260,6 +3545,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "566666"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Deandre Kerr"
@@ -3269,6 +3555,7 @@ padrao = "liso"
   pot = 61
   valor = 1000000
   id_fonte = "718098"
+  nacionalidade = "Canadá"
 
   [[clubes.jogadores]]
   nome = "Ponck"
@@ -3280,6 +3567,7 @@ padrao = "liso"
   partidas = 3
   minutos = 301
   id_fonte = "341516"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Pinho"
@@ -3292,6 +3580,7 @@ padrao = "liso"
   minutos = 487
   gols = 5
   id_fonte = "366278"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Guilherme Neiva"
@@ -3304,6 +3593,7 @@ padrao = "liso"
   minutos = 420
   gols = 2
   id_fonte = "1065761"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Jorge Meireles"
@@ -3315,6 +3605,7 @@ padrao = "liso"
   partidas = 2
   minutos = 169
   id_fonte = "742454"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Andrey"
@@ -3327,6 +3618,7 @@ padrao = "liso"
   minutos = 418
   gols = 1
   id_fonte = "997076"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Bernardo Conde"
@@ -3338,6 +3630,7 @@ padrao = "liso"
   partidas = 2
   minutos = 210
   id_fonte = "1082427"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Davi Schuindt"
@@ -3349,6 +3642,7 @@ padrao = "liso"
   partidas = 3
   minutos = 243
   id_fonte = "1083635"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Abdoulaye Keita"
@@ -3361,6 +3655,7 @@ padrao = "liso"
   minutos = 353
   gols = 1
   id_fonte = "949489"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Rafael Lobato"
@@ -3372,6 +3667,7 @@ padrao = "liso"
   partidas = 1
   minutos = 28
   id_fonte = "1097263"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Régis N'Do"
@@ -3383,6 +3679,7 @@ padrao = "liso"
   partidas = 2
   minutos = 18
   id_fonte = "711640"
+  nacionalidade = "Burkina Faso"
 
   [[clubes.jogadores]]
   nome = "Diogo Brasido"
@@ -3394,6 +3691,7 @@ padrao = "liso"
   partidas = 1
   minutos = 108
   id_fonte = "1044429"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ruan Assis"
@@ -3405,6 +3703,7 @@ padrao = "liso"
   partidas = 2
   minutos = 43
   id_fonte = "1090823"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Talles Wander"
@@ -3416,6 +3715,7 @@ padrao = "liso"
   partidas = 4
   minutos = 322
   id_fonte = "980866"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Hiago"
@@ -3428,6 +3728,7 @@ padrao = "liso"
   minutos = 169
   gols = 1
   id_fonte = "997473"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Estevão"
@@ -3437,6 +3738,7 @@ padrao = "liso"
   pot = 48
   valor = 90750
   id_fonte = "1224655"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Guga"
@@ -3448,6 +3750,7 @@ padrao = "liso"
   partidas = 2
   minutos = 17
   id_fonte = "1500442"
+  nacionalidade = "Brasil"
 
 [[clubes]]
 nome = "Leixões"
@@ -3466,6 +3769,7 @@ padrao = "liso"
   partidas = 4
   minutos = 355
   id_fonte = "1072414"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Simão"
@@ -3477,6 +3781,7 @@ padrao = "liso"
   partidas = 2
   minutos = 135
   id_fonte = "538253"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Cláudio Araújo"
@@ -3489,6 +3794,7 @@ padrao = "liso"
   minutos = 630
   gols = 2
   id_fonte = "1043832"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Matheus Costa"
@@ -3500,6 +3806,7 @@ padrao = "liso"
   partidas = 5
   minutos = 489
   id_fonte = "513346"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Caio Secco"
@@ -3511,6 +3818,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "175188"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Miguel Sousa"
@@ -3522,6 +3830,7 @@ padrao = "liso"
   partidas = 2
   minutos = 170
   id_fonte = "587107"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Amadu Baldé"
@@ -3533,6 +3842,7 @@ padrao = "liso"
   partidas = 6
   minutos = 507
   id_fonte = "936483"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Bica"
@@ -3545,6 +3855,7 @@ padrao = "liso"
   minutos = 216
   gols = 1
   id_fonte = "743987"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Fernando Fonseca"
@@ -3556,6 +3867,7 @@ padrao = "liso"
   partidas = 1
   minutos = 128
   id_fonte = "344392"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Simãozinho"
@@ -3568,6 +3880,7 @@ padrao = "liso"
   minutos = 319
   gols = 1
   id_fonte = "292281"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rafael Barbosa"
@@ -3579,6 +3892,7 @@ padrao = "liso"
   partidas = 4
   minutos = 396
   id_fonte = "225151"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Paulinho"
@@ -3590,6 +3904,7 @@ padrao = "liso"
   partidas = 6
   minutos = 502
   id_fonte = "85771"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Bryan Róchez"
@@ -3602,6 +3917,7 @@ padrao = "liso"
   minutos = 549
   gols = 5
   id_fonte = "333199"
+  nacionalidade = "Honduras"
 
   [[clubes.jogadores]]
   nome = "Serif Nhaga"
@@ -3614,6 +3930,7 @@ padrao = "liso"
   minutos = 311
   gols = 2
   id_fonte = "1102761"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Alysson"
@@ -3625,6 +3942,7 @@ padrao = "liso"
   partidas = 1
   minutos = 74
   id_fonte = "574761"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Luccas Paraizo"
@@ -3637,6 +3955,7 @@ padrao = "liso"
   minutos = 350
   gols = 2
   id_fonte = "1075186"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Rúben Pina"
@@ -3648,6 +3967,7 @@ padrao = "liso"
   partidas = 3
   minutos = 39
   id_fonte = "647132"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Salvador Agra"
@@ -3660,6 +3980,7 @@ padrao = "liso"
   minutos = 507
   gols = 1
   id_fonte = "155395"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Hugo Faria"
@@ -3671,6 +3992,7 @@ padrao = "liso"
   partidas = 3
   minutos = 287
   id_fonte = "929869"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Igor Stefanović"
@@ -3682,6 +4004,7 @@ padrao = "liso"
   partidas = 4
   minutos = 405
   id_fonte = "46991"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Semeu Commey"
@@ -3694,6 +4017,7 @@ padrao = "liso"
   minutos = 150
   gols = 2
   id_fonte = "1104233"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Agustin De Armas"
@@ -3705,6 +4029,7 @@ padrao = "liso"
   partidas = 1
   minutos = 55
   id_fonte = "1191030"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Arthur Baggio"
@@ -3716,6 +4041,7 @@ padrao = "liso"
   partidas = 1
   minutos = 29
   id_fonte = "1095047"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Daniel Nolasco"
@@ -3725,6 +4051,7 @@ padrao = "liso"
   pot = 46
   valor = 75000
   id_fonte = "1092622"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "João Assunção"
@@ -3736,6 +4063,7 @@ padrao = "liso"
   partidas = 1
   minutos = 59
   id_fonte = "820282"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Cardoso"
@@ -3745,6 +4073,7 @@ padrao = "liso"
   pot = 44
   valor = 41250
   id_fonte = "1045214"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Kaique"
@@ -3756,6 +4085,7 @@ padrao = "liso"
   partidas = 1
   minutos = 122
   id_fonte = "869923"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Morufdeen Moshood"
@@ -3768,6 +4098,7 @@ padrao = "liso"
   minutos = 8
   gols = 1
   id_fonte = "998736"
+  nacionalidade = "Nigéria"
 
 [[clubes]]
 nome = "Felgueiras 1932"
@@ -3787,6 +4118,7 @@ padrao = "liso"
   minutos = 330
   gols = 1
   id_fonte = "479601"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Armando Lopes"
@@ -3798,6 +4130,7 @@ padrao = "liso"
   partidas = 2
   minutos = 217
   id_fonte = "635396"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Dário"
@@ -3809,6 +4142,7 @@ padrao = "liso"
   partidas = 22
   minutos = 2015
   id_fonte = "1294429"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Felipe Scheibig"
@@ -3820,6 +4154,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "896667"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "João Pinto"
@@ -3831,6 +4166,7 @@ padrao = "liso"
   partidas = 4
   minutos = 405
   id_fonte = "648026"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Lucas Duarte"
@@ -3843,6 +4179,7 @@ padrao = "liso"
   minutos = 321
   gols = 10
   id_fonte = "979486"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Mario Rivas"
@@ -3855,6 +4192,7 @@ padrao = "liso"
   minutos = 542
   gols = 3
   id_fonte = "905494"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Afonso Freitas"
@@ -3866,6 +4204,7 @@ padrao = "liso"
   partidas = 4
   minutos = 388
   id_fonte = "448264"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Costa"
@@ -3875,6 +4214,7 @@ padrao = "liso"
   pot = 54
   valor = 400000
   id_fonte = "856423"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Mateus Pasinato"
@@ -3886,6 +4226,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "349418"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Michel Costa"
@@ -3897,6 +4238,7 @@ padrao = "liso"
   partidas = 4
   minutos = 362
   id_fonte = "740087"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Francisco França"
@@ -3908,6 +4250,7 @@ padrao = "liso"
   partidas = 4
   minutos = 372
   id_fonte = "744179"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Filipe Cruz"
@@ -3919,6 +4262,7 @@ padrao = "liso"
   partidas = 5
   minutos = 493
   id_fonte = "549003"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Tiago Leite"
@@ -3931,6 +4275,7 @@ padrao = "liso"
   minutos = 317
   gols = 1
   id_fonte = "696507"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Dudu Cruz"
@@ -3943,6 +4288,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "1086534"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Tiago Ventura"
@@ -3955,6 +4301,7 @@ padrao = "liso"
   minutos = 335
   gols = 1
   id_fonte = "912473"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Landinho"
@@ -3967,6 +4314,7 @@ padrao = "liso"
   minutos = 497
   gols = 2
   id_fonte = "292015"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Diogo Batista"
@@ -3976,6 +4324,7 @@ padrao = "liso"
   pot = 46
   valor = 100000
   id_fonte = "372446"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Joãozinho"
@@ -3987,6 +4336,7 @@ padrao = "liso"
   partidas = 2
   minutos = 135
   id_fonte = "451399"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Afonso Peixoto"
@@ -3998,6 +4348,7 @@ padrao = "liso"
   partidas = 2
   minutos = 148
   id_fonte = "818040"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Bilal Ouacharaf"
@@ -4009,6 +4360,7 @@ padrao = "liso"
   partidas = 2
   minutos = 142
   id_fonte = "667997"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Samuel Vivas"
@@ -4020,6 +4372,7 @@ padrao = "liso"
   partidas = 2
   minutos = 225
   id_fonte = "1115119"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Bakary Haidara"
@@ -4029,6 +4382,7 @@ padrao = "liso"
   pot = 49
   valor = 150000
   id_fonte = "1186012"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Beni Jetour"
@@ -4040,6 +4394,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "1430772"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Eduardo Esteves"
@@ -4049,6 +4404,7 @@ padrao = "liso"
   pot = 47
   valor = 72187
   id_fonte = "817434"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Gustavo Mendes"
@@ -4060,6 +4416,7 @@ padrao = "liso"
   partidas = 2
   minutos = 6
   id_fonte = "1361741"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Izan Server"
@@ -4069,6 +4426,7 @@ padrao = "liso"
   pot = 46
   valor = 72187
   id_fonte = "1455832"
+  nacionalidade = "Canadá"
 
   [[clubes.jogadores]]
   nome = "Jovane Camará"
@@ -4078,6 +4436,7 @@ padrao = "liso"
   pot = 41
   valor = 72187
   id_fonte = "1314925"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "João Bom"
@@ -4087,6 +4446,7 @@ padrao = "liso"
   pot = 41
   valor = 72187
   id_fonte = "1097101"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Marco Ribeiro"
@@ -4096,6 +4456,7 @@ padrao = "liso"
   pot = 40
   valor = 50000
   id_fonte = "1153833"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Ribeiro"
@@ -4107,6 +4468,7 @@ padrao = "liso"
   partidas = 3
   minutos = 256
   id_fonte = "983571"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Samuel"
@@ -4119,6 +4481,7 @@ padrao = "liso"
   minutos = 147
   gols = 1
   id_fonte = "981161"
+  nacionalidade = "Brasil"
 
 [[clubes]]
 nome = "Portimonense SAD"
@@ -4137,6 +4500,7 @@ padrao = "liso"
   partidas = 2
   minutos = 161
   id_fonte = "188911"
+  nacionalidade = "Japão"
 
   [[clubes.jogadores]]
   nome = "Edney"
@@ -4149,6 +4513,7 @@ padrao = "liso"
   minutos = 510
   gols = 1
   id_fonte = "1082539"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Sébastien Cibois"
@@ -4160,6 +4525,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1303
   id_fonte = "395251"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Jarleysom"
@@ -4171,6 +4537,7 @@ padrao = "liso"
   partidas = 6
   minutos = 576
   id_fonte = "1193437"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Marlon Júnior"
@@ -4182,6 +4549,7 @@ padrao = "liso"
   partidas = 5
   minutos = 421
   id_fonte = "741535"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Xavier"
@@ -4194,6 +4562,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "596426"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Mamede"
@@ -4206,6 +4575,7 @@ padrao = "liso"
   minutos = 462
   gols = 1
   id_fonte = "506150"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Dudu"
@@ -4217,6 +4587,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "369258"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Wellington Santana"
@@ -4228,6 +4599,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "875945"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Samy"
@@ -4240,6 +4612,7 @@ padrao = "liso"
   minutos = 630
   gols = 1
   id_fonte = "886625"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "João Reis"
@@ -4252,6 +4625,7 @@ padrao = "liso"
   minutos = 536
   gols = 1
   id_fonte = "172066"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Thauan Lara"
@@ -4264,6 +4638,7 @@ padrao = "liso"
   minutos = 106
   gols = 2
   id_fonte = "749557"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Dânio Djassi"
@@ -4276,6 +4651,7 @@ padrao = "liso"
   minutos = 454
   gols = 1
   id_fonte = "1294213"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Jader Gentil"
@@ -4287,6 +4663,7 @@ padrao = "liso"
   partidas = 1
   minutos = 54
   id_fonte = "924533"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Midana Cassamá"
@@ -4298,6 +4675,7 @@ padrao = "liso"
   partidas = 3
   minutos = 245
   id_fonte = "1065901"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Welinton Junior"
@@ -4310,6 +4688,7 @@ padrao = "liso"
   minutos = 176
   gols = 2
   id_fonte = "262002"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Dudá"
@@ -4321,6 +4700,7 @@ padrao = "liso"
   partidas = 3
   minutos = 283
   id_fonte = "840690"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Yanis da Rocha"
@@ -4333,6 +4713,7 @@ padrao = "liso"
   minutos = 276
   gols = 1
   id_fonte = "1073115"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Wermeson"
@@ -4344,6 +4725,7 @@ padrao = "liso"
   partidas = 1
   minutos = 89
   id_fonte = "740378"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Felipe Favero"
@@ -4355,6 +4737,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1091913"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Italo Cabelinho"
@@ -4366,6 +4749,7 @@ padrao = "liso"
   partidas = 1
   minutos = 91
   id_fonte = "950548"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Paulinho"
@@ -4375,6 +4759,7 @@ padrao = "liso"
   pot = 43
   valor = 58666
   id_fonte = "614928"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Casimiro"
@@ -4387,6 +4772,7 @@ padrao = "liso"
   minutos = 354
   gols = 1
   id_fonte = "1197998"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Samuel Yépié Yépié"
@@ -4398,6 +4784,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "538973"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Caleb Okereke"
@@ -4407,6 +4794,7 @@ padrao = "liso"
   pot = 43
   valor = 58666
   id_fonte = "1578103"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Ericson"
@@ -4416,6 +4804,7 @@ padrao = "liso"
   pot = 43
   valor = 58666
   id_fonte = "1094824"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Georgiy Tunguliyadi"
@@ -4427,6 +4816,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "637553"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Gonçalo Águas"
@@ -4438,6 +4828,7 @@ padrao = "liso"
   partidas = 1
   minutos = 72
   id_fonte = "1286773"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Mendes"
@@ -4447,6 +4838,7 @@ padrao = "liso"
   pot = 42
   valor = 58666
   id_fonte = "664840"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Lagartinho"
@@ -4458,6 +4850,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1100197"
+  nacionalidade = "Portugal"
 
 [[clubes]]
 nome = "Futebol Clube Penafiel"
@@ -4477,6 +4870,7 @@ padrao = "liso"
   minutos = 361
   gols = 1
   id_fonte = "537595"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Adrián Pica"
@@ -4488,6 +4882,7 @@ padrao = "liso"
   partidas = 7
   minutos = 627
   id_fonte = "895458"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Iano Simão"
@@ -4500,6 +4895,7 @@ padrao = "liso"
   minutos = 283
   gols = 1
   id_fonte = "627631"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "João Miguel"
@@ -4511,6 +4907,7 @@ padrao = "liso"
   partidas = 2
   minutos = 164
   id_fonte = "254582"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Àlex Carbonell"
@@ -4522,6 +4919,7 @@ padrao = "liso"
   partidas = 6
   minutos = 515
   id_fonte = "262389"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jaime Sánchez"
@@ -4533,6 +4931,7 @@ padrao = "liso"
   partidas = 5
   minutos = 487
   id_fonte = "212863"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Gonçalo Negrão"
@@ -4545,6 +4944,7 @@ padrao = "liso"
   minutos = 594
   gols = 1
   id_fonte = "637787"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Davo"
@@ -4557,6 +4957,7 @@ padrao = "liso"
   minutos = 433
   gols = 3
   id_fonte = "522190"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Francisco Varela"
@@ -4568,6 +4969,7 @@ padrao = "liso"
   partidas = 2
   minutos = 167
   id_fonte = "695506"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Jorge Meré"
@@ -4580,6 +4982,7 @@ padrao = "liso"
   minutos = 2
   gols = 1
   id_fonte = "286779"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Douglas Borel"
@@ -4591,6 +4994,7 @@ padrao = "liso"
   partidas = 2
   minutos = 171
   id_fonte = "647540"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Miguel Oliveira"
@@ -4602,6 +5006,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "237297"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Pedro Sá"
@@ -4614,6 +5019,7 @@ padrao = "liso"
   minutos = 417
   gols = 1
   id_fonte = "299400"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Teddy Alloh"
@@ -4625,6 +5031,7 @@ padrao = "liso"
   partidas = 5
   minutos = 479
   id_fonte = "618405"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Ricardo Schutte"
@@ -4636,6 +5043,7 @@ padrao = "liso"
   partidas = 2
   minutos = 185
   id_fonte = "600836"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Pinto"
@@ -4648,6 +5056,7 @@ padrao = "liso"
   minutos = 526
   gols = 2
   id_fonte = "927627"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Max Svensson"
@@ -4660,6 +5069,7 @@ padrao = "liso"
   minutos = 514
   gols = 5
   id_fonte = "705808"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Eric Puerto"
@@ -4671,6 +5081,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "786130"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Juanda Fuentes"
@@ -4683,6 +5094,7 @@ padrao = "liso"
   minutos = 146
   gols = 1
   id_fonte = "636701"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Alexéi Rojas"
@@ -4692,6 +5104,7 @@ padrao = "liso"
   pot = 55
   valor = 250000
   id_fonte = "940915"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Clau Mendes"
@@ -4704,6 +5117,7 @@ padrao = "liso"
   minutos = 73
   gols = 2
   id_fonte = "699501"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Carlinhos Augusto"
@@ -4713,6 +5127,7 @@ padrao = "liso"
   pot = 43
   valor = 55000
   id_fonte = "1324050"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Duarte Oliveira"
@@ -4722,6 +5137,7 @@ padrao = "liso"
   pot = 43
   valor = 55000
   id_fonte = "1071834"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Konrad Sinyam"
@@ -4733,6 +5149,7 @@ padrao = "liso"
   partidas = 1
   minutos = 47
   id_fonte = "1531803"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Mairlon Ramon"
@@ -4744,6 +5161,7 @@ padrao = "liso"
   partidas = 4
   minutos = 42
   id_fonte = "1202674"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Martim Alberto"
@@ -4753,6 +5171,7 @@ padrao = "liso"
   pot = 47
   valor = 100000
   id_fonte = "967816"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Meireles Injai"
@@ -4764,6 +5183,7 @@ padrao = "liso"
   partidas = 2
   minutos = 138
   id_fonte = "1172711"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Nuninho"
@@ -4775,6 +5195,7 @@ padrao = "liso"
   partidas = 2
   minutos = 6
   id_fonte = "1069750"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Tomás Teixeira"
@@ -4784,6 +5205,7 @@ padrao = "liso"
   pot = 41
   valor = 55000
   id_fonte = "1348724"
+  nacionalidade = "Portugal"
 
 [[clubes]]
 nome = "Lusitânia de Lourosa"
@@ -4802,6 +5224,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "695141"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ricardinho"
@@ -4813,6 +5236,7 @@ padrao = "liso"
   partidas = 6
   minutos = 532
   id_fonte = "337537"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Dylan Collard"
@@ -4825,6 +5249,7 @@ padrao = "liso"
   minutos = 442
   gols = 1
   id_fonte = "724707"
+  nacionalidade = "Maurícias"
 
   [[clubes.jogadores]]
   nome = "Miguel Teixeira"
@@ -4837,6 +5262,7 @@ padrao = "liso"
   minutos = 145
   gols = 1
   id_fonte = "965822"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Bruno Faria"
@@ -4849,6 +5275,7 @@ padrao = "liso"
   minutos = 540
   gols = 2
   id_fonte = "1076381"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Danny"
@@ -4860,6 +5287,7 @@ padrao = "liso"
   partidas = 2
   minutos = 160
   id_fonte = "712644"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Diogo Paulo"
@@ -4871,6 +5299,7 @@ padrao = "liso"
   partidas = 7
   minutos = 627
   id_fonte = "647131"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Gabriel Souza"
@@ -4880,6 +5309,7 @@ padrao = "liso"
   pot = 53
   valor = 150000
   id_fonte = "375770"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Silvério"
@@ -4892,6 +5322,7 @@ padrao = "liso"
   minutos = 111
   gols = 1
   id_fonte = "321934"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Marco Ribeiro"
@@ -4903,6 +5334,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "352558"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "André Ricardo"
@@ -4915,6 +5347,7 @@ padrao = "liso"
   minutos = 47
   gols = 1
   id_fonte = "683498"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Fabinho"
@@ -4927,6 +5360,7 @@ padrao = "liso"
   minutos = 410
   gols = 1
   id_fonte = "292749"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Francisco Machado"
@@ -4938,6 +5372,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "931418"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Guilherme Soares"
@@ -4950,6 +5385,7 @@ padrao = "liso"
   minutos = 167
   gols = 1
   id_fonte = "657385"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Josué Sá"
@@ -4962,6 +5398,7 @@ padrao = "liso"
   minutos = 2311
   gols = 1
   id_fonte = "139341"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Luís Rocha"
@@ -4974,6 +5411,7 @@ padrao = "liso"
   minutos = 90
   gols = 2
   id_fonte = "235639"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Paulité"
@@ -4985,6 +5423,7 @@ padrao = "liso"
   partidas = 5
   minutos = 481
   id_fonte = "685181"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Santos"
@@ -4997,6 +5436,7 @@ padrao = "liso"
   minutos = 414
   gols = 2
   id_fonte = "403716"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Arsénio"
@@ -5009,6 +5449,7 @@ padrao = "liso"
   minutos = 537
   gols = 5
   id_fonte = "175600"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Saliou Mandiang"
@@ -5021,6 +5462,7 @@ padrao = "liso"
   minutos = 445
   gols = 1
   id_fonte = "1079049"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "João Silva"
@@ -5033,6 +5475,7 @@ padrao = "liso"
   minutos = 195
   gols = 2
   id_fonte = "124384"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Mika Borges"
@@ -5045,6 +5488,7 @@ padrao = "liso"
   minutos = 144
   gols = 2
   id_fonte = "396441"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "António Montez"
@@ -5056,6 +5500,7 @@ padrao = "liso"
   partidas = 1
   minutos = 130
   id_fonte = "694925"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Moises Tablante"
@@ -5067,6 +5512,7 @@ padrao = "liso"
   partidas = 1
   minutos = 119
   id_fonte = "653906"
+  nacionalidade = "Venezuela"
 
   [[clubes.jogadores]]
   nome = "Francisco Reis"
@@ -5076,6 +5522,7 @@ padrao = "liso"
   pot = 40
   valor = 27991
   id_fonte = "1579300"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Iuri Moreira"
@@ -5088,6 +5535,7 @@ padrao = "liso"
   minutos = 24
   gols = 1
   id_fonte = "572925"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Leonardo Paiva"
@@ -5097,6 +5545,7 @@ padrao = "liso"
   pot = 41
   valor = 27991
   id_fonte = "1549604"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Manel"
@@ -5108,6 +5557,7 @@ padrao = "liso"
   partidas = 1
   minutos = 3
   id_fonte = "1458928"
+  nacionalidade = "Portugal"
 
 [[clubes]]
 nome = "Feirense"
@@ -5127,6 +5577,7 @@ padrao = "liso"
   minutos = 630
   gols = 1
   id_fonte = "627276"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Luiz Gustavo"
@@ -5138,6 +5589,7 @@ padrao = "liso"
   partidas = 7
   minutos = 630
   id_fonte = "597106"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Diego Altube"
@@ -5149,6 +5601,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "549069"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pedro Pinto"
@@ -5160,6 +5613,7 @@ padrao = "liso"
   partidas = 7
   minutos = 630
   id_fonte = "235840"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Francisco Meixedo"
@@ -5171,6 +5625,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "564968"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Jójó"
@@ -5183,6 +5638,7 @@ padrao = "liso"
   minutos = 247
   gols = 1
   id_fonte = "357150"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Edgar Ié"
@@ -5195,6 +5651,7 @@ padrao = "liso"
   minutos = 188
   gols = 1
   id_fonte = "191987"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Momo Diaby"
@@ -5206,6 +5663,7 @@ padrao = "liso"
   partidas = 1
   minutos = 131
   id_fonte = "611430"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Tiago Castro"
@@ -5217,6 +5675,7 @@ padrao = "liso"
   partidas = 2
   minutos = 218
   id_fonte = "358200"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Desmond Nketia"
@@ -5229,6 +5688,7 @@ padrao = "liso"
   minutos = 108
   gols = 3
   id_fonte = "878507"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Diego Moreno"
@@ -5240,6 +5700,7 @@ padrao = "liso"
   partidas = 5
   minutos = 421
   id_fonte = "635346"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "André Lopes"
@@ -5251,6 +5712,7 @@ padrao = "liso"
   partidas = 2
   minutos = 207
   id_fonte = "817523"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Henrique Pereira"
@@ -5262,6 +5724,7 @@ padrao = "liso"
   partidas = 3
   minutos = 41
   id_fonte = "505655"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Samad Popoola"
@@ -5273,6 +5736,7 @@ padrao = "liso"
   partidas = 5
   minutos = 425
   id_fonte = "1163866"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Alexandre Guedes"
@@ -5284,6 +5748,7 @@ padrao = "liso"
   partidas = 4
   minutos = 327
   id_fonte = "197613"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Gui Meira"
@@ -5296,6 +5761,7 @@ padrao = "liso"
   minutos = 386
   gols = 4
   id_fonte = "1083238"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Isaac"
@@ -5307,6 +5773,7 @@ padrao = "liso"
   partidas = 4
   minutos = 372
   id_fonte = "965613"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Jonny Arriba"
@@ -5319,6 +5786,7 @@ padrao = "liso"
   minutos = 528
   gols = 1
   id_fonte = "585536"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pedrinho"
@@ -5331,6 +5799,7 @@ padrao = "liso"
   minutos = 214
   gols = 1
   id_fonte = "1158895"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Tiago Antunes"
@@ -5342,6 +5811,7 @@ padrao = "liso"
   partidas = 2
   minutos = 157
   id_fonte = "575712"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Adriel Moraes"
@@ -5353,6 +5823,7 @@ padrao = "liso"
   partidas = 1
   minutos = 70
   id_fonte = "1127847"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Arthur Viana"
@@ -5364,6 +5835,7 @@ padrao = "liso"
   partidas = 2
   minutos = 152
   id_fonte = "997463"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Bolaji"
@@ -5373,6 +5845,7 @@ padrao = "liso"
   pot = 45
   valor = 91523
   id_fonte = "1580395"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Dorival"
@@ -5382,6 +5855,7 @@ padrao = "liso"
   pot = 46
   valor = 91523
   id_fonte = "1097784"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Gui Santos"
@@ -5393,6 +5867,7 @@ padrao = "liso"
   partidas = 2
   minutos = 140
   id_fonte = "741506"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Hassan Wahab"
@@ -5402,6 +5877,7 @@ padrao = "liso"
   pot = 44
   valor = 91523
   id_fonte = "1125595"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Jair Monteiro"
@@ -5413,6 +5889,7 @@ padrao = "liso"
   partidas = 1
   minutos = 106
   id_fonte = "1093810"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Kaiquy"
@@ -5422,6 +5899,7 @@ padrao = "liso"
   pot = 46
   valor = 91523
   id_fonte = "1220062"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Luisinho"
@@ -5433,6 +5911,7 @@ padrao = "liso"
   partidas = 3
   minutos = 235
   id_fonte = "1333915"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Miguel Rocha"
@@ -5442,6 +5921,7 @@ padrao = "liso"
   pot = 46
   valor = 91523
   id_fonte = "1095311"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Peter Adejimi"
@@ -5453,6 +5933,7 @@ padrao = "liso"
   partidas = 1
   minutos = 21
   id_fonte = "1580391"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Piri"
@@ -5464,6 +5945,7 @@ padrao = "liso"
   partidas = 4
   minutos = 318
   id_fonte = "935300"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Académica de Coimbra"
@@ -5482,6 +5964,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "380478"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Carlos Alves"
@@ -5493,6 +5976,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "337795"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Kévin Zohi"
@@ -5505,6 +5989,7 @@ padrao = "liso"
   minutos = 144
   gols = 1
   id_fonte = "524929"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Leandro Silva"
@@ -5517,6 +6002,7 @@ padrao = "liso"
   minutos = 624
   gols = 2
   id_fonte = "182720"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ricardo Teixeira"
@@ -5529,6 +6015,7 @@ padrao = "liso"
   minutos = 619
   gols = 1
   id_fonte = "732247"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Hélder Lopes"
@@ -5540,6 +6027,7 @@ padrao = "liso"
   partidas = 6
   minutos = 507
   id_fonte = "171068"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Edson Farias"
@@ -5552,6 +6040,7 @@ padrao = "liso"
   minutos = 231
   gols = 1
   id_fonte = "240773"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Marcos Paulo"
@@ -5564,6 +6053,7 @@ padrao = "liso"
   minutos = 352
   gols = 1
   id_fonte = "77832"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Leverton Pierre"
@@ -5573,6 +6063,7 @@ padrao = "liso"
   pot = 50
   valor = 200000
   id_fonte = "552467"
+  nacionalidade = "Haiti"
 
   [[clubes.jogadores]]
   nome = "Xavi Grande"
@@ -5584,6 +6075,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "947115"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Káká"
@@ -5596,6 +6088,7 @@ padrao = "liso"
   minutos = 209
   gols = 1
   id_fonte = "235610"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Nuno Macedo"
@@ -5607,6 +6100,7 @@ padrao = "liso"
   partidas = 3
   minutos = 300
   id_fonte = "597512"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Oliveira"
@@ -5618,6 +6112,7 @@ padrao = "liso"
   partidas = 1
   minutos = 129
   id_fonte = "276496"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ilies Faure"
@@ -5629,6 +6124,7 @@ padrao = "liso"
   partidas = 4
   minutos = 401
   id_fonte = "733575"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Jean Sinisterra"
@@ -5641,6 +6137,7 @@ padrao = "liso"
   minutos = 505
   gols = 1
   id_fonte = "648377"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Rui Gomes"
@@ -5653,6 +6150,7 @@ padrao = "liso"
   minutos = 222
   gols = 1
   id_fonte = "364403"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Pontus Texel"
@@ -5665,6 +6163,7 @@ padrao = "liso"
   minutos = 115
   gols = 1
   id_fonte = "685651"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Gui Silva"
@@ -5677,6 +6176,7 @@ padrao = "liso"
   minutos = 95
   gols = 1
   id_fonte = "842444"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Kauan"
@@ -5686,6 +6186,7 @@ padrao = "liso"
   pot = 52
   valor = 275000
   id_fonte = "1066521"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Afonso Rodrigues"
@@ -5698,6 +6199,7 @@ padrao = "liso"
   minutos = 446
   gols = 1
   id_fonte = "927644"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ni"
@@ -5709,6 +6211,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "927107"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Alioune Mané"
@@ -5721,6 +6224,7 @@ padrao = "liso"
   minutos = 440
   gols = 1
   id_fonte = "1340011"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Amadou Coundoul"
@@ -5733,6 +6237,7 @@ padrao = "liso"
   minutos = 162
   gols = 3
   id_fonte = "938669"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Martim Tavares"
@@ -5744,6 +6249,7 @@ padrao = "liso"
   partidas = 1
   minutos = 134
   id_fonte = "924885"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Hugo Nunes"
@@ -5755,6 +6261,7 @@ padrao = "liso"
   partidas = 2
   minutos = 196
   id_fonte = "1077059"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Tiago Soares"
@@ -5766,6 +6273,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "1504270"
+  nacionalidade = "Portugal"
 
 [[clubes]]
 nome = "Amarante"
@@ -5784,6 +6292,7 @@ padrao = "liso"
   partidas = 1
   minutos = 102
   id_fonte = "256695"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Tokinho Dória"
@@ -5795,6 +6304,7 @@ padrao = "liso"
   partidas = 6
   minutos = 526
   id_fonte = "1062260"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Rúben Alves"
@@ -5806,6 +6316,7 @@ padrao = "liso"
   partidas = 2
   minutos = 139
   id_fonte = "284731"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Diogo Costa"
@@ -5817,6 +6328,7 @@ padrao = "liso"
   partidas = 6
   minutos = 549
   id_fonte = "1173054"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Diogo Fernandes"
@@ -5828,6 +6340,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "898723"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Gonçalo Cunha"
@@ -5840,6 +6353,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "912472"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Luís Machado"
@@ -5851,6 +6365,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "195308"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Didi"
@@ -5862,6 +6377,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "712379"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Lawrence"
@@ -5874,6 +6390,7 @@ padrao = "liso"
   minutos = 657
   gols = 2
   id_fonte = "718341"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Nito"
@@ -5885,6 +6402,7 @@ padrao = "liso"
   partidas = 5
   minutos = 459
   id_fonte = "1077256"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Feliciano"
@@ -5896,6 +6414,7 @@ padrao = "liso"
   partidas = 5
   minutos = 491
   id_fonte = "1298164"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "João Filipe"
@@ -5908,6 +6427,7 @@ padrao = "liso"
   minutos = 409
   gols = 3
   id_fonte = "684241"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Melvin Costa"
@@ -5920,6 +6440,7 @@ padrao = "liso"
   minutos = 546
   gols = 3
   id_fonte = "1179089"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "João Ricardo"
@@ -5931,6 +6452,7 @@ padrao = "liso"
   partidas = 5
   minutos = 451
   id_fonte = "911853"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Faissal Zangré"
@@ -5943,6 +6465,7 @@ padrao = "liso"
   minutos = 607
   gols = 1
   id_fonte = "640492"
+  nacionalidade = "Burkina Faso"
 
   [[clubes.jogadores]]
   nome = "Rúben Silva"
@@ -5954,6 +6477,7 @@ padrao = "liso"
   partidas = 1
   minutos = 2
   id_fonte = "597959"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Simão Silva"
@@ -5966,6 +6490,7 @@ padrao = "liso"
   minutos = 152
   gols = 2
   id_fonte = "1172592"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Beirão"
@@ -5977,6 +6502,7 @@ padrao = "liso"
   partidas = 2
   minutos = 181
   id_fonte = "881486"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Guedes"
@@ -5988,6 +6514,7 @@ padrao = "liso"
   partidas = 3
   minutos = 3
   id_fonte = "818083"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Arome"
@@ -6000,6 +6527,7 @@ padrao = "liso"
   minutos = 213
   gols = 4
   id_fonte = "1045292"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Cardoso"
@@ -6011,6 +6539,7 @@ padrao = "liso"
   partidas = 1
   minutos = 3
   id_fonte = "1062264"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ian Custódio"
@@ -6022,6 +6551,7 @@ padrao = "liso"
   partidas = 2
   minutos = 181
   id_fonte = "886564"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Kenneth Ikugar"
@@ -6033,6 +6563,7 @@ padrao = "liso"
   partidas = 1
   minutos = 55
   id_fonte = "876273"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Leandro Ferreira"
@@ -6044,6 +6575,7 @@ padrao = "liso"
   partidas = 2
   minutos = 178
   id_fonte = "700935"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rafael Flores"
@@ -6055,6 +6587,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "858242"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Carvalho"
@@ -6064,6 +6597,7 @@ padrao = "liso"
   pot = 40
   valor = 46342
   id_fonte = "923163"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rudi Almeida"
@@ -6076,4 +6610,5 @@ padrao = "liso"
   minutos = 66
   gols = 1
   id_fonte = "1061686"
+  nacionalidade = "Portugal"
 

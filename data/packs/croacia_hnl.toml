@@ -30,6 +30,7 @@ padrao = "liso"
   minutos = 1043
   gols = 11
   id_fonte = "618350"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Dominik Kotarski"
@@ -41,6 +42,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "370997"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Scott McKenna"
@@ -53,6 +55,7 @@ padrao = "liso"
   minutos = 885
   gols = 1
   id_fonte = "255906"
+  nacionalidade = "Escócia"
 
   [[clubes.jogadores]]
   nome = "Sergi Domínguez"
@@ -65,6 +68,7 @@ padrao = "liso"
   minutos = 886
   gols = 2
   id_fonte = "741258"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Stjepan Radeljic"
@@ -76,6 +80,7 @@ padrao = "liso"
   partidas = 6
   minutos = 541
   id_fonte = "384568"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Luka Stojkovic"
@@ -88,6 +93,7 @@ padrao = "liso"
   minutos = 690
   gols = 1
   id_fonte = "665266"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Arbër Hoxha"
@@ -100,6 +106,7 @@ padrao = "liso"
   minutos = 745
   gols = 2
   id_fonte = "458367"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Luka Ivanušec"
@@ -112,6 +119,7 @@ padrao = "liso"
   minutos = 208
   gols = 2
   id_fonte = "387105"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Niko Galesic"
@@ -124,6 +132,7 @@ padrao = "liso"
   minutos = 565
   gols = 2
   id_fonte = "528835"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Bruno Goda"
@@ -136,6 +145,7 @@ padrao = "liso"
   minutos = 507
   gols = 1
   id_fonte = "414956"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Miha Zajc"
@@ -148,6 +158,7 @@ padrao = "liso"
   minutos = 780
   gols = 3
   id_fonte = "149829"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Moris Valincic"
@@ -160,6 +171,7 @@ padrao = "liso"
   minutos = 871
   gols = 1
   id_fonte = "502686"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Josip Misic"
@@ -172,6 +184,7 @@ padrao = "liso"
   minutos = 1136
   gols = 1
   id_fonte = "227035"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Matteo Pérez Vinlöf"
@@ -183,6 +196,7 @@ padrao = "liso"
   partidas = 10
   minutos = 873
   id_fonte = "920283"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mislav Orsic"
@@ -194,6 +208,7 @@ padrao = "liso"
   partidas = 6
   minutos = 515
   id_fonte = "119150"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Robert Mudrazija"
@@ -206,6 +221,7 @@ padrao = "liso"
   minutos = 150
   gols = 1
   id_fonte = "339584"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ivan Filipovic"
@@ -217,6 +233,7 @@ padrao = "liso"
   partidas = 6
   minutos = 512
   id_fonte = "234187"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ivan Nevistic"
@@ -228,6 +245,7 @@ padrao = "liso"
   partidas = 6
   minutos = 506
   id_fonte = "293185"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Mateo Lisica"
@@ -240,6 +258,7 @@ padrao = "liso"
   minutos = 850
   gols = 2
   id_fonte = "665275"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Smail Prevljak"
@@ -252,6 +271,7 @@ padrao = "liso"
   minutos = 268
   gols = 4
   id_fonte = "328264"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Kirill Kravtsov"
@@ -263,6 +283,7 @@ padrao = "liso"
   partidas = 2
   minutos = 157
   id_fonte = "607814"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Lukas Kacavenda"
@@ -275,6 +296,7 @@ padrao = "liso"
   minutos = 741
   gols = 4
   id_fonte = "846545"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Fran Topic"
@@ -287,6 +309,7 @@ padrao = "liso"
   minutos = 340
   gols = 4
   id_fonte = "927306"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Paul Tabinas"
@@ -298,6 +321,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "828467"
+  nacionalidade = "Filipinas"
 
   [[clubes.jogadores]]
   nome = "Danijel Zagorac"
@@ -307,6 +331,7 @@ padrao = "liso"
   pot = 56
   valor = 50000
   id_fonte = "131310"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Iker Almena"
@@ -318,6 +343,7 @@ padrao = "liso"
   partidas = 1
   minutos = 130
   id_fonte = "1061656"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Aleks Stojakovic"
@@ -327,6 +353,7 @@ padrao = "liso"
   pot = 63
   valor = 1000000
   id_fonte = "1156640"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Dani Rodríguez"
@@ -336,6 +363,7 @@ padrao = "liso"
   pot = 63
   valor = 1000000
   id_fonte = "834470"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Noah Nsoki"
@@ -347,6 +375,7 @@ padrao = "liso"
   partidas = 1
   minutos = 65
   id_fonte = "1077674"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Noa Mikic"
@@ -358,6 +387,7 @@ padrao = "liso"
   partidas = 5
   minutos = 438
   id_fonte = "1107315"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Sven Sunta"
@@ -369,6 +399,7 @@ padrao = "liso"
   partidas = 2
   minutos = 26
   id_fonte = "1009603"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Borna Orlic"
@@ -378,6 +409,7 @@ padrao = "liso"
   pot = 55
   valor = 100000
   id_fonte = "1267602"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Egor Molchan"
@@ -387,6 +419,7 @@ padrao = "liso"
   pot = 59
   valor = 400000
   id_fonte = "1122786"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Lautaro Ultra"
@@ -396,6 +429,7 @@ padrao = "liso"
   pot = 57
   valor = 200000
   id_fonte = "1258790"
+  nacionalidade = "Uruguai"
 
 [[clubes]]
 nome = "HNK Rijeka"
@@ -415,6 +449,7 @@ padrao = "liso"
   minutos = 930
   gols = 3
   id_fonte = "432758"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Tiago Dantas"
@@ -427,6 +462,7 @@ padrao = "liso"
   minutos = 1059
   gols = 2
   id_fonte = "429987"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Niko Jankovic"
@@ -439,6 +475,7 @@ padrao = "liso"
   minutos = 805
   gols = 1
   id_fonte = "403760"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ante Orec"
@@ -451,6 +488,7 @@ padrao = "liso"
   minutos = 1013
   gols = 3
   id_fonte = "745248"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Mohammad Mohebi"
@@ -462,6 +500,7 @@ padrao = "liso"
   partidas = 3
   minutos = 41
   id_fonte = "603149"
+  nacionalidade = "Irã"
 
   [[clubes.jogadores]]
   nome = "Mladen Devetak"
@@ -474,6 +513,7 @@ padrao = "liso"
   minutos = 671
   gols = 1
   id_fonte = "376452"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Daniel Adu-Adjei"
@@ -486,6 +526,7 @@ padrao = "liso"
   minutos = 949
   gols = 6
   id_fonte = "963878"
+  nacionalidade = "Inglaterra"
 
   [[clubes.jogadores]]
   nome = "Anel Husic"
@@ -498,6 +539,7 @@ padrao = "liso"
   minutos = 522
   gols = 1
   id_fonte = "365107"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Ante Majstorovic"
@@ -510,6 +552,7 @@ padrao = "liso"
   minutos = 1170
   gols = 1
   id_fonte = "207025"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Igor Vekic"
@@ -521,6 +564,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "341535"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Alfonso Barco"
@@ -532,6 +576,7 @@ padrao = "liso"
   partidas = 8
   minutos = 678
   id_fonte = "671538"
+  nacionalidade = "Peru"
 
   [[clubes.jogadores]]
   nome = "Amer Gojak"
@@ -544,6 +589,7 @@ padrao = "liso"
   minutos = 453
   gols = 5
   id_fonte = "293210"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Justas Lasickas"
@@ -556,6 +602,7 @@ padrao = "liso"
   minutos = 693
   gols = 2
   id_fonte = "345311"
+  nacionalidade = "Lituânia"
 
   [[clubes.jogadores]]
   nome = "Samuele Vignato"
@@ -568,6 +615,7 @@ padrao = "liso"
   minutos = 466
   gols = 2
   id_fonte = "650966"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "David Nwolokor"
@@ -577,6 +625,7 @@ padrao = "liso"
   pot = 59
   valor = 150000
   id_fonte = "358195"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Jakov Puljic"
@@ -589,6 +638,7 @@ padrao = "liso"
   minutos = 310
   gols = 1
   id_fonte = "217751"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ante Matej Juric"
@@ -601,6 +651,7 @@ padrao = "liso"
   minutos = 50
   gols = 5
   id_fonte = "927331"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Branko Pavic"
@@ -612,6 +663,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1102
   id_fonte = "1009485"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ivan Cubelic"
@@ -623,6 +675,7 @@ padrao = "liso"
   partidas = 5
   minutos = 455
   id_fonte = "580443"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Aleksa Todorovic"
@@ -634,6 +687,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "750003"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Junior Ligue"
@@ -643,6 +697,7 @@ padrao = "liso"
   pot = 68
   valor = 2500000
   id_fonte = "862744"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Yusuf Kabadayi"
@@ -654,6 +709,7 @@ padrao = "liso"
   partidas = 1
   minutos = 109
   id_fonte = "604359"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Noel Bodetic"
@@ -665,6 +721,7 @@ padrao = "liso"
   partidas = 6
   minutos = 498
   id_fonte = "927834"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Téo Barišić"
@@ -676,6 +733,7 @@ padrao = "liso"
   partidas = 6
   minutos = 500
   id_fonte = "979773"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Moreno Zivkovic"
@@ -687,6 +745,7 @@ padrao = "liso"
   partidas = 1
   minutos = 67
   id_fonte = "844946"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Florent Shehu"
@@ -696,6 +755,7 @@ padrao = "liso"
   pot = 50
   valor = 25000
   id_fonte = "610163"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Roko Valincic"
@@ -705,6 +765,7 @@ padrao = "liso"
   pot = 52
   valor = 50000
   id_fonte = "1056490"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Talib Sibi"
@@ -714,6 +775,7 @@ padrao = "liso"
   pot = 56
   valor = 172857
   id_fonte = "1523683"
+  nacionalidade = "Gâmbia"
 
 [[clubes]]
 nome = "HNK Hajduk Split"
@@ -733,6 +795,7 @@ padrao = "liso"
   minutos = 533
   gols = 3
   id_fonte = "95438"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Leander Dendoncker"
@@ -742,6 +805,7 @@ padrao = "liso"
   pot = 66
   valor = 1800000
   id_fonte = "168157"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Ivica Ivusic"
@@ -753,6 +817,7 @@ padrao = "liso"
   partidas = 20
   minutos = 1770
   id_fonte = "160482"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Dario Maresic"
@@ -764,6 +829,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1215
   id_fonte = "307807"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Simun Hrgovic"
@@ -776,6 +842,7 @@ padrao = "liso"
   minutos = 1253
   gols = 1
   id_fonte = "921553"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Dennis Hadzikadunic"
@@ -788,6 +855,7 @@ padrao = "liso"
   minutos = 132
   gols = 1
   id_fonte = "322065"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Michele Sego"
@@ -800,6 +868,7 @@ padrao = "liso"
   minutos = 1154
   gols = 10
   id_fonte = "371012"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Adrion Pajaziti"
@@ -812,6 +881,7 @@ padrao = "liso"
   minutos = 1147
   gols = 1
   id_fonte = "626301"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Dante Stipica"
@@ -823,6 +893,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "86635"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Alec Van Hoorenbeeck"
@@ -835,6 +906,7 @@ padrao = "liso"
   minutos = 926
   gols = 1
   id_fonte = "405892"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Dario Melnjak"
@@ -847,6 +919,7 @@ padrao = "liso"
   minutos = 762
   gols = 2
   id_fonte = "238500"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Toni Silic"
@@ -858,6 +931,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1500
   id_fonte = "833313"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Alberto del Moral"
@@ -869,6 +943,7 @@ padrao = "liso"
   partidas = 7
   minutos = 655
   id_fonte = "635347"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Marin Soticek"
@@ -881,6 +956,7 @@ padrao = "liso"
   minutos = 788
   gols = 2
   id_fonte = "945345"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Abdoulie Sanyang"
@@ -893,6 +969,7 @@ padrao = "liso"
   minutos = 717
   gols = 1
   id_fonte = "693906"
+  nacionalidade = "Gâmbia"
 
   [[clubes.jogadores]]
   nome = "Dalisson de Almeida"
@@ -905,6 +982,7 @@ padrao = "liso"
   minutos = 1017
   gols = 4
   id_fonte = "644900"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Carlos Martín"
@@ -916,6 +994,7 @@ padrao = "liso"
   partidas = 2
   minutos = 161
   id_fonte = "618813"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mathieu Acapandié"
@@ -927,6 +1006,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1055
   id_fonte = "944355"
+  nacionalidade = "Madagascar"
 
   [[clubes.jogadores]]
   nome = "Ron Raci"
@@ -939,6 +1019,7 @@ padrao = "liso"
   minutos = 702
   gols = 1
   id_fonte = "815041"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Khalil Fayad"
@@ -951,6 +1032,7 @@ padrao = "liso"
   minutos = 226
   gols = 1
   id_fonte = "782630"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Roko Brajkovic"
@@ -963,6 +1045,7 @@ padrao = "liso"
   minutos = 244
   gols = 1
   id_fonte = "724273"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Andjelo Sutalo"
@@ -974,6 +1057,7 @@ padrao = "liso"
   partidas = 6
   minutos = 508
   id_fonte = "1133053"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Etnik Brruti"
@@ -986,6 +1070,7 @@ padrao = "liso"
   minutos = 172
   gols = 1
   id_fonte = "815036"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Luka Hodak"
@@ -997,6 +1082,7 @@ padrao = "liso"
   partidas = 3
   minutos = 274
   id_fonte = "892168"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Marino Skelin"
@@ -1008,6 +1094,7 @@ padrao = "liso"
   partidas = 1
   minutos = 118
   id_fonte = "1048583"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Adam Guram"
@@ -1020,6 +1107,7 @@ padrao = "liso"
   minutos = 381
   gols = 1
   id_fonte = "1375377"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Raymond Anthony"
@@ -1029,6 +1117,7 @@ padrao = "liso"
   pot = 56
   valor = 257205
   id_fonte = "1587317"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Peter Nnaemeka Ugwuodo"
@@ -1041,6 +1130,7 @@ padrao = "liso"
   minutos = 18
   gols = 1
   id_fonte = "1506539"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Davyd Fesyuk"
@@ -1050,6 +1140,7 @@ padrao = "liso"
   pot = 50
   valor = 50000
   id_fonte = "955285"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Dominik Babic"
@@ -1059,6 +1150,7 @@ padrao = "liso"
   pot = 47
   valor = 25000
   id_fonte = "892179"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Duje Milisic"
@@ -1068,6 +1160,7 @@ padrao = "liso"
   pot = 56
   valor = 257205
   id_fonte = "1137942"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Duje Pranic"
@@ -1077,6 +1170,7 @@ padrao = "liso"
   pot = 54
   valor = 257205
   id_fonte = "1305641"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Roko Gabric"
@@ -1088,6 +1182,7 @@ padrao = "liso"
   partidas = 2
   minutos = 225
   id_fonte = "1411272"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Sebastijan Kajtazi"
@@ -1097,6 +1192,7 @@ padrao = "liso"
   pot = 54
   valor = 257205
   id_fonte = "1301010"
+  nacionalidade = "Croácia"
 
 [[clubes]]
 nome = "NK Lokomotiva Zagreb"
@@ -1115,6 +1211,7 @@ padrao = "liso"
   partidas = 4
   minutos = 337
   id_fonte = "367795"
+  nacionalidade = "Austrália"
 
   [[clubes.jogadores]]
   nome = "Josip Posavec"
@@ -1126,6 +1223,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "255322"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Marijan Cabraja"
@@ -1137,6 +1235,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "355651"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Dusan Vukovic"
@@ -1149,6 +1248,7 @@ padrao = "liso"
   minutos = 680
   gols = 3
   id_fonte = "747417"
+  nacionalidade = "Montenegro"
 
   [[clubes.jogadores]]
   nome = "Marko Pajac"
@@ -1161,6 +1261,7 @@ padrao = "liso"
   minutos = 270
   gols = 6
   id_fonte = "190634"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Marko Vesovic"
@@ -1173,6 +1274,7 @@ padrao = "liso"
   minutos = 408
   gols = 1
   id_fonte = "98101"
+  nacionalidade = "Montenegro"
 
   [[clubes.jogadores]]
   nome = "Mirko Marić"
@@ -1185,6 +1287,7 @@ padrao = "liso"
   minutos = 307
   gols = 1
   id_fonte = "215649"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Dimitrije Kamenovic"
@@ -1197,6 +1300,7 @@ padrao = "liso"
   minutos = 747
   gols = 1
   id_fonte = "465565"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Leon Belcar"
@@ -1209,6 +1313,7 @@ padrao = "liso"
   minutos = 304
   gols = 1
   id_fonte = "844375"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Matija Subotic"
@@ -1220,6 +1325,7 @@ padrao = "liso"
   partidas = 6
   minutos = 581
   id_fonte = "1133013"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Athanasios Triantafyllou"
@@ -1232,6 +1338,7 @@ padrao = "liso"
   minutos = 782
   gols = 1
   id_fonte = "940526"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Erbol Atabaev"
@@ -1241,6 +1348,7 @@ padrao = "liso"
   pot = 59
   valor = 500000
   id_fonte = "914997"
+  nacionalidade = "Quirguistão"
 
   [[clubes.jogadores]]
   nome = "Jakov-Anton Vasilj"
@@ -1253,6 +1361,7 @@ padrao = "liso"
   minutos = 325
   gols = 4
   id_fonte = "618353"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Kristijan Cabrajic"
@@ -1264,6 +1373,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "945348"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Krunoslav Hendija"
@@ -1273,6 +1383,7 @@ padrao = "liso"
   pot = 54
   valor = 50000
   id_fonte = "46560"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Feta Fetai"
@@ -1284,6 +1395,7 @@ padrao = "liso"
   partidas = 3
   minutos = 266
   id_fonte = "1059579"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Ivan Katic"
@@ -1296,6 +1408,7 @@ padrao = "liso"
   minutos = 478
   gols = 1
   id_fonte = "1173856"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Mario Situm"
@@ -1307,6 +1420,7 @@ padrao = "liso"
   partidas = 8
   minutos = 700
   id_fonte = "138741"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Franjo Posavac"
@@ -1318,6 +1432,7 @@ padrao = "liso"
   partidas = 2
   minutos = 138
   id_fonte = "940800"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Jakov Gurlica"
@@ -1329,6 +1444,7 @@ padrao = "liso"
   partidas = 1
   minutos = 118
   id_fonte = "985061"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Luka Savatovic"
@@ -1340,6 +1456,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1046001"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Marcel Lorber"
@@ -1351,6 +1468,7 @@ padrao = "liso"
   partidas = 4
   minutos = 322
   id_fonte = "996391"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Mate Antunovic"
@@ -1362,6 +1480,7 @@ padrao = "liso"
   partidas = 1
   minutos = 99
   id_fonte = "921551"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Dominik Thaqi"
@@ -1373,6 +1492,7 @@ padrao = "liso"
   partidas = 3
   minutos = 292
   id_fonte = "1277268"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Noel Djurkovic"
@@ -1385,6 +1505,7 @@ padrao = "liso"
   minutos = 348
   gols = 2
   id_fonte = "1267443"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ante Utrobicic"
@@ -1394,6 +1515,7 @@ padrao = "liso"
   pot = 58
   valor = 400000
   id_fonte = "1009494"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Dardan Morina"
@@ -1405,6 +1527,7 @@ padrao = "liso"
   partidas = 2
   minutos = 143
   id_fonte = "1160173"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Mody Boune"
@@ -1417,6 +1540,7 @@ padrao = "liso"
   minutos = 290
   gols = 1
   id_fonte = "855614"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Lovre Kulusic"
@@ -1428,6 +1552,7 @@ padrao = "liso"
   partidas = 1
   minutos = 28
   id_fonte = "1151870"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Amad Keita"
@@ -1437,6 +1562,7 @@ padrao = "liso"
   pot = 45
   valor = 50000
   id_fonte = "1406422"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Anes Huskic"
@@ -1448,6 +1574,7 @@ padrao = "liso"
   partidas = 3
   minutos = 44
   id_fonte = "1151872"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Armando Pernar"
@@ -1457,6 +1584,7 @@ padrao = "liso"
   pot = 46
   valor = 58928
   id_fonte = "1335665"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Duje Reic"
@@ -1468,6 +1596,7 @@ padrao = "liso"
   partidas = 1
   minutos = 23
   id_fonte = "892172"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Kayke"
@@ -1479,6 +1608,7 @@ padrao = "liso"
   partidas = 2
   minutos = 159
   id_fonte = "1370309"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Lorenzo"
@@ -1488,6 +1618,7 @@ padrao = "liso"
   pot = 49
   valor = 58928
   id_fonte = "1474152"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Luka Curkovic"
@@ -1497,6 +1628,7 @@ padrao = "liso"
   pot = 48
   valor = 50000
   id_fonte = "1048807"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Marko Batur"
@@ -1506,6 +1638,7 @@ padrao = "liso"
   pot = 47
   valor = 58928
   id_fonte = "945318"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Noa Godec"
@@ -1517,6 +1650,7 @@ padrao = "liso"
   partidas = 2
   minutos = 135
   id_fonte = "1151871"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Pavle Smiljanic"
@@ -1528,6 +1662,7 @@ padrao = "liso"
   partidas = 1
   minutos = 103
   id_fonte = "1072018"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Petar Zvonimir Kostelac"
@@ -1537,6 +1672,7 @@ padrao = "liso"
   pot = 47
   valor = 50000
   id_fonte = "1072020"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Roko Pavlovic"
@@ -1546,6 +1682,7 @@ padrao = "liso"
   pot = 48
   valor = 58928
   id_fonte = "1133009"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Teodor Kralevski"
@@ -1557,6 +1694,7 @@ padrao = "liso"
   partidas = 2
   minutos = 150
   id_fonte = "1374904"
+  nacionalidade = "Croácia"
 
 [[clubes]]
 nome = "NK Varazdin"
@@ -1575,6 +1713,7 @@ padrao = "liso"
   partidas = 10
   minutos = 863
   id_fonte = "340775"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Iuri Tavares"
@@ -1587,6 +1726,7 @@ padrao = "liso"
   minutos = 760
   gols = 1
   id_fonte = "549016"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Robby McCrorie"
@@ -1596,6 +1736,7 @@ padrao = "liso"
   pot = 60
   valor = 600000
   id_fonte = "244260"
+  nacionalidade = "Escócia"
 
   [[clubes.jogadores]]
   nome = "Aleksa Latkovic"
@@ -1608,6 +1749,7 @@ padrao = "liso"
   minutos = 749
   gols = 2
   id_fonte = "530038"
+  nacionalidade = "Montenegro"
 
   [[clubes.jogadores]]
   nome = "Luka Skaricic"
@@ -1620,6 +1762,7 @@ padrao = "liso"
   minutos = 289
   gols = 3
   id_fonte = "619277"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Mateo Barac"
@@ -1632,6 +1775,7 @@ padrao = "liso"
   minutos = 797
   gols = 1
   id_fonte = "329629"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Luka Mamic"
@@ -1644,6 +1788,7 @@ padrao = "liso"
   minutos = 880
   gols = 4
   id_fonte = "921790"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Petar Bockaj"
@@ -1656,6 +1801,7 @@ padrao = "liso"
   minutos = 470
   gols = 1
   id_fonte = "292666"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Tomislav Duvnjak"
@@ -1668,6 +1814,7 @@ padrao = "liso"
   minutos = 303
   gols = 2
   id_fonte = "580482"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Matej Vuk"
@@ -1680,6 +1827,7 @@ padrao = "liso"
   minutos = 203
   gols = 3
   id_fonte = "371004"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "David Puclin"
@@ -1692,6 +1840,7 @@ padrao = "liso"
   minutos = 18
   gols = 1
   id_fonte = "197078"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Gregor Sikosek"
@@ -1703,6 +1852,7 @@ padrao = "liso"
   partidas = 7
   minutos = 642
   id_fonte = "224892"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Ivan Canjuga"
@@ -1715,6 +1865,7 @@ padrao = "liso"
   minutos = 873
   gols = 3
   id_fonte = "982829"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Mario Mladenovski"
@@ -1727,6 +1878,7 @@ padrao = "liso"
   minutos = 675
   gols = 2
   id_fonte = "570787"
+  nacionalidade = "Macedônia do Norte"
 
   [[clubes.jogadores]]
   nome = "Novak Tepsic"
@@ -1738,6 +1890,7 @@ padrao = "liso"
   partidas = 7
   minutos = 662
   id_fonte = "808070"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Roberto Puncec"
@@ -1749,6 +1902,7 @@ padrao = "liso"
   partidas = 3
   minutos = 242
   id_fonte = "92120"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Josip Silic"
@@ -1760,6 +1914,7 @@ padrao = "liso"
   partidas = 10
   minutos = 900
   id_fonte = "543098"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Mario Marina"
@@ -1772,6 +1927,7 @@ padrao = "liso"
   minutos = 648
   gols = 1
   id_fonte = "206939"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Stipe Juric"
@@ -1784,6 +1940,7 @@ padrao = "liso"
   minutos = 202
   gols = 1
   id_fonte = "465593"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Elvir Durakovic"
@@ -1795,6 +1952,7 @@ padrao = "liso"
   partidas = 2
   minutos = 135
   id_fonte = "429390"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Luka Posinkovic"
@@ -1806,6 +1964,7 @@ padrao = "liso"
   partidas = 2
   minutos = 37
   id_fonte = "941457"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Sven Lesjak"
@@ -1818,6 +1977,7 @@ padrao = "liso"
   minutos = 92
   gols = 1
   id_fonte = "1173480"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ivan Posavec"
@@ -1829,6 +1989,7 @@ padrao = "liso"
   partidas = 3
   minutos = 33
   id_fonte = "458540"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Silvio Ilinkovic"
@@ -1840,6 +2001,7 @@ padrao = "liso"
   partidas = 2
   minutos = 189
   id_fonte = "652758"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Domagoj Begonja"
@@ -1851,6 +2013,7 @@ padrao = "liso"
   partidas = 1
   minutos = 112
   id_fonte = "1079530"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Emmanuel Uchegbu"
@@ -1862,6 +2025,7 @@ padrao = "liso"
   partidas = 1
   minutos = 120
   id_fonte = "869522"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Filipe Jose Quissequel"
@@ -1873,6 +2037,7 @@ padrao = "liso"
   partidas = 3
   minutos = 16
   id_fonte = "1522139"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Tajio James"
@@ -1882,6 +2047,7 @@ padrao = "liso"
   pot = 44
   valor = 55000
   id_fonte = "898936"
+  nacionalidade = "Barbados"
 
   [[clubes.jogadores]]
   nome = "Teo Novak"
@@ -1891,6 +2057,7 @@ padrao = "liso"
   pot = 47
   valor = 55000
   id_fonte = "1088886"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Valentin Akrap"
@@ -1903,6 +2070,7 @@ padrao = "liso"
   minutos = 50
   gols = 1
   id_fonte = "602619"
+  nacionalidade = "Croácia"
 
 [[clubes]]
 nome = "NK Osijek"
@@ -1922,6 +2090,7 @@ padrao = "liso"
   minutos = 675
   gols = 3
   id_fonte = "370999"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Oleksandr Petrusenko"
@@ -1934,6 +2103,7 @@ padrao = "liso"
   minutos = 163
   gols = 1
   id_fonte = "461657"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Marko Malenica"
@@ -1945,6 +2115,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "179894"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ivan Dolcek"
@@ -1957,6 +2128,7 @@ padrao = "liso"
   minutos = 331
   gols = 1
   id_fonte = "554565"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Luka Vrbancic"
@@ -1969,6 +2141,7 @@ padrao = "liso"
   minutos = 720
   gols = 1
   id_fonte = "946959"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Marcel Heister"
@@ -1980,6 +2153,7 @@ padrao = "liso"
   partidas = 5
   minutos = 479
   id_fonte = "109830"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Domagoj Bukvic"
@@ -1992,6 +2166,7 @@ padrao = "liso"
   minutos = 765
   gols = 1
   id_fonte = "921251"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Jay Kruiver"
@@ -2003,6 +2178,7 @@ padrao = "liso"
   partidas = 2
   minutos = 167
   id_fonte = "533172"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Álex Cantero"
@@ -2014,6 +2190,7 @@ padrao = "liso"
   partidas = 1
   minutos = 27
   id_fonte = "638235"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Armando León"
@@ -2026,6 +2203,7 @@ padrao = "liso"
   minutos = 684
   gols = 5
   id_fonte = "760988"
+  nacionalidade = "México"
 
   [[clubes.jogadores]]
   nome = "Anton Matkovic"
@@ -2038,6 +2216,7 @@ padrao = "liso"
   minutos = 1056
   gols = 1
   id_fonte = "1121427"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Nikola Curcija"
@@ -2049,6 +2228,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "768378"
+  nacionalidade = "Canadá"
 
   [[clubes.jogadores]]
   nome = "Emin Hasic"
@@ -2060,6 +2240,7 @@ padrao = "liso"
   partidas = 1
   minutos = 91
   id_fonte = "615235"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Simun Mikolcic"
@@ -2072,6 +2253,7 @@ padrao = "liso"
   minutos = 315
   gols = 2
   id_fonte = "895515"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "David Mejía"
@@ -2083,6 +2265,7 @@ padrao = "liso"
   partidas = 8
   minutos = 741
   id_fonte = "990110"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Ivano Kolarik"
@@ -2094,6 +2277,7 @@ padrao = "liso"
   partidas = 6
   minutos = 563
   id_fonte = "1133007"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Senad Mustafic"
@@ -2105,6 +2289,7 @@ padrao = "liso"
   partidas = 4
   minutos = 347
   id_fonte = "805121"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Justice Ohajunwa"
@@ -2114,6 +2299,7 @@ padrao = "liso"
   pot = 50
   valor = 150000
   id_fonte = "699784"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Vito Caic"
@@ -2125,6 +2311,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "982366"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Balelo"
@@ -2136,6 +2323,7 @@ padrao = "liso"
   partidas = 1
   minutos = 108
   id_fonte = "1063934"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Balázs Bakti"
@@ -2147,6 +2335,7 @@ padrao = "liso"
   partidas = 2
   minutos = 138
   id_fonte = "648899"
+  nacionalidade = "Hungria"
 
   [[clubes.jogadores]]
   nome = "Luka Tunjic"
@@ -2158,6 +2347,7 @@ padrao = "liso"
   partidas = 1
   minutos = 63
   id_fonte = "915445"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Admir Ljatifi"
@@ -2169,6 +2359,7 @@ padrao = "liso"
   partidas = 4
   minutos = 335
   id_fonte = "1183763"
+  nacionalidade = "Macedônia do Norte"
 
   [[clubes.jogadores]]
   nome = "Ivan Baric"
@@ -2180,6 +2371,7 @@ padrao = "liso"
   partidas = 1
   minutos = 98
   id_fonte = "1172610"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Jan Hlapcic"
@@ -2189,6 +2381,7 @@ padrao = "liso"
   pot = 47
   valor = 50000
   id_fonte = "892142"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Jona Jezic"
@@ -2201,6 +2394,7 @@ padrao = "liso"
   minutos = 421
   gols = 2
   id_fonte = "1468844"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Niko Farkas"
@@ -2213,6 +2407,7 @@ padrao = "liso"
   minutos = 136
   gols = 1
   id_fonte = "1271373"
+  nacionalidade = "Croácia"
 
 [[clubes]]
 nome = "NK Istra 1961"
@@ -2232,6 +2427,7 @@ padrao = "liso"
   minutos = 2919
   gols = 1
   id_fonte = "160506"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Advan Kadusic"
@@ -2244,6 +2440,7 @@ padrao = "liso"
   minutos = 230
   gols = 1
   id_fonte = "318829"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Emil Frederiksen"
@@ -2256,6 +2453,7 @@ padrao = "liso"
   minutos = 684
   gols = 7
   id_fonte = "422941"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Franko Kolic"
@@ -2267,6 +2465,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "663899"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Antonio Mauric"
@@ -2279,6 +2478,7 @@ padrao = "liso"
   minutos = 414
   gols = 2
   id_fonte = "945489"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Mohamed Nasraoui"
@@ -2290,6 +2490,7 @@ padrao = "liso"
   partidas = 6
   minutos = 547
   id_fonte = "939479"
+  nacionalidade = "Tunísia"
 
   [[clubes.jogadores]]
   nome = "Raul Kumar"
@@ -2301,6 +2502,7 @@ padrao = "liso"
   partidas = 5
   minutos = 464
   id_fonte = "1137273"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Silvio Gorican"
@@ -2312,6 +2514,7 @@ padrao = "liso"
   partidas = 3
   minutos = 43
   id_fonte = "393825"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Daouda Doumbia"
@@ -2323,6 +2526,7 @@ padrao = "liso"
   partidas = 6
   minutos = 580
   id_fonte = "1054933"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Niko Sepic"
@@ -2334,6 +2538,7 @@ padrao = "liso"
   partidas = 8
   minutos = 735
   id_fonte = "1083702"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Samuli Miettinen"
@@ -2345,6 +2550,7 @@ padrao = "liso"
   partidas = 6
   minutos = 533
   id_fonte = "807247"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Vinko Rozic"
@@ -2357,6 +2563,7 @@ padrao = "liso"
   minutos = 245
   gols = 3
   id_fonte = "663897"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Isaac"
@@ -2369,6 +2576,7 @@ padrao = "liso"
   minutos = 232
   gols = 3
   id_fonte = "1083069"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Hamza Jaganjac"
@@ -2381,6 +2589,7 @@ padrao = "liso"
   minutos = 627
   gols = 5
   id_fonte = "798026"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Dukan Ahmeti"
@@ -2393,6 +2602,7 @@ padrao = "liso"
   minutos = 478
   gols = 2
   id_fonte = "1199576"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Gustavo Albarracín"
@@ -2404,6 +2614,7 @@ padrao = "liso"
   partidas = 5
   minutos = 426
   id_fonte = "1074967"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rene Hrvatin"
@@ -2415,6 +2626,7 @@ padrao = "liso"
   partidas = 6
   minutos = 580
   id_fonte = "981083"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Jan Paus-Kunst"
@@ -2426,6 +2638,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "830280"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Nik Skafar Zuzic"
@@ -2438,6 +2651,7 @@ padrao = "liso"
   minutos = 504
   gols = 1
   id_fonte = "1454692"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Baba Yatera"
@@ -2447,6 +2661,7 @@ padrao = "liso"
   pot = 44
   valor = 48125
   id_fonte = "1464866"
+  nacionalidade = "Mauritânia"
 
   [[clubes.jogadores]]
   nome = "Demirel Hodzic"
@@ -2456,6 +2671,7 @@ padrao = "liso"
   pot = 51
   valor = 150000
   id_fonte = "980081"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Dominik Celija"
@@ -2467,6 +2683,7 @@ padrao = "liso"
   partidas = 1
   minutos = 75
   id_fonte = "1174877"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Matija Kablar"
@@ -2478,6 +2695,7 @@ padrao = "liso"
   partidas = 2
   minutos = 201
   id_fonte = "1304692"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Stipe Ukich"
@@ -2490,6 +2708,7 @@ padrao = "liso"
   minutos = 121
   gols = 1
   id_fonte = "1137125"
+  nacionalidade = "Nova Zelândia"
 
 [[clubes]]
 nome = "HNK Gorica"
@@ -2508,6 +2727,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "357780"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ante Kavelj"
@@ -2520,6 +2740,7 @@ padrao = "liso"
   minutos = 447
   gols = 4
   id_fonte = "1082114"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Fran Brodic"
@@ -2531,6 +2752,7 @@ padrao = "liso"
   partidas = 2
   minutos = 196
   id_fonte = "226060"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Gonçalo Costa"
@@ -2542,6 +2764,7 @@ padrao = "liso"
   partidas = 1
   minutos = 125
   id_fonte = "383014"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Bruno Bogojevic"
@@ -2554,6 +2777,7 @@ padrao = "liso"
   minutos = 700
   gols = 4
   id_fonte = "464604"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Jakov Filipovic"
@@ -2566,6 +2790,7 @@ padrao = "liso"
   minutos = 723
   gols = 2
   id_fonte = "339727"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Stefan Peric"
@@ -2577,6 +2802,7 @@ padrao = "liso"
   partidas = 7
   minutos = 586
   id_fonte = "223973"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Dusan Stevanovic"
@@ -2588,6 +2814,7 @@ padrao = "liso"
   partidas = 6
   minutos = 497
   id_fonte = "286037"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Patrik Mijic"
@@ -2600,6 +2827,7 @@ padrao = "liso"
   minutos = 697
   gols = 1
   id_fonte = "696246"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Renato Josipovic"
@@ -2611,6 +2839,7 @@ padrao = "liso"
   partidas = 5
   minutos = 480
   id_fonte = "432745"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Tom Lacoux"
@@ -2622,6 +2851,7 @@ padrao = "liso"
   partidas = 4
   minutos = 369
   id_fonte = "847759"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Domagoj Pavicic"
@@ -2634,6 +2864,7 @@ padrao = "liso"
   minutos = 641
   gols = 4
   id_fonte = "131326"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Jakov Pranjic"
@@ -2646,6 +2877,7 @@ padrao = "liso"
   minutos = 368
   gols = 2
   id_fonte = "653719"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Kevin Custovic"
@@ -2657,6 +2889,7 @@ padrao = "liso"
   partidas = 4
   minutos = 349
   id_fonte = "523947"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Filip Braut"
@@ -2668,6 +2901,7 @@ padrao = "liso"
   partidas = 8
   minutos = 709
   id_fonte = "587509"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ognjen Bakic"
@@ -2680,6 +2914,7 @@ padrao = "liso"
   minutos = 170
   gols = 2
   id_fonte = "724666"
+  nacionalidade = "Montenegro"
 
   [[clubes.jogadores]]
   nome = "Darijan Zarkov"
@@ -2691,6 +2926,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "236918"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ivan Cvijanovic"
@@ -2703,6 +2939,7 @@ padrao = "liso"
   minutos = 641
   gols = 1
   id_fonte = "744078"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ante Erceg"
@@ -2715,6 +2952,7 @@ padrao = "liso"
   minutos = 1203
   gols = 8
   id_fonte = "131303"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Luka Vrzic"
@@ -2727,6 +2965,7 @@ padrao = "liso"
   minutos = 347
   gols = 1
   id_fonte = "1234664"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Bartol Kardum"
@@ -2738,6 +2977,7 @@ padrao = "liso"
   partidas = 1
   minutos = 70
   id_fonte = "892185"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Juraj Frigan"
@@ -2749,6 +2989,7 @@ padrao = "liso"
   partidas = 6
   minutos = 527
   id_fonte = "1265307"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Hadji Issa Moustapha"
@@ -2760,6 +3001,7 @@ padrao = "liso"
   partidas = 1
   minutos = 3
   id_fonte = "1112528"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Wisdom Aondowase Sule"
@@ -2772,6 +3014,7 @@ padrao = "liso"
   minutos = 568
   gols = 1
   id_fonte = "1233166"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "David Sim"
@@ -2781,6 +3024,7 @@ padrao = "liso"
   pot = 40
   valor = 10000
   id_fonte = "945237"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Keenan Carole"
@@ -2792,6 +3036,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "805888"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Lovro Dukic"
@@ -2801,6 +3046,7 @@ padrao = "liso"
   pot = 45
   valor = 84218
   id_fonte = "1277089"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Luka Brlek"
@@ -2810,6 +3056,7 @@ padrao = "liso"
   pot = 44
   valor = 84218
   id_fonte = "945242"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Medin Gashi"
@@ -2822,6 +3069,7 @@ padrao = "liso"
   minutos = 87
   gols = 1
   id_fonte = "1068860"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Stjepan Kucis"
@@ -2834,6 +3082,7 @@ padrao = "liso"
   minutos = 104
   gols = 1
   id_fonte = "1277081"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Tin Dosen"
@@ -2843,6 +3092,7 @@ padrao = "liso"
   pot = 48
   valor = 84218
   id_fonte = "1046021"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Tomislav Prgomet"
@@ -2852,6 +3102,7 @@ padrao = "liso"
   pot = 45
   valor = 84218
   id_fonte = "1300981"
+  nacionalidade = "Croácia"
 
 [[clubes]]
 nome = "Slaven Belupo Koprivnica"
@@ -2871,6 +3122,7 @@ padrao = "liso"
   minutos = 789
   gols = 1
   id_fonte = "258898"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Josip Mitrovic"
@@ -2883,6 +3135,7 @@ padrao = "liso"
   minutos = 746
   gols = 2
   id_fonte = "464332"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ljuban Crepulja"
@@ -2895,6 +3148,7 @@ padrao = "liso"
   minutos = 540
   gols = 3
   id_fonte = "238474"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Alen Grgic"
@@ -2907,6 +3161,7 @@ padrao = "liso"
   minutos = 347
   gols = 2
   id_fonte = "285077"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Itsuki Urata"
@@ -2918,6 +3173,7 @@ padrao = "liso"
   partidas = 2
   minutos = 164
   id_fonte = "351557"
+  nacionalidade = "Japão"
 
   [[clubes.jogadores]]
   nome = "Jon Mersinaj"
@@ -2929,6 +3185,7 @@ padrao = "liso"
   partidas = 2
   minutos = 155
   id_fonte = "540935"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Karlo Sentic"
@@ -2940,6 +3197,7 @@ padrao = "liso"
   partidas = 7
   minutos = 630
   id_fonte = "632355"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Filip Kruselj"
@@ -2952,6 +3210,7 @@ padrao = "liso"
   minutos = 450
   gols = 2
   id_fonte = "987719"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Marko Dabro"
@@ -2964,6 +3223,7 @@ padrao = "liso"
   minutos = 524
   gols = 3
   id_fonte = "226065"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Lovro Banovec"
@@ -2976,6 +3236,7 @@ padrao = "liso"
   minutos = 439
   gols = 1
   id_fonte = "937973"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ilija Nestorovski"
@@ -2988,6 +3249,7 @@ padrao = "liso"
   minutos = 611
   gols = 7
   id_fonte = "54581"
+  nacionalidade = "Macedônia do Norte"
 
   [[clubes.jogadores]]
   nome = "Mihail Caimacov"
@@ -3000,6 +3262,7 @@ padrao = "liso"
   minutos = 910
   gols = 2
   id_fonte = "414933"
+  nacionalidade = "Moldávia"
 
   [[clubes.jogadores]]
   nome = "Vinko Medjimorec"
@@ -3011,6 +3274,7 @@ padrao = "liso"
   partidas = 11
   minutos = 989
   id_fonte = "381004"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ivan Covic"
@@ -3022,6 +3286,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "76254"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ivan Cvetko"
@@ -3033,6 +3298,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "1045324"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Karlo Isasegi"
@@ -3044,6 +3310,7 @@ padrao = "liso"
   partidas = 4
   minutos = 377
   id_fonte = "574085"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Adetunji Rasaq Adeshina"
@@ -3055,6 +3322,7 @@ padrao = "liso"
   partidas = 6
   minutos = 516
   id_fonte = "1108321"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Leonard Zuta"
@@ -3067,6 +3335,7 @@ padrao = "liso"
   minutos = 1482
   gols = 2
   id_fonte = "214625"
+  nacionalidade = "Macedônia do Norte"
 
   [[clubes.jogadores]]
   nome = "Tomislav Bozic"
@@ -3079,6 +3348,7 @@ padrao = "liso"
   minutos = 278
   gols = 1
   id_fonte = "34577"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Antonio Jakir"
@@ -3090,6 +3360,7 @@ padrao = "liso"
   partidas = 2
   minutos = 135
   id_fonte = "941456"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "David Bosak"
@@ -3101,6 +3372,7 @@ padrao = "liso"
   partidas = 5
   minutos = 446
   id_fonte = "1045514"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Matija Jesenovic"
@@ -3110,6 +3382,7 @@ padrao = "liso"
   pot = 47
   valor = 50000
   id_fonte = "442192"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Filip Mazar"
@@ -3122,6 +3395,7 @@ padrao = "liso"
   minutos = 304
   gols = 1
   id_fonte = "946963"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Leon Bosnjak"
@@ -3133,6 +3407,7 @@ padrao = "liso"
   partidas = 5
   minutos = 435
   id_fonte = "1124490"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Arnór Gauti Jónsson"
@@ -3144,6 +3419,7 @@ padrao = "liso"
   partidas = 1
   minutos = 110
   id_fonte = "652274"
+  nacionalidade = "Islândia"
 
   [[clubes.jogadores]]
   nome = "Maj Pavli"
@@ -3153,6 +3429,7 @@ padrao = "liso"
   pot = 47
   valor = 55000
   id_fonte = "912881"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Ante Bilobrk"
@@ -3162,6 +3439,7 @@ padrao = "liso"
   pot = 41
   valor = 25000
   id_fonte = "1286790"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Filip Bosnjak"
@@ -3171,6 +3449,7 @@ padrao = "liso"
   pot = 45
   valor = 55000
   id_fonte = "950289"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Joseph Essomba Essomba"
@@ -3180,6 +3459,7 @@ padrao = "liso"
   pot = 43
   valor = 55000
   id_fonte = "1581432"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Leon Geci"
@@ -3191,6 +3471,7 @@ padrao = "liso"
   partidas = 3
   minutos = 10
   id_fonte = "1534923"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Losika Ratshukudu"
@@ -3202,6 +3483,7 @@ padrao = "liso"
   partidas = 2
   minutos = 29
   id_fonte = "1491276"
+  nacionalidade = "Botsuana"
 
   [[clubes.jogadores]]
   nome = "Lovre Loncar"
@@ -3211,6 +3493,7 @@ padrao = "liso"
   pot = 43
   valor = 55000
   id_fonte = "1009487"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Lukas Zahora"
@@ -3220,6 +3503,7 @@ padrao = "liso"
   pot = 48
   valor = 150000
   id_fonte = "1174895"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Marko Petrovic"
@@ -3231,6 +3515,7 @@ padrao = "liso"
   partidas = 1
   minutos = 16
   id_fonte = "1173472"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Patrik Maric"
@@ -3242,6 +3527,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "1133057"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Teo Kolar"
@@ -3251,6 +3537,7 @@ padrao = "liso"
   pot = 47
   valor = 55000
   id_fonte = "1123887"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Vito Medic"
@@ -3260,6 +3547,7 @@ padrao = "liso"
   pot = 47
   valor = 100000
   id_fonte = "1112996"
+  nacionalidade = "Bósnia-Herzegovina"
 
 [[clubes]]
 nome = "NK Rudes"
@@ -3278,6 +3566,7 @@ padrao = "liso"
   partidas = 7
   minutos = 671
   id_fonte = "226095"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Vedran Celjak"
@@ -3290,6 +3579,7 @@ padrao = "liso"
   minutos = 530
   gols = 2
   id_fonte = "86640"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Lovre Rogic"
@@ -3301,6 +3591,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "314616"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ivan Djoric"
@@ -3313,6 +3604,7 @@ padrao = "liso"
   minutos = 501
   gols = 1
   id_fonte = "380097"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Jakov Blagaic"
@@ -3324,6 +3616,7 @@ padrao = "liso"
   partidas = 3
   minutos = 286
   id_fonte = "434711"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Stefan Vukic"
@@ -3336,6 +3629,7 @@ padrao = "liso"
   minutos = 126
   gols = 1
   id_fonte = "690479"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Jurica Poldrugac"
@@ -3348,6 +3642,7 @@ padrao = "liso"
   minutos = 485
   gols = 5
   id_fonte = "610045"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Bruno Unusic"
@@ -3359,6 +3654,7 @@ padrao = "liso"
   partidas = 6
   minutos = 566
   id_fonte = "619276"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Felipe Curcio"
@@ -3370,6 +3666,7 @@ padrao = "liso"
   partidas = 2
   minutos = 222
   id_fonte = "331467"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Kristijan Lovric"
@@ -3381,6 +3678,7 @@ padrao = "liso"
   partidas = 3
   minutos = 44
   id_fonte = "294401"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Slavko Bralic"
@@ -3390,6 +3688,7 @@ padrao = "liso"
   pot = 51
   valor = 100000
   id_fonte = "206956"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ivan Tomecak"
@@ -3401,6 +3700,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1920
   id_fonte = "49985"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Josip Pejic"
@@ -3412,6 +3712,7 @@ padrao = "liso"
   partidas = 3
   minutos = 35
   id_fonte = "955598"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Toni Kolega"
@@ -3423,6 +3724,7 @@ padrao = "liso"
   partidas = 4
   minutos = 384
   id_fonte = "532770"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Xavi"
@@ -3435,6 +3737,7 @@ padrao = "liso"
   minutos = 533
   gols = 1
   id_fonte = "588097"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Filip Taraba"
@@ -3446,6 +3749,7 @@ padrao = "liso"
   partidas = 3
   minutos = 244
   id_fonte = "891575"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Cherno Saho"
@@ -3458,6 +3762,7 @@ padrao = "liso"
   minutos = 306
   gols = 1
   id_fonte = "1373497"
+  nacionalidade = "Gâmbia"
 
   [[clubes.jogadores]]
   nome = "Junior Fernandes"
@@ -3469,6 +3774,7 @@ padrao = "liso"
   partidas = 2
   minutos = 15
   id_fonte = "89708"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Vid Seitz"
@@ -3480,6 +3786,7 @@ padrao = "liso"
   partidas = 2
   minutos = 206
   id_fonte = "1552791"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Frane Barbic"
@@ -3491,6 +3798,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1171
   id_fonte = "554574"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Marko Zebic"
@@ -3503,6 +3811,7 @@ padrao = "liso"
   minutos = 180
   gols = 1
   id_fonte = "1121428"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Noa Skoko"
@@ -3515,6 +3824,7 @@ padrao = "liso"
   minutos = 531
   gols = 1
   id_fonte = "1056486"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ante Susak"
@@ -3527,6 +3837,7 @@ padrao = "liso"
   minutos = 333
   gols = 1
   id_fonte = "1009496"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Lenny Ilecic"
@@ -3539,6 +3850,7 @@ padrao = "liso"
   minutos = 447
   gols = 2
   id_fonte = "1024368"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Saad El Haddad"
@@ -3551,6 +3863,7 @@ padrao = "liso"
   minutos = 150
   gols = 1
   id_fonte = "936684"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Ivan Zutic"
@@ -3562,6 +3875,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1218
   id_fonte = "921806"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Allyson"
@@ -3574,6 +3888,7 @@ padrao = "liso"
   minutos = 957
   gols = 4
   id_fonte = "1025713"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Cheick Tidiane Diabate"
@@ -3585,6 +3900,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1567412"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Filip Holjevac"
@@ -3594,6 +3910,7 @@ padrao = "liso"
   pot = 41
   valor = 27500
   id_fonte = "1242321"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Josip Bralic"
@@ -3606,6 +3923,7 @@ padrao = "liso"
   minutos = 57
   gols = 1
   id_fonte = "1138265"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Josip Radman"
@@ -3617,4 +3935,5 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1304678"
+  nacionalidade = "Croácia"
 

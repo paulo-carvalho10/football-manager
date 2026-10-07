@@ -30,6 +30,7 @@ Formato:
     id_fonte = "622924"             # opcional
     partidas = 31                   # opcional: e por aqui que se ordena o elenco
     gols = 7                        # opcional
+    nacionalidade = "Uruguai"       # opcional: sem ela, o pais da liga
 """
 
 from __future__ import annotations
@@ -70,6 +71,7 @@ class PackPlayer:
     minutos: int | None = None
     valor: int | None = None       # valor de mercado em EUR: permite recalcular ovr/pot
                                    # a partir do pack, sem precisar do cache de rede
+    nacionalidade: str | None = None   # o pais, em portugues ("Uruguai"); sem ele, o da liga
 
     def age_in(self, season_year: int) -> int | None:
         if self.nascimento:
@@ -143,7 +145,7 @@ def load_pack(name: str) -> Pack:
                 nascimento=str(nasc) if nasc else None, ovr=_int(j, "ovr"), pot=_int(j, "pot"),
                 nome_completo=j.get("nome_completo"), id_fonte=j.get("id_fonte"),
                 partidas=_int(j, "partidas"), gols=_int(j, "gols"), minutos=_int(j, "minutos"),
-                valor=_int(j, "valor")))
+                valor=_int(j, "valor"), nacionalidade=j.get("nacionalidade")))
         cores = c.get("cores")
         clubes.append(PackClub(
             nome=c["nome"], forca=float(c["forca"]), apelido=c.get("apelido"),

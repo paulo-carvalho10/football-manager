@@ -30,6 +30,7 @@ padrao = "liso"
   minutos = 265
   gols = 1
   id_fonte = "631821"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Álex Moreno"
@@ -41,6 +42,7 @@ padrao = "liso"
   partidas = 6
   minutos = 534
   id_fonte = "193098"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Abdul Mumin"
@@ -52,6 +54,7 @@ padrao = "liso"
   partidas = 3
   minutos = 25
   id_fonte = "451801"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Bryan Gil"
@@ -63,6 +66,7 @@ padrao = "liso"
   partidas = 4
   minutos = 338
   id_fonte = "537382"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Fran Beltrán"
@@ -75,6 +79,7 @@ padrao = "liso"
   minutos = 512
   gols = 1
   id_fonte = "423444"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Paulo Gazzaniga"
@@ -86,6 +91,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "195488"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alejandro Francés"
@@ -97,6 +103,7 @@ padrao = "liso"
   partidas = 5
   minutos = 448
   id_fonte = "632896"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Yáser Asprilla"
@@ -109,6 +116,7 @@ padrao = "liso"
   minutos = 276
   gols = 4
   id_fonte = "857818"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Donny van de Beek"
@@ -120,6 +128,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "288255"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Portu"
@@ -131,6 +140,7 @@ padrao = "liso"
   partidas = 6
   minutos = 532
   id_fonte = "99353"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Carles Pérez"
@@ -143,6 +153,7 @@ padrao = "liso"
   minutos = 180
   gols = 2
   id_fonte = "282810"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "David López"
@@ -154,6 +165,7 @@ padrao = "liso"
   partidas = 4
   minutos = 326
   id_fonte = "129444"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Abel Ruiz"
@@ -166,6 +178,7 @@ padrao = "liso"
   minutos = 299
   gols = 1
   id_fonte = "340376"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Cristhian Stuani"
@@ -178,6 +191,7 @@ padrao = "liso"
   minutos = 36
   gols = 6
   id_fonte = "59323"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Holmes Zamorano"
@@ -190,6 +204,7 @@ padrao = "liso"
   minutos = 530
   gols = 1
   id_fonte = "1397546"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mateu Morey"
@@ -199,6 +214,7 @@ padrao = "liso"
   pot = 69
   valor = 1400000
   id_fonte = "388513"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Iván Morante"
@@ -210,6 +226,7 @@ padrao = "liso"
   partidas = 2
   minutos = 200
   id_fonte = "548109"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Izan González"
@@ -222,6 +239,7 @@ padrao = "liso"
   minutos = 415
   gols = 1
   id_fonte = "1060024"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Javier Boñar"
@@ -233,6 +251,7 @@ padrao = "liso"
   partidas = 2
   minutos = 151
   id_fonte = "741253"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Unai Hernández"
@@ -242,6 +261,7 @@ padrao = "liso"
   pot = 70
   valor = 2200000
   id_fonte = "970633"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Sergi Puig"
@@ -251,6 +271,7 @@ padrao = "liso"
   pot = 57
   valor = 50000
   id_fonte = "293387"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lass Kourouma"
@@ -262,6 +283,7 @@ padrao = "liso"
   partidas = 2
   minutos = 37
   id_fonte = "974251"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Jastin Garcia"
@@ -274,6 +296,7 @@ padrao = "liso"
   minutos = 79
   gols = 1
   id_fonte = "1061665"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Vladyslav Krapyvtsov"
@@ -285,6 +308,7 @@ padrao = "liso"
   partidas = 3
   minutos = 257
   id_fonte = "1169436"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Oleksandr Pyshchur"
@@ -296,6 +320,7 @@ padrao = "liso"
   partidas = 1
   minutos = 105
   id_fonte = "925045"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Mauro Furtado"
@@ -305,6 +330,7 @@ padrao = "liso"
   pot = 62
   valor = 275000
   id_fonte = "1075886"
+  nacionalidade = "Portugal"
 
 [[clubes]]
 nome = "Almería"
@@ -324,6 +350,7 @@ padrao = "liso"
   minutos = 140
   gols = 26
   id_fonte = "537762"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Leonardo Lelo"
@@ -335,6 +362,7 @@ padrao = "liso"
   partidas = 1
   minutos = 132
   id_fonte = "669956"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Federico Bonini"
@@ -347,6 +375,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "530552"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Brian Cipenga"
@@ -359,6 +388,7 @@ padrao = "liso"
   minutos = 345
   gols = 1
   id_fonte = "700565"
+  nacionalidade = "RD do Congo"
 
   [[clubes.jogadores]]
   nome = "Mikel Vesga"
@@ -370,6 +400,7 @@ padrao = "liso"
   partidas = 2
   minutos = 190
   id_fonte = "300168"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Javi Muñoz"
@@ -382,6 +413,7 @@ padrao = "liso"
   minutos = 270
   gols = 2
   id_fonte = "282421"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jon Morcillo"
@@ -394,6 +426,7 @@ padrao = "liso"
   minutos = 84
   gols = 3
   id_fonte = "455349"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Miguel de la Fuente"
@@ -406,6 +439,7 @@ padrao = "liso"
   minutos = 516
   gols = 1
   id_fonte = "480883"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Nico Melamed"
@@ -418,6 +452,7 @@ padrao = "liso"
   minutos = 276
   gols = 2
   id_fonte = "570421"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Stefan Dzodic"
@@ -430,6 +465,7 @@ padrao = "liso"
   minutos = 493
   gols = 1
   id_fonte = "854097"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Álex Muñoz"
@@ -442,6 +478,7 @@ padrao = "liso"
   minutos = 393
   gols = 5
   id_fonte = "243760"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Daijiro Chirino"
@@ -454,6 +491,7 @@ padrao = "liso"
   minutos = 268
   gols = 3
   id_fonte = "611816"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Jorge Pulido"
@@ -465,6 +503,7 @@ padrao = "liso"
   partidas = 3
   minutos = 280
   id_fonte = "67546"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álex Sola"
@@ -476,6 +515,7 @@ padrao = "liso"
   partidas = 1
   minutos = 84
   id_fonte = "434990"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Adrián Embarba"
@@ -488,6 +528,7 @@ padrao = "liso"
   minutos = 317
   gols = 17
   id_fonte = "288318"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Chumi"
@@ -499,6 +540,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "333361"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Léo Baptistão"
@@ -511,6 +553,7 @@ padrao = "liso"
   minutos = 166
   gols = 1
   id_fonte = "221899"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Ely"
@@ -522,6 +565,7 @@ padrao = "liso"
   partidas = 2
   minutos = 170
   id_fonte = "176140"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Thalys"
@@ -534,6 +578,7 @@ padrao = "liso"
   minutos = 24
   gols = 1
   id_fonte = "1072157"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Andrés Fernández"
@@ -545,6 +590,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "57522"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Fernando Martínez"
@@ -556,6 +602,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "81997"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Marcos Luna"
@@ -567,6 +614,7 @@ padrao = "liso"
   partidas = 3
   minutos = 272
   id_fonte = "718876"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Gui Guedes"
@@ -579,6 +627,7 @@ padrao = "liso"
   minutos = 90
   gols = 1
   id_fonte = "696506"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ibrahima Koné"
@@ -588,6 +637,7 @@ padrao = "liso"
   pot = 60
   valor = 300000
   id_fonte = "490223"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Áron Yaakobishvili"
@@ -597,6 +647,7 @@ padrao = "liso"
   pot = 72
   valor = 3000000
   id_fonte = "938145"
+  nacionalidade = "Hungria"
 
   [[clubes.jogadores]]
   nome = "Quim Junyent"
@@ -608,6 +659,7 @@ padrao = "liso"
   partidas = 3
   minutos = 260
   id_fonte = "962113"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Mallorca"
@@ -626,6 +678,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "466783"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Martin Valjent"
@@ -637,6 +690,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "277384"
+  nacionalidade = "Eslováquia"
 
   [[clubes.jogadores]]
   nome = "Sergi Darder"
@@ -649,6 +703,7 @@ padrao = "liso"
   minutos = 331
   gols = 1
   id_fonte = "142021"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Adam Buksa"
@@ -661,6 +716,7 @@ padrao = "liso"
   minutos = 81
   gols = 1
   id_fonte = "267160"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Alberto Moreno"
@@ -670,6 +726,7 @@ padrao = "liso"
   pot = 68
   valor = 1000000
   id_fonte = "207917"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Antonio Raíllo"
@@ -682,6 +739,7 @@ padrao = "liso"
   minutos = 519
   gols = 1
   id_fonte = "278296"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Antonio Sánchez"
@@ -693,6 +751,7 @@ padrao = "liso"
   partidas = 4
   minutos = 45
   id_fonte = "513031"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Manu Morlanes"
@@ -705,6 +764,7 @@ padrao = "liso"
   minutos = 513
   gols = 3
   id_fonte = "335225"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pablo Torre"
@@ -717,6 +777,7 @@ padrao = "liso"
   minutos = 357
   gols = 1
   id_fonte = "720038"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Toni Lato"
@@ -728,6 +789,7 @@ padrao = "liso"
   partidas = 4
   minutos = 326
   id_fonte = "320271"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Zito Luvumbo"
@@ -739,6 +801,7 @@ padrao = "liso"
   partidas = 4
   minutos = 321
   id_fonte = "666547"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Abdón Prats"
@@ -751,6 +814,7 @@ padrao = "liso"
   minutos = 401
   gols = 4
   id_fonte = "177452"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Adrián Fuentes"
@@ -763,6 +827,7 @@ padrao = "liso"
   minutos = 476
   gols = 4
   id_fonte = "597083"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Miguel Calatayud"
@@ -774,6 +839,7 @@ padrao = "liso"
   partidas = 5
   minutos = 442
   id_fonte = "1393997"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lucas Bergström"
@@ -785,6 +851,7 @@ padrao = "liso"
   partidas = 7
   minutos = 630
   id_fonte = "490606"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Adrián Liso"
@@ -796,6 +863,7 @@ padrao = "liso"
   partidas = 3
   minutos = 244
   id_fonte = "1061122"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Antoniu Roca"
@@ -807,6 +875,7 @@ padrao = "liso"
   partidas = 2
   minutos = 205
   id_fonte = "834744"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Arnau Puigmal"
@@ -818,6 +887,7 @@ padrao = "liso"
   partidas = 1
   minutos = 77
   id_fonte = "536030"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Josep Cerdà"
@@ -829,6 +899,7 @@ padrao = "liso"
   partidas = 3
   minutos = 226
   id_fonte = "692210"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álex Sala"
@@ -841,6 +912,7 @@ padrao = "liso"
   minutos = 433
   gols = 1
   id_fonte = "582664"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "David López"
@@ -852,6 +924,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1074
   id_fonte = "947431"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "John Donald"
@@ -863,6 +936,7 @@ padrao = "liso"
   partidas = 1
   minutos = 21
   id_fonte = "627290"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Aboubaka Soumahoro"
@@ -874,6 +948,7 @@ padrao = "liso"
   partidas = 2
   minutos = 198
   id_fonte = "1052420"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Iván Cuéllar"
@@ -885,6 +960,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "27493"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Guille Fernández"
@@ -896,6 +972,7 @@ padrao = "liso"
   partidas = 1
   minutos = 7
   id_fonte = "1050120"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Daniel Luna"
@@ -905,6 +982,7 @@ padrao = "liso"
   pot = 56
   valor = 600000
   id_fonte = "857830"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Justin Kalumba"
@@ -916,6 +994,7 @@ padrao = "liso"
   partidas = 1
   minutos = 79
   id_fonte = "1101641"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Jan Salas"
@@ -927,6 +1006,7 @@ padrao = "liso"
   partidas = 2
   minutos = 15
   id_fonte = "1063574"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Real Oviedo"
@@ -945,6 +1025,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "284430"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Alberto Reina"
@@ -957,6 +1038,7 @@ padrao = "liso"
   minutos = 405
   gols = 4
   id_fonte = "603696"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Chris Ramos"
@@ -968,6 +1050,7 @@ padrao = "liso"
   partidas = 2
   minutos = 214
   id_fonte = "538810"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Ilyas Chaira"
@@ -980,6 +1063,7 @@ padrao = "liso"
   minutos = 2482
   gols = 6
   id_fonte = "593412"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Juan Cruz"
@@ -991,6 +1075,7 @@ padrao = "liso"
   partidas = 4
   minutos = 335
   id_fonte = "169497"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "David Costas"
@@ -1003,6 +1088,7 @@ padrao = "liso"
   minutos = 270
   gols = 1
   id_fonte = "276111"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Nacho Vidal"
@@ -1014,6 +1100,7 @@ padrao = "liso"
   partidas = 1
   minutos = 133
   id_fonte = "216870"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Carlos Domínguez"
@@ -1026,6 +1113,7 @@ padrao = "liso"
   minutos = 360
   gols = 1
   id_fonte = "636093"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Dani Calvo"
@@ -1038,6 +1126,7 @@ padrao = "liso"
   minutos = 450
   gols = 1
   id_fonte = "326416"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Aritz Aldasoro"
@@ -1049,6 +1138,7 @@ padrao = "liso"
   partidas = 2
   minutos = 141
   id_fonte = "663258"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Carlos Fernández"
@@ -1060,6 +1150,7 @@ padrao = "liso"
   partidas = 1
   minutos = 11
   id_fonte = "216464"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Dani Villahermosa"
@@ -1071,6 +1162,7 @@ padrao = "liso"
   partidas = 6
   minutos = 503
   id_fonte = "628496"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jacobo González"
@@ -1082,6 +1174,7 @@ padrao = "liso"
   partidas = 4
   minutos = 322
   id_fonte = "340870"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "David Jiménez"
@@ -1093,6 +1186,7 @@ padrao = "liso"
   partidas = 2
   minutos = 28
   id_fonte = "935281"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Youness Lachhab"
@@ -1104,6 +1198,7 @@ padrao = "liso"
   partidas = 4
   minutos = 381
   id_fonte = "613040"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Aisar Ahmed"
@@ -1115,6 +1210,7 @@ padrao = "liso"
   partidas = 4
   minutos = 347
   id_fonte = "817753"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pablo Sáenz"
@@ -1127,6 +1223,7 @@ padrao = "liso"
   minutos = 468
   gols = 2
   id_fonte = "821820"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Alexandru Ișfan"
@@ -1138,6 +1235,7 @@ padrao = "liso"
   partidas = 3
   minutos = 297
   id_fonte = "672055"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Brandon Dominguès"
@@ -1149,6 +1247,7 @@ padrao = "liso"
   partidas = 1
   minutos = 39
   id_fonte = "804708"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Mikel Goti"
@@ -1160,6 +1259,7 @@ padrao = "liso"
   partidas = 1
   minutos = 107
   id_fonte = "709215"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Estanis Pedrola"
@@ -1172,6 +1272,7 @@ padrao = "liso"
   minutos = 88
   gols = 1
   id_fonte = "913539"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Miguel Narváez"
@@ -1181,6 +1282,7 @@ padrao = "liso"
   pot = 55
   valor = 200000
   id_fonte = "854158"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Samu Rodríguez"
@@ -1192,6 +1294,7 @@ padrao = "liso"
   partidas = 3
   minutos = 295
   id_fonte = "1228715"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Víctor Mingo"
@@ -1203,6 +1306,7 @@ padrao = "liso"
   partidas = 1
   minutos = 63
   id_fonte = "1066186"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Marco Esteban"
@@ -1214,6 +1318,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "1065832"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Diego Menéndez"
@@ -1225,6 +1330,7 @@ padrao = "liso"
   partidas = 2
   minutos = 9
   id_fonte = "1065837"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Enzo Pérez"
@@ -1236,6 +1342,7 @@ padrao = "liso"
   partidas = 1
   minutos = 109
   id_fonte = "1455241"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Leganés"
@@ -1254,6 +1361,7 @@ padrao = "liso"
   partidas = 2
   minutos = 169
   id_fonte = "128223"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Yassine Kechta"
@@ -1265,6 +1373,7 @@ padrao = "liso"
   partidas = 5
   minutos = 432
   id_fonte = "667967"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Álvaro Tejero"
@@ -1276,6 +1385,7 @@ padrao = "liso"
   partidas = 2
   minutos = 158
   id_fonte = "290273"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Ismaël Gharbi"
@@ -1288,6 +1398,7 @@ padrao = "liso"
   minutos = 481
   gols = 2
   id_fonte = "810096"
+  nacionalidade = "Tunísia"
 
   [[clubes.jogadores]]
   nome = "Luca Zidane"
@@ -1299,6 +1410,7 @@ padrao = "liso"
   partidas = 5
   minutos = 424
   id_fonte = "283489"
+  nacionalidade = "Argélia"
 
   [[clubes.jogadores]]
   nome = "Álex Sancris"
@@ -1310,6 +1422,7 @@ padrao = "liso"
   partidas = 2
   minutos = 155
   id_fonte = "560705"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Javi Montero"
@@ -1321,6 +1434,7 @@ padrao = "liso"
   partidas = 1
   minutos = 31
   id_fonte = "396333"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Patrick Soko"
@@ -1333,6 +1447,7 @@ padrao = "liso"
   minutos = 294
   gols = 1
   id_fonte = "524197"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Amadou Diawara"
@@ -1345,6 +1460,7 @@ padrao = "liso"
   minutos = 3569
   gols = 3
   id_fonte = "355501"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Ignasi Miquel"
@@ -1356,6 +1472,7 @@ padrao = "liso"
   partidas = 5
   minutos = 491
   id_fonte = "70245"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lalo Aguilar"
@@ -1367,6 +1484,7 @@ padrao = "liso"
   partidas = 6
   minutos = 501
   id_fonte = "715679"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Miguel Atienza"
@@ -1379,6 +1497,7 @@ padrao = "liso"
   minutos = 535
   gols = 1
   id_fonte = "480955"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Rubén Peña"
@@ -1391,6 +1510,7 @@ padrao = "liso"
   minutos = 162
   gols = 1
   id_fonte = "238868"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Zico Buurmeester"
@@ -1402,6 +1522,7 @@ padrao = "liso"
   partidas = 5
   minutos = 479
   id_fonte = "595940"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Enric Franquesa"
@@ -1413,6 +1534,7 @@ padrao = "liso"
   partidas = 19
   minutos = 1744
   id_fonte = "282700"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Marvel"
@@ -1424,6 +1546,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "935229"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Naim García"
@@ -1436,6 +1559,7 @@ padrao = "liso"
   minutos = 504
   gols = 2
   id_fonte = "715683"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álex Millán"
@@ -1448,6 +1572,7 @@ padrao = "liso"
   minutos = 104
   gols = 8
   id_fonte = "412041"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Rubén Pulido"
@@ -1459,6 +1584,7 @@ padrao = "liso"
   partidas = 1
   minutos = 62
   id_fonte = "603969"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Raúl Fernández"
@@ -1470,6 +1596,7 @@ padrao = "liso"
   partidas = 1
   minutos = 113
   id_fonte = "54217"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Dani Rodríguez"
@@ -1481,6 +1608,7 @@ padrao = "liso"
   partidas = 2
   minutos = 179
   id_fonte = "139435"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Unax del Cura"
@@ -1492,6 +1620,7 @@ padrao = "liso"
   partidas = 1
   minutos = 29
   id_fonte = "962144"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Andrés Campos"
@@ -1503,6 +1632,7 @@ padrao = "liso"
   partidas = 1
   minutos = 129
   id_fonte = "709377"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Las Palmas"
@@ -1521,6 +1651,7 @@ padrao = "liso"
   partidas = 5
   minutos = 479
   id_fonte = "663900"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Enrique Clemente"
@@ -1533,6 +1664,7 @@ padrao = "liso"
   minutos = 210
   gols = 1
   id_fonte = "487951"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Manu Fuster"
@@ -1545,6 +1677,7 @@ padrao = "liso"
   minutos = 443
   gols = 1
   id_fonte = "511021"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Nicholas Opoku"
@@ -1554,6 +1687,7 @@ padrao = "liso"
   pot = 65
   valor = 1500000
   id_fonte = "396516"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Viti Rozada"
@@ -1565,6 +1699,7 @@ padrao = "liso"
   partidas = 24
   minutos = 2165
   id_fonte = "438971"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Iván Jaime"
@@ -1577,6 +1712,7 @@ padrao = "liso"
   minutos = 209
   gols = 1
   id_fonte = "610335"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Taisei Miyashiro"
@@ -1589,6 +1725,7 @@ padrao = "liso"
   minutos = 516
   gols = 2
   id_fonte = "405395"
+  nacionalidade = "Japão"
 
   [[clubes.jogadores]]
   nome = "Marvin Park"
@@ -1601,6 +1738,7 @@ padrao = "liso"
   minutos = 13
   gols = 1
   id_fonte = "603940"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Juanma Herzog"
@@ -1612,6 +1750,7 @@ padrao = "liso"
   partidas = 6
   minutos = 495
   id_fonte = "1146029"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Kirian Rodríguez"
@@ -1624,6 +1763,7 @@ padrao = "liso"
   minutos = 404
   gols = 4
   id_fonte = "566574"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Sergio Ruiz"
@@ -1635,6 +1775,7 @@ padrao = "liso"
   partidas = 1
   minutos = 74
   id_fonte = "394694"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álex Suárez"
@@ -1646,6 +1787,7 @@ padrao = "liso"
   partidas = 4
   minutos = 330
   id_fonte = "510396"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Enzo Loiodice"
@@ -1657,6 +1799,7 @@ padrao = "liso"
   partidas = 4
   minutos = 384
   id_fonte = "581781"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Jefté Betancor"
@@ -1668,6 +1811,7 @@ padrao = "liso"
   partidas = 4
   minutos = 337
   id_fonte = "198015"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "José Antonio Caro"
@@ -1679,6 +1823,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "268946"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Ale García"
@@ -1691,6 +1836,7 @@ padrao = "liso"
   minutos = 2156
   gols = 7
   id_fonte = "898737"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Sandro Ramírez"
@@ -1703,6 +1849,7 @@ padrao = "liso"
   minutos = 126
   gols = 1
   id_fonte = "199369"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jesé"
@@ -1715,6 +1862,7 @@ padrao = "liso"
   minutos = 358
   gols = 2
   id_fonte = "134936"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Rafael Cruz"
@@ -1726,6 +1874,7 @@ padrao = "liso"
   partidas = 1
   minutos = 128
   id_fonte = "1541900"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Valentín Pezzolesi"
@@ -1738,6 +1887,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "1271065"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Andrés Rodríguez"
@@ -1749,6 +1899,7 @@ padrao = "liso"
   partidas = 1
   minutos = 3
   id_fonte = "771032"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jeremía Recoba"
@@ -1760,6 +1911,7 @@ padrao = "liso"
   partidas = 2
   minutos = 178
   id_fonte = "1116801"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Edward Cedeño"
@@ -1771,6 +1923,7 @@ padrao = "liso"
   partidas = 2
   minutos = 185
   id_fonte = "937710"
+  nacionalidade = "Panamá"
 
   [[clubes.jogadores]]
   nome = "Iñaki González"
@@ -1782,6 +1935,7 @@ padrao = "liso"
   partidas = 3
   minutos = 301
   id_fonte = "1019408"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Aboubacar Bassinga"
@@ -1791,6 +1945,7 @@ padrao = "liso"
   pot = 57
   valor = 300000
   id_fonte = "1210422"
+  nacionalidade = "Burkina Faso"
 
   [[clubes.jogadores]]
   nome = "Iván Medina"
@@ -1802,6 +1957,7 @@ padrao = "liso"
   partidas = 2
   minutos = 15
   id_fonte = "1146037"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Elías Romero"
@@ -1813,6 +1969,7 @@ padrao = "liso"
   partidas = 4
   minutos = 20
   id_fonte = "1146039"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Adri Suárez"
@@ -1822,6 +1979,7 @@ padrao = "liso"
   pot = 53
   valor = 99000
   id_fonte = "941156"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Adam Arvelo"
@@ -1833,6 +1991,7 @@ padrao = "liso"
   partidas = 1
   minutos = 69
   id_fonte = "792376"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mateo Acimovic"
@@ -1842,6 +2001,7 @@ padrao = "liso"
   pot = 49
   valor = 50000
   id_fonte = "1009632"
+  nacionalidade = "Eslovênia"
 
 [[clubes]]
 nome = "Cádiz"
@@ -1860,6 +2020,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "379548"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Javi Castro"
@@ -1872,6 +2033,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "740253"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Damián Rodríguez"
@@ -1883,6 +2045,7 @@ padrao = "liso"
   partidas = 4
   minutos = 405
   id_fonte = "715628"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Giorgi Gocholeishvili"
@@ -1894,6 +2057,7 @@ padrao = "liso"
   partidas = 2
   minutos = 145
   id_fonte = "540056"
+  nacionalidade = "Geórgia"
 
   [[clubes.jogadores]]
   nome = "Aïmen Moueffek"
@@ -1903,6 +2067,7 @@ padrao = "liso"
   pot = 67
   valor = 2000000
   id_fonte = "484992"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Manu Fernández"
@@ -1914,6 +2079,7 @@ padrao = "liso"
   partidas = 2
   minutos = 162
   id_fonte = "638124"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jandro Orellana"
@@ -1925,6 +2091,7 @@ padrao = "liso"
   partidas = 2
   minutos = 215
   id_fonte = "388548"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Urko Izeta"
@@ -1937,6 +2104,7 @@ padrao = "liso"
   minutos = 398
   gols = 1
   id_fonte = "610622"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Iuri Tabatadze"
@@ -1949,6 +2117,7 @@ padrao = "liso"
   minutos = 911
   gols = 6
   id_fonte = "539965"
+  nacionalidade = "Geórgia"
 
   [[clubes.jogadores]]
   nome = "Javi Ontiveros"
@@ -1961,6 +2130,7 @@ padrao = "liso"
   minutos = 163
   gols = 1
   id_fonte = "298983"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álvaro García Pascual"
@@ -1973,6 +2143,7 @@ padrao = "liso"
   minutos = 241
   gols = 4
   id_fonte = "1305792"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "David Gil"
@@ -1984,6 +2155,7 @@ padrao = "liso"
   partidas = 10
   minutos = 900
   id_fonte = "162027"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Bojan Kovacevic"
@@ -1995,6 +2167,7 @@ padrao = "liso"
   partidas = 3
   minutos = 301
   id_fonte = "845563"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Cristian Gutiérrez"
@@ -2006,6 +2179,7 @@ padrao = "liso"
   partidas = 2
   minutos = 166
   id_fonte = "566575"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Antoñito Cordero"
@@ -2018,6 +2192,7 @@ padrao = "liso"
   minutos = 377
   gols = 1
   id_fonte = "1178393"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Petit"
@@ -2029,6 +2204,7 @@ padrao = "liso"
   partidas = 1
   minutos = 8
   id_fonte = "997814"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Marc-Olivier Doué"
@@ -2040,6 +2216,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "540654"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Ibon Sánchez"
@@ -2052,6 +2229,7 @@ padrao = "liso"
   minutos = 246
   gols = 1
   id_fonte = "938730"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Sergio Arribas"
@@ -2064,6 +2242,7 @@ padrao = "liso"
   minutos = 122
   gols = 1
   id_fonte = "722351"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Juan Díaz"
@@ -2076,6 +2255,7 @@ padrao = "liso"
   minutos = 396
   gols = 1
   id_fonte = "1317650"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Vladyslav Kopotun"
@@ -2087,6 +2267,7 @@ padrao = "liso"
   partidas = 1
   minutos = 115
   id_fonte = "1052859"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Efe Aghama"
@@ -2099,6 +2280,7 @@ padrao = "liso"
   minutos = 48
   gols = 1
   id_fonte = "1180386"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Beñat de Jesús"
@@ -2108,6 +2290,7 @@ padrao = "liso"
   pot = 54
   valor = 200000
   id_fonte = "709182"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Kenan Toibibou"
@@ -2117,6 +2300,7 @@ padrao = "liso"
   pot = 58
   valor = 400000
   id_fonte = "891786"
+  nacionalidade = "Comores"
 
   [[clubes.jogadores]]
   nome = "Dilan Zárate"
@@ -2128,6 +2312,7 @@ padrao = "liso"
   partidas = 1
   minutos = 134
   id_fonte = "1160833"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Borja Vázquez"
@@ -2139,6 +2324,7 @@ padrao = "liso"
   partidas = 3
   minutos = 249
   id_fonte = "1230202"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Real Sporting de Gijón"
@@ -2158,6 +2344,7 @@ padrao = "liso"
   minutos = 460
   gols = 8
   id_fonte = "505308"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Emanuel Gularte"
@@ -2169,6 +2356,7 @@ padrao = "liso"
   partidas = 1
   minutos = 84
   id_fonte = "365947"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Guille Rosas"
@@ -2181,6 +2369,7 @@ padrao = "liso"
   minutos = 540
   gols = 2
   id_fonte = "557146"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Juan Otero"
@@ -2193,6 +2382,7 @@ padrao = "liso"
   minutos = 511
   gols = 1
   id_fonte = "332305"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Rubén Yáñez"
@@ -2204,6 +2394,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "246335"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Diego Sánchez"
@@ -2215,6 +2406,7 @@ padrao = "liso"
   partidas = 1
   minutos = 129
   id_fonte = "825184"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Gaspar Campos"
@@ -2227,6 +2419,7 @@ padrao = "liso"
   minutos = 17
   gols = 5
   id_fonte = "580525"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Hugo Guillamón"
@@ -2238,6 +2431,7 @@ padrao = "liso"
   partidas = 1
   minutos = 5
   id_fonte = "495629"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Nikita Iosifov"
@@ -2250,6 +2444,7 @@ padrao = "liso"
   minutos = 444
   gols = 1
   id_fonte = "614464"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Àlex Corredera"
@@ -2262,6 +2457,7 @@ padrao = "liso"
   minutos = 535
   gols = 1
   id_fonte = "268167"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jorge Sáenz"
@@ -2271,6 +2467,7 @@ padrao = "liso"
   pot = 59
   valor = 600000
   id_fonte = "340339"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mamadou Loum"
@@ -2282,6 +2479,7 @@ padrao = "liso"
   partidas = 1
   minutos = 93
   id_fonte = "364237"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Nacho Martín"
@@ -2293,6 +2491,7 @@ padrao = "liso"
   partidas = 2
   minutos = 225
   id_fonte = "719722"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pablo García"
@@ -2305,6 +2504,7 @@ padrao = "liso"
   minutos = 170
   gols = 1
   id_fonte = "636300"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pablo Vázquez"
@@ -2317,6 +2517,7 @@ padrao = "liso"
   minutos = 540
   gols = 4
   id_fonte = "446516"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Andrés Ferrari"
@@ -2329,6 +2530,7 @@ padrao = "liso"
   minutos = 273
   gols = 2
   id_fonte = "973805"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Antonio Casas"
@@ -2341,6 +2543,7 @@ padrao = "liso"
   minutos = 72
   gols = 1
   id_fonte = "537767"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Konrad de la Fuente"
@@ -2352,6 +2555,7 @@ padrao = "liso"
   partidas = 2
   minutos = 214
   id_fonte = "466809"
+  nacionalidade = "Estados Unidos"
 
   [[clubes.jogadores]]
   nome = "Alejo Sarco"
@@ -2364,6 +2568,7 @@ padrao = "liso"
   minutos = 229
   gols = 1
   id_fonte = "1000675"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Manu Rodríguez"
@@ -2376,6 +2581,7 @@ padrao = "liso"
   minutos = 222
   gols = 2
   id_fonte = "1064469"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Aimar Duñabeitia"
@@ -2388,6 +2594,7 @@ padrao = "liso"
   minutos = 456
   gols = 1
   id_fonte = "834488"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Andrés Cuenca"
@@ -2399,6 +2606,7 @@ padrao = "liso"
   partidas = 4
   minutos = 390
   id_fonte = "962111"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Egoitz Arana"
@@ -2408,6 +2616,7 @@ padrao = "liso"
   pot = 48
   valor = 100000
   id_fonte = "711367"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Castellón"
@@ -2424,6 +2633,7 @@ padrao = "liso"
   pot = 66
   valor = 1800000
   id_fonte = "448169"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Fabrizio Brignani"
@@ -2436,6 +2646,7 @@ padrao = "liso"
   minutos = 2163
   gols = 7
   id_fonte = "355791"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Ousmane Camara"
@@ -2448,6 +2659,7 @@ padrao = "liso"
   minutos = 528
   gols = 4
   id_fonte = "827950"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Romain Matthys"
@@ -2459,6 +2671,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "538073"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Adam Jakobsen"
@@ -2471,6 +2684,7 @@ padrao = "liso"
   minutos = 150
   gols = 4
   id_fonte = "503602"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Iñigo Córdoba"
@@ -2482,6 +2696,7 @@ padrao = "liso"
   partidas = 3
   minutos = 248
   id_fonte = "251848"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jérémy Mellot"
@@ -2493,6 +2708,7 @@ padrao = "liso"
   partidas = 6
   minutos = 495
   id_fonte = "525113"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Federico Ceccherini"
@@ -2502,6 +2718,7 @@ padrao = "liso"
   pot = 61
   valor = 400000
   id_fonte = "163639"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Jari Vlak"
@@ -2513,6 +2730,7 @@ padrao = "liso"
   partidas = 3
   minutos = 11
   id_fonte = "374213"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Raúl Sánchez"
@@ -2524,6 +2742,7 @@ padrao = "liso"
   partidas = 2
   minutos = 222
   id_fonte = "536619"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lucas Alcázar"
@@ -2536,6 +2755,7 @@ padrao = "liso"
   minutos = 160
   gols = 1
   id_fonte = "709998"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Agustín Sienra"
@@ -2548,6 +2768,7 @@ padrao = "liso"
   minutos = 450
   gols = 1
   id_fonte = "814966"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Diego Barri"
@@ -2560,6 +2781,7 @@ padrao = "liso"
   minutos = 479
   gols = 1
   id_fonte = "541646"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Juanjo Nieto"
@@ -2571,6 +2793,7 @@ padrao = "liso"
   partidas = 5
   minutos = 452
   id_fonte = "327207"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Alberto Jiménez"
@@ -2583,6 +2806,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "265289"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Israel Suero"
@@ -2595,6 +2819,7 @@ padrao = "liso"
   minutos = 206
   gols = 1
   id_fonte = "352223"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Matías Orozco"
@@ -2607,6 +2832,7 @@ padrao = "liso"
   minutos = 158
   gols = 1
   id_fonte = "1420635"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Pablo Santiago"
@@ -2619,6 +2845,7 @@ padrao = "liso"
   minutos = 300
   gols = 2
   id_fonte = "634110"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Fran Castillo"
@@ -2631,6 +2858,7 @@ padrao = "liso"
   minutos = 290
   gols = 1
   id_fonte = "724379"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álvaro Martín"
@@ -2642,6 +2870,7 @@ padrao = "liso"
   partidas = 4
   minutos = 366
   id_fonte = "622952"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álvaro García"
@@ -2654,6 +2883,7 @@ padrao = "liso"
   minutos = 28
   gols = 1
   id_fonte = "783419"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Rêgo"
@@ -2665,6 +2895,7 @@ padrao = "liso"
   partidas = 1
   minutos = 121
   id_fonte = "984544"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Tincho Conde"
@@ -2676,6 +2907,7 @@ padrao = "liso"
   partidas = 5
   minutos = 445
   id_fonte = "933350"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Antonio Gala"
@@ -2687,6 +2919,7 @@ padrao = "liso"
   partidas = 1
   minutos = 103
   id_fonte = "815556"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Ilias Kostis"
@@ -2696,6 +2929,7 @@ padrao = "liso"
   pot = 55
   valor = 300000
   id_fonte = "614988"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Hamza Bellari"
@@ -2707,6 +2941,7 @@ padrao = "liso"
   partidas = 1
   minutos = 46
   id_fonte = "1123335"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Nzanza"
@@ -2716,6 +2951,7 @@ padrao = "liso"
   pot = 49
   valor = 165000
   id_fonte = "666513"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Sergi Torner"
@@ -2725,6 +2961,7 @@ padrao = "liso"
   pot = 49
   valor = 100000
   id_fonte = "1146618"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Real Valladolid"
@@ -2743,6 +2980,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "583510"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "David Torres"
@@ -2755,6 +2993,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "857832"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Julien Ponceau"
@@ -2767,6 +3006,7 @@ padrao = "liso"
   minutos = 478
   gols = 1
   id_fonte = "569390"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Pablo Tomeo"
@@ -2779,6 +3019,7 @@ padrao = "liso"
   minutos = 9
   gols = 1
   id_fonte = "892685"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Stanko Juric"
@@ -2791,6 +3032,7 @@ padrao = "liso"
   minutos = 111
   gols = 1
   id_fonte = "388125"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Iván Alejo"
@@ -2803,6 +3045,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "281755"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Juanmi Latasa"
@@ -2815,6 +3058,7 @@ padrao = "liso"
   minutos = 306
   gols = 1
   id_fonte = "623521"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mathis Lachuer"
@@ -2826,6 +3070,7 @@ padrao = "liso"
   partidas = 1
   minutos = 103
   id_fonte = "860669"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Guille Bueno"
@@ -2837,6 +3082,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1459
   id_fonte = "854079"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Luis Chacón"
@@ -2849,6 +3095,7 @@ padrao = "liso"
   minutos = 539
   gols = 1
   id_fonte = "473402"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Ramón Martínez"
@@ -2860,6 +3107,7 @@ padrao = "liso"
   partidas = 4
   minutos = 352
   id_fonte = "882710"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Kaj de Rooij"
@@ -2871,6 +3119,7 @@ padrao = "liso"
   partidas = 2
   minutos = 218
   id_fonte = "540927"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Homam Al-Amin"
@@ -2880,6 +3129,7 @@ padrao = "liso"
   pot = 57
   valor = 500000
   id_fonte = "556713"
+  nacionalidade = "Qatar"
 
   [[clubes.jogadores]]
   nome = "Álvaro Aceves"
@@ -2891,6 +3141,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "710474"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Carlos Clerc"
@@ -2902,6 +3153,7 @@ padrao = "liso"
   partidas = 3
   minutos = 277
   id_fonte = "193784"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Thiago Ojeda"
@@ -2913,6 +3165,7 @@ padrao = "liso"
   partidas = 2
   minutos = 220
   id_fonte = "1030425"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Yeray Cabanzón"
@@ -2924,6 +3177,7 @@ padrao = "liso"
   partidas = 4
   minutos = 339
   id_fonte = "848514"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Tay Abed"
@@ -2935,6 +3189,7 @@ padrao = "liso"
   partidas = 1
   minutos = 55
   id_fonte = "921345"
+  nacionalidade = "Israel"
 
   [[clubes.jogadores]]
   nome = "Adrián Arnu"
@@ -2946,6 +3201,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1176519"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álex Balboa"
@@ -2957,6 +3213,7 @@ padrao = "liso"
   partidas = 2
   minutos = 161
   id_fonte = "634460"
+  nacionalidade = "Guiné Equatorial"
 
   [[clubes.jogadores]]
   nome = "Robin van Duiven"
@@ -2968,6 +3225,7 @@ padrao = "liso"
   partidas = 3
   minutos = 245
   id_fonte = "990010"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Iván Garriel"
@@ -2979,6 +3237,7 @@ padrao = "liso"
   partidas = 3
   minutos = 293
   id_fonte = "940616"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Trilli"
@@ -2990,6 +3249,7 @@ padrao = "liso"
   partidas = 3
   minutos = 289
   id_fonte = "668272"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Víctor Barberá"
@@ -3001,6 +3261,7 @@ padrao = "liso"
   partidas = 1
   minutos = 10
   id_fonte = "789145"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Víctor Fernández"
@@ -3012,6 +3273,7 @@ padrao = "liso"
   partidas = 3
   minutos = 288
   id_fonte = "1065958"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Dani Martín"
@@ -3021,6 +3283,7 @@ padrao = "liso"
   pot = 54
   valor = 300000
   id_fonte = "1099061"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Dani Pérez"
@@ -3032,6 +3295,7 @@ padrao = "liso"
   partidas = 1
   minutos = 16
   id_fonte = "895331"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lucas Lavagnino"
@@ -3041,6 +3305,7 @@ padrao = "liso"
   pot = 49
   valor = 131607
   id_fonte = "1131420"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Real Sociedad SS B (Sanse)"
@@ -3060,6 +3325,7 @@ padrao = "liso"
   minutos = 408
   gols = 1
   id_fonte = "1063598"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Kazunari Kita"
@@ -3071,6 +3337,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "915258"
+  nacionalidade = "Japão"
 
   [[clubes.jogadores]]
   nome = "Aitor Fraga"
@@ -3082,6 +3349,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "668313"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jon Balda"
@@ -3094,6 +3362,7 @@ padrao = "liso"
   minutos = 298
   gols = 2
   id_fonte = "711380"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lander Astiazaran"
@@ -3106,6 +3375,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "1201529"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Dani Díaz"
@@ -3118,6 +3388,7 @@ padrao = "liso"
   minutos = 419
   gols = 1
   id_fonte = "937945"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Luken Beitia"
@@ -3130,6 +3401,7 @@ padrao = "liso"
   minutos = 90
   gols = 1
   id_fonte = "964190"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Tomy Carbonell"
@@ -3142,6 +3414,7 @@ padrao = "liso"
   minutos = 384
   gols = 1
   id_fonte = "1283968"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Gorka Gorosabel"
@@ -3154,6 +3427,7 @@ padrao = "liso"
   minutos = 445
   gols = 2
   id_fonte = "1186745"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Arkaitz Mariezkurrena"
@@ -3166,6 +3440,7 @@ padrao = "liso"
   minutos = 223
   gols = 1
   id_fonte = "962145"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Alex Marchal"
@@ -3178,6 +3453,7 @@ padrao = "liso"
   minutos = 1529
   gols = 1
   id_fonte = "1201530"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Ibai Aguirre"
@@ -3189,6 +3465,7 @@ padrao = "liso"
   partidas = 4
   minutos = 336
   id_fonte = "1354775"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jon Garro"
@@ -3200,6 +3477,7 @@ padrao = "liso"
   partidas = 4
   minutos = 350
   id_fonte = "1178819"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Unax Agote"
@@ -3212,6 +3490,7 @@ padrao = "liso"
   minutos = 383
   gols = 1
   id_fonte = "1062966"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Alex Lebarbier"
@@ -3224,6 +3503,7 @@ padrao = "liso"
   minutos = 240
   gols = 1
   id_fonte = "979325"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Iñaki Rupérez"
@@ -3236,6 +3516,7 @@ padrao = "liso"
   minutos = 190
   gols = 1
   id_fonte = "1055860"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Javier Soroeta"
@@ -3248,6 +3529,7 @@ padrao = "liso"
   minutos = 142
   gols = 1
   id_fonte = "1063599"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jon Eceizabarrena"
@@ -3259,6 +3541,7 @@ padrao = "liso"
   partidas = 2
   minutos = 197
   id_fonte = "1063593"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Sydney Osazuwa"
@@ -3271,6 +3554,7 @@ padrao = "liso"
   minutos = 263
   gols = 2
   id_fonte = "1214320"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Unax Ayo"
@@ -3282,6 +3566,7 @@ padrao = "liso"
   partidas = 1
   minutos = 18
   id_fonte = "1354770"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Ekain Orobengoa"
@@ -3293,6 +3578,7 @@ padrao = "liso"
   partidas = 2
   minutos = 36
   id_fonte = "982007"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Theo Folgado"
@@ -3304,6 +3590,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1178818"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Iker Calderón"
@@ -3315,6 +3602,7 @@ padrao = "liso"
   partidas = 1
   minutos = 134
   id_fonte = "1191201"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Joan Oleaga"
@@ -3326,6 +3614,7 @@ padrao = "liso"
   partidas = 1
   minutos = 87
   id_fonte = "1313969"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Burgos"
@@ -3344,6 +3633,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "199325"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Curro Sánchez"
@@ -3356,6 +3646,7 @@ padrao = "liso"
   minutos = 431
   gols = 1
   id_fonte = "208116"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "David González"
@@ -3368,6 +3659,7 @@ padrao = "liso"
   minutos = 540
   gols = 2
   id_fonte = "634267"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "José Gragera"
@@ -3379,6 +3671,7 @@ padrao = "liso"
   partidas = 5
   minutos = 413
   id_fonte = "557147"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Unai Vencedor"
@@ -3390,6 +3683,7 @@ padrao = "liso"
   partidas = 2
   minutos = 188
   id_fonte = "610083"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álex Lizancos"
@@ -3402,6 +3696,7 @@ padrao = "liso"
   minutos = 3146
   gols = 2
   id_fonte = "1137322"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Grego Sierra"
@@ -3414,6 +3709,7 @@ padrao = "liso"
   minutos = 531
   gols = 2
   id_fonte = "253905"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Ignasi Vilarrasa"
@@ -3425,6 +3721,7 @@ padrao = "liso"
   partidas = 5
   minutos = 416
   id_fonte = "581701"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Oier Luengo"
@@ -3436,6 +3733,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "447823"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pablo Galdames"
@@ -3447,6 +3745,7 @@ padrao = "liso"
   partidas = 2
   minutos = 214
   id_fonte = "313830"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Kévin Appin"
@@ -3459,6 +3758,7 @@ padrao = "liso"
   minutos = 119
   gols = 4
   id_fonte = "342223"
+  nacionalidade = "Martinica"
 
   [[clubes.jogadores]]
   nome = "Sergio González"
@@ -3470,6 +3770,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "435500"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jon Karrikaburu"
@@ -3482,6 +3783,7 @@ padrao = "liso"
   minutos = 179
   gols = 1
   id_fonte = "711382"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Javi Llabrés"
@@ -3494,6 +3796,7 @@ padrao = "liso"
   minutos = 435
   gols = 1
   id_fonte = "706138"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álex Forés"
@@ -3506,6 +3809,7 @@ padrao = "liso"
   minutos = 362
   gols = 3
   id_fonte = "709380"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Alberto Dadie"
@@ -3518,6 +3822,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "711377"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Santiago Lencina"
@@ -3529,6 +3834,7 @@ padrao = "liso"
   partidas = 3
   minutos = 44
   id_fonte = "1289929"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Brais Martínez"
@@ -3540,6 +3846,7 @@ padrao = "liso"
   partidas = 1
   minutos = 109
   id_fonte = "638138"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Víctor Mollejo"
@@ -3551,6 +3858,7 @@ padrao = "liso"
   partidas = 1
   minutos = 115
   id_fonte = "505673"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mario Cantero"
@@ -3562,6 +3870,7 @@ padrao = "liso"
   partidas = 5
   minutos = 433
   id_fonte = "1114719"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Marcelo Expósito"
@@ -3573,6 +3882,7 @@ padrao = "liso"
   partidas = 2
   minutos = 184
   id_fonte = "711631"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Saúl del Cerro"
@@ -3584,6 +3894,7 @@ padrao = "liso"
   partidas = 1
   minutos = 86
   id_fonte = "884158"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Fermín García"
@@ -3595,6 +3906,7 @@ padrao = "liso"
   partidas = 1
   minutos = 29
   id_fonte = "1171102"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Bruno Iribarne"
@@ -3604,6 +3916,7 @@ padrao = "liso"
   pot = 50
   valor = 200000
   id_fonte = "747197"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Albacete Balompié"
@@ -3622,6 +3935,7 @@ padrao = "liso"
   partidas = 1
   minutos = 18
   id_fonte = "223725"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Carlos Neva"
@@ -3633,6 +3947,7 @@ padrao = "liso"
   partidas = 6
   minutos = 521
   id_fonte = "448844"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jesús Vallejo"
@@ -3645,6 +3960,7 @@ padrao = "liso"
   minutos = 116
   gols = 1
   id_fonte = "251896"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Agus Medina"
@@ -3657,6 +3973,7 @@ padrao = "liso"
   minutos = 215
   gols = 7
   id_fonte = "336051"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Sergio Ortuño"
@@ -3668,6 +3985,7 @@ padrao = "liso"
   partidas = 5
   minutos = 483
   id_fonte = "531476"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Carlos Marín"
@@ -3679,6 +3997,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "251877"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Antonio Puertas"
@@ -3691,6 +4010,7 @@ padrao = "liso"
   minutos = 2117
   gols = 9
   id_fonte = "262365"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lluís López"
@@ -3703,6 +4023,7 @@ padrao = "liso"
   minutos = 525
   gols = 2
   id_fonte = "262391"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mario Soberón"
@@ -3714,6 +4035,7 @@ padrao = "liso"
   partidas = 4
   minutos = 368
   id_fonte = "522110"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Agustín Albarracín"
@@ -3725,6 +4047,7 @@ padrao = "liso"
   partidas = 2
   minutos = 211
   id_fonte = "1104206"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "José Corpas"
@@ -3736,6 +4059,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "379534"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pepe Sánchez"
@@ -3748,6 +4072,7 @@ padrao = "liso"
   minutos = 239
   gols = 2
   id_fonte = "500191"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Antonio Pacheco"
@@ -3759,6 +4084,7 @@ padrao = "liso"
   partidas = 2
   minutos = 211
   id_fonte = "568156"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lorenzo Aguado"
@@ -3770,6 +4096,7 @@ padrao = "liso"
   partidas = 3
   minutos = 267
   id_fonte = "709997"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álex Rubio"
@@ -3782,6 +4109,7 @@ padrao = "liso"
   minutos = 277
   gols = 1
   id_fonte = "1151630"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Samuel Obeng"
@@ -3794,6 +4122,7 @@ padrao = "liso"
   minutos = 53
   gols = 3
   id_fonte = "522719"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Fran Gámez"
@@ -3805,6 +4134,7 @@ padrao = "liso"
   partidas = 5
   minutos = 421
   id_fonte = "442816"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Javi Villar"
@@ -3817,6 +4147,7 @@ padrao = "liso"
   minutos = 188
   gols = 1
   id_fonte = "689639"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Rober González"
@@ -3828,6 +4159,7 @@ padrao = "liso"
   partidas = 1
   minutos = 64
   id_fonte = "505675"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Diego Mariño"
@@ -3839,6 +4171,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "59349"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Javi Moreno"
@@ -3851,6 +4184,7 @@ padrao = "liso"
   minutos = 245
   gols = 1
   id_fonte = "636360"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Victor Valverde"
@@ -3862,6 +4196,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1193
   id_fonte = "707608"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Higinio Marín"
@@ -3874,6 +4209,7 @@ padrao = "liso"
   minutos = 50
   gols = 1
   id_fonte = "242882"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Víctor San Bartolomé"
@@ -3886,6 +4222,7 @@ padrao = "liso"
   minutos = 180
   gols = 1
   id_fonte = "455348"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Capi"
@@ -3898,6 +4235,7 @@ padrao = "liso"
   minutos = 784
   gols = 1
   id_fonte = "1101300"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Dani Bernabéu"
@@ -3910,6 +4248,7 @@ padrao = "liso"
   minutos = 127
   gols = 1
   id_fonte = "1254421"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Eibar"
@@ -3928,6 +4267,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "606848"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jon Bautista"
@@ -3940,6 +4280,7 @@ padrao = "liso"
   minutos = 367
   gols = 1
   id_fonte = "289236"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Javi Martón"
@@ -3952,6 +4293,7 @@ padrao = "liso"
   minutos = 182
   gols = 16
   id_fonte = "711394"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Unai Elgezabal"
@@ -3963,6 +4305,7 @@ padrao = "liso"
   partidas = 4
   minutos = 405
   id_fonte = "255495"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Sergio Cubero"
@@ -3975,6 +4318,7 @@ padrao = "liso"
   minutos = 215
   gols = 1
   id_fonte = "684253"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Juan Bernat"
@@ -3986,6 +4330,7 @@ padrao = "liso"
   partidas = 4
   minutos = 396
   id_fonte = "126719"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Peru Nolaskoain"
@@ -3998,6 +4343,7 @@ padrao = "liso"
   minutos = 2425
   gols = 4
   id_fonte = "447052"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Imanol García de Albéniz"
@@ -4007,6 +4353,7 @@ padrao = "liso"
   pot = 58
   valor = 800000
   id_fonte = "626954"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lander Olaetxea"
@@ -4019,6 +4366,7 @@ padrao = "liso"
   minutos = 1714
   gols = 1
   id_fonte = "377795"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Sergio Álvarez"
@@ -4031,6 +4379,7 @@ padrao = "liso"
   minutos = 106
   gols = 2
   id_fonte = "138935"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Adu Ares"
@@ -4043,6 +4392,7 @@ padrao = "liso"
   minutos = 287
   gols = 2
   id_fonte = "895480"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Aleix Garrido"
@@ -4055,6 +4405,7 @@ padrao = "liso"
   minutos = 467
   gols = 1
   id_fonte = "709966"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Iván Gil"
@@ -4067,6 +4418,7 @@ padrao = "liso"
   minutos = 297
   gols = 2
   id_fonte = "611075"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jon Magunazelaia"
@@ -4079,6 +4431,7 @@ padrao = "liso"
   minutos = 352
   gols = 2
   id_fonte = "625655"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pejiño"
@@ -4090,6 +4443,7 @@ padrao = "liso"
   partidas = 1
   minutos = 130
   id_fonte = "534379"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Ander Madariaga"
@@ -4102,6 +4456,7 @@ padrao = "liso"
   minutos = 505
   gols = 3
   id_fonte = "710657"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jon Guruzeta"
@@ -4114,6 +4469,7 @@ padrao = "liso"
   minutos = 343
   gols = 3
   id_fonte = "625064"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álvaro Rodríguez"
@@ -4126,6 +4482,7 @@ padrao = "liso"
   minutos = 354
   gols = 1
   id_fonte = "560107"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Anaitz Arbilla"
@@ -4138,6 +4495,7 @@ padrao = "liso"
   minutos = 540
   gols = 4
   id_fonte = "71548"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jair Amador"
@@ -4149,6 +4507,7 @@ padrao = "liso"
   partidas = 1
   minutos = 57
   id_fonte = "128479"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Luis López"
@@ -4160,6 +4519,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "623525"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Markel Arana"
@@ -4171,6 +4531,7 @@ padrao = "liso"
   partidas = 3
   minutos = 237
   id_fonte = "1078990"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Elijah Gift"
@@ -4182,6 +4543,7 @@ padrao = "liso"
   partidas = 1
   minutos = 3
   id_fonte = "1038182"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Eric Pérez"
@@ -4193,6 +4555,7 @@ padrao = "liso"
   partidas = 1
   minutos = 29
   id_fonte = "634108"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lucas Núñez"
@@ -4204,6 +4567,7 @@ padrao = "liso"
   partidas = 1
   minutos = 80
   id_fonte = "1200328"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Andorra"
@@ -4222,6 +4586,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "286415"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Gael Alonso"
@@ -4234,6 +4599,7 @@ padrao = "liso"
   minutos = 3222
   gols = 2
   id_fonte = "715622"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Thomas Carrique"
@@ -4246,6 +4612,7 @@ padrao = "liso"
   minutos = 529
   gols = 1
   id_fonte = "540676"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Jesús Owono"
@@ -4257,6 +4624,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "631693"
+  nacionalidade = "Guiné Equatorial"
 
   [[clubes.jogadores]]
   nome = "Diego Alende"
@@ -4269,6 +4637,7 @@ padrao = "liso"
   minutos = 411
   gols = 1
   id_fonte = "373683"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lautaro de León"
@@ -4281,6 +4650,7 @@ padrao = "liso"
   minutos = 165
   gols = 1
   id_fonte = "561745"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Sergio Molina"
@@ -4293,6 +4663,7 @@ padrao = "liso"
   minutos = 303
   gols = 1
   id_fonte = "282417"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Efe Akman"
@@ -4305,6 +4676,7 @@ padrao = "liso"
   minutos = 512
   gols = 1
   id_fonte = "1016253"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Jordi Cano"
@@ -4317,6 +4689,7 @@ padrao = "liso"
   minutos = 260
   gols = 2
   id_fonte = "510229"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Marc Bombardó"
@@ -4328,6 +4701,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "989115"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Marc Doménech"
@@ -4340,6 +4714,7 @@ padrao = "liso"
   minutos = 360
   gols = 2
   id_fonte = "617073"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Nico Ratti"
@@ -4351,6 +4726,7 @@ padrao = "liso"
   partidas = 2
   minutos = 225
   id_fonte = "262703"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Andoni López"
@@ -4362,6 +4738,7 @@ padrao = "liso"
   partidas = 1
   minutos = 98
   id_fonte = "340206"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Hugo López"
@@ -4374,6 +4751,7 @@ padrao = "liso"
   minutos = 432
   gols = 2
   id_fonte = "1331450"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Théo Le Normand"
@@ -4386,6 +4764,7 @@ padrao = "liso"
   minutos = 1194
   gols = 5
   id_fonte = "796885"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Lautaro Spatz"
@@ -4397,6 +4776,7 @@ padrao = "liso"
   partidas = 2
   minutos = 143
   id_fonte = "631099"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Martí Vilà"
@@ -4409,6 +4789,7 @@ padrao = "liso"
   minutos = 364
   gols = 1
   id_fonte = "331497"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Nacho Quintana"
@@ -4421,6 +4802,7 @@ padrao = "liso"
   minutos = 131
   gols = 2
   id_fonte = "536826"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Randy Schneider"
@@ -4432,6 +4814,7 @@ padrao = "liso"
   partidas = 1
   minutos = 93
   id_fonte = "500758"
+  nacionalidade = "Filipinas"
 
   [[clubes.jogadores]]
   nome = "Juan Sebastián"
@@ -4443,6 +4826,7 @@ padrao = "liso"
   partidas = 1
   minutos = 11
   id_fonte = "708499"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Moró Sidibe"
@@ -4454,6 +4838,7 @@ padrao = "liso"
   partidas = 3
   minutos = 312
   id_fonte = "706100"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Julian Rijkhoff"
@@ -4465,6 +4850,7 @@ padrao = "liso"
   partidas = 1
   minutos = 133
   id_fonte = "720799"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Hugo Solozábal"
@@ -4476,6 +4862,7 @@ padrao = "liso"
   partidas = 3
   minutos = 308
   id_fonte = "945767"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álex Calvo"
@@ -4488,6 +4875,7 @@ padrao = "liso"
   minutos = 79
   gols = 1
   id_fonte = "1064699"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Enes Sali"
@@ -4497,6 +4885,7 @@ padrao = "liso"
   pot = 57
   valor = 900000
   id_fonte = "875252"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Diego Díaz"
@@ -4508,6 +4897,7 @@ padrao = "liso"
   partidas = 1
   minutos = 47
   id_fonte = "1106911"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Stefan Golubovic"
@@ -4519,6 +4909,7 @@ padrao = "liso"
   partidas = 2
   minutos = 169
   id_fonte = "1045695"
+  nacionalidade = "Sérvia"
 
 [[clubes]]
 nome = "Córdoba"
@@ -4538,6 +4929,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "631221"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Iker Álvarez"
@@ -4549,6 +4941,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "547248"
+  nacionalidade = "Andorra"
 
   [[clubes.jogadores]]
   nome = "Nélson Monte"
@@ -4558,6 +4951,7 @@ padrao = "liso"
   pot = 59
   valor = 500000
   id_fonte = "332615"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Yussi Diarra"
@@ -4570,6 +4964,7 @@ padrao = "liso"
   minutos = 501
   gols = 1
   id_fonte = "524008"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Cristian Carracedo"
@@ -4582,6 +4977,7 @@ padrao = "liso"
   minutos = 490
   gols = 1
   id_fonte = "294388"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Juan Gutiérrez"
@@ -4593,6 +4989,7 @@ padrao = "liso"
   partidas = 3
   minutos = 235
   id_fonte = "531121"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álex Martín"
@@ -4604,6 +5001,7 @@ padrao = "liso"
   partidas = 4
   minutos = 350
   id_fonte = "345083"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Dani Tasende"
@@ -4615,6 +5013,7 @@ padrao = "liso"
   partidas = 5
   minutos = 443
   id_fonte = "627282"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Guilherme Fernandes"
@@ -4626,6 +5025,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "567504"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rubén Alves"
@@ -4638,6 +5038,7 @@ padrao = "liso"
   minutos = 495
   gols = 2
   id_fonte = "379743"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Franck Fomeyem"
@@ -4649,6 +5050,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1171
   id_fonte = "632080"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Carlos Albarrán"
@@ -4661,6 +5063,7 @@ padrao = "liso"
   minutos = 82
   gols = 1
   id_fonte = "286375"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Eder García"
@@ -4673,6 +5076,7 @@ padrao = "liso"
   minutos = 393
   gols = 1
   id_fonte = "979324"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Diego Bri"
@@ -4685,6 +5089,7 @@ padrao = "liso"
   minutos = 345
   gols = 1
   id_fonte = "720532"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Enol Rodríguez"
@@ -4697,6 +5102,7 @@ padrao = "liso"
   minutos = 217
   gols = 1
   id_fonte = "699607"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Kevin Medina"
@@ -4709,6 +5115,7 @@ padrao = "liso"
   minutos = 139
   gols = 2
   id_fonte = "635904"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Adilson"
@@ -4721,6 +5128,7 @@ padrao = "liso"
   minutos = 253
   gols = 2
   id_fonte = "442794"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Daniel Budesca"
@@ -4732,6 +5140,7 @@ padrao = "liso"
   partidas = 3
   minutos = 231
   id_fonte = "937942"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Théo Zidane"
@@ -4743,6 +5152,7 @@ padrao = "liso"
   partidas = 7
   minutos = 658
   id_fonte = "337917"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Adnane Ghailan"
@@ -4754,6 +5164,7 @@ padrao = "liso"
   partidas = 1
   minutos = 113
   id_fonte = "1225762"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Diego Percan"
@@ -4766,6 +5177,7 @@ padrao = "liso"
   minutos = 364
   gols = 2
   id_fonte = "828338"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Egoitz Muñoz"
@@ -4777,6 +5189,7 @@ padrao = "liso"
   partidas = 3
   minutos = 279
   id_fonte = "1064391"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Ibai Sanz"
@@ -4788,6 +5201,7 @@ padrao = "liso"
   partidas = 1
   minutos = 16
   id_fonte = "834754"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Victor Sánchez"
@@ -4800,6 +5214,7 @@ padrao = "liso"
   minutos = 142
   gols = 1
   id_fonte = "979787"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Damián Cáceres"
@@ -4811,6 +5226,7 @@ padrao = "liso"
   partidas = 1
   minutos = 25
   id_fonte = "845638"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Salim El Jebari"
@@ -4820,6 +5236,7 @@ padrao = "liso"
   pot = 51
   valor = 400000
   id_fonte = "935457"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Jacobo Martí"
@@ -4829,6 +5246,7 @@ padrao = "liso"
   pot = 44
   valor = 100000
   id_fonte = "1171426"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Granada"
@@ -4847,6 +5265,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "227084"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Gerard Gumbau"
@@ -4858,6 +5277,7 @@ padrao = "liso"
   partidas = 6
   minutos = 516
   id_fonte = "268670"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Manu Lama"
@@ -4870,6 +5290,7 @@ padrao = "liso"
   minutos = 540
   gols = 3
   id_fonte = "628464"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Sergio López"
@@ -4881,6 +5302,7 @@ padrao = "liso"
   partidas = 6
   minutos = 498
   id_fonte = "523972"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Abdoul Kader Bamba"
@@ -4892,6 +5314,7 @@ padrao = "liso"
   partidas = 2
   minutos = 44
   id_fonte = "560725"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Pedro Alemañ"
@@ -4904,6 +5327,7 @@ padrao = "liso"
   minutos = 331
   gols = 1
   id_fonte = "699771"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Alejandro Marqués"
@@ -4916,6 +5340,7 @@ padrao = "liso"
   minutos = 273
   gols = 2
   id_fonte = "525602"
+  nacionalidade = "Venezuela"
 
   [[clubes.jogadores]]
   nome = "Diego Pampín"
@@ -4927,6 +5352,7 @@ padrao = "liso"
   partidas = 2
   minutos = 212
   id_fonte = "505493"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "José Manuel Arnáiz"
@@ -4939,6 +5365,7 @@ padrao = "liso"
   minutos = 444
   gols = 9
   id_fonte = "364603"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Baïla Diallo"
@@ -4950,6 +5377,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "857482"
+  nacionalidade = "Mauritânia"
 
   [[clubes.jogadores]]
   nome = "Jorge Pascual"
@@ -4962,6 +5390,7 @@ padrao = "liso"
   minutos = 180
   gols = 1
   id_fonte = "669511"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Rubén Alcaraz"
@@ -4974,6 +5403,7 @@ padrao = "liso"
   minutos = 516
   gols = 5
   id_fonte = "247250"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Raúl Lizoain"
@@ -4985,6 +5415,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "167228"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Bourama Dembélé"
@@ -4997,6 +5428,7 @@ padrao = "liso"
   minutos = 360
   gols = 1
   id_fonte = "1551373"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Sergio Rodelas"
@@ -5009,6 +5441,7 @@ padrao = "liso"
   minutos = 291
   gols = 1
   id_fonte = "1064103"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Diego Hormigo"
@@ -5021,6 +5454,7 @@ padrao = "liso"
   minutos = 24
   gols = 1
   id_fonte = "767229"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Chinaza Onouha"
@@ -5032,6 +5466,7 @@ padrao = "liso"
   partidas = 3
   minutos = 276
   id_fonte = "1581040"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Pau Casadesús"
@@ -5044,6 +5479,7 @@ padrao = "liso"
   minutos = 1513
   gols = 1
   id_fonte = "961936"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Alberto Flores"
@@ -5053,6 +5489,7 @@ padrao = "liso"
   pot = 49
   valor = 300000
   id_fonte = "766552"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Juanjo Flores"
@@ -5064,6 +5501,7 @@ padrao = "liso"
   partidas = 1
   minutos = 2
   id_fonte = "1470456"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Owen Emeka"
@@ -5076,6 +5514,7 @@ padrao = "liso"
   minutos = 262
   gols = 1
   id_fonte = "1539590"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Tenerife"
@@ -5094,6 +5533,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "376710"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Dani Martín"
@@ -5105,6 +5545,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "335221"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Anthony Landázuri"
@@ -5117,6 +5558,7 @@ padrao = "liso"
   minutos = 450
   gols = 1
   id_fonte = "410696"
+  nacionalidade = "Equador"
 
   [[clubes.jogadores]]
   nome = "Christian Gomis"
@@ -5128,6 +5570,7 @@ padrao = "liso"
   partidas = 1
   minutos = 85
   id_fonte = "357310"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Gerard Valentín"
@@ -5139,6 +5582,7 @@ padrao = "liso"
   partidas = 2
   minutos = 38
   id_fonte = "278651"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jesús Álvarez"
@@ -5151,6 +5595,7 @@ padrao = "liso"
   minutos = 278
   gols = 1
   id_fonte = "541920"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "David Rodríguez"
@@ -5162,6 +5607,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "820375"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jesús de Miguel"
@@ -5174,6 +5620,7 @@ padrao = "liso"
   minutos = 26
   gols = 11
   id_fonte = "598611"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Nacho Gil"
@@ -5186,6 +5633,7 @@ padrao = "liso"
   minutos = 407
   gols = 5
   id_fonte = "336731"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "César Álvarez"
@@ -5198,6 +5646,7 @@ padrao = "liso"
   minutos = 275
   gols = 3
   id_fonte = "1191770"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jorge Moreno"
@@ -5209,6 +5658,7 @@ padrao = "liso"
   partidas = 3
   minutos = 266
   id_fonte = "717957"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Iván Chapela"
@@ -5221,6 +5671,7 @@ padrao = "liso"
   minutos = 157
   gols = 1
   id_fonte = "412046"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "José León"
@@ -5232,6 +5683,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "281773"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Juanjo Sánchez"
@@ -5244,6 +5696,7 @@ padrao = "liso"
   minutos = 451
   gols = 1
   id_fonte = "688747"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Martin Pecar"
@@ -5255,6 +5708,7 @@ padrao = "liso"
   partidas = 2
   minutos = 139
   id_fonte = "506936"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Fabricio"
@@ -5267,6 +5721,7 @@ padrao = "liso"
   minutos = 221
   gols = 1
   id_fonte = "949472"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Enric Gallego"
@@ -5279,6 +5734,7 @@ padrao = "liso"
   minutos = 383
   gols = 4
   id_fonte = "114060"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Roko Jureskin"
@@ -5288,6 +5744,7 @@ padrao = "liso"
   pot = 51
   valor = 275000
   id_fonte = "686693"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Alassan Manjam"
@@ -5300,6 +5757,7 @@ padrao = "liso"
   minutos = 1655
   gols = 1
   id_fonte = "1067111"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Víctor Moreno"
@@ -5311,6 +5769,7 @@ padrao = "liso"
   partidas = 6
   minutos = 495
   id_fonte = "895335"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Grant-Leon Ranos"
@@ -5320,6 +5779,7 @@ padrao = "liso"
   pot = 53
   valor = 600000
   id_fonte = "574201"
+  nacionalidade = "Armênia"
 
   [[clubes.jogadores]]
   nome = "Marc Mateu"
@@ -5331,6 +5791,7 @@ padrao = "liso"
   partidas = 1
   minutos = 73
   id_fonte = "96539"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Neal Viereck"
@@ -5342,6 +5803,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "775244"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Noel López"
@@ -5353,6 +5815,7 @@ padrao = "liso"
   partidas = 2
   minutos = 182
   id_fonte = "926854"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Anes Krdzalic"
@@ -5364,6 +5827,7 @@ padrao = "liso"
   partidas = 1
   minutos = 113
   id_fonte = "665532"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Baba Diocou"
@@ -5375,6 +5839,7 @@ padrao = "liso"
   partidas = 1
   minutos = 64
   id_fonte = "941567"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Dani Fernández"
@@ -5387,6 +5852,7 @@ padrao = "liso"
   minutos = 84
   gols = 3
   id_fonte = "1197368"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Gabriel De Vuyst"
@@ -5398,6 +5864,7 @@ padrao = "liso"
   partidas = 6
   minutos = 585
   id_fonte = "1334559"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Eldense"
@@ -5416,6 +5883,7 @@ padrao = "liso"
   partidas = 2
   minutos = 30
   id_fonte = "628461"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Javi Martínez"
@@ -5428,6 +5896,7 @@ padrao = "liso"
   minutos = 143
   gols = 1
   id_fonte = "471474"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Justin Smith"
@@ -5440,6 +5909,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "904712"
+  nacionalidade = "Canadá"
 
   [[clubes.jogadores]]
   nome = "Roberto López"
@@ -5451,6 +5921,7 @@ padrao = "liso"
   partidas = 2
   minutos = 138
   id_fonte = "569866"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Juan Palomares"
@@ -5460,6 +5931,7 @@ padrao = "liso"
   pot = 57
   valor = 500000
   id_fonte = "635318"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Waldo Rubio"
@@ -5471,6 +5943,7 @@ padrao = "liso"
   partidas = 1
   minutos = 15
   id_fonte = "404688"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jesús Clemente"
@@ -5483,6 +5956,7 @@ padrao = "liso"
   minutos = 353
   gols = 3
   id_fonte = "805479"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Juan Larios"
@@ -5494,6 +5968,7 @@ padrao = "liso"
   partidas = 2
   minutos = 29
   id_fonte = "646738"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Manu Nieto"
@@ -5505,6 +5980,7 @@ padrao = "liso"
   partidas = 2
   minutos = 179
   id_fonte = "399357"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Floris Smand"
@@ -5517,6 +5993,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "899710"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Jordi Martín"
@@ -5528,6 +6005,7 @@ padrao = "liso"
   partidas = 2
   minutos = 219
   id_fonte = "537763"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álex Serradell"
@@ -5540,6 +6018,7 @@ padrao = "liso"
   minutos = 445
   gols = 2
   id_fonte = "1062525"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "David Ruiz"
@@ -5552,6 +6031,7 @@ padrao = "liso"
   minutos = 499
   gols = 2
   id_fonte = "669517"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Marcos Bustillo"
@@ -5564,6 +6044,7 @@ padrao = "liso"
   minutos = 61
   gols = 5
   id_fonte = "636147"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Ramón Vila"
@@ -5575,6 +6056,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "624905"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Aingeru Olabarrieta"
@@ -5586,6 +6068,7 @@ padrao = "liso"
   partidas = 2
   minutos = 212
   id_fonte = "1056971"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Alejandro Ibarrondo"
@@ -5597,6 +6080,7 @@ padrao = "liso"
   partidas = 2
   minutos = 187
   id_fonte = "625066"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Guillermo Macho"
@@ -5609,6 +6093,7 @@ padrao = "liso"
   minutos = 388
   gols = 1
   id_fonte = "1066093"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Fidel"
@@ -5621,6 +6106,7 @@ padrao = "liso"
   minutos = 498
   gols = 10
   id_fonte = "149231"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pau Cabanes"
@@ -5632,6 +6118,7 @@ padrao = "liso"
   partidas = 1
   minutos = 76
   id_fonte = "1063553"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Carlos Guirao"
@@ -5643,6 +6130,7 @@ padrao = "liso"
   partidas = 2
   minutos = 168
   id_fonte = "1054429"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Borja Calvo"
@@ -5655,6 +6143,7 @@ padrao = "liso"
   minutos = 35
   gols = 3
   id_fonte = "961985"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jorge Rastrojo"
@@ -5666,6 +6155,7 @@ padrao = "liso"
   partidas = 2
   minutos = 142
   id_fonte = "888182"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mariano Carmona"
@@ -5678,6 +6168,7 @@ padrao = "liso"
   minutos = 303
   gols = 1
   id_fonte = "827984"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Dinis Rodrigues"
@@ -5687,6 +6178,7 @@ padrao = "liso"
   pot = 43
   valor = 175000
   id_fonte = "741539"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Javier Olaizola"
@@ -5698,6 +6190,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "1385448"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Julien Yanda"
@@ -5707,6 +6200,7 @@ padrao = "liso"
   pot = 51
   valor = 300000
   id_fonte = "1137980"
+  nacionalidade = "Alemanha"
 
 [[clubes]]
 nome = "Ceuta"
@@ -5725,6 +6219,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "289267"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "José Matos"
@@ -5737,6 +6232,7 @@ padrao = "liso"
   minutos = 295
   gols = 4
   id_fonte = "268957"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Anuar"
@@ -5748,6 +6244,7 @@ padrao = "liso"
   partidas = 2
   minutos = 188
   id_fonte = "327126"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Kialy Koné"
@@ -5760,6 +6257,7 @@ padrao = "liso"
   minutos = 113
   gols = 2
   id_fonte = "534377"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Guillermo Vallejo"
@@ -5771,6 +6269,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "341570"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Kuki Zalazar"
@@ -5783,6 +6282,7 @@ padrao = "liso"
   minutos = 500
   gols = 6
   id_fonte = "311696"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Toni Abad"
@@ -5794,6 +6294,7 @@ padrao = "liso"
   partidas = 1
   minutos = 54
   id_fonte = "595357"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Yann Bodiger"
@@ -5806,6 +6307,7 @@ padrao = "liso"
   minutos = 399
   gols = 1
   id_fonte = "290533"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Álex Petxarroman"
@@ -5817,6 +6319,7 @@ padrao = "liso"
   partidas = 2
   minutos = 158
   id_fonte = "527838"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Kenneth Mamah"
@@ -5828,6 +6331,7 @@ padrao = "liso"
   partidas = 1
   minutos = 12
   id_fonte = "776579"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Edgar Sevikyan"
@@ -5839,6 +6343,7 @@ padrao = "liso"
   partidas = 2
   minutos = 141
   id_fonte = "430488"
+  nacionalidade = "Armênia"
 
   [[clubes.jogadores]]
   nome = "Ale Meléndez"
@@ -5850,6 +6355,7 @@ padrao = "liso"
   partidas = 3
   minutos = 302
   id_fonte = "531413"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Carlos Redru"
@@ -5861,6 +6367,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "521329"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Cedric Teguia"
@@ -5872,6 +6379,7 @@ padrao = "liso"
   partidas = 3
   minutos = 235
   id_fonte = "536831"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pedro López"
@@ -5883,6 +6391,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "303248"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Omar Sadik"
@@ -5894,6 +6403,7 @@ padrao = "liso"
   partidas = 3
   minutos = 251
   id_fonte = "869458"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Albert Caparrós"
@@ -5906,6 +6416,7 @@ padrao = "liso"
   minutos = 134
   gols = 1
   id_fonte = "664420"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Alex Camacho"
@@ -5917,6 +6428,7 @@ padrao = "liso"
   partidas = 5
   minutos = 457
   id_fonte = "614548"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Carlos Hernández"
@@ -5929,6 +6441,7 @@ padrao = "liso"
   minutos = 540
   gols = 2
   id_fonte = "225459"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Marino Illescas"
@@ -5940,6 +6453,7 @@ padrao = "liso"
   partidas = 2
   minutos = 168
   id_fonte = "556059"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jordi Escobar"
@@ -5952,6 +6466,7 @@ padrao = "liso"
   minutos = 262
   gols = 1
   id_fonte = "568155"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Joaquín González"
@@ -5963,6 +6478,7 @@ padrao = "liso"
   partidas = 1
   minutos = 74
   id_fonte = "845512"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mawuli Mensah"
@@ -5974,6 +6490,7 @@ padrao = "liso"
   partidas = 1
   minutos = 126
   id_fonte = "972730"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Chidiebere Okoro"
@@ -5985,6 +6502,7 @@ padrao = "liso"
   partidas = 3
   minutos = 263
   id_fonte = "1546231"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Umaru Konaré"
@@ -5996,6 +6514,7 @@ padrao = "liso"
   partidas = 2
   minutos = 33
   id_fonte = "1226602"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "Celta Fortuna"
@@ -6015,6 +6534,7 @@ padrao = "liso"
   minutos = 350
   gols = 1
   id_fonte = "996418"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Óscar Marcos"
@@ -6027,6 +6547,7 @@ padrao = "liso"
   minutos = 388
   gols = 1
   id_fonte = "961085"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Anxo Rodríguez"
@@ -6039,6 +6560,7 @@ padrao = "liso"
   minutos = 495
   gols = 3
   id_fonte = "1342235"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Coke Carrillo"
@@ -6050,6 +6572,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "581640"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Hugo Burcio"
@@ -6062,6 +6585,7 @@ padrao = "liso"
   minutos = 216
   gols = 1
   id_fonte = "1262787"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Joel López"
@@ -6074,6 +6598,7 @@ padrao = "liso"
   minutos = 426
   gols = 1
   id_fonte = "586736"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pablo Gavián"
@@ -6086,6 +6611,7 @@ padrao = "liso"
   minutos = 162
   gols = 2
   id_fonte = "1244137"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Stefan Bajcetic"
@@ -6095,6 +6621,7 @@ padrao = "liso"
   pot = 66
   valor = 4000000
   id_fonte = "864799"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Ángel Arcos"
@@ -6107,6 +6634,7 @@ padrao = "liso"
   minutos = 470
   gols = 3
   id_fonte = "1064465"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Álvaro Marín"
@@ -6119,6 +6647,7 @@ padrao = "liso"
   minutos = 337
   gols = 2
   id_fonte = "938695"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Adrià Capdevila"
@@ -6131,6 +6660,7 @@ padrao = "liso"
   minutos = 472
   gols = 1
   id_fonte = "709964"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Andrés Antañón"
@@ -6143,6 +6673,7 @@ padrao = "liso"
   minutos = 180
   gols = 1
   id_fonte = "1293040"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Kike Ribes"
@@ -6154,6 +6685,7 @@ padrao = "liso"
   partidas = 6
   minutos = 519
   id_fonte = "941853"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Bernard Somuah"
@@ -6166,6 +6698,7 @@ padrao = "liso"
   minutos = 204
   gols = 2
   id_fonte = "1177255"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Germain Milla"
@@ -6177,6 +6710,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "1323788"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Hugo Cuenca"
@@ -6188,6 +6722,7 @@ padrao = "liso"
   partidas = 2
   minutos = 211
   id_fonte = "906315"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Alexis Olmedo"
@@ -6199,6 +6734,7 @@ padrao = "liso"
   partidas = 1
   minutos = 77
   id_fonte = "938150"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Aldrine Kibet"
@@ -6210,6 +6746,7 @@ padrao = "liso"
   partidas = 1
   minutos = 106
   id_fonte = "1401324"
+  nacionalidade = "Quênia"
 
   [[clubes.jogadores]]
   nome = "Anthony Khayat"
@@ -6221,6 +6758,7 @@ padrao = "liso"
   partidas = 8
   minutos = 716
   id_fonte = "1321101"
+  nacionalidade = "Emirados Árabes Unidos"
 
   [[clubes.jogadores]]
   nome = "Caio Barone"
@@ -6232,6 +6770,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1087860"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Jan Oliveras"
@@ -6244,6 +6783,7 @@ padrao = "liso"
   minutos = 88
   gols = 1
   id_fonte = "709970"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Marcos González"
@@ -6255,6 +6795,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1131898"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Seyni Mbaye Ndiaye"
@@ -6266,6 +6807,7 @@ padrao = "liso"
   partidas = 1
   minutos = 8
   id_fonte = "1435769"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Vlad"
@@ -6277,6 +6819,7 @@ padrao = "liso"
   partidas = 1
   minutos = 62
   id_fonte = "1445032"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ángel Davila"
@@ -6288,6 +6831,7 @@ padrao = "liso"
   partidas = 1
   minutos = 8
   id_fonte = "1564704"
+  nacionalidade = "Espanha"
 
 [[clubes]]
 nome = "CE Sabadell"
@@ -6306,6 +6850,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "401624"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pere Pons"
@@ -6317,6 +6862,7 @@ padrao = "liso"
   partidas = 5
   minutos = 477
   id_fonte = "242497"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Pipa"
@@ -6328,6 +6874,7 @@ padrao = "liso"
   partidas = 1
   minutos = 91
   id_fonte = "423166"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Nicholas Gioacchini"
@@ -6340,6 +6887,7 @@ padrao = "liso"
   minutos = 309
   gols = 3
   id_fonte = "704156"
+  nacionalidade = "Estados Unidos"
 
   [[clubes.jogadores]]
   nome = "Arthur Bonaldo"
@@ -6352,6 +6900,7 @@ padrao = "liso"
   minutos = 226
   gols = 3
   id_fonte = "312683"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Diego Fuoli"
@@ -6363,6 +6912,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "531274"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Quadri Liameed"
@@ -6375,6 +6925,7 @@ padrao = "liso"
   minutos = 495
   gols = 2
   id_fonte = "647955"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Alain Ribeiro"
@@ -6384,6 +6935,7 @@ padrao = "liso"
   pot = 50
   valor = 300000
   id_fonte = "510993"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Albert Orriols"
@@ -6396,6 +6948,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "1023879"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Joel Priego"
@@ -6408,6 +6961,7 @@ padrao = "liso"
   minutos = 475
   gols = 8
   id_fonte = "891922"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Kaiser"
@@ -6419,6 +6973,7 @@ padrao = "liso"
   partidas = 1
   minutos = 4
   id_fonte = "255904"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Marc Vidal"
@@ -6428,6 +6983,7 @@ padrao = "liso"
   pot = 52
   valor = 300000
   id_fonte = "541621"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Javi López"
@@ -6440,6 +6996,7 @@ padrao = "liso"
   minutos = 65
   gols = 11
   id_fonte = "705401"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Nikolay Obolskiy"
@@ -6451,6 +7008,7 @@ padrao = "liso"
   partidas = 1
   minutos = 66
   id_fonte = "281914"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Yanis Rahmani"
@@ -6462,6 +7020,7 @@ padrao = "liso"
   partidas = 1
   minutos = 107
   id_fonte = "255506"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Ángel Baena"
@@ -6474,6 +7033,7 @@ padrao = "liso"
   minutos = 130
   gols = 1
   id_fonte = "578878"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Óscar Sanz"
@@ -6486,6 +7046,7 @@ padrao = "liso"
   minutos = 495
   gols = 1
   id_fonte = "632367"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Miki Codina"
@@ -6497,6 +7058,7 @@ padrao = "liso"
   partidas = 5
   minutos = 453
   id_fonte = "711639"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Eneko Aguilar"
@@ -6509,6 +7071,7 @@ padrao = "liso"
   minutos = 128
   gols = 2
   id_fonte = "633093"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Genar Fornés"
@@ -6521,6 +7084,7 @@ padrao = "liso"
   minutos = 2273
   gols = 2
   id_fonte = "628490"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Patrick Nuamah"
@@ -6530,6 +7094,7 @@ padrao = "liso"
   pot = 61
   valor = 1600000
   id_fonte = "813961"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Ton Ripoll"
@@ -6541,6 +7106,7 @@ padrao = "liso"
   partidas = 5
   minutos = 464
   id_fonte = "589768"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Gastón Valles"
@@ -6553,6 +7119,7 @@ padrao = "liso"
   minutos = 118
   gols = 1
   id_fonte = "1033478"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "José Ortega"
@@ -6564,6 +7131,7 @@ padrao = "liso"
   partidas = 2
   minutos = 210
   id_fonte = "512365"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "José Luis Català"
@@ -6575,6 +7143,7 @@ padrao = "liso"
   partidas = 3
   minutos = 258
   id_fonte = "1060821"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Xavi Moreno"
@@ -6587,6 +7156,7 @@ padrao = "liso"
   minutos = 49
   gols = 1
   id_fonte = "709971"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Yussif Owusu"
@@ -6596,4 +7166,5 @@ padrao = "liso"
   pot = 42
   valor = 129351
   id_fonte = "1048758"
+  nacionalidade = "Inglaterra"
 

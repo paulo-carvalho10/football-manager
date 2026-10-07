@@ -29,6 +29,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1470
   id_fonte = "345437"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Wojciech Mońka"
@@ -40,6 +41,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1460
   id_fonte = "1007295"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Antoni Kozubal"
@@ -52,6 +54,7 @@ padrao = "liso"
   minutos = 903
   gols = 3
   id_fonte = "555057"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Gustav Berggren"
@@ -63,6 +66,7 @@ padrao = "liso"
   partidas = 3
   minutos = 299
   id_fonte = "258007"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Joel Pereira"
@@ -75,6 +79,7 @@ padrao = "liso"
   minutos = 1195
   gols = 4
   id_fonte = "225165"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Luis Palma"
@@ -87,6 +92,7 @@ padrao = "liso"
   minutos = 957
   gols = 1
   id_fonte = "539043"
+  nacionalidade = "Honduras"
 
   [[clubes.jogadores]]
   nome = "Allahyar Sayyadmanesh"
@@ -99,6 +105,7 @@ padrao = "liso"
   minutos = 851
   gols = 7
   id_fonte = "480975"
+  nacionalidade = "Irã"
 
   [[clubes.jogadores]]
   nome = "Michal Gurgul"
@@ -111,6 +118,7 @@ padrao = "liso"
   minutos = 1425
   gols = 1
   id_fonte = "991779"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Terry Yegbe"
@@ -123,6 +131,7 @@ padrao = "liso"
   minutos = 715
   gols = 1
   id_fonte = "991054"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Ali Gholizadeh"
@@ -135,6 +144,7 @@ padrao = "liso"
   minutos = 1595
   gols = 6
   id_fonte = "294772"
+  nacionalidade = "Irã"
 
   [[clubes.jogadores]]
   nome = "Leo Bengtsson"
@@ -147,6 +157,7 @@ padrao = "liso"
   minutos = 220
   gols = 1
   id_fonte = "323325"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Pablo Rodríguez"
@@ -159,6 +170,7 @@ padrao = "liso"
   minutos = 1183
   gols = 5
   id_fonte = "537765"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Patrik Walemark"
@@ -171,6 +183,7 @@ padrao = "liso"
   minutos = 1133
   gols = 8
   id_fonte = "721470"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Filip Jagiełło"
@@ -183,6 +196,7 @@ padrao = "liso"
   minutos = 419
   gols = 1
   id_fonte = "242813"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Robert Gumny"
@@ -195,6 +209,7 @@ padrao = "liso"
   minutos = 344
   gols = 3
   id_fonte = "353826"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "João Moutinho"
@@ -206,6 +221,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "461906"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Mikael Ishak"
@@ -218,6 +234,7 @@ padrao = "liso"
   minutos = 722
   gols = 3
   id_fonte = "153637"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Daniel Håkans"
@@ -230,6 +247,7 @@ padrao = "liso"
   minutos = 317
   gols = 2
   id_fonte = "448284"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Mateusz Skrzypczak"
@@ -242,6 +260,7 @@ padrao = "liso"
   minutos = 765
   gols = 1
   id_fonte = "345454"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Radosław Murawski"
@@ -254,6 +273,7 @@ padrao = "liso"
   minutos = 1080
   gols = 1
   id_fonte = "220969"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Aleks Olsztyn"
@@ -263,6 +283,7 @@ padrao = "liso"
   pot = 60
   valor = 330000
   id_fonte = "1334166"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Alex Douglas"
@@ -274,6 +295,7 @@ padrao = "liso"
   partidas = 11
   minutos = 979
   id_fonte = "539008"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Yannick Agnero"
@@ -286,6 +308,7 @@ padrao = "liso"
   minutos = 577
   gols = 2
   id_fonte = "926954"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Wiktor Obremski"
@@ -295,6 +318,7 @@ padrao = "liso"
   pot = 60
   valor = 330000
   id_fonte = "1300434"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Mateusz Pruchniewski"
@@ -304,6 +328,7 @@ padrao = "liso"
   pot = 57
   valor = 200000
   id_fonte = "1018353"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Eryk Śledziński"
@@ -313,6 +338,7 @@ padrao = "liso"
   pot = 57
   valor = 330000
   id_fonte = "1212058"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Hubert Janyszka"
@@ -324,6 +350,7 @@ padrao = "liso"
   partidas = 1
   minutos = 4
   id_fonte = "1295659"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Karol Delikat"
@@ -336,6 +363,7 @@ padrao = "liso"
   minutos = 36
   gols = 1
   id_fonte = "1211583"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Piotr Bartczak"
@@ -345,6 +373,7 @@ padrao = "liso"
   pot = 58
   valor = 330000
   id_fonte = "1237144"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Widzew Lodz"
@@ -364,6 +393,7 @@ padrao = "liso"
   minutos = 436
   gols = 5
   id_fonte = "528021"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Bartłomiej Drągowski"
@@ -375,6 +405,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "208166"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Karol Swiderski"
@@ -387,6 +418,7 @@ padrao = "liso"
   minutos = 663
   gols = 1
   id_fonte = "330126"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Przemysław Wiśniewski"
@@ -398,6 +430,7 @@ padrao = "liso"
   partidas = 8
   minutos = 714
   id_fonte = "386967"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Steve Kapuadi"
@@ -410,6 +443,7 @@ padrao = "liso"
   minutos = 810
   gols = 1
   id_fonte = "679709"
+  nacionalidade = "RD do Congo"
 
   [[clubes.jogadores]]
   nome = "Emil Kornvig"
@@ -422,6 +456,7 @@ padrao = "liso"
   minutos = 722
   gols = 2
   id_fonte = "455068"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Dani Silva"
@@ -433,6 +468,7 @@ padrao = "liso"
   partidas = 1
   minutos = 97
   id_fonte = "372445"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Jusuf Gazibegovic"
@@ -444,6 +480,7 @@ padrao = "liso"
   partidas = 1
   minutos = 67
   id_fonte = "393745"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Sebastian Bergier"
@@ -456,6 +493,7 @@ padrao = "liso"
   minutos = 537
   gols = 2
   id_fonte = "384337"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Fran Álvarez"
@@ -468,6 +506,7 @@ padrao = "liso"
   minutos = 838
   gols = 2
   id_fonte = "531273"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Lukas Lerager"
@@ -480,6 +519,7 @@ padrao = "liso"
   minutos = 872
   gols = 1
   id_fonte = "167105"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Giannis Papanikolaou"
@@ -491,6 +531,7 @@ padrao = "liso"
   partidas = 4
   minutos = 336
   id_fonte = "448058"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Marcel Krajewski"
@@ -502,6 +543,7 @@ padrao = "liso"
   partidas = 9
   minutos = 808
   id_fonte = "661368"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Lindon Selahi"
@@ -514,6 +556,7 @@ padrao = "liso"
   minutos = 275
   gols = 1
   id_fonte = "340172"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Paulinho Bóia"
@@ -525,6 +568,7 @@ padrao = "liso"
   partidas = 1
   minutos = 6
   id_fonte = "544895"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Carlos Isaac"
@@ -537,6 +581,7 @@ padrao = "liso"
   minutos = 643
   gols = 1
   id_fonte = "396324"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mario García"
@@ -549,6 +594,7 @@ padrao = "liso"
   minutos = 738
   gols = 2
   id_fonte = "889459"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mateusz Żyro"
@@ -560,6 +606,7 @@ padrao = "liso"
   partidas = 2
   minutos = 212
   id_fonte = "297234"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Stipe Biuk"
@@ -571,6 +618,7 @@ padrao = "liso"
   partidas = 4
   minutos = 321
   id_fonte = "587520"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Veljko Ilić"
@@ -582,6 +630,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "797570"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Christopher Cheng"
@@ -593,6 +642,7 @@ padrao = "liso"
   partidas = 2
   minutos = 156
   id_fonte = "578547"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Darian Males"
@@ -604,6 +654,7 @@ padrao = "liso"
   partidas = 1
   minutos = 9
   id_fonte = "507479"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Mariusz Fornalczyk"
@@ -616,6 +667,7 @@ padrao = "liso"
   minutos = 718
   gols = 2
   id_fonte = "697468"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Ricardo Visus"
@@ -627,6 +679,7 @@ padrao = "liso"
   partidas = 1
   minutos = 94
   id_fonte = "630989"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Szymon Czyż"
@@ -638,6 +691,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1129
   id_fonte = "407094"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jan Krzywański"
@@ -647,6 +701,7 @@ padrao = "liso"
   pot = 54
   valor = 267142
   id_fonte = "790518"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Ioan Vermeșan"
@@ -656,6 +711,7 @@ padrao = "liso"
   pot = 58
   valor = 1000000
   id_fonte = "928037"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Antoni Klukowski"
@@ -667,6 +723,7 @@ padrao = "liso"
   partidas = 4
   minutos = 27
   id_fonte = "1085939"
+  nacionalidade = "Canadá"
 
 [[clubes]]
 nome = "Raków Częstochowa"
@@ -686,6 +743,7 @@ padrao = "liso"
   minutos = 850
   gols = 2
   id_fonte = "318257"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Bogdan Racovițan"
@@ -698,6 +756,7 @@ padrao = "liso"
   minutos = 1290
   gols = 1
   id_fonte = "804134"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Kacper Trelowski"
@@ -709,6 +768,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1290
   id_fonte = "720120"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Marko Bulat"
@@ -721,6 +781,7 @@ padrao = "liso"
   minutos = 362
   gols = 1
   id_fonte = "491039"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Fran Tudor"
@@ -732,6 +793,7 @@ padrao = "liso"
   partidas = 10
   minutos = 867
   id_fonte = "343158"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Lamine Diaby-Fadiga"
@@ -744,6 +806,7 @@ padrao = "liso"
   minutos = 399
   gols = 3
   id_fonte = "495669"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Oskar Repka"
@@ -756,6 +819,7 @@ padrao = "liso"
   minutos = 1222
   gols = 6
   id_fonte = "384823"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Vladyslav Kochergin"
@@ -767,6 +831,7 @@ padrao = "liso"
   partidas = 10
   minutos = 887
   id_fonte = "248932"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Jean Carlos Silva"
@@ -779,6 +844,7 @@ padrao = "liso"
   minutos = 1048
   gols = 3
   id_fonte = "282434"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Karol Struski"
@@ -791,6 +857,7 @@ padrao = "liso"
   minutos = 471
   gols = 1
   id_fonte = "553562"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Tomasz Pieńko"
@@ -803,6 +870,7 @@ padrao = "liso"
   minutos = 778
   gols = 1
   id_fonte = "555062"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Adriano"
@@ -815,6 +883,7 @@ padrao = "liso"
   minutos = 2122
   gols = 1
   id_fonte = "1046580"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Erick Otieno"
@@ -826,6 +895,7 @@ padrao = "liso"
   partidas = 5
   minutos = 424
   id_fonte = "442118"
+  nacionalidade = "Quênia"
 
   [[clubes.jogadores]]
   nome = "Mahir Emreli"
@@ -838,6 +908,7 @@ padrao = "liso"
   minutos = 1222
   gols = 6
   id_fonte = "255957"
+  nacionalidade = "Azerbaijão"
 
   [[clubes.jogadores]]
   nome = "Patryk Makuch"
@@ -850,6 +921,7 @@ padrao = "liso"
   minutos = 1192
   gols = 7
   id_fonte = "453639"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Arvid Brorsson"
@@ -861,6 +933,7 @@ padrao = "liso"
   partidas = 2
   minutos = 139
   id_fonte = "381706"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Dieudonné Gaucho Debohi"
@@ -872,6 +945,7 @@ padrao = "liso"
   partidas = 6
   minutos = 515
   id_fonte = "868793"
+  nacionalidade = "Uganda"
 
   [[clubes.jogadores]]
   nome = "Nils Zätterström"
@@ -881,6 +955,7 @@ padrao = "liso"
   pot = 71
   valor = 3500000
   id_fonte = "1191520"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Ádin Molnár"
@@ -893,6 +968,7 @@ padrao = "liso"
   minutos = 316
   gols = 1
   id_fonte = "864189"
+  nacionalidade = "Hungria"
 
   [[clubes.jogadores]]
   nome = "Tarik Karic"
@@ -902,6 +978,7 @@ padrao = "liso"
   pot = 63
   valor = 500000
   id_fonte = "695495"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Bogdan Mirčetić"
@@ -914,6 +991,7 @@ padrao = "liso"
   minutos = 23
   gols = 1
   id_fonte = "940548"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Jerzy Napieraj"
@@ -925,6 +1003,7 @@ padrao = "liso"
   partidas = 3
   minutos = 246
   id_fonte = "1048759"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Oliwier Kwiatkowski"
@@ -936,6 +1015,7 @@ padrao = "liso"
   partidas = 3
   minutos = 247
   id_fonte = "1279298"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Isak Brusberg"
@@ -947,6 +1027,7 @@ padrao = "liso"
   partidas = 1
   minutos = 93
   id_fonte = "1150520"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jakub Jendryka"
@@ -959,6 +1040,7 @@ padrao = "liso"
   minutos = 185
   gols = 1
   id_fonte = "1167711"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Abraham Ojo"
@@ -970,6 +1052,7 @@ padrao = "liso"
   partidas = 1
   minutos = 79
   id_fonte = "1366314"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Marko Perovic"
@@ -981,6 +1064,7 @@ padrao = "liso"
   partidas = 1
   minutos = 120
   id_fonte = "944583"
+  nacionalidade = "Montenegro"
 
   [[clubes.jogadores]]
   nome = "Adam Basse"
@@ -992,6 +1076,7 @@ padrao = "liso"
   partidas = 2
   minutos = 144
   id_fonte = "1249778"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Nikodem Całko"
@@ -1001,6 +1086,7 @@ padrao = "liso"
   pot = 56
   valor = 170500
   id_fonte = "1567997"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Wiktor Żołneczko"
@@ -1012,6 +1098,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1284269"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Jagiellonia Bialystok"
@@ -1030,6 +1117,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1170
   id_fonte = "805834"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Bernardo Vital"
@@ -1042,6 +1130,7 @@ padrao = "liso"
   minutos = 990
   gols = 4
   id_fonte = "690273"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Norbert Wojtuszek"
@@ -1054,6 +1143,7 @@ padrao = "liso"
   minutos = 1116
   gols = 2
   id_fonte = "607435"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Bartlomiej Wdowik"
@@ -1065,6 +1155,7 @@ padrao = "liso"
   partidas = 1
   minutos = 110
   id_fonte = "589013"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Ousmane Sow"
@@ -1077,6 +1168,7 @@ padrao = "liso"
   minutos = 206
   gols = 2
   id_fonte = "1071651"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Sergio Lozano"
@@ -1089,6 +1181,7 @@ padrao = "liso"
   minutos = 434
   gols = 2
   id_fonte = "341277"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Anders Klynge"
@@ -1101,6 +1194,7 @@ padrao = "liso"
   minutos = 704
   gols = 1
   id_fonte = "542762"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Aleksandar Cirkovic"
@@ -1112,6 +1206,7 @@ padrao = "liso"
   partidas = 1
   minutos = 51
   id_fonte = "452218"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Dusan Stojinovic"
@@ -1124,6 +1219,7 @@ padrao = "liso"
   minutos = 1621
   gols = 1
   id_fonte = "469688"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Yuki Kobayashi"
@@ -1136,6 +1232,7 @@ padrao = "liso"
   minutos = 720
   gols = 1
   id_fonte = "405386"
+  nacionalidade = "Japão"
 
   [[clubes.jogadores]]
   nome = "Guilherme Montóia"
@@ -1148,6 +1245,7 @@ padrao = "liso"
   minutos = 1035
   gols = 1
   id_fonte = "575717"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Jesús Imaz"
@@ -1160,6 +1258,7 @@ padrao = "liso"
   minutos = 856
   gols = 4
   id_fonte = "176423"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Nik Prelec"
@@ -1172,6 +1271,7 @@ padrao = "liso"
   minutos = 925
   gols = 4
   id_fonte = "469690"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Apostolos Konstantopoulos"
@@ -1183,6 +1283,7 @@ padrao = "liso"
   partidas = 6
   minutos = 500
   id_fonte = "554393"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Hampus Finndell"
@@ -1194,6 +1295,7 @@ padrao = "liso"
   partidas = 1
   minutos = 101
   id_fonte = "405313"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Conceição"
@@ -1205,6 +1307,7 @@ padrao = "liso"
   partidas = 8
   minutos = 726
   id_fonte = "426213"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Jeremy Agbonifo"
@@ -1217,6 +1320,7 @@ padrao = "liso"
   minutos = 287
   gols = 1
   id_fonte = "1057820"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Taras Romanczuk"
@@ -1229,6 +1333,7 @@ padrao = "liso"
   minutos = 933
   gols = 4
   id_fonte = "280939"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kajetan Szmyt"
@@ -1241,6 +1346,7 @@ padrao = "liso"
   minutos = 1049
   gols = 3
   id_fonte = "658730"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kamil Jóźwiak"
@@ -1252,6 +1358,7 @@ padrao = "liso"
   partidas = 1
   minutos = 65
   id_fonte = "289167"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Dawid Drachal"
@@ -1264,6 +1371,7 @@ padrao = "liso"
   minutos = 97
   gols = 1
   id_fonte = "895298"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Szymon Pankiewicz"
@@ -1273,6 +1381,7 @@ padrao = "liso"
   pot = 55
   valor = 206250
   id_fonte = "500246"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Cezary Polak"
@@ -1285,6 +1394,7 @@ padrao = "liso"
   minutos = 160
   gols = 1
   id_fonte = "705826"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Youssuf Sylla"
@@ -1297,6 +1407,7 @@ padrao = "liso"
   minutos = 229
   gols = 1
   id_fonte = "667903"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Dimitris Rallis"
@@ -1309,6 +1420,7 @@ padrao = "liso"
   minutos = 32
   gols = 5
   id_fonte = "747953"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Eryk Kozłowski"
@@ -1320,6 +1432,7 @@ padrao = "liso"
   partidas = 4
   minutos = 368
   id_fonte = "1066230"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Michał Perchel"
@@ -1329,6 +1442,7 @@ padrao = "liso"
   pot = 59
   valor = 350000
   id_fonte = "1161772"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Bartłomiej Krasiewicz"
@@ -1338,6 +1452,7 @@ padrao = "liso"
   pot = 55
   valor = 206250
   id_fonte = "1046873"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Adrian Damasiewicz"
@@ -1347,6 +1462,7 @@ padrao = "liso"
   pot = 56
   valor = 206250
   id_fonte = "1205033"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jakub Kucharski"
@@ -1356,6 +1472,7 @@ padrao = "liso"
   pot = 55
   valor = 300000
   id_fonte = "1212049"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jakub Rabiczko"
@@ -1365,6 +1482,7 @@ padrao = "liso"
   pot = 56
   valor = 206250
   id_fonte = "1212054"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Maciej Kuczyński"
@@ -1374,6 +1492,7 @@ padrao = "liso"
   pot = 55
   valor = 206250
   id_fonte = "1118876"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Maksim Kononov"
@@ -1383,6 +1502,7 @@ padrao = "liso"
   pot = 53
   valor = 206250
   id_fonte = "1105398"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Olaf Pankiewicz"
@@ -1392,6 +1512,7 @@ padrao = "liso"
   pot = 55
   valor = 206250
   id_fonte = "1296862"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Paweł Pakieła"
@@ -1401,6 +1522,7 @@ padrao = "liso"
   pot = 53
   valor = 206250
   id_fonte = "1260542"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Zachary Zalewski"
@@ -1412,6 +1534,7 @@ padrao = "liso"
   partidas = 1
   minutos = 11
   id_fonte = "1325371"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Górnik Zabrze"
@@ -1431,6 +1554,7 @@ padrao = "liso"
   minutos = 1237
   gols = 2
   id_fonte = "721511"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Paulo Bernardo"
@@ -1442,6 +1566,7 @@ padrao = "liso"
   partidas = 8
   minutos = 718
   id_fonte = "504090"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Lukas Sadilek"
@@ -1454,6 +1579,7 @@ padrao = "liso"
   minutos = 823
   gols = 1
   id_fonte = "242084"
+  nacionalidade = "Tchéquia"
 
   [[clubes.jogadores]]
   nome = "Ondrej Zmrzly"
@@ -1465,6 +1591,7 @@ padrao = "liso"
   partidas = 5
   minutos = 430
   id_fonte = "343558"
+  nacionalidade = "Tchéquia"
 
   [[clubes.jogadores]]
   nome = "Zeidane Inoussa"
@@ -1476,6 +1603,7 @@ padrao = "liso"
   partidas = 1
   minutos = 7
   id_fonte = "579291"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Josema"
@@ -1488,6 +1616,7 @@ padrao = "liso"
   minutos = 1305
   gols = 1
   id_fonte = "255892"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Kacper Urbański"
@@ -1500,6 +1629,7 @@ padrao = "liso"
   minutos = 1306
   gols = 4
   id_fonte = "699442"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Michal Sacek"
@@ -1512,6 +1642,7 @@ padrao = "liso"
   minutos = 1318
   gols = 1
   id_fonte = "430054"
+  nacionalidade = "Tchéquia"
 
   [[clubes.jogadores]]
   nome = "Pawel Bochniewicz"
@@ -1524,6 +1655,7 @@ padrao = "liso"
   minutos = 165
   gols = 1
   id_fonte = "248395"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Erik Janza"
@@ -1536,6 +1668,7 @@ padrao = "liso"
   minutos = 1035
   gols = 4
   id_fonte = "174522"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Jarosław Kubicki"
@@ -1548,6 +1681,7 @@ padrao = "liso"
   minutos = 478
   gols = 3
   id_fonte = "327756"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Maximilian Dietz"
@@ -1559,6 +1693,7 @@ padrao = "liso"
   partidas = 6
   minutos = 571
   id_fonte = "515964"
+  nacionalidade = "Estados Unidos"
 
   [[clubes.jogadores]]
   nome = "Peter Federico"
@@ -1571,6 +1706,7 @@ padrao = "liso"
   minutos = 737
   gols = 4
   id_fonte = "710004"
+  nacionalidade = "República Dominicana"
 
   [[clubes.jogadores]]
   nome = "Malthe Højholt"
@@ -1582,6 +1718,7 @@ padrao = "liso"
   partidas = 1
   minutos = 109
   id_fonte = "543822"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Rafał Janicki"
@@ -1594,6 +1731,7 @@ padrao = "liso"
   minutos = 1440
   gols = 1
   id_fonte = "153638"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Erik Prekop"
@@ -1606,6 +1744,7 @@ padrao = "liso"
   minutos = 749
   gols = 3
   id_fonte = "446573"
+  nacionalidade = "Eslováquia"
 
   [[clubes.jogadores]]
   nome = "Sondre Liseth"
@@ -1618,6 +1757,7 @@ padrao = "liso"
   minutos = 479
   gols = 1
   id_fonte = "442474"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Tomasz Loska"
@@ -1629,6 +1769,7 @@ padrao = "liso"
   partidas = 4
   minutos = 393
   id_fonte = "260706"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Philipp Schulze"
@@ -1640,6 +1781,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1440
   id_fonte = "574203"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Janis Antiste"
@@ -1652,6 +1794,7 @@ padrao = "liso"
   minutos = 337
   gols = 2
   id_fonte = "538974"
+  nacionalidade = "Martinica"
 
   [[clubes.jogadores]]
   nome = "Yvan Ikia Dimi"
@@ -1664,6 +1807,7 @@ padrao = "liso"
   minutos = 556
   gols = 1
   id_fonte = "1001785"
+  nacionalidade = "Congo"
 
   [[clubes.jogadores]]
   nome = "Patryk Warczak"
@@ -1675,6 +1819,7 @@ padrao = "liso"
   partidas = 1
   minutos = 79
   id_fonte = "577596"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Bruno Durdov"
@@ -1686,6 +1831,7 @@ padrao = "liso"
   partidas = 1
   minutos = 51
   id_fonte = "1172620"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Piotr Pietryga"
@@ -1695,6 +1841,7 @@ padrao = "liso"
   pot = 53
   valor = 165000
   id_fonte = "698946"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Bastien Donio"
@@ -1706,6 +1853,7 @@ padrao = "liso"
   partidas = 1
   minutos = 103
   id_fonte = "1168260"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Marcel Kalemba"
@@ -1715,6 +1863,7 @@ padrao = "liso"
   pot = 49
   valor = 150000
   id_fonte = "906970"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Wiktor Kania"
@@ -1724,6 +1873,7 @@ padrao = "liso"
   pot = 53
   valor = 165000
   id_fonte = "1382712"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Cracovia"
@@ -1743,6 +1893,7 @@ padrao = "liso"
   minutos = 871
   gols = 1
   id_fonte = "676266"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ajdin Hasic"
@@ -1755,6 +1906,7 @@ padrao = "liso"
   minutos = 905
   gols = 4
   id_fonte = "522851"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Otar Kakabadze"
@@ -1767,6 +1919,7 @@ padrao = "liso"
   minutos = 575
   gols = 2
   id_fonte = "214250"
+  nacionalidade = "Geórgia"
 
   [[clubes.jogadores]]
   nome = "Amir Al-Ammari"
@@ -1779,6 +1932,7 @@ padrao = "liso"
   minutos = 810
   gols = 1
   id_fonte = "303766"
+  nacionalidade = "Iraque"
 
   [[clubes.jogadores]]
   nome = "Sebastian Madejski"
@@ -1790,6 +1944,7 @@ padrao = "liso"
   partidas = 10
   minutos = 930
   id_fonte = "325448"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Dominik Baumgartner"
@@ -1801,6 +1956,7 @@ padrao = "liso"
   partidas = 2
   minutos = 176
   id_fonte = "206906"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Gustav Henriksson"
@@ -1813,6 +1969,7 @@ padrao = "liso"
   minutos = 659
   gols = 1
   id_fonte = "368565"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Lasse Nordås"
@@ -1825,6 +1982,7 @@ padrao = "liso"
   minutos = 163
   gols = 1
   id_fonte = "781270"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Sayfallah Ltaief"
@@ -1836,6 +1994,7 @@ padrao = "liso"
   partidas = 4
   minutos = 326
   id_fonte = "388220"
+  nacionalidade = "Tunísia"
 
   [[clubes.jogadores]]
   nome = "Mateusz Klich"
@@ -1848,6 +2007,7 @@ padrao = "liso"
   minutos = 762
   gols = 1
   id_fonte = "92738"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Brahim Traoré"
@@ -1859,6 +2019,7 @@ padrao = "liso"
   partidas = 10
   minutos = 930
   id_fonte = "743517"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Dominik Piła"
@@ -1871,6 +2032,7 @@ padrao = "liso"
   minutos = 539
   gols = 1
   id_fonte = "687671"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Filip Marchwiński"
@@ -1882,6 +2044,7 @@ padrao = "liso"
   partidas = 1
   minutos = 24
   id_fonte = "555106"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Martin Minchev"
@@ -1894,6 +2057,7 @@ padrao = "liso"
   minutos = 596
   gols = 2
   id_fonte = "481128"
+  nacionalidade = "Bulgária"
 
   [[clubes.jogadores]]
   nome = "Mateusz Praszelik"
@@ -1906,6 +2070,7 @@ padrao = "liso"
   minutos = 153
   gols = 2
   id_fonte = "374418"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kahveh Zahiroleslam"
@@ -1918,6 +2083,7 @@ padrao = "liso"
   minutos = 443
   gols = 4
   id_fonte = "1163778"
+  nacionalidade = "Estados Unidos"
 
   [[clubes.jogadores]]
   nome = "Mohamed Berte"
@@ -1930,6 +2096,7 @@ padrao = "liso"
   minutos = 285
   gols = 1
   id_fonte = "895402"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Dijon Kameri"
@@ -1942,6 +2109,7 @@ padrao = "liso"
   minutos = 371
   gols = 2
   id_fonte = "629005"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Wiktor Bogacz"
@@ -1953,6 +2121,7 @@ padrao = "liso"
   partidas = 1
   minutos = 23
   id_fonte = "886501"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kamil Glik"
@@ -1964,6 +2133,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "46552"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Karol Knap"
@@ -1975,6 +2145,7 @@ padrao = "liso"
   partidas = 3
   minutos = 249
   id_fonte = "800664"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Vincent Burlet"
@@ -1986,6 +2157,7 @@ padrao = "liso"
   partidas = 1
   minutos = 119
   id_fonte = "920939"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Beno Selan"
@@ -1997,6 +2169,7 @@ padrao = "liso"
   partidas = 3
   minutos = 250
   id_fonte = "940220"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Aleksander Bobek"
@@ -2006,6 +2179,7 @@ padrao = "liso"
   pot = 57
   valor = 300000
   id_fonte = "795231"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Alex Marciniak"
@@ -2015,6 +2189,7 @@ padrao = "liso"
   pot = 50
   valor = 138333
   id_fonte = "1142182"
+  nacionalidade = "País de Gales"
 
   [[clubes.jogadores]]
   nome = "Jakub Chrapusta"
@@ -2024,6 +2199,7 @@ padrao = "liso"
   pot = 53
   valor = 138333
   id_fonte = "1469681"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jakub Wilczek"
@@ -2033,6 +2209,7 @@ padrao = "liso"
   pot = 52
   valor = 138333
   id_fonte = "1434243"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kacper Śmiglewski"
@@ -2044,6 +2221,7 @@ padrao = "liso"
   partidas = 3
   minutos = 16
   id_fonte = "925777"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Konrad Cymerys"
@@ -2053,6 +2231,7 @@ padrao = "liso"
   pot = 53
   valor = 138333
   id_fonte = "1198430"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Mateusz Skoczylas"
@@ -2062,6 +2241,7 @@ padrao = "liso"
   pot = 52
   valor = 200000
   id_fonte = "991458"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Mateusz Tabisz"
@@ -2073,6 +2253,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "1241426"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Siem Eyob-Abraha"
@@ -2082,6 +2263,7 @@ padrao = "liso"
   pot = 49
   valor = 138333
   id_fonte = "987494"
+  nacionalidade = "Eritreia"
 
   [[clubes.jogadores]]
   nome = "Wiktor Dej"
@@ -2093,6 +2275,7 @@ padrao = "liso"
   partidas = 1
   minutos = 25
   id_fonte = "1297028"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Korona Kielce"
@@ -2111,6 +2294,7 @@ padrao = "liso"
   partidas = 10
   minutos = 898
   id_fonte = "339070"
+  nacionalidade = "Tchéquia"
 
   [[clubes.jogadores]]
   nome = "Ondrej Lingr"
@@ -2123,6 +2307,7 @@ padrao = "liso"
   minutos = 334
   gols = 1
   id_fonte = "321195"
+  nacionalidade = "Tchéquia"
 
   [[clubes.jogadores]]
   nome = "Xavier Dziekoński"
@@ -2134,6 +2319,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "699400"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Camilo Mena"
@@ -2146,6 +2332,7 @@ padrao = "liso"
   minutos = 124
   gols = 1
   id_fonte = "653596"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Konstantinos Sotiriou"
@@ -2158,6 +2345,7 @@ padrao = "liso"
   minutos = 281
   gols = 5
   id_fonte = "246607"
+  nacionalidade = "Chipre"
 
   [[clubes.jogadores]]
   nome = "Michael Ameyaw"
@@ -2169,6 +2357,7 @@ padrao = "liso"
   partidas = 3
   minutos = 256
   id_fonte = "528414"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Martin Remacle"
@@ -2181,6 +2370,7 @@ padrao = "liso"
   minutos = 539
   gols = 3
   id_fonte = "309847"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Simon Gustafson"
@@ -2193,6 +2383,7 @@ padrao = "liso"
   minutos = 186
   gols = 1
   id_fonte = "255474"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Wiktor Długosz"
@@ -2205,6 +2396,7 @@ padrao = "liso"
   minutos = 788
   gols = 3
   id_fonte = "453156"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Dawid Błanik"
@@ -2217,6 +2409,7 @@ padrao = "liso"
   minutos = 84
   gols = 9
   id_fonte = "370555"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kamil Jakubczyk"
@@ -2228,6 +2421,7 @@ padrao = "liso"
   partidas = 9
   minutos = 797
   id_fonte = "929467"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Ariel Mosór"
@@ -2239,6 +2433,7 @@ padrao = "liso"
   partidas = 9
   minutos = 785
   id_fonte = "554288"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Marcel Pięczek"
@@ -2251,6 +2446,7 @@ padrao = "liso"
   minutos = 791
   gols = 4
   id_fonte = "585080"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Mariusz Stępiński"
@@ -2263,6 +2459,7 @@ padrao = "liso"
   minutos = 781
   gols = 6
   id_fonte = "210363"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Slobodan Rubežić"
@@ -2275,6 +2472,7 @@ padrao = "liso"
   minutos = 810
   gols = 2
   id_fonte = "617460"
+  nacionalidade = "Montenegro"
 
   [[clubes.jogadores]]
   nome = "Konrad Matuszewski"
@@ -2287,6 +2485,7 @@ padrao = "liso"
   minutos = 51
   gols = 2
   id_fonte = "401599"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Nono"
@@ -2298,6 +2497,7 @@ padrao = "liso"
   partidas = 1
   minutos = 97
   id_fonte = "152776"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Bartłomiej Smolarczyk"
@@ -2310,6 +2510,7 @@ padrao = "liso"
   minutos = 1784
   gols = 1
   id_fonte = "685445"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Morgan Faßbender"
@@ -2322,6 +2523,7 @@ padrao = "liso"
   minutos = 559
   gols = 3
   id_fonte = "346309"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Stjepan Davidovic"
@@ -2334,6 +2536,7 @@ padrao = "liso"
   minutos = 222
   gols = 2
   id_fonte = "1157482"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Hubert Zwoźny"
@@ -2345,6 +2548,7 @@ padrao = "liso"
   partidas = 1
   minutos = 101
   id_fonte = "825588"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Rafał Mamla"
@@ -2356,6 +2560,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "727318"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Norbert Barczak"
@@ -2367,6 +2572,7 @@ padrao = "liso"
   partidas = 2
   minutos = 223
   id_fonte = "991322"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Daniel Bąk"
@@ -2379,6 +2585,7 @@ padrao = "liso"
   minutos = 123
   gols = 1
   id_fonte = "1046816"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Franciszek Panek"
@@ -2388,6 +2595,7 @@ padrao = "liso"
   pot = 53
   valor = 146666
   id_fonte = "1543037"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Igor Chmielewski"
@@ -2397,6 +2605,7 @@ padrao = "liso"
   pot = 52
   valor = 146666
   id_fonte = "1334931"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kacper Minuczyc"
@@ -2408,6 +2617,7 @@ padrao = "liso"
   partidas = 2
   minutos = 10
   id_fonte = "1211585"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Konrad Ciszek"
@@ -2419,6 +2629,7 @@ padrao = "liso"
   partidas = 1
   minutos = 88
   id_fonte = "1291336"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kornel Toboła"
@@ -2428,6 +2639,7 @@ padrao = "liso"
   pot = 51
   valor = 146666
   id_fonte = "1167760"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Michał Mikielewicz"
@@ -2437,6 +2649,7 @@ padrao = "liso"
   pot = 53
   valor = 146666
   id_fonte = "1334268"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Legia de Varsóvia"
@@ -2456,6 +2669,7 @@ padrao = "liso"
   minutos = 808
   gols = 1
   id_fonte = "345449"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jan Kuchta"
@@ -2467,6 +2681,7 @@ padrao = "liso"
   partidas = 4
   minutos = 347
   id_fonte = "334802"
+  nacionalidade = "Tchéquia"
 
   [[clubes.jogadores]]
   nome = "Otto Hindrich"
@@ -2478,6 +2693,7 @@ padrao = "liso"
   partidas = 10
   minutos = 900
   id_fonte = "744075"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Rúben Vinagre"
@@ -2490,6 +2706,7 @@ padrao = "liso"
   minutos = 846
   gols = 1
   id_fonte = "357158"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ivan Brkic"
@@ -2499,6 +2716,7 @@ padrao = "liso"
   pot = 62
   valor = 500000
   id_fonte = "274047"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Damian Szymański"
@@ -2511,6 +2729,7 @@ padrao = "liso"
   minutos = 398
   gols = 1
   id_fonte = "259881"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Bartosz Kapustka"
@@ -2523,6 +2742,7 @@ padrao = "liso"
   minutos = 870
   gols = 2
   id_fonte = "246579"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Zoran Arsenic"
@@ -2535,6 +2755,7 @@ padrao = "liso"
   minutos = 172
   gols = 1
   id_fonte = "280312"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Rafał Augustyniak"
@@ -2547,6 +2768,7 @@ padrao = "liso"
   minutos = 900
   gols = 4
   id_fonte = "264796"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Vahan Bichakhchyan"
@@ -2559,6 +2781,7 @@ padrao = "liso"
   minutos = 41
   gols = 5
   id_fonte = "399348"
+  nacionalidade = "Armênia"
 
   [[clubes.jogadores]]
   nome = "Shinnosuke Fukuda"
@@ -2568,6 +2791,7 @@ padrao = "liso"
   pot = 58
   valor = 750000
   id_fonte = "576454"
+  nacionalidade = "Japão"
 
   [[clubes.jogadores]]
   nome = "Antonio Colak"
@@ -2580,6 +2804,7 @@ padrao = "liso"
   minutos = 602
   gols = 4
   id_fonte = "160668"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Arkadiusz Reca"
@@ -2591,6 +2816,7 @@ padrao = "liso"
   partidas = 1
   minutos = 127
   id_fonte = "268178"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Michal Sevcik"
@@ -2603,6 +2829,7 @@ padrao = "liso"
   minutos = 381
   gols = 1
   id_fonte = "651731"
+  nacionalidade = "Tchéquia"
 
   [[clubes.jogadores]]
   nome = "Kacper Chodyna"
@@ -2615,6 +2842,7 @@ padrao = "liso"
   minutos = 167
   gols = 2
   id_fonte = "320733"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Paweł Wszołek"
@@ -2627,6 +2855,7 @@ padrao = "liso"
   minutos = 673
   gols = 1
   id_fonte = "164759"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Rafał Adamski"
@@ -2639,6 +2868,7 @@ padrao = "liso"
   minutos = 413
   gols = 3
   id_fonte = "549982"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Łukasz Zjawiński"
@@ -2651,6 +2881,7 @@ padrao = "liso"
   minutos = 604
   gols = 3
   id_fonte = "401608"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Wojciech Urbański"
@@ -2663,6 +2894,7 @@ padrao = "liso"
   minutos = 606
   gols = 1
   id_fonte = "618424"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Robert Deziel Jr."
@@ -2674,6 +2906,7 @@ padrao = "liso"
   partidas = 9
   minutos = 787
   id_fonte = "821923"
+  nacionalidade = "Estados Unidos"
 
   [[clubes.jogadores]]
   nome = "Bogdan Viunnyk"
@@ -2685,6 +2918,7 @@ padrao = "liso"
   partidas = 1
   minutos = 16
   id_fonte = "623331"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Henrique Arreiol"
@@ -2696,6 +2930,7 @@ padrao = "liso"
   partidas = 3
   minutos = 227
   id_fonte = "905345"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Samuel Kovacik"
@@ -2707,6 +2942,7 @@ padrao = "liso"
   partidas = 1
   minutos = 102
   id_fonte = "1138091"
+  nacionalidade = "Eslováquia"
 
   [[clubes.jogadores]]
   nome = "Mateusz Szczepaniak"
@@ -2718,6 +2954,7 @@ padrao = "liso"
   partidas = 2
   minutos = 209
   id_fonte = "1073744"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Bartosz Korżynski"
@@ -2727,6 +2964,7 @@ padrao = "liso"
   pot = 51
   valor = 214500
   id_fonte = "1209572"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Erik Mikanovich"
@@ -2738,6 +2976,7 @@ padrao = "liso"
   partidas = 1
   minutos = 8
   id_fonte = "1268897"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Filip Przybyłko"
@@ -2747,6 +2986,7 @@ padrao = "liso"
   pot = 50
   valor = 214500
   id_fonte = "1194250"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jakub Żewłakow"
@@ -2759,6 +2999,7 @@ padrao = "liso"
   minutos = 168
   gols = 2
   id_fonte = "1132797"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jan Bienduga"
@@ -2768,6 +3009,7 @@ padrao = "liso"
   pot = 53
   valor = 214500
   id_fonte = "1297215"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Mateusz Lauryn"
@@ -2777,6 +3019,7 @@ padrao = "liso"
   pot = 51
   valor = 214500
   id_fonte = "1265957"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Motor Lublin"
@@ -2795,6 +3038,7 @@ padrao = "liso"
   partidas = 10
   minutos = 897
   id_fonte = "618417"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Karol Czubak"
@@ -2807,6 +3051,7 @@ padrao = "liso"
   minutos = 895
   gols = 6
   id_fonte = "622871"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Mbaye Ndiaye"
@@ -2819,6 +3064,7 @@ padrao = "liso"
   minutos = 802
   gols = 2
   id_fonte = "852858"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Rony Lopes"
@@ -2830,6 +3076,7 @@ padrao = "liso"
   partidas = 2
   minutos = 29
   id_fonte = "174694"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Tin Plavotic"
@@ -2841,6 +3088,7 @@ padrao = "liso"
   partidas = 3
   minutos = 282
   id_fonte = "307658"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Bartosz Bereszyński"
@@ -2852,6 +3100,7 @@ padrao = "liso"
   partidas = 10
   minutos = 889
   id_fonte = "144143"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Fábio Ronaldo"
@@ -2864,6 +3113,7 @@ padrao = "liso"
   minutos = 606
   gols = 1
   id_fonte = "742506"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Mateusz Łęgowski"
@@ -2875,6 +3125,7 @@ padrao = "liso"
   partidas = 8
   minutos = 690
   id_fonte = "570466"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Mihai Popa"
@@ -2886,6 +3137,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "623412"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Ivo Rodrigues"
@@ -2898,6 +3150,7 @@ padrao = "liso"
   minutos = 552
   gols = 2
   id_fonte = "215122"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Marek Bartos"
@@ -2910,6 +3163,7 @@ padrao = "liso"
   minutos = 635
   gols = 1
   id_fonte = "564120"
+  nacionalidade = "Eslováquia"
 
   [[clubes.jogadores]]
   nome = "Thomas Santos"
@@ -2921,6 +3175,7 @@ padrao = "liso"
   partidas = 5
   minutos = 483
   id_fonte = "523476"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Yacine Bourhane"
@@ -2932,6 +3187,7 @@ padrao = "liso"
   partidas = 6
   minutos = 535
   id_fonte = "525131"
+  nacionalidade = "Comores"
 
   [[clubes.jogadores]]
   nome = "Makan Aïko"
@@ -2944,6 +3200,7 @@ padrao = "liso"
   minutos = 355
   gols = 1
   id_fonte = "813152"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Gasper Tratnik"
@@ -2955,6 +3212,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "689207"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Kamil Lukoszek"
@@ -2967,6 +3225,7 @@ padrao = "liso"
   minutos = 411
   gols = 1
   id_fonte = "566342"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Christopher Simon"
@@ -2978,6 +3237,7 @@ padrao = "liso"
   partidas = 6
   minutos = 529
   id_fonte = "1060859"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Florian Haxha"
@@ -2989,6 +3249,7 @@ padrao = "liso"
   partidas = 5
   minutos = 24
   id_fonte = "587660"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Paskal Meyer"
@@ -3000,6 +3261,7 @@ padrao = "liso"
   partidas = 4
   minutos = 382
   id_fonte = "918931"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Patryk Kukulski"
@@ -3009,6 +3271,7 @@ padrao = "liso"
   pot = 52
   valor = 127980
   id_fonte = "862786"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Alioune Oumar Tall"
@@ -3018,6 +3281,7 @@ padrao = "liso"
   pot = 50
   valor = 125000
   id_fonte = "1497345"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Artem Akatov"
@@ -3027,6 +3291,7 @@ padrao = "liso"
   pot = 51
   valor = 127980
   id_fonte = "1194058"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Borys Mołdach"
@@ -3036,6 +3301,7 @@ padrao = "liso"
   pot = 52
   valor = 127980
   id_fonte = "1545440"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Dominik Gregorski"
@@ -3047,6 +3313,7 @@ padrao = "liso"
   partidas = 2
   minutos = 9
   id_fonte = "1156333"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Marcel Złomańczuk"
@@ -3056,6 +3323,7 @@ padrao = "liso"
   pot = 50
   valor = 127980
   id_fonte = "911489"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Mateusz Posmyk"
@@ -3067,6 +3335,7 @@ padrao = "liso"
   partidas = 1
   minutos = 3
   id_fonte = "1302613"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Zaglebie Lubin SA"
@@ -3086,6 +3355,7 @@ padrao = "liso"
   minutos = 802
   gols = 2
   id_fonte = "1125761"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Filip Kocaba"
@@ -3098,6 +3368,7 @@ padrao = "liso"
   minutos = 845
   gols = 1
   id_fonte = "820540"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Damian Michalski"
@@ -3110,6 +3381,7 @@ padrao = "liso"
   minutos = 539
   gols = 2
   id_fonte = "385518"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Roman Yakuba"
@@ -3121,6 +3393,7 @@ padrao = "liso"
   partidas = 6
   minutos = 585
   id_fonte = "311213"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Zlatan Alomerovic"
@@ -3132,6 +3405,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "47594"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Aleks Lawniczak"
@@ -3144,6 +3418,7 @@ padrao = "liso"
   minutos = 802
   gols = 1
   id_fonte = "425739"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Damian Dabrowski"
@@ -3155,6 +3430,7 @@ padrao = "liso"
   partidas = 5
   minutos = 485
   id_fonte = "143118"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Dominik Hladun"
@@ -3166,6 +3442,7 @@ padrao = "liso"
   partidas = 11
   minutos = 977
   id_fonte = "278676"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "David Colina"
@@ -3177,6 +3454,7 @@ padrao = "liso"
   partidas = 4
   minutos = 318
   id_fonte = "371000"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Josip Corluka"
@@ -3189,6 +3467,7 @@ padrao = "liso"
   minutos = 434
   gols = 1
   id_fonte = "215644"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Michal Nalepa"
@@ -3201,6 +3480,7 @@ padrao = "liso"
   minutos = 630
   gols = 1
   id_fonte = "175947"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Sebastian Kerk"
@@ -3212,6 +3492,7 @@ padrao = "liso"
   partidas = 4
   minutos = 383
   id_fonte = "124517"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Mateusz Grzybek"
@@ -3224,6 +3505,7 @@ padrao = "liso"
   minutos = 451
   gols = 3
   id_fonte = "244782"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Levente Szabó"
@@ -3236,6 +3518,7 @@ padrao = "liso"
   minutos = 111
   gols = 1
   id_fonte = "342989"
+  nacionalidade = "Hungria"
 
   [[clubes.jogadores]]
   nome = "Jakub Kolan"
@@ -3248,6 +3531,7 @@ padrao = "liso"
   minutos = 369
   gols = 1
   id_fonte = "631447"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Filip Szymczak"
@@ -3259,6 +3543,7 @@ padrao = "liso"
   partidas = 5
   minutos = 475
   id_fonte = "554972"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Igor Orlikowski"
@@ -3270,6 +3555,7 @@ padrao = "liso"
   partidas = 3
   minutos = 250
   id_fonte = "991454"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jakub Sypek"
@@ -3282,6 +3568,7 @@ padrao = "liso"
   minutos = 359
   gols = 1
   id_fonte = "504601"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Mihael Mlinaric"
@@ -3293,6 +3580,7 @@ padrao = "liso"
   partidas = 3
   minutos = 232
   id_fonte = "697080"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Michalis Kosidis"
@@ -3305,6 +3593,7 @@ padrao = "liso"
   minutos = 256
   gols = 1
   id_fonte = "618531"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Jasmin Buric"
@@ -3316,6 +3605,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "28308"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Mateusz Dziewiatowski"
@@ -3328,6 +3618,7 @@ padrao = "liso"
   minutos = 142
   gols = 1
   id_fonte = "1064464"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Arkadiusz Woźniak"
@@ -3340,6 +3631,7 @@ padrao = "liso"
   minutos = 19
   gols = 1
   id_fonte = "144721"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Szymon Lyczko"
@@ -3351,6 +3643,7 @@ padrao = "liso"
   partidas = 1
   minutos = 116
   id_fonte = "1108661"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kamil Nowogoński"
@@ -3363,6 +3656,7 @@ padrao = "liso"
   minutos = 239
   gols = 1
   id_fonte = "1146116"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Cyprian Popielec"
@@ -3374,6 +3668,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "1046884"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Franciszek Nowak"
@@ -3383,6 +3678,7 @@ padrao = "liso"
   pot = 53
   valor = 110000
   id_fonte = "1406439"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jakub Ligocki"
@@ -3394,6 +3690,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1212045"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Maciej Urbański"
@@ -3405,6 +3702,7 @@ padrao = "liso"
   partidas = 1
   minutos = 71
   id_fonte = "1295655"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Patryk Dziekoński"
@@ -3414,6 +3712,7 @@ padrao = "liso"
   pot = 52
   valor = 110000
   id_fonte = "1521588"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Paweł Kosmalski"
@@ -3423,6 +3722,7 @@ padrao = "liso"
   pot = 50
   valor = 110000
   id_fonte = "1168850"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Seweryn Marek"
@@ -3432,6 +3732,7 @@ padrao = "liso"
   pot = 51
   valor = 110000
   id_fonte = "1345954"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Wieczysta Krakow"
@@ -3450,6 +3751,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "404055"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Efthymios Koulouris"
@@ -3462,6 +3764,7 @@ padrao = "liso"
   minutos = 412
   gols = 1
   id_fonte = "242638"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Tobias Christensen"
@@ -3474,6 +3777,7 @@ padrao = "liso"
   minutos = 685
   gols = 3
   id_fonte = "370894"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Mateusz Wieteska"
@@ -3486,6 +3790,7 @@ padrao = "liso"
   minutos = 450
   gols = 1
   id_fonte = "208172"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Antonio Milic"
@@ -3498,6 +3803,7 @@ padrao = "liso"
   minutos = 620
   gols = 1
   id_fonte = "179896"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Mikkel Maigaard"
@@ -3510,6 +3816,7 @@ padrao = "liso"
   minutos = 720
   gols = 3
   id_fonte = "265545"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Christopher Lungoyi"
@@ -3521,6 +3828,7 @@ padrao = "liso"
   partidas = 3
   minutos = 310
   id_fonte = "346903"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Nikola Cavlina"
@@ -3532,6 +3840,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "587505"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Kamil Pestka"
@@ -3544,6 +3853,7 @@ padrao = "liso"
   minutos = 335
   gols = 1
   id_fonte = "384482"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Matus Vojtko"
@@ -3555,6 +3865,7 @@ padrao = "liso"
   partidas = 5
   minutos = 467
   id_fonte = "489865"
+  nacionalidade = "Eslováquia"
 
   [[clubes.jogadores]]
   nome = "Antoni Mikułko"
@@ -3566,6 +3877,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "826506"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Karol Fila"
@@ -3578,6 +3890,7 @@ padrao = "liso"
   minutos = 474
   gols = 2
   id_fonte = "385817"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Lucas Piazón"
@@ -3590,6 +3903,7 @@ padrao = "liso"
   minutos = 774
   gols = 2
   id_fonte = "176485"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Aleksandar Djermanovic"
@@ -3602,6 +3916,7 @@ padrao = "liso"
   minutos = 360
   gols = 1
   id_fonte = "831597"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Ben Lederman"
@@ -3613,6 +3928,7 @@ padrao = "liso"
   partidas = 3
   minutos = 248
   id_fonte = "366929"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kamil Dankowski"
@@ -3625,6 +3941,7 @@ padrao = "liso"
   minutos = 344
   gols = 3
   id_fonte = "255085"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Lisandro Semedo"
@@ -3637,6 +3954,7 @@ padrao = "liso"
   minutos = 637
   gols = 1
   id_fonte = "225431"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Miki Villar"
@@ -3649,6 +3967,7 @@ padrao = "liso"
   minutos = 257
   gols = 1
   id_fonte = "382970"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Petar Pusic"
@@ -3661,6 +3980,7 @@ padrao = "liso"
   minutos = 285
   gols = 1
   id_fonte = "390169"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Stefan Feiertag"
@@ -3673,6 +3993,7 @@ padrao = "liso"
   minutos = 79
   gols = 1
   id_fonte = "404949"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Duje Dujmovic"
@@ -3685,6 +4006,7 @@ padrao = "liso"
   minutos = 264
   gols = 1
   id_fonte = "895531"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Bartosz Bialek"
@@ -3696,6 +4018,7 @@ padrao = "liso"
   partidas = 4
   minutos = 32
   id_fonte = "535551"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "José Antonio de la Rosa"
@@ -3707,6 +4030,7 @@ padrao = "liso"
   partidas = 1
   minutos = 87
   id_fonte = "1027993"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Nikola Knezevic"
@@ -3718,6 +4042,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "706511"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Kacper Zagrodzki"
@@ -3727,6 +4052,7 @@ padrao = "liso"
   pot = 49
   valor = 134326
   id_fonte = "1435606"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Tobiasz Mras"
@@ -3738,6 +4064,7 @@ padrao = "liso"
   partidas = 2
   minutos = 167
   id_fonte = "1143675"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Pogon Szczecin"
@@ -3757,6 +4084,7 @@ padrao = "liso"
   minutos = 458
   gols = 1
   id_fonte = "263380"
+  nacionalidade = "Hungria"
 
   [[clubes.jogadores]]
   nome = "Dimitrios Keramitsis"
@@ -3769,6 +4097,7 @@ padrao = "liso"
   minutos = 810
   gols = 1
   id_fonte = "861192"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Valentin Cojocaru"
@@ -3780,6 +4109,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "200616"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Kellyn Acosta"
@@ -3792,6 +4122,7 @@ padrao = "liso"
   minutos = 487
   gols = 1
   id_fonte = "189895"
+  nacionalidade = "Estados Unidos"
 
   [[clubes.jogadores]]
   nome = "Linus Wahlqvist"
@@ -3804,6 +4135,7 @@ padrao = "liso"
   minutos = 285
   gols = 1
   id_fonte = "249125"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Darko Churlinov"
@@ -3816,6 +4148,7 @@ padrao = "liso"
   minutos = 530
   gols = 3
   id_fonte = "386786"
+  nacionalidade = "Macedônia do Norte"
 
   [[clubes.jogadores]]
   nome = "Patryk Dziczek"
@@ -3827,6 +4160,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "289165"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Paul Mukairu"
@@ -3839,6 +4173,7 @@ padrao = "liso"
   minutos = 769
   gols = 2
   id_fonte = "667914"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Benjamin Mendy"
@@ -3850,6 +4185,7 @@ padrao = "liso"
   partidas = 5
   minutos = 426
   id_fonte = "157495"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Jean-Pierre Nsame"
@@ -3861,6 +4197,7 @@ padrao = "liso"
   partidas = 2
   minutos = 161
   id_fonte = "225055"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "José Pozo"
@@ -3873,6 +4210,7 @@ padrao = "liso"
   minutos = 994
   gols = 2
   id_fonte = "195605"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Kevin Dąbrowski"
@@ -3882,6 +4220,7 @@ padrao = "liso"
   pot = 54
   valor = 225000
   id_fonte = "366212"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kamil Grosicki"
@@ -3894,6 +4233,7 @@ padrao = "liso"
   minutos = 116
   gols = 7
   id_fonte = "37920"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Rajmund Molnár"
@@ -3906,6 +4246,7 @@ padrao = "liso"
   minutos = 846
   gols = 3
   id_fonte = "662609"
+  nacionalidade = "Hungria"
 
   [[clubes.jogadores]]
   nome = "Lukas Willen"
@@ -3917,6 +4258,7 @@ padrao = "liso"
   partidas = 4
   minutos = 368
   id_fonte = "574501"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Antoni Fojut"
@@ -3926,6 +4268,7 @@ padrao = "liso"
   pot = 51
   valor = 175312
   id_fonte = "1385667"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jordi Sánchez"
@@ -3938,6 +4281,7 @@ padrao = "liso"
   minutos = 180
   gols = 2
   id_fonte = "291693"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mor Ndiaye"
@@ -3950,6 +4294,7 @@ padrao = "liso"
   minutos = 4
   gols = 1
   id_fonte = "658737"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Filip Cuic"
@@ -3962,6 +4307,7 @@ padrao = "liso"
   minutos = 174
   gols = 4
   id_fonte = "921552"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Hussein Ali"
@@ -3974,6 +4320,7 @@ padrao = "liso"
   minutos = 333
   gols = 2
   id_fonte = "585325"
+  nacionalidade = "Iraque"
 
   [[clubes.jogadores]]
   nome = "Musa Juwara"
@@ -3986,6 +4333,7 @@ padrao = "liso"
   minutos = 283
   gols = 1
   id_fonte = "562030"
+  nacionalidade = "Gâmbia"
 
   [[clubes.jogadores]]
   nome = "Alessandro Riccio"
@@ -3997,6 +4345,7 @@ padrao = "liso"
   partidas = 2
   minutos = 151
   id_fonte = "487835"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Jan Biegański"
@@ -4009,6 +4358,7 @@ padrao = "liso"
   minutos = 173
   gols = 1
   id_fonte = "566355"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Nikolaos Botis"
@@ -4018,6 +4368,7 @@ padrao = "liso"
   pot = 55
   valor = 350000
   id_fonte = "735364"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Alex Peškovič"
@@ -4027,6 +4378,7 @@ padrao = "liso"
   pot = 51
   valor = 175312
   id_fonte = "1261639"
+  nacionalidade = "Eslováquia"
 
   [[clubes.jogadores]]
   nome = "Andrzej Ossowski"
@@ -4036,6 +4388,7 @@ padrao = "liso"
   pot = 49
   valor = 175312
   id_fonte = "1402442"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Hubert Renka"
@@ -4045,6 +4398,7 @@ padrao = "liso"
   pot = 51
   valor = 175312
   id_fonte = "1603247"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Isaiah Eichie"
@@ -4054,6 +4408,7 @@ padrao = "liso"
   pot = 49
   valor = 175312
   id_fonte = "1136967"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Jacek Czapliński"
@@ -4065,6 +4420,7 @@ padrao = "liso"
   partidas = 1
   minutos = 17
   id_fonte = "1038684"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Maciej Wojciechowski"
@@ -4076,6 +4432,7 @@ padrao = "liso"
   partidas = 7
   minutos = 589
   id_fonte = "1149462"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Natan Ława"
@@ -4087,6 +4444,7 @@ padrao = "liso"
   partidas = 2
   minutos = 193
   id_fonte = "1428280"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Patryk Paryzek"
@@ -4098,6 +4456,7 @@ padrao = "liso"
   partidas = 1
   minutos = 104
   id_fonte = "1149461"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Wisla Plock"
@@ -4116,6 +4475,7 @@ padrao = "liso"
   partidas = 3
   minutos = 307
   id_fonte = "511813"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Dion Gallapeni"
@@ -4127,6 +4487,7 @@ padrao = "liso"
   partidas = 6
   minutos = 551
   id_fonte = "1136224"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Jurica Prsir"
@@ -4138,6 +4499,7 @@ padrao = "liso"
   partidas = 2
   minutos = 177
   id_fonte = "425780"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Rafał Leszczyński"
@@ -4149,6 +4511,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "120970"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kyriakos Savvidis"
@@ -4161,6 +4524,7 @@ padrao = "liso"
   minutos = 60
   gols = 1
   id_fonte = "274858"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Marcin Kamiński"
@@ -4173,6 +4537,7 @@ padrao = "liso"
   minutos = 720
   gols = 3
   id_fonte = "129358"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Marcus Haglind-Sangré"
@@ -4185,6 +4550,7 @@ padrao = "liso"
   minutos = 810
   gols = 1
   id_fonte = "221074"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Zan Rogelj"
@@ -4197,6 +4563,7 @@ padrao = "liso"
   minutos = 720
   gols = 1
   id_fonte = "371861"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Deni Jurić"
@@ -4209,6 +4576,7 @@ padrao = "liso"
   minutos = 16
   gols = 5
   id_fonte = "407697"
+  nacionalidade = "Austrália"
 
   [[clubes.jogadores]]
   nome = "Adam Radwański"
@@ -4220,6 +4588,7 @@ padrao = "liso"
   partidas = 8
   minutos = 692
   id_fonte = "321564"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Dani Pacheco"
@@ -4232,6 +4601,7 @@ padrao = "liso"
   minutos = 232
   gols = 2
   id_fonte = "28285"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Patryk Kun"
@@ -4244,6 +4614,7 @@ padrao = "liso"
   minutos = 677
   gols = 1
   id_fonte = "252608"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Afonso Silva"
@@ -4255,6 +4626,7 @@ padrao = "liso"
   partidas = 6
   minutos = 532
   id_fonte = "941937"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Jorge Jiménez"
@@ -4267,6 +4639,7 @@ padrao = "liso"
   minutos = 361
   gols = 1
   id_fonte = "784429"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Olaf Kobacki"
@@ -4278,6 +4651,7 @@ padrao = "liso"
   partidas = 5
   minutos = 439
   id_fonte = "407734"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Krystian Pomorski"
@@ -4290,6 +4664,7 @@ padrao = "liso"
   minutos = 206
   gols = 1
   id_fonte = "273219"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Marcin Flis"
@@ -4302,6 +4677,7 @@ padrao = "liso"
   minutos = 234
   gols = 1
   id_fonte = "187973"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Michał Król"
@@ -4311,6 +4687,7 @@ padrao = "liso"
   pot = 56
   valor = 300000
   id_fonte = "461569"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Said Hamulic"
@@ -4323,6 +4700,7 @@ padrao = "liso"
   minutos = 424
   gols = 2
   id_fonte = "652996"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Łukasz Sekulski"
@@ -4335,6 +4713,7 @@ padrao = "liso"
   minutos = 377
   gols = 2
   id_fonte = "80769"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Fabian Hiszpański"
@@ -4346,6 +4725,7 @@ padrao = "liso"
   partidas = 2
   minutos = 163
   id_fonte = "194139"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Samuel Akere"
@@ -4358,6 +4738,7 @@ padrao = "liso"
   minutos = 93
   gols = 1
   id_fonte = "1012052"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Gleb Kuchko"
@@ -4369,6 +4750,7 @@ padrao = "liso"
   partidas = 1
   minutos = 53
   id_fonte = "981937"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Jakub Burek"
@@ -4380,6 +4762,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "697880"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Marcin Więckowski"
@@ -4391,6 +4774,7 @@ padrao = "liso"
   partidas = 1
   minutos = 98
   id_fonte = "1197555"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kacper Błaszkiewicz"
@@ -4400,6 +4784,7 @@ padrao = "liso"
   pot = 46
   valor = 48125
   id_fonte = "1292576"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Marcin Kościelecki"
@@ -4412,6 +4797,7 @@ padrao = "liso"
   minutos = 97
   gols = 1
   id_fonte = "991527"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Matvey Bokhno"
@@ -4423,6 +4809,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "1171955"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Nikodem Rogowski"
@@ -4434,6 +4821,7 @@ padrao = "liso"
   partidas = 1
   minutos = 12
   id_fonte = "1434459"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Szymon Wadas"
@@ -4443,6 +4831,7 @@ padrao = "liso"
   pot = 49
   valor = 48125
   id_fonte = "1292572"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Wisla Kraków SSA"
@@ -4461,6 +4850,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "656250"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Ángel Rodado"
@@ -4473,6 +4863,7 @@ padrao = "liso"
   minutos = 596
   gols = 4
   id_fonte = "440332"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Víctor Meseguer"
@@ -4484,6 +4875,7 @@ padrao = "liso"
   partidas = 1
   minutos = 12
   id_fonte = "658269"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Élie Youan"
@@ -4496,6 +4888,7 @@ padrao = "liso"
   minutos = 348
   gols = 1
   id_fonte = "465715"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Kacper Duda"
@@ -4508,6 +4901,7 @@ padrao = "liso"
   minutos = 768
   gols = 2
   id_fonte = "555067"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Maxence Maisonneuve"
@@ -4519,6 +4913,7 @@ padrao = "liso"
   partidas = 5
   minutos = 468
   id_fonte = "589273"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Julian Lelieveld"
@@ -4531,6 +4926,7 @@ padrao = "liso"
   minutos = 237
   gols = 3
   id_fonte = "337673"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Raoul Giger"
@@ -4542,6 +4938,7 @@ padrao = "liso"
   partidas = 6
   minutos = 574
   id_fonte = "361567"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Maciej Kuziemka"
@@ -4554,6 +4951,7 @@ padrao = "liso"
   minutos = 316
   gols = 1
   id_fonte = "901070"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Wiktor Biedrzycki"
@@ -4566,6 +4964,7 @@ padrao = "liso"
   minutos = 90
   gols = 6
   id_fonte = "448671"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Darijo Grujcic"
@@ -4578,6 +4977,7 @@ padrao = "liso"
   minutos = 432
   gols = 1
   id_fonte = "307769"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Julius Ertlthaler"
@@ -4590,6 +4990,7 @@ padrao = "liso"
   minutos = 687
   gols = 5
   id_fonte = "286622"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Frederico Duarte"
@@ -4602,6 +5003,7 @@ padrao = "liso"
   minutos = 384
   gols = 10
   id_fonte = "461936"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "James Igbekeme"
@@ -4614,6 +5016,7 @@ padrao = "liso"
   minutos = 640
   gols = 3
   id_fonte = "375849"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Jérémy Guillemenot"
@@ -4626,6 +5029,7 @@ padrao = "liso"
   minutos = 90
   gols = 1
   id_fonte = "290016"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Patryk Letkiewicz"
@@ -4637,6 +5041,7 @@ padrao = "liso"
   partidas = 1
   minutos = 64
   id_fonte = "911502"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jakub Krzyzanowski"
@@ -4649,6 +5054,7 @@ padrao = "liso"
   minutos = 854
   gols = 1
   id_fonte = "888643"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Marc Carbó"
@@ -4660,6 +5066,7 @@ padrao = "liso"
   partidas = 1
   minutos = 113
   id_fonte = "487116"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Marko Bozic"
@@ -4672,6 +5079,7 @@ padrao = "liso"
   minutos = 731
   gols = 2
   id_fonte = "307427"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Bartosz Jaroch"
@@ -4684,6 +5092,7 @@ padrao = "liso"
   minutos = 145
   gols = 1
   id_fonte = "261874"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Rafał Mikulec"
@@ -4695,6 +5104,7 @@ padrao = "liso"
   partidas = 1
   minutos = 104
   id_fonte = "446898"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Alan Uryga"
@@ -4707,6 +5117,7 @@ padrao = "liso"
   minutos = 810
   gols = 2
   id_fonte = "187945"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Mariusz Kutwa"
@@ -4719,6 +5130,7 @@ padrao = "liso"
   minutos = 90
   gols = 1
   id_fonte = "717594"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Bartosz Neugebauer"
@@ -4730,6 +5142,7 @@ padrao = "liso"
   partidas = 1
   minutos = 26
   id_fonte = "585073"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jakub Stępak"
@@ -4739,6 +5152,7 @@ padrao = "liso"
   pot = 48
   valor = 113928
   id_fonte = "992404"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Karol Tokarczyk"
@@ -4748,6 +5162,7 @@ padrao = "liso"
   pot = 44
   valor = 113928
   id_fonte = "871213"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Maksym Tsymbalyuk"
@@ -4757,6 +5172,7 @@ padrao = "liso"
   pot = 46
   valor = 113928
   id_fonte = "1167866"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Oliwier Pławiński"
@@ -4766,6 +5182,7 @@ padrao = "liso"
   pot = 44
   valor = 113928
   id_fonte = "1195427"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "GKS Katowice"
@@ -4785,6 +5202,7 @@ padrao = "liso"
   minutos = 765
   gols = 1
   id_fonte = "627717"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mateusz Kowalczyk"
@@ -4797,6 +5215,7 @@ padrao = "liso"
   minutos = 531
   gols = 1
   id_fonte = "919469"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Rafał Strączek"
@@ -4808,6 +5227,7 @@ padrao = "liso"
   partidas = 27
   minutos = 2400
   id_fonte = "447343"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Bartosz Wolski"
@@ -4819,6 +5239,7 @@ padrao = "liso"
   partidas = 9
   minutos = 851
   id_fonte = "272537"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Erik Jirka"
@@ -4831,6 +5252,7 @@ padrao = "liso"
   minutos = 602
   gols = 2
   id_fonte = "339693"
+  nacionalidade = "Eslováquia"
 
   [[clubes.jogadores]]
   nome = "Bartosz Nowak"
@@ -4843,6 +5265,7 @@ padrao = "liso"
   minutos = 1049
   gols = 2
   id_fonte = "261085"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Damian Rasak"
@@ -4854,6 +5277,7 @@ padrao = "liso"
   partidas = 9
   minutos = 824
   id_fonte = "255910"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Eman Marković"
@@ -4866,6 +5290,7 @@ padrao = "liso"
   minutos = 597
   gols = 1
   id_fonte = "374321"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Lukas Klemenz"
@@ -4878,6 +5303,7 @@ padrao = "liso"
   minutos = 891
   gols = 1
   id_fonte = "237334"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Ilya Shkurin"
@@ -4890,6 +5316,7 @@ padrao = "liso"
   minutos = 880
   gols = 8
   id_fonte = "523315"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Sebastian Milewski"
@@ -4902,6 +5329,7 @@ padrao = "liso"
   minutos = 74
   gols = 1
   id_fonte = "374562"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Arkadiusz Jędrych"
@@ -4914,6 +5342,7 @@ padrao = "liso"
   minutos = 990
   gols = 3
   id_fonte = "208441"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Borja Galán"
@@ -4926,6 +5355,7 @@ padrao = "liso"
   minutos = 589
   gols = 3
   id_fonte = "221295"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Marcin Wasielewski"
@@ -4938,6 +5368,7 @@ padrao = "liso"
   minutos = 551
   gols = 2
   id_fonte = "391374"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Alan Czerwiński"
@@ -4949,6 +5380,7 @@ padrao = "liso"
   partidas = 7
   minutos = 605
   id_fonte = "240756"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Marius Olsen"
@@ -4960,6 +5392,7 @@ padrao = "liso"
   partidas = 1
   minutos = 5
   id_fonte = "792523"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Jesse Bosch"
@@ -4971,6 +5404,7 @@ padrao = "liso"
   partidas = 1
   minutos = 73
   id_fonte = "524043"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Mateusz Wdowiak"
@@ -4983,6 +5417,7 @@ padrao = "liso"
   minutos = 403
   gols = 2
   id_fonte = "295495"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Adam Zrelak"
@@ -4995,6 +5430,7 @@ padrao = "liso"
   minutos = 192
   gols = 1
   id_fonte = "261155"
+  nacionalidade = "Eslováquia"
 
   [[clubes.jogadores]]
   nome = "Gabriel Kobylak"
@@ -5006,6 +5442,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1080
   id_fonte = "559998"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Aleksander Paluszek"
@@ -5017,6 +5454,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "605746"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Wojciech Monica"
@@ -5026,6 +5464,7 @@ padrao = "liso"
   pot = 49
   valor = 110000
   id_fonte = "1570129"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Kacper Łukasiak"
@@ -5037,6 +5476,7 @@ padrao = "liso"
   partidas = 7
   minutos = 611
   id_fonte = "694428"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Marcel Wędrychowski"
@@ -5049,6 +5489,7 @@ padrao = "liso"
   minutos = 237
   gols = 2
   id_fonte = "554975"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Maciej Kikolski"
@@ -5058,6 +5499,7 @@ padrao = "liso"
   pot = 56
   valor = 300000
   id_fonte = "807782"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Szymon Bartlewicz"
@@ -5070,6 +5512,7 @@ padrao = "liso"
   minutos = 292
   gols = 1
   id_fonte = "1042499"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jakub Kokosiński"
@@ -5082,6 +5525,7 @@ padrao = "liso"
   minutos = 15
   gols = 1
   id_fonte = "1474819"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Wojciech Pańkowski"
@@ -5091,6 +5535,7 @@ padrao = "liso"
   pot = 49
   valor = 110000
   id_fonte = "1535382"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Radomiak Radom"
@@ -5110,6 +5555,7 @@ padrao = "liso"
   minutos = 854
   gols = 2
   id_fonte = "613437"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Filip Majchrowicz"
@@ -5121,6 +5567,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "528402"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Luquinhas"
@@ -5133,6 +5580,7 @@ padrao = "liso"
   minutos = 829
   gols = 1
   id_fonte = "402825"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Adrián Diéguez"
@@ -5145,6 +5593,7 @@ padrao = "liso"
   minutos = 314
   gols = 1
   id_fonte = "355335"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Conrado"
@@ -5156,6 +5605,7 @@ padrao = "liso"
   partidas = 5
   minutos = 406
   id_fonte = "514674"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Steve Kingue"
@@ -5168,6 +5618,7 @@ padrao = "liso"
   minutos = 2466
   gols = 1
   id_fonte = "604293"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Jan Grzesik"
@@ -5180,6 +5631,7 @@ padrao = "liso"
   minutos = 900
   gols = 1
   id_fonte = "264278"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Anastasios Donis"
@@ -5189,6 +5641,7 @@ padrao = "liso"
   pot = 55
   valor = 500000
   id_fonte = "243606"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Christos Donis"
@@ -5200,6 +5653,7 @@ padrao = "liso"
   partidas = 6
   minutos = 553
   id_fonte = "212432"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Roberto Alves"
@@ -5212,6 +5666,7 @@ padrao = "liso"
   minutos = 105
   gols = 1
   id_fonte = "249983"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Rafał Wolski"
@@ -5224,6 +5679,7 @@ padrao = "liso"
   minutos = 688
   gols = 3
   id_fonte = "176514"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Ché Nunnely"
@@ -5235,6 +5691,7 @@ padrao = "liso"
   partidas = 4
   minutos = 344
   id_fonte = "326030"
+  nacionalidade = "Suriname"
 
   [[clubes.jogadores]]
   nome = "Elves Baldé"
@@ -5247,6 +5704,7 @@ padrao = "liso"
   minutos = 20
   gols = 5
   id_fonte = "374987"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Ibrahima Camará"
@@ -5259,6 +5717,7 @@ padrao = "liso"
   minutos = 520
   gols = 1
   id_fonte = "595012"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Kryspin Szcześniak"
@@ -5270,6 +5729,7 @@ padrao = "liso"
   partidas = 10
   minutos = 900
   id_fonte = "549312"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Romário Baró"
@@ -5282,6 +5742,7 @@ padrao = "liso"
   minutos = 176
   gols = 2
   id_fonte = "375383"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Ronaldo Lumungo"
@@ -5294,6 +5755,7 @@ padrao = "liso"
   minutos = 577
   gols = 1
   id_fonte = "836182"
+  nacionalidade = "São Tomé and Príncipe"
 
   [[clubes.jogadores]]
   nome = "Abdoul Tapsoba"
@@ -5306,6 +5768,7 @@ padrao = "liso"
   minutos = 418
   gols = 6
   id_fonte = "640735"
+  nacionalidade = "Burkina Faso"
 
   [[clubes.jogadores]]
   nome = "Mateusz Cichocki"
@@ -5317,6 +5780,7 @@ padrao = "liso"
   partidas = 4
   minutos = 391
   id_fonte = "236235"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Bartłomiej Gradecki"
@@ -5328,6 +5792,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "520503"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Guilherme Luiz"
@@ -5340,6 +5805,7 @@ padrao = "liso"
   minutos = 300
   gols = 1
   id_fonte = "1116387"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Filip Koperski"
@@ -5351,6 +5817,7 @@ padrao = "liso"
   partidas = 6
   minutos = 496
   id_fonte = "825583"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Fernand Goure"
@@ -5362,6 +5829,7 @@ padrao = "liso"
   partidas = 4
   minutos = 336
   id_fonte = "858772"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Kacper Karasek"
@@ -5373,6 +5841,7 @@ padrao = "liso"
   partidas = 1
   minutos = 67
   id_fonte = "623745"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Oskar Markiewicz"
@@ -5384,6 +5853,7 @@ padrao = "liso"
   partidas = 1
   minutos = 13
   id_fonte = "1520380"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Adam Żabicki"
@@ -5395,6 +5865,7 @@ padrao = "liso"
   partidas = 1
   minutos = 6
   id_fonte = "1508263"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Cezary Wołowiec"
@@ -5404,6 +5875,7 @@ padrao = "liso"
   pot = 50
   valor = 128906
   id_fonte = "1567686"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Manu"
@@ -5415,6 +5887,7 @@ padrao = "liso"
   partidas = 1
   minutos = 104
   id_fonte = "1152644"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Nikolas Dohojda"
@@ -5424,6 +5897,7 @@ padrao = "liso"
   pot = 47
   valor = 128906
   id_fonte = "1115988"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Ruan Índio"
@@ -5433,6 +5907,7 @@ padrao = "liso"
   pot = 47
   valor = 128906
   id_fonte = "1091609"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Szymon Kilianek"
@@ -5442,6 +5917,7 @@ padrao = "liso"
   pot = 49
   valor = 128906
   id_fonte = "1165522"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Wiktor Koptas"
@@ -5451,6 +5927,7 @@ padrao = "liso"
   pot = 42
   valor = 25000
   id_fonte = "790524"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Slask Wroclaw"
@@ -5469,6 +5946,7 @@ padrao = "liso"
   partidas = 3
   minutos = 282
   id_fonte = "225873"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jan Jurcec"
@@ -5480,6 +5958,7 @@ padrao = "liso"
   partidas = 1
   minutos = 111
   id_fonte = "672616"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ieltsin Camões"
@@ -5491,6 +5970,7 @@ padrao = "liso"
   partidas = 2
   minutos = 158
   id_fonte = "744903"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Lamine Ba"
@@ -5502,6 +5982,7 @@ padrao = "liso"
   partidas = 8
   minutos = 712
   id_fonte = "353374"
+  nacionalidade = "Mauritânia"
 
   [[clubes.jogadores]]
   nome = "Grzegorz Tomasiewicz"
@@ -5513,6 +5994,7 @@ padrao = "liso"
   partidas = 7
   minutos = 617
   id_fonte = "240458"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Karol Niemczycki"
@@ -5524,6 +6006,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "521634"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Malaly Dembélé"
@@ -5536,6 +6019,7 @@ padrao = "liso"
   minutos = 574
   gols = 1
   id_fonte = "508940"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Michał Mokrzycki"
@@ -5548,6 +6032,7 @@ padrao = "liso"
   minutos = 95
   gols = 1
   id_fonte = "386230"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Michał Szromnik"
@@ -5559,6 +6044,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "181135"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Yegor Matsenko"
@@ -5571,6 +6057,7 @@ padrao = "liso"
   minutos = 891
   gols = 1
   id_fonte = "699118"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Alex Timossi Andersson"
@@ -5582,6 +6069,7 @@ padrao = "liso"
   partidas = 6
   minutos = 523
   id_fonte = "454628"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mariusz Malec"
@@ -5594,6 +6082,7 @@ padrao = "liso"
   minutos = 605
   gols = 1
   id_fonte = "331871"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Patryk Sokołowski"
@@ -5606,6 +6095,7 @@ padrao = "liso"
   minutos = 1827
   gols = 1
   id_fonte = "284871"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jorge Yriarte"
@@ -5617,6 +6107,7 @@ padrao = "liso"
   partidas = 5
   minutos = 482
   id_fonte = "486834"
+  nacionalidade = "Venezuela"
 
   [[clubes.jogadores]]
   nome = "Marc Llinares"
@@ -5629,6 +6120,7 @@ padrao = "liso"
   minutos = 819
   gols = 2
   id_fonte = "740952"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Piotr Samiec-Talar"
@@ -5641,6 +6133,7 @@ padrao = "liso"
   minutos = 717
   gols = 5
   id_fonte = "598448"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Irodotos Christodoulou"
@@ -5652,6 +6145,7 @@ padrao = "liso"
   partidas = 5
   minutos = 438
   id_fonte = "636760"
+  nacionalidade = "Chipre"
 
   [[clubes.jogadores]]
   nome = "Przemysław Banaszak"
@@ -5664,6 +6158,7 @@ padrao = "liso"
   minutos = 483
   gols = 2
   id_fonte = "447367"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Eniss Shabani"
@@ -5676,6 +6171,7 @@ padrao = "liso"
   minutos = 339
   gols = 1
   id_fonte = "663189"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Luka Marjanac"
@@ -5688,6 +6184,7 @@ padrao = "liso"
   minutos = 600
   gols = 1
   id_fonte = "583024"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Przemyslaw Mazan"
@@ -5699,6 +6196,7 @@ padrao = "liso"
   partidas = 1
   minutos = 9
   id_fonte = "1334172"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Marko Dijakovic"
@@ -5711,6 +6209,7 @@ padrao = "liso"
   minutos = 799
   gols = 1
   id_fonte = "502981"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Karol Borys"
@@ -5720,6 +6219,7 @@ padrao = "liso"
   pot = 55
   valor = 600000
   id_fonte = "890272"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Adam Ciućka"
@@ -5732,6 +6232,7 @@ padrao = "liso"
   minutos = 60
   gols = 1
   id_fonte = "1212046"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Adrian Żulewski"
@@ -5743,6 +6244,7 @@ padrao = "liso"
   partidas = 1
   minutos = 3
   id_fonte = "1297238"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Dominik Klint"
@@ -5752,6 +6254,7 @@ padrao = "liso"
   pot = 47
   valor = 82500
   id_fonte = "1301689"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Dominik Szala"
@@ -5763,6 +6266,7 @@ padrao = "liso"
   partidas = 1
   minutos = 8
   id_fonte = "1048756"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Dorian Markowski"
@@ -5774,6 +6278,7 @@ padrao = "liso"
   partidas = 1
   minutos = 128
   id_fonte = "1146124"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Hubert Śliczniak"
@@ -5783,6 +6288,7 @@ padrao = "liso"
   pot = 48
   valor = 82500
   id_fonte = "1019689"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Maksymilian Stangret"
@@ -5794,6 +6300,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "1002309"
+  nacionalidade = "Polônia"
 
 [[clubes]]
 nome = "Piast Gliwice KS"
@@ -5810,6 +6317,7 @@ padrao = "liso"
   pot = 60
   valor = 1200000
   id_fonte = "371436"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Domen Gril"
@@ -5821,6 +6329,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "487603"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Juande Rivas"
@@ -5833,6 +6342,7 @@ padrao = "liso"
   minutos = 810
   gols = 2
   id_fonte = "465317"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Frantisek Plach"
@@ -5844,6 +6354,7 @@ padrao = "liso"
   partidas = 25
   minutos = 2250
   id_fonte = "404345"
+  nacionalidade = "Eslováquia"
 
   [[clubes.jogadores]]
   nome = "Ema Twumasi"
@@ -5856,6 +6367,7 @@ padrao = "liso"
   minutos = 535
   gols = 1
   id_fonte = "562391"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Jakub Czerwiński"
@@ -5868,6 +6380,7 @@ padrao = "liso"
   minutos = 610
   gols = 1
   id_fonte = "143282"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Hugo Vallejo"
@@ -5880,6 +6393,7 @@ padrao = "liso"
   minutos = 722
   gols = 3
   id_fonte = "628301"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Jakub Lewicki"
@@ -5891,6 +6405,7 @@ padrao = "liso"
   partidas = 8
   minutos = 725
   id_fonte = "929423"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Leandro Sanca"
@@ -5903,6 +6418,7 @@ padrao = "liso"
   minutos = 548
   gols = 4
   id_fonte = "539154"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Quentin Boisgard"
@@ -5915,6 +6431,7 @@ padrao = "liso"
   minutos = 591
   gols = 2
   id_fonte = "412671"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Jakub Łabojko"
@@ -5927,6 +6444,7 @@ padrao = "liso"
   minutos = 772
   gols = 2
   id_fonte = "387529"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Jason Lokilo"
@@ -5939,6 +6457,7 @@ padrao = "liso"
   minutos = 230
   gols = 1
   id_fonte = "325200"
+  nacionalidade = "RD do Congo"
 
   [[clubes.jogadores]]
   nome = "Samuel Ntamack"
@@ -5951,6 +6470,7 @@ padrao = "liso"
   minutos = 672
   gols = 2
   id_fonte = "796892"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Jorge Félix"
@@ -5963,6 +6483,7 @@ padrao = "liso"
   minutos = 207
   gols = 1
   id_fonte = "251930"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Andreas Katsantonis"
@@ -5975,6 +6496,7 @@ padrao = "liso"
   minutos = 228
   gols = 1
   id_fonte = "470248"
+  nacionalidade = "Chipre"
 
   [[clubes.jogadores]]
   nome = "Oskar Leśniak"
@@ -5986,6 +6508,7 @@ padrao = "liso"
   partidas = 7
   minutos = 590
   id_fonte = "1032923"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Ivan Lima"
@@ -5997,6 +6520,7 @@ padrao = "liso"
   partidas = 6
   minutos = 503
   id_fonte = "931416"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Filip Borowski"
@@ -6009,6 +6533,7 @@ padrao = "liso"
   minutos = 410
   gols = 1
   id_fonte = "672287"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Elton Fikaj"
@@ -6020,6 +6545,7 @@ padrao = "liso"
   partidas = 2
   minutos = 159
   id_fonte = "937168"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Jakub Grelich"
@@ -6029,6 +6555,7 @@ padrao = "liso"
   pot = 44
   valor = 37950
   id_fonte = "1510054"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Levis Pitan"
@@ -6040,6 +6567,7 @@ padrao = "liso"
   partidas = 1
   minutos = 97
   id_fonte = "967336"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Maciej Kucharski"
@@ -6052,6 +6580,7 @@ padrao = "liso"
   minutos = 82
   gols = 1
   id_fonte = "1209576"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Marcel Mendes-Dudziński"
@@ -6063,6 +6592,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "717910"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Oliwier Maziarz"
@@ -6075,6 +6605,7 @@ padrao = "liso"
   minutos = 110
   gols = 1
   id_fonte = "1257586"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Szczepan Mucha"
@@ -6087,4 +6618,5 @@ padrao = "liso"
   minutos = 220
   gols = 1
   id_fonte = "726397"
+  nacionalidade = "Polônia"
 

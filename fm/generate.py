@@ -19,6 +19,7 @@ from fm.financas import caixa_inicial
 from fm.model import Club, League, Player, World, grupo_posicao
 from fm.names import CLUB_PATTERNS, CLUB_ROOTS, FIRST_NAMES, NICKNAMES, SURNAMES
 from fm.pack import PackClub, load_pack
+from fm.paises import pais_da_liga
 from fm.rng import Streams
 
 # Salario mensal = valor de mercado / isto (~30% do valor ao ano). O Transfermarkt nao
@@ -161,7 +162,8 @@ def _make_player(pid, rng, country, season_year, overall, position, age, club_id
         potential = overall
     value = _market_value(overall, potential, age)
     return Player(
-        id=pid, name=str(name), nationality=country, birth_year=season_year - age,
+        id=pid, name=str(name), nationality=pais_da_liga(country),
+        birth_year=season_year - age,
         position=position, position_detail=detalhe,
         foot="E" if rng.random() < 0.22 else "D",
         height_cm=int(rng.normal(190 if position == "GK" else 180, 6)),
@@ -233,6 +235,8 @@ def _build_squad(world, club, pack_club, strength, rng, next_id, country, season
                                j.pos or "MF", int(idade), club.id, name=j.nome)
         if j.pot is not None:
             jogador.potential = max(int(j.pot), ovr)
+        if j.nacionalidade:
+            jogador.nationality = j.nacionalidade
         if j.valor is not None:
             jogador.market_value = int(j.valor)
             jogador.wage = int(j.valor / SALARIO_SOBRE_VALOR)

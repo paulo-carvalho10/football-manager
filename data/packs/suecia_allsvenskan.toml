@@ -30,6 +30,7 @@ padrao = "liso"
   minutos = 2938
   gols = 2
   id_fonte = "688042"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Victor Eriksson"
@@ -42,6 +43,7 @@ padrao = "liso"
   minutos = 2377
   gols = 2
   id_fonte = "592084"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Victor Lind"
@@ -54,6 +56,7 @@ padrao = "liso"
   minutos = 1894
   gols = 9
   id_fonte = "590835"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Tesfaldet Tekie"
@@ -66,6 +69,7 @@ padrao = "liso"
   minutos = 934
   gols = 1
   id_fonte = "283185"
+  nacionalidade = "Eritreia"
 
   [[clubes.jogadores]]
   nome = "Hampus Skoglund"
@@ -77,6 +81,7 @@ padrao = "liso"
   partidas = 30
   minutos = 2662
   id_fonte = "1138101"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Montader Madjed"
@@ -89,6 +94,7 @@ padrao = "liso"
   minutos = 2384
   gols = 7
   id_fonte = "850132"
+  nacionalidade = "Iraque"
 
   [[clubes.jogadores]]
   nome = "Warner Hahn"
@@ -100,6 +106,7 @@ padrao = "liso"
   partidas = 33
   minutos = 2940
   id_fonte = "111180"
+  nacionalidade = "Suriname"
 
   [[clubes.jogadores]]
   nome = "Frank Junior Adjei"
@@ -112,6 +119,7 @@ padrao = "liso"
   minutos = 1544
   gols = 3
   id_fonte = "952210"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Frederik Winther"
@@ -124,6 +132,7 @@ padrao = "liso"
   minutos = 2897
   gols = 2
   id_fonte = "569349"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Paulos Abraham"
@@ -136,6 +145,7 @@ padrao = "liso"
   minutos = 2347
   gols = 19
   id_fonte = "579289"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Ibrahima Fofana"
@@ -148,6 +158,7 @@ padrao = "liso"
   minutos = 1439
   gols = 1
   id_fonte = "666922"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Nahir Besara"
@@ -160,6 +171,7 @@ padrao = "liso"
   minutos = 2031
   gols = 11
   id_fonte = "81755"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Noah Persson"
@@ -172,6 +184,7 @@ padrao = "liso"
   minutos = 1895
   gols = 2
   id_fonte = "867674"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Oscar Johansson Schellhas"
@@ -184,6 +197,7 @@ padrao = "liso"
   minutos = 1526
   gols = 1
   id_fonte = "270855"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Felix Jakobsson"
@@ -195,6 +209,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "390038"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Amin Boudri"
@@ -206,6 +221,7 @@ padrao = "liso"
   partidas = 3
   minutos = 301
   id_fonte = "911482"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Oliver Jordan Hagen"
@@ -217,6 +233,7 @@ padrao = "liso"
   partidas = 2
   minutos = 200
   id_fonte = "923531"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Waylon Renecke"
@@ -229,6 +246,7 @@ padrao = "liso"
   minutos = 166
   gols = 1
   id_fonte = "933725"
+  nacionalidade = "África do Sul"
 
   [[clubes.jogadores]]
   nome = "Oscar Steinke Brånby"
@@ -240,6 +258,7 @@ padrao = "liso"
   partidas = 3
   minutos = 250
   id_fonte = "1016301"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Essayas Lwampindy-Bofua"
@@ -249,6 +268,7 @@ padrao = "liso"
   pot = 54
   valor = 118125
   id_fonte = "944817"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Björn Hedlöf"
@@ -260,6 +280,7 @@ padrao = "liso"
   partidas = 2
   minutos = 26
   id_fonte = "1170094"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Suwaibou Kebbeh"
@@ -271,6 +292,7 @@ padrao = "liso"
   partidas = 1
   minutos = 48
   id_fonte = "1433011"
+  nacionalidade = "Gâmbia"
 
 [[clubes]]
 nome = "Djurgårdens IF"
@@ -289,6 +311,7 @@ padrao = "liso"
   partidas = 26
   minutos = 2348
   id_fonte = "1018035"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Bo Hegland"
@@ -301,6 +324,7 @@ padrao = "liso"
   minutos = 2126
   gols = 9
   id_fonte = "912072"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Kristian Strømland Lien"
@@ -313,6 +337,7 @@ padrao = "liso"
   minutos = 2186
   gols = 18
   id_fonte = "667378"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Adam Ståhl"
@@ -325,6 +350,7 @@ padrao = "liso"
   minutos = 1142
   gols = 2
   id_fonte = "223920"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Jeppe Okkels"
@@ -337,6 +363,7 @@ padrao = "liso"
   minutos = 1110
   gols = 4
   id_fonte = "345591"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Miro Tenho"
@@ -349,6 +376,7 @@ padrao = "liso"
   minutos = 2258
   gols = 2
   id_fonte = "273064"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Jacob Rinne"
@@ -360,6 +388,7 @@ padrao = "liso"
   partidas = 23
   minutos = 2070
   id_fonte = "210528"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jacob Une"
@@ -372,6 +401,7 @@ padrao = "liso"
   minutos = 1764
   gols = 1
   id_fonte = "197221"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Piotr Johansson"
@@ -384,6 +414,7 @@ padrao = "liso"
   minutos = 1921
   gols = 1
   id_fonte = "223861"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Daniel Stensson"
@@ -395,6 +426,7 @@ padrao = "liso"
   partidas = 7
   minutos = 638
   id_fonte = "302319"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Max Larsson"
@@ -406,6 +438,7 @@ padrao = "liso"
   partidas = 18
   minutos = 1649
   id_fonte = "963084"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Lukas Jonsson"
@@ -415,6 +448,7 @@ padrao = "liso"
   pot = 60
   valor = 200000
   id_fonte = "136601"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Patric Åslund"
@@ -427,6 +461,7 @@ padrao = "liso"
   minutos = 1749
   gols = 6
   id_fonte = "675823"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mikael Marqués"
@@ -439,6 +474,7 @@ padrao = "liso"
   minutos = 822
   gols = 1
   id_fonte = "556949"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Abdul Abdulmalik"
@@ -450,6 +486,7 @@ padrao = "liso"
   partidas = 1
   minutos = 30
   id_fonte = "741239"
+  nacionalidade = "Inglaterra"
 
   [[clubes.jogadores]]
   nome = "Alexander Andersson"
@@ -461,6 +498,7 @@ padrao = "liso"
   partidas = 3
   minutos = 10
   id_fonte = "1407851"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Oskar Fallenius"
@@ -473,6 +511,7 @@ padrao = "liso"
   minutos = 1131
   gols = 4
   id_fonte = "594556"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Peter Langhoff"
@@ -484,6 +523,7 @@ padrao = "liso"
   partidas = 4
   minutos = 346
   id_fonte = "925827"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Sander Ringberg"
@@ -495,6 +535,7 @@ padrao = "liso"
   partidas = 1
   minutos = 8
   id_fonte = "474160"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Charlie Rosenqvist"
@@ -506,6 +547,7 @@ padrao = "liso"
   partidas = 1
   minutos = 81
   id_fonte = "1376024"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Christos Almyras"
@@ -517,6 +559,7 @@ padrao = "liso"
   partidas = 2
   minutos = 198
   id_fonte = "951296"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Alexander Johansson"
@@ -528,6 +571,7 @@ padrao = "liso"
   partidas = 3
   minutos = 24
   id_fonte = "1271029"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Angelo Agbejoye"
@@ -537,6 +581,7 @@ padrao = "liso"
   pot = 54
   valor = 222200
   id_fonte = "1599665"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Daryl Tschoumy-Nana"
@@ -546,6 +591,7 @@ padrao = "liso"
   pot = 56
   valor = 222200
   id_fonte = "1162486"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Lucca Gentil"
@@ -555,6 +601,7 @@ padrao = "liso"
   pot = 56
   valor = 222200
   id_fonte = "1223868"
+  nacionalidade = "Brasil"
 
 [[clubes]]
 nome = "Malmö FF"
@@ -574,6 +621,7 @@ padrao = "liso"
   minutos = 2664
   gols = 2
   id_fonte = "698742"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Stian Gregersen"
@@ -585,6 +633,7 @@ padrao = "liso"
   partidas = 4
   minutos = 325
   id_fonte = "230140"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Sead Haksabanovic"
@@ -597,6 +646,7 @@ padrao = "liso"
   minutos = 2746
   gols = 8
   id_fonte = "349300"
+  nacionalidade = "Montenegro"
 
   [[clubes.jogadores]]
   nome = "Otto Rosengren"
@@ -609,6 +659,7 @@ padrao = "liso"
   minutos = 2655
   gols = 3
   id_fonte = "667249"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Robin Olsen"
@@ -620,6 +671,7 @@ padrao = "liso"
   partidas = 28
   minutos = 2475
   id_fonte = "75458"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Pontus Jansson"
@@ -632,6 +684,7 @@ padrao = "liso"
   minutos = 1881
   gols = 3
   id_fonte = "125314"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jens Stryger"
@@ -644,6 +697,7 @@ padrao = "liso"
   minutos = 2878
   gols = 1
   id_fonte = "69646"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Diego García"
@@ -656,6 +710,7 @@ padrao = "liso"
   minutos = 308
   gols = 3
   id_fonte = "852727"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Theodor Lundbergh"
@@ -667,6 +722,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1544
   id_fonte = "1457761"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Yanis Karabelyov"
@@ -678,6 +734,7 @@ padrao = "liso"
   partidas = 7
   minutos = 621
   id_fonte = "256003"
+  nacionalidade = "Bulgária"
 
   [[clubes.jogadores]]
   nome = "Anders Christiansen"
@@ -690,6 +747,7 @@ padrao = "liso"
   minutos = 628
   gols = 2
   id_fonte = "77259"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Warren Kamanzi"
@@ -699,6 +757,7 @@ padrao = "liso"
   pot = 64
   valor = 1200000
   id_fonte = "794758"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Adrian Skogmar"
@@ -711,6 +770,7 @@ padrao = "liso"
   minutos = 2300
   gols = 4
   id_fonte = "1150261"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Kenan Busuladzic"
@@ -723,6 +783,7 @@ padrao = "liso"
   minutos = 1945
   gols = 2
   id_fonte = "1044284"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Andrej Djuric"
@@ -735,6 +796,7 @@ padrao = "liso"
   minutos = 2163
   gols = 1
   id_fonte = "706560"
+  nacionalidade = "Montenegro"
 
   [[clubes.jogadores]]
   nome = "Johan Dahlin"
@@ -746,6 +808,7 @@ padrao = "liso"
   partidas = 6
   minutos = 585
   id_fonte = "41653"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mayckel Lahdo"
@@ -757,6 +820,7 @@ padrao = "liso"
   partidas = 1
   minutos = 70
   id_fonte = "795274"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Bleon Kurtulus"
@@ -769,6 +833,7 @@ padrao = "liso"
   minutos = 513
   gols = 1
   id_fonte = "1069508"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Emmanuel Ekong"
@@ -781,6 +846,7 @@ padrao = "liso"
   minutos = 638
   gols = 2
   id_fonte = "603891"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Oscar Sjöstrand"
@@ -793,6 +859,7 @@ padrao = "liso"
   minutos = 745
   gols = 1
   id_fonte = "1126111"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Daníel Gudjohnsen"
@@ -805,6 +872,7 @@ padrao = "liso"
   minutos = 1061
   gols = 1
   id_fonte = "927094"
+  nacionalidade = "Islândia"
 
   [[clubes.jogadores]]
   nome = "Jovan Milosavljevic"
@@ -817,6 +885,7 @@ padrao = "liso"
   minutos = 277
   gols = 2
   id_fonte = "946045"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Noah Åstrand John"
@@ -829,6 +898,7 @@ padrao = "liso"
   minutos = 515
   gols = 1
   id_fonte = "861568"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Malte Frejd Pålsson"
@@ -840,6 +910,7 @@ padrao = "liso"
   partidas = 9
   minutos = 766
   id_fonte = "1026247"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Anton Höög"
@@ -852,6 +923,7 @@ padrao = "liso"
   minutos = 700
   gols = 1
   id_fonte = "1331431"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "William Nieroth Lundgren"
@@ -863,6 +935,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1016314"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Antonio Palac"
@@ -874,6 +947,7 @@ padrao = "liso"
   partidas = 1
   minutos = 16
   id_fonte = "1146607"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Gentian Lajqi"
@@ -883,6 +957,7 @@ padrao = "liso"
   pot = 52
   valor = 124193
   id_fonte = "1069511"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Isaac Assibu"
@@ -894,6 +969,7 @@ padrao = "liso"
   partidas = 2
   minutos = 195
   id_fonte = "1566526"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Omar Krajina"
@@ -903,6 +979,7 @@ padrao = "liso"
   pot = 52
   valor = 124193
   id_fonte = "1421668"
+  nacionalidade = "Montenegro"
 
   [[clubes.jogadores]]
   nome = "Viggo Jeppsson"
@@ -914,6 +991,7 @@ padrao = "liso"
   partidas = 4
   minutos = 29
   id_fonte = "1055216"
+  nacionalidade = "Suécia"
 
 [[clubes]]
 nome = "AIK"
@@ -933,6 +1011,7 @@ padrao = "liso"
   minutos = 2327
   gols = 10
   id_fonte = "418557"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Mads Thychosen"
@@ -945,6 +1024,7 @@ padrao = "liso"
   minutos = 1667
   gols = 1
   id_fonte = "281252"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Hervé Matthys"
@@ -956,6 +1036,7 @@ padrao = "liso"
   partidas = 9
   minutos = 828
   id_fonte = "203558"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Axel Kouame"
@@ -968,6 +1049,7 @@ padrao = "liso"
   minutos = 988
   gols = 3
   id_fonte = "1167022"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Dino Besirovic"
@@ -980,6 +1062,7 @@ padrao = "liso"
   minutos = 1922
   gols = 3
   id_fonte = "361772"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Diogo Tomas"
@@ -991,6 +1074,7 @@ padrao = "liso"
   partidas = 1
   minutos = 32
   id_fonte = "354476"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Ibrahim Cissé"
@@ -1003,6 +1087,7 @@ padrao = "liso"
   minutos = 900
   gols = 1
   id_fonte = "696598"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Kalle Joelsson"
@@ -1014,6 +1099,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "366458"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Kevin Filling"
@@ -1026,6 +1112,7 @@ padrao = "liso"
   minutos = 1197
   gols = 3
   id_fonte = "1172431"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Kristoffer Nordfeldt"
@@ -1037,6 +1124,7 @@ padrao = "liso"
   partidas = 28
   minutos = 2520
   id_fonte = "75890"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Sebastian Hausner"
@@ -1048,6 +1136,7 @@ padrao = "liso"
   partidas = 1
   minutos = 98
   id_fonte = "425808"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Amel Mujanic"
@@ -1060,6 +1149,7 @@ padrao = "liso"
   minutos = 1113
   gols = 1
   id_fonte = "536697"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Eskil Edh"
@@ -1071,6 +1161,7 @@ padrao = "liso"
   partidas = 6
   minutos = 508
   id_fonte = "804936"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Linus Carlstrand"
@@ -1083,6 +1174,7 @@ padrao = "liso"
   minutos = 612
   gols = 5
   id_fonte = "1016056"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Lucas Assadi"
@@ -1094,6 +1186,7 @@ padrao = "liso"
   partidas = 3
   minutos = 264
   id_fonte = "718213"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Lukas Bergquist"
@@ -1105,6 +1198,7 @@ padrao = "liso"
   partidas = 9
   minutos = 853
   id_fonte = "804954"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Martin Ellingsen"
@@ -1114,6 +1208,7 @@ padrao = "liso"
   pot = 60
   valor = 225000
   id_fonte = "263718"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Sotirios Papagiannopoulos"
@@ -1125,6 +1220,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1049
   id_fonte = "97616"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Abdihakim Ali"
@@ -1136,6 +1232,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1227
   id_fonte = "963314"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Taha Ayari"
@@ -1148,6 +1245,7 @@ padrao = "liso"
   minutos = 933
   gols = 1
   id_fonte = "920310"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Stanley Wilson Omondi"
@@ -1159,6 +1257,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1216
   id_fonte = "1311107"
+  nacionalidade = "Quênia"
 
   [[clubes.jogadores]]
   nome = "Charlie Pavey"
@@ -1170,6 +1269,7 @@ padrao = "liso"
   partidas = 7
   minutos = 610
   id_fonte = "1183410"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Wilmer Olofsson"
@@ -1181,6 +1281,7 @@ padrao = "liso"
   partidas = 6
   minutos = 557
   id_fonte = "975139"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Yannick Geiger"
@@ -1193,6 +1294,7 @@ padrao = "liso"
   minutos = 863
   gols = 1
   id_fonte = "1421514"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Fredrik Nissen"
@@ -1204,6 +1306,7 @@ padrao = "liso"
   partidas = 4
   minutos = 339
   id_fonte = "920309"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Sixten Gustafsson"
@@ -1216,6 +1319,7 @@ padrao = "liso"
   minutos = 313
   gols = 2
   id_fonte = "1146598"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Adrián Helm"
@@ -1228,6 +1332,7 @@ padrao = "liso"
   minutos = 146
   gols = 1
   id_fonte = "964105"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Andreas Redkin"
@@ -1237,6 +1342,7 @@ padrao = "liso"
   pot = 56
   valor = 200000
   id_fonte = "1058791"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Linus Järeteg"
@@ -1248,6 +1354,7 @@ padrao = "liso"
   partidas = 2
   minutos = 143
   id_fonte = "1232069"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Nana-Kofi Donkor"
@@ -1257,6 +1364,7 @@ padrao = "liso"
   pot = 54
   valor = 150000
   id_fonte = "1434779"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Nikolaj Staykov"
@@ -1268,6 +1376,7 @@ padrao = "liso"
   partidas = 2
   minutos = 11
   id_fonte = "1069504"
+  nacionalidade = "Suécia"
 
 [[clubes]]
 nome = "IK Sirius"
@@ -1287,6 +1396,7 @@ padrao = "liso"
   minutos = 2369
   gols = 15
   id_fonte = "673069"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Melker Heier"
@@ -1299,6 +1409,7 @@ padrao = "liso"
   minutos = 2375
   gols = 1
   id_fonte = "783178"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Marcus Lindberg"
@@ -1311,6 +1422,7 @@ padrao = "liso"
   minutos = 2558
   gols = 3
   id_fonte = "542415"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Oscar Krusnell"
@@ -1322,6 +1434,7 @@ padrao = "liso"
   partidas = 26
   minutos = 2357
   id_fonte = "344693"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Henrik Rönnlöf Castegren"
@@ -1334,6 +1447,7 @@ padrao = "liso"
   minutos = 2280
   gols = 3
   id_fonte = "253159"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Neo Jönsson"
@@ -1346,6 +1460,7 @@ padrao = "liso"
   minutos = 994
   gols = 5
   id_fonte = "1069503"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "David Celic"
@@ -1357,6 +1472,7 @@ padrao = "liso"
   partidas = 28
   minutos = 2489
   id_fonte = "906924"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Joakim Persson"
@@ -1369,6 +1485,7 @@ padrao = "liso"
   minutos = 644
   gols = 1
   id_fonte = "675657"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mohamed Soumah"
@@ -1381,6 +1498,7 @@ padrao = "liso"
   minutos = 2120
   gols = 6
   id_fonte = "986760"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Simon Sandberg"
@@ -1392,6 +1510,7 @@ padrao = "liso"
   partidas = 4
   minutos = 321
   id_fonte = "214621"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Tobias Anker"
@@ -1404,6 +1523,7 @@ padrao = "liso"
   minutos = 2268
   gols = 4
   id_fonte = "464597"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Victor Svensson"
@@ -1416,6 +1536,7 @@ padrao = "liso"
   minutos = 1654
   gols = 4
   id_fonte = "1004274"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Ismael Diawara"
@@ -1427,6 +1548,7 @@ padrao = "liso"
   partidas = 1
   minutos = 91
   id_fonte = "322107"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Adam Wikman"
@@ -1438,6 +1560,7 @@ padrao = "liso"
   partidas = 1
   minutos = 107
   id_fonte = "869885"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jesper Uneken"
@@ -1450,6 +1573,7 @@ padrao = "liso"
   minutos = 282
   gols = 1
   id_fonte = "746988"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Victor Ekström"
@@ -1462,6 +1586,7 @@ padrao = "liso"
   minutos = 688
   gols = 1
   id_fonte = "1104139"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Otso Liimatta"
@@ -1474,6 +1599,7 @@ padrao = "liso"
   minutos = 59
   gols = 2
   id_fonte = "718152"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Matthias Nartey"
@@ -1485,6 +1611,7 @@ padrao = "liso"
   partidas = 6
   minutos = 501
   id_fonte = "963510"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Odera Samuel Onuchukwu Adindu"
@@ -1497,6 +1624,7 @@ padrao = "liso"
   minutos = 767
   gols = 2
   id_fonte = "1364195"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Zalán Vancsa"
@@ -1508,6 +1636,7 @@ padrao = "liso"
   partidas = 3
   minutos = 241
   id_fonte = "721666"
+  nacionalidade = "Hungria"
 
   [[clubes.jogadores]]
   nome = "Charlie Nildén"
@@ -1519,6 +1648,7 @@ padrao = "liso"
   partidas = 6
   minutos = 495
   id_fonte = "1072725"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Isaac Yawe Höök"
@@ -1530,6 +1660,7 @@ padrao = "liso"
   partidas = 1
   minutos = 109
   id_fonte = "1088713"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Åke Andersson"
@@ -1541,6 +1672,7 @@ padrao = "liso"
   partidas = 1
   minutos = 27
   id_fonte = "1232067"
+  nacionalidade = "Suécia"
 
 [[clubes]]
 nome = "BK Häcken"
@@ -1560,6 +1692,7 @@ padrao = "liso"
   minutos = 1849
   gols = 2
   id_fonte = "1519157"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Brice Wembangomo"
@@ -1571,6 +1704,7 @@ padrao = "liso"
   partidas = 23
   minutos = 2083
   id_fonte = "331214"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Adam Lundkvist"
@@ -1582,6 +1716,7 @@ padrao = "liso"
   partidas = 33
   minutos = 2947
   id_fonte = "225676"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Filip Helander"
@@ -1594,6 +1729,7 @@ padrao = "liso"
   minutos = 2681
   gols = 1
   id_fonte = "198067"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Julius Lindberg"
@@ -1606,6 +1742,7 @@ padrao = "liso"
   minutos = 2788
   gols = 8
   id_fonte = "728722"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Leo Väisänen"
@@ -1617,6 +1754,7 @@ padrao = "liso"
   partidas = 3
   minutos = 244
   id_fonte = "309439"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Adrian Svanbäck"
@@ -1629,6 +1767,7 @@ padrao = "liso"
   minutos = 2873
   gols = 10
   id_fonte = "1018784"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Andreas Linde"
@@ -1640,6 +1779,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1218
   id_fonte = "199221"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mads Agger"
@@ -1651,6 +1791,7 @@ padrao = "liso"
   partidas = 1
   minutos = 64
   id_fonte = "793873"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Etrit Berisha"
@@ -1662,6 +1803,7 @@ padrao = "liso"
   partidas = 20
   minutos = 1803
   id_fonte = "77825"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Gustav Lindgren"
@@ -1674,6 +1816,7 @@ padrao = "liso"
   minutos = 1893
   gols = 12
   id_fonte = "900199"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mikkel Rygaard"
@@ -1686,6 +1829,7 @@ padrao = "liso"
   minutos = 2755
   gols = 3
   id_fonte = "51349"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Simen Hestnes"
@@ -1697,6 +1841,7 @@ padrao = "liso"
   partidas = 6
   minutos = 537
   id_fonte = "370879"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Harry Hilvenius"
@@ -1709,6 +1854,7 @@ padrao = "liso"
   minutos = 1720
   gols = 1
   id_fonte = "1177723"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "David Seger"
@@ -1720,6 +1866,7 @@ padrao = "liso"
   partidas = 7
   minutos = 598
   id_fonte = "665582"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Olle Samuelsson"
@@ -1731,6 +1878,7 @@ padrao = "liso"
   partidas = 18
   minutos = 1587
   id_fonte = "944095"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "David Andersson"
@@ -1742,6 +1890,7 @@ padrao = "liso"
   partidas = 6
   minutos = 585
   id_fonte = "1125081"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Harun Ibrahim"
@@ -1753,6 +1902,7 @@ padrao = "liso"
   partidas = 2
   minutos = 214
   id_fonte = "867678"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Markus Haaland"
@@ -1764,6 +1914,7 @@ padrao = "liso"
   partidas = 1
   minutos = 73
   id_fonte = "877260"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Filip Öhman"
@@ -1775,6 +1926,7 @@ padrao = "liso"
   partidas = 1
   minutos = 126
   id_fonte = "1172422"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Ben Engdahl"
@@ -1784,6 +1936,7 @@ padrao = "liso"
   pot = 51
   valor = 125000
   id_fonte = "692608"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Christ Wawa"
@@ -1796,6 +1949,7 @@ padrao = "liso"
   minutos = 61
   gols = 1
   id_fonte = "1270792"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Bamir Sadiku"
@@ -1808,6 +1962,7 @@ padrao = "liso"
   minutos = 36
   gols = 1
   id_fonte = "1179842"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Sabri Kondo"
@@ -1817,6 +1972,7 @@ padrao = "liso"
   pot = 46
   valor = 80300
   id_fonte = "1433084"
+  nacionalidade = "Tanzânia"
 
   [[clubes.jogadores]]
   nome = "Wilson Lindberg Uhrström"
@@ -1828,6 +1984,7 @@ padrao = "liso"
   partidas = 1
   minutos = 95
   id_fonte = "1330788"
+  nacionalidade = "Suécia"
 
 [[clubes]]
 nome = "Mjällby AIF"
@@ -1846,6 +2003,7 @@ padrao = "liso"
   partidas = 22
   minutos = 1940
   id_fonte = "701224"
+  nacionalidade = "Paquistão"
 
   [[clubes.jogadores]]
   nome = "Axel Norén"
@@ -1857,6 +2015,7 @@ padrao = "liso"
   partidas = 22
   minutos = 1940
   id_fonte = "416104"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Robin Wallinder"
@@ -1868,6 +2027,7 @@ padrao = "liso"
   partidas = 25
   minutos = 2250
   id_fonte = "328003"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jesper Gustavsson"
@@ -1879,6 +2039,7 @@ padrao = "liso"
   partidas = 27
   minutos = 2397
   id_fonte = "223896"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Viktor Gustafson"
@@ -1890,6 +2051,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1566
   id_fonte = "501555"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jacob Bergström"
@@ -1902,6 +2064,7 @@ padrao = "liso"
   minutos = 2399
   gols = 13
   id_fonte = "554726"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Tony Miettinen"
@@ -1913,6 +2076,7 @@ padrao = "liso"
   partidas = 19
   minutos = 1747
   id_fonte = "579761"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Mads Enggård"
@@ -1924,6 +2088,7 @@ padrao = "liso"
   partidas = 3
   minutos = 308
   id_fonte = "752778"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Villiam Granath"
@@ -1936,6 +2101,7 @@ padrao = "liso"
   minutos = 1750
   gols = 2
   id_fonte = "501568"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Tom Pettersson"
@@ -1948,6 +2114,7 @@ padrao = "liso"
   minutos = 1112
   gols = 3
   id_fonte = "95377"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Alexander Lundin"
@@ -1959,6 +2126,7 @@ padrao = "liso"
   partidas = 2
   minutos = 210
   id_fonte = "184745"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Ali Youssef"
@@ -1971,6 +2139,7 @@ padrao = "liso"
   minutos = 479
   gols = 1
   id_fonte = "501131"
+  nacionalidade = "Tunísia"
 
   [[clubes.jogadores]]
   nome = "Ian Hoffmann"
@@ -1982,6 +2151,7 @@ padrao = "liso"
   partidas = 2
   minutos = 195
   id_fonte = "469852"
+  nacionalidade = "Estados Unidos"
 
   [[clubes.jogadores]]
   nome = "Jeppe Kjær"
@@ -1994,6 +2164,7 @@ padrao = "liso"
   minutos = 1280
   gols = 5
   id_fonte = "660979"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Timo Stavitski"
@@ -2005,6 +2176,7 @@ padrao = "liso"
   partidas = 3
   minutos = 302
   id_fonte = "363717"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Áki Samuelsen"
@@ -2017,6 +2189,7 @@ padrao = "liso"
   minutos = 1063
   gols = 2
   id_fonte = "668731"
+  nacionalidade = "Ilhas Faroe"
 
   [[clubes.jogadores]]
   nome = "Ludvig Svanberg"
@@ -2029,6 +2202,7 @@ padrao = "liso"
   minutos = 636
   gols = 1
   id_fonte = "675285"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Martin Agnarsson"
@@ -2040,6 +2214,7 @@ padrao = "liso"
   partidas = 2
   minutos = 189
   id_fonte = "668709"
+  nacionalidade = "Ilhas Faroe"
 
   [[clubes.jogadores]]
   nome = "Max Nielsen"
@@ -2051,6 +2226,7 @@ padrao = "liso"
   partidas = 8
   minutos = 708
   id_fonte = "807309"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Ludvig Tidstrand"
@@ -2062,6 +2238,7 @@ padrao = "liso"
   partidas = 8
   minutos = 739
   id_fonte = "1030933"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Romeo Arrhenius Leandersson"
@@ -2074,6 +2251,7 @@ padrao = "liso"
   minutos = 426
   gols = 1
   id_fonte = "1342148"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Sebastian Hansen"
@@ -2085,6 +2263,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "1072289"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Teo Helge"
@@ -2096,6 +2275,7 @@ padrao = "liso"
   partidas = 2
   minutos = 155
   id_fonte = "1068963"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Dani Hodzic"
@@ -2105,6 +2285,7 @@ padrao = "liso"
   pot = 51
   valor = 128491
   id_fonte = "1324494"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Måns Isaksson"
@@ -2114,6 +2295,7 @@ padrao = "liso"
   pot = 50
   valor = 128491
   id_fonte = "1069502"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Olle Lindberg"
@@ -2126,6 +2308,7 @@ padrao = "liso"
   minutos = 498
   gols = 3
   id_fonte = "1400913"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Olle Nilsson Löv"
@@ -2135,6 +2318,7 @@ padrao = "liso"
   pot = 49
   valor = 128491
   id_fonte = "1394884"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Paul Colley"
@@ -2144,6 +2328,7 @@ padrao = "liso"
   pot = 49
   valor = 128491
   id_fonte = "1595180"
+  nacionalidade = "Gâmbia"
 
   [[clubes.jogadores]]
   nome = "Villum Dalsgaard"
@@ -2155,6 +2340,7 @@ padrao = "liso"
   partidas = 2
   minutos = 42
   id_fonte = "1140556"
+  nacionalidade = "Dinamarca"
 
 [[clubes]]
 nome = "IFK Gotemburgo"
@@ -2174,6 +2360,7 @@ padrao = "liso"
   minutos = 2033
   gols = 7
   id_fonte = "329714"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "August Erlingmark"
@@ -2186,6 +2373,7 @@ padrao = "liso"
   minutos = 1854
   gols = 1
   id_fonte = "428050"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Sam Larsson"
@@ -2198,6 +2386,7 @@ padrao = "liso"
   minutos = 747
   gols = 7
   id_fonte = "159668"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Max Fenger"
@@ -2210,6 +2399,7 @@ padrao = "liso"
   minutos = 848
   gols = 1
   id_fonte = "578920"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Elis Bishesari"
@@ -2221,6 +2411,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1290
   id_fonte = "920307"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Hjörtur Hermannsson"
@@ -2233,6 +2424,7 @@ padrao = "liso"
   minutos = 656
   gols = 1
   id_fonte = "187147"
+  nacionalidade = "Islândia"
 
   [[clubes.jogadores]]
   nome = "Alexander Jallow"
@@ -2244,6 +2436,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1066
   id_fonte = "357622"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Arbnor Mucolli"
@@ -2253,6 +2446,7 @@ padrao = "liso"
   pot = 59
   valor = 800000
   id_fonte = "467232"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "David Kruse"
@@ -2265,6 +2459,7 @@ padrao = "liso"
   minutos = 2276
   gols = 2
   id_fonte = "569654"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Kolbeinn Thórdarson"
@@ -2277,6 +2472,7 @@ padrao = "liso"
   minutos = 780
   gols = 1
   id_fonte = "464447"
+  nacionalidade = "Islândia"
 
   [[clubes.jogadores]]
   nome = "Ramon Pascal Lundqvist"
@@ -2288,6 +2484,7 @@ padrao = "liso"
   partidas = 2
   minutos = 161
   id_fonte = "238084"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jonas Bager"
@@ -2300,6 +2497,7 @@ padrao = "liso"
   minutos = 1102
   gols = 2
   id_fonte = "260829"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Nino Zugelj"
@@ -2312,6 +2510,7 @@ padrao = "liso"
   minutos = 212
   gols = 1
   id_fonte = "496989"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Noah Tolf"
@@ -2324,6 +2523,7 @@ padrao = "liso"
   minutos = 1455
   gols = 1
   id_fonte = "1255754"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Adam Bergmark Wiberg"
@@ -2336,6 +2536,7 @@ padrao = "liso"
   minutos = 1629
   gols = 1
   id_fonte = "326505"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Kevin Ackermann"
@@ -2347,6 +2548,7 @@ padrao = "liso"
   partidas = 3
   minutos = 27
   id_fonte = "495438"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Felix Eriksson"
@@ -2359,6 +2561,7 @@ padrao = "liso"
   minutos = 1796
   gols = 2
   id_fonte = "931834"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Viktor Andersson"
@@ -2370,6 +2573,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1052
   id_fonte = "934722"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jonathan Rasheed"
@@ -2379,6 +2583,7 @@ padrao = "liso"
   pot = 50
   valor = 50000
   id_fonte = "204409"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Alexander Simmelhack"
@@ -2391,6 +2596,7 @@ padrao = "liso"
   minutos = 247
   gols = 2
   id_fonte = "935358"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Gabriel Elias Ersoy"
@@ -2402,6 +2608,7 @@ padrao = "liso"
   partidas = 2
   minutos = 154
   id_fonte = "1003352"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Ifeoluwa Adewale Olowoporoku"
@@ -2411,6 +2618,7 @@ padrao = "liso"
   pot = 48
   valor = 141730
   id_fonte = "1133956"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Issaka Seidu"
@@ -2422,6 +2630,7 @@ padrao = "liso"
   partidas = 2
   minutos = 176
   id_fonte = "1309800"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Lazarus Laku"
@@ -2431,6 +2640,7 @@ padrao = "liso"
   pot = 47
   valor = 141730
   id_fonte = "1134368"
+  nacionalidade = "Sudão do Sul"
 
   [[clubes.jogadores]]
   nome = "Leo Radakovic"
@@ -2442,6 +2652,7 @@ padrao = "liso"
   partidas = 1
   minutos = 74
   id_fonte = "1336073"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Tiago Coimbra"
@@ -2453,6 +2664,7 @@ padrao = "liso"
   partidas = 3
   minutos = 250
   id_fonte = "1002288"
+  nacionalidade = "Canadá"
 
 [[clubes]]
 nome = "IF Elfsborg"
@@ -2472,6 +2684,7 @@ padrao = "liso"
   minutos = 2065
   gols = 2
   id_fonte = "321158"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Arbër Zeneli"
@@ -2484,6 +2697,7 @@ padrao = "liso"
   minutos = 1425
   gols = 7
   id_fonte = "222876"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Rasmus Wikström"
@@ -2496,6 +2710,7 @@ padrao = "liso"
   minutos = 1807
   gols = 2
   id_fonte = "504243"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Isak Pettersson"
@@ -2507,6 +2722,7 @@ padrao = "liso"
   partidas = 25
   minutos = 2250
   id_fonte = "296458"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Júlíus Magnússon"
@@ -2519,6 +2735,7 @@ padrao = "liso"
   minutos = 2193
   gols = 4
   id_fonte = "316261"
+  nacionalidade = "Islândia"
 
   [[clubes.jogadores]]
   nome = "Thomas Isherwood"
@@ -2530,6 +2747,7 @@ padrao = "liso"
   partidas = 25
   minutos = 2242
   id_fonte = "322075"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Alexander Jensen"
@@ -2541,6 +2759,7 @@ padrao = "liso"
   partidas = 8
   minutos = 747
   id_fonte = "503865"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Sebastian Holmén"
@@ -2552,6 +2771,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1052
   id_fonte = "222320"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Simon Hedlund"
@@ -2563,6 +2783,7 @@ padrao = "liso"
   partidas = 11
   minutos = 984
   id_fonte = "116900"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Marcus Rohdén"
@@ -2574,6 +2795,7 @@ padrao = "liso"
   partidas = 1
   minutos = 57
   id_fonte = "205809"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Lucas Hägg Johansson"
@@ -2583,6 +2805,7 @@ padrao = "liso"
   pot = 55
   valor = 150000
   id_fonte = "205307"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Niklas Hult"
@@ -2595,6 +2818,7 @@ padrao = "liso"
   minutos = 1857
   gols = 1
   id_fonte = "113039"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Julius Beck"
@@ -2606,6 +2830,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1520
   id_fonte = "802512"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Leo Östman"
@@ -2618,6 +2843,7 @@ padrao = "liso"
   minutos = 1234
   gols = 6
   id_fonte = "1290658"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Per Frick"
@@ -2629,6 +2855,7 @@ padrao = "liso"
   partidas = 2
   minutos = 202
   id_fonte = "216148"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Taylor Silverholt"
@@ -2641,6 +2868,7 @@ padrao = "liso"
   minutos = 750
   gols = 1
   id_fonte = "552981"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Ari Sigurpálsson"
@@ -2653,6 +2881,7 @@ padrao = "liso"
   minutos = 654
   gols = 4
   id_fonte = "652272"
+  nacionalidade = "Islândia"
 
   [[clubes.jogadores]]
   nome = "Theo Sander"
@@ -2662,6 +2891,7 @@ padrao = "liso"
   pot = 61
   valor = 1000000
   id_fonte = "799899"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Momoh Kamara"
@@ -2674,6 +2904,7 @@ padrao = "liso"
   minutos = 1173
   gols = 5
   id_fonte = "1129935"
+  nacionalidade = "Serra Leoa"
 
   [[clubes.jogadores]]
   nome = "Dion Krasniqi"
@@ -2685,6 +2916,7 @@ padrao = "liso"
   partidas = 5
   minutos = 22
   id_fonte = "734054"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Gabríel Snaer Gunnarsson"
@@ -2694,6 +2926,7 @@ padrao = "liso"
   pot = 44
   valor = 25000
   id_fonte = "1244516"
+  nacionalidade = "Islândia"
 
   [[clubes.jogadores]]
   nome = "Jonathan Esenga"
@@ -2705,6 +2938,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "1017914"
+  nacionalidade = "Inglaterra"
 
   [[clubes.jogadores]]
   nome = "Ossian Nordvall"
@@ -2716,6 +2950,7 @@ padrao = "liso"
   partidas = 2
   minutos = 208
   id_fonte = "1069501"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Viggo Elfström"
@@ -2727,6 +2962,7 @@ padrao = "liso"
   partidas = 3
   minutos = 6
   id_fonte = "1303486"
+  nacionalidade = "Suécia"
 
 [[clubes]]
 nome = "GAIS"
@@ -2746,6 +2982,7 @@ padrao = "liso"
   minutos = 173
   gols = 1
   id_fonte = "987325"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Oskar Ågren"
@@ -2757,6 +2994,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1850
   id_fonte = "972463"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "August Wängberg"
@@ -2768,6 +3006,7 @@ padrao = "liso"
   partidas = 19
   minutos = 1681
   id_fonte = "188212"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mergim Krasniqi"
@@ -2779,6 +3018,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1516
   id_fonte = "205364"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Robin Frej"
@@ -2791,6 +3031,7 @@ padrao = "liso"
   minutos = 1683
   gols = 1
   id_fonte = "502708"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Filip Beckman"
@@ -2803,6 +3044,7 @@ padrao = "liso"
   minutos = 1270
   gols = 1
   id_fonte = "1111587"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Joackim Fagerjord"
@@ -2815,6 +3057,7 @@ padrao = "liso"
   minutos = 1721
   gols = 3
   id_fonte = "369367"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Matteo de Brienne"
@@ -2827,6 +3070,7 @@ padrao = "liso"
   minutos = 1721
   gols = 1
   id_fonte = "797623"
+  nacionalidade = "Canadá"
 
   [[clubes.jogadores]]
   nome = "Anes Cardaklija"
@@ -2839,6 +3083,7 @@ padrao = "liso"
   minutos = 1148
   gols = 1
   id_fonte = "1026246"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "William Milovanovic"
@@ -2851,6 +3096,7 @@ padrao = "liso"
   minutos = 1514
   gols = 3
   id_fonte = "615653"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Robin Wendin Thomasson"
@@ -2862,6 +3108,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "416637"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Kevin Holmén"
@@ -2874,6 +3121,7 @@ padrao = "liso"
   minutos = 630
   gols = 2
   id_fonte = "624999"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Christos Gravius"
@@ -2885,6 +3133,7 @@ padrao = "liso"
   partidas = 1
   minutos = 27
   id_fonte = "297370"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Henry Sletsjøe"
@@ -2897,6 +3146,7 @@ padrao = "liso"
   minutos = 1348
   gols = 3
   id_fonte = "577222"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Nikola Vasic"
@@ -2909,6 +3159,7 @@ padrao = "liso"
   minutos = 498
   gols = 2
   id_fonte = "503496"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Róbert Frosti Thorkelsson"
@@ -2921,6 +3172,7 @@ padrao = "liso"
   minutos = 1789
   gols = 4
   id_fonte = "927463"
+  nacionalidade = "Islândia"
 
   [[clubes.jogadores]]
   nome = "Oscar Pettersson"
@@ -2933,6 +3185,7 @@ padrao = "liso"
   minutos = 643
   gols = 1
   id_fonte = "577816"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Rasmus Niklasson Petrovic"
@@ -2945,6 +3198,7 @@ padrao = "liso"
   minutos = 2187
   gols = 6
   id_fonte = "1105875"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Samuel Salter"
@@ -2957,6 +3211,7 @@ padrao = "liso"
   minutos = 1580
   gols = 7
   id_fonte = "862698"
+  nacionalidade = "Canadá"
 
   [[clubes.jogadores]]
   nome = "Jonas Lindberg"
@@ -2968,6 +3223,7 @@ padrao = "liso"
   partidas = 2
   minutos = 156
   id_fonte = "116944"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Dennis Collander"
@@ -2979,6 +3235,7 @@ padrao = "liso"
   partidas = 4
   minutos = 374
   id_fonte = "527336"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Lucas Hedlund"
@@ -2990,6 +3247,7 @@ padrao = "liso"
   partidas = 1
   minutos = 114
   id_fonte = "347748"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Max Andersson"
@@ -3002,6 +3260,7 @@ padrao = "liso"
   minutos = 1235
   gols = 3
   id_fonte = "889505"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Andreas Hermansen"
@@ -3013,6 +3272,7 @@ padrao = "liso"
   partidas = 5
   minutos = 464
   id_fonte = "811169"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Blessing Asumang"
@@ -3024,6 +3284,7 @@ padrao = "liso"
   partidas = 2
   minutos = 137
   id_fonte = "1223800"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Simon Jørgensen"
@@ -3035,6 +3296,7 @@ padrao = "liso"
   partidas = 2
   minutos = 182
   id_fonte = "1024628"
+  nacionalidade = "Dinamarca"
 
 [[clubes]]
 nome = "Kalmar FF"
@@ -3054,6 +3316,7 @@ padrao = "liso"
   minutos = 2058
   gols = 4
   id_fonte = "796037"
+  nacionalidade = "Inglaterra"
 
   [[clubes.jogadores]]
   nome = "Samuel Brolin"
@@ -3065,6 +3328,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1541
   id_fonte = "398971"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Carl Gustafsson"
@@ -3077,6 +3341,7 @@ padrao = "liso"
   minutos = 1295
   gols = 2
   id_fonte = "430823"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Melker Hallberg"
@@ -3088,6 +3353,7 @@ padrao = "liso"
   partidas = 18
   minutos = 1607
   id_fonte = "203773"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Victor Larsson"
@@ -3099,6 +3365,7 @@ padrao = "liso"
   partidas = 19
   minutos = 1712
   id_fonte = "537221"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Lars Sætra"
@@ -3110,6 +3377,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1494
   id_fonte = "128041"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Aboubacar Keita"
@@ -3122,6 +3390,7 @@ padrao = "liso"
   minutos = 646
   gols = 2
   id_fonte = "638733"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Alexander Almqvist"
@@ -3133,6 +3402,7 @@ padrao = "liso"
   partidas = 4
   minutos = 341
   id_fonte = "646815"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jakob Kindberg"
@@ -3144,6 +3414,7 @@ padrao = "liso"
   partidas = 9
   minutos = 799
   id_fonte = "554819"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Robert Gojani"
@@ -3155,6 +3426,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1554
   id_fonte = "187103"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Sivert Øverby"
@@ -3166,6 +3438,7 @@ padrao = "liso"
   partidas = 9
   minutos = 785
   id_fonte = "388646"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Jesper Löfgren"
@@ -3177,6 +3450,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "392743"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Abdussalam Magashy"
@@ -3189,6 +3463,7 @@ padrao = "liso"
   minutos = 857
   gols = 1
   id_fonte = "604859"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Marius Söderbäck"
@@ -3201,6 +3476,7 @@ padrao = "liso"
   minutos = 1482
   gols = 2
   id_fonte = "909689"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Nassef Chourak"
@@ -3212,6 +3488,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1300
   id_fonte = "646700"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Tobias Lauritsen"
@@ -3223,6 +3500,7 @@ padrao = "liso"
   partidas = 2
   minutos = 193
   id_fonte = "805055"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Kasper Paananen"
@@ -3232,6 +3510,7 @@ padrao = "liso"
   pot = 56
   valor = 500000
   id_fonte = "613189"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Malcolm Stolt"
@@ -3243,6 +3522,7 @@ padrao = "liso"
   partidas = 2
   minutos = 162
   id_fonte = "549405"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Miska Ylitolva"
@@ -3254,6 +3534,7 @@ padrao = "liso"
   partidas = 3
   minutos = 268
   id_fonte = "716894"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Emeka Nnamani"
@@ -3266,6 +3547,7 @@ padrao = "liso"
   minutos = 226
   gols = 2
   id_fonte = "564453"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Noah Shamoun"
@@ -3277,6 +3559,7 @@ padrao = "liso"
   partidas = 1
   minutos = 91
   id_fonte = "627760"
+  nacionalidade = "Síria"
 
   [[clubes.jogadores]]
   nome = "Eskild Dall"
@@ -3288,6 +3571,7 @@ padrao = "liso"
   partidas = 3
   minutos = 238
   id_fonte = "560881"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Amara Camara"
@@ -3297,6 +3581,7 @@ padrao = "liso"
   pot = 46
   valor = 99305
   id_fonte = "1481942"
+  nacionalidade = "Gâmbia"
 
   [[clubes.jogadores]]
   nome = "Casper Andersson"
@@ -3306,6 +3591,7 @@ padrao = "liso"
   pot = 50
   valor = 99305
   id_fonte = "939246"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Elion Imeri"
@@ -3317,6 +3603,7 @@ padrao = "liso"
   partidas = 1
   minutos = 130
   id_fonte = "1519055"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Sodiq Lawal"
@@ -3326,6 +3613,7 @@ padrao = "liso"
   pot = 48
   valor = 99305
   id_fonte = "1505734"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "William Andersson"
@@ -3337,6 +3625,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "1016312"
+  nacionalidade = "Suécia"
 
 [[clubes]]
 nome = "Västerås SK"
@@ -3356,6 +3645,7 @@ padrao = "liso"
   minutos = 934
   gols = 1
   id_fonte = "340031"
+  nacionalidade = "Burundi"
 
   [[clubes.jogadores]]
   nome = "Simon Gefvert"
@@ -3368,6 +3658,7 @@ padrao = "liso"
   minutos = 2247
   gols = 1
   id_fonte = "380936"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Herman Magnusson"
@@ -3380,6 +3671,7 @@ padrao = "liso"
   minutos = 2138
   gols = 1
   id_fonte = "493672"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Ismet Lushaku"
@@ -3392,6 +3684,7 @@ padrao = "liso"
   minutos = 997
   gols = 1
   id_fonte = "671101"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Abdelrahman Boudah"
@@ -3404,6 +3697,7 @@ padrao = "liso"
   minutos = 687
   gols = 1
   id_fonte = "492104"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Elis Jäger"
@@ -3415,6 +3709,7 @@ padrao = "liso"
   partidas = 25
   minutos = 2250
   id_fonte = "1389474"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jonathan Ring"
@@ -3427,6 +3722,7 @@ padrao = "liso"
   minutos = 712
   gols = 1
   id_fonte = "180137"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mamadou Ousmane Diagne"
@@ -3439,6 +3735,7 @@ padrao = "liso"
   minutos = 2160
   gols = 1
   id_fonte = "1075007"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Anton Fagerström"
@@ -3450,6 +3747,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "121612"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Karl Gunnarsson"
@@ -3462,6 +3760,7 @@ padrao = "liso"
   minutos = 1685
   gols = 1
   id_fonte = "1026127"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Philip Bonde"
@@ -3474,6 +3773,7 @@ padrao = "liso"
   minutos = 1860
   gols = 2
   id_fonte = "1097031"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Victor Wernersson"
@@ -3485,6 +3785,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1119
   id_fonte = "271816"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Axel Sountonoma Taonsa"
@@ -3497,6 +3798,7 @@ padrao = "liso"
   minutos = 1636
   gols = 9
   id_fonte = "1107314"
+  nacionalidade = "Burkina Faso"
 
   [[clubes.jogadores]]
   nome = "André Bernardini"
@@ -3506,6 +3808,7 @@ padrao = "liso"
   pot = 52
   valor = 100000
   id_fonte = "515254"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Marcus Baggesen"
@@ -3518,6 +3821,7 @@ padrao = "liso"
   minutos = 1118
   gols = 2
   id_fonte = "799987"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Jonathan Karlsson"
@@ -3529,6 +3833,7 @@ padrao = "liso"
   partidas = 11
   minutos = 1005
   id_fonte = "916129"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Madiou Keita"
@@ -3540,6 +3845,7 @@ padrao = "liso"
   partidas = 4
   minutos = 402
   id_fonte = "1042600"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Peter Amoran"
@@ -3551,6 +3857,7 @@ padrao = "liso"
   partidas = 2
   minutos = 31
   id_fonte = "858677"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jack Tagesson"
@@ -3562,6 +3869,7 @@ padrao = "liso"
   partidas = 4
   minutos = 401
   id_fonte = "1126112"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Levi Hansas"
@@ -3573,6 +3881,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "1449280"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mattias Hellisdal"
@@ -3585,6 +3894,7 @@ padrao = "liso"
   minutos = 835
   gols = 1
   id_fonte = "991476"
+  nacionalidade = "Ilhas Faroe"
 
   [[clubes.jogadores]]
   nome = "Jens Magnusson"
@@ -3597,6 +3907,7 @@ padrao = "liso"
   minutos = 877
   gols = 3
   id_fonte = "987195"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Bonaventure Lendambi"
@@ -3609,6 +3920,7 @@ padrao = "liso"
   minutos = 472
   gols = 2
   id_fonte = "1516172"
+  nacionalidade = "Congo"
 
   [[clubes.jogadores]]
   nome = "Casper Risbjerg"
@@ -3620,6 +3932,7 @@ padrao = "liso"
   partidas = 1
   minutos = 20
   id_fonte = "1262282"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Melvin Ljungqvist"
@@ -3631,6 +3944,7 @@ padrao = "liso"
   partidas = 2
   minutos = 161
   id_fonte = "1390371"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Moussa Diallo"
@@ -3642,6 +3956,7 @@ padrao = "liso"
   partidas = 1
   minutos = 130
   id_fonte = "1436657"
+  nacionalidade = "Senegal"
 
 [[clubes]]
 nome = "IF Brommapojkarna"
@@ -3660,6 +3975,7 @@ padrao = "liso"
   partidas = 2
   minutos = 169
   id_fonte = "396294"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Oliver Zandén"
@@ -3672,6 +3988,7 @@ padrao = "liso"
   minutos = 1972
   gols = 1
   id_fonte = "611195"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Andreas Troelsen"
@@ -3684,6 +4001,7 @@ padrao = "liso"
   minutos = 2250
   gols = 4
   id_fonte = "668949"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Leo Cavallius"
@@ -3695,6 +4013,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1868
   id_fonte = "1247255"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mads Hansen"
@@ -3707,6 +4026,7 @@ padrao = "liso"
   minutos = 1799
   gols = 9
   id_fonte = "569632"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Oliver Berg"
@@ -3719,6 +4039,7 @@ padrao = "liso"
   minutos = 1584
   gols = 5
   id_fonte = "226118"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Davor Blazevic"
@@ -3730,6 +4051,7 @@ padrao = "liso"
   partidas = 5
   minutos = 472
   id_fonte = "138408"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Kaare Barslund"
@@ -3742,6 +4064,7 @@ padrao = "liso"
   minutos = 1610
   gols = 1
   id_fonte = "709982"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Lukas Björklund"
@@ -3754,6 +4077,7 @@ padrao = "liso"
   minutos = 1021
   gols = 3
   id_fonte = "688019"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Serge-Junior Ngouali"
@@ -3765,6 +4089,7 @@ padrao = "liso"
   partidas = 2
   minutos = 141
   id_fonte = "148219"
+  nacionalidade = "Gabão"
 
   [[clubes.jogadores]]
   nome = "Simon Strand"
@@ -3777,6 +4102,7 @@ padrao = "liso"
   minutos = 1870
   gols = 2
   id_fonte = "103405"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jordan Simpson"
@@ -3788,6 +4114,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1503
   id_fonte = "1125653"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Rasmus Örqvist"
@@ -3799,6 +4126,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1122
   id_fonte = "340784"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Obilor Okeke"
@@ -3811,6 +4139,7 @@ padrao = "liso"
   minutos = 564
   gols = 1
   id_fonte = "839682"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Wilmer Odefalk"
@@ -3822,6 +4151,7 @@ padrao = "liso"
   partidas = 7
   minutos = 590
   id_fonte = "959047"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Anton Kurochkin"
@@ -3834,6 +4164,7 @@ padrao = "liso"
   minutos = 507
   gols = 2
   id_fonte = "1126889"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mohamed Wael Derbali"
@@ -3845,6 +4176,7 @@ padrao = "liso"
   partidas = 3
   minutos = 294
   id_fonte = "946783"
+  nacionalidade = "Tunísia"
 
   [[clubes.jogadores]]
   nome = "Oskar Cotton"
@@ -3856,6 +4188,7 @@ padrao = "liso"
   partidas = 9
   minutos = 776
   id_fonte = "1368527"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "David Isso"
@@ -3868,6 +4201,7 @@ padrao = "liso"
   minutos = 829
   gols = 2
   id_fonte = "1390489"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Abdul Daramy"
@@ -3877,6 +4211,7 @@ padrao = "liso"
   pot = 46
   valor = 55000
   id_fonte = "1176778"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Atle Wahlund"
@@ -3888,6 +4223,7 @@ padrao = "liso"
   partidas = 1
   minutos = 128
   id_fonte = "1184990"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Baba Salifu Apiiga"
@@ -3899,6 +4235,7 @@ padrao = "liso"
   partidas = 1
   minutos = 5
   id_fonte = "1056184"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Bidemi Amole"
@@ -3910,6 +4247,7 @@ padrao = "liso"
   partidas = 1
   minutos = 89
   id_fonte = "1401544"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Courage Otokwefor"
@@ -3919,6 +4257,7 @@ padrao = "liso"
   pot = 48
   valor = 100000
   id_fonte = "1436267"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Emir El-Kathemi"
@@ -3930,6 +4269,7 @@ padrao = "liso"
   partidas = 1
   minutos = 17
   id_fonte = "1272445"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Evans Botchway"
@@ -3941,6 +4281,7 @@ padrao = "liso"
   partidas = 1
   minutos = 3
   id_fonte = "1105787"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Kamilcan Sever"
@@ -3953,6 +4294,7 @@ padrao = "liso"
   minutos = 658
   gols = 2
   id_fonte = "1259181"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Luka Petrovic"
@@ -3962,6 +4304,7 @@ padrao = "liso"
   pot = 45
   valor = 55000
   id_fonte = "1072025"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Rasmus Bergvall"
@@ -3973,6 +4316,7 @@ padrao = "liso"
   partidas = 4
   minutos = 37
   id_fonte = "1236103"
+  nacionalidade = "Suécia"
 
 [[clubes]]
 nome = "Halmstads BK"
@@ -3992,6 +4336,7 @@ padrao = "liso"
   minutos = 1675
   gols = 2
   id_fonte = "1291830"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Tim Rönning"
@@ -4003,6 +4348,7 @@ padrao = "liso"
   partidas = 24
   minutos = 2160
   id_fonte = "377465"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Ajdin Zeljković"
@@ -4014,6 +4360,7 @@ padrao = "liso"
   partidas = 3
   minutos = 229
   id_fonte = "496321"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "André Boman"
@@ -4025,6 +4372,7 @@ padrao = "liso"
   partidas = 23
   minutos = 2104
   id_fonte = "663093"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Pascal Gregor"
@@ -4037,6 +4385,7 @@ padrao = "liso"
   minutos = 2160
   gols = 1
   id_fonte = "253664"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Rocco Ascone"
@@ -4049,6 +4398,7 @@ padrao = "liso"
   minutos = 1841
   gols = 4
   id_fonte = "620318"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Filip Schyberg"
@@ -4060,6 +4410,7 @@ padrao = "liso"
   partidas = 2
   minutos = 168
   id_fonte = "464461"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Gabriel Wallentin"
@@ -4071,6 +4422,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1278
   id_fonte = "504242"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Joel Allansson"
@@ -4083,6 +4435,7 @@ padrao = "liso"
   minutos = 2039
   gols = 1
   id_fonte = "95472"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Omar Faraj"
@@ -4095,6 +4448,7 @@ padrao = "liso"
   minutos = 1342
   gols = 4
   id_fonte = "668041"
+  nacionalidade = "Palestina"
 
   [[clubes.jogadores]]
   nome = "Rami Kaib"
@@ -4106,6 +4460,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1920
   id_fonte = "274373"
+  nacionalidade = "Tunísia"
 
   [[clubes.jogadores]]
   nome = "Erko Tougjas"
@@ -4117,6 +4472,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1565
   id_fonte = "488280"
+  nacionalidade = "Estônia"
 
   [[clubes.jogadores]]
   nome = "Joel Nilsson"
@@ -4128,6 +4484,7 @@ padrao = "liso"
   partidas = 2
   minutos = 28
   id_fonte = "223912"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Niilo Mäenpää"
@@ -4139,6 +4496,7 @@ padrao = "liso"
   partidas = 7
   minutos = 636
   id_fonte = "322997"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Tom Trybull"
@@ -4150,6 +4508,7 @@ padrao = "liso"
   partidas = 3
   minutos = 295
   id_fonte = "93831"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Aleksander Damnjanovic Nilsson"
@@ -4161,6 +4520,7 @@ padrao = "liso"
   partidas = 6
   minutos = 512
   id_fonte = "527341"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Hussein Carneil"
@@ -4173,6 +4533,7 @@ padrao = "liso"
   minutos = 1422
   gols = 2
   id_fonte = "765975"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Malte Persson"
@@ -4185,6 +4546,7 @@ padrao = "liso"
   minutos = 787
   gols = 2
   id_fonte = "1407924"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Iddrisu Moro"
@@ -4194,6 +4556,7 @@ padrao = "liso"
   pot = 42
   valor = 67440
   id_fonte = "1381051"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Marvin Illary"
@@ -4206,6 +4569,7 @@ padrao = "liso"
   minutos = 1069
   gols = 1
   id_fonte = "1381052"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Oliver Kapsimalis"
@@ -4217,6 +4581,7 @@ padrao = "liso"
   partidas = 10
   minutos = 938
   id_fonte = "1146597"
+  nacionalidade = "Suécia"
 
 [[clubes]]
 nome = "Örgryte IS"
@@ -4235,6 +4600,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1517
   id_fonte = "1093823"
+  nacionalidade = "Inglaterra"
 
   [[clubes.jogadores]]
   nome = "Hampus Gustafsson"
@@ -4246,6 +4612,7 @@ padrao = "liso"
   partidas = 24
   minutos = 2160
   id_fonte = "594364"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Johan Hammar"
@@ -4257,6 +4624,7 @@ padrao = "liso"
   partidas = 4
   minutos = 386
   id_fonte = "156937"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Rasmus Alm"
@@ -4268,6 +4636,7 @@ padrao = "liso"
   partidas = 1
   minutos = 108
   id_fonte = "290085"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Owen Parker-Price"
@@ -4280,6 +4649,7 @@ padrao = "liso"
   minutos = 2030
   gols = 2
   id_fonte = "400799"
+  nacionalidade = "Nova Zelândia"
 
   [[clubes.jogadores]]
   nome = "Anton Andreasson"
@@ -4292,6 +4662,7 @@ padrao = "liso"
   minutos = 1309
   gols = 4
   id_fonte = "223881"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Christoffer Styffe"
@@ -4304,6 +4675,7 @@ padrao = "liso"
   minutos = 1717
   gols = 2
   id_fonte = "669445"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jonathan Azulay"
@@ -4315,6 +4687,7 @@ padrao = "liso"
   partidas = 5
   minutos = 428
   id_fonte = "138406"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Benjamin Laturnus"
@@ -4327,6 +4700,7 @@ padrao = "liso"
   minutos = 1951
   gols = 1
   id_fonte = "1087013"
+  nacionalidade = "Canadá"
 
   [[clubes.jogadores]]
   nome = "Daniel Paulson"
@@ -4339,6 +4713,7 @@ padrao = "liso"
   minutos = 1890
   gols = 1
   id_fonte = "224313"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Adam Andersson"
@@ -4351,6 +4726,7 @@ padrao = "liso"
   minutos = 746
   gols = 1
   id_fonte = "255468"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mikael Dyrestam"
@@ -4363,6 +4739,7 @@ padrao = "liso"
   minutos = 1908
   gols = 1
   id_fonte = "96043"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Sebastian Lagerlund"
@@ -4375,6 +4752,7 @@ padrao = "liso"
   minutos = 1261
   gols = 1
   id_fonte = "906676"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Viktor Ekblom"
@@ -4386,6 +4764,7 @@ padrao = "liso"
   partidas = 1
   minutos = 72
   id_fonte = "800230"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Charlie Vindehall"
@@ -4397,6 +4776,7 @@ padrao = "liso"
   partidas = 4
   minutos = 376
   id_fonte = "299394"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Mathias Nilsson"
@@ -4408,6 +4788,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "396298"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "William Kenndal"
@@ -4419,6 +4800,7 @@ padrao = "liso"
   partidas = 1
   minutos = 108
   id_fonte = "256432"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Tobias Sana"
@@ -4431,6 +4813,7 @@ padrao = "liso"
   minutos = 2012
   gols = 3
   id_fonte = "75901"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "William Svensson"
@@ -4442,6 +4825,7 @@ padrao = "liso"
   partidas = 5
   minutos = 478
   id_fonte = "888215"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "William Hofvander"
@@ -4454,6 +4838,7 @@ padrao = "liso"
   minutos = 1804
   gols = 3
   id_fonte = "891757"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Jerome Tibbling Ugwo"
@@ -4466,6 +4851,7 @@ padrao = "liso"
   minutos = 774
   gols = 3
   id_fonte = "395451"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Hampus Dahlqvist"
@@ -4477,6 +4863,7 @@ padrao = "liso"
   partidas = 2
   minutos = 219
   id_fonte = "276874"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Alex Rahm"
@@ -4486,6 +4873,7 @@ padrao = "liso"
   pot = 48
   valor = 75000
   id_fonte = "1038521"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Aydarus Abukar"
@@ -4495,6 +4883,7 @@ padrao = "liso"
   pot = 48
   valor = 100000
   id_fonte = "792155"
+  nacionalidade = "Somália"
 
   [[clubes.jogadores]]
   nome = "David Obou"
@@ -4506,6 +4895,7 @@ padrao = "liso"
   partidas = 1
   minutos = 50
   id_fonte = "860079"
+  nacionalidade = "Inglaterra"
 
   [[clubes.jogadores]]
   nome = "Liam Filip Andersson"
@@ -4517,6 +4907,7 @@ padrao = "liso"
   partidas = 1
   minutos = 10
   id_fonte = "944202"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Marlon Ebietomere"
@@ -4529,6 +4920,7 @@ padrao = "liso"
   minutos = 277
   gols = 1
   id_fonte = "1445469"
+  nacionalidade = "Suécia"
 
 [[clubes]]
 nome = "Degerfors IF"
@@ -4548,6 +4940,7 @@ padrao = "liso"
   minutos = 737
   gols = 1
   id_fonte = "385986"
+  nacionalidade = "Finlândia"
 
   [[clubes.jogadores]]
   nome = "Matvei Igonen"
@@ -4559,6 +4952,7 @@ padrao = "liso"
   partidas = 26
   minutos = 2340
   id_fonte = "198981"
+  nacionalidade = "Estônia"
 
   [[clubes.jogadores]]
   nome = "Nahom Girmai Netabay"
@@ -4571,6 +4965,7 @@ padrao = "liso"
   minutos = 1747
   gols = 2
   id_fonte = "255768"
+  nacionalidade = "Eritreia"
 
   [[clubes.jogadores]]
   nome = "Sebastian Ohlsson"
@@ -4583,6 +4978,7 @@ padrao = "liso"
   minutos = 2043
   gols = 2
   id_fonte = "217357"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Kazper Karlsson"
@@ -4594,6 +4990,7 @@ padrao = "liso"
   partidas = 19
   minutos = 1695
   id_fonte = "892087"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Daniel Sundgren"
@@ -4606,6 +5003,7 @@ padrao = "liso"
   minutos = 1490
   gols = 1
   id_fonte = "107612"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Bilal Hussein"
@@ -4617,6 +5015,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1291
   id_fonte = "448266"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Dijan Vukojevic"
@@ -4629,6 +5028,7 @@ padrao = "liso"
   minutos = 1539
   gols = 5
   id_fonte = "250838"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Elias Barsoum"
@@ -4640,6 +5040,7 @@ padrao = "liso"
   partidas = 15
   minutos = 1383
   id_fonte = "916122"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Noel Milleskog"
@@ -4651,6 +5052,7 @@ padrao = "liso"
   partidas = 2
   minutos = 204
   id_fonte = "579292"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Sebastian Ohlsson"
@@ -4662,6 +5064,7 @@ padrao = "liso"
   partidas = 6
   minutos = 504
   id_fonte = "205436"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Ludvig Fritzson"
@@ -4674,6 +5077,7 @@ padrao = "liso"
   minutos = 1391
   gols = 1
   id_fonte = "334810"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Nasiru Moro"
@@ -4686,6 +5090,7 @@ padrao = "liso"
   minutos = 429
   gols = 1
   id_fonte = "548671"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Robin Dzabic"
@@ -4697,6 +5102,7 @@ padrao = "liso"
   partidas = 7
   minutos = 653
   id_fonte = "773062"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Arman Taranis"
@@ -4709,6 +5115,7 @@ padrao = "liso"
   minutos = 1020
   gols = 2
   id_fonte = "599675"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Ahmad Faqa"
@@ -4720,6 +5127,7 @@ padrao = "liso"
   partidas = 8
   minutos = 754
   id_fonte = "950400"
+  nacionalidade = "Síria"
 
   [[clubes.jogadores]]
   nome = "Nikolai Skuseth"
@@ -4731,6 +5139,7 @@ padrao = "liso"
   partidas = 10
   minutos = 900
   id_fonte = "1061763"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Samba Diatara"
@@ -4743,6 +5152,7 @@ padrao = "liso"
   minutos = 1575
   gols = 1
   id_fonte = "1312719"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Wille Jakobsson"
@@ -4752,6 +5162,7 @@ padrao = "liso"
   pot = 52
   valor = 200000
   id_fonte = "591865"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Gideon Yiriyon"
@@ -4764,6 +5175,7 @@ padrao = "liso"
   minutos = 1108
   gols = 1
   id_fonte = "1436659"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Jesús Hernández"
@@ -4775,6 +5187,7 @@ padrao = "liso"
   partidas = 3
   minutos = 230
   id_fonte = "1244174"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Karim Boutera"
@@ -4786,4 +5199,5 @@ padrao = "liso"
   partidas = 3
   minutos = 290
   id_fonte = "1176265"
+  nacionalidade = "França"
 

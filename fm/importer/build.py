@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from fm.importer import transfermarkt as tm
+from fm.paises import nome_do_pais
 from fm.ratings import converter_elenco
 
 # verein_id do Transfermarkt -> nome do clube no pack (nome popular da CBF).
@@ -147,6 +148,8 @@ def escrever_pack(montados: list[ClubeMontado], destino, cabecalho: str) -> int:
                 L.append(f'  gols = {j["gols"]}')
             if j.get("id_fonte"):
                 L.append(f'  id_fonte = "{j["id_fonte"]}"')
+            if j.get("nacionalidade"):
+                L.append(f'  nacionalidade = "{_esc(j["nacionalidade"])}"')
         L.append("")
     destino.write_text("\n".join(L) + "\n", encoding="utf-8")
     return n_jogadores
@@ -237,6 +240,7 @@ def montar_mundo(betas: dict[str, float] | None = None) -> dict[str, list[ClubeM
                     "partidas": (round((minutos or min_ant) / MINUTOS_POR_JOGO)
                                  or st.get("jogos", 0) or ant.get("jogos", 0)),
                     "id_fonte": j.spieler_id,
+                    "nacionalidade": nome_do_pais(j.nacionalidade),
                 })
             forca = forcas[comp][c.verein_id]
             montados.append(ClubeMontado(

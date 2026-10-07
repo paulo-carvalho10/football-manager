@@ -30,6 +30,7 @@ padrao = "liso"
   minutos = 303
   gols = 6
   id_fonte = "401923"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Rafael Leão"
@@ -41,6 +42,7 @@ padrao = "liso"
   partidas = 3
   minutos = 230
   id_fonte = "357164"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Davinson Sánchez"
@@ -53,6 +55,7 @@ padrao = "liso"
   minutos = 611
   gols = 1
   id_fonte = "341429"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Gabriel Sara"
@@ -65,6 +68,7 @@ padrao = "liso"
   minutos = 554
   gols = 2
   id_fonte = "553469"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Uğurcan Çakır"
@@ -76,6 +80,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "292199"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Barış Alper Yılmaz"
@@ -88,6 +93,7 @@ padrao = "liso"
   minutos = 535
   gols = 12
   id_fonte = "541537"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Leroy Sané"
@@ -100,6 +106,7 @@ padrao = "liso"
   minutos = 374
   gols = 7
   id_fonte = "192565"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Roland Sallai"
@@ -112,6 +119,7 @@ padrao = "liso"
   minutos = 589
   gols = 1
   id_fonte = "332798"
+  nacionalidade = "Hungria"
 
   [[clubes.jogadores]]
   nome = "Abdülkerim Bardakcı"
@@ -124,6 +132,7 @@ padrao = "liso"
   minutos = 444
   gols = 1
   id_fonte = "199316"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Lucas Torreira"
@@ -136,6 +145,7 @@ padrao = "liso"
   minutos = 588
   gols = 1
   id_fonte = "318077"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Wilfried Singo"
@@ -148,6 +158,7 @@ padrao = "liso"
   minutos = 41
   gols = 2
   id_fonte = "648779"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Yunus Akgün"
@@ -160,6 +171,7 @@ padrao = "liso"
   minutos = 579
   gols = 1
   id_fonte = "396908"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ismail Jakobs"
@@ -171,6 +183,7 @@ padrao = "liso"
   partidas = 5
   minutos = 472
   id_fonte = "375137"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Mario Lemina"
@@ -183,6 +196,7 @@ padrao = "liso"
   minutos = 220
   gols = 3
   id_fonte = "170934"
+  nacionalidade = "Gabão"
 
   [[clubes.jogadores]]
   nome = "Eren Elmalı"
@@ -195,6 +209,7 @@ padrao = "liso"
   minutos = 257
   gols = 4
   id_fonte = "616894"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "İlkay Gündoğan"
@@ -207,6 +222,7 @@ padrao = "liso"
   minutos = 11
   gols = 2
   id_fonte = "53622"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Kaan Ayhan"
@@ -219,6 +235,7 @@ padrao = "liso"
   minutos = 1
   gols = 1
   id_fonte = "119031"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Aleksey Batrakov"
@@ -230,6 +247,7 @@ padrao = "liso"
   partidas = 3
   minutos = 230
   id_fonte = "720286"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Lesley Ugochukwu"
@@ -241,6 +259,7 @@ padrao = "liso"
   partidas = 1
   minutos = 62
   id_fonte = "711999"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Günay Güvenç"
@@ -252,6 +271,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1301
   id_fonte = "114422"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "El Chadaille Bitshiabu"
@@ -261,6 +281,7 @@ padrao = "liso"
   pot = 76
   valor = 18000000
   id_fonte = "787912"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Deniz Gül"
@@ -272,6 +293,7 @@ padrao = "liso"
   partidas = 2
   minutos = 155
   id_fonte = "1063292"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Kazımcan Karataş"
@@ -283,6 +305,7 @@ padrao = "liso"
   partidas = 3
   minutos = 27
   id_fonte = "697149"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Jankat Yılmaz"
@@ -294,6 +317,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "727077"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Renato Nhaga"
@@ -306,6 +330,7 @@ padrao = "liso"
   minutos = 15
   gols = 2
   id_fonte = "1396595"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Eyüp Aydın"
@@ -315,6 +340,7 @@ padrao = "liso"
   pot = 66
   valor = 800000
   id_fonte = "605110"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Arda Ünyay"
@@ -326,6 +352,7 @@ padrao = "liso"
   partidas = 4
   minutos = 340
   id_fonte = "1048118"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Enes Emre Büyük"
@@ -335,6 +362,7 @@ padrao = "liso"
   pot = 66
   valor = 550000
   id_fonte = "1105505"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Berat Luş"
@@ -344,6 +372,7 @@ padrao = "liso"
   pot = 66
   valor = 1000000
   id_fonte = "1076981"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Arda Yılmaz"
@@ -353,6 +382,7 @@ padrao = "liso"
   pot = 66
   valor = 550000
   id_fonte = "1178926"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Armando Güner"
@@ -364,6 +394,7 @@ padrao = "liso"
   partidas = 2
   minutos = 14
   id_fonte = "1070983"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ada Yüzgeç"
@@ -375,6 +406,7 @@ padrao = "liso"
   partidas = 3
   minutos = 20
   id_fonte = "1223334"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Fenerbahce"
@@ -393,6 +425,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "238223"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Mason Greenwood"
@@ -405,6 +438,7 @@ padrao = "liso"
   minutos = 894
   gols = 6
   id_fonte = "532826"
+  nacionalidade = "Inglaterra"
 
   [[clubes.jogadores]]
   nome = "Mattéo Guendouzi"
@@ -417,6 +451,7 @@ padrao = "liso"
   minutos = 1044
   gols = 1
   id_fonte = "465830"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Nathan Aké"
@@ -428,6 +463,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1125
   id_fonte = "177476"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Jayden Oosterwolde"
@@ -440,6 +476,7 @@ padrao = "liso"
   minutos = 210
   gols = 1
   id_fonte = "591361"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Kerem Aktürkoğlu"
@@ -452,6 +489,7 @@ padrao = "liso"
   minutos = 717
   gols = 15
   id_fonte = "382528"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Marco Asensio"
@@ -464,6 +502,7 @@ padrao = "liso"
   minutos = 343
   gols = 1
   id_fonte = "296622"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Milan Škriniar"
@@ -476,6 +515,7 @@ padrao = "liso"
   minutos = 1150
   gols = 1
   id_fonte = "204069"
+  nacionalidade = "Eslováquia"
 
   [[clubes.jogadores]]
   nome = "İsmail Yüksek"
@@ -488,6 +528,7 @@ padrao = "liso"
   minutos = 425
   gols = 2
   id_fonte = "613725"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Archie Brown"
@@ -500,6 +541,7 @@ padrao = "liso"
   minutos = 838
   gols = 2
   id_fonte = "581329"
+  nacionalidade = "Inglaterra"
 
   [[clubes.jogadores]]
   nome = "N'Golo Kanté"
@@ -512,6 +554,7 @@ padrao = "liso"
   minutos = 842
   gols = 2
   id_fonte = "225083"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Nélson Semedo"
@@ -524,6 +567,7 @@ padrao = "liso"
   minutos = 888
   gols = 1
   id_fonte = "231572"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Dorgeles Nene"
@@ -536,6 +580,7 @@ padrao = "liso"
   minutos = 101
   gols = 11
   id_fonte = "671591"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Mert Müldür"
@@ -548,6 +593,7 @@ padrao = "liso"
   minutos = 282
   gols = 1
   id_fonte = "353922"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Romelu Lukaku"
@@ -559,6 +605,7 @@ padrao = "liso"
   partidas = 2
   minutos = 191
   id_fonte = "96341"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Vedat Muriqi"
@@ -571,6 +618,7 @@ padrao = "liso"
   minutos = 572
   gols = 7
   id_fonte = "256267"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Levent Mercan"
@@ -582,6 +630,7 @@ padrao = "liso"
   partidas = 2
   minutos = 199
   id_fonte = "388820"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Oğuz Aydın"
@@ -594,6 +643,7 @@ padrao = "liso"
   minutos = 444
   gols = 1
   id_fonte = "563749"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "İrfan Can Kahveci"
@@ -606,6 +656,7 @@ padrao = "liso"
   minutos = 457
   gols = 1
   id_fonte = "216603"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Mert Günok"
@@ -617,6 +668,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "51894"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Tarık Çetin"
@@ -628,6 +680,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "286170"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Yiğit Efe Demir"
@@ -639,6 +692,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1247
   id_fonte = "889136"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Kojo Peprah Oppong"
@@ -650,6 +704,7 @@ padrao = "liso"
   partidas = 1
   minutos = 20
   id_fonte = "1113451"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Mert Hakan Yandaş"
@@ -659,6 +714,7 @@ padrao = "liso"
   pot = 63
   valor = 714999
   id_fonte = "306462"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Bartuğ Elmaz"
@@ -670,6 +726,7 @@ padrao = "liso"
   partidas = 2
   minutos = 143
   id_fonte = "655895"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ognjen Mimović"
@@ -679,6 +736,7 @@ padrao = "liso"
   pot = 67
   valor = 2700000
   id_fonte = "851551"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Amara Diouf"
@@ -688,6 +746,7 @@ padrao = "liso"
   pot = 61
   valor = 800000
   id_fonte = "1133736"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Abdou Aziz Fall"
@@ -697,6 +756,7 @@ padrao = "liso"
   pot = 58
   valor = 100000
   id_fonte = "1133732"
+  nacionalidade = "Senegal"
 
 [[clubes]]
 nome = "Besiktas JK"
@@ -715,6 +775,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1170
   id_fonte = "195778"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Dušan Vlahović"
@@ -727,6 +788,7 @@ padrao = "liso"
   minutos = 464
   gols = 5
   id_fonte = "357498"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Emmanuel Agbadou"
@@ -739,6 +801,7 @@ padrao = "liso"
   minutos = 604
   gols = 1
   id_fonte = "683895"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Leandro Trossard"
@@ -751,6 +814,7 @@ padrao = "liso"
   minutos = 481
   gols = 1
   id_fonte = "144028"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Orkun Kökçü"
@@ -763,6 +827,7 @@ padrao = "liso"
   minutos = 1008
   gols = 4
   id_fonte = "454567"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Amir Murillo"
@@ -775,6 +840,7 @@ padrao = "liso"
   minutos = 986
   gols = 3
   id_fonte = "354482"
+  nacionalidade = "Panamá"
 
   [[clubes.jogadores]]
   nome = "Hyeon-gyu Oh"
@@ -787,6 +853,7 @@ padrao = "liso"
   minutos = 628
   gols = 1
   id_fonte = "639246"
+  nacionalidade = "Coreia do Sul"
 
   [[clubes.jogadores]]
   nome = "Wilfred Ndidi"
@@ -799,6 +866,7 @@ padrao = "liso"
   minutos = 200
   gols = 2
   id_fonte = "274839"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Emirhan Topçu"
@@ -811,6 +879,7 @@ padrao = "liso"
   minutos = 932
   gols = 1
   id_fonte = "531332"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Tiago Djaló"
@@ -823,6 +892,7 @@ padrao = "liso"
   minutos = 795
   gols = 2
   id_fonte = "420465"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Vaclav Cerny"
@@ -835,6 +905,7 @@ padrao = "liso"
   minutos = 911
   gols = 4
   id_fonte = "242063"
+  nacionalidade = "Tchéquia"
 
   [[clubes.jogadores]]
   nome = "Junior Olaitan"
@@ -847,6 +918,7 @@ padrao = "liso"
   minutos = 954
   gols = 2
   id_fonte = "900938"
+  nacionalidade = "Benin"
 
   [[clubes.jogadores]]
   nome = "Kassoum Ouattara"
@@ -858,6 +930,7 @@ padrao = "liso"
   partidas = 5
   minutos = 447
   id_fonte = "947360"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Rıdvan Yılmaz"
@@ -870,6 +943,7 @@ padrao = "liso"
   minutos = 694
   gols = 1
   id_fonte = "477930"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Salih Özcan"
@@ -881,6 +955,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1087
   id_fonte = "244940"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Milot Rashica"
@@ -893,6 +968,7 @@ padrao = "liso"
   minutos = 115
   gols = 1
   id_fonte = "291739"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Fabio Miretti"
@@ -904,6 +980,7 @@ padrao = "liso"
   partidas = 1
   minutos = 66
   id_fonte = "571607"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Ernest Poku"
@@ -916,6 +993,7 @@ padrao = "liso"
   minutos = 77
   gols = 1
   id_fonte = "718303"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Kartal Yılmaz"
@@ -928,6 +1006,7 @@ padrao = "liso"
   minutos = 123
   gols = 2
   id_fonte = "461951"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Semih Kılıçsoy"
@@ -940,6 +1019,7 @@ padrao = "liso"
   minutos = 129
   gols = 1
   id_fonte = "875334"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ümit Akdağ"
@@ -949,6 +1029,7 @@ padrao = "liso"
   pot = 72
   valor = 6000000
   id_fonte = "958647"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "İlhan Fakılı"
@@ -961,6 +1042,7 @@ padrao = "liso"
   minutos = 711
   gols = 3
   id_fonte = "1047101"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Can Keleş"
@@ -970,6 +1052,7 @@ padrao = "liso"
   pot = 64
   valor = 1200000
   id_fonte = "451642"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Doğan Alemdar"
@@ -979,6 +1062,7 @@ padrao = "liso"
   pot = 68
   valor = 1500000
   id_fonte = "576033"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Taylan Bulut"
@@ -990,6 +1074,7 @@ padrao = "liso"
   partidas = 2
   minutos = 184
   id_fonte = "810100"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Yasin Özcan"
@@ -1001,6 +1086,7 @@ padrao = "liso"
   partidas = 2
   minutos = 29
   id_fonte = "1043003"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Mustafa Hekimoğlu"
@@ -1013,6 +1099,7 @@ padrao = "liso"
   minutos = 7
   gols = 1
   id_fonte = "1071252"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Azem Yortaç"
@@ -1022,6 +1109,7 @@ padrao = "liso"
   pot = 67
   valor = 1605645
   id_fonte = "1189064"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ozan Sevim"
@@ -1031,6 +1119,7 @@ padrao = "liso"
   pot = 65
   valor = 1605645
   id_fonte = "1177020"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Emir Yaşar"
@@ -1040,6 +1129,7 @@ padrao = "liso"
   pot = 58
   valor = 100000
   id_fonte = "935552"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ahmet Sami Bircan"
@@ -1051,6 +1141,7 @@ padrao = "liso"
   partidas = 1
   minutos = 4
   id_fonte = "1076666"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Trabzonspor"
@@ -1070,6 +1161,7 @@ padrao = "liso"
   minutos = 635
   gols = 7
   id_fonte = "148455"
+  nacionalidade = "Egito"
 
   [[clubes.jogadores]]
   nome = "André Onana"
@@ -1081,6 +1173,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "234509"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Fabinho"
@@ -1092,6 +1185,7 @@ padrao = "liso"
   partidas = 4
   minutos = 329
   id_fonte = "225693"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Arseniy Batagov"
@@ -1104,6 +1198,7 @@ padrao = "liso"
   minutos = 2574
   gols = 1
   id_fonte = "665048"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Chibuike Nwaiwu"
@@ -1116,6 +1211,7 @@ padrao = "liso"
   minutos = 623
   gols = 3
   id_fonte = "985825"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Ernest Muci"
@@ -1128,6 +1224,7 @@ padrao = "liso"
   minutos = 404
   gols = 1
   id_fonte = "583917"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Wagner Pina"
@@ -1139,6 +1236,7 @@ padrao = "liso"
   partidas = 6
   minutos = 507
   id_fonte = "1072017"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Paul Onuachu"
@@ -1151,6 +1249,7 @@ padrao = "liso"
   minutos = 567
   gols = 2
   id_fonte = "272855"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Sidny Lopes Cabral"
@@ -1162,6 +1261,7 @@ padrao = "liso"
   partidas = 4
   minutos = 387
   id_fonte = "611855"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Tim Jabol-Folcarelli"
@@ -1173,6 +1273,7 @@ padrao = "liso"
   partidas = 30
   minutos = 2726
   id_fonte = "674241"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Batista Mendy"
@@ -1184,6 +1285,7 @@ padrao = "liso"
   partidas = 1
   minutos = 49
   id_fonte = "395234"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Mustafa Eskihellaç"
@@ -1196,6 +1298,7 @@ padrao = "liso"
   minutos = 592
   gols = 1
   id_fonte = "390379"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ruslan Malinovskyi"
@@ -1207,6 +1310,7 @@ padrao = "liso"
   partidas = 2
   minutos = 223
   id_fonte = "207877"
+  nacionalidade = "Ucrânia"
 
   [[clubes.jogadores]]
   nome = "Aral Şimşir"
@@ -1218,6 +1322,7 @@ padrao = "liso"
   partidas = 5
   minutos = 416
   id_fonte = "514887"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Cenk Özkacar"
@@ -1229,6 +1334,7 @@ padrao = "liso"
   partidas = 2
   minutos = 201
   id_fonte = "615350"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Noah Saviolo"
@@ -1241,6 +1347,7 @@ padrao = "liso"
   minutos = 342
   gols = 2
   id_fonte = "671669"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Okay Yokuşlu"
@@ -1253,6 +1360,7 @@ padrao = "liso"
   minutos = 1033
   gols = 1
   id_fonte = "137616"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ozan Tufan"
@@ -1265,6 +1373,7 @@ padrao = "liso"
   minutos = 238
   gols = 2
   id_fonte = "236471"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Samet Akaydin"
@@ -1276,6 +1385,7 @@ padrao = "liso"
   partidas = 2
   minutos = 33
   id_fonte = "295024"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Benjamin Bouchouari"
@@ -1287,6 +1397,7 @@ padrao = "liso"
   partidas = 2
   minutos = 189
   id_fonte = "783094"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Franculino"
@@ -1299,6 +1410,7 @@ padrao = "liso"
   minutos = 126
   gols = 1
   id_fonte = "929090"
+  nacionalidade = "Guiné-Bissau"
 
   [[clubes.jogadores]]
   nome = "Melih Kabasakal"
@@ -1310,6 +1422,7 @@ padrao = "liso"
   partidas = 6
   minutos = 500
   id_fonte = "275683"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Stefan Savić"
@@ -1322,6 +1435,7 @@ padrao = "liso"
   minutos = 629
   gols = 1
   id_fonte = "107010"
+  nacionalidade = "Montenegro"
 
   [[clubes.jogadores]]
   nome = "Umut Nayir"
@@ -1334,6 +1448,7 @@ padrao = "liso"
   minutos = 45
   gols = 1
   id_fonte = "248271"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Metehan Mimaroğlu"
@@ -1345,6 +1460,7 @@ padrao = "liso"
   partidas = 1
   minutos = 104
   id_fonte = "294100"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ali Habeşoğlu"
@@ -1354,6 +1470,7 @@ padrao = "liso"
   pot = 64
   valor = 2200000
   id_fonte = "892611"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Cihan Çanak"
@@ -1365,6 +1482,7 @@ padrao = "liso"
   partidas = 3
   minutos = 256
   id_fonte = "743376"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Onuralp Çevikkan"
@@ -1376,6 +1494,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "1054214"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Erol Can Çolak"
@@ -1385,6 +1504,7 @@ padrao = "liso"
   pot = 58
   valor = 220000
   id_fonte = "1152080"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ahmet Yıldırım"
@@ -1396,6 +1516,7 @@ padrao = "liso"
   partidas = 2
   minutos = 173
   id_fonte = "1174140"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Basaksehir FK"
@@ -1415,6 +1536,7 @@ padrao = "liso"
   minutos = 651
   gols = 6
   id_fonte = "358166"
+  nacionalidade = "Uzbequistão"
 
   [[clubes.jogadores]]
   nome = "Jerome Opoku"
@@ -1427,6 +1549,7 @@ padrao = "liso"
   minutos = 479
   gols = 1
   id_fonte = "408563"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Muhammed Şengezer"
@@ -1438,6 +1561,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "330871"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Christopher Operi"
@@ -1450,6 +1574,7 @@ padrao = "liso"
   minutos = 513
   gols = 1
   id_fonte = "469976"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Andreas Skov Olsen"
@@ -1462,6 +1587,7 @@ padrao = "liso"
   minutos = 460
   gols = 1
   id_fonte = "432982"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Emin Bayram"
@@ -1474,6 +1600,7 @@ padrao = "liso"
   minutos = 720
   gols = 1
   id_fonte = "655902"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Olivier Kemen"
@@ -1485,6 +1612,7 @@ padrao = "liso"
   partidas = 6
   minutos = 576
   id_fonte = "243725"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Bertuğ Yıldırım"
@@ -1497,6 +1625,7 @@ padrao = "liso"
   minutos = 300
   gols = 7
   id_fonte = "672803"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Davie Selke"
@@ -1509,6 +1638,7 @@ padrao = "liso"
   minutos = 199
   gols = 1
   id_fonte = "178459"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Umut Güneş"
@@ -1521,6 +1651,7 @@ padrao = "liso"
   minutos = 471
   gols = 1
   id_fonte = "422203"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Yusuf Sarı"
@@ -1533,6 +1664,7 @@ padrao = "liso"
   minutos = 284
   gols = 1
   id_fonte = "517376"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Abbosbek Fayzullaev"
@@ -1545,6 +1677,7 @@ padrao = "liso"
   minutos = 391
   gols = 4
   id_fonte = "754037"
+  nacionalidade = "Uzbequistão"
 
   [[clubes.jogadores]]
   nome = "Ousseynou Ba"
@@ -1556,6 +1689,7 @@ padrao = "liso"
   partidas = 3
   minutos = 248
   id_fonte = "520815"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Umut Bozok"
@@ -1567,6 +1701,7 @@ padrao = "liso"
   partidas = 1
   minutos = 104
   id_fonte = "259025"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Berkay Özcan"
@@ -1578,6 +1713,7 @@ padrao = "liso"
   partidas = 1
   minutos = 53
   id_fonte = "249952"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Michal Karbownik"
@@ -1589,6 +1725,7 @@ padrao = "liso"
   partidas = 3
   minutos = 252
   id_fonte = "401604"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Onur Bulut"
@@ -1600,6 +1737,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "152733"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ivan Brnic"
@@ -1612,6 +1750,7 @@ padrao = "liso"
   minutos = 257
   gols = 7
   id_fonte = "432752"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Jakub Kaluzinski"
@@ -1623,6 +1762,7 @@ padrao = "liso"
   partidas = 3
   minutos = 295
   id_fonte = "699418"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Ömer Ali Şahiner"
@@ -1635,6 +1775,7 @@ padrao = "liso"
   minutos = 481
   gols = 3
   id_fonte = "110695"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Onur Ergün"
@@ -1646,6 +1787,7 @@ padrao = "liso"
   partidas = 1
   minutos = 100
   id_fonte = "293998"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Deniz Dilmen"
@@ -1657,6 +1799,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "842465"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Edin Visca"
@@ -1666,6 +1809,7 @@ padrao = "liso"
   pot = 52
   valor = 100000
   id_fonte = "109217"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Volkan Babacan"
@@ -1677,6 +1821,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "52261"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Hamza Güreler"
@@ -1688,6 +1833,7 @@ padrao = "liso"
   partidas = 2
   minutos = 17
   id_fonte = "988247"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Saba Kharebashvili"
@@ -1699,6 +1845,7 @@ padrao = "liso"
   partidas = 1
   minutos = 117
   id_fonte = "1193794"
+  nacionalidade = "Geórgia"
 
   [[clubes.jogadores]]
   nome = "Batuhan Çelik"
@@ -1708,6 +1855,7 @@ padrao = "liso"
   pot = 58
   valor = 900000
   id_fonte = "875249"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Efe Arda Koyuncu"
@@ -1717,6 +1865,7 @@ padrao = "liso"
   pot = 57
   valor = 500322
   id_fonte = "889264"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Albert Gomez"
@@ -1726,6 +1875,7 @@ padrao = "liso"
   pot = 57
   valor = 500322
   id_fonte = "1460268"
+  nacionalidade = "Gâmbia"
 
   [[clubes.jogadores]]
   nome = "Luca Stancic"
@@ -1735,6 +1885,7 @@ padrao = "liso"
   pot = 59
   valor = 500322
   id_fonte = "1057178"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ege Öztürk"
@@ -1744,6 +1895,7 @@ padrao = "liso"
   pot = 59
   valor = 500322
   id_fonte = "1245279"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Corum FK"
@@ -1762,6 +1914,7 @@ padrao = "liso"
   partidas = 3
   minutos = 280
   id_fonte = "479643"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Çağlar Söyüncü"
@@ -1773,6 +1926,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "320141"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Jesús Ramírez"
@@ -1785,6 +1939,7 @@ padrao = "liso"
   minutos = 502
   gols = 4
   id_fonte = "419936"
+  nacionalidade = "Venezuela"
 
   [[clubes.jogadores]]
   nome = "Cengiz Ünder"
@@ -1797,6 +1952,7 @@ padrao = "liso"
   minutos = 245
   gols = 2
   id_fonte = "341647"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Mohamed Diomandé"
@@ -1809,6 +1965,7 @@ padrao = "liso"
   minutos = 374
   gols = 1
   id_fonte = "658531"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Berat Özdemir"
@@ -1820,6 +1977,7 @@ padrao = "liso"
   partidas = 2
   minutos = 222
   id_fonte = "483063"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Marcos Felipe"
@@ -1831,6 +1989,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "283166"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Alexandros Kyziridis"
@@ -1843,6 +2002,7 @@ padrao = "liso"
   minutos = 340
   gols = 3
   id_fonte = "586538"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Gökhan Sazdağı"
@@ -1854,6 +2014,7 @@ padrao = "liso"
   partidas = 6
   minutos = 530
   id_fonte = "257785"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Hrvoje Smolcic"
@@ -1865,6 +2026,7 @@ padrao = "liso"
   partidas = 6
   minutos = 518
   id_fonte = "571299"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Ylber Ramadani"
@@ -1876,6 +2038,7 @@ padrao = "liso"
   partidas = 4
   minutos = 393
   id_fonte = "442703"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Andrei Borza"
@@ -1888,6 +2051,7 @@ padrao = "liso"
   minutos = 539
   gols = 1
   id_fonte = "723826"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Mame Thiam"
@@ -1900,6 +2064,7 @@ padrao = "liso"
   minutos = 83
   gols = 10
   id_fonte = "163053"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Markus Karlsbakk"
@@ -1911,6 +2076,7 @@ padrao = "liso"
   partidas = 1
   minutos = 132
   id_fonte = "519882"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Arda Şengül"
@@ -1923,6 +2089,7 @@ padrao = "liso"
   minutos = 22
   gols = 1
   id_fonte = "353863"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ermin Mahmic"
@@ -1935,6 +2102,7 @@ padrao = "liso"
   minutos = 110
   gols = 2
   id_fonte = "803049"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Serdar Saatçı"
@@ -1946,6 +2114,7 @@ padrao = "liso"
   partidas = 2
   minutos = 225
   id_fonte = "655899"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Cemali Sertel"
@@ -1957,6 +2126,7 @@ padrao = "liso"
   partidas = 11
   minutos = 981
   id_fonte = "573981"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Erhan Erentürk"
@@ -1966,6 +2136,7 @@ padrao = "liso"
   pot = 57
   valor = 200000
   id_fonte = "342065"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Hüseyin Bulut"
@@ -1975,6 +2146,7 @@ padrao = "liso"
   pot = 58
   valor = 450000
   id_fonte = "342971"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ahmed Ildız"
@@ -1986,6 +2158,7 @@ padrao = "liso"
   partidas = 1
   minutos = 81
   id_fonte = "226169"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Atakan Akkaynak"
@@ -1998,6 +2171,7 @@ padrao = "liso"
   minutos = 483
   gols = 4
   id_fonte = "327542"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Fredy"
@@ -2010,6 +2184,7 @@ padrao = "liso"
   minutos = 374
   gols = 5
   id_fonte = "87854"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Göktan Gürpüz"
@@ -2021,6 +2196,7 @@ padrao = "liso"
   partidas = 2
   minutos = 28
   id_fonte = "655912"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Youssoufa Moukoko"
@@ -2032,6 +2208,7 @@ padrao = "liso"
   partidas = 1
   minutos = 61
   id_fonte = "467720"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Emircan Gürlük"
@@ -2043,6 +2220,7 @@ padrao = "liso"
   partidas = 1
   minutos = 92
   id_fonte = "858259"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Arif Şimşir"
@@ -2052,6 +2230,7 @@ padrao = "liso"
   pot = 55
   valor = 200000
   id_fonte = "920118"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Furkan Çetinkaya"
@@ -2063,6 +2242,7 @@ padrao = "liso"
   partidas = 1
   minutos = 21
   id_fonte = "1476544"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Hasanege Akdoğan"
@@ -2072,6 +2252,7 @@ padrao = "liso"
   pot = 54
   valor = 400000
   id_fonte = "1197994"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Göztepe"
@@ -2091,6 +2272,7 @@ padrao = "liso"
   minutos = 345
   gols = 4
   id_fonte = "662332"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Malcom Bokele"
@@ -2103,6 +2285,7 @@ padrao = "liso"
   minutos = 450
   gols = 3
   id_fonte = "647787"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Janderson"
@@ -2115,6 +2298,7 @@ padrao = "liso"
   minutos = 334
   gols = 6
   id_fonte = "976561"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Arda Okan Kurtulan"
@@ -2127,6 +2311,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "700031"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Novatus Miroshi"
@@ -2139,6 +2324,7 @@ padrao = "liso"
   minutos = 334
   gols = 1
   id_fonte = "833315"
+  nacionalidade = "Tanzânia"
 
   [[clubes.jogadores]]
   nome = "Taha Altıkardeş"
@@ -2151,6 +2337,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "745233"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Noah Sonko Sundberg"
@@ -2160,6 +2347,7 @@ padrao = "liso"
   pot = 63
   valor = 900000
   id_fonte = "249121"
+  nacionalidade = "Gâmbia"
 
   [[clubes.jogadores]]
   nome = "André Henrique"
@@ -2171,6 +2359,7 @@ padrao = "liso"
   partidas = 4
   minutos = 400
   id_fonte = "1024605"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Efkan Bekiroğlu"
@@ -2183,6 +2372,7 @@ padrao = "liso"
   minutos = 194
   gols = 2
   id_fonte = "327402"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Luka Gugeshashvili"
@@ -2194,6 +2384,7 @@ padrao = "liso"
   partidas = 4
   minutos = 315
   id_fonte = "407491"
+  nacionalidade = "Geórgia"
 
   [[clubes.jogadores]]
   nome = "Tino Anjorin"
@@ -2205,6 +2396,7 @@ padrao = "liso"
   partidas = 1
   minutos = 62
   id_fonte = "433181"
+  nacionalidade = "Inglaterra"
 
   [[clubes.jogadores]]
   nome = "Alexis Antunes"
@@ -2217,6 +2409,7 @@ padrao = "liso"
   minutos = 181
   gols = 1
   id_fonte = "346898"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Furkan Bayır"
@@ -2228,6 +2421,7 @@ padrao = "liso"
   partidas = 4
   minutos = 334
   id_fonte = "548270"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Rhaldney"
@@ -2240,6 +2434,7 @@ padrao = "liso"
   minutos = 418
   gols = 1
   id_fonte = "638269"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Bekir Turaç Böke"
@@ -2251,6 +2446,7 @@ padrao = "liso"
   partidas = 3
   minutos = 26
   id_fonte = "500972"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ogün Bayrak"
@@ -2262,6 +2458,7 @@ padrao = "liso"
   partidas = 1
   minutos = 118
   id_fonte = "545550"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Sinclair Armstrong"
@@ -2274,6 +2471,7 @@ padrao = "liso"
   minutos = 178
   gols = 1
   id_fonte = "724532"
+  nacionalidade = "Irlanda"
 
   [[clubes.jogadores]]
   nome = "Arda Özçimen"
@@ -2285,6 +2483,7 @@ padrao = "liso"
   partidas = 2
   minutos = 225
   id_fonte = "615430"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Allan Godói"
@@ -2296,6 +2495,7 @@ padrao = "liso"
   partidas = 2
   minutos = 135
   id_fonte = "681814"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Richard Akonnor"
@@ -2307,6 +2507,7 @@ padrao = "liso"
   partidas = 4
   minutos = 339
   id_fonte = "1081721"
+  nacionalidade = "Emirados Árabes Unidos"
 
   [[clubes.jogadores]]
   nome = "Alex Matos"
@@ -2319,6 +2520,7 @@ padrao = "liso"
   minutos = 250
   gols = 1
   id_fonte = "670850"
+  nacionalidade = "Inglaterra"
 
   [[clubes.jogadores]]
   nome = "Gökdeniz Bayrakdar"
@@ -2328,6 +2530,7 @@ padrao = "liso"
   pot = 59
   valor = 800000
   id_fonte = "345105"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ege Yıldırım"
@@ -2339,6 +2542,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "1076671"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ibrahim Sabra"
@@ -2351,6 +2555,7 @@ padrao = "liso"
   minutos = 84
   gols = 1
   id_fonte = "1142382"
+  nacionalidade = "Jordânia"
 
   [[clubes.jogadores]]
   nome = "Nevzat Üzel"
@@ -2360,6 +2565,7 @@ padrao = "liso"
   pot = 58
   valor = 266538
   id_fonte = "1175606"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Şamil Öztürk"
@@ -2369,6 +2575,7 @@ padrao = "liso"
   pot = 54
   valor = 100000
   id_fonte = "1014342"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Caykur Rizespor"
@@ -2387,6 +2594,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "418651"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Mithat Pala"
@@ -2399,6 +2607,7 @@ padrao = "liso"
   minutos = 540
   gols = 3
   id_fonte = "703720"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Qazim Laci"
@@ -2411,6 +2620,7 @@ padrao = "liso"
   minutos = 485
   gols = 1
   id_fonte = "290552"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Modibo Sagnan"
@@ -2423,6 +2633,7 @@ padrao = "liso"
   minutos = 538
   gols = 1
   id_fonte = "524925"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Taha Şahin"
@@ -2435,6 +2646,7 @@ padrao = "liso"
   minutos = 148
   gols = 2
   id_fonte = "616885"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ahmed Kutucu"
@@ -2446,6 +2658,7 @@ padrao = "liso"
   partidas = 5
   minutos = 430
   id_fonte = "452084"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Attila Mocsi"
@@ -2458,6 +2671,7 @@ padrao = "liso"
   minutos = 533
   gols = 2
   id_fonte = "496996"
+  nacionalidade = "Hungria"
 
   [[clubes.jogadores]]
   nome = "Ibrahim Olawoyin"
@@ -2470,6 +2684,7 @@ padrao = "liso"
   minutos = 395
   gols = 1
   id_fonte = "672597"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Valentin Mihăilă"
@@ -2482,6 +2697,7 @@ padrao = "liso"
   minutos = 96
   gols = 6
   id_fonte = "535469"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Ali Sowe"
@@ -2494,6 +2710,7 @@ padrao = "liso"
   minutos = 528
   gols = 2
   id_fonte = "229817"
+  nacionalidade = "Gâmbia"
 
   [[clubes.jogadores]]
   nome = "Gennaro Borrelli"
@@ -2503,6 +2720,7 @@ padrao = "liso"
   pot = 63
   valor = 3000000
   id_fonte = "459988"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Khusniddin Alikulov"
@@ -2514,6 +2732,7 @@ padrao = "liso"
   partidas = 9
   minutos = 770
   id_fonte = "581429"
+  nacionalidade = "Uzbequistão"
 
   [[clubes.jogadores]]
   nome = "Tayyip Talha Sanuç"
@@ -2525,6 +2744,7 @@ padrao = "liso"
   partidas = 1
   minutos = 79
   id_fonte = "462772"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Taylan Antalyalı"
@@ -2537,6 +2757,7 @@ padrao = "liso"
   minutos = 499
   gols = 1
   id_fonte = "204176"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Can Bozdogan"
@@ -2548,6 +2769,7 @@ padrao = "liso"
   partidas = 1
   minutos = 22
   id_fonte = "406609"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Zafer Görgen"
@@ -2557,6 +2779,7 @@ padrao = "liso"
   pot = 61
   valor = 800000
   id_fonte = "576566"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Zakaria Ariss"
@@ -2568,6 +2791,7 @@ padrao = "liso"
   partidas = 4
   minutos = 376
   id_fonte = "982403"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Hasan Yağız Döne"
@@ -2577,6 +2801,7 @@ padrao = "liso"
   pot = 57
   valor = 394482
   id_fonte = "1581401"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Dal Varesanovic"
@@ -2589,6 +2814,7 @@ padrao = "liso"
   minutos = 111
   gols = 1
   id_fonte = "433105"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Adedire Mebude"
@@ -2601,6 +2827,7 @@ padrao = "liso"
   minutos = 147
   gols = 2
   id_fonte = "719672"
+  nacionalidade = "Escócia"
 
   [[clubes.jogadores]]
   nome = "Siaka Bakayoko"
@@ -2612,6 +2839,7 @@ padrao = "liso"
   partidas = 2
   minutos = 18
   id_fonte = "986258"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Emrecan Bulut"
@@ -2624,6 +2852,7 @@ padrao = "liso"
   minutos = 248
   gols = 2
   id_fonte = "1050797"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Moussa Diakité"
@@ -2635,6 +2864,7 @@ padrao = "liso"
   partidas = 3
   minutos = 28
   id_fonte = "979235"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Umut Erdem"
@@ -2644,6 +2874,7 @@ padrao = "liso"
   pot = 57
   valor = 600000
   id_fonte = "875116"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Emirhan Yılmaz"
@@ -2653,6 +2884,7 @@ padrao = "liso"
   pot = 55
   valor = 394482
   id_fonte = "951697"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Efe Doğan"
@@ -2662,6 +2894,7 @@ padrao = "liso"
   pot = 53
   valor = 150000
   id_fonte = "966488"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Iustin Doicaru"
@@ -2674,6 +2907,7 @@ padrao = "liso"
   minutos = 105
   gols = 1
   id_fonte = "1050693"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Mustafa Coşkun Tosun"
@@ -2685,6 +2919,7 @@ padrao = "liso"
   partidas = 1
   minutos = 10
   id_fonte = "1474364"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Yakup Ayan"
@@ -2696,6 +2931,7 @@ padrao = "liso"
   partidas = 1
   minutos = 9
   id_fonte = "1351512"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Samsunspor"
@@ -2714,6 +2950,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "204189"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Strahinja Erakovic"
@@ -2725,6 +2962,7 @@ padrao = "liso"
   partidas = 2
   minutos = 182
   id_fonte = "574660"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Mohamed Bayo"
@@ -2736,6 +2974,7 @@ padrao = "liso"
   partidas = 1
   minutos = 112
   id_fonte = "594991"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Logi Tómasson"
@@ -2748,6 +2987,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "472873"
+  nacionalidade = "Islândia"
 
   [[clubes.jogadores]]
   nome = "Bilal Bayazıt"
@@ -2757,6 +2997,7 @@ padrao = "liso"
   pot = 66
   valor = 1800000
   id_fonte = "361032"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Joe Mendes"
@@ -2769,6 +3010,7 @@ padrao = "liso"
   minutos = 539
   gols = 1
   id_fonte = "579284"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Afonso Sousa"
@@ -2781,6 +3023,7 @@ padrao = "liso"
   minutos = 24
   gols = 1
   id_fonte = "375378"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Elliot Watt"
@@ -2792,6 +3035,7 @@ padrao = "liso"
   partidas = 3
   minutos = 245
   id_fonte = "403574"
+  nacionalidade = "Escócia"
 
   [[clubes.jogadores]]
   nome = "Emre Kılınç"
@@ -2804,6 +3048,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "208848"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Gabriele Guarino"
@@ -2815,6 +3060,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "745427"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Antoine Sekongo"
@@ -2826,6 +3072,7 @@ padrao = "liso"
   partidas = 2
   minutos = 223
   id_fonte = "1178476"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Celil Yüksel"
@@ -2838,6 +3085,7 @@ padrao = "liso"
   minutos = 536
   gols = 1
   id_fonte = "336074"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Yalçın Kayan"
@@ -2850,6 +3098,7 @@ padrao = "liso"
   minutos = 377
   gols = 2
   id_fonte = "605266"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Elayis Tavsan"
@@ -2862,6 +3111,7 @@ padrao = "liso"
   minutos = 929
   gols = 2
   id_fonte = "462086"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Tanguy Coulibaly"
@@ -2874,6 +3124,7 @@ padrao = "liso"
   minutos = 45
   gols = 2
   id_fonte = "618425"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Jaurès Assoumou"
@@ -2886,6 +3137,7 @@ padrao = "liso"
   minutos = 582
   gols = 1
   id_fonte = "1066904"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Fatih Kaya"
@@ -2898,6 +3150,7 @@ padrao = "liso"
   minutos = 126
   gols = 1
   id_fonte = "368825"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Samed Onur"
@@ -2909,6 +3162,7 @@ padrao = "liso"
   partidas = 3
   minutos = 256
   id_fonte = "538864"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Yunus Emre Çift"
@@ -2920,6 +3174,7 @@ padrao = "liso"
   partidas = 2
   minutos = 145
   id_fonte = "821622"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Igor Drapiński"
@@ -2931,6 +3186,7 @@ padrao = "liso"
   partidas = 1
   minutos = 13
   id_fonte = "704970"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Oskar Øhlenschlæger"
@@ -2940,6 +3196,7 @@ padrao = "liso"
   pot = 63
   valor = 2300000
   id_fonte = "926953"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Saikuba Jarju"
@@ -2951,6 +3208,7 @@ padrao = "liso"
   partidas = 5
   minutos = 452
   id_fonte = "1494766"
+  nacionalidade = "Gâmbia"
 
   [[clubes.jogadores]]
   nome = "Efe Berat Töruz"
@@ -2960,6 +3218,7 @@ padrao = "liso"
   pot = 58
   valor = 392857
   id_fonte = "1070009"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Kerem Fidan"
@@ -2969,6 +3228,7 @@ padrao = "liso"
   pot = 57
   valor = 392857
   id_fonte = "1173403"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Mustafa Tan"
@@ -2980,6 +3240,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "1161013"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Bedirhan Çetin"
@@ -2989,6 +3250,7 @@ padrao = "liso"
   pot = 50
   valor = 100000
   id_fonte = "1017551"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Efe Yiğit Üstün"
@@ -2998,6 +3260,7 @@ padrao = "liso"
   pot = 58
   valor = 392857
   id_fonte = "1237420"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Enes Albak"
@@ -3009,6 +3272,7 @@ padrao = "liso"
   partidas = 1
   minutos = 21
   id_fonte = "1072260"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Konyaspor"
@@ -3028,6 +3292,7 @@ padrao = "liso"
   minutos = 540
   gols = 2
   id_fonte = "354173"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Arthur Masuaku"
@@ -3039,6 +3304,7 @@ padrao = "liso"
   partidas = 3
   minutos = 290
   id_fonte = "181380"
+  nacionalidade = "RD do Congo"
 
   [[clubes.jogadores]]
   nome = "Chidozie Awaziem"
@@ -3050,6 +3316,7 @@ padrao = "liso"
   partidas = 3
   minutos = 266
   id_fonte = "358143"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Enis Bardhi"
@@ -3062,6 +3329,7 @@ padrao = "liso"
   minutos = 72
   gols = 8
   id_fonte = "245014"
+  nacionalidade = "Macedônia do Norte"
 
   [[clubes.jogadores]]
   nome = "Jean-Luc Dompé"
@@ -3073,6 +3341,7 @@ padrao = "liso"
   partidas = 1
   minutos = 57
   id_fonte = "291222"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Mostafa Mohamed"
@@ -3084,6 +3353,7 @@ padrao = "liso"
   partidas = 1
   minutos = 68
   id_fonte = "462348"
+  nacionalidade = "Egito"
 
   [[clubes.jogadores]]
   nome = "Diogo Gonçalves"
@@ -3096,6 +3366,7 @@ padrao = "liso"
   minutos = 437
   gols = 2
   id_fonte = "258015"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Melih İbrahimoğlu"
@@ -3108,6 +3379,7 @@ padrao = "liso"
   minutos = 529
   gols = 1
   id_fonte = "391555"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Uğurcan Yazğılı"
@@ -3119,6 +3391,7 @@ padrao = "liso"
   partidas = 4
   minutos = 378
   id_fonte = "295955"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Jackson Muleka"
@@ -3131,6 +3404,7 @@ padrao = "liso"
   minutos = 500
   gols = 8
   id_fonte = "549966"
+  nacionalidade = "RD do Congo"
 
   [[clubes.jogadores]]
   nome = "Bahadır Güngördü"
@@ -3142,6 +3416,7 @@ padrao = "liso"
   partidas = 4
   minutos = 338
   id_fonte = "388359"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Deniz Ertaş"
@@ -3153,6 +3428,7 @@ padrao = "liso"
   partidas = 2
   minutos = 202
   id_fonte = "882568"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Rayyan Baniya"
@@ -3164,6 +3440,7 @@ padrao = "liso"
   partidas = 3
   minutos = 279
   id_fonte = "394872"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Yhoan Andzouana"
@@ -3176,6 +3453,7 @@ padrao = "liso"
   minutos = 373
   gols = 2
   id_fonte = "342218"
+  nacionalidade = "Congo"
 
   [[clubes.jogadores]]
   nome = "Ahmet Oğuz"
@@ -3185,6 +3463,7 @@ padrao = "liso"
   pot = 58
   valor = 400000
   id_fonte = "291758"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Deniz Türüç"
@@ -3197,6 +3476,7 @@ padrao = "liso"
   minutos = 442
   gols = 1
   id_fonte = "216662"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Marko Jevtović"
@@ -3209,6 +3489,7 @@ padrao = "liso"
   minutos = 367
   gols = 1
   id_fonte = "256000"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Ebrima Colley"
@@ -3221,6 +3502,7 @@ padrao = "liso"
   minutos = 211
   gols = 1
   id_fonte = "567217"
+  nacionalidade = "Gâmbia"
 
   [[clubes.jogadores]]
   nome = "Enis Destan"
@@ -3232,6 +3514,7 @@ padrao = "liso"
   partidas = 1
   minutos = 75
   id_fonte = "699980"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Emir Gündoğdu"
@@ -3241,6 +3524,7 @@ padrao = "liso"
   pot = 54
   valor = 220000
   id_fonte = "1347138"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Rajmund Tóth"
@@ -3253,6 +3537,7 @@ padrao = "liso"
   minutos = 311
   gols = 1
   id_fonte = "1138547"
+  nacionalidade = "Hungria"
 
   [[clubes.jogadores]]
   nome = "Arif Boşluk"
@@ -3264,6 +3549,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "801693"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Emir Bars"
@@ -3275,6 +3561,7 @@ padrao = "liso"
   partidas = 2
   minutos = 34
   id_fonte = "775978"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ata Yanık"
@@ -3286,6 +3573,7 @@ padrao = "liso"
   partidas = 2
   minutos = 143
   id_fonte = "1223318"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Da Mata"
@@ -3295,6 +3583,7 @@ padrao = "liso"
   pot = 53
   valor = 220000
   id_fonte = "1005007"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Egemen Aydın"
@@ -3306,6 +3595,7 @@ padrao = "liso"
   partidas = 1
   minutos = 5
   id_fonte = "1071220"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Mücahit Ibrahimoglu"
@@ -3317,6 +3607,7 @@ padrao = "liso"
   partidas = 1
   minutos = 119
   id_fonte = "724050"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Ömer Çobanoğlu"
@@ -3326,6 +3617,7 @@ padrao = "liso"
   pot = 52
   valor = 220000
   id_fonte = "1304052"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Kasimpasa"
@@ -3345,6 +3637,7 @@ padrao = "liso"
   minutos = 525
   gols = 4
   id_fonte = "454386"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Godfried Frimpong"
@@ -3356,6 +3649,7 @@ padrao = "liso"
   partidas = 24
   minutos = 2197
   id_fonte = "364244"
+  nacionalidade = "Holanda"
 
   [[clubes.jogadores]]
   nome = "Kerem Demirbay"
@@ -3368,6 +3662,7 @@ padrao = "liso"
   minutos = 429
   gols = 1
   id_fonte = "125858"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Matei Ilie"
@@ -3379,6 +3674,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "615930"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Mortadha Ben Ouanes"
@@ -3391,6 +3687,7 @@ padrao = "liso"
   minutos = 78
   gols = 2
   id_fonte = "230921"
+  nacionalidade = "Tunísia"
 
   [[clubes.jogadores]]
   nome = "Andri Fannar Baldursson"
@@ -3402,6 +3699,7 @@ padrao = "liso"
   partidas = 4
   minutos = 319
   id_fonte = "464446"
+  nacionalidade = "Islândia"
 
   [[clubes.jogadores]]
   nome = "Cláudio Winck"
@@ -3414,6 +3712,7 @@ padrao = "liso"
   minutos = 535
   gols = 3
   id_fonte = "181783"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Haris Hajradinovic"
@@ -3426,6 +3725,7 @@ padrao = "liso"
   minutos = 74
   gols = 2
   id_fonte = "215592"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Adem Arous"
@@ -3438,6 +3738,7 @@ padrao = "liso"
   minutos = 363
   gols = 1
   id_fonte = "1071742"
+  nacionalidade = "Tunísia"
 
   [[clubes.jogadores]]
   nome = "Kévin Mouanga"
@@ -3449,6 +3750,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "629637"
+  nacionalidade = "Congo"
 
   [[clubes.jogadores]]
   nome = "Andreas Gianniotis"
@@ -3461,6 +3763,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "226802"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Fousseni Diabaté"
@@ -3473,6 +3776,7 @@ padrao = "liso"
   minutos = 180
   gols = 1
   id_fonte = "364861"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Güven Yalçın"
@@ -3485,6 +3789,7 @@ padrao = "liso"
   minutos = 395
   gols = 2
   id_fonte = "341019"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Jesurun Rak-Sakyi"
@@ -3496,6 +3801,7 @@ padrao = "liso"
   partidas = 1
   minutos = 69
   id_fonte = "586834"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Ayberk Karapo"
@@ -3507,6 +3813,7 @@ padrao = "liso"
   partidas = 3
   minutos = 280
   id_fonte = "1045547"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Kamil Ahmet Çörekçi"
@@ -3518,6 +3825,7 @@ padrao = "liso"
   partidas = 9
   minutos = 767
   id_fonte = "110686"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ali Emre Yanar"
@@ -3529,6 +3837,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "435135"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Elson Mendes"
@@ -3540,6 +3849,7 @@ padrao = "liso"
   partidas = 4
   minutos = 387
   id_fonte = "1173606"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Jakob Jessen"
@@ -3551,6 +3861,7 @@ padrao = "liso"
   partidas = 3
   minutos = 296
   id_fonte = "735438"
+  nacionalidade = "Dinamarca"
 
   [[clubes.jogadores]]
   nome = "Thiemoko Diarra"
@@ -3562,6 +3873,7 @@ padrao = "liso"
   partidas = 2
   minutos = 32
   id_fonte = "922828"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Ömer Bayram"
@@ -3571,6 +3883,7 @@ padrao = "liso"
   pot = 54
   valor = 50000
   id_fonte = "117586"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ali Yavuz Kol"
@@ -3582,6 +3895,7 @@ padrao = "liso"
   partidas = 4
   minutos = 341
   id_fonte = "477938"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Marcus Rafferty"
@@ -3593,6 +3907,7 @@ padrao = "liso"
   partidas = 3
   minutos = 249
   id_fonte = "944822"
+  nacionalidade = "Suécia"
 
   [[clubes.jogadores]]
   nome = "Atakan Müjde"
@@ -3604,6 +3919,7 @@ padrao = "liso"
   partidas = 1
   minutos = 8
   id_fonte = "815014"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ahmet Taha Dağbaşı"
@@ -3615,6 +3931,7 @@ padrao = "liso"
   partidas = 1
   minutos = 50
   id_fonte = "1314014"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ege Albayrak"
@@ -3624,6 +3941,7 @@ padrao = "liso"
   pot = 52
   valor = 55000
   id_fonte = "1233283"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Emirhan Boz"
@@ -3635,6 +3953,7 @@ padrao = "liso"
   partidas = 1
   minutos = 71
   id_fonte = "1313802"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Emirhan Yiğit"
@@ -3646,6 +3965,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1020670"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Muhammed Emin Bektaş"
@@ -3655,6 +3975,7 @@ padrao = "liso"
   pot = 50
   valor = 55000
   id_fonte = "1315482"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Salih Arıcı"
@@ -3664,6 +3985,7 @@ padrao = "liso"
   pot = 51
   valor = 55000
   id_fonte = "1438186"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Sercan Deniz"
@@ -3673,6 +3995,7 @@ padrao = "liso"
   pot = 54
   valor = 200000
   id_fonte = "1223585"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Sinan Alkaş"
@@ -3684,6 +4007,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "1018802"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Alanyaspor"
@@ -3703,6 +4027,7 @@ padrao = "liso"
   minutos = 88
   gols = 1
   id_fonte = "666551"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Florent Hadergjonaj"
@@ -3715,6 +4040,7 @@ padrao = "liso"
   minutos = 540
   gols = 9
   id_fonte = "238809"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Gaius Makouta"
@@ -3727,6 +4053,7 @@ padrao = "liso"
   minutos = 528
   gols = 2
   id_fonte = "450173"
+  nacionalidade = "Congo"
 
   [[clubes.jogadores]]
   nome = "Nuno Lima"
@@ -3739,6 +4066,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "836336"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Fidan Aliti"
@@ -3750,6 +4078,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "182870"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Fatih Aksoy"
@@ -3761,6 +4090,7 @@ padrao = "liso"
   partidas = 3
   minutos = 261
   id_fonte = "338794"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ianis Hagi"
@@ -3773,6 +4103,7 @@ padrao = "liso"
   minutos = 103
   gols = 5
   id_fonte = "282076"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Meschack Elia"
@@ -3785,6 +4116,7 @@ padrao = "liso"
   minutos = 202
   gols = 3
   id_fonte = "423678"
+  nacionalidade = "RD do Congo"
 
   [[clubes.jogadores]]
   nome = "Ruan"
@@ -3797,6 +4129,7 @@ padrao = "liso"
   minutos = 492
   gols = 1
   id_fonte = "1053933"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Paolo Fernandes"
@@ -3809,6 +4142,7 @@ padrao = "liso"
   minutos = 210
   gols = 1
   id_fonte = "284876"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Ui-jo Hwang"
@@ -3821,6 +4155,7 @@ padrao = "liso"
   minutos = 276
   gols = 4
   id_fonte = "260166"
+  nacionalidade = "Coreia do Sul"
 
   [[clubes.jogadores]]
   nome = "Yusuf Özdemir"
@@ -3833,6 +4168,7 @@ padrao = "liso"
   minutos = 90
   gols = 1
   id_fonte = "652426"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "İbrahim Kaya"
@@ -3845,6 +4181,7 @@ padrao = "liso"
   minutos = 250
   gols = 6
   id_fonte = "712127"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Baran Gezek"
@@ -3856,6 +4193,7 @@ padrao = "liso"
   partidas = 4
   minutos = 404
   id_fonte = "988710"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Iván Cédric"
@@ -3867,6 +4205,7 @@ padrao = "liso"
   partidas = 1
   minutos = 108
   id_fonte = "716163"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Enes Keskin"
@@ -3878,6 +4217,7 @@ padrao = "liso"
   partidas = 1
   minutos = 46
   id_fonte = "742611"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Paulo Victor"
@@ -3889,6 +4229,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "67886"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Omar Ben Ali"
@@ -3900,6 +4241,7 @@ padrao = "liso"
   partidas = 2
   minutos = 151
   id_fonte = "1244036"
+  nacionalidade = "Tunísia"
 
   [[clubes.jogadores]]
   nome = "Arda Usluoğlu"
@@ -3912,6 +4254,7 @@ padrao = "liso"
   minutos = 281
   gols = 2
   id_fonte = "981928"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Emre Demir"
@@ -3921,6 +4264,7 @@ padrao = "liso"
   pot = 59
   valor = 500000
   id_fonte = "637669"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Bedirhan Özyurt"
@@ -3932,6 +4276,7 @@ padrao = "liso"
   partidas = 2
   minutos = 10
   id_fonte = "710051"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Mert Bayram"
@@ -3941,6 +4286,7 @@ padrao = "liso"
   pot = 59
   valor = 300000
   id_fonte = "920138"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "İzzet Çelik"
@@ -3952,6 +4298,7 @@ padrao = "liso"
   partidas = 1
   minutos = 12
   id_fonte = "811841"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Şahin Dik"
@@ -3961,6 +4308,7 @@ padrao = "liso"
   pot = 54
   valor = 201666
   id_fonte = "956094"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Mahmut Can Kara"
@@ -3970,6 +4318,7 @@ padrao = "liso"
   pot = 57
   valor = 201666
   id_fonte = "1175619"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Arouna Soro"
@@ -3979,6 +4328,7 @@ padrao = "liso"
   pot = 54
   valor = 201666
   id_fonte = "1577095"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Bilal Demirağ"
@@ -3988,6 +4338,7 @@ padrao = "liso"
   pot = 57
   valor = 250000
   id_fonte = "1223297"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Gaziantep FK"
@@ -4007,6 +4358,7 @@ padrao = "liso"
   minutos = 510
   gols = 2
   id_fonte = "554284"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Drissa Camara"
@@ -4019,6 +4371,7 @@ padrao = "liso"
   minutos = 245
   gols = 3
   id_fonte = "614742"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Juninho Bacuna"
@@ -4031,6 +4384,7 @@ padrao = "liso"
   minutos = 154
   gols = 1
   id_fonte = "348863"
+  nacionalidade = "Curaçao"
 
   [[clubes.jogadores]]
   nome = "Ulrich Meleke"
@@ -4042,6 +4396,7 @@ padrao = "liso"
   partidas = 6
   minutos = 517
   id_fonte = "581447"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Deian Sorescu"
@@ -4054,6 +4409,7 @@ padrao = "liso"
   minutos = 494
   gols = 2
   id_fonte = "379209"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Luis Pérez"
@@ -4065,6 +4421,7 @@ padrao = "liso"
   partidas = 6
   minutos = 510
   id_fonte = "358115"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Myenty Abena"
@@ -4077,6 +4434,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "254003"
+  nacionalidade = "Suriname"
 
   [[clubes.jogadores]]
   nome = "Arda Kızıldağ"
@@ -4089,6 +4447,7 @@ padrao = "liso"
   minutos = 282
   gols = 1
   id_fonte = "532905"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Trivante Stewart"
@@ -4100,6 +4459,7 @@ padrao = "liso"
   partidas = 2
   minutos = 185
   id_fonte = "880054"
+  nacionalidade = "Jamaica"
 
   [[clubes.jogadores]]
   nome = "Alexandru Maxim"
@@ -4112,6 +4472,7 @@ padrao = "liso"
   minutos = 463
   gols = 5
   id_fonte = "129513"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Kacper Tobiasz"
@@ -4123,6 +4484,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "658111"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Sontje Hansen"
@@ -4134,6 +4496,7 @@ padrao = "liso"
   partidas = 1
   minutos = 105
   id_fonte = "485582"
+  nacionalidade = "Curaçao"
 
   [[clubes.jogadores]]
   nome = "Ogün Özçiçek"
@@ -4145,6 +4508,7 @@ padrao = "liso"
   partidas = 1
   minutos = 8
   id_fonte = "701845"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Abakar Sylla"
@@ -4156,6 +4520,7 @@ padrao = "liso"
   partidas = 2
   minutos = 29
   id_fonte = "962555"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Ataberk Dadakdeniz"
@@ -4165,6 +4530,7 @@ padrao = "liso"
   pot = 58
   valor = 250000
   id_fonte = "330824"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Halil Dervişoğlu"
@@ -4177,6 +4543,7 @@ padrao = "liso"
   minutos = 212
   gols = 1
   id_fonte = "465606"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Nazım Sangaré"
@@ -4189,6 +4556,7 @@ padrao = "liso"
   minutos = 1436
   gols = 1
   id_fonte = "157113"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Serdar Dursun"
@@ -4200,6 +4568,7 @@ padrao = "liso"
   partidas = 1
   minutos = 120
   id_fonte = "80059"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Sabahattin Destici"
@@ -4211,6 +4580,7 @@ padrao = "liso"
   partidas = 1
   minutos = 4
   id_fonte = "614288"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Kerim Çalhanoğlu"
@@ -4222,6 +4592,7 @@ padrao = "liso"
   partidas = 3
   minutos = 266
   id_fonte = "553905"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Fuat Bavuk"
@@ -4233,6 +4604,7 @@ padrao = "liso"
   partidas = 1
   minutos = 54
   id_fonte = "607171"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Victor Gidado"
@@ -4244,6 +4616,7 @@ padrao = "liso"
   partidas = 4
   minutos = 364
   id_fonte = "1209519"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Enver Kulasin"
@@ -4256,6 +4629,7 @@ padrao = "liso"
   minutos = 25
   gols = 1
   id_fonte = "672052"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Mirza Cihan"
@@ -4267,6 +4641,7 @@ padrao = "liso"
   partidas = 3
   minutos = 23
   id_fonte = "583970"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Karamba Gassama"
@@ -4278,6 +4653,7 @@ padrao = "liso"
   partidas = 2
   minutos = 42
   id_fonte = "1111215"
+  nacionalidade = "Gâmbia"
 
   [[clubes.jogadores]]
   nome = "Efe Sarıkaya"
@@ -4287,6 +4663,7 @@ padrao = "liso"
   pot = 56
   valor = 250000
   id_fonte = "975729"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Kadir Gümüş"
@@ -4296,6 +4673,7 @@ padrao = "liso"
   pot = 52
   valor = 114166
   id_fonte = "1581187"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ali Osman Kalın"
@@ -4307,6 +4685,7 @@ padrao = "liso"
   partidas = 1
   minutos = 108
   id_fonte = "1261143"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Burak Enes Yıkıcı"
@@ -4316,6 +4695,7 @@ padrao = "liso"
   pot = 47
   valor = 25000
   id_fonte = "952093"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Cemilhan Aslan"
@@ -4325,6 +4705,7 @@ padrao = "liso"
   pot = 54
   valor = 114166
   id_fonte = "1197999"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Muhammet Akmelek"
@@ -4337,6 +4718,7 @@ padrao = "liso"
   minutos = 46
   gols = 1
   id_fonte = "1474871"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Taha Güneş"
@@ -4346,6 +4728,7 @@ padrao = "liso"
   pot = 49
   valor = 50000
   id_fonte = "1048119"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "İbrahim Kağan Alkış"
@@ -4355,6 +4738,7 @@ padrao = "liso"
   pot = 54
   valor = 114166
   id_fonte = "1181959"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Genclerbirligi Ankara"
@@ -4373,6 +4757,7 @@ padrao = "liso"
   partidas = 5
   minutos = 406
   id_fonte = "479638"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "İrfan Can Eğribayat"
@@ -4384,6 +4769,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "322873"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Adama Traoré"
@@ -4396,6 +4782,7 @@ padrao = "liso"
   minutos = 462
   gols = 1
   id_fonte = "364405"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Cheikh Niasse"
@@ -4407,6 +4794,7 @@ padrao = "liso"
   partidas = 1
   minutos = 29
   id_fonte = "644032"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Dimitrios Goutas"
@@ -4419,6 +4807,7 @@ padrao = "liso"
   minutos = 540
   gols = 3
   id_fonte = "191829"
+  nacionalidade = "Grécia"
 
   [[clubes.jogadores]]
   nome = "Franco Tongya"
@@ -4431,6 +4820,7 @@ padrao = "liso"
   minutos = 518
   gols = 1
   id_fonte = "530851"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Kévin Rodrigues"
@@ -4440,6 +4830,7 @@ padrao = "liso"
   pot = 61
   valor = 800000
   id_fonte = "206947"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Pedro Pereira"
@@ -4451,6 +4842,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "314965"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Sékou Koïta"
@@ -4463,6 +4855,7 @@ padrao = "liso"
   minutos = 352
   gols = 1
   id_fonte = "402010"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Oğulcan Ülgün"
@@ -4475,6 +4868,7 @@ padrao = "liso"
   minutos = 473
   gols = 1
   id_fonte = "440653"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Salih Uçan"
@@ -4486,6 +4880,7 @@ padrao = "liso"
   partidas = 1
   minutos = 85
   id_fonte = "170838"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Thalisson"
@@ -4498,6 +4893,7 @@ padrao = "liso"
   minutos = 265
   gols = 2
   id_fonte = "323876"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Gökhan Akkan"
@@ -4509,6 +4905,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "223025"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Pedro Mendes"
@@ -4520,6 +4917,7 @@ padrao = "liso"
   partidas = 2
   minutos = 168
   id_fonte = "498235"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Rafael Luís"
@@ -4531,6 +4929,7 @@ padrao = "liso"
   partidas = 1
   minutos = 113
   id_fonte = "637803"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Abdurrahim Dursun"
@@ -4542,6 +4941,7 @@ padrao = "liso"
   partidas = 5
   minutos = 465
   id_fonte = "366194"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Metehan Baltacı"
@@ -4553,6 +4953,7 @@ padrao = "liso"
   partidas = 4
   minutos = 18
   id_fonte = "618869"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ousmane Diabate"
@@ -4565,6 +4966,7 @@ padrao = "liso"
   minutos = 482
   gols = 1
   id_fonte = "1489506"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Peter Etebo"
@@ -4576,6 +4978,7 @@ padrao = "liso"
   partidas = 1
   minutos = 15
   id_fonte = "409106"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Fıratcan Üzüm"
@@ -4588,6 +4991,7 @@ padrao = "liso"
   minutos = 80
   gols = 1
   id_fonte = "508994"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ensar Çavuşoğlu"
@@ -4597,6 +5001,7 @@ padrao = "liso"
   pot = 56
   valor = 400000
   id_fonte = "674369"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Arda Çağan Çelik"
@@ -4608,6 +5013,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "1078111"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ayaz Özcan"
@@ -4619,6 +5025,7 @@ padrao = "liso"
   partidas = 2
   minutos = 216
   id_fonte = "1437503"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Göktuğ Erdem"
@@ -4628,6 +5035,7 @@ padrao = "liso"
   pot = 51
   valor = 170500
   id_fonte = "875256"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Arda Akgül"
@@ -4637,6 +5045,7 @@ padrao = "liso"
   pot = 50
   valor = 170500
   id_fonte = "1210236"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Berk Deniz Çukurcu"
@@ -4646,6 +5055,7 @@ padrao = "liso"
   pot = 53
   valor = 170500
   id_fonte = "1189059"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Erk Aslan"
@@ -4655,6 +5065,7 @@ padrao = "liso"
   pot = 50
   valor = 170500
   id_fonte = "1438144"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Hamza Aydar"
@@ -4667,6 +5078,7 @@ padrao = "liso"
   minutos = 135
   gols = 1
   id_fonte = "1417530"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Prince Martor Jr."
@@ -4678,6 +5090,7 @@ padrao = "liso"
   partidas = 2
   minutos = 12
   id_fonte = "1442800"
+  nacionalidade = "Libéria"
 
   [[clubes.jogadores]]
   nome = "Victor Orakpo"
@@ -4689,6 +5102,7 @@ padrao = "liso"
   partidas = 1
   minutos = 8
   id_fonte = "1231401"
+  nacionalidade = "Nigéria"
 
 [[clubes]]
 nome = "Amed SK"
@@ -4707,6 +5121,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "357117"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "David Bates"
@@ -4718,6 +5133,7 @@ padrao = "liso"
   partidas = 6
   minutos = 511
   id_fonte = "272539"
+  nacionalidade = "Escócia"
 
   [[clubes.jogadores]]
   nome = "Gift Orban"
@@ -4730,6 +5146,7 @@ padrao = "liso"
   minutos = 419
   gols = 7
   id_fonte = "1018259"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Lumbardh Dellova"
@@ -4741,6 +5158,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "542469"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Gökhan Gül"
@@ -4753,6 +5171,7 @@ padrao = "liso"
   minutos = 154
   gols = 1
   id_fonte = "269171"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Rayan Raveloson"
@@ -4764,6 +5183,7 @@ padrao = "liso"
   partidas = 6
   minutos = 530
   id_fonte = "344576"
+  nacionalidade = "Madagascar"
 
   [[clubes.jogadores]]
   nome = "Yira Sor"
@@ -4776,6 +5196,7 @@ padrao = "liso"
   minutos = 217
   gols = 1
   id_fonte = "673382"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Dia Saba"
@@ -4788,6 +5209,7 @@ padrao = "liso"
   minutos = 514
   gols = 3
   id_fonte = "193928"
+  nacionalidade = "Israel"
 
   [[clubes.jogadores]]
   nome = "Mbaye Diagne"
@@ -4800,6 +5222,7 @@ padrao = "liso"
   minutos = 220
   gols = 1
   id_fonte = "271966"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Mehmet Yeşil"
@@ -4812,6 +5235,7 @@ padrao = "liso"
   minutos = 172
   gols = 4
   id_fonte = "381689"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Samuel Ballet"
@@ -4823,6 +5247,7 @@ padrao = "liso"
   partidas = 5
   minutos = 425
   id_fonte = "309977"
+  nacionalidade = "Suíça"
 
   [[clubes.jogadores]]
   nome = "Ermal Krasniqi"
@@ -4834,6 +5259,7 @@ padrao = "liso"
   partidas = 6
   minutos = 530
   id_fonte = "606893"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Burak Bozan"
@@ -4843,6 +5269,7 @@ padrao = "liso"
   pot = 58
   valor = 600000
   id_fonte = "587726"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Furkan Soyalp"
@@ -4855,6 +5282,7 @@ padrao = "liso"
   minutos = 254
   gols = 1
   id_fonte = "221285"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Umut Meraş"
@@ -4866,6 +5294,7 @@ padrao = "liso"
   partidas = 5
   minutos = 411
   id_fonte = "341549"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Cem Üstündag"
@@ -4877,6 +5306,7 @@ padrao = "liso"
   partidas = 2
   minutos = 151
   id_fonte = "445623"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Veysel Sapan"
@@ -4886,6 +5316,7 @@ padrao = "liso"
   pot = 52
   valor = 100000
   id_fonte = "338055"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Kahraman Demirtaş"
@@ -4897,6 +5328,7 @@ padrao = "liso"
   partidas = 9
   minutos = 843
   id_fonte = "403834"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Miraç Acer"
@@ -4908,6 +5340,7 @@ padrao = "liso"
   partidas = 1
   minutos = 2
   id_fonte = "354197"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Rayan Lutin"
@@ -4919,6 +5352,7 @@ padrao = "liso"
   partidas = 1
   minutos = 52
   id_fonte = "954090"
+  nacionalidade = "Comores"
 
   [[clubes.jogadores]]
   nome = "Mohamed Khalil"
@@ -4930,6 +5364,7 @@ padrao = "liso"
   partidas = 1
   minutos = 121
   id_fonte = "453987"
+  nacionalidade = "Síria"
 
   [[clubes.jogadores]]
   nome = "Ali Turap Bülbül"
@@ -4941,6 +5376,7 @@ padrao = "liso"
   partidas = 2
   minutos = 17
   id_fonte = "942940"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Amadou Cissé"
@@ -4952,6 +5388,7 @@ padrao = "liso"
   partidas = 2
   minutos = 154
   id_fonte = "1189317"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Berat Perçin"
@@ -4961,6 +5398,7 @@ padrao = "liso"
   pot = 50
   valor = 135535
   id_fonte = "1506930"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Berk Kızıldemir"
@@ -4970,6 +5408,7 @@ padrao = "liso"
   pot = 48
   valor = 135535
   id_fonte = "1065428"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Dilhan Demir"
@@ -4979,6 +5418,7 @@ padrao = "liso"
   pot = 47
   valor = 100000
   id_fonte = "714612"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Hasan Yıldırım"
@@ -4990,6 +5430,7 @@ padrao = "liso"
   partidas = 1
   minutos = 13
   id_fonte = "1047511"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Muhammed Damar"
@@ -4999,6 +5440,7 @@ padrao = "liso"
   pot = 51
   valor = 135535
   id_fonte = "1583411"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Erzurumspor FK"
@@ -5017,6 +5459,7 @@ padrao = "liso"
   partidas = 5
   minutos = 418
   id_fonte = "395695"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Gyrano Kerk"
@@ -5028,6 +5471,7 @@ padrao = "liso"
   partidas = 1
   minutos = 121
   id_fonte = "268112"
+  nacionalidade = "Suriname"
 
   [[clubes.jogadores]]
   nome = "Matija Orbanic"
@@ -5039,6 +5483,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "547307"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Miguel Cardoso"
@@ -5051,6 +5496,7 @@ padrao = "liso"
   minutos = 182
   gols = 1
   id_fonte = "348425"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Nihad Mujakic"
@@ -5062,6 +5508,7 @@ padrao = "liso"
   partidas = 6
   minutos = 517
   id_fonte = "380919"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Brandon Baiye"
@@ -5074,6 +5521,7 @@ padrao = "liso"
   minutos = 540
   gols = 5
   id_fonte = "358025"
+  nacionalidade = "Bélgica"
 
   [[clubes.jogadores]]
   nome = "Yakup Kırtay"
@@ -5086,6 +5534,7 @@ padrao = "liso"
   minutos = 207
   gols = 1
   id_fonte = "872080"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Mustafa Fettahoğlu"
@@ -5098,6 +5547,7 @@ padrao = "liso"
   minutos = 304
   gols = 11
   id_fonte = "618887"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Amar Gerxhaliu"
@@ -5110,6 +5560,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "866177"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Festy Ebosele"
@@ -5121,6 +5572,7 @@ padrao = "liso"
   partidas = 1
   minutos = 75
   id_fonte = "586756"
+  nacionalidade = "Irlanda"
 
   [[clubes.jogadores]]
   nome = "Ibrahim Diabate"
@@ -5132,6 +5584,7 @@ padrao = "liso"
   partidas = 1
   minutos = 107
   id_fonte = "620696"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Sefa Akgün"
@@ -5144,6 +5597,7 @@ padrao = "liso"
   minutos = 143
   gols = 3
   id_fonte = "321705"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Martín Rodríguez"
@@ -5156,6 +5610,7 @@ padrao = "liso"
   minutos = 447
   gols = 6
   id_fonte = "187309"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Guram Giorbelidze"
@@ -5167,6 +5622,7 @@ padrao = "liso"
   partidas = 4
   minutos = 359
   id_fonte = "330277"
+  nacionalidade = "Geórgia"
 
   [[clubes.jogadores]]
   nome = "Ertuğrul Taşkıran"
@@ -5178,6 +5634,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "91945"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Eren Tozlu"
@@ -5190,6 +5647,7 @@ padrao = "liso"
   minutos = 435
   gols = 2
   id_fonte = "136212"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Erkan Anapa"
@@ -5201,6 +5659,7 @@ padrao = "liso"
   partidas = 9
   minutos = 826
   id_fonte = "587903"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Mustafa Yumlu"
@@ -5213,6 +5672,7 @@ padrao = "liso"
   minutos = 360
   gols = 2
   id_fonte = "76176"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Nariman Akhundzada"
@@ -5224,6 +5684,7 @@ padrao = "liso"
   partidas = 1
   minutos = 55
   id_fonte = "865793"
+  nacionalidade = "Azerbaijão"
 
   [[clubes.jogadores]]
   nome = "Orhan Ovacıklı"
@@ -5235,6 +5696,7 @@ padrao = "liso"
   partidas = 5
   minutos = 483
   id_fonte = "170239"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Cengizhan Bayrak"
@@ -5246,6 +5708,7 @@ padrao = "liso"
   partidas = 6
   minutos = 516
   id_fonte = "620111"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Lawrence Agyekum"
@@ -5255,6 +5718,7 @@ padrao = "liso"
   pot = 60
   valor = 1500000
   id_fonte = "733410"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Emre Erdem"
@@ -5266,6 +5730,7 @@ padrao = "liso"
   partidas = 3
   minutos = 300
   id_fonte = "862859"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Emirhan Acar"
@@ -5275,6 +5740,7 @@ padrao = "liso"
   pot = 57
   valor = 650000
   id_fonte = "808651"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Taha Rençber"
@@ -5284,6 +5750,7 @@ padrao = "liso"
   pot = 47
   valor = 50000
   id_fonte = "1341829"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Yiğit Baran Karaoğlan"
@@ -5295,6 +5762,7 @@ padrao = "liso"
   partidas = 2
   minutos = 157
   id_fonte = "1487376"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ömer Arda Kara"
@@ -5306,6 +5774,7 @@ padrao = "liso"
   partidas = 8
   minutos = 706
   id_fonte = "1296109"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Şerefhan Sağlık"
@@ -5315,6 +5784,7 @@ padrao = "liso"
   pot = 48
   valor = 49107
   id_fonte = "885682"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Kocaelispor"
@@ -5334,6 +5804,7 @@ padrao = "liso"
   minutos = 477
   gols = 2
   id_fonte = "469787"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Anfernee Dijksteel"
@@ -5345,6 +5816,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "428302"
+  nacionalidade = "Suriname"
 
   [[clubes.jogadores]]
   nome = "Bruno Petkovic"
@@ -5357,6 +5829,7 @@ padrao = "liso"
   minutos = 1499
   gols = 7
   id_fonte = "256358"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Florian Ayé"
@@ -5369,6 +5842,7 @@ padrao = "liso"
   minutos = 264
   gols = 1
   id_fonte = "372713"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Show"
@@ -5380,6 +5854,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "568216"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Aleksandar Jovanović"
@@ -5391,6 +5866,7 @@ padrao = "liso"
   partidas = 18
   minutos = 1665
   id_fonte = "256567"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Massadio Haïdara"
@@ -5403,6 +5879,7 @@ padrao = "liso"
   minutos = 474
   gols = 1
   id_fonte = "170929"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Matej Maglica"
@@ -5415,6 +5892,7 @@ padrao = "liso"
   minutos = 290
   gols = 1
   id_fonte = "433388"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Dan Agyei"
@@ -5427,6 +5905,7 @@ padrao = "liso"
   minutos = 380
   gols = 1
   id_fonte = "367195"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Rigoberto Rivas"
@@ -5439,6 +5918,7 @@ padrao = "liso"
   minutos = 90
   gols = 1
   id_fonte = "451353"
+  nacionalidade = "Honduras"
 
   [[clubes.jogadores]]
   nome = "Makana Baku"
@@ -5450,6 +5930,7 @@ padrao = "liso"
   partidas = 4
   minutos = 333
   id_fonte = "336974"
+  nacionalidade = "Alemanha"
 
   [[clubes.jogadores]]
   nome = "Tanguy Zoukrou"
@@ -5461,6 +5942,7 @@ padrao = "liso"
   partidas = 5
   minutos = 416
   id_fonte = "917120"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Tayfur Bingöl"
@@ -5473,6 +5955,7 @@ padrao = "liso"
   minutos = 92
   gols = 5
   id_fonte = "184440"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Muharrem Cinan"
@@ -5484,6 +5967,7 @@ padrao = "liso"
   partidas = 1
   minutos = 67
   id_fonte = "539822"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Serhat Öztaşdelen"
@@ -5495,6 +5979,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "722650"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Gonçalo Sousa"
@@ -5506,6 +5991,7 @@ padrao = "liso"
   partidas = 5
   minutos = 427
   id_fonte = "1050215"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Onurcan Piri"
@@ -5515,6 +6001,7 @@ padrao = "liso"
   pot = 55
   valor = 200000
   id_fonte = "199470"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Metehan Altunbaş"
@@ -5527,6 +6014,7 @@ padrao = "liso"
   minutos = 146
   gols = 1
   id_fonte = "621603"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Tobias Gulliksen"
@@ -5538,6 +6026,7 @@ padrao = "liso"
   partidas = 1
   minutos = 22
   id_fonte = "619657"
+  nacionalidade = "Noruega"
 
   [[clubes.jogadores]]
   nome = "Uğur Kaan Yıldız"
@@ -5549,6 +6038,7 @@ padrao = "liso"
   partidas = 3
   minutos = 304
   id_fonte = "700034"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Mahamadou Susoho"
@@ -5560,6 +6050,7 @@ padrao = "liso"
   partidas = 4
   minutos = 323
   id_fonte = "895074"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Onur Öztonga"
@@ -5571,6 +6062,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "553839"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Emir Ortakaya"
@@ -5582,6 +6074,7 @@ padrao = "liso"
   partidas = 2
   minutos = 195
   id_fonte = "727081"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Arda Özyar"
@@ -5593,6 +6086,7 @@ padrao = "liso"
   partidas = 2
   minutos = 9
   id_fonte = "1303365"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Bedirhan Yıldız"
@@ -5602,6 +6096,7 @@ padrao = "liso"
   pot = 50
   valor = 182068
   id_fonte = "1052006"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ege Bilim"
@@ -5613,6 +6108,7 @@ padrao = "liso"
   partidas = 3
   minutos = 13
   id_fonte = "1321749"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Haydar Karataş"
@@ -5622,6 +6118,7 @@ padrao = "liso"
   pot = 47
   valor = 100000
   id_fonte = "1243050"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Hulusi Destici"
@@ -5631,6 +6128,7 @@ padrao = "liso"
   pot = 51
   valor = 182068
   id_fonte = "1438140"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Talha Polat"
@@ -5640,6 +6138,7 @@ padrao = "liso"
   pot = 53
   valor = 182068
   id_fonte = "1423296"
+  nacionalidade = "Turquia"
 
 [[clubes]]
 nome = "Eyüpspor"
@@ -5658,6 +6157,7 @@ padrao = "liso"
   partidas = 6
   minutos = 495
   id_fonte = "525438"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Bilal Boutobba"
@@ -5669,6 +6169,7 @@ padrao = "liso"
   partidas = 4
   minutos = 331
   id_fonte = "344151"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Abdelhamid Sabiri"
@@ -5680,6 +6181,7 @@ padrao = "liso"
   partidas = 1
   minutos = 109
   id_fonte = "340394"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Jawad El Yamiq"
@@ -5691,6 +6193,7 @@ padrao = "liso"
   partidas = 4
   minutos = 405
   id_fonte = "235412"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Chandrel Massanga"
@@ -5702,6 +6205,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "752455"
+  nacionalidade = "Congo"
 
   [[clubes.jogadores]]
   nome = "Charles-André Raux-Yao"
@@ -5714,6 +6218,7 @@ padrao = "liso"
   minutos = 422
   gols = 2
   id_fonte = "976840"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Konrad Michalak"
@@ -5725,6 +6230,7 @@ padrao = "liso"
   partidas = 5
   minutos = 471
   id_fonte = "387160"
+  nacionalidade = "Polônia"
 
   [[clubes.jogadores]]
   nome = "Simone Giordano"
@@ -5736,6 +6242,7 @@ padrao = "liso"
   partidas = 4
   minutos = 362
   id_fonte = "480046"
+  nacionalidade = "Itália"
 
   [[clubes.jogadores]]
   nome = "Talha Ülvan"
@@ -5748,6 +6255,7 @@ padrao = "liso"
   minutos = 527
   gols = 2
   id_fonte = "708111"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Zak Jules"
@@ -5760,6 +6268,7 @@ padrao = "liso"
   minutos = 540
   gols = 1
   id_fonte = "309041"
+  nacionalidade = "Escócia"
 
   [[clubes.jogadores]]
   nome = "Ahmed Abdullahi"
@@ -5772,6 +6281,7 @@ padrao = "liso"
   minutos = 469
   gols = 1
   id_fonte = "1015619"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Mete Demir"
@@ -5783,6 +6293,7 @@ padrao = "liso"
   partidas = 2
   minutos = 35
   id_fonte = "282615"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Taşkın İlter"
@@ -5794,6 +6305,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "200082"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Anıl Yaşar"
@@ -5805,6 +6317,7 @@ padrao = "liso"
   partidas = 2
   minutos = 209
   id_fonte = "685329"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "David Costa"
@@ -5816,6 +6329,7 @@ padrao = "liso"
   partidas = 4
   minutos = 370
   id_fonte = "1160599"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Yusuf Barası"
@@ -5827,6 +6341,7 @@ padrao = "liso"
   partidas = 2
   minutos = 161
   id_fonte = "566271"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Lenny Pintor"
@@ -5838,6 +6353,7 @@ padrao = "liso"
   partidas = 2
   minutos = 191
   id_fonte = "418660"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Emre Bilgin"
@@ -5849,6 +6365,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "727147"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Hamza Akman"
@@ -5860,6 +6377,7 @@ padrao = "liso"
   partidas = 1
   minutos = 82
   id_fonte = "727152"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Yiğit Demir"
@@ -5869,6 +6387,7 @@ padrao = "liso"
   pot = 49
   valor = 150000
   id_fonte = "873533"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Abdou Khadre Sy"
@@ -5880,6 +6399,7 @@ padrao = "liso"
   partidas = 2
   minutos = 195
   id_fonte = "1414677"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Arda Yavuz"
@@ -5891,6 +6411,7 @@ padrao = "liso"
   partidas = 2
   minutos = 15
   id_fonte = "1175508"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Berhan Kutlay Şatlı"
@@ -5902,6 +6423,7 @@ padrao = "liso"
   partidas = 3
   minutos = 226
   id_fonte = "1178853"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Christ Sadia"
@@ -5914,6 +6436,7 @@ padrao = "liso"
   minutos = 5
   gols = 1
   id_fonte = "1458907"
+  nacionalidade = "Costa do Marfim"
 
   [[clubes.jogadores]]
   nome = "Diabel Ndoye"
@@ -5925,6 +6448,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "1414664"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Musa Eren Karakaş"
@@ -5934,6 +6458,7 @@ padrao = "liso"
   pot = 42
   valor = 55000
   id_fonte = "880414"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Umut Keseci"
@@ -5943,6 +6468,7 @@ padrao = "liso"
   pot = 45
   valor = 50000
   id_fonte = "1045821"
+  nacionalidade = "Turquia"
 
   [[clubes.jogadores]]
   nome = "Ömer Ahmet Ceyhan"
@@ -5954,4 +6480,5 @@ padrao = "liso"
   partidas = 1
   minutos = 114
   id_fonte = "1374186"
+  nacionalidade = "Turquia"
 

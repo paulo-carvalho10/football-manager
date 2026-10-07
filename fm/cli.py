@@ -484,6 +484,18 @@ def cmd_cores(args):
     print(f"{total} clubes atualizados. Sem cor ficam com a paleta generica.")
 
 
+def cmd_nacionalidades(args):
+    """Escreve a nacionalidade real nos packs ja gerados, pelo cache do Transfermarkt."""
+    from fm.importer.nacionalidades import injetar
+
+    resumo = injetar()
+    for nome, (com, total) in sorted(resumo.items()):
+        print(f"  {nome:28s} {com:4d}/{total:4d}")
+    com = sum(x for x, _ in resumo.values())
+    total = sum(y for _, y in resumo.values())
+    print(f"{com} de {total} jogadores com nacionalidade. Os outros ficam com o pais da liga.")
+
+
 def cmd_calibrar_overall(args):
     """Refaz a tabela do overall de exibicao contra um CSV de cartinhas do EA FC."""
     from pathlib import Path
@@ -625,6 +637,10 @@ def main(argv=None):
                        help="reaplica data/cores/*.toml nos packs, sem rede")
     p.add_argument("--pack", default=None, help="so este pack (por omissao, todos)")
     p.set_defaults(func=cmd_cores)
+
+    p = sub.add_parser("nacionalidades", parents=[common],
+                       help="escreve a nacionalidade real nos packs, pelo cache, sem rede")
+    p.set_defaults(func=cmd_nacionalidades)
 
     p = sub.add_parser("calibrar-overall", parents=[common],
                        help="refaz a escala do overall exibido contra as cartinhas do EA FC")

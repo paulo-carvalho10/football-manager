@@ -30,6 +30,7 @@ padrao = "liso"
   minutos = 499
   gols = 2
   id_fonte = "499721"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Douglas Santos"
@@ -42,6 +43,7 @@ padrao = "liso"
   minutos = 434
   gols = 2
   id_fonte = "220793"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Luiz Henrique"
@@ -54,6 +56,7 @@ padrao = "liso"
   minutos = 575
   gols = 2
   id_fonte = "800175"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Nino"
@@ -66,6 +69,7 @@ padrao = "liso"
   minutos = 499
   gols = 1
   id_fonte = "520454"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Igor Diveev"
@@ -78,6 +82,7 @@ padrao = "liso"
   minutos = 830
   gols = 1
   id_fonte = "532732"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Maksim Glushenkov"
@@ -90,6 +95,7 @@ padrao = "liso"
   minutos = 773
   gols = 6
   id_fonte = "448981"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Wilmar Barrios"
@@ -101,6 +107,7 @@ padrao = "liso"
   partidas = 8
   minutos = 757
   id_fonte = "257668"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Jhon Jhon"
@@ -113,6 +120,7 @@ padrao = "liso"
   minutos = 670
   gols = 1
   id_fonte = "964582"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Sobolev"
@@ -125,6 +133,7 @@ padrao = "liso"
   minutos = 839
   gols = 10
   id_fonte = "464259"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Denis Adamov"
@@ -136,6 +145,7 @@ padrao = "liso"
   partidas = 10
   minutos = 900
   id_fonte = "334477"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Pedro"
@@ -148,6 +158,7 @@ padrao = "liso"
   minutos = 686
   gols = 3
   id_fonte = "1004741"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Gustavo Mantuan"
@@ -160,6 +171,7 @@ padrao = "liso"
   minutos = 789
   gols = 1
   id_fonte = "814269"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Kevin Andrade"
@@ -172,6 +184,7 @@ padrao = "liso"
   minutos = 636
   gols = 2
   id_fonte = "614898"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Artem Karpukas"
@@ -183,6 +196,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "691920"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Felipe Augusto"
@@ -195,6 +209,7 @@ padrao = "liso"
   minutos = 507
   gols = 1
   id_fonte = "834899"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Vyacheslav Karavaev"
@@ -206,6 +221,7 @@ padrao = "liso"
   partidas = 4
   minutos = 339
   id_fonte = "170620"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Román Vega"
@@ -217,6 +233,7 @@ padrao = "liso"
   partidas = 10
   minutos = 858
   id_fonte = "875947"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Nuraly Alip"
@@ -229,6 +246,7 @@ padrao = "liso"
   minutos = 526
   gols = 1
   id_fonte = "465408"
+  nacionalidade = "Cazaquistão"
 
   [[clubes.jogadores]]
   nome = "Sergey Volkov"
@@ -240,6 +258,7 @@ padrao = "liso"
   partidas = 3
   minutos = 227
   id_fonte = "520060"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Erokhin"
@@ -252,6 +271,7 @@ padrao = "liso"
   minutos = 254
   gols = 1
   id_fonte = "84483"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Bogdan Moskvichev"
@@ -263,6 +283,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "718755"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Daniil Odoevskiy"
@@ -272,6 +293,7 @@ padrao = "liso"
   pot = 62
   valor = 600000
   id_fonte = "555135"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Daniil Kondakov"
@@ -283,6 +305,7 @@ padrao = "liso"
   partidas = 3
   minutos = 262
   id_fonte = "1109232"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Vadim Shilov"
@@ -295,6 +318,7 @@ padrao = "liso"
   minutos = 21
   gols = 2
   id_fonte = "1109229"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "Spartak Moscou"
@@ -314,6 +338,7 @@ padrao = "liso"
   minutos = 897
   gols = 1
   id_fonte = "337800"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Esequiel Barco"
@@ -326,6 +351,7 @@ padrao = "liso"
   minutos = 426
   gols = 1
   id_fonte = "456623"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Maksimenko"
@@ -337,6 +363,7 @@ padrao = "liso"
   partidas = 10
   minutos = 900
   id_fonte = "351419"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Mirlind Daku"
@@ -349,6 +376,7 @@ padrao = "liso"
   minutos = 360
   gols = 1
   id_fonte = "521872"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Nail Umyarov"
@@ -361,6 +389,7 @@ padrao = "liso"
   minutos = 1022
   gols = 1
   id_fonte = "381833"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Alexander Djiku"
@@ -372,6 +401,7 @@ padrao = "liso"
   partidas = 8
   minutos = 680
   id_fonte = "250844"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Manfred Ugalde"
@@ -384,6 +414,7 @@ padrao = "liso"
   minutos = 868
   gols = 6
   id_fonte = "645173"
+  nacionalidade = "Costa Rica"
 
   [[clubes.jogadores]]
   nome = "Ruslan Litvinov"
@@ -396,6 +427,7 @@ padrao = "liso"
   minutos = 579
   gols = 3
   id_fonte = "520073"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Srdjan Babic"
@@ -407,6 +439,7 @@ padrao = "liso"
   partidas = 6
   minutos = 559
   id_fonte = "222805"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Christopher Martins"
@@ -419,6 +452,7 @@ padrao = "liso"
   minutos = 274
   gols = 2
   id_fonte = "248054"
+  nacionalidade = "Luxemburgo"
 
   [[clubes.jogadores]]
   nome = "Christopher Wooh"
@@ -431,6 +465,7 @@ padrao = "liso"
   minutos = 900
   gols = 1
   id_fonte = "572326"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Danil Prutsev"
@@ -443,6 +478,7 @@ padrao = "liso"
   minutos = 496
   gols = 2
   id_fonte = "381714"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Marquinhos"
@@ -455,6 +491,7 @@ padrao = "liso"
   minutos = 930
   gols = 1
   id_fonte = "516722"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Pablo Solari"
@@ -467,6 +504,7 @@ padrao = "liso"
   minutos = 991
   gols = 5
   id_fonte = "756991"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Roman Zobnin"
@@ -479,6 +517,7 @@ padrao = "liso"
   minutos = 967
   gols = 2
   id_fonte = "166277"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Daniil Denisov"
@@ -490,6 +529,7 @@ padrao = "liso"
   partidas = 5
   minutos = 474
   id_fonte = "649303"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Anton Zinkovskiy"
@@ -499,6 +539,7 @@ padrao = "liso"
   pot = 65
   valor = 2000000
   id_fonte = "263962"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ilya Pomazun"
@@ -510,6 +551,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "217686"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Victor Parada"
@@ -521,6 +563,7 @@ padrao = "liso"
   partidas = 6
   minutos = 521
   id_fonte = "591957"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Igor Dmitriev"
@@ -533,6 +576,7 @@ padrao = "liso"
   minutos = 384
   gols = 2
   id_fonte = "817700"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Vladislav Saus"
@@ -544,6 +588,7 @@ padrao = "liso"
   partidas = 2
   minutos = 158
   id_fonte = "706618"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Dovbnya"
@@ -553,6 +598,7 @@ padrao = "liso"
   pot = 56
   valor = 50000
   id_fonte = "47004"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Pavel Polekh"
@@ -565,6 +611,7 @@ padrao = "liso"
   minutos = 61
   gols = 1
   id_fonte = "1384080"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Daniil Zorin"
@@ -577,6 +624,7 @@ padrao = "liso"
   minutos = 349
   gols = 1
   id_fonte = "726445"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nikita Massalyga"
@@ -589,6 +637,7 @@ padrao = "liso"
   minutos = 49
   gols = 1
   id_fonte = "1180777"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ivan Sorokin"
@@ -600,6 +649,7 @@ padrao = "liso"
   partidas = 1
   minutos = 96
   id_fonte = "1244676"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "Dínamo Moscou"
@@ -619,6 +669,7 @@ padrao = "liso"
   minutos = 908
   gols = 6
   id_fonte = "703497"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Daniil Fomin"
@@ -631,6 +682,7 @@ padrao = "liso"
   minutos = 499
   gols = 4
   id_fonte = "400713"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Konstantin Tyukavin"
@@ -643,6 +695,7 @@ padrao = "liso"
   minutos = 683
   gols = 5
   id_fonte = "532676"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Luis Chávez"
@@ -654,6 +707,7 @@ padrao = "liso"
   partidas = 5
   minutos = 408
   id_fonte = "331059"
+  nacionalidade = "México"
 
   [[clubes.jogadores]]
   nome = "Danil Glebov"
@@ -665,6 +719,7 @@ padrao = "liso"
   partidas = 8
   minutos = 691
   id_fonte = "570423"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Juan José Cáceres"
@@ -677,6 +732,7 @@ padrao = "liso"
   minutos = 630
   gols = 1
   id_fonte = "756494"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Rubens"
@@ -688,6 +744,7 @@ padrao = "liso"
   partidas = 7
   minutos = 630
   id_fonte = "843397"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Maksim Osipenko"
@@ -700,6 +757,7 @@ padrao = "liso"
   minutos = 855
   gols = 1
   id_fonte = "293829"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nicolás Marichal"
@@ -712,6 +770,7 @@ padrao = "liso"
   minutos = 260
   gols = 6
   id_fonte = "852980"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "David Ricardo"
@@ -724,6 +783,7 @@ padrao = "liso"
   minutos = 819
   gols = 1
   id_fonte = "985172"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Bakhtiyor Zaynutdinov"
@@ -735,6 +795,7 @@ padrao = "liso"
   partidas = 6
   minutos = 539
   id_fonte = "344299"
+  nacionalidade = "Cazaquistão"
 
   [[clubes.jogadores]]
   nome = "Dmitriy Skopintsev"
@@ -747,6 +808,7 @@ padrao = "liso"
   minutos = 478
   gols = 1
   id_fonte = "281917"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Andrey Lunev"
@@ -758,6 +820,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "112541"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Arthur Gomes"
@@ -770,6 +833,7 @@ padrao = "liso"
   minutos = 681
   gols = 2
   id_fonte = "401534"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Ivan Sergeev"
@@ -782,6 +846,7 @@ padrao = "liso"
   minutos = 473
   gols = 1
   id_fonte = "395659"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Roberto Fernández"
@@ -793,6 +858,7 @@ padrao = "liso"
   partidas = 3
   minutos = 261
   id_fonte = "491589"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Anton Miranchuk"
@@ -805,6 +871,7 @@ padrao = "liso"
   minutos = 318
   gols = 2
   id_fonte = "255451"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Yaroslav Gladyshev"
@@ -817,6 +884,7 @@ padrao = "liso"
   minutos = 723
   gols = 2
   id_fonte = "673114"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Igor Leshchuk"
@@ -828,6 +896,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "168527"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Josué Casimir"
@@ -837,6 +906,7 @@ padrao = "liso"
   pot = 64
   valor = 3000000
   id_fonte = "763182"
+  nacionalidade = "Haiti"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Kutitskiy"
@@ -848,6 +918,7 @@ padrao = "liso"
   partidas = 10
   minutos = 890
   id_fonte = "687617"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Kurban Rasulov"
@@ -859,6 +930,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "918327"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Maximiliano Gutiérrez"
@@ -870,6 +942,7 @@ padrao = "liso"
   partidas = 2
   minutos = 27
   id_fonte = "965323"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Leon Zaydenzal"
@@ -881,6 +954,7 @@ padrao = "liso"
   partidas = 4
   minutos = 380
   id_fonte = "718759"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Luka Gagnidze"
@@ -892,6 +966,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "724969"
+  nacionalidade = "Geórgia"
 
   [[clubes.jogadores]]
   nome = "Milan Majstorovic"
@@ -903,6 +978,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "673429"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Timofey Marinkin"
@@ -915,6 +991,7 @@ padrao = "liso"
   minutos = 463
   gols = 1
   id_fonte = "1080107"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Viktor Okishor"
@@ -927,6 +1004,7 @@ padrao = "liso"
   minutos = 386
   gols = 2
   id_fonte = "939068"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "CSKA Moscou"
@@ -946,6 +1024,7 @@ padrao = "liso"
   minutos = 865
   gols = 8
   id_fonte = "651580"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Dmitriy Barinov"
@@ -957,6 +1036,7 @@ padrao = "liso"
   partidas = 3
   minutos = 282
   id_fonte = "263905"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ivan Oblyakov"
@@ -969,6 +1049,7 @@ padrao = "liso"
   minutos = 965
   gols = 4
   id_fonte = "419845"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Moisés"
@@ -981,6 +1062,7 @@ padrao = "liso"
   minutos = 270
   gols = 2
   id_fonte = "368468"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Danil Krugovoy"
@@ -993,6 +1075,7 @@ padrao = "liso"
   minutos = 969
   gols = 7
   id_fonte = "372535"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Milan Gajic"
@@ -1005,6 +1088,7 @@ padrao = "liso"
   minutos = 416
   gols = 2
   id_fonte = "245030"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "João Victor"
@@ -1016,6 +1100,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "671145"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Kirill Glebov"
@@ -1028,6 +1113,7 @@ padrao = "liso"
   minutos = 820
   gols = 1
   id_fonte = "865414"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Luciano Gondou"
@@ -1040,6 +1126,7 @@ padrao = "liso"
   minutos = 689
   gols = 3
   id_fonte = "851111"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matheus Reis"
@@ -1052,6 +1139,7 @@ padrao = "liso"
   minutos = 401
   gols = 1
   id_fonte = "379249"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Igor Akinfeev"
@@ -1063,6 +1151,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1861
   id_fonte = "15570"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Maksim Borisko"
@@ -1074,6 +1163,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "526448"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ivan Oleynikov"
@@ -1085,6 +1175,7 @@ padrao = "liso"
   partidas = 1
   minutos = 85
   id_fonte = "371627"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Matvey Lukin"
@@ -1097,6 +1188,7 @@ padrao = "liso"
   minutos = 315
   gols = 1
   id_fonte = "624340"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Kirill Danilov"
@@ -1109,6 +1201,7 @@ padrao = "liso"
   minutos = 810
   gols = 1
   id_fonte = "1131030"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Tamerlan Musaev"
@@ -1121,6 +1214,7 @@ padrao = "liso"
   minutos = 407
   gols = 6
   id_fonte = "654117"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Vladislav Torop"
@@ -1132,6 +1226,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "555146"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Matheus Alves"
@@ -1144,6 +1239,7 @@ padrao = "liso"
   minutos = 455
   gols = 1
   id_fonte = "1127813"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Danila Kozlov"
@@ -1156,6 +1252,7 @@ padrao = "liso"
   minutos = 332
   gols = 2
   id_fonte = "720287"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Mohamed Azzi"
@@ -1167,6 +1264,7 @@ padrao = "liso"
   partidas = 3
   minutos = 260
   id_fonte = "863190"
+  nacionalidade = "Argélia"
 
   [[clubes.jogadores]]
   nome = "Dzhamalutdin Abdulkadyrov"
@@ -1178,6 +1276,7 @@ padrao = "liso"
   partidas = 6
   minutos = 519
   id_fonte = "917402"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Matija Popović"
@@ -1190,6 +1289,7 @@ padrao = "liso"
   minutos = 471
   gols = 1
   id_fonte = "1012421"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Henrique Carmo"
@@ -1202,6 +1302,7 @@ padrao = "liso"
   minutos = 267
   gols = 1
   id_fonte = "1009031"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Artem Bandikyan"
@@ -1213,6 +1314,7 @@ padrao = "liso"
   partidas = 2
   minutos = 144
   id_fonte = "917403"
+  nacionalidade = "Armênia"
 
   [[clubes.jogadores]]
   nome = "Maksim Voronov"
@@ -1224,6 +1326,7 @@ padrao = "liso"
   partidas = 2
   minutos = 182
   id_fonte = "1141473"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Egor Besaev"
@@ -1233,6 +1336,7 @@ padrao = "liso"
   pot = 59
   valor = 384051
   id_fonte = "864314"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nikolay Barovskiy"
@@ -1242,6 +1346,7 @@ padrao = "liso"
   pot = 59
   valor = 384051
   id_fonte = "960578"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Imran Firov"
@@ -1254,6 +1359,7 @@ padrao = "liso"
   minutos = 149
   gols = 1
   id_fonte = "1242657"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Artem Serikov"
@@ -1265,6 +1371,7 @@ padrao = "liso"
   partidas = 1
   minutos = 80
   id_fonte = "1052489"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "FK Krasnodar"
@@ -1284,6 +1391,7 @@ padrao = "liso"
   minutos = 388
   gols = 1
   id_fonte = "185245"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Stanislav Agkatsev"
@@ -1295,6 +1403,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "617520"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Vítor Tormena"
@@ -1307,6 +1416,7 @@ padrao = "liso"
   minutos = 990
   gols = 1
   id_fonte = "517300"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Chernikov"
@@ -1319,6 +1429,7 @@ padrao = "liso"
   minutos = 709
   gols = 1
   id_fonte = "432112"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Douglas Augusto"
@@ -1331,6 +1442,7 @@ padrao = "liso"
   minutos = 660
   gols = 5
   id_fonte = "393621"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "João Batxi"
@@ -1343,6 +1455,7 @@ padrao = "liso"
   minutos = 882
   gols = 2
   id_fonte = "514256"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Christian"
@@ -1355,6 +1468,7 @@ padrao = "liso"
   minutos = 540
   gols = 2
   id_fonte = "658678"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Dmitriy Vorobyov"
@@ -1366,6 +1480,7 @@ padrao = "liso"
   partidas = 8
   minutos = 709
   id_fonte = "370287"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Kevin Pina"
@@ -1378,6 +1493,7 @@ padrao = "liso"
   minutos = 529
   gols = 2
   id_fonte = "544586"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Lucas Olaza"
@@ -1390,6 +1506,7 @@ padrao = "liso"
   minutos = 781
   gols = 1
   id_fonte = "216240"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Nikita Krivtsov"
@@ -1402,6 +1519,7 @@ padrao = "liso"
   minutos = 425
   gols = 3
   id_fonte = "746180"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Jubal"
@@ -1414,6 +1532,7 @@ padrao = "liso"
   minutos = 882
   gols = 3
   id_fonte = "149928"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Ilya Vakhania"
@@ -1425,6 +1544,7 @@ padrao = "liso"
   partidas = 9
   minutos = 782
   id_fonte = "515050"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Magomed Ozdoev"
@@ -1437,6 +1557,7 @@ padrao = "liso"
   minutos = 405
   gols = 1
   id_fonte = "137206"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Valentin Paltsev"
@@ -1448,6 +1569,7 @@ padrao = "liso"
   partidas = 4
   minutos = 362
   id_fonte = "615650"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Daniil Utkin"
@@ -1460,6 +1582,7 @@ padrao = "liso"
   minutos = 500
   gols = 1
   id_fonte = "375667"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Juan Manuel Boselli"
@@ -1472,6 +1595,7 @@ padrao = "liso"
   minutos = 463
   gols = 2
   id_fonte = "487421"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Sergey Petrov"
@@ -1483,6 +1607,7 @@ padrao = "liso"
   partidas = 2
   minutos = 22
   id_fonte = "102581"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Koryakin"
@@ -1494,6 +1619,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "687463"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Maizon Rodríguez"
@@ -1503,6 +1629,7 @@ padrao = "liso"
   pot = 65
   valor = 2000000
   id_fonte = "1049831"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Timur Abdrashitov"
@@ -1512,6 +1639,7 @@ padrao = "liso"
   pot = 54
   valor = 100000
   id_fonte = "797594"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Artem Khmarin"
@@ -1523,6 +1651,7 @@ padrao = "liso"
   partidas = 3
   minutos = 278
   id_fonte = "1052493"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Grigoriy Lovtsov"
@@ -1532,6 +1661,7 @@ padrao = "liso"
   pot = 55
   valor = 100000
   id_fonte = "715339"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Efim Burkin"
@@ -1543,6 +1673,7 @@ padrao = "liso"
   partidas = 2
   minutos = 4
   id_fonte = "1109231"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Eldar Guseynov"
@@ -1554,6 +1685,7 @@ padrao = "liso"
   partidas = 4
   minutos = 35
   id_fonte = "1244035"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "Lokomotiv Moscou"
@@ -1573,6 +1705,7 @@ padrao = "liso"
   minutos = 300
   gols = 4
   id_fonte = "387687"
+  nacionalidade = "México"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Silyanov"
@@ -1585,6 +1718,7 @@ padrao = "liso"
   minutos = 990
   gols = 2
   id_fonte = "515051"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Anton Mitryushkin"
@@ -1596,6 +1730,7 @@ padrao = "liso"
   partidas = 8
   minutos = 690
   id_fonte = "260677"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Gerzino Nyamsi"
@@ -1608,6 +1743,7 @@ padrao = "liso"
   minutos = 600
   gols = 1
   id_fonte = "378953"
+  nacionalidade = "Camarões"
 
   [[clubes.jogadores]]
   nome = "Lucas Fasson"
@@ -1620,6 +1756,7 @@ padrao = "liso"
   minutos = 674
   gols = 2
   id_fonte = "729266"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Evgeniy Morozov"
@@ -1632,6 +1769,7 @@ padrao = "liso"
   minutos = 855
   gols = 1
   id_fonte = "652270"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Andrey Mostovoy"
@@ -1644,6 +1782,7 @@ padrao = "liso"
   minutos = 187
   gols = 1
   id_fonte = "362570"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ilya Lantratov"
@@ -1655,6 +1794,7 @@ padrao = "liso"
   partidas = 4
   minutos = 390
   id_fonte = "230946"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Lucas Vera"
@@ -1666,6 +1806,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "689628"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Maksim Nenakhov"
@@ -1677,6 +1818,7 @@ padrao = "liso"
   partidas = 6
   minutos = 516
   id_fonte = "382535"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nikolay Komlichenko"
@@ -1689,6 +1831,7 @@ padrao = "liso"
   minutos = 191
   gols = 1
   id_fonte = "300538"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Cristian Ramírez"
@@ -1700,6 +1843,7 @@ padrao = "liso"
   partidas = 7
   minutos = 635
   id_fonte = "189485"
+  nacionalidade = "Equador"
 
   [[clubes.jogadores]]
   nome = "Zelimkhan Bakaev"
@@ -1712,6 +1856,7 @@ padrao = "liso"
   minutos = 719
   gols = 1
   id_fonte = "279242"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Rudenko"
@@ -1724,6 +1869,7 @@ padrao = "liso"
   minutos = 845
   gols = 1
   id_fonte = "318468"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Georgiy Dzhikiya"
@@ -1735,6 +1881,7 @@ padrao = "liso"
   partidas = 4
   minutos = 337
   id_fonte = "185024"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Sergey Pinyaev"
@@ -1747,6 +1894,7 @@ padrao = "liso"
   minutos = 502
   gols = 1
   id_fonte = "516751"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nikolay Titkov"
@@ -1758,6 +1906,7 @@ padrao = "liso"
   partidas = 2
   minutos = 154
   id_fonte = "606526"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Sergey Babkin"
@@ -1769,6 +1918,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "622461"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Vadim Rakov"
@@ -1781,6 +1931,7 @@ padrao = "liso"
   minutos = 613
   gols = 1
   id_fonte = "745284"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Kovalenko"
@@ -1792,6 +1943,7 @@ padrao = "liso"
   partidas = 3
   minutos = 281
   id_fonte = "811544"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Egor Pogostnov"
@@ -1803,6 +1955,7 @@ padrao = "liso"
   partidas = 2
   minutos = 33
   id_fonte = "697724"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Danila Godyaev"
@@ -1814,6 +1967,7 @@ padrao = "liso"
   partidas = 3
   minutos = 267
   id_fonte = "948363"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ilya Eremeev"
@@ -1825,6 +1979,7 @@ padrao = "liso"
   partidas = 8
   minutos = 706
   id_fonte = "1080109"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Mikhail Shchetinin"
@@ -1836,6 +1991,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "749186"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Daniil Chevardin"
@@ -1847,6 +2003,7 @@ padrao = "liso"
   partidas = 1
   minutos = 98
   id_fonte = "1037572"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Daniil Veselov"
@@ -1858,6 +2015,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "838670"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ruslan Myalkovskiy"
@@ -1869,6 +2027,7 @@ padrao = "liso"
   partidas = 1
   minutos = 118
   id_fonte = "946413"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Vladislav Golubev"
@@ -1880,6 +2039,7 @@ padrao = "liso"
   partidas = 2
   minutos = 168
   id_fonte = "1244223"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "Rubin Kazan"
@@ -1899,6 +2059,7 @@ padrao = "liso"
   minutos = 762
   gols = 1
   id_fonte = "227538"
+  nacionalidade = "Montenegro"
 
   [[clubes.jogadores]]
   nome = "Evgeniy Staver"
@@ -1910,6 +2071,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "389624"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ilya Rozhkov"
@@ -1922,6 +2084,7 @@ padrao = "liso"
   minutos = 715
   gols = 1
   id_fonte = "700385"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Egor Teslenko"
@@ -1934,6 +2097,7 @@ padrao = "liso"
   minutos = 736
   gols = 2
   id_fonte = "584231"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ugochukwu Iwu"
@@ -1945,6 +2109,7 @@ padrao = "liso"
   partidas = 6
   minutos = 500
   id_fonte = "565852"
+  nacionalidade = "Armênia"
 
   [[clubes.jogadores]]
   nome = "Veldin Hodza"
@@ -1957,6 +2122,7 @@ padrao = "liso"
   minutos = 959
   gols = 3
   id_fonte = "619279"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Anderson Arroyo"
@@ -1969,6 +2135,7 @@ padrao = "liso"
   minutos = 921
   gols = 3
   id_fonte = "426326"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Denil Maldonado"
@@ -1980,6 +2147,7 @@ padrao = "liso"
   partidas = 6
   minutos = 505
   id_fonte = "401769"
+  nacionalidade = "Honduras"
 
   [[clubes.jogadores]]
   nome = "Ignacio Saavedra"
@@ -1991,6 +2159,7 @@ padrao = "liso"
   partidas = 7
   minutos = 628
   id_fonte = "401706"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Ilya Samoshnikov"
@@ -2002,6 +2171,7 @@ padrao = "liso"
   partidas = 5
   minutos = 480
   id_fonte = "522030"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nazmi Gripshi"
@@ -2014,6 +2184,7 @@ padrao = "liso"
   minutos = 385
   gols = 1
   id_fonte = "355692"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Aleksey Gritsaenko"
@@ -2025,6 +2196,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1289
   id_fonte = "379634"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Jacques Siwe"
@@ -2037,6 +2209,7 @@ padrao = "liso"
   minutos = 744
   gols = 5
   id_fonte = "804933"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Artur Nigmatullin"
@@ -2048,6 +2221,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "70074"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Dardan Shabanhaxhaj"
@@ -2060,6 +2234,7 @@ padrao = "liso"
   minutos = 52
   gols = 3
   id_fonte = "452464"
+  nacionalidade = "Kosovo"
 
   [[clubes.jogadores]]
   nome = "Dmitriy Kabutov"
@@ -2072,6 +2247,7 @@ padrao = "liso"
   minutos = 60
   gols = 1
   id_fonte = "148118"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Jakhongir Urozov"
@@ -2083,6 +2259,7 @@ padrao = "liso"
   partidas = 7
   minutos = 630
   id_fonte = "989069"
+  nacionalidade = "Uzbequistão"
 
   [[clubes.jogadores]]
   nome = "Aleksandar Jukic"
@@ -2095,6 +2272,7 @@ padrao = "liso"
   minutos = 541
   gols = 1
   id_fonte = "393699"
+  nacionalidade = "Áustria"
 
   [[clubes.jogadores]]
   nome = "Bogdan Jocic"
@@ -2107,6 +2285,7 @@ padrao = "liso"
   minutos = 127
   gols = 1
   id_fonte = "574669"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Maksim Ignatjev"
@@ -2118,6 +2297,7 @@ padrao = "liso"
   partidas = 1
   minutos = 124
   id_fonte = "908186"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ruslan Bezrukov"
@@ -2130,6 +2310,7 @@ padrao = "liso"
   minutos = 539
   gols = 3
   id_fonte = "685854"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Konstantin Nizhegorodov"
@@ -2142,6 +2323,7 @@ padrao = "liso"
   minutos = 278
   gols = 1
   id_fonte = "604073"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nikita Lobov"
@@ -2154,6 +2336,7 @@ padrao = "liso"
   minutos = 505
   gols = 1
   id_fonte = "720281"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Daniil Kuznetsov"
@@ -2166,6 +2349,7 @@ padrao = "liso"
   minutos = 258
   gols = 1
   id_fonte = "522145"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ulvi Babaev"
@@ -2177,6 +2361,7 @@ padrao = "liso"
   partidas = 1
   minutos = 8
   id_fonte = "637540"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Daniil Motorin"
@@ -2188,6 +2373,7 @@ padrao = "liso"
   partidas = 1
   minutos = 93
   id_fonte = "726446"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nikita Korets"
@@ -2199,6 +2385,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "697943"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Matvey Ivanov"
@@ -2208,6 +2395,7 @@ padrao = "liso"
   pot = 50
   valor = 200000
   id_fonte = "954061"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "FK Rostov"
@@ -2227,6 +2415,7 @@ padrao = "liso"
   minutos = 849
   gols = 1
   id_fonte = "640692"
+  nacionalidade = "Níger"
 
   [[clubes.jogadores]]
   nome = "Rustam Yatimov"
@@ -2238,6 +2427,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "424022"
+  nacionalidade = "Tajiquistão"
 
   [[clubes.jogadores]]
   nome = "Ronaldo"
@@ -2250,6 +2440,7 @@ padrao = "liso"
   minutos = 483
   gols = 6
   id_fonte = "866670"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Viktor Melekhin"
@@ -2262,6 +2453,7 @@ padrao = "liso"
   minutos = 855
   gols = 1
   id_fonte = "866001"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksey Mironov"
@@ -2274,6 +2466,7 @@ padrao = "liso"
   minutos = 653
   gols = 1
   id_fonte = "402625"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Konstantin Kuchaev"
@@ -2286,6 +2479,7 @@ padrao = "liso"
   minutos = 651
   gols = 1
   id_fonte = "381834"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Dmitriy Chistyakov"
@@ -2298,6 +2492,7 @@ padrao = "liso"
   minutos = 2222
   gols = 1
   id_fonte = "235339"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Olakunle Olusegun"
@@ -2310,6 +2505,7 @@ padrao = "liso"
   minutos = 722
   gols = 1
   id_fonte = "666616"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Andrey Langovich"
@@ -2322,6 +2518,7 @@ padrao = "liso"
   minutos = 787
   gols = 1
   id_fonte = "727569"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Timur Suleymanov"
@@ -2334,6 +2531,7 @@ padrao = "liso"
   minutos = 742
   gols = 2
   id_fonte = "582074"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ygor Nogueira"
@@ -2345,6 +2543,7 @@ padrao = "liso"
   partidas = 8
   minutos = 765
   id_fonte = "187211"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Daniil Khlusevich"
@@ -2356,6 +2555,7 @@ padrao = "liso"
   partidas = 1
   minutos = 11
   id_fonte = "621436"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ivan Komarov"
@@ -2368,6 +2568,7 @@ padrao = "liso"
   minutos = 780
   gols = 2
   id_fonte = "787305"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Danila Prokhin"
@@ -2380,6 +2581,7 @@ padrao = "liso"
   minutos = 473
   gols = 2
   id_fonte = "486083"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Maksim Mukhin"
@@ -2391,6 +2593,7 @@ padrao = "liso"
   partidas = 4
   minutos = 322
   id_fonte = "623274"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "David Semenchuk"
@@ -2402,6 +2605,7 @@ padrao = "liso"
   partidas = 5
   minutos = 465
   id_fonte = "817604"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Yaroslav Mikhailov"
@@ -2414,6 +2618,7 @@ padrao = "liso"
   minutos = 593
   gols = 1
   id_fonte = "701937"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Daniil Shantaliy"
@@ -2426,6 +2631,7 @@ padrao = "liso"
   minutos = 319
   gols = 1
   id_fonte = "817607"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "German Ignatov"
@@ -2438,6 +2644,7 @@ padrao = "liso"
   minutos = 23
   gols = 1
   id_fonte = "918332"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Artem Petrov"
@@ -2449,6 +2656,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "1244877"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Imran Aznaurov"
@@ -2461,6 +2669,7 @@ padrao = "liso"
   minutos = 266
   gols = 2
   id_fonte = "817967"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Daniil Golikov"
@@ -2472,6 +2681,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "697721"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ilya Zhbanov"
@@ -2483,6 +2693,7 @@ padrao = "liso"
   partidas = 2
   minutos = 135
   id_fonte = "817830"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Anton Shamonin"
@@ -2494,6 +2705,7 @@ padrao = "liso"
   partidas = 1
   minutos = 109
   id_fonte = "917991"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nikita Babakin"
@@ -2505,6 +2717,7 @@ padrao = "liso"
   partidas = 4
   minutos = 315
   id_fonte = "939879"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Denis Titov"
@@ -2516,6 +2729,7 @@ padrao = "liso"
   partidas = 1
   minutos = 65
   id_fonte = "1369649"
+  nacionalidade = "Turquemenistão"
 
   [[clubes.jogadores]]
   nome = "Ibraheem Mahfus Ajasa"
@@ -2527,6 +2741,7 @@ padrao = "liso"
   partidas = 1
   minutos = 7
   id_fonte = "1339250"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Karim Madrakhimov"
@@ -2538,6 +2753,7 @@ padrao = "liso"
   partidas = 2
   minutos = 204
   id_fonte = "1244873"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "Akhmat Grozny"
@@ -2557,6 +2773,7 @@ padrao = "liso"
   minutos = 816
   gols = 4
   id_fonte = "911400"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Lechi Sadulaev"
@@ -2569,6 +2786,7 @@ padrao = "liso"
   minutos = 696
   gols = 2
   id_fonte = "623553"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Kalidou Sidibé"
@@ -2581,6 +2799,7 @@ padrao = "liso"
   minutos = 387
   gols = 1
   id_fonte = "629585"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Klisman Cake"
@@ -2593,6 +2812,7 @@ padrao = "liso"
   minutos = 1080
   gols = 1
   id_fonte = "486204"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Maksim Samorodov"
@@ -2605,6 +2825,7 @@ padrao = "liso"
   minutos = 635
   gols = 1
   id_fonte = "713071"
+  nacionalidade = "Cazaquistão"
 
   [[clubes.jogadores]]
   nome = "Georgiy Melkadze"
@@ -2617,6 +2838,7 @@ padrao = "liso"
   minutos = 600
   gols = 4
   id_fonte = "281552"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Miroslav Bogosavac"
@@ -2628,6 +2850,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1035
   id_fonte = "273945"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Ousmane N'Dong"
@@ -2640,6 +2863,7 @@ padrao = "liso"
   minutos = 438
   gols = 3
   id_fonte = "829380"
+  nacionalidade = "Senegal"
 
   [[clubes.jogadores]]
   nome = "Kirill Shchetinin"
@@ -2651,6 +2875,7 @@ padrao = "liso"
   partidas = 4
   minutos = 387
   id_fonte = "501769"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Arsen Adamov"
@@ -2662,6 +2887,7 @@ padrao = "liso"
   partidas = 8
   minutos = 750
   id_fonte = "455016"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ismael Silva"
@@ -2674,6 +2900,7 @@ padrao = "liso"
   minutos = 848
   gols = 1
   id_fonte = "253734"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Maksim Sidorov"
@@ -2686,6 +2913,7 @@ padrao = "liso"
   minutos = 351
   gols = 1
   id_fonte = "456814"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Turpal-Ali Ibishev"
@@ -2698,6 +2926,7 @@ padrao = "liso"
   minutos = 798
   gols = 1
   id_fonte = "810558"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Júlio Romão"
@@ -2709,6 +2938,7 @@ padrao = "liso"
   partidas = 9
   minutos = 791
   id_fonte = "645423"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Vadim Ulyanov"
@@ -2720,6 +2950,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "799095"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Mohamed Konaté"
@@ -2732,6 +2963,7 @@ padrao = "liso"
   minutos = 200
   gols = 2
   id_fonte = "457743"
+  nacionalidade = "Burkina Faso"
 
   [[clubes.jogadores]]
   nome = "Giorgiy Shelia"
@@ -2743,6 +2975,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "58971"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Kelliano"
@@ -2755,6 +2988,7 @@ padrao = "liso"
   minutos = 292
   gols = 1
   id_fonte = "1059814"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Sergey Pryakhin"
@@ -2766,6 +3000,7 @@ padrao = "liso"
   partidas = 1
   minutos = 134
   id_fonte = "646894"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Rasul Mitsaev"
@@ -2775,6 +3010,7 @@ padrao = "liso"
   pot = 55
   valor = 350000
   id_fonte = "743010"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Erald Maksuti"
@@ -2787,6 +3023,7 @@ padrao = "liso"
   minutos = 264
   gols = 1
   id_fonte = "946954"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Galymzhan Kenzhebek"
@@ -2799,6 +3036,7 @@ padrao = "liso"
   minutos = 210
   gols = 1
   id_fonte = "704593"
+  nacionalidade = "Cazaquistão"
 
   [[clubes.jogadores]]
   nome = "Abakar Gadzhiev"
@@ -2810,6 +3048,7 @@ padrao = "liso"
   partidas = 3
   minutos = 303
   id_fonte = "867082"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksey Kasadzhikov"
@@ -2821,6 +3060,7 @@ padrao = "liso"
   partidas = 3
   minutos = 22
   id_fonte = "1160956"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Kirill Kistenev"
@@ -2830,6 +3070,7 @@ padrao = "liso"
   pot = 52
   valor = 350000
   id_fonte = "1038637"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "Baltika Kaliningrad"
@@ -2848,6 +3089,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "312891"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Mingiyan Beveev"
@@ -2860,6 +3102,7 @@ padrao = "liso"
   minutos = 848
   gols = 2
   id_fonte = "360451"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Maksim Petrov"
@@ -2872,6 +3115,7 @@ padrao = "liso"
   minutos = 541
   gols = 1
   id_fonte = "431708"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Filin"
@@ -2884,6 +3128,7 @@ padrao = "liso"
   minutos = 1829
   gols = 1
   id_fonte = "301037"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Brayan Gil"
@@ -2896,6 +3141,7 @@ padrao = "liso"
   minutos = 573
   gols = 4
   id_fonte = "736202"
+  nacionalidade = "El Salvador"
 
   [[clubes.jogadores]]
   nome = "Ilya Petrov"
@@ -2908,6 +3154,7 @@ padrao = "liso"
   minutos = 408
   gols = 1
   id_fonte = "297034"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nathan Gassama"
@@ -2920,6 +3167,7 @@ padrao = "liso"
   minutos = 766
   gols = 1
   id_fonte = "815346"
+  nacionalidade = "Mali"
 
   [[clubes.jogadores]]
   nome = "Sergey Varatynov"
@@ -2932,6 +3180,7 @@ padrao = "liso"
   minutos = 973
   gols = 1
   id_fonte = "555159"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Andrey Mendel"
@@ -2944,6 +3193,7 @@ padrao = "liso"
   minutos = 678
   gols = 1
   id_fonte = "230536"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Fahd Moufi"
@@ -2955,6 +3205,7 @@ padrao = "liso"
   partidas = 4
   minutos = 326
   id_fonte = "265589"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Egor Golenkov"
@@ -2967,6 +3218,7 @@ padrao = "liso"
   minutos = 72
   gols = 1
   id_fonte = "449722"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Eldar Civic"
@@ -2979,6 +3231,7 @@ padrao = "liso"
   minutos = 349
   gols = 1
   id_fonte = "317764"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Loris Mouyokolo"
@@ -2990,6 +3243,7 @@ padrao = "liso"
   partidas = 7
   minutos = 630
   id_fonte = "799936"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Stefan Kovac"
@@ -3001,6 +3255,7 @@ padrao = "liso"
   partidas = 1
   minutos = 88
   id_fonte = "376127"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Aymane Mourid"
@@ -3013,6 +3268,7 @@ padrao = "liso"
   minutos = 593
   gols = 1
   id_fonte = "593480"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Chinonso Offor"
@@ -3025,6 +3281,7 @@ padrao = "liso"
   minutos = 419
   gols = 2
   id_fonte = "693412"
+  nacionalidade = "Nigéria"
 
   [[clubes.jogadores]]
   nome = "Egor Lyubakov"
@@ -3036,6 +3293,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "577714"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Eduardo Anderson"
@@ -3047,6 +3305,7 @@ padrao = "liso"
   partidas = 10
   minutos = 855
   id_fonte = "742858"
+  nacionalidade = "Panamá"
 
   [[clubes.jogadores]]
   nome = "Ivan Belikov"
@@ -3058,6 +3317,7 @@ padrao = "liso"
   partidas = 5
   minutos = 457
   id_fonte = "1247237"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Mikhail Ryadno"
@@ -3070,6 +3330,7 @@ padrao = "liso"
   minutos = 333
   gols = 1
   id_fonte = "917404"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ivan Kukushkin"
@@ -3081,6 +3342,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "692563"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Konstantin Shiltsov"
@@ -3092,6 +3354,7 @@ padrao = "liso"
   partidas = 3
   minutos = 290
   id_fonte = "699266"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Maksim Shnaptsev"
@@ -3103,6 +3366,7 @@ padrao = "liso"
   partidas = 3
   minutos = 258
   id_fonte = "637552"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ilya Kirsh"
@@ -3114,6 +3378,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "637545"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ilya Porokhov"
@@ -3123,6 +3388,7 @@ padrao = "liso"
   pot = 49
   valor = 250000
   id_fonte = "866924"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Dmitriy Begun"
@@ -3132,6 +3398,7 @@ padrao = "liso"
   pot = 47
   valor = 125000
   id_fonte = "616035"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Mark Mokin"
@@ -3141,6 +3408,7 @@ padrao = "liso"
   pot = 51
   valor = 400000
   id_fonte = "946394"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Vladislav Pospelov"
@@ -3153,6 +3421,7 @@ padrao = "liso"
   minutos = 436
   gols = 1
   id_fonte = "1151887"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "Akron Togliatti"
@@ -3172,6 +3441,7 @@ padrao = "liso"
   minutos = 206
   gols = 1
   id_fonte = "274694"
+  nacionalidade = "Romênia"
 
   [[clubes.jogadores]]
   nome = "Kristijan Bistrovic"
@@ -3184,6 +3454,7 @@ padrao = "liso"
   minutos = 643
   gols = 1
   id_fonte = "375857"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Roberto Fernández"
@@ -3196,6 +3467,7 @@ padrao = "liso"
   minutos = 635
   gols = 1
   id_fonte = "598101"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Slobodan Tedic"
@@ -3207,6 +3479,7 @@ padrao = "liso"
   partidas = 5
   minutos = 465
   id_fonte = "505652"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Vitaliy Gudiev"
@@ -3218,6 +3491,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "190188"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Stefan Loncar"
@@ -3230,6 +3504,7 @@ padrao = "liso"
   minutos = 875
   gols = 1
   id_fonte = "352599"
+  nacionalidade = "Montenegro"
 
   [[clubes.jogadores]]
   nome = "Dmitriy Pestryakov"
@@ -3242,6 +3517,7 @@ padrao = "liso"
   minutos = 2441
   gols = 6
   id_fonte = "1037971"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Khetag Khosonov"
@@ -3253,6 +3529,7 @@ padrao = "liso"
   partidas = 5
   minutos = 440
   id_fonte = "391905"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Escoval"
@@ -3264,6 +3541,7 @@ padrao = "liso"
   partidas = 9
   minutos = 831
   id_fonte = "396428"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Marat Bokoev"
@@ -3276,6 +3554,7 @@ padrao = "liso"
   minutos = 670
   gols = 1
   id_fonte = "700755"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Milutin Vidosavljevic"
@@ -3285,6 +3564,7 @@ padrao = "liso"
   pot = 62
   valor = 1800000
   id_fonte = "466125"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Aleksa Djurasovic"
@@ -3297,6 +3577,7 @@ padrao = "liso"
   minutos = 247
   gols = 1
   id_fonte = "636601"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Gilson Benchimol"
@@ -3309,6 +3590,7 @@ padrao = "liso"
   minutos = 766
   gols = 4
   id_fonte = "820252"
+  nacionalidade = "Cabo Verde"
 
   [[clubes.jogadores]]
   nome = "Vyacheslav Bardybakhin"
@@ -3320,6 +3602,7 @@ padrao = "liso"
   partidas = 9
   minutos = 793
   id_fonte = "519567"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Dudu"
@@ -3332,6 +3615,7 @@ padrao = "liso"
   minutos = 460
   gols = 1
   id_fonte = "1083607"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Konstantin Maradishvili"
@@ -3344,6 +3628,7 @@ padrao = "liso"
   minutos = 589
   gols = 1
   id_fonte = "535974"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Maksim Boldyrev"
@@ -3356,6 +3641,7 @@ padrao = "liso"
   minutos = 1
   gols = 3
   id_fonte = "1033394"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Yomar Rocha"
@@ -3368,6 +3654,7 @@ padrao = "liso"
   minutos = 513
   gols = 1
   id_fonte = "908807"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Arseniy Dmitriev"
@@ -3380,6 +3667,7 @@ padrao = "liso"
   minutos = 516
   gols = 1
   id_fonte = "1160366"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ignat Terekhovskiy"
@@ -3391,6 +3679,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "1038622"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Kévin Arévalo"
@@ -3403,6 +3692,7 @@ padrao = "liso"
   minutos = 414
   gols = 2
   id_fonte = "1385364"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Yuriy Zheleznov"
@@ -3414,6 +3704,7 @@ padrao = "liso"
   partidas = 2
   minutos = 158
   id_fonte = "673998"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Artem Shumanskiy"
@@ -3425,6 +3716,7 @@ padrao = "liso"
   partidas = 2
   minutos = 28
   id_fonte = "898119"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Denis Popenkov"
@@ -3436,6 +3728,7 @@ padrao = "liso"
   partidas = 5
   minutos = 445
   id_fonte = "1243089"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nikita Bazilevskiy"
@@ -3448,6 +3741,7 @@ padrao = "liso"
   minutos = 286
   gols = 1
   id_fonte = "917457"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Artem Sidorenko"
@@ -3457,6 +3751,7 @@ padrao = "liso"
   pot = 51
   valor = 250000
   id_fonte = "1052494"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Karlen Hovhannisyan"
@@ -3469,6 +3764,7 @@ padrao = "liso"
   minutos = 84
   gols = 1
   id_fonte = "881024"
+  nacionalidade = "Armênia"
 
   [[clubes.jogadores]]
   nome = "Nikita Platon"
@@ -3480,6 +3776,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "1309944"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "Krylya Sovetov Samara"
@@ -3499,6 +3796,7 @@ padrao = "liso"
   minutos = 745
   gols = 3
   id_fonte = "524403"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Nikita Chernov"
@@ -3511,6 +3809,7 @@ padrao = "liso"
   minutos = 630
   gols = 2
   id_fonte = "214238"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Yuriy Gorshkov"
@@ -3522,6 +3821,7 @@ padrao = "liso"
   partidas = 6
   minutos = 568
   id_fonte = "448983"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Kirill Pechenin"
@@ -3534,6 +3834,7 @@ padrao = "liso"
   minutos = 883
   gols = 1
   id_fonte = "498015"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Nikolay Rasskazov"
@@ -3546,6 +3847,7 @@ padrao = "liso"
   minutos = 666
   gols = 1
   id_fonte = "285868"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Sergey Bozhin"
@@ -3558,6 +3860,7 @@ padrao = "liso"
   minutos = 810
   gols = 2
   id_fonte = "265282"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ilzat Akhmetov"
@@ -3570,6 +3873,7 @@ padrao = "liso"
   minutos = 1821
   gols = 2
   id_fonte = "334440"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Mihajlo Banjac"
@@ -3582,6 +3886,7 @@ padrao = "liso"
   minutos = 336
   gols = 1
   id_fonte = "585082"
+  nacionalidade = "Sérvia"
 
   [[clubes.jogadores]]
   nome = "Maksim Vityugov"
@@ -3594,6 +3899,7 @@ padrao = "liso"
   minutos = 732
   gols = 1
   id_fonte = "447101"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Thomas Galdames"
@@ -3606,6 +3912,7 @@ padrao = "liso"
   minutos = 330
   gols = 1
   id_fonte = "539469"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Amar Rahmanovic"
@@ -3618,6 +3925,7 @@ padrao = "liso"
   minutos = 522
   gols = 3
   id_fonte = "166086"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Dani Fernández"
@@ -3630,6 +3938,7 @@ padrao = "liso"
   minutos = 306
   gols = 1
   id_fonte = "403187"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Denis Makarov"
@@ -3642,6 +3951,7 @@ padrao = "liso"
   minutos = 433
   gols = 1
   id_fonte = "599203"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Dominik Oroz"
@@ -3654,6 +3964,7 @@ padrao = "liso"
   minutos = 590
   gols = 1
   id_fonte = "353559"
+  nacionalidade = "Croácia"
 
   [[clubes.jogadores]]
   nome = "Islam Chesnokov"
@@ -3665,6 +3976,7 @@ padrao = "liso"
   partidas = 2
   minutos = 184
   id_fonte = "764386"
+  nacionalidade = "Cazaquistão"
 
   [[clubes.jogadores]]
   nome = "Jimmy Marín"
@@ -3677,6 +3989,7 @@ padrao = "liso"
   minutos = 91
   gols = 2
   id_fonte = "372730"
+  nacionalidade = "Costa Rica"
 
   [[clubes.jogadores]]
   nome = "Nikita Kokarev"
@@ -3688,6 +4001,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "538954"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Sergey Pesjakov"
@@ -3699,6 +4013,7 @@ padrao = "liso"
   partidas = 7
   minutos = 630
   id_fonte = "61397"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Martin Kramaric"
@@ -3711,6 +4026,7 @@ padrao = "liso"
   minutos = 607
   gols = 1
   id_fonte = "318705"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Ivan Lepskiy"
@@ -3723,6 +4039,7 @@ padrao = "liso"
   minutos = 180
   gols = 2
   id_fonte = "697954"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nikita Saltykov"
@@ -3734,6 +4051,7 @@ padrao = "liso"
   partidas = 1
   minutos = 64
   id_fonte = "697728"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Evgeniy Frolov"
@@ -3745,6 +4063,7 @@ padrao = "liso"
   partidas = 2
   minutos = 25
   id_fonte = "177350"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Vladislav Shitov"
@@ -3757,6 +4076,7 @@ padrao = "liso"
   minutos = 365
   gols = 1
   id_fonte = "516749"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Kirill Stolbov"
@@ -3769,6 +4089,7 @@ padrao = "liso"
   minutos = 219
   gols = 1
   id_fonte = "718763"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Kazbek Mukailov"
@@ -3780,6 +4101,7 @@ padrao = "liso"
   partidas = 2
   minutos = 154
   id_fonte = "1160724"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "Rodina Moscow"
@@ -3799,6 +4121,7 @@ padrao = "liso"
   minutos = 90
   gols = 1
   id_fonte = "332560"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Mickaël Nadé"
@@ -3810,6 +4133,7 @@ padrao = "liso"
   partidas = 4
   minutos = 339
   id_fonte = "494586"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Becão"
@@ -3821,6 +4145,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "410158"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Sergey Volkov"
@@ -3832,6 +4157,7 @@ padrao = "liso"
   partidas = 11
   minutos = 990
   id_fonte = "402434"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Artem Meshchaninov"
@@ -3844,6 +4170,7 @@ padrao = "liso"
   minutos = 900
   gols = 2
   id_fonte = "380349"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "German Onugkha"
@@ -3855,6 +4182,7 @@ padrao = "liso"
   partidas = 2
   minutos = 170
   id_fonte = "568318"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Iker Pozo"
@@ -3867,6 +4195,7 @@ padrao = "liso"
   minutos = 665
   gols = 2
   id_fonte = "445096"
+  nacionalidade = "Espanha"
 
   [[clubes.jogadores]]
   nome = "Mitja Krizan"
@@ -3878,6 +4207,7 @@ padrao = "liso"
   partidas = 5
   minutos = 411
   id_fonte = "413524"
+  nacionalidade = "Eslovênia"
 
   [[clubes.jogadores]]
   nome = "Ruslan Fishchenko"
@@ -3889,6 +4219,7 @@ padrao = "liso"
   partidas = 6
   minutos = 558
   id_fonte = "535968"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Artem Maksimenko"
@@ -3901,6 +4232,7 @@ padrao = "liso"
   minutos = 852
   gols = 4
   id_fonte = "310132"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Artem Sokol"
@@ -3912,6 +4244,7 @@ padrao = "liso"
   partidas = 4
   minutos = 348
   id_fonte = "330780"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Brian Mansilla"
@@ -3923,6 +4256,7 @@ padrao = "liso"
   partidas = 1
   minutos = 94
   id_fonte = "373374"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ivan Timoshenko"
@@ -3935,6 +4269,7 @@ padrao = "liso"
   minutos = 529
   gols = 3
   id_fonte = "653776"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Andrey Egorychev"
@@ -3947,6 +4282,7 @@ padrao = "liso"
   minutos = 295
   gols = 1
   id_fonte = "447257"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Leo Goglichidze"
@@ -3958,6 +4294,7 @@ padrao = "liso"
   partidas = 7
   minutos = 630
   id_fonte = "334481"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Yordy Reyna"
@@ -3970,6 +4307,7 @@ padrao = "liso"
   minutos = 788
   gols = 7
   id_fonte = "200779"
+  nacionalidade = "Peru"
 
   [[clubes.jogadores]]
   nome = "Dmitriy Tananeev"
@@ -3982,6 +4320,7 @@ padrao = "liso"
   minutos = 495
   gols = 1
   id_fonte = "461687"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Soltmurad Bakaev"
@@ -3994,6 +4333,7 @@ padrao = "liso"
   minutos = 461
   gols = 1
   id_fonte = "416704"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ilya Dyatlov"
@@ -4006,6 +4346,7 @@ padrao = "liso"
   minutos = 400
   gols = 2
   id_fonte = "869527"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Leon Musaev"
@@ -4017,6 +4358,7 @@ padrao = "liso"
   partidas = 5
   minutos = 461
   id_fonte = "375668"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Dmitriy Shadrintsev"
@@ -4026,6 +4368,7 @@ padrao = "liso"
   pot = 53
   valor = 350000
   id_fonte = "575401"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Stanislav Bessmertniy"
@@ -4037,6 +4380,7 @@ padrao = "liso"
   partidas = 8
   minutos = 681
   id_fonte = "817673"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Astemir Gordyushenko"
@@ -4048,6 +4392,7 @@ padrao = "liso"
   partidas = 3
   minutos = 299
   id_fonte = "334429"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Kerfala Cissoko"
@@ -4060,6 +4405,7 @@ padrao = "liso"
   minutos = 70
   gols = 1
   id_fonte = "591862"
+  nacionalidade = "Guiné"
 
   [[clubes.jogadores]]
   nome = "Kirill Ushatov"
@@ -4072,6 +4418,7 @@ padrao = "liso"
   minutos = 261
   gols = 1
   id_fonte = "576743"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ilya Svinov"
@@ -4083,6 +4430,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "599150"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Magomedkhabib Abdusalamov"
@@ -4095,6 +4443,7 @@ padrao = "liso"
   minutos = 306
   gols = 2
   id_fonte = "686193"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Sergey Aydarov"
@@ -4106,6 +4455,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "461682"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Artur Gharibyan"
@@ -4118,6 +4468,7 @@ padrao = "liso"
   minutos = 353
   gols = 3
   id_fonte = "1064063"
+  nacionalidade = "Armênia"
 
 [[clubes]]
 nome = "FK Orenburg"
@@ -4136,6 +4487,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "534477"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "João Silva"
@@ -4147,6 +4499,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "461903"
+  nacionalidade = "Portugal"
 
   [[clubes.jogadores]]
   nome = "Damián Puebla"
@@ -4159,6 +4512,7 @@ padrao = "liso"
   minutos = 749
   gols = 2
   id_fonte = "1106216"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Aleksey Tataev"
@@ -4171,6 +4525,7 @@ padrao = "liso"
   minutos = 607
   gols = 1
   id_fonte = "312502"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Jhon Alex Palacios"
@@ -4182,6 +4537,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "653408"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Maxime Sivis"
@@ -4193,6 +4549,7 @@ padrao = "liso"
   partidas = 8
   minutos = 720
   id_fonte = "580715"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Danila Khotulev"
@@ -4204,6 +4561,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "529870"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Emil Tsenov"
@@ -4216,6 +4574,7 @@ padrao = "liso"
   minutos = 735
   gols = 1
   id_fonte = "628049"
+  nacionalidade = "Bulgária"
 
   [[clubes.jogadores]]
   nome = "Evgeniy Bolotov"
@@ -4228,6 +4587,7 @@ padrao = "liso"
   minutos = 707
   gols = 3
   id_fonte = "575408"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Jordhy Thompson"
@@ -4240,6 +4600,7 @@ padrao = "liso"
   minutos = 78
   gols = 5
   id_fonte = "889462"
+  nacionalidade = "Chile"
 
   [[clubes.jogadores]]
   nome = "Danila Vedernikov"
@@ -4252,6 +4613,7 @@ padrao = "liso"
   minutos = 459
   gols = 1
   id_fonte = "574930"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Dmitriy Rybchinskiy"
@@ -4263,6 +4625,7 @@ padrao = "liso"
   partidas = 8
   minutos = 701
   id_fonte = "362572"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Maksim Rudakov"
@@ -4274,6 +4637,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "235347"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Gedeon Guzina"
@@ -4286,6 +4650,7 @@ padrao = "liso"
   minutos = 703
   gols = 1
   id_fonte = "447462"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Artem Kasimov"
@@ -4297,6 +4662,7 @@ padrao = "liso"
   partidas = 3
   minutos = 247
   id_fonte = "751099"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Jersson González"
@@ -4308,6 +4674,7 @@ padrao = "liso"
   partidas = 1
   minutos = 124
   id_fonte = "772843"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Robert Mejía"
@@ -4319,6 +4686,7 @@ padrao = "liso"
   partidas = 1
   minutos = 22
   id_fonte = "572818"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Ruslan Kul"
@@ -4331,6 +4699,7 @@ padrao = "liso"
   minutos = 731
   gols = 2
   id_fonte = "601456"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Alexandre Jesus"
@@ -4343,6 +4712,7 @@ padrao = "liso"
   minutos = 259
   gols = 2
   id_fonte = "739439"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Maksim Saveljev"
@@ -4355,6 +4725,7 @@ padrao = "liso"
   minutos = 92
   gols = 4
   id_fonte = "501777"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Dmitriy Vasiljev"
@@ -4366,6 +4737,7 @@ padrao = "liso"
   partidas = 1
   minutos = 134
   id_fonte = "649343"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Egor Nazarenko"
@@ -4377,6 +4749,7 @@ padrao = "liso"
   partidas = 8
   minutos = 732
   id_fonte = "697958"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Degtev"
@@ -4386,6 +4759,7 @@ padrao = "liso"
   pot = 61
   valor = 800000
   id_fonte = "918827"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Anton Lukashov"
@@ -4397,6 +4771,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "993437"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Renat Golybin"
@@ -4409,6 +4784,7 @@ padrao = "liso"
   minutos = 359
   gols = 1
   id_fonte = "919358"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Stanislav Poroykov"
@@ -4421,6 +4797,7 @@ padrao = "liso"
   minutos = 90
   gols = 2
   id_fonte = "817822"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Andrey Kasadzhikov"
@@ -4433,6 +4810,7 @@ padrao = "liso"
   minutos = 475
   gols = 4
   id_fonte = "1160957"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Maksim Syshchenko"
@@ -4444,6 +4822,7 @@ padrao = "liso"
   partidas = 2
   minutos = 137
   id_fonte = "825725"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksey Baranovskiy"
@@ -4455,6 +4834,7 @@ padrao = "liso"
   partidas = 1
   minutos = 123
   id_fonte = "715357"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Benjamín Bosch"
@@ -4466,6 +4846,7 @@ padrao = "liso"
   partidas = 2
   minutos = 182
   id_fonte = "1240383"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ivan Ivashchenko"
@@ -4477,6 +4858,7 @@ padrao = "liso"
   partidas = 3
   minutos = 271
   id_fonte = "1155741"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Mikhail Pykhcheev"
@@ -4488,6 +4870,7 @@ padrao = "liso"
   partidas = 1
   minutos = 113
   id_fonte = "929155"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Omar Minatulaev"
@@ -4499,6 +4882,7 @@ padrao = "liso"
   partidas = 1
   minutos = 104
   id_fonte = "1164454"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "Dinamo Makhachkala"
@@ -4518,6 +4902,7 @@ padrao = "liso"
   minutos = 817
   gols = 1
   id_fonte = "842780"
+  nacionalidade = "Argélia"
 
   [[clubes.jogadores]]
   nome = "Idar Shumakhov"
@@ -4529,6 +4914,7 @@ padrao = "liso"
   partidas = 22
   minutos = 1986
   id_fonte = "702149"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "David Volk"
@@ -4540,6 +4926,7 @@ padrao = "liso"
   partidas = 4
   minutos = 338
   id_fonte = "451244"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Daniil Lesovoy"
@@ -4552,6 +4939,7 @@ padrao = "liso"
   minutos = 691
   gols = 1
   id_fonte = "315252"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Gamid Agalarov"
@@ -4564,6 +4952,7 @@ padrao = "liso"
   minutos = 618
   gols = 5
   id_fonte = "567023"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Mohammadjavad Hosseinnejad"
@@ -4576,6 +4965,7 @@ padrao = "liso"
   minutos = 231
   gols = 4
   id_fonte = "1030739"
+  nacionalidade = "Irã"
 
   [[clubes.jogadores]]
   nome = "Mutalip Alibekov"
@@ -4587,6 +4977,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "334425"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Temirkan Sundukov"
@@ -4599,6 +4990,7 @@ padrao = "liso"
   minutos = 779
   gols = 1
   id_fonte = "654591"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nikita Glushkov"
@@ -4611,6 +5003,7 @@ padrao = "liso"
   minutos = 828
   gols = 2
   id_fonte = "480139"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Andrés Alarcón"
@@ -4623,6 +5016,7 @@ padrao = "liso"
   minutos = 899
   gols = 1
   id_fonte = "1102540"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Soslan Kagermazov"
@@ -4634,6 +5028,7 @@ padrao = "liso"
   partidas = 5
   minutos = 431
   id_fonte = "438306"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Timur Magomedov"
@@ -4645,6 +5040,7 @@ padrao = "liso"
   partidas = 8
   minutos = 742
   id_fonte = "622477"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Marat Apshatsev"
@@ -4656,6 +5052,7 @@ padrao = "liso"
   partidas = 8
   minutos = 731
   id_fonte = "599046"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Miro"
@@ -4668,6 +5065,7 @@ padrao = "liso"
   minutos = 576
   gols = 2
   id_fonte = "1043831"
+  nacionalidade = "Angola"
 
   [[clubes.jogadores]]
   nome = "Egor Smelov"
@@ -4679,6 +5077,7 @@ padrao = "liso"
   partidas = 6
   minutos = 543
   id_fonte = "715359"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Sandrachuk"
@@ -4691,6 +5090,7 @@ padrao = "liso"
   minutos = 451
   gols = 1
   id_fonte = "649301"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Razhab Magomedov"
@@ -4703,6 +5103,7 @@ padrao = "liso"
   minutos = 232
   gols = 2
   id_fonte = "622454"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Serder Serderov"
@@ -4714,6 +5115,7 @@ padrao = "liso"
   partidas = 1
   minutos = 70
   id_fonte = "129103"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Nikita Karabashev"
@@ -4725,6 +5127,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "698931"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ilyas Akhmedov"
@@ -4736,6 +5139,7 @@ padrao = "liso"
   partidas = 4
   minutos = 341
   id_fonte = "1317563"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Makhmud Makhamadzhonov"
@@ -4747,6 +5151,7 @@ padrao = "liso"
   partidas = 3
   minutos = 232
   id_fonte = "989071"
+  nacionalidade = "Uzbequistão"
 
   [[clubes.jogadores]]
   nome = "Vladimir Khubulov"
@@ -4759,6 +5164,7 @@ padrao = "liso"
   minutos = 107
   gols = 1
   id_fonte = "430484"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Abdulpasha Dzhabrailov"
@@ -4770,6 +5176,7 @@ padrao = "liso"
   partidas = 5
   minutos = 409
   id_fonte = "1156870"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Kirill Zinovich"
@@ -4781,6 +5188,7 @@ padrao = "liso"
   partidas = 3
   minutos = 287
   id_fonte = "720936"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Dmitriy Aleksandrov"
@@ -4792,6 +5200,7 @@ padrao = "liso"
   partidas = 1
   minutos = 127
   id_fonte = "864621"
+  nacionalidade = "Rússia"
 
 [[clubes]]
 nome = "Fackel Voronezh"
@@ -4810,6 +5219,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "235344"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Yuriy Zhuravlev"
@@ -4822,6 +5232,7 @@ padrao = "liso"
   minutos = 522
   gols = 1
   id_fonte = "323710"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Daniil Frolkin"
@@ -4833,6 +5244,7 @@ padrao = "liso"
   partidas = 9
   minutos = 810
   id_fonte = "621586"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Darko Todorovic"
@@ -4845,6 +5257,7 @@ padrao = "liso"
   minutos = 829
   gols = 1
   id_fonte = "293231"
+  nacionalidade = "Bósnia-Herzegovina"
 
   [[clubes.jogadores]]
   nome = "Belajdi Pusi"
@@ -4857,6 +5270,7 @@ padrao = "liso"
   minutos = 447
   gols = 16
   id_fonte = "541006"
+  nacionalidade = "Albânia"
 
   [[clubes.jogadores]]
   nome = "Igor Yurganov"
@@ -4869,6 +5283,7 @@ padrao = "liso"
   minutos = 743
   gols = 1
   id_fonte = "231724"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ravil Netfullin"
@@ -4881,6 +5296,7 @@ padrao = "liso"
   minutos = 862
   gols = 1
   id_fonte = "151282"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Stanislav Magkeev"
@@ -4892,6 +5308,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1236
   id_fonte = "462329"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksey Sutormin"
@@ -4904,6 +5321,7 @@ padrao = "liso"
   minutos = 444
   gols = 1
   id_fonte = "217033"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Clayton"
@@ -4915,6 +5333,7 @@ padrao = "liso"
   partidas = 4
   minutos = 343
   id_fonte = "371968"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Nikolay Giorgobiani"
@@ -4927,6 +5346,7 @@ padrao = "liso"
   minutos = 592
   gols = 5
   id_fonte = "448901"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Albert Gabaraev"
@@ -4939,6 +5359,7 @@ padrao = "liso"
   minutos = 817
   gols = 3
   id_fonte = "528386"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Hodaifa El Mhassani"
@@ -4950,6 +5371,7 @@ padrao = "liso"
   partidas = 3
   minutos = 296
   id_fonte = "627926"
+  nacionalidade = "Marrocos"
 
   [[clubes.jogadores]]
   nome = "Vyacheslav Yakimov"
@@ -4962,6 +5384,7 @@ padrao = "liso"
   minutos = 792
   gols = 1
   id_fonte = "645682"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Matvey Bardachev"
@@ -4973,6 +5396,7 @@ padrao = "liso"
   partidas = 9
   minutos = 786
   id_fonte = "991180"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Butta Magomedov"
@@ -4985,6 +5409,7 @@ padrao = "liso"
   minutos = 760
   gols = 1
   id_fonte = "395163"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Ilnur Alshin"
@@ -4997,6 +5422,7 @@ padrao = "liso"
   minutos = 489
   gols = 1
   id_fonte = "179973"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Anton Kovalev"
@@ -5009,6 +5435,7 @@ padrao = "liso"
   minutos = 543
   gols = 1
   id_fonte = "541914"
+  nacionalidade = "Belarus"
 
   [[clubes.jogadores]]
   nome = "Axel Gnapi"
@@ -5021,6 +5448,7 @@ padrao = "liso"
   minutos = 512
   gols = 1
   id_fonte = "825668"
+  nacionalidade = "França"
 
   [[clubes.jogadores]]
   nome = "Abdula Bagamaev"
@@ -5033,6 +5461,7 @@ padrao = "liso"
   minutos = 343
   gols = 2
   id_fonte = "913018"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Maksim Turishchev"
@@ -5045,6 +5474,7 @@ padrao = "liso"
   minutos = 349
   gols = 1
   id_fonte = "555837"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Kirill Simonov"
@@ -5056,6 +5486,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "1021048"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Belyaev"
@@ -5067,6 +5498,7 @@ padrao = "liso"
   partidas = 2
   minutos = 4
   id_fonte = "1243095"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Aleksandr Koksharov"
@@ -5079,6 +5511,7 @@ padrao = "liso"
   minutos = 142
   gols = 1
   id_fonte = "817843"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Vladislav Kalinichev"
@@ -5088,6 +5521,7 @@ padrao = "liso"
   pot = 46
   valor = 157067
   id_fonte = "909229"
+  nacionalidade = "Rússia"
 
   [[clubes.jogadores]]
   nome = "Vyacheslav Dorovskikh"
@@ -5099,4 +5533,5 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "798664"
+  nacionalidade = "Rússia"
 

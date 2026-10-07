@@ -29,6 +29,7 @@ padrao = "liso"
   partidas = 26
   minutos = 2347
   id_fonte = "323854"
+  nacionalidade = "Equador"
 
   [[clubes.jogadores]]
   nome = "Bruno Miranda"
@@ -41,6 +42,7 @@ padrao = "liso"
   minutos = 401
   gols = 5
   id_fonte = "431065"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "José Sagredo"
@@ -53,6 +55,7 @@ padrao = "liso"
   minutos = 2325
   gols = 2
   id_fonte = "453082"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Robson Matheus"
@@ -65,6 +68,7 @@ padrao = "liso"
   minutos = 1685
   gols = 6
   id_fonte = "661856"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Dorny Romero"
@@ -77,6 +81,7 @@ padrao = "liso"
   minutos = 1956
   gols = 10
   id_fonte = "651026"
+  nacionalidade = "República Dominicana"
 
   [[clubes.jogadores]]
   nome = "Luis Paz"
@@ -88,6 +93,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1452
   id_fonte = "1042393"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Carlos Melgar"
@@ -100,6 +106,7 @@ padrao = "liso"
   minutos = 2089
   gols = 4
   id_fonte = "454652"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jesús Sagredo"
@@ -111,6 +118,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1465
   id_fonte = "742609"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "John García"
@@ -123,6 +131,7 @@ padrao = "liso"
   minutos = 594
   gols = 1
   id_fonte = "491670"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Leonel Justiniano"
@@ -135,6 +144,7 @@ padrao = "liso"
   minutos = 2362
   gols = 4
   id_fonte = "213475"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Ervin Vaca"
@@ -146,6 +156,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1271
   id_fonte = "1098096"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jhon Velásquez"
@@ -158,6 +169,7 @@ padrao = "liso"
   minutos = 1378
   gols = 6
   id_fonte = "960514"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Billy Arce"
@@ -170,6 +182,7 @@ padrao = "liso"
   minutos = 766
   gols = 5
   id_fonte = "450237"
+  nacionalidade = "Equador"
 
   [[clubes.jogadores]]
   nome = "Dairon Asprilla"
@@ -182,6 +195,7 @@ padrao = "liso"
   minutos = 1057
   gols = 9
   id_fonte = "260381"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Erwin Saavedra"
@@ -194,6 +208,7 @@ padrao = "liso"
   minutos = 937
   gols = 3
   id_fonte = "321118"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Damián Batallini"
@@ -206,6 +221,7 @@ padrao = "liso"
   minutos = 289
   gols = 1
   id_fonte = "421998"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Escleizon Freita"
@@ -218,6 +234,7 @@ padrao = "liso"
   minutos = 1049
   gols = 1
   id_fonte = "1236465"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Leonardo Zabala"
@@ -229,6 +246,7 @@ padrao = "liso"
   partidas = 5
   minutos = 406
   id_fonte = "661852"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Santiago Echeverría"
@@ -240,6 +258,7 @@ padrao = "liso"
   partidas = 20
   minutos = 1823
   id_fonte = "249794"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Carlos Lampe"
@@ -251,6 +270,7 @@ padrao = "liso"
   partidas = 32
   minutos = 2880
   id_fonte = "102569"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Diego Méndez"
@@ -260,6 +280,7 @@ padrao = "liso"
   pot = 56
   valor = 50000
   id_fonte = "573695"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Pato Rodríguez"
@@ -271,6 +292,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1242
   id_fonte = "66587"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Martín Cauteruccio"
@@ -283,6 +305,7 @@ padrao = "liso"
   minutos = 1797
   gols = 15
   id_fonte = "76599"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Carlos Sejas"
@@ -295,6 +318,7 @@ padrao = "liso"
   minutos = 274
   gols = 1
   id_fonte = "954795"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Lucas Chávez"
@@ -307,6 +331,7 @@ padrao = "liso"
   minutos = 384
   gols = 3
   id_fonte = "889403"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Fernando Mena"
@@ -318,6 +343,7 @@ padrao = "liso"
   partidas = 11
   minutos = 996
   id_fonte = "1339307"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan José López"
@@ -329,6 +355,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "1083304"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Matías Galindo"
@@ -340,6 +367,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "1072320"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Anderson Ayhuana"
@@ -351,6 +379,7 @@ padrao = "liso"
   partidas = 2
   minutos = 30
   id_fonte = "1124516"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Heiden Butrón"
@@ -360,6 +389,7 @@ padrao = "liso"
   pot = 48
   valor = 25000
   id_fonte = "1415656"
+  nacionalidade = "Bolívia"
 
 [[clubes]]
 nome = "Blooming"
@@ -378,6 +408,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1485
   id_fonte = "353076"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Julio Vila"
@@ -389,6 +420,7 @@ padrao = "liso"
   partidas = 28
   minutos = 2555
   id_fonte = "962409"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Moisés Villarroel"
@@ -401,6 +433,7 @@ padrao = "liso"
   minutos = 2045
   gols = 4
   id_fonte = "431863"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Diago Giménez"
@@ -412,6 +445,7 @@ padrao = "liso"
   partidas = 7
   minutos = 598
   id_fonte = "723745"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Marc Enoumba"
@@ -424,6 +458,7 @@ padrao = "liso"
   minutos = 1375
   gols = 2
   id_fonte = "745887"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Richard Spenhay"
@@ -435,6 +470,7 @@ padrao = "liso"
   partidas = 8
   minutos = 696
   id_fonte = "824730"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Roberto Hinojoza"
@@ -447,6 +483,7 @@ padrao = "liso"
   minutos = 1924
   gols = 4
   id_fonte = "773276"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Danny Bejarano"
@@ -459,6 +496,7 @@ padrao = "liso"
   minutos = 677
   gols = 1
   id_fonte = "234761"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "José María Carrasco"
@@ -470,6 +508,7 @@ padrao = "liso"
   partidas = 10
   minutos = 923
   id_fonte = "481190"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Bayron Garcés"
@@ -482,6 +521,7 @@ padrao = "liso"
   minutos = 1997
   gols = 12
   id_fonte = "253282"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Cesar Menacho"
@@ -494,6 +534,7 @@ padrao = "liso"
   minutos = 1000
   gols = 4
   id_fonte = "644199"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Gustavo Almada"
@@ -505,6 +546,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1035
   id_fonte = "960968"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Mercado"
@@ -516,6 +558,7 @@ padrao = "liso"
   partidas = 6
   minutos = 533
   id_fonte = "481189"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Matías Abisab"
@@ -528,6 +571,7 @@ padrao = "liso"
   minutos = 2308
   gols = 1
   id_fonte = "213994"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Gabriel Valverde"
@@ -539,6 +583,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1081
   id_fonte = "213491"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Denilson Duran"
@@ -550,6 +595,7 @@ padrao = "liso"
   partidas = 8
   minutos = 755
   id_fonte = "981944"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Guilmar Centella"
@@ -562,6 +608,7 @@ padrao = "liso"
   minutos = 1877
   gols = 3
   id_fonte = "981962"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Miguel Villarroel"
@@ -574,6 +621,7 @@ padrao = "liso"
   minutos = 1411
   gols = 3
   id_fonte = "661854"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Auli Oliveros"
@@ -585,6 +633,7 @@ padrao = "liso"
   partidas = 7
   minutos = 594
   id_fonte = "767849"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Jeyson Chura"
@@ -596,6 +645,7 @@ padrao = "liso"
   partidas = 2
   minutos = 208
   id_fonte = "661855"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Mauricio Cabral"
@@ -607,6 +657,7 @@ padrao = "liso"
   partidas = 7
   minutos = 607
   id_fonte = "823476"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Eduardo Álvarez"
@@ -618,6 +669,7 @@ padrao = "liso"
   partidas = 4
   minutos = 318
   id_fonte = "844291"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Percy Loza"
@@ -629,6 +681,7 @@ padrao = "liso"
   partidas = 7
   minutos = 649
   id_fonte = "1133223"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Gonzales"
@@ -640,6 +693,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1130
   id_fonte = "1379603"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Eduardo Justiniano"
@@ -651,6 +705,7 @@ padrao = "liso"
   partidas = 3
   minutos = 252
   id_fonte = "982893"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Camacho"
@@ -662,6 +717,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "1208814"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Luis Chávez"
@@ -673,6 +729,7 @@ padrao = "liso"
   partidas = 1
   minutos = 85
   id_fonte = "1379600"
+  nacionalidade = "Bolívia"
 
 [[clubes]]
 nome = "Nacional Potosí"
@@ -691,6 +748,7 @@ padrao = "liso"
   partidas = 24
   minutos = 2154
   id_fonte = "644194"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Pedro Galindo"
@@ -702,6 +760,7 @@ padrao = "liso"
   partidas = 23
   minutos = 2055
   id_fonte = "353074"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Óscar Baldomar"
@@ -714,6 +773,7 @@ padrao = "liso"
   minutos = 1239
   gols = 1
   id_fonte = "353078"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Orellana"
@@ -726,6 +786,7 @@ padrao = "liso"
   minutos = 529
   gols = 1
   id_fonte = "588228"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Maicon Solís"
@@ -737,6 +798,7 @@ padrao = "liso"
   partidas = 9
   minutos = 852
   id_fonte = "368416"
+  nacionalidade = "Equador"
 
   [[clubes.jogadores]]
   nome = "Diego Hoyos"
@@ -749,6 +811,7 @@ padrao = "liso"
   minutos = 1533
   gols = 1
   id_fonte = "178579"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Pedro Azogue"
@@ -761,6 +824,7 @@ padrao = "liso"
   minutos = 1938
   gols = 1
   id_fonte = "234759"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Sebastián Álvarez"
@@ -772,6 +836,7 @@ padrao = "liso"
   partidas = 5
   minutos = 461
   id_fonte = "844297"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Willan Álvarez"
@@ -784,6 +849,7 @@ padrao = "liso"
   minutos = 1253
   gols = 8
   id_fonte = "656721"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Andres Torrico"
@@ -796,6 +862,7 @@ padrao = "liso"
   minutos = 2083
   gols = 5
   id_fonte = "1026650"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Luis Pavia"
@@ -808,6 +875,7 @@ padrao = "liso"
   minutos = 674
   gols = 1
   id_fonte = "661102"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Weslen Junior"
@@ -820,6 +888,7 @@ padrao = "liso"
   minutos = 444
   gols = 2
   id_fonte = "690824"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Mirko Tomianovic"
@@ -832,6 +901,7 @@ padrao = "liso"
   minutos = 739
   gols = 4
   id_fonte = "841069"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Damián Villalba"
@@ -844,6 +914,7 @@ padrao = "liso"
   minutos = 722
   gols = 8
   id_fonte = "989722"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Ávila"
@@ -853,6 +924,7 @@ padrao = "liso"
   pot = 50
   valor = 75000
   id_fonte = "823520"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Carlos Abastoflor"
@@ -865,6 +937,7 @@ padrao = "liso"
   minutos = 657
   gols = 1
   id_fonte = "661860"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Erick Cano"
@@ -876,6 +949,7 @@ padrao = "liso"
   partidas = 1
   minutos = 53
   id_fonte = "644195"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jhojan Arce"
@@ -887,6 +961,7 @@ padrao = "liso"
   partidas = 9
   minutos = 808
   id_fonte = "1390109"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Elder Arauz"
@@ -898,6 +973,7 @@ padrao = "liso"
   partidas = 4
   minutos = 375
   id_fonte = "679205"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Schneider Peña"
@@ -910,6 +986,7 @@ padrao = "liso"
   minutos = 923
   gols = 5
   id_fonte = "1036418"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Nelson Amarilla"
@@ -922,6 +999,7 @@ padrao = "liso"
   minutos = 1121
   gols = 1
   id_fonte = "99147"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Alfredo García"
@@ -933,6 +1011,7 @@ padrao = "liso"
   partidas = 1
   minutos = 62
   id_fonte = "983261"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Yesit Martinez"
@@ -944,6 +1023,7 @@ padrao = "liso"
   partidas = 3
   minutos = 42
   id_fonte = "858904"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Maximiliano Núñez"
@@ -956,6 +1036,7 @@ padrao = "liso"
   minutos = 1613
   gols = 2
   id_fonte = "83531"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Tommy Tobar"
@@ -968,6 +1049,7 @@ padrao = "liso"
   minutos = 773
   gols = 4
   id_fonte = "205631"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Juan Batista"
@@ -980,6 +1062,7 @@ padrao = "liso"
   minutos = 84
   gols = 1
   id_fonte = "864512"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Asaf Patzi"
@@ -991,6 +1074,7 @@ padrao = "liso"
   partidas = 2
   minutos = 159
   id_fonte = "1154361"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jorge Mejía"
@@ -1000,6 +1084,7 @@ padrao = "liso"
   pot = 43
   valor = 25000
   id_fonte = "661849"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Kevin Bailaba"
@@ -1012,6 +1097,7 @@ padrao = "liso"
   minutos = 1363
   gols = 1
   id_fonte = "1493873"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Kevin Quiroz"
@@ -1023,6 +1109,7 @@ padrao = "liso"
   partidas = 3
   minutos = 247
   id_fonte = "1361615"
+  nacionalidade = "Bolívia"
 
 [[clubes]]
 nome = "The Strongest"
@@ -1042,6 +1129,7 @@ padrao = "liso"
   minutos = 232
   gols = 1
   id_fonte = "476338"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Banegas"
@@ -1053,6 +1141,7 @@ padrao = "liso"
   partidas = 22
   minutos = 1980
   id_fonte = "598100"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Widen Saucedo"
@@ -1064,6 +1153,7 @@ padrao = "liso"
   partidas = 19
   minutos = 1727
   id_fonte = "679267"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Adrián Jusino"
@@ -1075,6 +1165,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1232
   id_fonte = "563095"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jaime Arrascaita"
@@ -1087,6 +1178,7 @@ padrao = "liso"
   minutos = 1946
   gols = 10
   id_fonte = "285326"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Pablo Pedraza"
@@ -1098,6 +1190,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1044
   id_fonte = "258960"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Darwin Lom"
@@ -1110,6 +1203,7 @@ padrao = "liso"
   minutos = 1450
   gols = 10
   id_fonte = "747770"
+  nacionalidade = "Guatemala"
 
   [[clubes.jogadores]]
   nome = "Martín Chiatti"
@@ -1122,6 +1216,7 @@ padrao = "liso"
   minutos = 1874
   gols = 5
   id_fonte = "873150"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Santiago Arce"
@@ -1134,6 +1229,7 @@ padrao = "liso"
   minutos = 629
   gols = 1
   id_fonte = "823515"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jovani Welch"
@@ -1145,6 +1241,7 @@ padrao = "liso"
   partidas = 15
   minutos = 1335
   id_fonte = "655646"
+  nacionalidade = "Panamá"
 
   [[clubes.jogadores]]
   nome = "Kevin Romay"
@@ -1157,6 +1254,7 @@ padrao = "liso"
   minutos = 317
   gols = 2
   id_fonte = "745886"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Carlos Roca"
@@ -1168,6 +1266,7 @@ padrao = "liso"
   partidas = 5
   minutos = 442
   id_fonte = "481203"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Carlos Ventura"
@@ -1180,6 +1279,7 @@ padrao = "liso"
   minutos = 1082
   gols = 1
   id_fonte = "686876"
+  nacionalidade = "República Dominicana"
 
   [[clubes.jogadores]]
   nome = "Fabricio Quaglio"
@@ -1192,6 +1292,7 @@ padrao = "liso"
   minutos = 1829
   gols = 1
   id_fonte = "939024"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Kevin Salvatierra"
@@ -1204,6 +1305,7 @@ padrao = "liso"
   minutos = 680
   gols = 2
   id_fonte = "667584"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Adrián Estacio"
@@ -1216,6 +1318,7 @@ padrao = "liso"
   minutos = 1525
   gols = 6
   id_fonte = "596423"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Gabriel Sotomayor"
@@ -1228,6 +1331,7 @@ padrao = "liso"
   minutos = 843
   gols = 4
   id_fonte = "679162"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Raúl Castro"
@@ -1240,6 +1344,7 @@ padrao = "liso"
   minutos = 1470
   gols = 1
   id_fonte = "320654"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Víctor Cuellar"
@@ -1252,6 +1357,7 @@ padrao = "liso"
   minutos = 426
   gols = 1
   id_fonte = "825510"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Diego Valdivia"
@@ -1263,6 +1369,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "908286"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Yamil Portuncho"
@@ -1274,6 +1381,7 @@ padrao = "liso"
   partidas = 8
   minutos = 693
   id_fonte = "1423195"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Cuellar"
@@ -1285,6 +1393,7 @@ padrao = "liso"
   partidas = 6
   minutos = 559
   id_fonte = "1254112"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Dilan Saavedra"
@@ -1297,6 +1406,7 @@ padrao = "liso"
   minutos = 692
   gols = 1
   id_fonte = "1287008"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jhósep Michel"
@@ -1306,6 +1416,7 @@ padrao = "liso"
   pot = 40
   valor = 25000
   id_fonte = "1440887"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Kevin Chacon"
@@ -1317,6 +1428,7 @@ padrao = "liso"
   partidas = 5
   minutos = 425
   id_fonte = "1566656"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Kiotto Mendoza"
@@ -1326,6 +1438,7 @@ padrao = "liso"
   pot = 44
   valor = 38303
   id_fonte = "1368962"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Roy Ribertt"
@@ -1338,6 +1451,7 @@ padrao = "liso"
   minutos = 217
   gols = 1
   id_fonte = "1467842"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Santiago Melgar"
@@ -1349,6 +1463,7 @@ padrao = "liso"
   partidas = 1
   minutos = 66
   id_fonte = "1039136"
+  nacionalidade = "Bolívia"
 
 [[clubes]]
 nome = "Oriente Petrolero"
@@ -1367,6 +1482,7 @@ padrao = "liso"
   partidas = 19
   minutos = 1702
   id_fonte = "840716"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Julio Herrera"
@@ -1379,6 +1495,7 @@ padrao = "liso"
   minutos = 458
   gols = 2
   id_fonte = "598102"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Dieguito Rodriguez"
@@ -1390,6 +1507,7 @@ padrao = "liso"
   partidas = 10
   minutos = 914
   id_fonte = "1105681"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jorge Lovera"
@@ -1402,6 +1520,7 @@ padrao = "liso"
   minutos = 1899
   gols = 3
   id_fonte = "583762"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Samuel Galindo"
@@ -1413,6 +1532,7 @@ padrao = "liso"
   partidas = 2
   minutos = 175
   id_fonte = "115503"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jamir Berdecio"
@@ -1425,6 +1545,7 @@ padrao = "liso"
   minutos = 1645
   gols = 2
   id_fonte = "873093"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Andrés Ariza"
@@ -1436,6 +1557,7 @@ padrao = "liso"
   partidas = 1
   minutos = 81
   id_fonte = "663163"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Dico Roca"
@@ -1447,6 +1569,7 @@ padrao = "liso"
   partidas = 7
   minutos = 650
   id_fonte = "579557"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Fran López"
@@ -1459,6 +1582,7 @@ padrao = "liso"
   minutos = 1108
   gols = 1
   id_fonte = "1065190"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Franz Gonzales"
@@ -1470,6 +1594,7 @@ padrao = "liso"
   partidas = 11
   minutos = 959
   id_fonte = "491669"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Leonardo Vaca"
@@ -1482,6 +1607,7 @@ padrao = "liso"
   minutos = 1696
   gols = 2
   id_fonte = "353087"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Marco Velasco"
@@ -1493,6 +1619,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1574
   id_fonte = "1448042"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Joffré Escobar"
@@ -1505,6 +1632,7 @@ padrao = "liso"
   minutos = 703
   gols = 1
   id_fonte = "264671"
+  nacionalidade = "Equador"
 
   [[clubes.jogadores]]
   nome = "Mizael Monteiro"
@@ -1516,6 +1644,7 @@ padrao = "liso"
   partidas = 15
   minutos = 1380
   id_fonte = "957469"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Nahuel Roldán"
@@ -1528,6 +1657,7 @@ padrao = "liso"
   minutos = 636
   gols = 7
   id_fonte = "422740"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Omar Siles"
@@ -1539,6 +1669,7 @@ padrao = "liso"
   partidas = 1
   minutos = 112
   id_fonte = "652664"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jefferson Virreira"
@@ -1550,6 +1681,7 @@ padrao = "liso"
   partidas = 4
   minutos = 315
   id_fonte = "353090"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "José Flores"
@@ -1562,6 +1694,7 @@ padrao = "liso"
   minutos = 1146
   gols = 9
   id_fonte = "661858"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Matias Roskopf"
@@ -1574,6 +1707,7 @@ padrao = "liso"
   minutos = 274
   gols = 1
   id_fonte = "401570"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Octavio Perdomo"
@@ -1586,6 +1720,7 @@ padrao = "liso"
   minutos = 336
   gols = 1
   id_fonte = "904534"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Manuel Bonilla"
@@ -1597,6 +1732,7 @@ padrao = "liso"
   partidas = 6
   minutos = 551
   id_fonte = "1110451"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Roberto Diez"
@@ -1606,6 +1742,7 @@ padrao = "liso"
   pot = 57
   valor = 275000
   id_fonte = "1139073"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Arnold Alba"
@@ -1615,6 +1752,7 @@ padrao = "liso"
   pot = 48
   valor = 56250
   id_fonte = "953523"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Enrique Taborga"
@@ -1624,6 +1762,7 @@ padrao = "liso"
   pot = 51
   valor = 125000
   id_fonte = "960580"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jhon Velasco"
@@ -1635,6 +1774,7 @@ padrao = "liso"
   partidas = 5
   minutos = 441
   id_fonte = "908804"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Adrián Peña"
@@ -1647,6 +1787,7 @@ padrao = "liso"
   minutos = 508
   gols = 2
   id_fonte = "661862"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Braian Mamani"
@@ -1658,6 +1799,7 @@ padrao = "liso"
   partidas = 1
   minutos = 121
   id_fonte = "1124526"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Fabricio Sosa"
@@ -1667,6 +1809,7 @@ padrao = "liso"
   pot = 44
   valor = 56250
   id_fonte = "1282765"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Joel Bernal"
@@ -1678,6 +1821,7 @@ padrao = "liso"
   partidas = 6
   minutos = 548
   id_fonte = "1038580"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juvenal Rojas"
@@ -1687,6 +1831,7 @@ padrao = "liso"
   pot = 47
   valor = 75000
   id_fonte = "1282788"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Luis Sabja"
@@ -1696,6 +1841,7 @@ padrao = "liso"
   pot = 46
   valor = 75000
   id_fonte = "1339326"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Máximo Mamani"
@@ -1707,6 +1853,7 @@ padrao = "liso"
   partidas = 1
   minutos = 129
   id_fonte = "1326846"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Nabil Nacif"
@@ -1719,6 +1866,7 @@ padrao = "liso"
   minutos = 584
   gols = 2
   id_fonte = "1384300"
+  nacionalidade = "Bolívia"
 
 [[clubes]]
 nome = "Guabirá"
@@ -1737,6 +1885,7 @@ padrao = "liso"
   partidas = 6
   minutos = 540
   id_fonte = "337627"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Carlos Añez"
@@ -1749,6 +1898,7 @@ padrao = "liso"
   minutos = 2233
   gols = 3
   id_fonte = "353077"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jorge Araúz"
@@ -1760,6 +1910,7 @@ padrao = "liso"
   partidas = 9
   minutos = 771
   id_fonte = "453083"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Sergio Gil"
@@ -1772,6 +1923,7 @@ padrao = "liso"
   minutos = 1434
   gols = 1
   id_fonte = "929403"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Gustavo Peredo"
@@ -1784,6 +1936,7 @@ padrao = "liso"
   minutos = 1836
   gols = 5
   id_fonte = "656495"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jorge Flores"
@@ -1795,6 +1948,7 @@ padrao = "liso"
   partidas = 10
   minutos = 855
   id_fonte = "234567"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Manuel Ferrel"
@@ -1806,6 +1960,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1119
   id_fonte = "823864"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Milciades Portillo"
@@ -1817,6 +1972,7 @@ padrao = "liso"
   partidas = 21
   minutos = 1872
   id_fonte = "370091"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Nicolas Masskooni"
@@ -1829,6 +1985,7 @@ padrao = "liso"
   minutos = 1882
   gols = 1
   id_fonte = "1264807"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Samuel Garzón"
@@ -1841,6 +1998,7 @@ padrao = "liso"
   minutos = 1315
   gols = 5
   id_fonte = "916255"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Víctor Ábrego"
@@ -1853,6 +2011,7 @@ padrao = "liso"
   minutos = 1050
   gols = 2
   id_fonte = "679259"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Joaquín Barro"
@@ -1864,6 +2023,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1180
   id_fonte = "551237"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Milton Maciel"
@@ -1876,6 +2036,7 @@ padrao = "liso"
   minutos = 422
   gols = 1
   id_fonte = "742152"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Andrés Moreno"
@@ -1888,6 +2049,7 @@ padrao = "liso"
   minutos = 915
   gols = 2
   id_fonte = "1029312"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Parada"
@@ -1899,6 +2061,7 @@ padrao = "liso"
   partidas = 4
   minutos = 345
   id_fonte = "873658"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Rafinha"
@@ -1911,6 +2074,7 @@ padrao = "liso"
   minutos = 1310
   gols = 2
   id_fonte = "438428"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Luciano Ursino"
@@ -1923,6 +2087,7 @@ padrao = "liso"
   minutos = 720
   gols = 3
   id_fonte = "308041"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Makerlo Tellez"
@@ -1935,6 +2100,7 @@ padrao = "liso"
   minutos = 256
   gols = 1
   id_fonte = "936722"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Denilso Fernandez"
@@ -1947,6 +2113,7 @@ padrao = "liso"
   minutos = 208
   gols = 1
   id_fonte = "933767"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Rafael Corrales"
@@ -1958,6 +2125,7 @@ padrao = "liso"
   partidas = 3
   minutos = 257
   id_fonte = "1236955"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Thiago Ribeiro"
@@ -1969,6 +2137,7 @@ padrao = "liso"
   partidas = 20
   minutos = 1760
   id_fonte = "150224"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Dener Da Silva"
@@ -1980,6 +2149,7 @@ padrao = "liso"
   partidas = 2
   minutos = 145
   id_fonte = "1236475"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Pablo Luján"
@@ -1991,6 +2161,7 @@ padrao = "liso"
   partidas = 3
   minutos = 252
   id_fonte = "915846"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Thiago Chávez"
@@ -2003,6 +2174,7 @@ padrao = "liso"
   minutos = 564
   gols = 1
   id_fonte = "1393496"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Yuto Baigorria"
@@ -2014,6 +2186,7 @@ padrao = "liso"
   partidas = 5
   minutos = 452
   id_fonte = "1389839"
+  nacionalidade = "Bolívia"
 
 [[clubes]]
 nome = "Always Ready"
@@ -2033,6 +2206,7 @@ padrao = "liso"
   minutos = 2078
   gols = 2
   id_fonte = "573392"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Alex Rambal"
@@ -2044,6 +2218,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1167
   id_fonte = "647304"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Alvaro Quiroga"
@@ -2055,6 +2230,7 @@ padrao = "liso"
   partidas = 11
   minutos = 950
   id_fonte = "823862"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Edisson Restrepo"
@@ -2066,6 +2242,7 @@ padrao = "liso"
   partidas = 8
   minutos = 680
   id_fonte = "345653"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Dario Torrico"
@@ -2078,6 +2255,7 @@ padrao = "liso"
   minutos = 1095
   gols = 2
   id_fonte = "840692"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Carlitos Rodriguez"
@@ -2090,6 +2268,7 @@ padrao = "liso"
   minutos = 1975
   gols = 1
   id_fonte = "1029243"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Alain Baroja"
@@ -2101,6 +2280,7 @@ padrao = "liso"
   partidas = 26
   minutos = 2340
   id_fonte = "147559"
+  nacionalidade = "Venezuela"
 
   [[clubes.jogadores]]
   nome = "Carmelo Algarañaz"
@@ -2113,6 +2293,7 @@ padrao = "liso"
   minutos = 474
   gols = 5
   id_fonte = "353083"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Godoy"
@@ -2125,6 +2306,7 @@ padrao = "liso"
   minutos = 952
   gols = 6
   id_fonte = "881706"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Saidt Mustafá"
@@ -2136,6 +2318,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "454648"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jesús Maraude"
@@ -2148,6 +2331,7 @@ padrao = "liso"
   minutos = 2195
   gols = 7
   id_fonte = "1339333"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Fernando Saucedo"
@@ -2160,6 +2344,7 @@ padrao = "liso"
   minutos = 1242
   gols = 5
   id_fonte = "160160"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Joel Amoroso"
@@ -2172,6 +2357,7 @@ padrao = "liso"
   minutos = 1554
   gols = 2
   id_fonte = "267721"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Enrique Triverio"
@@ -2184,6 +2370,7 @@ padrao = "liso"
   minutos = 1928
   gols = 16
   id_fonte = "282265"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Ramon"
@@ -2195,6 +2382,7 @@ padrao = "liso"
   partidas = 4
   minutos = 396
   id_fonte = "312684"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Damian Medina"
@@ -2206,6 +2394,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1417
   id_fonte = "1106102"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Javier Uzeda"
@@ -2218,6 +2407,7 @@ padrao = "liso"
   minutos = 514
   gols = 1
   id_fonte = "661863"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "José Herrera"
@@ -2229,6 +2419,7 @@ padrao = "liso"
   partidas = 2
   minutos = 204
   id_fonte = "823507"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Rai Lima"
@@ -2241,6 +2432,7 @@ padrao = "liso"
   minutos = 1686
   gols = 1
   id_fonte = "871773"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Saúl Choquevillca"
@@ -2252,6 +2444,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "1436346"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Enzo Rodriguez"
@@ -2263,6 +2456,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "957598"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Hector Galvis"
@@ -2274,6 +2468,7 @@ padrao = "liso"
   partidas = 3
   minutos = 295
   id_fonte = "1384316"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jose Ojeda"
@@ -2285,6 +2480,7 @@ padrao = "liso"
   partidas = 2
   minutos = 144
   id_fonte = "1339324"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Kenyhiro Estrada"
@@ -2296,6 +2492,7 @@ padrao = "liso"
   partidas = 4
   minutos = 319
   id_fonte = "1339308"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Kerdyn Lens"
@@ -2307,6 +2504,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "1385223"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Matías Collazo"
@@ -2319,6 +2517,7 @@ padrao = "liso"
   minutos = 536
   gols = 1
   id_fonte = "1475826"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Nicolás Villarroel"
@@ -2330,6 +2529,7 @@ padrao = "liso"
   partidas = 5
   minutos = 478
   id_fonte = "1357401"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Santiago Cuestas"
@@ -2341,6 +2541,7 @@ padrao = "liso"
   partidas = 3
   minutos = 271
   id_fonte = "1479228"
+  nacionalidade = "Bolívia"
 
 [[clubes]]
 nome = "San Antonio Bulo Bulo"
@@ -2359,6 +2560,7 @@ padrao = "liso"
   partidas = 25
   minutos = 2250
   id_fonte = "799600"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Adalid Terrazas"
@@ -2371,6 +2573,7 @@ padrao = "liso"
   minutos = 1894
   gols = 6
   id_fonte = "491674"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Huberth Sánchez"
@@ -2380,6 +2583,7 @@ padrao = "liso"
   pot = 56
   valor = 300000
   id_fonte = "823530"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Líder Yanarico"
@@ -2391,6 +2595,7 @@ padrao = "liso"
   partidas = 20
   minutos = 1779
   id_fonte = "1083415"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Sergio Villamíl"
@@ -2402,6 +2607,7 @@ padrao = "liso"
   partidas = 10
   minutos = 906
   id_fonte = "871789"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Hallysson Padilha"
@@ -2413,6 +2619,7 @@ padrao = "liso"
   partidas = 10
   minutos = 935
   id_fonte = "932649"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Jaime Villamíl"
@@ -2424,6 +2631,7 @@ padrao = "liso"
   partidas = 10
   minutos = 902
   id_fonte = "871769"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Ramiro Ballivián"
@@ -2436,6 +2644,7 @@ padrao = "liso"
   minutos = 1554
   gols = 1
   id_fonte = "102418"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Saulo Guerra"
@@ -2447,6 +2656,7 @@ padrao = "liso"
   partidas = 9
   minutos = 848
   id_fonte = "484010"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Francisco Rodríguez"
@@ -2458,6 +2668,7 @@ padrao = "liso"
   partidas = 7
   minutos = 661
   id_fonte = "331691"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Cristhian Machado"
@@ -2470,6 +2681,7 @@ padrao = "liso"
   minutos = 1529
   gols = 1
   id_fonte = "178581"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "César Romero"
@@ -2481,6 +2693,7 @@ padrao = "liso"
   partidas = 6
   minutos = 517
   id_fonte = "1068077"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Rafael Menacho"
@@ -2493,6 +2706,7 @@ padrao = "liso"
   minutos = 1424
   gols = 7
   id_fonte = "920230"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Wagner Vidal"
@@ -2504,6 +2718,7 @@ padrao = "liso"
   partidas = 8
   minutos = 686
   id_fonte = "980172"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Kevin Merida"
@@ -2516,6 +2731,7 @@ padrao = "liso"
   minutos = 1120
   gols = 1
   id_fonte = "1236945"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Alexi Medina"
@@ -2528,6 +2744,7 @@ padrao = "liso"
   minutos = 605
   gols = 3
   id_fonte = "952084"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Vargas"
@@ -2540,6 +2757,7 @@ padrao = "liso"
   minutos = 414
   gols = 1
   id_fonte = "234820"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Carlos Preciado"
@@ -2552,6 +2770,7 @@ padrao = "liso"
   minutos = 598
   gols = 4
   id_fonte = "963174"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Diego Mercado"
@@ -2563,6 +2782,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1078
   id_fonte = "1351984"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Magallanes"
@@ -2574,6 +2794,7 @@ padrao = "liso"
   partidas = 10
   minutos = 862
   id_fonte = "990556"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Ronald Bustos"
@@ -2586,6 +2807,7 @@ padrao = "liso"
   minutos = 491
   gols = 1
   id_fonte = "1026651"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Lucas Galarza"
@@ -2595,6 +2817,7 @@ padrao = "liso"
   pot = 46
   valor = 50000
   id_fonte = "818110"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Marcelo De Lima"
@@ -2607,6 +2830,7 @@ padrao = "liso"
   minutos = 702
   gols = 3
   id_fonte = "981985"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Agustín Univaso"
@@ -2616,6 +2840,7 @@ padrao = "liso"
   pot = 40
   valor = 25000
   id_fonte = "934020"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Fernando Arispe"
@@ -2627,6 +2852,7 @@ padrao = "liso"
   partidas = 2
   minutos = 31
   id_fonte = "1480326"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Ian Rodríguez"
@@ -2638,6 +2864,7 @@ padrao = "liso"
   partidas = 1
   minutos = 65
   id_fonte = "1339327"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jonathan Perea"
@@ -2650,6 +2877,7 @@ padrao = "liso"
   minutos = 87
   gols = 1
   id_fonte = "1100032"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "João Pedro"
@@ -2661,6 +2889,7 @@ padrao = "liso"
   partidas = 4
   minutos = 326
   id_fonte = "1093434"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Leonardo Guzmán"
@@ -2672,6 +2901,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "1098097"
+  nacionalidade = "Bolívia"
 
 [[clubes]]
 nome = "Universitario de Vinto"
@@ -2690,6 +2920,7 @@ padrao = "liso"
   partidas = 20
   minutos = 1800
   id_fonte = "964441"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Daniel Camacho"
@@ -2701,6 +2932,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1287
   id_fonte = "579731"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Guilder Cuellar"
@@ -2713,6 +2945,7 @@ padrao = "liso"
   minutos = 2082
   gols = 3
   id_fonte = "1053668"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Hernán Rodríguez"
@@ -2725,6 +2958,7 @@ padrao = "liso"
   minutos = 1761
   gols = 6
   id_fonte = "521023"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Agustín Jara"
@@ -2737,6 +2971,7 @@ padrao = "liso"
   minutos = 1524
   gols = 4
   id_fonte = "435608"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "José Pinto"
@@ -2749,6 +2984,7 @@ padrao = "liso"
   minutos = 1213
   gols = 1
   id_fonte = "844105"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Brayan Calderón"
@@ -2760,6 +2996,7 @@ padrao = "liso"
   partidas = 6
   minutos = 528
   id_fonte = "742669"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Joel Calicho"
@@ -2772,6 +3009,7 @@ padrao = "liso"
   minutos = 1645
   gols = 3
   id_fonte = "932651"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Esdras Mendoza"
@@ -2784,6 +3022,7 @@ padrao = "liso"
   minutos = 901
   gols = 2
   id_fonte = "1016824"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Julio Lazarte"
@@ -2795,6 +3034,7 @@ padrao = "liso"
   partidas = 20
   minutos = 1843
   id_fonte = "1338375"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Oswaldo Blanco"
@@ -2807,6 +3047,7 @@ padrao = "liso"
   minutos = 862
   gols = 1
   id_fonte = "163752"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Llano"
@@ -2819,6 +3060,7 @@ padrao = "liso"
   minutos = 922
   gols = 3
   id_fonte = "932480"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Diego Vargas"
@@ -2830,6 +3072,7 @@ padrao = "liso"
   partidas = 5
   minutos = 458
   id_fonte = "908067"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Felipe Pasadore"
@@ -2842,6 +3085,7 @@ padrao = "liso"
   minutos = 486
   gols = 1
   id_fonte = "1131750"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Hugo Dorrego"
@@ -2854,6 +3098,7 @@ padrao = "liso"
   minutos = 973
   gols = 2
   id_fonte = "261984"
+  nacionalidade = "Uruguai"
 
   [[clubes.jogadores]]
   nome = "Marco Gomez"
@@ -2865,6 +3110,7 @@ padrao = "liso"
   partidas = 11
   minutos = 995
   id_fonte = "929395"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jesús Careaga"
@@ -2876,6 +3122,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "481213"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Paolo Alcócer"
@@ -2887,6 +3134,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1218
   id_fonte = "491672"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Didí Torrico"
@@ -2898,6 +3146,7 @@ padrao = "liso"
   partidas = 19
   minutos = 1704
   id_fonte = "79052"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Ezequiel Straccia"
@@ -2909,6 +3158,7 @@ padrao = "liso"
   partidas = 2
   minutos = 24
   id_fonte = "432343"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alvaro Cuestas"
@@ -2920,6 +3170,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "932112"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Fabricio Vasquez"
@@ -2931,6 +3182,7 @@ padrao = "liso"
   partidas = 2
   minutos = 43
   id_fonte = "1036891"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Johan Gómez"
@@ -2942,6 +3194,7 @@ padrao = "liso"
   partidas = 3
   minutos = 40
   id_fonte = "460896"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "José Veizaga"
@@ -2953,6 +3206,7 @@ padrao = "liso"
   partidas = 1
   minutos = 83
   id_fonte = "742608"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Paolo Garcia"
@@ -2964,6 +3218,7 @@ padrao = "liso"
   partidas = 2
   minutos = 180
   id_fonte = "983242"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Diego Saavedra"
@@ -2976,6 +3231,7 @@ padrao = "liso"
   minutos = 554
   gols = 3
   id_fonte = "1323102"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Gustavo Visalla"
@@ -2987,6 +3243,7 @@ padrao = "liso"
   partidas = 1
   minutos = 46
   id_fonte = "980924"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Mario Fernandez"
@@ -2998,6 +3255,7 @@ padrao = "liso"
   partidas = 3
   minutos = 251
   id_fonte = "1038836"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Pablo Postigo"
@@ -3010,6 +3268,7 @@ padrao = "liso"
   minutos = 118
   gols = 1
   id_fonte = "1549644"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Yeferson Mamani"
@@ -3021,6 +3280,7 @@ padrao = "liso"
   partidas = 1
   minutos = 18
   id_fonte = "1071341"
+  nacionalidade = "Bolívia"
 
 [[clubes]]
 nome = "ABB"
@@ -3039,6 +3299,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1506
   id_fonte = "579559"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Augusto Seimandi"
@@ -3050,6 +3311,7 @@ padrao = "liso"
   partidas = 18
   minutos = 1646
   id_fonte = "419810"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Denilson Valda"
@@ -3062,6 +3324,7 @@ padrao = "liso"
   minutos = 1610
   gols = 1
   id_fonte = "873137"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Layonel Figueroa"
@@ -3074,6 +3337,7 @@ padrao = "liso"
   minutos = 1242
   gols = 4
   id_fonte = "655587"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Sebastián Reyes"
@@ -3085,6 +3349,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1174
   id_fonte = "481191"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jean Riascos"
@@ -3097,6 +3362,7 @@ padrao = "liso"
   minutos = 797
   gols = 1
   id_fonte = "1073526"
+  nacionalidade = "Equador"
 
   [[clubes.jogadores]]
   nome = "Juan Fajardo"
@@ -3109,6 +3375,7 @@ padrao = "liso"
   minutos = 1720
   gols = 15
   id_fonte = "961025"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Rodderyck Perozo"
@@ -3121,6 +3388,7 @@ padrao = "liso"
   minutos = 1394
   gols = 6
   id_fonte = "480259"
+  nacionalidade = "Venezuela"
 
   [[clubes.jogadores]]
   nome = "Alejandro Chumacero"
@@ -3133,6 +3401,7 @@ padrao = "liso"
   minutos = 1945
   gols = 2
   id_fonte = "129899"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Denilson Gutiérrez"
@@ -3144,6 +3413,7 @@ padrao = "liso"
   partidas = 5
   minutos = 442
   id_fonte = "1019023"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jair Catuy"
@@ -3156,6 +3426,7 @@ padrao = "liso"
   minutos = 235
   gols = 1
   id_fonte = "521632"
+  nacionalidade = "Panamá"
 
   [[clubes.jogadores]]
   nome = "Sebastián Claure"
@@ -3167,6 +3438,7 @@ padrao = "liso"
   partidas = 6
   minutos = 528
   id_fonte = "916257"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Fabio Zamora"
@@ -3178,6 +3450,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1162
   id_fonte = "1150627"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Pablo Vaca"
@@ -3189,6 +3462,7 @@ padrao = "liso"
   partidas = 4
   minutos = 329
   id_fonte = "844289"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Omar Preciado"
@@ -3200,6 +3474,7 @@ padrao = "liso"
   partidas = 4
   minutos = 395
   id_fonte = "572813"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "José Briceño"
@@ -3212,6 +3487,7 @@ padrao = "liso"
   minutos = 597
   gols = 1
   id_fonte = "661859"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Carlos Jemio"
@@ -3223,6 +3499,7 @@ padrao = "liso"
   partidas = 2
   minutos = 190
   id_fonte = "1036103"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Freddy Abastoflor"
@@ -3234,6 +3511,7 @@ padrao = "liso"
   partidas = 2
   minutos = 173
   id_fonte = "323732"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Aldair Riascos"
@@ -3245,6 +3523,7 @@ padrao = "liso"
   partidas = 6
   minutos = 520
   id_fonte = "1038395"
+  nacionalidade = "Peru"
 
   [[clubes.jogadores]]
   nome = "Alejandro Bejarano"
@@ -3256,6 +3535,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1531
   id_fonte = "131470"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Marco Salazar"
@@ -3267,6 +3547,7 @@ padrao = "liso"
   partidas = 6
   minutos = 562
   id_fonte = "1036417"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Emanuel Paniagua"
@@ -3279,6 +3560,7 @@ padrao = "liso"
   minutos = 923
   gols = 1
   id_fonte = "1133298"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Gary Rea"
@@ -3291,6 +3573,7 @@ padrao = "liso"
   minutos = 288
   gols = 1
   id_fonte = "1151858"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Andres Guillermo"
@@ -3303,6 +3586,7 @@ padrao = "liso"
   minutos = 833
   gols = 1
   id_fonte = "1039158"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Zinedinne La Fuente"
@@ -3314,6 +3598,7 @@ padrao = "liso"
   partidas = 11
   minutos = 952
   id_fonte = "1138295"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Adelan"
@@ -3323,6 +3608,7 @@ padrao = "liso"
   pot = 44
   valor = 50000
   id_fonte = "1463321"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Adriel Guillermo"
@@ -3334,6 +3620,7 @@ padrao = "liso"
   partidas = 6
   minutos = 524
   id_fonte = "1406773"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Alejandro Camacho"
@@ -3345,6 +3632,7 @@ padrao = "liso"
   partidas = 3
   minutos = 262
   id_fonte = "1339322"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Bryan Espinoza"
@@ -3357,6 +3645,7 @@ padrao = "liso"
   minutos = 390
   gols = 2
   id_fonte = "1010674"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Esteban Condori"
@@ -3368,6 +3657,7 @@ padrao = "liso"
   partidas = 1
   minutos = 74
   id_fonte = "1326426"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jairo Rojas"
@@ -3380,6 +3670,7 @@ padrao = "liso"
   minutos = 733
   gols = 1
   id_fonte = "1124539"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jeffrey Minah"
@@ -3391,6 +3682,7 @@ padrao = "liso"
   partidas = 1
   minutos = 119
   id_fonte = "1578044"
+  nacionalidade = "Gana"
 
   [[clubes.jogadores]]
   nome = "Santiago Delgadillo"
@@ -3400,6 +3692,7 @@ padrao = "liso"
   pot = 41
   valor = 10000
   id_fonte = "1038902"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Santiago Paz"
@@ -3411,6 +3704,7 @@ padrao = "liso"
   partidas = 3
   minutos = 270
   id_fonte = "1042397"
+  nacionalidade = "Bolívia"
 
 [[clubes]]
 nome = "San José"
@@ -3429,6 +3723,7 @@ padrao = "liso"
   partidas = 4
   minutos = 315
   id_fonte = "911432"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Andrés Landa"
@@ -3440,6 +3735,7 @@ padrao = "liso"
   partidas = 22
   minutos = 2025
   id_fonte = "521021"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jhoni Ramallo"
@@ -3452,6 +3748,7 @@ padrao = "liso"
   minutos = 2067
   gols = 3
   id_fonte = "1095776"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Carlos Ribera"
@@ -3463,6 +3760,7 @@ padrao = "liso"
   partidas = 6
   minutos = 546
   id_fonte = "481202"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Alex Cáceres"
@@ -3475,6 +3773,7 @@ padrao = "liso"
   minutos = 2115
   gols = 9
   id_fonte = "418857"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Walter Araujo"
@@ -3487,6 +3786,7 @@ padrao = "liso"
   minutos = 757
   gols = 2
   id_fonte = "353040"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Guimer Justiniano"
@@ -3499,6 +3799,7 @@ padrao = "liso"
   minutos = 659
   gols = 1
   id_fonte = "652668"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Roler Ferrufino"
@@ -3511,6 +3812,7 @@ padrao = "liso"
   minutos = 513
   gols = 1
   id_fonte = "491678"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Germán Arauz"
@@ -3522,6 +3824,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1305
   id_fonte = "850145"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Vaca"
@@ -3533,6 +3836,7 @@ padrao = "liso"
   partidas = 11
   minutos = 977
   id_fonte = "1036799"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Luis Vargas"
@@ -3545,6 +3849,7 @@ padrao = "liso"
   minutos = 888
   gols = 1
   id_fonte = "463172"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Moisés Calero"
@@ -3556,6 +3861,7 @@ padrao = "liso"
   partidas = 6
   minutos = 579
   id_fonte = "585474"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Fernando Aguilar"
@@ -3567,6 +3873,7 @@ padrao = "liso"
   partidas = 4
   minutos = 379
   id_fonte = "956365"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Mijaíl Avilés"
@@ -3579,6 +3886,7 @@ padrao = "liso"
   minutos = 1166
   gols = 1
   id_fonte = "308706"
+  nacionalidade = "Venezuela"
 
   [[clubes.jogadores]]
   nome = "Sebastián Galindo"
@@ -3590,6 +3898,7 @@ padrao = "liso"
   partidas = 10
   minutos = 907
   id_fonte = "491673"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Luis Serrano"
@@ -3601,6 +3910,7 @@ padrao = "liso"
   partidas = 1
   minutos = 17
   id_fonte = "741973"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Roberto Rivas"
@@ -3612,6 +3922,7 @@ padrao = "liso"
   partidas = 1
   minutos = 90
   id_fonte = "102211"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Ignacio Goyeneche"
@@ -3624,6 +3935,7 @@ padrao = "liso"
   minutos = 1048
   gols = 4
   id_fonte = "1012627"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matheus Moresche"
@@ -3635,6 +3947,7 @@ padrao = "liso"
   partidas = 5
   minutos = 451
   id_fonte = "587600"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Joaquín Lencinas"
@@ -3647,6 +3960,7 @@ padrao = "liso"
   minutos = 1520
   gols = 1
   id_fonte = "147133"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Luis Zeballos"
@@ -3658,6 +3972,7 @@ padrao = "liso"
   partidas = 3
   minutos = 294
   id_fonte = "661857"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Sebastian Villarroel"
@@ -3669,6 +3984,7 @@ padrao = "liso"
   partidas = 10
   minutos = 872
   id_fonte = "1338378"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Ronaldo Monteiro"
@@ -3681,6 +3997,7 @@ padrao = "liso"
   minutos = 665
   gols = 2
   id_fonte = "481196"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Albert Aramayo"
@@ -3692,6 +4009,7 @@ padrao = "liso"
   partidas = 1
   minutos = 74
   id_fonte = "1326195"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Edwin Tumiri"
@@ -3703,6 +4021,7 @@ padrao = "liso"
   partidas = 3
   minutos = 256
   id_fonte = "1357400"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Elmer Quispe"
@@ -3714,6 +4033,7 @@ padrao = "liso"
   partidas = 5
   minutos = 436
   id_fonte = "1560532"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Franklin Mendieta"
@@ -3723,6 +4043,7 @@ padrao = "liso"
   pot = 40
   valor = 25000
   id_fonte = "1569492"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jhojan Vargas"
@@ -3734,6 +4055,7 @@ padrao = "liso"
   partidas = 1
   minutos = 29
   id_fonte = "1323241"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Orihuela"
@@ -3745,6 +4067,7 @@ padrao = "liso"
   partidas = 3
   minutos = 242
   id_fonte = "874031"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Santiago Pinto"
@@ -3757,6 +4080,7 @@ padrao = "liso"
   minutos = 572
   gols = 1
   id_fonte = "1533850"
+  nacionalidade = "Bolívia"
 
 [[clubes]]
 nome = "Aurora"
@@ -3775,6 +4099,7 @@ padrao = "liso"
   partidas = 22
   minutos = 1975
   id_fonte = "454649"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Miyhel Ortiz"
@@ -3787,6 +4112,7 @@ padrao = "liso"
   minutos = 1973
   gols = 3
   id_fonte = "825542"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "René Barbosa"
@@ -3799,6 +4125,7 @@ padrao = "liso"
   minutos = 2102
   gols = 1
   id_fonte = "823518"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Erwin Sánchez"
@@ -3811,6 +4138,7 @@ padrao = "liso"
   minutos = 2007
   gols = 2
   id_fonte = "389865"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Héctor Sánchez"
@@ -3823,6 +4151,7 @@ padrao = "liso"
   minutos = 335
   gols = 1
   id_fonte = "563403"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Alfredo Amarilla"
@@ -3835,6 +4164,7 @@ padrao = "liso"
   minutos = 1345
   gols = 1
   id_fonte = "982327"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Sebastian Altamirano"
@@ -3846,6 +4176,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1504
   id_fonte = "1124522"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Alan Terrazas"
@@ -3858,6 +4189,7 @@ padrao = "liso"
   minutos = 1463
   gols = 4
   id_fonte = "1224440"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Henry Vaca"
@@ -3870,6 +4202,7 @@ padrao = "liso"
   minutos = 613
   gols = 2
   id_fonte = "481211"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Julián Velázquez"
@@ -3882,6 +4215,7 @@ padrao = "liso"
   minutos = 1139
   gols = 2
   id_fonte = "124260"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Leonardo Viviani"
@@ -3894,6 +4228,7 @@ padrao = "liso"
   minutos = 2098
   gols = 5
   id_fonte = "1124541"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Leandro Barro"
@@ -3905,6 +4240,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1242
   id_fonte = "1258491"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Iván Vidaurre"
@@ -3916,6 +4252,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1212
   id_fonte = "663988"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Michael Rangel"
@@ -3928,6 +4265,7 @@ padrao = "liso"
   minutos = 1458
   gols = 6
   id_fonte = "260393"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Ramallo"
@@ -3940,6 +4278,7 @@ padrao = "liso"
   minutos = 1697
   gols = 7
   id_fonte = "203599"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Cristhian Chilo"
@@ -3949,6 +4288,7 @@ padrao = "liso"
   pot = 46
   valor = 41250
   id_fonte = "931906"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Hárrison Mojica"
@@ -3961,6 +4301,7 @@ padrao = "liso"
   minutos = 253
   gols = 1
   id_fonte = "253277"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Enrique Troncoso"
@@ -3972,6 +4313,7 @@ padrao = "liso"
   partidas = 1
   minutos = 59
   id_fonte = "850133"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Oscar Vaca"
@@ -3983,6 +4325,7 @@ padrao = "liso"
   partidas = 2
   minutos = 19
   id_fonte = "599123"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Iván Huayhuata"
@@ -3994,6 +4337,7 @@ padrao = "liso"
   partidas = 6
   minutos = 505
   id_fonte = "102202"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jaime Cornejo"
@@ -4003,6 +4347,7 @@ padrao = "liso"
   pot = 42
   valor = 41250
   id_fonte = "598935"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jair Torrico"
@@ -4015,6 +4360,7 @@ padrao = "liso"
   minutos = 1181
   gols = 2
   id_fonte = "143020"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Adrian Pacheco"
@@ -4026,6 +4372,7 @@ padrao = "liso"
   partidas = 1
   minutos = 83
   id_fonte = "1029187"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Ariel Flores"
@@ -4037,6 +4384,7 @@ padrao = "liso"
   partidas = 1
   minutos = 95
   id_fonte = "1108815"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Fabian Pinedo"
@@ -4046,6 +4394,7 @@ padrao = "liso"
   pot = 40
   valor = 41250
   id_fonte = "1428898"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Joel Terrazas"
@@ -4057,6 +4406,7 @@ padrao = "liso"
   partidas = 4
   minutos = 361
   id_fonte = "1104673"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "José Córdova"
@@ -4066,6 +4416,7 @@ padrao = "liso"
   pot = 41
   valor = 41250
   id_fonte = "1509790"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "José Segovia"
@@ -4077,6 +4428,7 @@ padrao = "liso"
   partidas = 1
   minutos = 7
   id_fonte = "1141246"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Ferrufino"
@@ -4086,6 +4438,7 @@ padrao = "liso"
   pot = 40
   valor = 41250
   id_fonte = "742605"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Matias Barba"
@@ -4095,6 +4448,7 @@ padrao = "liso"
   pot = 43
   valor = 41250
   id_fonte = "1481723"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Miguel Aguada"
@@ -4106,6 +4460,7 @@ padrao = "liso"
   partidas = 1
   minutos = 30
   id_fonte = "1509789"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Sergio Ferreira"
@@ -4117,6 +4472,7 @@ padrao = "liso"
   partidas = 3
   minutos = 21
   id_fonte = "980916"
+  nacionalidade = "Bolívia"
 
 [[clubes]]
 nome = "Real Potosí"
@@ -4135,6 +4491,7 @@ padrao = "liso"
   partidas = 16
   minutos = 1439
   id_fonte = "579560"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jorge Rojas"
@@ -4147,6 +4504,7 @@ padrao = "liso"
   minutos = 1003
   gols = 4
   id_fonte = "656722"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Gonzalo Añasgo"
@@ -4159,6 +4517,7 @@ padrao = "liso"
   minutos = 1708
   gols = 1
   id_fonte = "754472"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Imanol Cárdenas"
@@ -4171,6 +4530,7 @@ padrao = "liso"
   minutos = 1813
   gols = 3
   id_fonte = "747159"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jairo Thomas"
@@ -4183,6 +4543,7 @@ padrao = "liso"
   minutos = 1260
   gols = 1
   id_fonte = "741972"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Boris Condori"
@@ -4194,6 +4555,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1230
   id_fonte = "741975"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Christian Martínez"
@@ -4205,6 +4567,7 @@ padrao = "liso"
   partidas = 18
   minutos = 1620
   id_fonte = "857236"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Kevin Villegas"
@@ -4216,6 +4579,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1530
   id_fonte = "1530374"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Jeferson Rivas"
@@ -4228,6 +4592,7 @@ padrao = "liso"
   minutos = 1103
   gols = 10
   id_fonte = "653627"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Igor Soares"
@@ -4240,6 +4605,7 @@ padrao = "liso"
   minutos = 295
   gols = 1
   id_fonte = "604644"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Emerson Velasquez"
@@ -4251,6 +4617,7 @@ padrao = "liso"
   partidas = 5
   minutos = 445
   id_fonte = "644198"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jose Alipaz"
@@ -4263,6 +4630,7 @@ padrao = "liso"
   minutos = 754
   gols = 1
   id_fonte = "1026646"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Luis Alí"
@@ -4275,6 +4643,7 @@ padrao = "liso"
   minutos = 1097
   gols = 9
   id_fonte = "248939"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Saúl Severiche"
@@ -4286,6 +4655,7 @@ padrao = "liso"
   partidas = 6
   minutos = 583
   id_fonte = "941428"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Williams Fernandez"
@@ -4298,6 +4668,7 @@ padrao = "liso"
   minutos = 1383
   gols = 3
   id_fonte = "1544124"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Cristian López"
@@ -4309,6 +4680,7 @@ padrao = "liso"
   partidas = 10
   minutos = 937
   id_fonte = "1197596"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Anderson Brito"
@@ -4320,6 +4692,7 @@ padrao = "liso"
   partidas = 8
   minutos = 706
   id_fonte = "1128826"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Vladimir Castellón"
@@ -4332,6 +4705,7 @@ padrao = "liso"
   minutos = 545
   gols = 2
   id_fonte = "102191"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Rioja"
@@ -4343,6 +4717,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1529
   id_fonte = "484009"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Daniel Sandy"
@@ -4354,6 +4729,7 @@ padrao = "liso"
   partidas = 4
   minutos = 360
   id_fonte = "747149"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Renan Terrazas"
@@ -4365,6 +4741,7 @@ padrao = "liso"
   partidas = 4
   minutos = 394
   id_fonte = "1032973"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Stiven Plaza"
@@ -4377,6 +4754,7 @@ padrao = "liso"
   minutos = 191
   gols = 2
   id_fonte = "591375"
+  nacionalidade = "Equador"
 
   [[clubes.jogadores]]
   nome = "Daniel Cuellar"
@@ -4388,6 +4766,7 @@ padrao = "liso"
   partidas = 6
   minutos = 517
   id_fonte = "1338604"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Fabricio Suárez"
@@ -4399,6 +4778,7 @@ padrao = "liso"
   partidas = 1
   minutos = 45
   id_fonte = "1049435"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Carvajal"
@@ -4408,6 +4788,7 @@ padrao = "liso"
   pot = 40
   valor = 25000
   id_fonte = "1036311"
+  nacionalidade = "Colômbia"
 
   [[clubes.jogadores]]
   nome = "Lucas Giménez"
@@ -4419,6 +4800,7 @@ padrao = "liso"
   partidas = 2
   minutos = 205
   id_fonte = "721429"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Marcelo Somoya"
@@ -4430,6 +4812,7 @@ padrao = "liso"
   partidas = 1
   minutos = 3
   id_fonte = "974247"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Maximiliano Gómez"
@@ -4441,6 +4824,7 @@ padrao = "liso"
   partidas = 10
   minutos = 932
   id_fonte = "823819"
+  nacionalidade = "Argentina"
 
 [[clubes]]
 nome = "Real Tomayapo"
@@ -4460,6 +4844,7 @@ padrao = "liso"
   minutos = 1333
   gols = 1
   id_fonte = "956309"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Josué Mamani"
@@ -4471,6 +4856,7 @@ padrao = "liso"
   partidas = 7
   minutos = 647
   id_fonte = "491671"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Ribera"
@@ -4483,6 +4869,7 @@ padrao = "liso"
   minutos = 844
   gols = 1
   id_fonte = "420753"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Robson dos Santos"
@@ -4494,6 +4881,7 @@ padrao = "liso"
   partidas = 9
   minutos = 802
   id_fonte = "823510"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "David Robles"
@@ -4506,6 +4894,7 @@ padrao = "liso"
   minutos = 1530
   gols = 2
   id_fonte = "871768"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Ricardo Suárez"
@@ -4517,6 +4906,7 @@ padrao = "liso"
   partidas = 11
   minutos = 1032
   id_fonte = "653882"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Diego Wayar"
@@ -4528,6 +4918,7 @@ padrao = "liso"
   partidas = 9
   minutos = 803
   id_fonte = "224437"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Luis Cárdenas"
@@ -4539,6 +4930,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1260
   id_fonte = "579556"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Ronald Cuéllar"
@@ -4551,6 +4943,7 @@ padrao = "liso"
   minutos = 958
   gols = 2
   id_fonte = "661099"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Cristhian Árabe"
@@ -4563,6 +4956,7 @@ padrao = "liso"
   minutos = 1013
   gols = 1
   id_fonte = "656720"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Josue Castillo"
@@ -4574,6 +4968,7 @@ padrao = "liso"
   partidas = 9
   minutos = 793
   id_fonte = "1132640"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Vladimir Galvez"
@@ -4585,6 +4980,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1141
   id_fonte = "1124524"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Mario Barbery"
@@ -4596,6 +4992,7 @@ padrao = "liso"
   partidas = 5
   minutos = 475
   id_fonte = "823477"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Marvin Bejarano"
@@ -4608,6 +5005,7 @@ padrao = "liso"
   minutos = 1923
   gols = 3
   id_fonte = "102420"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Víctor Melgar"
@@ -4619,6 +5017,7 @@ padrao = "liso"
   partidas = 2
   minutos = 187
   id_fonte = "178427"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Carlos Adorno"
@@ -4630,6 +5029,7 @@ padrao = "liso"
   partidas = 5
   minutos = 450
   id_fonte = "491658"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Francisco Nouet"
@@ -4642,6 +5042,7 @@ padrao = "liso"
   minutos = 315
   gols = 1
   id_fonte = "541542"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Gino Barbieri"
@@ -4653,6 +5054,7 @@ padrao = "liso"
   partidas = 3
   minutos = 236
   id_fonte = "669587"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Jhon Chávez"
@@ -4662,6 +5064,7 @@ padrao = "liso"
   pot = 43
   valor = 27500
   id_fonte = "1566727"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Kevin Mamani"
@@ -4673,6 +5076,7 @@ padrao = "liso"
   partidas = 8
   minutos = 701
   id_fonte = "1108812"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Javier Guerra"
@@ -4685,6 +5089,7 @@ padrao = "liso"
   minutos = 895
   gols = 3
   id_fonte = "1042408"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Celin Padilla"
@@ -4696,6 +5101,7 @@ padrao = "liso"
   partidas = 1
   minutos = 32
   id_fonte = "1132354"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Alejandro Cervantes"
@@ -4708,6 +5114,7 @@ padrao = "liso"
   minutos = 181
   gols = 1
   id_fonte = "1141495"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Daniel Torrez"
@@ -4719,6 +5126,7 @@ padrao = "liso"
   partidas = 1
   minutos = 5
   id_fonte = "1390982"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jesús Velásquez"
@@ -4730,6 +5138,7 @@ padrao = "liso"
   partidas = 6
   minutos = 527
   id_fonte = "1326199"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jorge Orozco"
@@ -4741,6 +5150,7 @@ padrao = "liso"
   partidas = 3
   minutos = 240
   id_fonte = "742606"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Lisandro Montenegro"
@@ -4753,6 +5163,7 @@ padrao = "liso"
   minutos = 620
   gols = 1
   id_fonte = "978974"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Matías Peña"
@@ -4764,6 +5175,7 @@ padrao = "liso"
   partidas = 1
   minutos = 85
   id_fonte = "1540334"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Ramiro Eguez"
@@ -4776,6 +5188,7 @@ padrao = "liso"
   minutos = 967
   gols = 4
   id_fonte = "982860"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Ruan Costa"
@@ -4788,6 +5201,7 @@ padrao = "liso"
   minutos = 633
   gols = 1
   id_fonte = "987943"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Yerson Espíndola"
@@ -4799,6 +5213,7 @@ padrao = "liso"
   partidas = 2
   minutos = 196
   id_fonte = "1393987"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Yordy Álvarez"
@@ -4810,6 +5225,7 @@ padrao = "liso"
   partidas = 4
   minutos = 364
   id_fonte = "953295"
+  nacionalidade = "República Dominicana"
 
 [[clubes]]
 nome = "Independiente Petrolero"
@@ -4828,6 +5244,7 @@ padrao = "liso"
   partidas = 28
   minutos = 2508
   id_fonte = "588226"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Daniel Rojas"
@@ -4840,6 +5257,7 @@ padrao = "liso"
   minutos = 2197
   gols = 1
   id_fonte = "491667"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Wilfredo Soleto"
@@ -4851,6 +5269,7 @@ padrao = "liso"
   partidas = 2
   minutos = 221
   id_fonte = "598934"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Joel Bejarano"
@@ -4862,6 +5281,7 @@ padrao = "liso"
   partidas = 1
   minutos = 60
   id_fonte = "353079"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Luis Palma"
@@ -4873,6 +5293,7 @@ padrao = "liso"
   partidas = 19
   minutos = 1729
   id_fonte = "990173"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Alan Mercado"
@@ -4885,6 +5306,7 @@ padrao = "liso"
   minutos = 998
   gols = 6
   id_fonte = "388691"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Gilbert Álvarez"
@@ -4897,6 +5319,7 @@ padrao = "liso"
   minutos = 551
   gols = 1
   id_fonte = "114010"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Gustavo Mendoza"
@@ -4908,6 +5331,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1040
   id_fonte = "1236948"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Saúl Torres"
@@ -4920,6 +5344,7 @@ padrao = "liso"
   minutos = 1755
   gols = 1
   id_fonte = "234572"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Cristian Urdininea"
@@ -4932,6 +5357,7 @@ padrao = "liso"
   minutos = 911
   gols = 1
   id_fonte = "359785"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Rudy Cardozo"
@@ -4944,6 +5370,7 @@ padrao = "liso"
   minutos = 2013
   gols = 1
   id_fonte = "145901"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Willie"
@@ -4956,6 +5383,7 @@ padrao = "liso"
   minutos = 2304
   gols = 13
   id_fonte = "212954"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Diego Navarro"
@@ -4967,6 +5395,7 @@ padrao = "liso"
   partidas = 9
   minutos = 839
   id_fonte = "667259"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Gustavo Cristaldo"
@@ -4979,6 +5408,7 @@ padrao = "liso"
   minutos = 1864
   gols = 4
   id_fonte = "101145"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Leonardo Montenegro"
@@ -4990,6 +5420,7 @@ padrao = "liso"
   partidas = 9
   minutos = 793
   id_fonte = "1137117"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Lázaro Crescencio"
@@ -5001,6 +5432,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1305
   id_fonte = "874039"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jhunior Vera"
@@ -5012,6 +5444,7 @@ padrao = "liso"
   partidas = 4
   minutos = 372
   id_fonte = "1131748"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Thomaz"
@@ -5024,6 +5457,7 @@ padrao = "liso"
   minutos = 480
   gols = 1
   id_fonte = "61428"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Roni Santos"
@@ -5035,6 +5469,7 @@ padrao = "liso"
   partidas = 4
   minutos = 316
   id_fonte = "776298"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Jefferson Carioca"
@@ -5047,6 +5482,7 @@ padrao = "liso"
   minutos = 414
   gols = 1
   id_fonte = "1107679"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Roberto Villavicencio"
@@ -5059,6 +5495,7 @@ padrao = "liso"
   minutos = 904
   gols = 1
   id_fonte = "1533484"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Daniel Aponte"
@@ -5068,6 +5505,7 @@ padrao = "liso"
   pot = 50
   valor = 150000
   id_fonte = "982882"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "David Morales"
@@ -5079,6 +5517,7 @@ padrao = "liso"
   partidas = 1
   minutos = 108
   id_fonte = "982873"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Deyvid Sejas"
@@ -5090,6 +5529,7 @@ padrao = "liso"
   partidas = 1
   minutos = 71
   id_fonte = "1151966"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Gean"
@@ -5102,6 +5542,7 @@ padrao = "liso"
   minutos = 558
   gols = 2
   id_fonte = "1220176"
+  nacionalidade = "Brasil"
 
   [[clubes.jogadores]]
   nome = "Joshua Montaño"
@@ -5111,6 +5552,7 @@ padrao = "liso"
   pot = 41
   valor = 50000
   id_fonte = "1393195"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "José Soria"
@@ -5120,6 +5562,7 @@ padrao = "liso"
   pot = 42
   valor = 41250
   id_fonte = "924971"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Kent Sánchez"
@@ -5129,6 +5572,7 @@ padrao = "liso"
   pot = 41
   valor = 41250
   id_fonte = "1150629"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Luis Rodríguez"
@@ -5140,6 +5584,7 @@ padrao = "liso"
   partidas = 3
   minutos = 282
   id_fonte = "844288"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Niven Huanca"
@@ -5149,6 +5594,7 @@ padrao = "liso"
   pot = 40
   valor = 41250
   id_fonte = "1372064"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Pablo Grass"
@@ -5158,6 +5604,7 @@ padrao = "liso"
   pot = 42
   valor = 50000
   id_fonte = "1110455"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Raúl Rocabado"
@@ -5169,6 +5616,7 @@ padrao = "liso"
   partidas = 1
   minutos = 71
   id_fonte = "1029813"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Rodrigo Zamora"
@@ -5181,6 +5629,7 @@ padrao = "liso"
   minutos = 656
   gols = 1
   id_fonte = "1456235"
+  nacionalidade = "Bolívia"
 
 [[clubes]]
 nome = "Real Oruro"
@@ -5200,6 +5649,7 @@ padrao = "liso"
   minutos = 1019
   gols = 2
   id_fonte = "873563"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Francisco Gatti"
@@ -5211,6 +5661,7 @@ padrao = "liso"
   partidas = 14
   minutos = 1265
   id_fonte = "861407"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Yhon Jairo Villegas"
@@ -5223,6 +5674,7 @@ padrao = "liso"
   minutos = 1245
   gols = 1
   id_fonte = "926122"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Montenegro"
@@ -5235,6 +5687,7 @@ padrao = "liso"
   minutos = 1252
   gols = 3
   id_fonte = "583761"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Ángel Quiñónez"
@@ -5247,6 +5700,7 @@ padrao = "liso"
   minutos = 1145
   gols = 4
   id_fonte = "520501"
+  nacionalidade = "Equador"
 
   [[clubes.jogadores]]
   nome = "Ademar Rivera"
@@ -5258,6 +5712,7 @@ padrao = "liso"
   partidas = 17
   minutos = 1519
   id_fonte = "933562"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Yerco Vallejos"
@@ -5270,6 +5725,7 @@ padrao = "liso"
   minutos = 1491
   gols = 5
   id_fonte = "932499"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Carlos Chore"
@@ -5281,6 +5737,7 @@ padrao = "liso"
   partidas = 9
   minutos = 832
   id_fonte = "491664"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Leandro Corulo"
@@ -5293,6 +5750,7 @@ padrao = "liso"
   minutos = 1075
   gols = 3
   id_fonte = "285609"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Denis Pinto"
@@ -5305,6 +5763,7 @@ padrao = "liso"
   minutos = 860
   gols = 2
   id_fonte = "353094"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Stefano Ardaya"
@@ -5316,6 +5775,7 @@ padrao = "liso"
   partidas = 1
   minutos = 68
   id_fonte = "908037"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Edwin Rivera"
@@ -5327,6 +5787,7 @@ padrao = "liso"
   partidas = 7
   minutos = 603
   id_fonte = "484008"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Juan Pablo Gomez"
@@ -5338,6 +5799,7 @@ padrao = "liso"
   partidas = 3
   minutos = 304
   id_fonte = "936128"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Hernán Tifner"
@@ -5349,6 +5811,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1045
   id_fonte = "605718"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Alex Arancibia"
@@ -5360,6 +5823,7 @@ padrao = "liso"
   partidas = 12
   minutos = 1059
   id_fonte = "160167"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Alejandro Barrón"
@@ -5371,6 +5835,7 @@ padrao = "liso"
   partidas = 1
   minutos = 10
   id_fonte = "825507"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Israel Peña"
@@ -5382,6 +5847,7 @@ padrao = "liso"
   partidas = 4
   minutos = 381
   id_fonte = "880921"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Alexis Bravo"
@@ -5394,6 +5860,7 @@ padrao = "liso"
   minutos = 1130
   gols = 2
   id_fonte = "137836"
+  nacionalidade = "Argentina"
 
   [[clubes.jogadores]]
   nome = "Bryan Puma"
@@ -5405,6 +5872,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "956384"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Carlos Siles"
@@ -5416,6 +5884,7 @@ padrao = "liso"
   partidas = 1
   minutos = 1
   id_fonte = "1434088"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Fabio Vargas"
@@ -5427,6 +5896,7 @@ padrao = "liso"
   partidas = 3
   minutos = 285
   id_fonte = "1128828"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Jose Velez"
@@ -5439,6 +5909,7 @@ padrao = "liso"
   minutos = 524
   gols = 1
   id_fonte = "1547122"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "José Lizarraga"
@@ -5450,6 +5921,7 @@ padrao = "liso"
   partidas = 8
   minutos = 750
   id_fonte = "1264813"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Luis Martínez"
@@ -5461,6 +5933,7 @@ padrao = "liso"
   partidas = 1
   minutos = 5
   id_fonte = "1566683"
+  nacionalidade = "Paraguai"
 
   [[clubes.jogadores]]
   nome = "Reymar Balceras"
@@ -5472,6 +5945,7 @@ padrao = "liso"
   partidas = 13
   minutos = 1157
   id_fonte = "1494375"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Rivaldo Méndez"
@@ -5483,6 +5957,7 @@ padrao = "liso"
   partidas = 3
   minutos = 237
   id_fonte = "934075"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Santos García"
@@ -5495,6 +5970,7 @@ padrao = "liso"
   minutos = 814
   gols = 2
   id_fonte = "1339320"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Thiago Castedo"
@@ -5504,6 +5980,7 @@ padrao = "liso"
   pot = 40
   valor = 25000
   id_fonte = "1339321"
+  nacionalidade = "Bolívia"
 
   [[clubes.jogadores]]
   nome = "Yamil Calle"
@@ -5515,4 +5992,5 @@ padrao = "liso"
   partidas = 1
   minutos = 56
   id_fonte = "1353308"
+  nacionalidade = "Bolívia"
 
