@@ -641,6 +641,8 @@ class Carreira:
             self._ao_ser_demitido(meio_do_ano=False)
         # o clube que acabou de demitir o usuario nao o chama de volta
         candidatos = [v for v in self.vagas if not (demitido and v == self.clube_id)]
+        candidatos += tec.assediam(self.world, self.tecnicos, dados,
+                                   None if demitido else self.clube_id)
         reserva = [k for k in self._clubes_da_ultima_divisao() if k != self.clube_id]
         self.convites = tec.convites(self.world, self.tecnicos, candidatos,
                                      None if demitido else self.clube_id, demitido, reserva,

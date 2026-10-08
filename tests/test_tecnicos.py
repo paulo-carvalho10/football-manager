@@ -168,3 +168,33 @@ def test_pedir_demissao_abre_convites_e_o_save_refaz(tmp_path, monkeypatch):
     d = Carreira.carregar("demissao")
     assert d.clube_id == novo
     assert d.tecnicos[tec.USUARIO].reputacao == c.tecnicos[tec.USUARIO].reputacao
+
+
+def test_temporada_forte_alarga_a_margem_do_convite_com_teto():
+    """O clube olha o momento: quem subiu de reputacao e chamado por clube bem maior. Com
+    teto -- o campeao surpresa nao salta direto para um gigante europeu."""
+    t = tec.Tecnico(id=0, nome="Eu", nascimento=1980, reputacao=50.0, clube=1, usuario=True)
+    t.variacao = 0.0
+    assert tec.margem_do_convite(t) == tec.MARGEM_DO_CONVITE
+    t.variacao = 4.0
+    assert tec.margem_do_convite(t) == tec.MARGEM_DO_CONVITE + 4.0 * tec.MOMENTO
+    t.variacao = 30.0
+    assert tec.margem_do_convite(t) == tec.MARGEM_DO_CONVITE + tec.MOMENTO_MAXIMO
+
+
+def test_o_grande_troca_tecnico_ruim_pelo_usuario_em_alta():
+    c = Carreira.nova(LIGAS, "Bahia", seed=3)
+    w = c.world
+    eu = c.tecnicos[tec.USUARIO]
+    maior = max((k for k in w.leagues[c._id("brasil_real")].club_ids),
+                key=lambda k: w.clubs[k].reputation)
+    menor = min((k for k in w.leagues[c._id("brasil_real")].club_ids),
+                key=lambda k: w.clubs[k].reputation)
+    dados = {maior: tec.Desempenho(clube=maior, liga="l", tier=1, esperado=1, final=6,
+                                   clubes=20),
+             menor: tec.Desempenho(clube=menor, liga="l", tier=1, esperado=20, final=19,
+                                   clubes=20)}
+    eu.variacao = 2.0
+    assert tec.assediam(w, c.tecnicos, dados, c.clube_id) == []      # sem temporada forte
+    eu.variacao = tec.ALTA_PARA_ASSEDIO
+    assert tec.assediam(w, c.tecnicos, dados, c.clube_id) == [maior]   # so o maior

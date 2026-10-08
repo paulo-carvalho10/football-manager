@@ -29,6 +29,17 @@ USUARIO = 0
 REPUTACAO_INICIAL_DO_USUARIO = 30.0
 PESO_DO_PRIMEIRO_CLUBE = 0.15
 MARGEM_DO_CONVITE = 12        # o clube aceita tecnico ate 12 pontos abaixo da reputacao dele
+# ...e mais, se ele vem de temporada forte: o clube olha o momento, nao so o nome. Cada
+# ponto que a reputacao subiu na ultima virada alarga a margem em MOMENTO (08/10/2026).
+# Sem isto, quem fazia campanha acima do esperado levava 9 ou 10 anos para chegar a um
+# gigante; o mediano (que nao sobe) continua com a margem de sempre.
+MOMENTO = 1.5
+MOMENTO_MAXIMO = 12.0           # o campeao surpresa chama a atencao dos grandes, mas nao
+                                # salta do Bragantino direto para o Manchester United
+# Depois de uma temporada forte (a reputacao subiu ao menos isto), um clube MAIOR cujo
+# tecnico ficou abaixo do esperado pode demiti-lo para trazer o usuario -- o grande nao
+# espera vaga para contratar quem esta em alta.
+ALTA_PARA_ASSEDIO = 5.0
 CONVITES_MOSTRADOS = 3          # demitido: ate 3 portas
 CONVITES_EMPREGADO = 2          # empregado: no maximo 2 por virada, para nao virar spam
 CHANCE_DO_MAIOR = 0.70          # clube maior que o meu chama quase sempre que cabe
@@ -36,7 +47,7 @@ CHANCE_DO_MENOR = 0.20          # o menor tambem pode chamar; cabe ao usuario ve
 DESEMPREGADOS_INICIAIS = 10
 
 # o que mexe na reputacao na virada
-PESO_DO_DESEMPENHO = 14.0     # terminar N% da tabela acima do esperado vale 14*N/100
+PESO_DO_DESEMPENHO = 16.0     # terminar N% da tabela acima do esperado vale 16*N/100
 TITULO_DA_LIGA = {1: 6.0, 2: 3.0}
 ACESSO = 4.0
 REBAIXAMENTO = -6.0
@@ -267,6 +278,27 @@ def preencher_vagas(world: World, tecnicos: dict[int, Tecnico], vagas: list[int]
     return feitas
 
 
+def assediam(world: World, tecnicos: dict[int, Tecnico], dados: dict[int, Desempenho],
+             clube_atual: int | None) -> list[int]:
+    """Os clubes maiores que o do usuario, com tecnico da IA abaixo do esperado, que podem
+    troca-lo pelo usuario em alta. Vazio se ele nao vem de temporada forte."""
+    eu = tecnicos[USUARIO]
+    if clube_atual is None or eu.variacao < ALTA_PARA_ASSEDIO:
+        return []
+    meu = world.clubs[clube_atual].reputation
+    fora = []
+    for t in tecnicos.values():
+        if t.usuario or t.clube is None or t.clube not in dados:
+            continue
+        if world.clubs[t.clube].reputation > meu and dados[t.clube].saldo < 0:
+            fora.append(t.clube)
+    return fora
+
+
+def margem_do_convite(t: Tecnico) -> float:
+    return MARGEM_DO_CONVITE + min(MOMENTO * max(0.0, t.variacao), MOMENTO_MAXIMO)
+
+
 def convites(world: World, tecnicos: dict[int, Tecnico], candidatos: list[int],
              clube_atual: int | None, precisa: bool, reserva: list[int],
              rng: np.random.Generator) -> list[int]:
@@ -282,7 +314,7 @@ def convites(world: World, tecnicos: dict[int, Tecnico], candidatos: list[int],
     eu = tecnicos[USUARIO]
     atual = world.clubs[clube_atual].reputation if clube_atual in world.clubs else -1
     cabem = sorted((k for k in set(candidatos) if k != clube_atual
-                    and world.clubs[k].reputation <= eu.reputacao + MARGEM_DO_CONVITE),
+                    and world.clubs[k].reputation <= eu.reputacao + margem_do_convite(eu)),
                    key=lambda k: (-world.clubs[k].reputation, k))
     if precisa:
         fora = cabem[:CONVITES_MOSTRADOS]
