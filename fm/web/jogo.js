@@ -67,7 +67,7 @@ async function irPara(nome) {
 /* ------------------------------------------------------------------ topo */
 
 function textoDoProximo(e) {
-  if (e.demitido) return {rotulo: "Você foi demitido", texto: `${e.convites.length} clube(s) chamando`, botao: "Ver convites ›"};
+  if (e.demitido) return {rotulo: e.pediu_demissao ? "Você pediu demissão" : "Você foi demitido", texto: `${e.convites.length} clube(s) chamando`, botao: "Ver convites ›"};
   if (e.acabou) return {rotulo: "Temporada encerrada", texto: "Balanço, acesso e mercado", botao: "Encerrar ano ›"};
   const p = e.proximo;
   if (p && p.tipo === "liga") {
@@ -1003,6 +1003,21 @@ TELAS.mensagens = async function () {
 
 /* ================================================================== TREINADOR */
 
+async function pedirDemissao() {
+  const sim = await abrirJanela({titulo: "Pedir demissão", corpo: `
+    <p>Sair do <b>${escapar(ESTADO.clube.nome)}</b> por conta própria?</p>
+    <p class="dica">A reputação cai um pouco, menos que numa demissão. Chamam os clubes que
+      precisam de técnico agora; se nenhum couber na sua reputação, chama o que sobrar.
+      ${ESTADO.selecao ? `A seleção ${escapar(ESTADO.selecao.nome)} continua com você.` : ""}</p>`,
+    botoes: [{rotulo: "Ficar", valor: false}, {rotulo: "Pedir demissão", primario: true, valor: true}]});
+  if (!sim) return;
+  const r = await api.post("/api/demissao");
+  if (r.erro) { avisar(r.erro); return; }
+  aplicarEstado(r.estado);
+  const assumiu = await janelaDeConvites(r.estado.convites, true);
+  if (!assumiu) irParaModo("menu");
+}
+
 TELAS.treinador = async function () {
   const [t, rk] = await Promise.all([api.get("/api/treinador"), api.get("/api/tecnicos")]);
   const n = t.total;
@@ -1019,6 +1034,7 @@ TELAS.treinador = async function () {
           <div class="kpi-c"><span>Ranking</span><b>${rep.posicao}º</b></div></div>
         <div class="confianca" style="margin-top:1rem;text-align:left">${trilho("Diretoria", t.diretoria)}${trilho("Torcida", t.torcida)}</div>
         <p class="clima" style="text-align:left">Ambiente: <b>${escapar(clima(t.clima))}</b></p>
+        ${ESTADO.demitido ? "" : `<button class="btn fantasma" id="pedir-demissao">Pedir demissão</button>`}
       </div></div>
       <div class="painel fixo"><div class="cab"><h2>Carreira</h2></div><div class="corpo"><div class="kpis">
         <div class="kpi-c"><span>Jogos</span><b>${n.jogos}</b></div>
@@ -1063,6 +1079,8 @@ TELAS.treinador = async function () {
             <td class="n ${x.variacao > 0 ? "bom" : x.variacao < 0 ? "ruim" : "dica"}">${x.variacao > 0 ? "+" : ""}${String(x.variacao).replace(".", ",")}</td>
             <td class="n">${x.titulos || ""}</td></tr>`).join("")}</tbody></table></div></div>
     </div>`;
+  const btnDemissao = $("#pedir-demissao");
+  if (btnDemissao) btnDemissao.addEventListener("click", pedirDemissao);
 };
 
 function curvaDeConfianca(curva) {
@@ -1193,7 +1211,7 @@ function janelaDePremios(p) {
  * ficar. Aceitar e uma acao do save: o replay refaz a troca no mesmo ponto. */
 
 async function janelaDeConvites(convites, obrigatorio) {
-  const corpo = `${obrigatorio ? `<div class="aviso"><b>Você foi demitido</b>${escapar(ESTADO.motivo || "")}</div>` : ""}
+  const corpo = `${obrigatorio ? `<div class="aviso"><b>${ESTADO.pediu_demissao ? "Você pediu demissão" : "Você foi demitido"}</b>${escapar(ESTADO.motivo || "")}</div>` : ""}
     <p class="dica">${convites.length ? "Clubes que querem você no comando:" : "Nenhum clube chamou."}</p>
     <div class="convites">${convites.map((k) => `<div class="convite">
       ${escudo(k.clube, "2.6rem")}<div class="info"><b>${escapar(k.clube.nome)}</b>

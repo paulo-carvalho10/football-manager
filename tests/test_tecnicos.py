@@ -101,3 +101,70 @@ def test_convite_que_nao_esta_na_lista_e_recusado():
     c = Carreira.nova(LIGAS, "Santos", seed=11)
     outro = next(k for k in c.world.clubs if k != c.clube_id)
     assert "erro" in c.executar({"tipo": "assumir", "clube": outro})
+
+
+# ---------------------------------------------------------------- 08/10/2026
+
+def test_vice_com_o_terceiro_elenco_sobe_de_reputacao():
+    """REGRESSAO: a reputacao so contava superar o esperado pela folha. Vice com o 3o
+    elenco rendia +0,1, e o usuario nunca chegava ao tamanho que os grandes pedem."""
+    tabela = [Row(club_id=k) for k in (1, 3, 2, 4, 5, 6, 7, 8)]   # 3 foi vice
+    valores = {1: 900, 2: 800, 3: 700, 4: 100, 5: 90, 6: 80, 7: 70, 8: 60}
+    dados = tec.desempenho({"liga": tabela}, {"liga": 1}, valores)
+    t = tec.Tecnico(id=3, nome="T", nascimento=1980, reputacao=45.0, clube=3)
+    tec.atualizar_reputacoes({3: t}, dados, {}, {}, {"liga": "Liga"}, 2027,
+                             estatura={3: 76.0})
+    assert t.variacao >= 4.0
+
+
+def test_o_tamanho_do_clube_puxa_a_reputacao():
+    """Sem resultado novo, o tecnico de grande tende para cima e o de pequeno para baixo."""
+    grande = tec.Tecnico(id=1, nome="G", nascimento=1980, reputacao=50.0, clube=1)
+    pequeno = tec.Tecnico(id=2, nome="P", nascimento=1980, reputacao=50.0, clube=2)
+    tec.atualizar_reputacoes({1: grande, 2: pequeno}, {}, {}, {}, {}, 2027,
+                             estatura={1: 85.0, 2: 20.0})
+    assert grande.reputacao > 50.0 > pequeno.reputacao
+
+
+def test_finalista_e_semifinalista_de_copa_ganham_reputacao():
+    t = tec.Tecnico(id=1, nome="T", nascimento=1980, reputacao=45.0, clube=1)
+    nada = tec.Tecnico(id=2, nome="N", nascimento=1980, reputacao=45.0, clube=2)
+    tec.atualizar_reputacoes({1: t, 2: nada}, {}, {}, {}, {}, 2027,
+                             campanhas={1: [("libertadores", "final")]})
+    assert t.reputacao - nada.reputacao == pytest.approx(
+        tec.TITULO_DE_COPA["libertadores"] * tec.FINALISTA)
+
+
+def test_o_grande_que_fica_fora_do_g4_balanca():
+    """REGRESSAO: em oito anos, Palmeiras e Flamengo nunca trocaram de tecnico -- e o
+    usuario nunca via convite de clube grande."""
+    favorito = tec.Desempenho(clube=1, liga="l", tier=1, esperado=1, final=6, clubes=20)
+    mediano = tec.Desempenho(clube=2, liga="l", tier=1, esperado=10, final=11, clubes=20)
+    assert tec.chance_de_demitir(favorito) > 0.3
+    assert tec.chance_de_demitir(mediano) < 0.02          # um lugar abaixo: quase nada
+    caiu = tec.Desempenho(clube=3, liga="l", tier=1, esperado=12, final=18, clubes=20,
+                          caiu=True)
+    assert tec.chance_de_demitir(caiu) == 1.0
+
+
+def test_pedir_demissao_abre_convites_e_o_save_refaz(tmp_path, monkeypatch):
+    import fm.carreira as mod
+    monkeypatch.setattr(mod, "SAVES_DIR", tmp_path)
+    c = Carreira.nova(LIGAS, "Santos", seed=11)
+    for _ in range(8):
+        c.avancar()
+    antes = c.tecnicos[tec.USUARIO].reputacao
+    r = c.executar({"tipo": "pedir_demissao"})
+    assert r.get("ok") and c.demitido and c.pediu_demissao
+    assert c.convites, "pediu demissao e ninguem chamou: a carreira trava"
+    assert c.tecnicos[tec.USUARIO].reputacao == pytest.approx(antes + tec.DEMISSAO_PEDIDA)
+    assert "erro" in c.executar({"tipo": "pedir_demissao"})
+    novo = c.convites[0]
+    assert c.executar({"tipo": "assumir", "clube": novo}).get("ok")
+    assert c.clube_id == novo and not c.demitido and not c.pediu_demissao
+    c.avancar()
+    c.salvar("demissao")
+    (tmp_path / "demissao.ponto").unlink()
+    d = Carreira.carregar("demissao")
+    assert d.clube_id == novo
+    assert d.tecnicos[tec.USUARIO].reputacao == c.tecnicos[tec.USUARIO].reputacao

@@ -371,6 +371,7 @@ def estado(jogo: Jogo) -> dict:
         "propostas_pendentes": [_proposta_json(c, x) for x in c.propostas_pendentes()],
         "selecao": _selecao_json(c, c.selecao_do_usuario),
         "convite_selecao": _selecao_json(c, c.convite_selecao),
+        "pediu_demissao": c.pediu_demissao,
         "copas": [
             {"id": nome, "nome": a.torneio.nome, "fase": a.nome_da_fase,
              "vivo": a.esta_vivo(c.clube_id), "acabou": a.acabou,
@@ -1306,6 +1307,8 @@ ROTAS_POST = {
     "/api/avancar": lambda jogo, corpo: avancar(jogo),
     "/api/escalar": escalar,
     "/api/selecao_nacional": lambda jogo, corpo: _acao_da_selecao(jogo, corpo),
+    "/api/demissao": lambda jogo, corpo: {**jogo.c.executar({"tipo": "pedir_demissao"}),
+                                          "estado": estado(jogo)},
     "/api/virar": lambda jogo, corpo: virar_o_ano(jogo),
     "/api/salvar": lambda jogo, corpo: {
         "arquivo": str(jogo.c.salvar(corpo.get("nome", "carreira")))},

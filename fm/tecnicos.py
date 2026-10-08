@@ -41,12 +41,34 @@ TITULO_DA_LIGA = {1: 6.0, 2: 3.0}
 ACESSO = 4.0
 REBAIXAMENTO = -6.0
 DEMISSAO = -5.0
+DEMISSAO_PEDIDA = -2.0        # sair por conta propria pega menos mal que ser mandado embora
 TECNICO_DO_ANO = 3.0
+# (08/10/2026) A campanha conta, nao so o titulo. Antes, ser vice com o 3o elenco do pais
+# rendia +0,1 -- o esperado pela folha era isso mesmo -- e a reputacao do usuario passava
+# a carreira entre 33 e 42, longe dos 60-70 que os clubes grandes pedem.
+COLOCACAO_NA_ELITE = {2: 3.0, 3: 2.0, 4: 2.0}   # na primeira divisao, sem contar o titulo
+QUARTO_DE_CIMA = 1.0                            # o resto do quarto de cima da tabela
+FINALISTA = 0.4                                 # da copa: fracao do valor do titulo
+SEMIFINALISTA = 0.2
 TITULO_DE_COPA = {"libertadores": 8.0, "champions": 8.0, "sudamericana": 4.0,
                   "europa_league": 4.0, "copa_do_brasil": 4.0, "intercontinental": 3.0}
-VOLTA_A_MEDIA = 0.04          # a reputacao escorrega devagar para 45 sem resultado novo
-# a IA demite quem caiu ou terminou este tanto da tabela abaixo do esperado
-TOLERANCIA_DA_IA = 0.35
+VOLTA_A_MEDIA = 0.06          # a reputacao escorrega devagar para o alvo sem resultado novo
+# O alvo nao e 45 para todo mundo: e a media entre 45 e a reputacao do clube que o tecnico
+# dirige. Fazer o trabalho direito num clube grande faz o tecnico grande, aos poucos; no
+# pequeno, o teto e mais baixo. Desempregado volta para 45.
+MEDIA_DO_TECNICO = 45.0
+PESO_DO_CLUBE_NO_ALVO = 0.5
+# A IA demite por chance, e a chance cresce com o quanto o clube ficou abaixo do esperado:
+# nada ate TOLERANCIA_DA_IA, quase certo a partir de TOLERANCIA_DA_IA + FAIXA_DA_IA. Quem
+# caiu sai sempre. O GRANDE cobra mais: um dos favoritos (esperado no topo) que fica fora do
+# G-4 balanca mesmo sem afundar. (08/10/2026) Era regra fixa -- 35% da tabela abaixo do
+# esperado, uns sete lugares --, e em oito anos Palmeiras e Flamengo nunca trocaram de
+# tecnico: o usuario nunca via convite de clube grande.
+TOLERANCIA_DA_IA = 0.05
+FAIXA_DA_IA = 0.35
+CHANCE_MAXIMA_DA_IA = 0.9
+COBRANCA_DO_GRANDE = 0.15        # o favorito fora do G-4 conta como este tanto abaixo
+FAVORITOS = 3
 
 
 @dataclass(slots=True)
@@ -145,23 +167,47 @@ def desempenho(tabelas: dict[str, list], tiers: dict[str, int],
     return fora
 
 
+def alvo_da_reputacao(t: Tecnico, estatura: dict[int, float] | None) -> float:
+    if t.clube is None or not estatura or t.clube not in estatura:
+        return MEDIA_DO_TECNICO
+    return ((1 - PESO_DO_CLUBE_NO_ALVO) * MEDIA_DO_TECNICO
+            + PESO_DO_CLUBE_NO_ALVO * estatura[t.clube])
+
+
+def pela_colocacao(d: Desempenho) -> float:
+    """A colocacao na primeira divisao, alem do titulo (que tem o premio dele)."""
+    if d.tier != 1 or d.campeao:
+        return 0.0
+    if d.final in COLOCACAO_NA_ELITE:
+        return COLOCACAO_NA_ELITE[d.final]
+    return QUARTO_DE_CIMA if d.final <= d.clubes / 4 else 0.0
+
+
 def atualizar_reputacoes(tecnicos: dict[int, Tecnico], dados: dict[int, Desempenho],
                          copas: dict[int, list[str]], nomes_das_copas: dict[str, str],
-                         nomes_das_ligas: dict[str, str], temporada: int) -> None:
-    """A virada da reputacao. `copas` = {clube: [copas que ganhou]}."""
+                         nomes_das_ligas: dict[str, str], temporada: int,
+                         estatura: dict[int, float] | None = None,
+                         campanhas: dict[int, list[tuple[str, str]]] | None = None) -> None:
+    """A virada da reputacao. `copas` = {clube: [copas que ganhou]}; `estatura` =
+    {clube: reputacao}; `campanhas` = {clube: [(copa, "final" | "semi")]} de quem chegou
+    longe sem ganhar."""
     for t in tecnicos.values():
-        delta = (45.0 - t.reputacao) * VOLTA_A_MEDIA
+        delta = (alvo_da_reputacao(t, estatura) - t.reputacao) * VOLTA_A_MEDIA
         d = dados.get(t.clube) if t.clube is not None else None
         if d is not None:
             delta += PESO_DO_DESEMPENHO * d.saldo
             if d.campeao:
                 delta += TITULO_DA_LIGA.get(d.tier, 2.0)
                 t.titulos.append(f"{temporada} · {nomes_das_ligas.get(d.liga, d.liga)}")
+            delta += pela_colocacao(d)
             delta += ACESSO if d.subiu else 0.0
             delta += REBAIXAMENTO if d.caiu else 0.0
         for copa in copas.get(t.clube, []) if t.clube is not None else []:
             delta += TITULO_DE_COPA.get(copa, 3.0)
             t.titulos.append(f"{temporada} · {nomes_das_copas.get(copa, copa)}")
+        for copa, ate in (campanhas or {}).get(t.clube, []) if t.clube is not None else []:
+            delta += TITULO_DE_COPA.get(copa, 3.0) * (FINALISTA if ate == "final"
+                                                       else SEMIFINALISTA)
         t.variacao = round(delta, 1)
         t.reputacao = float(np.clip(t.reputacao + delta, 1, 99))
 
@@ -171,14 +217,26 @@ def ajustar(t: Tecnico, delta: float) -> None:
     t.reputacao = float(np.clip(t.reputacao + delta, 1, 99))
 
 
-def demissoes_da_ia(tecnicos: dict[int, Tecnico], dados: dict[int, Desempenho]) -> list[int]:
-    """Os clubes do computador que trocam de tecnico. Devolve as vagas."""
+def chance_de_demitir(d: Desempenho) -> float:
+    if d.caiu:
+        return 1.0
+    pressao = -d.saldo
+    if d.tier == 1 and d.esperado <= FAVORITOS and not d.campeao and d.final > 4:
+        pressao += COBRANCA_DO_GRANDE
+    return float(np.clip((pressao - TOLERANCIA_DA_IA) / FAIXA_DA_IA, 0.0, CHANCE_MAXIMA_DA_IA))
+
+
+def demissoes_da_ia(tecnicos: dict[int, Tecnico], dados: dict[int, Desempenho],
+                    rng: np.random.Generator | None = None) -> list[int]:
+    """Os clubes do computador que trocam de tecnico. Devolve as vagas. Sem `rng`, so
+    quem caiu ou tem chance maxima sai (o comportamento deterministico de teste)."""
     vagas = []
     for t in sorted(tecnicos.values(), key=lambda t: t.id):
         if t.usuario or t.clube is None or t.clube not in dados:
             continue
-        d = dados[t.clube]
-        if d.caiu or -d.saldo >= TOLERANCIA_DA_IA:
+        chance = chance_de_demitir(dados[t.clube])
+        sorteio = rng.random() if rng is not None else 1.0 - 1e-9
+        if chance >= 1.0 or sorteio < chance:
             vagas.append(t.clube)
             t.clube = None
     return vagas

@@ -216,6 +216,8 @@ class Carreira:
     tatica_da_selecao: dict = field(default_factory=dict)
     # a selecao que dispensou o usuario (nao se classificou para a Copa), para a mensagem
     demissao_da_selecao: str | None = None
+    # o usuario saiu do clube por conta propria (a tela nao diz "voce foi demitido")
+    pediu_demissao: bool = False
     # os jogos da selecao do usuario no ano, por data -- a parte dos do clube (a campanha
     # do clube nao mistura com a da selecao)
     jogos_da_selecao: dict = field(default_factory=dict)
@@ -478,7 +480,22 @@ class Carreira:
             self.aprovacao.motivo = motivo
             self._ao_ser_demitido(meio_do_ano=True)
 
-    def _ao_ser_demitido(self, meio_do_ano: bool) -> None:
+    def pedir_demissao(self) -> dict:
+        """O usuario sai do clube por conta propria: a reputacao cai menos que numa
+        demissao, e chamam os mesmos clubes que chamariam um demitido no meio do ano. A
+        selecao, se ele treinar uma, continua com ele."""
+        if self.demitido:
+            return {"erro": "voce ja nao esta no clube"}
+        if self.aprovacao is None:
+            self._nova_meta()
+        self.aprovacao.demitido = True
+        self.aprovacao.motivo = (f"Você pediu demissão do {self.clube.name}.")
+        self.pediu_demissao = True
+        self._ao_ser_demitido(meio_do_ano=True, pedida=True)
+        return {"ok": True, "mensagem": self.aprovacao.motivo,
+                "convites": list(self.convites)}
+
+    def _ao_ser_demitido(self, meio_do_ano: bool, pedida: bool = False) -> None:
         """A demissao nao encerra a carreira: a reputacao cai e aparecem convites. No meio
         do ano quem chama sao os clubes em crise (o tecnico deles sai para o usuario
         entrar); na virada, as vagas que a IA abriu."""
@@ -486,7 +503,7 @@ class Carreira:
         eu = self.tecnicos.get(tec.USUARIO)
         if eu is None:
             return
-        tec.ajustar(eu, tec.DEMISSAO)
+        tec.ajustar(eu, tec.DEMISSAO_PEDIDA if pedida else tec.DEMISSAO)
         eu.clube = None
         if self.clube_id not in self.vagas:
             self.vagas.append(self.clube_id)
@@ -535,6 +552,7 @@ class Carreira:
                 prop.status = "expirada"
         # diretoria nova, meta nova, clima zerado
         self.aprovacao = None
+        self.pediu_demissao = False
         self._nova_meta()
         self.convites = []
 
@@ -549,6 +567,20 @@ class Carreira:
         for nome, a in self.copas.items():
             if a.campeao is not None:
                 fora.setdefault(a.campeao, []).append(nome)
+        return fora
+
+    def _campanhas_nas_copas(self) -> dict[int, list[tuple[str, str]]]:
+        """Quem chegou a final (o vice) e a semifinal sem ganhar, por copa."""
+        fora: dict[int, list[tuple[str, str]]] = {}
+        for nome, a in self.copas.items():
+            if a.vice is not None:
+                fora.setdefault(a.vice, []).append((nome, "final"))
+            # a semifinal: a ultima rodada de mata-mata com quatro clubes
+            semi = next((f for f in reversed(a.historico) if f.get("tipo") == "mata"
+                         and len(f.get("pares", [])) == 2 and not f.get("poupados")), None)
+            if semi is not None:
+                for k in {x for par in semi["pares"] for x in par} - {a.campeao, a.vice}:
+                    fora.setdefault(k, []).append((nome, "semi"))
         return fora
 
     def _premios_e_desempenho(self, tabelas: dict, cfgs: dict) -> tuple[dict, dict]:
@@ -591,7 +623,10 @@ class Carreira:
         # a variacao anterior (o premio de tecnico do ano) entra na conta do ano
         bonus = {t.id: t.variacao for t in self.tecnicos.values()}
         tec.atualizar_reputacoes(self.tecnicos, dados, self._copas_ganhas(), nomes_das_copas,
-                                 {n: nome_da_liga(n) for n in self.ligas}, self.temporada)
+                                 {n: nome_da_liga(n) for n in self.ligas}, self.temporada,
+                                 estatura={k: float(c.reputation)
+                                           for k, c in self.world.clubs.items()},
+                                 campanhas=self._campanhas_nas_copas())
         for t in self.tecnicos.values():
             t.variacao = round(t.variacao + bonus.get(t.id, 0.0), 1)
 
@@ -599,7 +634,8 @@ class Carreira:
         """Fim da virada: a IA demite, o usuario (se demitido) perde reputacao, e as vagas
         viram convites para ele."""
         from fm import tecnicos as tec
-        self.vagas = tec.demissoes_da_ia(self.tecnicos, dados)
+        self.vagas = tec.demissoes_da_ia(self.tecnicos, dados,
+                                         self.streams.get("demissoes_da_ia", self.temporada))
         demitido = self.demitido
         if demitido:
             self._ao_ser_demitido(meio_do_ano=False)
@@ -1473,6 +1509,11 @@ class Carreira:
         tipo = acao.get("tipo")
         w = self.world
         resultado: dict
+        if tipo == "pedir_demissao":
+            resultado = self.pedir_demissao()
+            if "erro" not in resultado:
+                self.acoes.append({**acao, "temporada": self.temporada, "data": self.data})
+            return resultado
         if tipo in ("assumir_selecao", "recusar_selecao", "deixar_selecao",
                     "convocar_selecao", "escalar_selecao"):
             resultado = self._acao_da_selecao(tipo, acao)
