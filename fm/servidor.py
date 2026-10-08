@@ -40,7 +40,9 @@ class Jogo:
     existir ainda: o jogo abre no menu, e ela nasce em "novo jogo" ou "jogos salvos".
     """
 
-    # o que e de cada tecnico na tela, guardado quando ele passa a vez (passar_a_vez)
+    # O que e de cada tecnico na tela. Com varios tecnicos (cada um no seu navegador),
+    # `jogo.lidas`, `jogo.pos_jogo`... sao os de quem fez o pedido -- o mesmo humano da
+    # vez da Carreira (fm.carreira._vez), que o cookie do navegador escolhe.
     DA_TELA = ("ultima_partida", "ultimos_resultados", "ultimo_resumo", "pos_jogo",
                "lidas", "negociacoes")
 
@@ -49,11 +51,20 @@ class Jogo:
         self.ao_vivo = None                 # fm.ao_vivo.PartidaAoVivo, durante o jogo
         self.posicao_antes: int | None = None   # na tabela, antes da partida ao vivo
         self.competicao_ao_vivo = ("", "")
-        for k, v in self.tela_vazia().items():
-            setattr(self, k, v)
-        # {humano: o estado da tela dele} dos tecnicos que nao estao com a vez
+        # {humano: o estado da tela dele}
         self.por_humano: dict[int, dict] = {}
         self.trava = threading.Lock()
+        self._local = threading.local()     # quem fez o pedido em curso (cookie)
+        self.nova_sessao()
+
+    def nova_sessao(self) -> None:
+        """Carreira nova na tela: ninguem pronto, nenhuma rodada, cookies antigos sem valor."""
+        import secrets
+        self.por_humano = {}
+        self.prontos: set[int] = set()
+        self.rodadas = 0                    # quantas vezes a data rodou pelo "Pronto"
+        self.ultima = ""                    # o que rodou por ultimo: "data" ou "virada"
+        self.sessao = secrets.token_hex(4)
 
     @staticmethod
     def tela_vazia() -> dict:
@@ -62,6 +73,52 @@ class Jogo:
                 # as ofertas que o usuario fez nesta sessao e a resposta de cada uma: a aba
                 # "Negociacoes". Nao vai para o save -- o save guarda so o que virou negocio.
                 "negociacoes": []}
+
+    def _tela(self) -> dict:
+        from fm.carreira import _vez
+        i = _vez(self.c) if self.c is not None else 0
+        return self.por_humano.setdefault(i, self.tela_vazia())
+
+    @property
+    def varios(self) -> bool:
+        return self.c is not None and len(self.c.humanos) > 1
+
+    @property
+    def quem(self) -> int | None:
+        """O tecnico que este navegador escolheu ser (None: ainda nao escolheu)."""
+        return getattr(self._local, "i", None)
+
+    def como_quem_pediu(self, cookie: str | None):
+        """O pedido roda como o tecnico do cookie do navegador. Com um tecnico so, como
+        sempre."""
+        from contextlib import nullcontext
+        self._local.i = None
+        if not self.varios:
+            return nullcontext()
+        from http.cookies import SimpleCookie
+        try:
+            valor = SimpleCookie(cookie or "").get("tecnico")
+            sessao, i = (valor.value if valor else "").split(":")
+            i = int(i)
+        except ValueError:
+            return nullcontext()
+        if sessao != self.sessao or not 0 <= i < len(self.c.humanos):
+            return nullcontext()
+        self._local.i = i
+        return self.c._como(i)
+
+
+def _campo_da_tela(nome: str) -> property:
+    def ler(self):
+        return self._tela()[nome]
+
+    def escrever(self, valor):
+        self._tela()[nome] = valor
+    return property(ler, escrever)
+
+
+for _nome in Jogo.DA_TELA:
+    setattr(Jogo, _nome, _campo_da_tela(_nome))
 
 
 # ------------------------------------------------------------------ escudos
@@ -383,9 +440,12 @@ def estado(jogo: Jogo) -> dict:
         # os tecnicos deste computador e quem esta com a vez (o jogo de varios, etapa 2
         # do online); com um so, a lista tem um e a tela nao mostra nada
         "humanos": [{"indice": i, "treinador": h.treinador, "clube": _clube(c, h.clube_id),
-                     "ativo": i == c.ativo,
+                     "pronto": i in jogo.prontos,
                      "demitido": bool(h.aprovacao and h.aprovacao.demitido)}
                     for i, h in enumerate(c.humanos)],
+        # quem este navegador e (None: ainda nao escolheu) e quantas vezes a data ja rodou
+        # pelo Pronto -- a tela de quem esta esperando ve o numero mudar e busca o resultado
+        "sou": jogo.quem, "rodadas": jogo.rodadas, "ultima": jogo.ultima,
         "copas": [
             {"id": nome, "nome": a.torneio.nome, "fase": a.nome_da_fase,
              "vivo": a.esta_vivo(c.clube_id), "acabou": a.acabou,
@@ -502,10 +562,17 @@ def escalar(jogo: Jogo, dados: dict) -> dict:
 
 def virar_o_ano(jogo: Jogo) -> dict:
     c = jogo.c
+    if jogo.varios:
+        return {"erro": "com varios tecnicos o ano vira quando todos apertam Pronto"}
     if not c.acabou:
         return {"erro": "a temporada ainda nao acabou"}
-    resumo = c.virar_o_ano()
-    jogo.ultimo_resumo = resumo
+    jogo.ultimo_resumo = _resumo_json(jogo, c.virar_o_ano())
+    return jogo.ultimo_resumo
+
+
+def _resumo_json(jogo: Jogo, resumo: dict) -> dict:
+    """O fim de ano do tecnico da vez, como a tela mostra."""
+    c = jogo.c
     return {
         "temporada": resumo["temporada"],
         "campeoes": resumo["campeoes"],
@@ -822,7 +889,9 @@ def menu(jogo: Jogo) -> dict:
         "versao": telas.VERSAO, "saves": saves_disponiveis(),
         "carreira": None if c is None else {
             "clube": _clube(c, c.clube_id), "treinador": c.treinador,
-            "temporada": c.temporada, "data": data_do_jogo(c)},
+            "temporada": c.temporada, "data": data_do_jogo(c),
+            # com varios tecnicos, quem abre o endereco vai direto ao jogo
+            "varios": len(c.humanos) > 1},
     }
 
 
@@ -860,25 +929,115 @@ def _nome_de_treinador(nome, padrao: str) -> str:
     return (str(nome or "").strip() or padrao)[:40]
 
 
-def passar_a_vez(jogo: Jogo, corpo: dict) -> dict:
-    """O controle vai para outro tecnico deste computador. Nao no meio de uma partida: a
-    tela ao vivo e do ativo."""
+# ------------------------------------------------------------------ varios tecnicos
+#
+# Cada um no seu navegador (no mesmo computador ou na rede): o navegador escolhe quem ele
+# e (`sou`), e dai em diante cada pedido e respondido como aquele tecnico -- cada um ve so
+# o proprio clube. Ninguem tem "a vez": cada um mexe no que quiser e aperta Pronto; quando
+# todos estao prontos, a data roda (ou o ano vira) e cada um ve o resultado do seu jogo.
+# Nesta primeira versao as partidas nao passam ao vivo: saem com a escalacao e a tatica
+# que cada um deixou.
+
+def sou(jogo: Jogo, corpo: dict) -> dict:
+    """Este navegador passa a ser o tecnico `humano`: o cookie guarda a escolha."""
     c = jogo.c
-    if jogo.ao_vivo is not None and not jogo.ao_vivo.acabou:
-        return {"erro": "termine a partida antes de passar a vez"}
     try:
         i = int(corpo.get("humano", -1))
     except (TypeError, ValueError):
         i = -1
     if not 0 <= i < len(c.humanos):
         return {"erro": "esse tecnico nao existe nesta carreira"}
-    # o que e so da tela (mensagens lidas, ofertas da sessao, o ultimo pos-jogo) fica
-    # guardado com cada tecnico
-    jogo.por_humano[c.ativo] = {k: getattr(jogo, k) for k in Jogo.DA_TELA}
-    c.ativo = i
-    for k, v in jogo.por_humano.get(i, Jogo.tela_vazia()).items():
-        setattr(jogo, k, v)
-    return {"ok": True, "estado": estado(jogo)}
+    jogo._local.i = i
+    with c._como(i):
+        return {"ok": True, "estado": estado(jogo),
+                "_cookie": f"tecnico={jogo.sessao}:{i}; Path=/; SameSite=Lax"}
+
+
+def pronto(jogo: Jogo, corpo: dict) -> dict:
+    """Marca (ou desmarca) o tecnico deste navegador como pronto. O ultimo a ficar pronto
+    faz a data rodar para todos."""
+    from fm.carreira import _vez
+    c = jogo.c
+    if not jogo.varios:
+        return {"erro": "pronto e para carreira com mais de um tecnico"}
+    if jogo.quem is None:
+        return {"erro": "escolha quem voce e antes"}
+    i = _vez(c)
+    if corpo.get("pronto", True):
+        jogo.prontos.add(i)
+    else:
+        jogo.prontos.discard(i)
+    rodou = jogo.prontos >= set(range(len(c.humanos)))
+    if rodou:
+        jogo.prontos = set()
+        _rodar_para_todos(jogo)
+    return {"ok": True, "rodou": rodou, "estado": estado(jogo)}
+
+
+def _rodar_para_todos(jogo: Jogo) -> None:
+    """Joga a proxima data (ou vira o ano) e guarda o pos-jogo de cada tecnico. Datas em
+    que nenhum humano entra em campo passam direto, como na tela ao vivo -- para antes se
+    chegar proposta para alguem ou alguem for demitido."""
+    c = jogo.c
+    jogo.rodadas += 1
+    humanos = range(len(c.humanos))
+    if c.acabou:
+        jogo.ultima = "virada"
+        c.virar_o_ano()
+        for i in humanos:
+            with c._como(i):
+                jogo.ultimo_resumo = _resumo_json(jogo, c.historico[-1])
+                jogo.pos_jogo = None
+        return
+    jogo.ultima = "data"
+    for i in humanos:
+        with c._como(i):
+            jogo.pos_jogo = None
+
+    def pendentes() -> int:
+        return sum(1 for h in c.humanos for p in h.propostas if p.status == "pendente")
+
+    for _ in range(60):
+        antes = {}
+        for i in humanos:
+            with c._como(i):
+                tipo, _, _ = c.proximo_jogo()
+                antes[i] = (_competicao_da_proxima(c),
+                            c.posicao() if tipo == "liga" and c.rodada > 0 else None)
+        propostas, demitidos = pendentes(), sum(1 for h in c.humanos if h.aprovacao
+                                               and h.aprovacao.demitido)
+        resultados, _ = c.avancar()
+        jogaram = [i for i in humanos if c.humanos[i].partida_da_data is not None]
+        for i in jogaram:
+            with c._como(i):
+                partida = c.humano.partida_da_data
+                tipo, onde = c.ultimo_compromisso
+                (_, previsto), posicao_antes = antes[i]
+                rotulo = (_competicao_em_campo(c) if tipo != "liga" else None)
+                competicao = rotulo[1] if rotulo else previsto
+                jogo.ultima_partida, jogo.ultimos_resultados = partida, resultados
+                jogo.pos_jogo = telas.pos_jogo(c, partida, resultados, competicao, tipo,
+                                               lambda cid: _clube(c, cid), posicao_antes)
+                jogo.pos_jogo["comp_id"] = onde if tipo == "copa" and onde in c.copas \
+                    else c.liga
+                if tipo == "selecao" and c.fifa and c.fifa.torneio_do_usuario:
+                    jogo.pos_jogo["comp_id"] = f"fifa:{c.fifa.torneio_do_usuario}"
+        novos_demitidos = sum(1 for h in c.humanos if h.aprovacao and h.aprovacao.demitido)
+        if (jogaram or c.acabou or pendentes() > propostas
+                or novos_demitidos > demitidos):
+            return
+
+
+def prontos(jogo: Jogo) -> dict:
+    """O que a tela de quem esta esperando consulta a cada poucos segundos: barato, sem
+    montar o estado inteiro."""
+    return {"sou": jogo.quem, "rodadas": jogo.rodadas, "ultima": jogo.ultima,
+            "prontos": sorted(jogo.prontos)}
+
+
+def virada(jogo: Jogo) -> dict:
+    """O fim de ano deste tecnico, depois que o ano virou pelo Pronto."""
+    return jogo.ultimo_resumo or {"erro": "o ano ainda nao virou"}
 
 
 def carregar(jogo: Jogo, corpo: dict) -> dict:
@@ -897,9 +1056,7 @@ def _trocar_de_carreira(jogo: Jogo, c: Carreira) -> None:
         jogo.ao_vivo.seguir(ate_o_fim=True)      # nao deixa thread pendurada
     jogo.c = c
     jogo.ao_vivo = None
-    jogo.pos_jogo = None
-    jogo.lidas = set()
-    jogo.por_humano = {}
+    jogo.nova_sessao()
 
 
 # ------------------------------------------------------------------ partida ao vivo
@@ -973,6 +1130,8 @@ def partida_iniciar(jogo: Jogo, corpo: dict | None = None) -> dict:
     from fm.ao_vivo import PartidaAoVivo
 
     c = jogo.c
+    if jogo.varios:
+        return {"erro": "com varios tecnicos a data roda quando todos apertam Pronto"}
     if jogo.ao_vivo is not None and not jogo.ao_vivo.acabou:
         return partida_atual(jogo)               # recarregou a pagina no meio do jogo
     if c.demitido:
@@ -1331,6 +1490,8 @@ ROTAS_GET = {
         jogo.c, q.get("comp", [None])[0], _inteiro(q, "temporada"),
         lambda cid: _clube(jogo.c, cid)),
     "/api/posjogo": lambda jogo, q: pos_jogo(jogo),
+    "/api/virada": lambda jogo, q: virada(jogo),
+    "/api/prontos": lambda jogo, q: prontos(jogo),
     "/api/estado": lambda jogo, q: estado(jogo),
     "/api/tabela": lambda jogo, q: tabela(jogo, q.get("liga", [None])[0]),
     "/api/inicio": lambda jogo, q: inicio(jogo),
@@ -1340,6 +1501,9 @@ ROTAS_GET = {
     "/api/jogador": lambda jogo, q: jogador(jogo, int(q.get("id", [0])[0])),
 }
 ROTAS_POST_SEM_CARREIRA = {"/api/nova", "/api/carregar", "/api/sair"}
+# Com o jogo aberto na rede (--rede), os amigos jogam pelo navegador deles; trocar de
+# carreira, salvar e encerrar o servidor continuam so com quem esta no computador dele.
+ROTAS_SO_DO_DONO = {"/api/nova", "/api/carregar", "/api/sair", "/api/salvar"}
 
 ROTAS_POST = {
     "/api/nova": nova,
@@ -1357,7 +1521,8 @@ ROTAS_POST = {
     "/api/partida/seguir": partida_seguir,
     "/api/avancar": lambda jogo, corpo: avancar(jogo),
     "/api/escalar": escalar,
-    "/api/vez": passar_a_vez,
+    "/api/sou": sou,
+    "/api/pronto": pronto,
     "/api/selecao_nacional": lambda jogo, corpo: _acao_da_selecao(jogo, corpo),
     "/api/demissao": lambda jogo, corpo: {**jogo.c.executar({"tipo": "pedir_demissao"}),
                                           "estado": estado(jogo)},
@@ -1384,6 +1549,16 @@ def fotografar_a_tela() -> dict[str, bytes]:
             for a in WEB.rglob("*") if a.is_file()}
 
 
+def _enderecos_na_rede() -> list[str]:
+    """Os IPs deste computador na rede local, para mostrar aos amigos."""
+    import socket
+    try:
+        ips = {i[4][0] for i in socket.getaddrinfo(socket.gethostname(), None, socket.AF_INET)}
+    except OSError:
+        return []
+    return sorted(ip for ip in ips if not ip.startswith("127."))
+
+
 class ServidorDoJogo(ThreadingHTTPServer):
     """Sem SO_REUSEADDR: no Windows ele deixa DOIS servidores ouvirem a mesma porta, e os
     pedidos caem ora num, ora no outro. Um segundo `servir` tem de falhar, nao dividir."""
@@ -1405,9 +1580,12 @@ def criar_handler(jogo: Jogo, tela: dict[str, bytes] | None = None):
         def log_message(self, *a):        # silencio: o terminal e' do usuario
             pass
 
-        def _responder(self, corpo: bytes, tipo: str, codigo: int = 200) -> None:
+        def _responder(self, corpo: bytes, tipo: str, codigo: int = 200,
+                       cookie: str | None = None) -> None:
             self.send_response(codigo)
             self.send_header("Content-Type", tipo)
+            if cookie:
+                self.send_header("Set-Cookie", cookie)
             self.send_header("Content-Length", str(len(corpo)))
             # sem cache: a tela tem de ser sempre a do servidor que esta rodando
             self.send_header("Cache-Control", "no-store")
@@ -1415,8 +1593,12 @@ def criar_handler(jogo: Jogo, tela: dict[str, bytes] | None = None):
             self.wfile.write(corpo)
 
         def _json(self, dados: dict, codigo: int = 200) -> None:
+            cookie = dados.pop("_cookie", None) if isinstance(dados, dict) else None
             self._responder(json.dumps(dados, ensure_ascii=False).encode("utf-8"),
-                            "application/json; charset=utf-8", codigo)
+                            "application/json; charset=utf-8", codigo, cookie)
+
+        def _do_dono(self) -> bool:
+            return self.client_address[0] in ("127.0.0.1", "::1", "::ffff:127.0.0.1")
 
         def do_GET(self) -> None:                                  # noqa: N802
             url = urlparse(self.path)
@@ -1452,7 +1634,7 @@ def criar_handler(jogo: Jogo, tela: dict[str, bytes] | None = None):
                 if jogo.c is None and caminho not in ROTAS_SEM_CARREIRA:
                     self._json({"erro": "sem carreira", "sem_carreira": True})
                     return
-                with jogo.trava:
+                with jogo.trava, jogo.como_quem_pediu(self.headers.get("Cookie")):
                     self._rodar(ROTAS_GET[caminho], jogo, q)
                 return
 
@@ -1470,6 +1652,9 @@ def criar_handler(jogo: Jogo, tela: dict[str, bytes] | None = None):
                 return
             tamanho = int(self.headers.get("Content-Length") or 0)
             corpo = json.loads(self.rfile.read(tamanho) or b"{}") if tamanho else {}
+            if caminho in ROTAS_SO_DO_DONO and not self._do_dono():
+                self._json({"erro": "so no computador onde o jogo esta rodando"}, 403)
+                return
             if caminho == "/api/sair":
                 # o navegador nao pode fechar a si mesmo; o servidor pode parar
                 self._json({"ok": True})
@@ -1478,7 +1663,7 @@ def criar_handler(jogo: Jogo, tela: dict[str, bytes] | None = None):
             if jogo.c is None and caminho not in ROTAS_POST_SEM_CARREIRA:
                 self._json({"erro": "sem carreira", "sem_carreira": True})
                 return
-            with jogo.trava:
+            with jogo.trava, jogo.como_quem_pediu(self.headers.get("Cookie")):
                 self._rodar(ROTAS_POST[caminho], jogo, corpo)
 
         def _rodar(self, rota, jogo, dados) -> None:
@@ -1498,14 +1683,17 @@ def criar_handler(jogo: Jogo, tela: dict[str, bytes] | None = None):
 
 
 def servir(carreira: Carreira | None = None, porta: int = 8000,
-           abrir: bool = True) -> None:
+           abrir: bool = True, rede: bool = False) -> None:
     """Sobe o servidor e abre o navegador. Bloqueia ate Ctrl+C.
 
-    Sem carreira, o jogo abre no menu principal: novo jogo ou jogo salvo.
+    Sem carreira, o jogo abre no menu principal: novo jogo ou jogo salvo. Com `rede`, os
+    outros aparelhos da mesma rede (o celular e o notebook dos amigos) tambem abrem o
+    jogo; sem ela, so este computador.
     """
     jogo = Jogo(carreira)
     try:
-        servidor = ServidorDoJogo(("127.0.0.1", porta), criar_handler(jogo))
+        servidor = ServidorDoJogo(("0.0.0.0" if rede else "127.0.0.1", porta),
+                                  criar_handler(jogo))
     except OSError:
         print(f"  A porta {porta} ja esta em uso -- provavelmente o jogo ja esta aberto em")
         print("  outro terminal. Feche aquele (Ctrl+C) ou use outra porta: --porta 8001")
@@ -1515,6 +1703,9 @@ def servir(carreira: Carreira | None = None, porta: int = 8000,
         threading.Timer(0.6, lambda: webbrowser.open(url)).start()
     print(f"  PRANCHETA 11 -- {url}"
           + (f"  ({carreira.clube.name})" if carreira else ""))
+    if rede:
+        for ip in _enderecos_na_rede():
+            print(f"  Na rede: http://{ip}:{porta}/  (os amigos abrem este no navegador)")
     print("  Ctrl+C para encerrar")
     try:
         servidor.serve_forever()

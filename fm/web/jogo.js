@@ -35,6 +35,8 @@ async function abrirJogo(tela) {
   }));
   await recarregarEstado();
   await irPara(tela || PARAMS.get("tela") || telaAtual);
+  // varios tecnicos: o navegador que ainda nao disse quem e escolhe antes de tudo
+  if (varios(ESTADO) && ESTADO.sou === null) janelaQuemSou(ESTADO);
   if (PARAMS.get("convites") && ESTADO.convites.length) janelaDeConvites(ESTADO.convites, ESTADO.demitido);
 }
 
@@ -54,6 +56,7 @@ function aplicarEstado(e) {
   desenharRodape(e);
   // proposta nova por um jogador do clube abre a janela sozinha (transferencias.js)
   if (typeof verificarPropostas === "function") setTimeout(() => verificarPropostas(e), 0);
+  if (varios(e)) verificarRodada(e);
 }
 
 async function irPara(nome) {
@@ -99,40 +102,83 @@ function desenharTopo(e) {
   $("#jogar").innerHTML = t.botao;
   const badge = $("#badge-msg");
   if (badge) { badge.hidden = !e.nao_lidas; badge.textContent = e.nao_lidas; }
-  // varios tecnicos no mesmo computador: quem esta com a vez, e o botao de passar
+  // varios tecnicos, cada um no seu navegador: quem este navegador e, e quem falta
+  // ficar pronto. O botao de jogar vira "Pronto": a data roda quando todos apertam.
   const vez = $("#vez");
-  const humanos = e.humanos || [];
-  vez.hidden = humanos.length < 2;
+  vez.hidden = !varios(e);
   if (!vez.hidden) {
-    vez.innerHTML = `${escudo(e.clube, "1.5rem")}<span><small>Vez de</small><b>${escapar(e.treinador)}</b></span>`;
-    vez.onclick = () => janelaDaVez(e);
+    vez.innerHTML = `${escudo(e.clube, "1.5rem")}<span><small>Você é</small><b>${escapar(e.treinador)}</b></span>`;
+    vez.onclick = () => janelaQuemSou(e);
+    const eu = e.humanos.find((h) => h.indice === e.sou);
+    if (eu && eu.pronto) {
+      const faltam = e.humanos.filter((h) => !h.pronto).map((h) => h.treinador);
+      $("#prox-rotulo").textContent = "Você está pronto · esperando";
+      $("#prox-texto").textContent = faltam.join(", ");
+      $("#jogar").innerHTML = "Cancelar";
+    } else if (!e.demitido) {
+      $("#jogar").innerHTML = e.acabou ? "Pronto para virar o ano ›" : "Pronto ›";
+      const prontos = e.humanos.filter((h) => h.pronto).map((h) => h.treinador);
+      if (prontos.length) $("#prox-rotulo").textContent = `${t.rotulo} · pronto: ${prontos.join(", ")}`;
+    }
   }
 }
 
-function janelaDaVez(e) {
-  // o clique num tecnico e tratado abaixo (data-humano): ele fecha a janela e troca a vez
-  abrirJanela({titulo: "Passar a vez", estreita: true, corpo: `
-    <p class="dica" style="margin-top:0">Quem estiver com a vez joga a próxima partida ao vivo.
-      Os outros técnicos jogam com a escalação e a tática que deixaram.</p>
+function varios(e) { return (e?.humanos || []).length > 1; }
+
+function janelaQuemSou(e) {
+  // o clique num tecnico e tratado abaixo (data-humano): ele fecha a janela e troca
+  abrirJanela({titulo: "Quem é você?", estreita: true, corpo: `
+    <p class="dica" style="margin-top:0">Cada técnico joga no seu navegador e só vê o próprio clube.
+      Quando todos apertam <b>Pronto</b>, a data é jogada para todo mundo.</p>
     <div class="lista-simples lista-vez">${e.humanos.map((h) => `
-      <button class="item clicavel ${h.ativo ? "sel" : ""}" data-humano="${h.indice}" ${h.ativo ? "disabled" : ""}>
+      <button class="item clicavel ${h.indice === e.sou ? "sel" : ""}" data-humano="${h.indice}" ${h.indice === e.sou ? "disabled" : ""}>
         ${escudo(h.clube, "1.6rem")}<span><b>${escapar(h.treinador)}</b>
           <span class="dica">${escapar(h.clube.nome)}${h.demitido ? " · sem clube" : ""}</span></span>
-        <span class="espaco"></span>${h.ativo ? '<span class="chip">com a vez</span>' : ""}
+        <span class="espaco"></span>${h.indice === e.sou ? '<span class="chip">você</span>' : h.pronto ? '<span class="chip">pronto</span>' : ""}
       </button>`).join("")}</div>`,
-    botoes: [{rotulo: "Cancelar"}]});
+    botoes: [{rotulo: "Fechar"}]});
 }
 
 document.addEventListener("click", async (ev) => {
   const b = ev.target.closest("[data-humano]");
   if (!b || b.disabled) return;
-  const r = await api.post("/api/vez", {humano: +b.dataset.humano});
+  const r = await api.post("/api/sou", {humano: +b.dataset.humano});
   fecharJanela();
   if (r.erro) { avisar(r.erro); return; }
+  onzeLocal = null;
   aplicarEstado(r.estado);
   await irPara(telaAtual);
-  avisar(`Vez de ${r.estado.treinador} · ${r.estado.clube.nome}`);
+  avisar(`Você é ${r.estado.treinador} · ${r.estado.clube.nome}`);
 });
+
+/* A tela de quem esta esperando os outros: consulta barata a cada poucos segundos. Muda
+   quem esta pronto, redesenha o topo; a data rodou, mostra o resultado do MEU jogo. */
+let RODADAS_VISTAS = null;
+let PRONTOS_VISTOS = "";
+setInterval(async () => {
+  if (modoAtual !== "jogo" || !varios(ESTADO) || !$("#cortina").hidden) return;
+  const p = await api.get("/api/prontos");
+  if (p.erro) return;
+  if (p.rodadas !== RODADAS_VISTAS || p.prontos.join() !== PRONTOS_VISTOS) {
+    aplicarEstado(await api.get("/api/estado"));
+  }
+}, 2500);
+
+async function verificarRodada(e) {
+  const nova = RODADAS_VISTAS !== null && e.rodadas > RODADAS_VISTAS;
+  RODADAS_VISTAS = e.rodadas;
+  PRONTOS_VISTOS = e.humanos.filter((h) => h.pronto).map((h) => h.indice).join();
+  if (!nova) return;
+  onzeLocal = null;
+  if (e.ultima === "virada") {
+    const r = await api.get("/api/virada");
+    if (!r.erro) return mostrarFimDeAno(r);
+  }
+  const p = await api.get("/api/posjogo");
+  if (!p.erro) return irParaModo("posjogo");
+  avisar("A data foi jogada. Seu clube não entrou em campo.");
+  irPara(telaAtual);
+}
 
 /* ------------------------------------------------------------------ lateral */
 
@@ -1145,6 +1191,10 @@ function janelaSalvar() {
 async function encerrarAno() {
   const r = await api.post("/api/virar");
   if (r.erro) return avisar(r.erro);
+  await mostrarFimDeAno(r);
+}
+
+async function mostrarFimDeAno(r) {
   aplicarEstado(r.estado);
   onzeLocal = null;
   const destino = r.subi ? '<span class="chip ativo">ACESSO</span>' : r.cai ? '<span class="chip" style="color:var(--ruim);border-color:var(--ruim)">REBAIXADO</span>' : "";
@@ -1274,6 +1324,7 @@ async function janelaDeConvites(convites, obrigatorio) {
 
 async function jogar() {
   const e = ESTADO;
+  if (varios(e)) return ficarPronto(e);
   if (e.demitido) {
     const assumiu = await janelaDeConvites(e.convites, true);
     if (!assumiu) irParaModo("menu");
@@ -1285,6 +1336,22 @@ async function jogar() {
 }
 
 $("#jogar").addEventListener("click", jogar);
+
+/* Varios tecnicos: em vez de jogar ao vivo, "Pronto". O ultimo a ficar pronto faz a data
+   rodar para todos; os outros veem o resultado pela consulta de RODADAS_VISTAS. */
+async function ficarPronto(e) {
+  if (e.sou === null) return janelaQuemSou(e);
+  const eu = e.humanos.find((h) => h.indice === e.sou);
+  if (e.demitido && !eu.pronto) {
+    // sem clube: aceita um convite ou fica pronto mesmo assim, esperando os outros
+    const assumiu = await janelaDeConvites(e.convites, true);
+    if (assumiu) return;
+  }
+  if (!eu.pronto && !onzeIgual() && onzeLocal) await mandarOnze();
+  const r = await api.post("/api/pronto", {pronto: !eu.pronto});
+  if (r.erro) return avisar(r.erro);
+  aplicarEstado(r.estado);
+}
 
 registrarModo("jogo", {
   elemento: "#jogo",

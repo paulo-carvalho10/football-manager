@@ -863,5 +863,7 @@ registrarModo("posjogo", {
     return irParaModo(pedido);
   }
   if (PARAMS.get("tela") && m.carreira) return irParaModo("jogo", PARAMS.get("tela"));
+  // varios tecnicos: o amigo que abre o endereco cai no jogo e diz quem ele e
+  if (m.carreira && m.carreira.varios) return irParaModo("jogo");
   irParaModo("menu");
 })();

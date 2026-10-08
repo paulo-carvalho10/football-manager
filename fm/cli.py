@@ -402,12 +402,12 @@ def cmd_servir(args):
     else:
         if not args.clube:
             # sem clube, o jogo abre no menu: novo jogo, escolha de liga e de clube
-            servir(None, porta=args.porta)
+            servir(None, porta=args.porta, rede=args.rede)
             return
         ligas = [n.strip() for n in args.liga.split(",") if n.strip()]
         c = Carreira.nova(ligas, args.clube, seed=args.seed)
         c.treinador = args.treinador
-    servir(c, porta=args.porta)
+    servir(c, porta=args.porta, rede=args.rede)
 
 
 def cmd_campo(args):
@@ -609,6 +609,8 @@ def main(argv=None):
     p.add_argument("--carregar", default=None, help="nome de um save")
     p.add_argument("--porta", type=int, default=8000)
     p.add_argument("--treinador", default="Treinador", help="seu nome, no topo da tela")
+    p.add_argument("--rede", action="store_true",
+                   help="abre o jogo para os aparelhos da mesma rede (amigos jogando juntos)")
     p.set_defaults(func=cmd_servir)
 
     p = sub.add_parser("campo", parents=[common],

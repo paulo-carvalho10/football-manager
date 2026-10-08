@@ -138,11 +138,6 @@ def test_so_o_ativo_tem_a_tela_ao_vivo():
     assert all(p is c.humanos[1].partida_da_data for p in chamadas)
 
 
-@pytest.mark.xfail(strict=True, reason=(
-    "DEFEITO CONHECIDO, anterior ao online: a decisao e guardada por RODADA da liga, e as "
-    "datas de copa entre duas rodadas usam a mesma chave. Reescalar (ou trocar de clube, "
-    "ou vender um titular) entre um jogo de copa e a rodada seguinte apaga o que valeu na "
-    "copa, e o replay joga aquela data diferente. Conserto: guardar a decisao por data."))
 def test_o_save_refaz_o_mundo_seja_quem_for_que_estava_com_o_controle(tmp_path,
                                                                        monkeypatch):
     """O controle passa de mao em mao, os dois decidem e um deles pede demissao e troca de
@@ -278,32 +273,95 @@ def test_duas_selecoes_de_humanos_na_mesma_data():
 
 # ---------------------------------------------------------------- a tela (fm.servidor)
 
-def test_o_servidor_cria_a_carreira_de_varios_e_passa_a_vez():
-    from fm.servidor import Jogo, estado, nova, passar_a_vez
-    jogo = Jogo()
-    r = nova(jogo, {"ligas": LIGAS, "clube": "Santos", "treinador": "Ana", "seed": 8,
-                    "outros": [{"clube": "Palmeiras", "treinador": "Beto"},
-                               {"clube": "Sport Recife", "treinador": ""}]})
-    assert r.get("ok"), r
-    e = r["estado"]
-    assert [h["treinador"] for h in e["humanos"]] == ["Ana", "Beto", "Treinador 3"]
-    assert [h["ativo"] for h in e["humanos"]] == [True, False, False]
-    assert e["clube"]["nome"] == "Santos"
+class _Navegador:
+    """Um navegador falando com o servidor de verdade, com o cookie dele."""
 
-    jogo.lidas.add("msg-da-ana")
-    r = passar_a_vez(jogo, {"humano": 1})
-    assert r.get("ok")
-    assert r["estado"]["clube"]["nome"] == "Palmeiras" and r["estado"]["treinador"] == "Beto"
-    assert jogo.lidas == set(), "as mensagens lidas sao de cada tecnico"
-    passar_a_vez(jogo, {"humano": 0})
-    assert jogo.lidas == {"msg-da-ana"}
-    assert "erro" in passar_a_vez(jogo, {"humano": 7})
+    def __init__(self, porta: int) -> None:
+        self.porta, self.cookie = porta, ""
 
-    class AoVivo:
-        acabou = False
-    jogo.ao_vivo = AoVivo()
-    assert "erro" in passar_a_vez(jogo, {"humano": 1}), "a vez nao passa no meio do jogo"
-    assert estado(jogo)["treinador"] == "Ana"
+    def pedir(self, rota: str, corpo: dict | None = None) -> dict:
+        import http.client
+        import json
+        con = http.client.HTTPConnection("127.0.0.1", self.porta, timeout=120)
+        cab = {"Cookie": self.cookie} if self.cookie else {}
+        if corpo is None:
+            con.request("GET", rota, headers=cab)
+        else:
+            cab["Content-Type"] = "application/json"
+            con.request("POST", rota, body=json.dumps(corpo), headers=cab)
+        r = con.getresponse()
+        if r.getheader("Set-Cookie"):
+            self.cookie = r.getheader("Set-Cookie").split(";")[0]
+        dados = json.loads(r.read())
+        con.close()
+        return dados
+
+
+@pytest.fixture
+def servidor_de_dois():
+    from fm.servidor import Jogo, ServidorDoJogo, criar_handler
+    jogo = Jogo(_dois())
+    srv = ServidorDoJogo(("127.0.0.1", 0), criar_handler(jogo, tela={}))
+    t = threading.Thread(target=srv.serve_forever, daemon=True)
+    t.start()
+    yield jogo, srv.server_address[1]
+    srv.shutdown()
+    srv.server_close()
+
+
+def test_cada_navegador_ve_so_o_seu_clube_e_a_data_roda_com_todos_prontos(servidor_de_dois):
+    jogo, porta = servidor_de_dois
+    ana, beto, estranho = _Navegador(porta), _Navegador(porta), _Navegador(porta)
+    assert estranho.pedir("/api/estado")["sou"] is None
+    assert ana.pedir("/api/sou", {"humano": 0})["estado"]["clube"]["nome"] == "Santos"
+    assert beto.pedir("/api/sou", {"humano": 1})["estado"]["clube"]["nome"] == "Palmeiras"
+    # cada um, no seu navegador, ve o proprio clube -- ao mesmo tempo
+    e_ana, e_beto = ana.pedir("/api/estado"), beto.pedir("/api/estado")
+    assert (e_ana["sou"], e_ana["clube"]["nome"]) == (0, "Santos")
+    assert (e_beto["sou"], e_beto["clube"]["nome"]) == (1, "Palmeiras")
+    assert e_ana["elenco"] != e_beto["elenco"]
+    # escalar mexe so no time de quem escalou
+    assert beto.pedir("/api/escalar", {"formacao": "3-5-2"}).get("ok")
+    assert beto.pedir("/api/estado")["tatica"]["formacao"] == "3-5-2"
+    assert ana.pedir("/api/estado")["tatica"]["formacao"] == "4-3-3"
+    # nada de partida ao vivo nem de "pronto" sem saber quem e
+    assert "erro" in ana.pedir("/api/partida/iniciar", {})
+    assert "erro" in estranho.pedir("/api/pronto", {"pronto": True})
+
+    data = e_ana["indice_da_data"]
+    r = ana.pedir("/api/pronto", {"pronto": True})
+    assert r["rodou"] is False
+    assert [h["pronto"] for h in r["estado"]["humanos"]] == [True, False]
+    assert beto.pedir("/api/estado")["indice_da_data"] == data, "rodou sem o Beto"
+    r = beto.pedir("/api/pronto", {"pronto": True})
+    assert r["rodou"] is True and r["estado"]["rodadas"] == 1
+    assert r["estado"]["indice_da_data"] > data
+    assert not any(h["pronto"] for h in r["estado"]["humanos"])
+    # quem jogou ve o pos-jogo do SEU jogo; quem nao jogou, nenhum
+    for nav, h in ((ana, jogo.c.humanos[0]), (beto, jogo.c.humanos[1])):
+        pos = nav.pedir("/api/posjogo")
+        if h.partida_da_data is None:
+            assert "erro" in pos
+        else:
+            assert h.clube_id in (pos["casa"]["id"], pos["fora"]["id"])
+    assert any(h.partida_da_data is not None for h in jogo.c.humanos)
+
+
+def test_o_ano_vira_com_todos_prontos_e_cada_um_ve_o_seu(servidor_de_dois):
+    jogo, porta = servidor_de_dois
+    while not jogo.c.acabou:
+        jogo.c.avancar()
+    ana, beto = _Navegador(porta), _Navegador(porta)
+    ana.pedir("/api/sou", {"humano": 0})
+    beto.pedir("/api/sou", {"humano": 1})
+    assert "erro" in ana.pedir("/api/virar", {}), "com varios, o ano vira pelo Pronto"
+    ana.pedir("/api/pronto", {"pronto": True})
+    r = beto.pedir("/api/pronto", {"pronto": True})
+    assert r["rodou"] and r["estado"]["ultima"] == "virada"
+    fim_ana, fim_beto = ana.pedir("/api/virada"), beto.pedir("/api/virada")
+    assert fim_ana["estado"]["clube"]["nome"] == "Santos"
+    assert fim_beto["estado"]["clube"]["nome"] == "Palmeiras"
+    assert fim_ana["temporada"] == fim_beto["temporada"] == 2027
 
 
 def test_o_ranking_de_tecnicos_mostra_o_nome_de_cada_humano():
@@ -311,3 +369,15 @@ def test_o_ranking_de_tecnicos_mostra_o_nome_de_cada_humano():
     jogo = Jogo(_dois())
     nomes = {x["nome"] for x in tecnicos(jogo)["ranking"]}
     assert {"Ana", "Beto"} <= nomes
+
+
+def test_o_novo_jogo_cria_a_carreira_de_varios():
+    from fm.servidor import Jogo, nova
+    jogo = Jogo()
+    r = nova(jogo, {"ligas": LIGAS, "clube": "Santos", "treinador": "Ana", "seed": 8,
+                    "outros": [{"clube": "Palmeiras", "treinador": "Beto"},
+                               {"clube": "Sport Recife", "treinador": ""}]})
+    assert r.get("ok"), r
+    assert [h["treinador"] for h in r["estado"]["humanos"]] == ["Ana", "Beto", "Treinador 3"]
+    assert [h["clube"]["nome"] for h in r["estado"]["humanos"]] == [
+        "Santos", "Palmeiras", "Sport Recife"]
