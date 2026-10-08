@@ -135,6 +135,22 @@ class TabelasPreguicosas(Mapping):
         return True       # `tabelas or {}` nao pode forcar o calculo
 
 
+# a tatica do marcador de decisao descartada (Carreira._descartar_decisao)
+DESCARTADA = {"_descartada": True}
+
+
+def _descartada(d: Decisao) -> bool:
+    return d.tatica == DESCARTADA
+
+
+def _ordem_da_decisao(chave: str) -> tuple[int, int, int]:
+    """(temporada, rodada da janela, data em que foi tomada) de "2027:5@14"; a chave antiga
+    "2027:5" e de antes da data, -1."""
+    janela, _, data = str(chave).partition("@")
+    temporada, rodada = janela.split(":")
+    return int(temporada), int(rodada), int(data) if data else -1
+
+
 @dataclass(slots=True)
 class Decisao:
     escalacao: list[int] = field(default_factory=list)
@@ -667,7 +683,7 @@ class Carreira:
             self.world.escalacao_fixa.pop(x, None)
             self.world.formacao_fixa.pop(x, None)
         self.clube_id = clube
-        self.decisoes.pop(self._chave(), None)
+        self._descartar_decisao()
         self.funcoes, self.observados, self._onze_pretendido = {}, [], []
         self.boletim_medico = {}
         for prop in self.propostas:
@@ -1038,19 +1054,47 @@ class Carreira:
         """A tatica da proxima rodada: a decidida para ela ou, se nao houver, a ultima que
         o treinador deixou -- mudar para 3-5-2 antes de um jogo nao volta ao 4-3-3 no
         seguinte. A mudanca feita DURANTE a partida fica na partida (`na_partida`)."""
-        d = self.decisoes.get(self._chave())
+        d = self._decisao_vigente()
         if d is None and self.tatica_persistente:
             d = self._ultima_decisao()
         return Tatica(**d.tatica) if d else Tatica()
 
-    def _ultima_decisao(self) -> Decisao | None:
-        def ordem(chave: str) -> tuple[int, int]:
-            temporada, rodada = chave.split(":")
-            return int(temporada), int(rodada)
+    # As decisoes valem por JANELA -- as datas ate a proxima rodada de liga, copas no meio
+    # -- e cada uma guarda a data em que foi tomada: "2027:5@14". Antes a chave era so a
+    # janela ("2027:5"), e reescalar entre um jogo de copa e a rodada seguinte apagava o
+    # que valeu na copa: o save ficava com a ultima e o replay jogava a copa diferente
+    # (08/10/2026). Saves antigos, sem "@", contam como tomados no comeco da janela.
 
-        agora = ordem(self._chave())
-        antes = [k for k in self.decisoes if ordem(k) < agora]
-        return self.decisoes[max(antes, key=ordem)] if antes else None
+    def _decisao_vigente(self) -> Decisao | None:
+        """A ultima decisao desta janela tomada ate a data de agora (None se nao ha, ou se
+        foi descartada por troca de clube ou venda de quem estava no onze)."""
+        janela = (self.temporada, self.rodada + 1)
+        tomadas = [(o, k) for k in self.decisoes
+                   if (o := _ordem_da_decisao(k))[:2] == janela and o[2] <= self.data]
+        if not tomadas:
+            return None
+        d = self.decisoes[max(tomadas)[1]]
+        return None if _descartada(d) else d
+
+    def _ultima_decisao(self) -> Decisao | None:
+        """A que valeu por ultimo numa janela anterior: e a tatica que persiste."""
+        agora = (self.temporada, self.rodada + 1)
+        final_de: dict[tuple[int, int], tuple] = {}
+        for k in self.decisoes:
+            o = _ordem_da_decisao(k)
+            if o[:2] < agora and (o[:2] not in final_de or (o, k) > final_de[o[:2]]):
+                final_de[o[:2]] = (o, k)
+        for janela in sorted(final_de, reverse=True):
+            d = self.decisoes[final_de[janela][1]]
+            if not _descartada(d):
+                return d
+        return None
+
+    def _descartar_decisao(self) -> None:
+        """A decisao da janela deixa de valer DAQUI EM DIANTE. Ela pode ja ter valido numa
+        data de copa: por isso nao se apaga -- grava-se um marcador nesta data."""
+        if self._decisao_vigente() is not None:
+            self.decisoes[f"{self._chave()}@{self.data}"] = Decisao([], dict(DESCARTADA))
 
     def escalacao_atual(self) -> list[int]:
         """O onze na ORDEM das vagas da formacao (fm.tatica.VAGAS).
@@ -1060,7 +1104,7 @@ class Carreira:
         podia cair na vaga de centroavante so por ordem de overall.
         """
         from fm.tatica import arrumar_no_campo
-        d = self.decisoes.get(self._chave())
+        d = self._decisao_vigente()
         if d and d.escalacao:
             return list(d.escalacao)
         tatica = self.tatica_atual()
@@ -1146,7 +1190,7 @@ class Carreira:
             raise ValueError(f"jogador de outro clube na escalacao: {fora}")
         if len(jogadores) != 11:
             raise ValueError(f"o onze precisa de 11 jogadores, vieram {len(jogadores)}")
-        self.decisoes[self._chave()] = Decisao(list(jogadores), asdict(tatica))
+        self.decisoes[f"{self._chave()}@{self.data}"] = Decisao(list(jogadores), asdict(tatica))
 
     def avancar(self, substituicoes=None, penaltis=None) -> tuple[list[Result], Partida | None]:
         """Joga a proxima DATA e para.
@@ -2014,9 +2058,9 @@ class Carreira:
 
     def _tirar_do_onze(self, pid: int) -> None:
         """Quem saiu nao pode continuar escalado: a proxima escalacao volta a automatica."""
-        d = self.decisoes.get(self._chave())
+        d = self._decisao_vigente()
         if d and pid in d.escalacao:
-            del self.decisoes[self._chave()]
+            self._descartar_decisao()
         if pid in self.world.escalacao_fixa.get(self.clube_id, []):
             self.world.escalacao_fixa.pop(self.clube_id, None)
         self.observados = [x for x in self.observados if x != pid]

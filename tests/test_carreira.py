@@ -276,3 +276,38 @@ def test_salvar_no_meio_da_partida_nao_grava_ponto(tmp_path, monkeypatch):
     c._no_meio_da_data = True
     c.salvar("m")
     assert not (tmp_path / "m.ponto").exists(), "o ponto antigo tambem nao vale mais"
+
+
+def _ate_a_copa_entre_rodadas(c):
+    """Avanca ate uma data de copa do usuario no meio de uma janela (depois da rodada 1)."""
+    for _ in range(80):
+        if c.rodada >= 1 and c.compromisso[0] == "copa" and c.proximo_jogo()[0] == "copa":
+            return
+        c.avancar()
+    pytest.fail("nao achei data de copa entre duas rodadas")
+
+
+@pytest.mark.parametrize("mexida", ["reescalar", "emprestar_titular"])
+def test_o_que_valeu_na_copa_fica_no_save(tmp_path, monkeypatch, mexida):
+    """REGRESSAO (08/10/2026): a decisao era guardada por rodada de liga, e as datas de copa
+    no meio usavam a mesma chave. Reescalar -- ou tirar do elenco quem estava no onze --
+    entre um jogo de copa e a rodada seguinte apagava o que valeu na copa, e o replay
+    jogava aquela data com outra tatica. O ponto do save escondia; atualizar o jogo, nao."""
+    import fm.carreira as mod
+    from fm import negocios as neg
+    monkeypatch.setattr(mod, "SAVES_DIR", tmp_path)
+    c = Carreira.nova(["brasil_real", "brasil_b_real"], "Santos", seed=8)
+    _ate_a_copa_entre_rodadas(c)
+    c.escalar(c.escalacao_atual(), Tatica(estilo="all-out", marcacao="forte"))
+    c.avancar()                                   # a copa joga com all-out
+    if mexida == "reescalar":
+        c.escalar(c.escalacao_atual(), Tatica(estilo="retrancado"))
+    else:
+        pid, para = next((p, k[0]) for p in c.escalacao_atual()[1:]
+                         if (k := neg.interessados_no_emprestimo(c, p)))
+        assert c.executar({"tipo": "emprestimo_saida", "jogador": pid, "clube": para})["ok"]
+    for _ in range(6):
+        c.avancar()
+    c.salvar("copa")
+    (tmp_path / "copa.ponto").unlink()
+    assert _foto(Carreira.carregar("copa")) == _foto(c)
