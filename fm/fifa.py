@@ -273,22 +273,32 @@ class Fifa:
 
     def jogar(self, world: World, dia: date, rng, fora: set[int] = frozenset(),
               usuario: str | None = None, convocacao: list[int] | None = None,
-              meu_jogo=None) -> tuple[list[Result], object | None]:
-        """Os jogos de selecao do dia. Os da IA no motor rapido; o da selecao do usuario,
-        se ela jogar, por `meu_jogo(mundo, jogo, andamento, outros)` -> (Result, Partida),
-        que e a partida detalhada (e ao vivo) da carreira."""
+              meu_jogo=None, usuarios: dict[str, list[int]] | None = None
+              ) -> tuple[list[Result], object | None]:
+        """Os jogos de selecao do dia. Os da IA no motor rapido; o de cada selecao de
+        tecnico humano, se ela jogar, por `meu_jogo(mundo, jogo, andamento, outros)` ->
+        (Result, Partida), que e a partida detalhada (e ao vivo) da carreira.
+
+        `usuarios` = {pais: convocacao} quando ha mais de um humano com selecao; com um
+        so, `usuario` e `convocacao` dizem o mesmo."""
         from fm.copa import proxima_etapa, registrar
         comps = competicoes_do_dia(dia)
         if not comps:
             return [], None
         self.convocar(world, dia, fora)
-        sid = id_da_selecao(usuario) if usuario else None
-        if sid is not None and sid in self.mundo.clubs:
+        if usuarios is None:
+            usuarios = {usuario: convocacao} if usuario else {}
+        sids = set()
+        for pais, lista in usuarios.items():
+            sid = id_da_selecao(pais)
+            sids.add(sid)
+            if sid not in self.mundo.clubs:
+                continue
             # a lista do treinador vale enquanto o jogador puder ir: do pais, num clube,
             # sem lesao. Sem onze na lista, a da IA.
-            validos = [p for p in (convocacao or []) if p in world.players
+            validos = [p for p in (lista or []) if p in world.players
                        and world.players[p].club_id in world.clubs
-                       and world.players[p].nationality == usuario and p not in fora]
+                       and world.players[p].nationality == pais and p not in fora]
             if len(validos) >= 11:
                 self.mundo.clubs[sid].player_ids = validos
         feitos: list[Result] = []
@@ -301,16 +311,20 @@ class Fifa:
             if etapa is None or not etapa.fixtures:
                 continue
             t = a.torneio
-            meu = next((f for f in etapa.fixtures if sid in (f.home, f.away)), None) \
-                if sid is not None and meu_jogo is not None else None
+            meus = ([f for f in etapa.fixtures if f.home in sids or f.away in sids]
+                    if meu_jogo is not None else [])
             ratings = {s: float(effective_rating(forca(self.mundo, s)))
                        for f in etapa.fixtures for s in (f.home, f.away)}
-            resultados = play_fixtures([f for f in etapa.fixtures if f is not meu],
+            resultados = play_fixtures([f for f in etapa.fixtures
+                                        if all(f is not m for m in meus)],
                                        ratings, rng, t.style, t.mentality)
-            if meu is not None:
+            if meus:
                 self.torneio_do_usuario = nome
-                r, detalhada = meu_jogo(self.mundo, meu, a, resultados)
-                resultados = [r, *resultados]
+                dos_humanos = []
+                for f in meus:
+                    r, detalhada = meu_jogo(self.mundo, f, a, resultados)
+                    dos_humanos.append(r)
+                resultados = [*dos_humanos, *resultados]
             registrar(self.mundo, a, resultados, rng, {})
             self.resultados[nome] += resultados
             feitos += resultados

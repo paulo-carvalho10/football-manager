@@ -10,8 +10,10 @@ divergisse, o determinismo estaria quebrado e o save seria a primeira vitima.
 from __future__ import annotations
 
 import json
+import threading
 from collections.abc import Callable, Iterator, Mapping
-from dataclasses import asdict, dataclass, field
+from contextlib import contextmanager
+from dataclasses import asdict, dataclass, field, fields
 from datetime import date
 from pathlib import Path
 
@@ -84,6 +86,22 @@ DISPUTAM_VAGA = {"libertadores", "sudamericana", "champions", "europa_league",
                  "conference_league"}
 
 MAX_TROCAS = 5
+MAX_HUMANOS = 8         # tecnicos de carne e osso numa mesma carreira (o online)
+
+# Quem esta com a vez DENTRO de uma conta da carreira. Ao jogar a data, a carreira passa
+# por cada humano (`Carreira._como`) e os atalhos (`c.clube_id`...) leem o dele. A vez e
+# da thread: a tela, que le a carreira de outra thread enquanto a partida ao vivo esta
+# pausada, continua vendo o humano ativo. Fora do objeto para nao ir ao save (pickle).
+_VEZ = threading.local()
+
+
+def _vez(c: Carreira) -> int:
+    pilha = getattr(_VEZ, "de", None)
+    if pilha:
+        i = pilha.get(id(c))
+        if i is not None:
+            return i
+    return c.ativo
 
 
 class TabelasPreguicosas(Mapping):
@@ -124,88 +142,36 @@ class Decisao:
 
 
 @dataclass(slots=True)
-class Carreira:
-    """A carreira roda sobre a PIRAMIDE inteira, nao sobre uma liga.
+class Humano:
+    """Um tecnico de carne e osso: o clube, as decisoes e tudo o que so ele ve e decide.
 
-    Acesso e rebaixamento exigem as divisoes no mesmo mundo: nao da para promover um clube
-    para um lugar que nao existe. Por isso `ligas` e uma lista, todas avancam juntas rodada
-    a rodada, e o clube do usuario pode mudar de divisao entre as temporadas.
+    Era tudo campo da Carreira, porque a carreira tinha um usuario so. Para jogar online
+    (ate oito no mesmo mundo) o que e de cada um mora aqui; a Carreira guarda a lista em
+    `humanos` e expoe o ativo pelos nomes de sempre (`c.clube_id`, `c.convites`...).
     """
 
-    seed: int
-    ligas: list[str]
     clube_id: int
-    temporada: int
-    rodada: int = 0
     decisoes: dict[str, Decisao] = field(default_factory=dict)
-    world: World | None = None
-    calendarios: dict[str, list[Fixture]] = field(default_factory=dict)
-    resultados: dict[str, list[Result]] = field(default_factory=dict)
-    historico: list[dict] = field(default_factory=list)
-    streams: Streams | None = None
-    # A temporada e uma lista de DATAS, nao so de rodadas: domingo tem liga, quarta tem
-    # copa. E o que faz poupar um titular ser uma decisao em vez de um detalhe.
-    agenda: list[tuple[str, str]] = field(default_factory=list)
-    data: int = 0
-    # o calendario real de cada data (fm.agenda): o dia, a fase de copa para a qual ela foi
-    # reservada e se e uma sobra do fim (so acontece se a copa atrasou)
-    dias: list = field(default_factory=list)
-    fases_da_agenda: list[int] = field(default_factory=list)
-    reservas: list[bool] = field(default_factory=list)
-    # cada liga tem as SUAS rodadas dentro da grade comum: {liga: {data de liga: rodada}}
-    rodada_propria: dict[str, dict[int, int]] = field(default_factory=dict)
-    ultimo_dia_de_energia: object = None
     # A sala de trofeus (fm.telas.sala_de_trofeus): os recordes dos jogos do tecnico e as
     # lendas de cada clube que ele dirigiu. Derivados do replay, como o resto: nao vao ao
     # save.
     recordes: dict = field(default_factory=dict)
     lendas: dict = field(default_factory=dict)
-    # O retrato da carreira no comeco da temporada em curso (pickle), tirado na virada. O
-    # `salvar` grava ao lado do save; o `carregar` parte dele e refaz so o ano em curso.
-    retrato: bytes | None = field(default=None, repr=False)
-    copas: dict = field(default_factory=dict)
-    tabelas_do_ano_anterior: dict = field(default_factory=dict)
-    # o funil entre torneios: quem cai da pre da Libertadores vai para a Sudamericana
-    exportados: dict = field(default_factory=dict)
-    # o que foi jogado na ultima data. A agenda pula datas de copa ja encerrada, entao
-    # quem chama nao consegue deduzir isso do compromisso que leu antes de avancar.
-    ultimo_compromisso: tuple[str, str] = ("", "")
-    valor_de_elenco: dict = field(default_factory=dict)
     aprovacao: object | None = None
-    estatisticas: object | None = None
     treinador: str = "Treinador"
     # O que o usuario fez DURANTE cada partida, por "temporada:data": trocas e mudancas de
     # tatica, com o minuto. Sem isto o replay do save jogava sem as substituicoes e o
     # placar carregado divergia do placar jogado.
     na_partida: dict[str, dict] = field(default_factory=dict)
-    # os outros jogos da data, ja resolvidos, enquanto a partida do usuario ainda corre:
-    # e o painel "rodada ao vivo"
-    parciais: list = field(default_factory=list)
-    # os lances (gols com autor e minuto, cartoes, trocas) dos jogos do motor rapido na data
-    # que esta sendo jogada, por (mandante, visitante). E a central da rodada.
-    lances_da_data: dict = field(default_factory=dict)
     # Capitao e cobradores. O motor le os de falta, escanteio e penalti (penaltis,
     # penaltis2, penaltis3); o capitao e so a braçadeira.
     funcoes: dict[str, int] = field(default_factory=dict)
-    # quem decide o batedor na hora do penalti, so durante um avancar(); nao vai ao save
-    _pedido_de_penalti: object = field(default=None, repr=False, compare=False)
-    # no meio de um avancar() -- a partida ao vivo roda numa thread e pode ser salva no
-    # intervalo: ai o estado e de meia data e nao vira ponto do save
-    _no_meio_da_data: bool = field(default=False, repr=False, compare=False)
     # a lista de observacao do mercado
     observados: list[int] = field(default_factory=list)
     # A tatica escolhida vale ate a proxima mudanca, e nao so na rodada em que foi feita.
     # Saves de antes disto jogavam a rodada sem decisao no padrao, e o replay deles
     # precisa continuar jogando assim -- por isso a regra nova e uma marca do save.
     tatica_persistente: bool = True
-    # um caderno de artilharia por competicao ("brasil_real", "libertadores"...) no ano
-    estatisticas_por_comp: dict = field(default_factory=dict)
-    # {liga: {rodada: selecao}} -- a selecao de cada rodada de liga do ano (fm.selecao)
-    selecoes: dict = field(default_factory=dict)
-    # cartoes acumulados e suspensoes, por competicao (fm.disciplina)
-    disciplina: object | None = None
-    # as selecoes, as eliminatorias e a Copa do Mundo (fm.fifa): atravessa as temporadas
-    fifa: object | None = None
     # A selecao que o usuario treina (o pais), o convite em aberto, e o que ele decidiu
     # para ela: a convocacao, o onze e a tatica (vazio = a IA decide). Tudo isso vem das
     # acoes gravadas (`executar`), entao o replay refaz igual.
@@ -222,54 +188,145 @@ class Carreira:
     # do clube nao mistura com a da selecao)
     jogos_da_selecao: dict = field(default_factory=dict)
     competicoes_da_selecao: dict = field(default_factory=dict)
-    # Durante a partida da selecao, e ate a data seguinte: (id da selecao, mundo das
-    # selecoes). E por aqui que a tela ao vivo, o banco e as trocas sabem qual e o "meu
-    # time" -- no resto do tempo, o clube.
-    _em_campo: tuple | None = field(default=None, repr=False, compare=False)
-    # quem esta machucado e por quantos jogos (fm.lesoes). Como o gancho, nao vai ao
-    # save: o replay refaz as mesmas lesoes.
-    medico: object | None = None
     # o boletim da ultima data do usuario: [(id, tipo, jogos)] de quem se machucou e
     # [id] de quem voltou. E o que as mensagens do departamento medico mostram.
     boletim_medico: dict = field(default_factory=dict)
-    # Negocios do usuario (fm.negocios): compra, renovacao, venda e resposta a proposta,
-    # cada um com a temporada e a data em que aconteceu. E isto que o save guarda e o
-    # replay reaplica no mesmo ponto -- o resto dos negocios e deterministico.
-    acoes: list[dict] = field(default_factory=list)
     propostas: list = field(default_factory=list)        # recebidas no ano (fm.negocios)
     movimentos: list[dict] = field(default_factory=list)  # historico de entradas e saidas
     # o onze que o usuario ESCOLHEU, guardado enquanto a data corre com o reserva no lugar
     # do suspenso -- depois da data ele volta, e o suspenso volta sozinho quando cumprir
     _onze_pretendido: list[int] = field(default_factory=list)
-    # Os tecnicos do mundo (fm.tecnicos), o usuario com id 0. Gerados pela seed e
-    # atualizados na virada: nao vao ao save, o replay refaz.
-    tecnicos: dict = field(default_factory=dict)
     # clubes que chamam o usuario agora (na virada ou depois de uma demissao) e as vagas
     # que a IA preenche na proxima data
     convites: list[int] = field(default_factory=list)
-    vagas: list[int] = field(default_factory=list)
-    premios: dict = field(default_factory=dict)          # {temporada: premios do ano}
     # o clube em que a carreira COMECOU: o replay parte dele, e as trocas sao acoes
     clube_inicial: int | None = None
-    # ligas no mundo sem calendario (LIGAS_DA_CONFEDERACAO): derivadas, nao vao ao save
-    ligas_de_fora: list[str] = field(default_factory=list)
     # o jogo do usuario em cada data do ano: {data: Result}. O calendario e os ultimos
     # jogos leem daqui -- em ordem, e com as copas, que a tabela da liga nao tem
     jogos_do_usuario: dict = field(default_factory=dict)
+    # o resumo de cada temporada que ele fechou (o que a tela de fim de ano mostrou)
+    historico: list[dict] = field(default_factory=list)
+    # Durante a partida da selecao, e ate a data seguinte: (id da selecao, mundo das
+    # selecoes). E por aqui que a tela ao vivo, o banco e as trocas sabem qual e o "meu
+    # time" -- no resto do tempo, o clube.
+    _em_campo: tuple | None = field(default=None, repr=False, compare=False)
+    # a partida dele na ultima data jogada (motor de eventos), para a tela; nao vai ao save
+    partida_da_data: object = field(default=None, repr=False, compare=False)
+    # o id dele em `tecnicos` (fm.tecnicos): o primeiro humano e o USUARIO de sempre
+    tecnico_id: int = 0
+
+
+@dataclass(slots=True)
+class Carreira:
+    """A carreira roda sobre a PIRAMIDE inteira, nao sobre uma liga.
+
+    Acesso e rebaixamento exigem as divisoes no mesmo mundo: nao da para promover um clube
+    para um lugar que nao existe. Por isso `ligas` e uma lista, todas avancam juntas rodada
+    a rodada, e o clube do usuario pode mudar de divisao entre as temporadas.
+    """
+
+    seed: int
+    ligas: list[str]
+    temporada: int
+    # Os tecnicos humanos (fm.carreira.Humano) e qual deles esta com o controle. No
+    # jogo de um so, um humano; online, ate oito no mesmo mundo. Os nomes de antes
+    # (clube_id, decisoes, convites...) continuam: sao atalhos para o humano ativo.
+    humanos: list = field(default_factory=list)
+    ativo: int = 0
+    rodada: int = 0
+    world: World | None = None
+    calendarios: dict[str, list[Fixture]] = field(default_factory=dict)
+    resultados: dict[str, list[Result]] = field(default_factory=dict)
+    streams: Streams | None = None
+    # A temporada e uma lista de DATAS, nao so de rodadas: domingo tem liga, quarta tem
+    # copa. E o que faz poupar um titular ser uma decisao em vez de um detalhe.
+    agenda: list[tuple[str, str]] = field(default_factory=list)
+    data: int = 0
+    # o calendario real de cada data (fm.agenda): o dia, a fase de copa para a qual ela foi
+    # reservada e se e uma sobra do fim (so acontece se a copa atrasou)
+    dias: list = field(default_factory=list)
+    fases_da_agenda: list[int] = field(default_factory=list)
+    reservas: list[bool] = field(default_factory=list)
+    # cada liga tem as SUAS rodadas dentro da grade comum: {liga: {data de liga: rodada}}
+    rodada_propria: dict[str, dict[int, int]] = field(default_factory=dict)
+    ultimo_dia_de_energia: object = None
+    # O retrato da carreira no comeco da temporada em curso (pickle), tirado na virada. O
+    # `salvar` grava ao lado do save; o `carregar` parte dele e refaz so o ano em curso.
+    retrato: bytes | None = field(default=None, repr=False)
+    copas: dict = field(default_factory=dict)
+    tabelas_do_ano_anterior: dict = field(default_factory=dict)
+    # o funil entre torneios: quem cai da pre da Libertadores vai para a Sudamericana
+    exportados: dict = field(default_factory=dict)
+    # o que foi jogado na ultima data. A agenda pula datas de copa ja encerrada, entao
+    # quem chama nao consegue deduzir isso do compromisso que leu antes de avancar.
+    ultimo_compromisso: tuple[str, str] = ("", "")
+    valor_de_elenco: dict = field(default_factory=dict)
+    estatisticas: object | None = None
+    # os outros jogos da data, ja resolvidos, enquanto a partida do usuario ainda corre:
+    # e o painel "rodada ao vivo"
+    parciais: list = field(default_factory=list)
+    # os lances (gols com autor e minuto, cartoes, trocas) dos jogos do motor rapido na data
+    # que esta sendo jogada, por (mandante, visitante). E a central da rodada.
+    lances_da_data: dict = field(default_factory=dict)
+    # quem decide o batedor na hora do penalti, so durante um avancar(); nao vai ao save
+    _pedido_de_penalti: object = field(default=None, repr=False, compare=False)
+    # no meio de um avancar() -- a partida ao vivo roda numa thread e pode ser salva no
+    # intervalo: ai o estado e de meia data e nao vira ponto do save
+    _no_meio_da_data: bool = field(default=False, repr=False, compare=False)
+    # um caderno de artilharia por competicao ("brasil_real", "libertadores"...) no ano
+    estatisticas_por_comp: dict = field(default_factory=dict)
+    # {liga: {rodada: selecao}} -- a selecao de cada rodada de liga do ano (fm.selecao)
+    selecoes: dict = field(default_factory=dict)
+    # cartoes acumulados e suspensoes, por competicao (fm.disciplina)
+    disciplina: object | None = None
+    # as selecoes, as eliminatorias e a Copa do Mundo (fm.fifa): atravessa as temporadas
+    fifa: object | None = None
+    # quantos jogos de tecnico humano ja sairam na data FIFA em curso: o primeiro usa o
+    # fluxo de sempre da partida da selecao, os outros um fluxo por jogo
+    _humanos_na_data: int = field(default=0, repr=False, compare=False)
+    # quem esta machucado e por quantos jogos (fm.lesoes). Como o gancho, nao vai ao
+    # save: o replay refaz as mesmas lesoes.
+    medico: object | None = None
+    # Negocios do usuario (fm.negocios): compra, renovacao, venda e resposta a proposta,
+    # cada um com a temporada e a data em que aconteceu. E isto que o save guarda e o
+    # replay reaplica no mesmo ponto -- o resto dos negocios e deterministico.
+    acoes: list[dict] = field(default_factory=list)
+    # Os tecnicos do mundo (fm.tecnicos), o usuario com id 0. Gerados pela seed e
+    # atualizados na virada: nao vao ao save, o replay refaz.
+    tecnicos: dict = field(default_factory=dict)
+    vagas: list[int] = field(default_factory=list)
+    premios: dict = field(default_factory=dict)          # {temporada: premios do ano}
+    # ligas no mundo sem calendario (LIGAS_DA_CONFEDERACAO): derivadas, nao vao ao save
+    ligas_de_fora: list[str] = field(default_factory=list)
 
     @classmethod
-    def nova(cls, ligas: list[str] | str, clube: str, seed: int = 2027) -> Carreira:
+    def nova(cls, ligas: list[str] | str, clube: str, seed: int = 2027,
+             outros: list[str] | None = None,
+             treinadores: list[str] | None = None) -> Carreira:
+        """A carreira nova, com o clube do primeiro tecnico humano e, em `outros`, os dos
+        demais (ate MAX_HUMANOS ao todo, cada um num clube). `treinadores` sao os nomes,
+        na mesma ordem; quem chama pode troca-los antes da primeira data."""
         if isinstance(ligas, str):
             ligas = [ligas]
         cfgs = [load_league(n) for n in ligas]
         world, streams = build_world(cfgs, seed=seed)
-        alvo = next((c for c in world.clubs.values()
-                     if c.name.lower() == clube.lower()), None)
-        if alvo is None:
-            nomes = sorted(c.name for c in world.clubs.values())
-            raise ValueError(f"clube {clube!r} nao esta em {ligas}. Ha: {nomes}")
-        c = cls(seed=seed, ligas=list(ligas), clube_id=alvo.id,
-                temporada=world.season_year)
+        nomes_dos_clubes = [clube, *(outros or [])]
+        if len(nomes_dos_clubes) > MAX_HUMANOS:
+            raise ValueError(f"no maximo {MAX_HUMANOS} tecnicos por carreira")
+        alvos = []
+        for nome in nomes_dos_clubes:
+            alvo = next((c for c in world.clubs.values()
+                         if c.name.lower() == nome.lower()), None)
+            if alvo is None:
+                nomes = sorted(c.name for c in world.clubs.values())
+                raise ValueError(f"clube {nome!r} nao esta em {ligas}. Ha: {nomes}")
+            if any(a.id == alvo.id for a in alvos):
+                raise ValueError(f"dois tecnicos no {alvo.name}: cada um tem o seu clube")
+            alvos.append(alvo)
+        humanos = [Humano(clube_id=a.id, tecnico_id=i) for i, a in enumerate(alvos)]
+        for h, nome in zip(humanos, treinadores or [], strict=False):
+            h.treinador = nome
+        c = cls(seed=seed, ligas=list(ligas), temporada=world.season_year, humanos=humanos)
         c._montar(world, streams)
         return c
 
@@ -277,17 +334,72 @@ class Carreira:
         from fm.tecnicos import gerar
         self.world = world
         self.streams = streams
-        if self.clube_inicial is None:
-            self.clube_inicial = self.clube_id
+        for h in self.humanos:
+            if h.clube_inicial is None:
+                h.clube_inicial = h.clube_id
         if self.fifa is None:
             from fm.fifa import Fifa
             self.fifa = Fifa()
         self._carregar_ligas_de_fora()
         self._novo_calendario()
         self.tecnicos = gerar(world, {self._id(n) for n in self.ligas},
-                              streams.get("tecnicos"), self.temporada, self.clube_id,
-                              self.treinador)
-        self.convidar_para_selecao()
+                              streams.get("tecnicos"), self.temporada,
+                              [h.clube_id for h in self.humanos],
+                              [h.treinador for h in self.humanos])
+        for i in range(len(self.humanos)):
+            with self._como(i):
+                self.convidar_para_selecao()
+
+    # ---------------------------------------------------------------- os humanos
+
+    @contextmanager
+    def _como(self, i: int) -> Iterator[Humano]:
+        """Faz a conta como o humano `i`: dentro do bloco, `c.clube_id`, `c.decisoes`... sao
+        os dele. So nesta thread -- a tela continua vendo o ativo."""
+        pilha = getattr(_VEZ, "de", None)
+        if pilha is None:
+            pilha = _VEZ.de = {}
+        chave = id(self)
+        antes = pilha.get(chave)
+        pilha[chave] = i
+        try:
+            yield self.humanos[i]
+        finally:
+            if antes is None:
+                pilha.pop(chave, None)
+            else:
+                pilha[chave] = antes
+
+    @property
+    def humano(self) -> Humano:
+        """O humano da vez: o ativo, ou aquele por quem a carreira esta fazendo a conta."""
+        return self.humanos[_vez(self)]
+
+    def clubes_humanos(self) -> set[int]:
+        """Os clubes de tecnico humano. A IA nao compra deles nem mexe no elenco deles."""
+        return {h.clube_id for h in self.humanos}
+
+    def _humanos_em_campo(self) -> list[int]:
+        """Os humanos que dirigem um clube nesta data: todos. O demitido continua com o
+        clube dele ate assumir outro -- e o que a carreira de um tecnico so sempre fez, e
+        o que o teste de vinte temporadas (que avanca demitido) mede."""
+        return list(range(len(self.humanos)))
+
+    def _clubes_de_outros(self) -> set[int]:
+        """Os clubes dos OUTROS humanos, demitidos inclusive: nenhum deles e convite."""
+        return {h.clube_id for h in self.humanos if h is not self.humano}
+
+    def _fluxo(self, *chave):
+        """O fluxo aleatorio de uma decisao do humano da vez. O primeiro usa a chave de
+        sempre (a carreira de um tecnico so nao muda); os outros, a dele."""
+        tid = self.humano.tecnico_id
+        return self.streams.get(*chave) if tid == 0 else self.streams.get(*chave, "tecnico", tid)
+
+    def _gravar_acao(self, acao: dict) -> None:
+        """A acao vai ao save com a data -- e com o humano que a fez, quando nao e o primeiro."""
+        i = _vez(self)
+        self.acoes.append({**acao, "temporada": self.temporada, "data": self.data,
+                           **({"humano": i} if i else {})})
 
     def _novo_calendario(self) -> None:
         self.calendarios = {}
@@ -305,16 +417,20 @@ class Carreira:
             self.resultados[nome] = []
             assert world_ids is not None
         self.data = 0
-        self.jogos_do_usuario = {}
-        self.jogos_da_selecao = {}
-        self.competicoes_da_selecao = {}
+        for h in self.humanos:
+            h.jogos_do_usuario = {}
+            h.jogos_da_selecao = {}
+            h.competicoes_da_selecao = {}
+            h.boletim_medico = {}
         self._montar_agenda()
         # o valor de elenco do INICIO do ano e o que paga a receita: sem congelar, comprar
         # jogador aumentaria o faturamento do mesmo ano e o clube rico viraria bola de neve
         from fm.financas import valor_do_elenco
         self.valor_de_elenco = {c.id: valor_do_elenco(self.world, c.id)
                                 for c in self.world.clubs.values()}
-        self._nova_meta()
+        for i in range(len(self.humanos)):
+            with self._como(i):
+                self._nova_meta()
         from fm.estatisticas import Estatisticas
         self.estatisticas = Estatisticas(temporada=self.temporada)
         self.estatisticas_por_comp = {}
@@ -323,7 +439,6 @@ class Carreira:
         self.disciplina = Disciplina()      # gancho nao atravessa a virada do ano
         from fm.lesoes import DepartamentoMedico
         self.medico = DepartamentoMedico()  # a pre-temporada cura todo mundo
-        self.boletim_medico = {}
         self.world.indisponiveis = set()
 
     def _montar_agenda(self) -> None:
@@ -500,7 +615,7 @@ class Carreira:
         do ano quem chama sao os clubes em crise (o tecnico deles sai para o usuario
         entrar); na virada, as vagas que a IA abriu."""
         from fm import tecnicos as tec
-        eu = self.tecnicos.get(tec.USUARIO)
+        eu = self.tecnicos.get(self.humano.tecnico_id)
         if eu is None:
             return
         tec.ajustar(eu, tec.DEMISSAO_PEDIDA if pedida else tec.DEMISSAO)
@@ -508,18 +623,22 @@ class Carreira:
         if self.clube_id not in self.vagas:
             self.vagas.append(self.clube_id)
         if meio_do_ano:
-            candidatos = self._clubes_em_crise()
+            outros = self._clubes_de_outros()
+            candidatos = [k for k in self._clubes_em_crise() if k not in outros]
             self.convites = tec.convites(self.world, self.tecnicos, candidatos, None, True,
-                                         self._clubes_da_ultima_divisao(),
-                                         self.streams.get("convites", self.temporada, self.data))
+                                         [k for k in self._clubes_da_ultima_divisao()
+                                          if k not in outros],
+                                         self._fluxo("convites", self.temporada, self.data),
+                                         usuario=eu.id)
 
     def _clubes_em_crise(self) -> list[int]:
         """Os 40% de baixo de cada tabela, com tecnico do computador."""
+        humanos = self.clubes_humanos()
         fora = []
         for nome in self.ligas:
             tabela = self.tabela(nome)
             corte = int(len(tabela) * 0.6)
-            fora += [ln.club_id for ln in tabela[corte:] if ln.club_id != self.clube_id]
+            fora += [ln.club_id for ln in tabela[corte:] if ln.club_id not in humanos]
         return fora
 
     def _clubes_da_ultima_divisao(self) -> list[int]:
@@ -534,8 +653,12 @@ class Carreira:
         outro = tec.do_clube(self.tecnicos, clube)
         if outro is not None and not outro.usuario:
             outro.clube = None
-        eu = self.tecnicos[tec.USUARIO]
+        eu = self.tecnicos[self.humano.tecnico_id]
         eu.clube = clube
+        # o clube tem tecnico de novo: o convite dele aos outros humanos acabou
+        for h in self.humanos:
+            if h is not self.humano and clube in h.convites:
+                h.convites = [k for k in h.convites if k != clube]
         eu.passagens.append([self.temporada, self.world.clubs[clube].name])
         if antigo != clube and antigo not in self.vagas:
             self.vagas.append(antigo)
@@ -631,22 +754,32 @@ class Carreira:
             t.variacao = round(t.variacao + bonus.get(t.id, 0.0), 1)
 
     def _mercado_de_tecnicos(self, dados: dict) -> None:
-        """Fim da virada: a IA demite, o usuario (se demitido) perde reputacao, e as vagas
-        viram convites para ele."""
+        """Fim da virada: a IA demite, cada humano demitido perde reputacao, e as vagas
+        viram convites -- um humano por vez, na ordem deles."""
         from fm import tecnicos as tec
         self.vagas = tec.demissoes_da_ia(self.tecnicos, dados,
                                          self.streams.get("demissoes_da_ia", self.temporada))
+        for i in range(len(self.humanos)):
+            with self._como(i):
+                self._convites_da_virada(dados)
+
+    def _convites_da_virada(self, dados: dict) -> None:
+        from fm import tecnicos as tec
+        eu = self.humano.tecnico_id
         demitido = self.demitido
         if demitido:
             self._ao_ser_demitido(meio_do_ano=False)
         # o clube que acabou de demitir o usuario nao o chama de volta
         candidatos = [v for v in self.vagas if not (demitido and v == self.clube_id)]
         candidatos += tec.assediam(self.world, self.tecnicos, dados,
-                                   None if demitido else self.clube_id)
-        reserva = [k for k in self._clubes_da_ultima_divisao() if k != self.clube_id]
+                                   None if demitido else self.clube_id, usuario=eu)
+        outros = self._clubes_de_outros()
+        candidatos = [k for k in candidatos if k not in outros]
+        reserva = [k for k in self._clubes_da_ultima_divisao()
+                   if k != self.clube_id and k not in outros]
         self.convites = tec.convites(self.world, self.tecnicos, candidatos,
                                      None if demitido else self.clube_id, demitido, reserva,
-                                     self.streams.get("convites", self.temporada))
+                                     self._fluxo("convites", self.temporada), usuario=eu)
 
     def _titulos_de_copa(self) -> dict[str, list[int]]:
         """Campeao e vice de cada copa, na ordem em que as regras de vaga esperam."""
@@ -678,10 +811,12 @@ class Carreira:
                 fora[r.away] = fora.get(r.away, 0) + 1
         return fora
 
-    def _penaltis_se_empatou(self, andamento, partida: Partida) -> None:
+    def _penaltis_se_empatou(self, andamento, partida: Partida, cobradores=None,
+                             rng=None) -> None:
         """O jogo decisivo do usuario no mata-mata (a volta, ou o jogo unico) terminou com
         o agregado empatado: disputa de penaltis com quem terminou em campo. Fica na
-        partida (a tela acompanha cobranca a cobranca) e no andamento (a apuracao usa)."""
+        partida (a tela acompanha cobranca a cobranca) e no andamento (a apuracao usa).
+        `cobradores` e `rng` vem de quem chama quando o jogo e de mais de um humano."""
         from fm.disputa import disputar
         t = andamento.torneio
         if andamento.fase >= len(t.fases):
@@ -704,10 +839,11 @@ class Carreira:
         gols[partida.fora] += partida.gols_fora
         if gols[par[0]] != gols[par[1]]:
             return
-        rng = self.streams.get("disputa", self.temporada, self.data)
+        rng = rng or self.streams.get("disputa", self.temporada, self.data)
         partida.disputa = disputar(self.world, partida.casa, partida.fora,
                                    partida.em_campo_casa, partida.em_campo_fora, rng,
-                                   {self.clube_id: self.cobradores()})
+                                   cobradores if cobradores is not None
+                                   else {self.clube_id: self.cobradores()})
         andamento.disputas[(int(par[0]), int(par[1]))] = partida.disputa
 
     def _repassar_exportados(self, andamento) -> None:
@@ -1022,25 +1158,33 @@ class Carreira:
         if self.acabou:
             raise RuntimeError("a temporada acabou; chame virar_o_ano()")
         # convite nao respondido caduca quando a bola rola; a IA ocupa as vagas que sobraram
-        if not self.demitido:
-            self.convites = []
+        for h in self.humanos:
+            if not (h.aprovacao and h.aprovacao.demitido):
+                h.convites = []
         if self.vagas:
             from fm.tecnicos import preencher_vagas
             preencher_vagas(self.world, self.tecnicos, self.vagas, self.streams,
                             self.temporada)
             self.vagas = []
         # proposta sem resposta ate o apito da proxima data caduca
-        for prop in self.propostas:
-            if prop.status == "pendente":
-                prop.status = "expirada"
+        for h in self.humanos:
+            for prop in h.propostas:
+                if prop.status == "pendente":
+                    prop.status = "expirada"
+            h._em_campo = None
+            h.partida_da_data = None
+        # `substituicoes` e `penaltis` sao da tela do humano ATIVO: a partida dele e a que
+        # passa ao vivo. Os outros jogam com as instrucoes que deixaram (e, no replay, com
+        # o que fizeram na hora, gravado em `na_partida`).
         # `penaltis(partida, minuto, clube)` e chamado em todo penalti da minha partida,
         # dos dois lados (a tela pausa nos dois); so a resposta para o MEU clube vale
         self._pedido_de_penalti = penaltis
         self._no_meio_da_data = True
-        self._em_campo = None
         try:
             saida = self._avancar_data(substituicoes)
-            self._novas_propostas()
+            for i in range(len(self.humanos)):
+                with self._como(i):
+                    self._novas_propostas()
         finally:
             self._pedido_de_penalti = None
             self._no_meio_da_data = False
@@ -1077,21 +1221,28 @@ class Carreira:
         return [], None
 
     def _jogar_data_fifa(self, substituicoes=None) -> tuple[list[Result], Partida] | None:
-        """Os jogos de selecao do dia (fm.fifa); o da selecao do usuario em detalhe."""
+        """Os jogos de selecao do dia (fm.fifa); os das selecoes dos humanos em detalhe.
+        None (a data passa sem parar) quando nenhum humano jogou. A regra nao olha QUEM
+        esta com o controle: se olhasse, o replay pararia em datas diferentes das do jogo e
+        as acoes do save cairiam na data errada."""
         rng = self.streams.get("selecoes", self.temporada, self.data)
         fora = set(self.medico.lesionados) if self.medico else set()
+        com_selecao = {h.selecao_do_usuario: h.convocacao_do_usuario
+                       for h in self.humanos if h.selecao_do_usuario}
 
         def meu_jogo(mundo, f, andamento, outros):
             return self._partida_da_selecao(mundo, f, andamento, outros, substituicoes)
 
-        resultados, detalhada = self.fifa.jogar(
-            self.world, self.dia(), rng, fora, usuario=self.selecao_do_usuario,
-            convocacao=self.convocacao_do_usuario,
-            meu_jogo=meu_jogo if self.selecao_do_usuario else None)
-        self._demitir_da_selecao_se_ficou_fora()
-        if detalhada is None:
+        self._humanos_na_data = 0
+        resultados, _ = self.fifa.jogar(self.world, self.dia(), rng, fora,
+                                        usuarios=com_selecao,
+                                        meu_jogo=meu_jogo if com_selecao else None)
+        for i in range(len(self.humanos)):
+            with self._como(i):
+                self._demitir_da_selecao_se_ficou_fora()
+        if not self._humanos_na_data:
             return None
-        return resultados, detalhada
+        return resultados, self.humanos[self.ativo].partida_da_data
 
     def _onze_da_selecao(self, mundo, sid: int, tatica: Tatica) -> list[int]:
         """O onze escolhido, se ele ainda vale (todos convocados); senao os melhores."""
@@ -1107,41 +1258,62 @@ class Carreira:
 
     def _partida_da_selecao(self, mundo, f: Fixture, andamento, outros: list[Result],
                             substituicoes) -> tuple[Result, Partida]:
-        """A partida da selecao do usuario: o motor de eventos, como a do clube, com a
-        convocacao, o onze e a tatica dele -- e a tela ao vivo, as trocas e o penalti."""
+        """A partida das selecoes de tecnico humano neste jogo (uma, ou as duas quando dois
+        humanos se enfrentam): o motor de eventos, como a do clube, com a convocacao, o
+        onze e a tatica de cada um -- e a tela ao vivo, as trocas e o penalti do ativo."""
         from fm.central import detalhar
         from fm.selecoes import id_da_selecao
         from fm.tatica import confronto, papeis_em_campo
-        sid = id_da_selecao(self.selecao_do_usuario)
-        sou_casa = f.home == sid
-        tatica = self.tatica_da_selecao_atual()
-        onze = self._onze_da_selecao(mundo, sid, tatica)
-        mundo.escalacao_fixa[sid] = onze
-        rival = f.away if sou_casa else f.home
-        onze_rival = [p.id for p in mundo.best_xi(rival)]
+        lados = [(i, id_da_selecao(h.selecao_do_usuario)) for i, h in enumerate(self.humanos)
+                 if h.selecao_do_usuario
+                 and id_da_selecao(h.selecao_do_usuario) in (f.home, f.away)]
+        taticas = {f.home: Tatica(), f.away: Tatica()}
+        onzes: dict[int, list[int]] = {}
+        papeis: dict[int, str] = {}
+        for i, sid in lados:
+            with self._como(i):
+                taticas[sid] = self.tatica_da_selecao_atual()
+                onzes[sid] = self._onze_da_selecao(mundo, sid, taticas[sid])
+            mundo.escalacao_fixa[sid] = onzes[sid]
+            papeis.update(papeis_em_campo(onzes[sid], taticas[sid].vagas_do_campo()))
+        for lado in (f.home, f.away):
+            if lado not in onzes:
+                onzes[lado] = [p.id for p in mundo.best_xi(lado)]
         # os outros jogos do dia, para a rodada ao vivo: fluxo proprio, nada muda no placar
         rng_lances = self.streams.get("selecoes_lances", self.temporada, self.data)
         self.parciais = list(outros)
         self.lances_da_data = {(r.home, r.away): detalhar(mundo, r, rng_lances)
                                for r in outros}
-        ma, md = confronto(tatica, Tatica()) if sou_casa else confronto(Tatica(), tatica)
+        ma, md = confronto(taticas[f.home], taticas[f.away])
         chave = f"{self.temporada}:{self.data}"
         t = andamento.torneio
-        self._em_campo = (sid, mundo)
+        for i, sid in lados:
+            self.humanos[i]._em_campo = (sid, mundo)
+        # o primeiro jogo de humano da data usa o fluxo de sempre; os outros, um por jogo
+        primeiro = self._humanos_na_data == 0
+        self._humanos_na_data += 1
+        extra = () if primeiro else (f.home, f.away)
         partida = simular_partida(
-            mundo, f.home, f.away, onze if sou_casa else onze_rival,
-            onze_rival if sou_casa else onze,
-            self.streams.get("partida_da_selecao", self.temporada, self.data),
+            mundo, f.home, f.away, onzes[f.home], onzes[f.away],
+            self.streams.get("partida_da_selecao", self.temporada, self.data, *extra),
             t.style, t.mentality, mult_casa=ma, mult_fora=md,
-            substituicoes=self._no_banco(substituicoes, chave, sou_casa),
-            papeis=papeis_em_campo(onze, tatica.vagas_do_campo()),
-            penaltis=self._na_marca(chave),
-            bancos={f.home: self.banco(f.home), f.away: self.banco(f.away)},
+            substituicoes=self._decisor_de_trocas(lados, substituicoes, chave, f.home,
+                                                  f.away, mundo, taticas),
+            papeis=papeis,
+            penaltis=self._decisor_de_penaltis([i for i, _ in lados], chave),
+            bancos={f.home: self.banco(f.home, mundo), f.away: self.banco(f.away, mundo)},
             max_trocas=MAX_TROCAS)
-        self._penaltis_se_empatou(andamento, partida)
+        self._penaltis_se_empatou(
+            andamento, partida,
+            cobradores={self.humanos[i].clube_id: _cobradores_de(self.humanos[i])
+                        for i, _ in lados},
+            rng=self.streams.get("disputa", self.temporada, self.data, *extra))
         r = Result(f.home, f.away, partida.gols_casa, partida.gols_fora, f.matchday)
-        self.jogos_da_selecao[self.data] = r
-        self.competicoes_da_selecao[self.data] = self.fifa.torneio_do_usuario
+        for i, _ in lados:
+            h = self.humanos[i]
+            h.jogos_da_selecao[self.data] = r
+            h.competicoes_da_selecao[self.data] = self.fifa.torneio_do_usuario
+            h.partida_da_data = partida
         return r, partida
 
     def proximo_jogo_da_selecao(self) -> tuple[int, str] | None:
@@ -1169,11 +1341,11 @@ class Carreira:
 
     def _jogar_rodada(self, substituicoes=None) -> tuple[list[Result], Partida | None]:
         n = self.rodada + 1
-        tatica = self.tatica_atual()
-        self._preparar_desfalques(self.ligas, tatica)
+        taticas = self._taticas_da_data()
+        self._preparar_desfalques(self.ligas, taticas)
+        meus_clubes = {self.humanos[i].clube_id: i for i in taticas}
 
-        meu_jogo = self.proxima_partida()
-        detalhada: Partida | None = None
+        detalhadas: list[Partida] = []
         todos: list[Result] = []
         jogaram: set[int] = set()
         por_liga: dict[str, list[Result]] = {}
@@ -1194,19 +1366,19 @@ class Carreira:
             rng = self.streams.get("carreira", self.temporada, n, lid)
             style = style_of(cfg)
 
-            if meu_jogo is not None and meu_jogo in partidas:
-                # os outros ANTES do meu: enquanto a minha partida pausa, a rodada ao vivo
-                # ja tem o que mostrar
-                outras = [f for f in partidas if f is not meu_jogo]
+            humanas = [f for f in partidas if f.home in meus_clubes or f.away in meus_clubes]
+            if humanas:
+                # os outros ANTES dos humanos: enquanto a partida ao vivo pausa, a rodada ao
+                # vivo ja tem o que mostrar
+                outras = [f for f in partidas if all(f is not x for x in humanas)]
                 r = play_fixtures(outras, ratings, rng, style)
                 self.parciais = list(r)
                 self._detalhar(r)      # a central da rodada ja tem quem marcou e quando
-                detalhada = self._minha_partida(meu_jogo, rng, style, tatica,
-                                                substituicoes)
-                r.append(Result(meu_jogo.home, meu_jogo.away,
-                                detalhada.gols_casa, detalhada.gols_fora, n))
-                self.jogos_do_usuario[self.data] = r[-1]
-                self._anotar_recorde(r[-1], nome)
+                feitas = self._partidas_humanas(humanas, rng, style, taticas, substituicoes)
+                for f, d in zip(humanas, feitas, strict=True):
+                    r.append(Result(f.home, f.away, d.gols_casa, d.gols_fora, n))
+                    self._registrar_jogo_humano(r[-1], d, nome, meus_clubes)
+                detalhadas += feitas
             else:
                 r = play_fixtures(partidas, ratings, rng, style)
                 self._detalhar(r)
@@ -1222,23 +1394,71 @@ class Carreira:
         from fm.selecao import selecao_da_rodada
         comp_de = {(r.home, r.away): nome for nome, rs in por_liga.items() for r in rs}
         rodada = {nome: Estatisticas(temporada=self.temporada) for nome in por_liga}
-        self._somar_estatisticas(todos, detalhada, rng_est, comp_de, rodada)
+        self._somar_estatisticas(todos, detalhadas, rng_est, comp_de, rodada)
         for nome, rs in por_liga.items():
-            minha = detalhada if detalhada is not None and any(
-                (x.home, x.away) == (detalhada.casa, detalhada.fora) for x in rs) else None
+            pares = {(x.home, x.away) for x in rs}
+            minhas = [d for d in detalhadas if (d.casa, d.fora) in pares]
             self.selecoes.setdefault(nome, {})[n] = selecao_da_rodada(
-                self.world, rs, rodada[nome], minha)
+                self.world, rs, rodada[nome], minhas)
             clubes = {x.home for x in rs} | {x.away for x in rs}
-            self._cartoes_da_data(nome, rs, minha, clubes)
-        self._moral_da_data(todos, detalhada)
-        self._lesoes_da_data(todos, detalhada)
+            self._cartoes_da_data(nome, rs, minhas, clubes)
+        self._moral_da_data(todos, detalhadas)
+        self._lesoes_da_data(todos, detalhadas)
 
-        self._gastar_energia(jogaram, tatica)
-        self._encerrar_desfalques()
+        self._gastar_energia(jogaram, self._custos_de_energia(taticas))
+        self._encerrar_desfalques(taticas)
         self.rodada = n
         self.data += 1
-        self._checar_emprego()
-        return todos, detalhada
+        self._checar_emprego_de_todos()
+        return todos, self.humanos[self.ativo].partida_da_data
+
+    def _taticas_da_data(self) -> dict[int, Tatica]:
+        """{humano: tatica} de quem dirige um clube nesta data."""
+        fora = {}
+        for i in self._humanos_em_campo():
+            with self._como(i):
+                fora[i] = self.tatica_atual()
+        return fora
+
+    def _custos_de_energia(self, taticas: dict[int, Tatica]) -> dict[int, float]:
+        return {self.humanos[i].clube_id: t.custo_de_energia for i, t in taticas.items()}
+
+    def _checar_emprego_de_todos(self) -> None:
+        for i in range(len(self.humanos)):
+            with self._como(i):
+                self._checar_emprego()
+
+    def _registrar_jogo_humano(self, r: Result, partida: Partida, competicao: str,
+                               meus_clubes: dict[int, int]) -> None:
+        """O jogo entra no ano e nos recordes de cada humano que estava nele."""
+        for clube in (r.home, r.away):
+            i = meus_clubes.get(clube)
+            if i is None:
+                continue
+            with self._como(i) as h:
+                h.jogos_do_usuario[self.data] = r
+                h.partida_da_data = partida
+                self._anotar_recorde(r, competicao)
+
+    def _partidas_humanas(self, jogos: list[Fixture], rng, style, taticas: dict[int, Tatica],
+                          substituicoes) -> list[Partida]:
+        """As partidas de clube com tecnico humano numa data, na ordem de `jogos`.
+
+        O primeiro jogo usa o fluxo da rodada, como a partida do usuario sempre usou; os
+        outros, um fluxo cada -- assim nenhum placar depende de qual humano estava com o
+        controle. A do ativo roda por ultimo: e ela que pausa na tela ao vivo, e quando
+        ela comeca os outros humanos ja jogaram."""
+        def do_ativo(k: int) -> bool:
+            return (self.ativo in taticas
+                    and self.humanos[self.ativo].clube_id in (jogos[k].home, jogos[k].away))
+
+        feitas: dict[int, Partida] = {}
+        for k in sorted(range(len(jogos)), key=do_ativo):
+            f = jogos[k]
+            fluxo = rng if k == 0 else self.streams.get("partida_humana", self.temporada,
+                                                         self.data, f.home, f.away)
+            feitas[k] = self._partida_humana(f, fluxo, style, taticas, substituicoes)
+        return [feitas[k] for k in range(len(jogos))]
 
     def caderno(self, competicao: str):
         """O caderno de artilharia de uma competicao no ano, criado na primeira vez."""
@@ -1247,9 +1467,9 @@ class Carreira:
             self.estatisticas_por_comp[competicao] = Estatisticas(temporada=self.temporada)
         return self.estatisticas_por_comp[competicao]
 
-    def _somar_estatisticas(self, resultados, detalhada, rng, comp_de,
+    def _somar_estatisticas(self, resultados, detalhadas, rng, comp_de,
                             rodada=None) -> None:
-        """A partida do usuario entra pelos EVENTOS; as outras, por amostragem do placar.
+        """As partidas dos humanos entram pelos EVENTOS; as outras, por amostragem do placar.
 
         Sem a segunda metade nao existe artilharia de campeonato: os jogos dos outros
         clubes sao resolvidos pelo motor rapido, que devolve so o placar.
@@ -1260,6 +1480,7 @@ class Carreira:
         if self.estatisticas is None:
             return
         rodada = rodada or {}
+        pares = {(d.casa, d.fora) for d in detalhadas}
 
         def cadernos(r):
             # comp_de: o nome da copa (a etapa inteira e dela) ou {jogo: divisao}
@@ -1272,55 +1493,70 @@ class Carreira:
             return fora
 
         for r in resultados:
-            se_e_minha = detalhada is not None and (r.home, r.away) == (
-                detalhada.casa, detalhada.fora)
-            if not se_e_minha:
+            if (r.home, r.away) not in pares:
                 lances = self.lances_da_data.get((r.home, r.away))
                 if lances is not None:
                     # os mesmos lances que a central da rodada mostrou
                     registrar_lances(cadernos(r), self.world, r, lances)
                 else:
                     registrar_resultado(cadernos(r), self.world, r, rng)
-        if detalhada is not None:
-            minha = next((r for r in resultados
-                          if (r.home, r.away) == (detalhada.casa, detalhada.fora)), None)
+        for d in detalhadas:
+            minha = next((r for r in resultados if (r.home, r.away) == (d.casa, d.fora)),
+                         None)
             alvo = cadernos(minha) if minha else [self.estatisticas]
-            registrar_partida_detalhada(alvo, self.world, detalhada)
+            registrar_partida_detalhada(alvo, self.world, d)
 
-    def _minha_partida(self, jogo: Fixture, rng, style, tatica: Tatica,
-                       substituicoes) -> Partida:
-        from fm.tatica import confronto
-        sou_casa = jogo.home == self.clube_id
-        ma, md = (confronto(tatica, Tatica()) if sou_casa
-                  else confronto(Tatica(), tatica))
+    def _partida_humana(self, jogo: Fixture, rng, style, taticas: dict[int, Tatica],
+                        substituicoes) -> Partida:
+        """Um jogo de clube com tecnico humano -- de um lado, ou dos dois quando dois
+        humanos se enfrentam: o motor de eventos com a tatica, o onze, os cobradores e o
+        banco de cada um."""
+        import math
+
+        from fm.tatica import confronto, papeis_em_campo
+        lados = [(i, self.humanos[i].clube_id) for i in taticas
+                 if self.humanos[i].clube_id in (jogo.home, jogo.away)]
+        por_clube = {jogo.home: Tatica(), jogo.away: Tatica()}
+        for i, meu in lados:
+            por_clube[meu] = taticas[i]
+        ma, md = confronto(por_clube[jogo.home], por_clube[jogo.away])
         # a moral e a quimica, que no motor rapido entram no rating, aqui entram nos gols
         # esperados: um ponto de overall vale ~2,4% de gol na conta do motor (fm.match)
-        import math
         dif = bonus_de_moral(self.world, jogo.home) - bonus_de_moral(self.world, jogo.away)
         ma, md = ma * math.exp(0.024 * dif), md * math.exp(-0.024 * dif)
         chave = f"{self.temporada}:{self.data}"
-        from fm.tatica import papeis_em_campo
-        papeis = papeis_em_campo(self.world.escalacao_fixa.get(self.clube_id)
-                                 or self.escalacao_atual(), tatica.vagas_do_campo())
+        papeis: dict[int, str] = {}
+        cobradores: dict[int, list[int]] = {}
+        batedores: dict[int, dict[str, int]] = {}
+        for i, meu in lados:
+            h = self.humanos[i]
+            with self._como(i):
+                onze = self.world.escalacao_fixa.get(meu) or self.escalacao_atual()
+            papeis.update(papeis_em_campo(onze, taticas[i].vagas_do_campo()))
+            cobradores[meu] = _cobradores_de(h)
+            batedores[meu] = {k: h.funcoes[k] for k in ("faltas", "escanteios")
+                              if k in h.funcoes}
         return simular_partida(
             self.world, jogo.home, jogo.away,
             [p.id for p in self.world.best_xi(jogo.home)],
             [p.id for p in self.world.best_xi(jogo.away)],
             rng, style, mult_casa=ma, mult_fora=md,
-            substituicoes=self._no_banco(substituicoes, chave, sou_casa),
+            substituicoes=self._decisor_de_trocas(lados, substituicoes, chave, jogo.home,
+                                                  jogo.away, self.world, por_clube),
             papeis=papeis,
-            cobradores={self.clube_id: self.cobradores()},
-            batedores={self.clube_id: {k: self.funcoes[k] for k in ("faltas", "escanteios")
-                                       if k in self.funcoes}},
-            penaltis=self._na_marca(chave),
-            bancos={jogo.home: self.banco(jogo.home), jogo.away: self.banco(jogo.away)},
+            cobradores=cobradores,
+            batedores=batedores,
+            penaltis=self._decisor_de_penaltis([i for i, _ in lados], chave),
+            bancos={jogo.home: self.banco(jogo.home, self.world),
+                    jogo.away: self.banco(jogo.away, self.world)},
             max_trocas=MAX_TROCAS)
 
-    def banco(self, clube: int) -> list[int]:
+    def banco(self, clube: int, mundo: World | None = None) -> list[int]:
         """Os reservas relacionados: 12, fora do onze e disponiveis, com o goleiro
         reserva sempre entre eles -- sem ele, goleiro machucado virava meia no gol. E o
         banco da tela ao vivo e o de onde sai quem entra no lugar do machucado."""
-        mundo = self.mundo_em_campo if clube in self.mundo_em_campo.clubs else self.world
+        if mundo is None or clube not in mundo.clubs:
+            mundo = self.mundo_em_campo if clube in self.mundo_em_campo.clubs else self.world
         onze = {p.id for p in mundo.best_xi(clube)}
         livres = [p for p in sorted(mundo.squad(clube), key=lambda p: -p.overall)
                   if p.id not in onze and p.id not in mundo.indisponiveis]
@@ -1329,14 +1565,29 @@ class Carreira:
         return ([goleiro.id] if goleiro else []) + [p.id for p in resto][:12 - bool(goleiro)]
 
     def cobradores(self) -> list[int]:
-        return [self.funcoes[k] for k in ("penaltis", "penaltis2", "penaltis3")
-                if k in self.funcoes]
+        return _cobradores_de(self.humano)
 
-    def _na_marca(self, chave: str):
-        """Quem bate o penalti do meu time: o que a tela escolheu, gravado em `na_partida`
-        para o replay escolher o mesmo. Sem escolha, vale a ordem de cobradores."""
-        pedido = self._pedido_de_penalti
-        gravado = (self.na_partida.get(chave) or {}).get("penaltis", [])
+    def _decisor_de_penaltis(self, lados: list[int], chave: str):
+        """Quem bate o penalti de cada humano no jogo. So o ativo tem a tela para
+        perguntar; o outro (quando dois humanos se enfrentam) usa o que gravou."""
+        decisores = [d for d in (self._na_marca(self.humanos[i], chave,
+                                                self._pedido_de_penalti
+                                                if i == self.ativo else None)
+                                 for i in lados) if d is not None]
+        if len(decisores) <= 1:
+            return decisores[0] if decisores else None
+
+        def decidir(partida, minuto, clube):
+            # todos sao chamados: a tela do ativo pausa tambem no penalti do outro lado
+            escolhas = [d(partida, minuto, clube) for d in decisores]
+            return next((e for e in escolhas if e is not None), None)
+        return decidir
+
+    def _na_marca(self, h: Humano, chave: str, pedido):
+        """Quem bate o penalti do time de `h`: o que a tela escolheu, gravado em
+        `na_partida` para o replay escolher o mesmo. Sem escolha, vale a ordem de
+        cobradores."""
+        gravado = (h.na_partida.get(chave) or {}).get("penaltis", [])
         if pedido is None and not gravado:
             return None
 
@@ -1344,7 +1595,7 @@ class Carreira:
 
         def decidir(partida, minuto, clube):
             if pedido is None:
-                if clube != self.clube_id:
+                if clube != h.clube_id:
                     return None
                 # na ordem gravada: dois penaltis no mesmo minuto nao pegam o mesmo batedor
                 i = next((i for i, (m, _) in enumerate(gravado)
@@ -1354,27 +1605,52 @@ class Carreira:
                 usados.add(i)
                 return gravado[i][1]
             escolha = pedido(partida, minuto, clube)
-            if clube != self.clube_id or escolha is None:
+            if clube != h.clube_id or escolha is None:
                 return None
             escolha = int(escolha)
-            reg = self.na_partida.setdefault(chave, {"trocas": [], "taticas": []})
+            reg = h.na_partida.setdefault(chave, {"trocas": [], "taticas": []})
             reg.setdefault("penaltis", []).append([minuto, escolha])
             return escolha
         return decidir
 
-    def _no_banco(self, pedido, chave: str, sou_casa: bool):
+    def _decisor_de_trocas(self, lados: list[tuple[int, int]], substituicoes, chave: str,
+                           casa: int, fora: int, mundo: World, taticas: dict[int, Tatica]):
+        """As trocas e mudancas de tatica de cada humano no jogo, juntas num `Ajuste`.
+        `lados` = [(humano, time dele em campo)]; `taticas` = {time: tatica valendo},
+        atualizado a cada mudanca, porque o confronto depende das duas."""
+        from fm.eventos import Ajuste
+        decisores = [d for d in (self._no_banco(self.humanos[i],
+                                                substituicoes if i == self.ativo else None,
+                                                chave, meu, meu == casa, mundo, taticas,
+                                                casa, fora)
+                                 for i, meu in lados) if d is not None]
+        if len(decisores) <= 1:
+            return decisores[0] if decisores else None
+
+        def decidir(partida, minuto):
+            ajuste = Ajuste()
+            for d in decisores:
+                a = d(partida, minuto)
+                ajuste.trocas += a.trocas
+                if a.mult_casa is not None:
+                    ajuste.mult_casa, ajuste.mult_fora = a.mult_casa, a.mult_fora
+            return ajuste
+        return decidir
+
+    def _no_banco(self, h: Humano, pedido, chave: str, meu: int, sou_casa: bool,
+                  mundo: World, taticas: dict[int, Tatica], casa: int, fora: int):
         """O intermediario entre quem decide (terminal, tela ao vivo ou o save) e o motor.
 
         `pedido(partida, minuto)` pode devolver a lista antiga [(clube, sai, entra)] ou um
         dict {"trocas": [(sai, entra)], "tatica": Tatica | dict}. O que passar pelas regras
-        -- so o proprio clube, no maximo MAX_TROCAS, quem jogou nao volta -- e gravado em
-        `na_partida`, e e isso que o replay devolve. Sem pedido e sem registro, o motor
-        joga sem banco, como sempre jogou.
+        -- so o proprio time (`meu`), no maximo MAX_TROCAS, quem jogou nao volta -- e
+        gravado em `na_partida` de `h`, e e isso que o replay devolve. Sem pedido e sem
+        registro, o motor joga sem banco, como sempre jogou.
         """
         from fm.eventos import Ajuste
         from fm.tatica import confronto
 
-        gravado = self.na_partida.get(chave)
+        gravado = h.na_partida.get(chave)
         if pedido is None and not gravado:
             return None
 
@@ -1388,9 +1664,8 @@ class Carreira:
                     trocas = [tuple(t) for t in resposta.get("trocas", [])]
                     nova = resposta.get("tatica")
                 else:
-                    trocas = [(s, e) for cl, s, e in resposta if cl == self.time_em_campo]
+                    trocas = [(s, e) for cl, s, e in resposta if cl == meu]
                     nova = None
-            meu, mundo = self.time_em_campo, self.mundo_em_campo
             feitas = sum(1 for e in partida.eventos
                          if e.tipo == "substituicao" and e.clube == meu)
             em_campo = partida.em_campo_casa if sou_casa else partida.em_campo_fora
@@ -1411,11 +1686,12 @@ class Carreira:
             if nova is not None:
                 t = nova if isinstance(nova, Tatica) else Tatica(**nova)
                 t.validar()
-                ma, md = (confronto(t, Tatica()) if sou_casa
-                          else confronto(Tatica(), t))
-                ajuste.mult_casa, ajuste.mult_fora = ma, md
+                # o confronto e com a tatica que o outro lado tem AGORA: a padrao, se for
+                # da IA; a do outro humano, se ele tambem mexeu
+                taticas[meu] = t
+                ajuste.mult_casa, ajuste.mult_fora = confronto(taticas[casa], taticas[fora])
             if pedido is not None and (validas or t is not None):
-                reg = self.na_partida.setdefault(chave, {"trocas": [], "taticas": []})
+                reg = h.na_partida.setdefault(chave, {"trocas": [], "taticas": []})
                 reg["trocas"] += [[minuto, s, e] for s, e in validas]
                 if t is not None:
                     reg["taticas"].append([minuto, asdict(t)])
@@ -1439,47 +1715,46 @@ class Carreira:
         if etapa is None or not etapa.fixtures:
             return None
 
-        tatica = self.tatica_atual()
-        self._preparar_desfalques([nome], tatica)
+        taticas = self._taticas_da_data()
+        self._preparar_desfalques([nome], taticas)
+        meus_clubes = {self.humanos[i].clube_id: i for i in taticas}
         t = andamento.torneio
-        meus = [f for f in etapa.fixtures
-                if self.clube_id in (f.home, f.away)]
-        detalhada: Partida | None = None
-        jogos = list(etapa.fixtures)
+        # uma etapa tem no maximo um jogo de cada humano: no mata-mata de ida e volta a ida
+        # e a volta sao datas diferentes (fm.copa), e as duas sao jogadas em detalhe
+        humanas = [f for f in etapa.fixtures if f.home in meus_clubes or f.away in meus_clubes]
+        jogos = [f for f in etapa.fixtures if all(f is not x for x in humanas)]
         resultados: list[Result] = []
 
         ratings = {cid: float(effective_rating(self.world.team_rating(cid),
                                                fatigue=self.world.fatigue_penalty(cid),
                                                morale=bonus_de_moral(self.world, cid)))
                    for cid in {f.home for f in etapa.fixtures} | {f.away for f in etapa.fixtures}}
-        # uma etapa tem no maximo um jogo do usuario: no mata-mata de ida e volta a ida e
-        # a volta sao datas diferentes (fm.copa), e as duas sao jogadas em detalhe
-        meu = meus[0] if meus else None
-        if meu is not None:
-            jogos = [f for f in jogos if f is not meu]
         # os outros primeiro, como na liga: e o que a rodada ao vivo mostra
         outros = play_fixtures(jogos, ratings, rng, t.style, t.mentality)
         self.parciais = list(outros)
         self._detalhar(outros)
-        if meu is not None:
-            detalhada = self._minha_partida(meu, rng, t.style, tatica, substituicoes)
-            self._penaltis_se_empatou(andamento, detalhada)
-            resultados.append(Result(meu.home, meu.away, detalhada.gols_casa,
-                                     detalhada.gols_fora, meu.matchday))
-            self.jogos_do_usuario[self.data] = resultados[-1]
-            self._anotar_recorde(resultados[-1], nome)
+        detalhadas = self._partidas_humanas(humanas, rng, t.style, taticas, substituicoes)
+        for k, (f, d) in enumerate(zip(humanas, detalhadas, strict=True)):
+            cobradores = {self.humanos[i].clube_id: _cobradores_de(self.humanos[i])
+                          for c, i in meus_clubes.items() if c in (f.home, f.away)}
+            extra = () if k == 0 else (f.home, f.away)
+            self._penaltis_se_empatou(andamento, d, cobradores=cobradores,
+                                      rng=self.streams.get("disputa", self.temporada,
+                                                           self.data, *extra))
+            resultados.append(Result(f.home, f.away, d.gols_casa, d.gols_fora, f.matchday))
+            self._registrar_jogo_humano(resultados[-1], d, nome, meus_clubes)
         resultados += outros
         registrar(self.world, andamento, resultados, rng, self.exportados)
-        self._somar_estatisticas(resultados, detalhada, rng, nome)
+        self._somar_estatisticas(resultados, detalhadas, rng, nome)
 
         jogaram = {f.home for f in etapa.fixtures} | {f.away for f in etapa.fixtures}
-        self._cartoes_da_data(nome, resultados, detalhada, jogaram)
-        self._moral_da_data(resultados, detalhada)
-        self._lesoes_da_data(resultados, detalhada)
-        self._gastar_energia(jogaram, tatica)
-        self._encerrar_desfalques()
-        self._checar_emprego()
-        return resultados, detalhada
+        self._cartoes_da_data(nome, resultados, detalhadas, jogaram)
+        self._moral_da_data(resultados, detalhadas)
+        self._lesoes_da_data(resultados, detalhadas)
+        self._gastar_energia(jogaram, self._custos_de_energia(taticas))
+        self._encerrar_desfalques(taticas)
+        self._checar_emprego_de_todos()
+        return resultados, self.humanos[self.ativo].partida_da_data
 
     # ---------------------------------------------------------------- negocios
 
@@ -1489,7 +1764,7 @@ class Carreira:
         from fm.negocios import gerar_propostas
         if self.acabou or self.demitido:
             return
-        rng = self.streams.get("propostas", self.temporada, self.data)
+        rng = self._fluxo("propostas", self.temporada, self.data)
         self.propostas += gerar_propostas(self, rng)
 
     def propostas_pendentes(self) -> list:
@@ -1514,20 +1789,21 @@ class Carreira:
         if tipo == "pedir_demissao":
             resultado = self.pedir_demissao()
             if "erro" not in resultado:
-                self.acoes.append({**acao, "temporada": self.temporada, "data": self.data})
+                self._gravar_acao(acao)
             return resultado
         if tipo in ("assumir_selecao", "recusar_selecao", "deixar_selecao",
                     "convocar_selecao", "escalar_selecao"):
             resultado = self._acao_da_selecao(tipo, acao)
             if "erro" not in resultado:
-                self.acoes.append({**acao, "temporada": self.temporada, "data": self.data})
+                self._gravar_acao(acao)
             return resultado
         if tipo == "assumir":
             clube = int(acao["clube"])
-            if clube not in self.convites:
+            if clube not in self.convites or any(
+                    h.clube_id == clube for h in self.humanos if h is not self.humano):
                 return {"erro": "esse clube nao esta mais chamando"}
             self._assumir(clube)
-            self.acoes.append({**acao, "temporada": self.temporada, "data": self.data})
+            self._gravar_acao(acao)
             return {"ok": True, "mensagem": f"Voce e o novo tecnico do {w.clubs[clube].name}."}
         if tipo == "compra":
             pid = int(acao["jogador"])
@@ -1626,8 +1902,7 @@ class Carreira:
                                          "valor": r["valor"], "mensagem":
                                          f"O {w.clubs[prop.clube].name} fez uma nova "
                                          f"proposta de {texto_de_euros(r['valor'])}."}
-                        self.acoes.append({**acao, "temporada": self.temporada,
-                                           "data": self.data})
+                        self._gravar_acao(acao)
                         return resultado
                     valor = r["valor"]
                 if len(self.clube.player_ids) <= neg.ELENCO_MINIMO:
@@ -1643,18 +1918,22 @@ class Carreira:
                              f"{texto_de_euros(valor)}."}
         else:
             return {"erro": f"acao desconhecida {tipo!r}"}
-        self.acoes.append({**acao, "temporada": self.temporada, "data": self.data})
+        self._gravar_acao(acao)
         return resultado
 
     def _acao_da_selecao(self, tipo: str, acao: dict) -> dict:
         from fm.selecoes import CONVOCADOS, MINIMO_DE_JOGADORES
         pais = self.selecao_do_usuario
         if tipo == "assumir_selecao":
-            if acao.get("pais") != self.convite_selecao:
+            if acao.get("pais") != self.convite_selecao or acao.get("pais") in (
+                    self._selecoes_de_outros()):
                 return {"erro": "essa selecao nao esta mais chamando"}
             self.selecao_do_usuario, self.convite_selecao = self.convite_selecao, None
             self.convocacao_do_usuario, self.escalacao_da_selecao = [], []
             self.tatica_da_selecao = {}
+            for h in self.humanos:
+                if h is not self.humano and h.convite_selecao == self.selecao_do_usuario:
+                    h.convite_selecao = None
             return {"ok": True,
                     "mensagem": f"Voce agora treina a selecao: {self.selecao_do_usuario}."}
         if tipo == "recusar_selecao":
@@ -1701,23 +1980,29 @@ class Carreira:
         """O convite de uma selecao, pela reputacao do treinador. Uma vez por ano, na
         virada (e no comeco da carreira). A melhor selecao que aceita alguem do tamanho
         dele: a primeira do ranking pede reputacao 88; a ultima, 30."""
-        from fm import tecnicos as tec
         from fm.selecoes import SUSPENSAS, convocar_todas, mundo_das_selecoes, ranking
         if self.selecao_do_usuario or self.demitido:
             self.convite_selecao = None
             return
-        eu = self.tecnicos.get(tec.USUARIO) if self.tecnicos else None
+        eu = self.tecnicos.get(self.humano.tecnico_id) if self.tecnicos else None
         if eu is None:
             return
-        rng = self.streams.get("convite_selecao", self.temporada)
+        rng = self._fluxo("convite_selecao", self.temporada)
         mundo = (self.fifa.mundo if self.fifa is not None and self.fifa.mundo is not None
                  else mundo_das_selecoes(self.world, convocar_todas(self.world)))
         ordem = [p for p in ranking(mundo) if p not in SUSPENSAS]
         n = max(len(ordem) - 1, 1)
-        aceitam = [p for i, p in enumerate(ordem) if 88 - 58 * i / n <= eu.reputacao]
+        # a selecao de outro humano nao chama: ela ja tem treinador
+        ocupadas = self._selecoes_de_outros()
+        aceitam = [p for i, p in enumerate(ordem)
+                   if 88 - 58 * i / n <= eu.reputacao and p not in ocupadas]
         self.convite_selecao = None
         if aceitam and rng.random() < 0.6:
             self.convite_selecao = aceitam[int(rng.integers(min(3, len(aceitam))))]
+
+    def _selecoes_de_outros(self) -> set[str]:
+        return {h.selecao_do_usuario for h in self.humanos
+                if h is not self.humano and h.selecao_do_usuario}
 
     def _registrar_movimento(self, sentido: str, pid: int, outro: int | None, valor: int):
         p = self.world.players[pid]
@@ -1738,11 +2023,13 @@ class Carreira:
         self.funcoes = {k: v for k, v in self.funcoes.items() if v != pid}
 
     def _aplicar_acoes_do_save(self, acoes: list[dict]) -> None:
-        """Replay: reaplica as acoes gravadas exatamente na data em que foram feitas."""
+        """Replay: reaplica as acoes gravadas exatamente na data em que foram feitas, cada
+        uma pelo humano que a fez."""
         for a in acoes:
             if a.get("temporada") == self.temporada and a.get("data") == self.data:
-                limpa = {k: v for k, v in a.items() if k not in ("temporada", "data")}
-                self.executar(limpa)
+                limpa = {k: v for k, v in a.items() if k not in ("temporada", "data", "humano")}
+                with self._como(int(a.get("humano", 0))):
+                    self.executar(limpa)
 
     # ---------------------------------------------------------------- o gancho
 
@@ -1759,19 +2046,22 @@ class Carreira:
         comp = self.competicao_do_proximo()
         return self.disciplina.suspensos(comp) if comp and self.disciplina else set()
 
-    def _preparar_desfalques(self, competicoes: list[str], tatica: Tatica) -> None:
-        """Tira os suspensos de campo antes da data: dos adversarios pelo best_xi, do
-        usuario trocando cada um pelo melhor reserva do mesmo setor, NA MESMA VAGA."""
+    def _preparar_desfalques(self, competicoes: list[str], taticas: dict[int, Tatica]) -> None:
+        """Tira os suspensos de campo antes da data: dos clubes da IA pelo best_xi, dos
+        humanos (`taticas`, {humano: tatica}) trocando cada um pelo melhor reserva do mesmo
+        setor, NA MESMA VAGA."""
         suspensos: set[int] = set()
         for comp in competicoes:
             suspensos |= self.disciplina.suspensos(comp)
         # o lesionado fica fora em qualquer competicao; a troca na escalacao e a mesma
         suspensos |= self.medico.fora(self.hoje())
         self.world.indisponiveis = suspensos
-        self._onze_pretendido = self.escalacao_atual()
-        self.world.escalacao_fixa[self.clube_id] = self._sem_suspensos(
-            self._onze_pretendido, tatica, suspensos)
-        self.world.formacao_fixa[self.clube_id] = tatica.vagas
+        for i, tatica in taticas.items():
+            with self._como(i):
+                self._onze_pretendido = self.escalacao_atual()
+                self.world.escalacao_fixa[self.clube_id] = self._sem_suspensos(
+                    self._onze_pretendido, tatica, suspensos)
+                self.world.formacao_fixa[self.clube_id] = tatica.vagas
 
     def _sem_suspensos(self, onze: list[int], tatica: Tatica, suspensos: set[int]) -> list[int]:
         if not suspensos & set(onze):
@@ -1790,13 +2080,16 @@ class Carreira:
             novo[i] = reserva.id
         return novo
 
-    def _encerrar_desfalques(self) -> None:
-        """Depois da data: ninguem mais esta indisponivel, e o onze volta a ser o escolhido."""
+    def _encerrar_desfalques(self, taticas: dict[int, Tatica]) -> None:
+        """Depois da data: ninguem mais esta indisponivel, e o onze de cada humano que
+        jogou volta a ser o escolhido."""
         self.world.indisponiveis = set()
-        if self._onze_pretendido:
-            self.world.escalacao_fixa[self.clube_id] = list(self._onze_pretendido)
+        for i in taticas:
+            h = self.humanos[i]
+            if h._onze_pretendido:
+                self.world.escalacao_fixa[h.clube_id] = list(h._onze_pretendido)
 
-    def _cartoes_da_data(self, comp: str, resultados, detalhada, clubes: set[int]) -> None:
+    def _cartoes_da_data(self, comp: str, resultados, detalhadas, clubes: set[int]) -> None:
         """Cumpre os ganchos de quem jogou e soma os cartoes novos.
 
         A ordem importa: primeiro cumpre (quem estava suspenso ficou fora DESTA data),
@@ -1808,8 +2101,10 @@ class Carreira:
         from fm.disciplina import cartoes_da_partida
 
         self.disciplina.cumprir(comp, clubes, self.world)
+        detalhada_de = _por_jogo(detalhadas)
         for r in resultados:
-            if detalhada is not None and (r.home, r.away) == (detalhada.casa, detalhada.fora):
+            detalhada = detalhada_de.get((r.home, r.away))
+            if detalhada is not None:
                 # os da partida detalhada ja entraram nos cadernos pelos eventos
                 self.disciplina.registrar(comp, cartoes_da_partida(detalhada))
                 continue
@@ -1865,15 +2160,17 @@ class Carreira:
             lenda["assistencias"] += linha.assistencias
             lenda["temporadas"].append(self.temporada)
 
-    def _moral_da_data(self, resultados, detalhada) -> None:
+    def _moral_da_data(self, resultados, detalhadas) -> None:
         """A moral de quem jogou e a quimica de cada clube depois da data (fm.moral). Antes
         da energia: o onze de cada clube ainda e o que entrou em campo."""
         from collections import Counter
 
         from fm.moral import depois_do_jogo
         fora = set(self.world.indisponiveis)
+        detalhada_de = _por_jogo(detalhadas)
         for r in resultados:
-            if detalhada is not None and (r.home, r.away) == (detalhada.casa, detalhada.fora):
+            detalhada = detalhada_de.get((r.home, r.away))
+            if detalhada is not None:
                 entraram = set(detalhada.entrada)
                 gols = Counter(e.jogador for e in detalhada.eventos if e.tipo == "gol")
             else:
@@ -1886,25 +2183,29 @@ class Carreira:
             depois_do_jogo(self.world, r.home, r.goals_home, r.goals_away, entraram, gols, fora)
             depois_do_jogo(self.world, r.away, r.goals_away, r.goals_home, entraram, gols, fora)
 
-    def _lesoes_da_data(self, resultados, detalhada) -> None:
+    def _lesoes_da_data(self, resultados, detalhadas) -> None:
         """Registra os machucados de hoje (gravidade num stream proprio) e da alta a quem
         ja pode jogar na data seguinte. Chamada ANTES de `self.data` andar."""
         from fm.central import lesionados
         hoje = self.hoje()
         voltaram = self.medico.dar_alta(self.dia(self.data + 1))
         novos: list[int] = []
+        detalhada_de = _por_jogo(detalhadas)
         for r in resultados:
-            if detalhada is not None and (r.home, r.away) == (detalhada.casa, detalhada.fora):
+            detalhada = detalhada_de.get((r.home, r.away))
+            if detalhada is not None:
                 novos += detalhada.lesionados
             else:
                 novos += lesionados(self.lances_da_data.get((r.home, r.away), []))
         novas = self.medico.registrar(novos, self.streams.get("gravidade", self.temporada,
                                                               self.data), hoje)
-        meus = {p.id for p in self.world.squad(self.clube_id)}
-        self.boletim_medico = {
-            "lesoes": [(pid, les.tipo, les.dias) for pid, les in novas.items() if pid in meus],
-            "voltaram": [pid for pid in voltaram if pid in meus],
-        }
+        for h in self.humanos:
+            meus = {p.id for p in self.world.squad(h.clube_id)}
+            h.boletim_medico = {
+                "lesoes": [(pid, les.tipo, les.dias) for pid, les in novas.items()
+                           if pid in meus],
+                "voltaram": [pid for pid in voltaram if pid in meus],
+            }
 
     def lesionados_do_clube(self, clube: int | None = None) -> dict:
         """{id: Lesao} de quem esta no departamento medico."""
@@ -1920,12 +2221,13 @@ class Carreira:
             rng_les = self.streams.get("lesoes", self.temporada, self.data, r.home, r.away)
             self.lances_da_data[(r.home, r.away)] = detalhar(self.world, r, rng, rng_les)
 
-    def _gastar_energia(self, jogaram: set[int], tatica: Tatica) -> None:
+    def _gastar_energia(self, jogaram: set[int], custos: dict[int, float]) -> None:
         """Energia entre rodadas.
 
         TODO MUNDO recupera; quem jogou paga o custo por cima. A recuperacao e
         proporcional ao quanto falta para 100, o que cria EQUILIBRIO: quem joga toda rodada
-        estabiliza perto de 81%, nao desaba ate o piso.
+        estabiliza perto de 81%, nao desaba ate o piso. `custos` = {clube: fator da
+        marcacao} dos clubes de tecnico humano; os da IA pagam 1.
         """
         # A recuperacao conta DIAS de descanso desde a ultima conta, e nao datas: no
         # calendario real ha semana com um jogo e semana com tres. A taxa antiga valia para
@@ -1938,8 +2240,7 @@ class Carreira:
             onze = ({p.id for p in self.world.best_xi(club_id)}
                     if club_id in jogaram else set())
             # marcacao forte cansa mais: o preco aparece na rodada seguinte, nao nesta
-            custo = CONDITION_COST * (tatica.custo_de_energia
-                                      if club_id == self.clube_id else 1.0)
+            custo = CONDITION_COST * custos.get(club_id, 1.0)
             for p in self.world.squad(club_id):
                 recupera = taxa * (100 - p.condition)
                 delta = recupera - (custo if p.id in onze else 0.0)
@@ -1993,7 +2294,10 @@ class Carreira:
         if not self.acabou:
             raise RuntimeError(f"faltam {self.total_de_rodadas - self.rodada} rodadas")
         # antes de qualquer saida: o ano de quem jogou aqui vai para as lendas do clube
-        self._somar_lendas()
+        humanos = range(len(self.humanos))
+        for i in humanos:
+            with self._como(i):
+                self._somar_lendas()
 
         cfgs = {n: load_league(n) for n in self.ligas}
         tabelas = {n: self.tabela(n) for n in self.ligas}
@@ -2001,9 +2305,12 @@ class Carreira:
         # do mercado): e ela que manda os clubes delas para as copas do ano que vem
         tabelas_de_fora = self._simular_ligas_de_fora()
         campeoes = {n: self.world.clubs[t[0].club_id].name for n, t in tabelas.items()}
-        minha_liga = self.liga
-        minha_posicao = self.posicao()
-        meus_numeros = self.numeros_do_ano()
+        # o ano de cada humano, lido antes de as divisoes mudarem
+        do_ano = []
+        for i in humanos:
+            with self._como(i):
+                do_ano.append({"liga": self.liga, "posicao": self.posicao(),
+                               "numeros": self.numeros_do_ano()})
 
         # A ordem e a regra. As contas fecham na divisao em que o ano foi jogado, e so
         # depois o clube troca de divisao; o mercado vem depois do envelhecimento para
@@ -2014,9 +2321,10 @@ class Carreira:
         titulos = self._titulos_de_copa()
         premios_do_ano, dados = self._premios_e_desempenho(tabelas, cfgs)
         premios_de_copa = self._premiar_copas()
+        de_humano = self.clubes_humanos()
         balancos = fechar_o_ano(self.world, tabelas, cfgs, extras=premios_de_copa,
                                 jogos_extras=self._jogos_de_copa(),
-                                valores=self.valor_de_elenco, clube_usuario=self.clube_id)
+                                valores=self.valor_de_elenco, clube_usuario=de_humano)
         mudancas = acesso_e_rebaixamento(self.world, self.ligas, tabelas, cfgs)
         self._atualizar_tecnicos(dados, mudancas, cfgs)
         rng = self.streams.get("virada", self.temporada)
@@ -2027,27 +2335,31 @@ class Carreira:
         # clube dono, e a tela de fim de ano nao confunde a volta com garoto da base
         from fm.negocios import devolver_emprestimos
         voltas = devolver_emprestimos(self.world)
-        antes = {p.id: (p.name, p.overall) for p in self.world.squad(self.clube_id)}
-        # para dizer na tela POR QUE cada um saiu: idade e posicao de antes da virada
-        ficha_antes = {p.id: (p.age(self.temporada), p.position)
-                       for p in self.world.squad(self.clube_id)}
+        # o elenco de cada humano antes da virada e, para dizer na tela POR QUE cada um
+        # saiu, a idade e a posicao de cada jogador
+        for i in humanos:
+            elenco = self.world.squad(self.humanos[i].clube_id)
+            do_ano[i]["antes"] = {p.id: (p.name, p.overall) for p in elenco}
+            do_ano[i]["ficha_antes"] = {p.id: (p.age(self.temporada), p.position)
+                                        for p in elenco}
         envelhecimento = envelhecer(self.world, rng, self.temporada)
         from fm.negocios import livres_que_se_aposentam, vencer_contratos
-        for prop in self.propostas:
-            if prop.status == "pendente":
-                prop.status = "expirada"
+        for h in self.humanos:
+            for prop in h.propostas:
+                if prop.status == "pendente":
+                    prop.status = "expirada"
         # contrato vencido acaba ANTES da janela: quem sai de graca ja pode ser disputado.
         # Stream proprio, para nao mexer no sorteio da janela e da base.
-        contratos = vencer_contratos(self.world, self.temporada + 1, self.clube_id,
+        contratos = vencer_contratos(self.world, self.temporada + 1, de_humano,
                                      self.streams.get("contratos", self.temporada))
         aposentados_livres = livres_que_se_aposentam(self.world, self.temporada + 1)
         # so as ligas que a carreira joga: as de fora sao pano de fundo (fm.mercado.janela)
         da_carreira = {k for n in self.ligas for k in self.world.leagues[self._id(n)].club_ids}
-        # O clube do usuario NAO entra na janela da IA, nem comprando nem vendendo. Ela
-        # levava jogador dele (ate em venda forcada, com o caixa no vermelho) e punha gente
-        # no elenco sem perguntar. Quem decide o elenco dele e ele: comprando no mercado,
-        # aceitando ou recusando as propostas que chegam.
-        da_carreira.discard(self.clube_id)
+        # Os clubes dos humanos NAO entram na janela da IA, nem comprando nem vendendo. Ela
+        # levava jogador do usuario (ate em venda forcada, com o caixa no vermelho) e punha
+        # gente no elenco sem perguntar. Quem decide o elenco dele e ele: comprando no
+        # mercado, aceitando ou recusando as propostas que chegam.
+        da_carreira -= de_humano
         transferencias = janela(self.world, rng, self.temporada + 1, da_carreira)
         novos = repor_elencos(self.world, rng, self.temporada + 1, alvos=alvos)
         # a pre-temporada da moral: volta ao normal, e o elenco novo ainda nao se conhece
@@ -2056,95 +2368,107 @@ class Carreira:
         from fm.moral import na_virada
         na_virada(self.world, _Contagem(t.para for t in transferencias))
 
-        # o que mudou no elenco do usuario -- e isto que a tela de fim de ano mostra
-        agora = {p.id: p for p in self.world.squad(self.clube_id)}
-        saidas = [nome for pid, (nome, _) in antes.items() if pid not in agora]
-        # O motivo de cada saida. Antes a tela so dizia "N aposentadorias no mundo", e o
-        # veterano do usuario sumia do elenco sem explicacao.
-        fim_de_contrato = {x["jogador"] for x in contratos if x["do_usuario"]}
-        saidas_do_clube = []
-        for pid, (nome, ovr) in antes.items():
-            if pid in agora:
-                continue
-            idade, posicao = ficha_antes[pid]
-            if pid not in self.world.players:
-                motivo = "aposentou-se"
-            elif pid in fim_de_contrato:
-                motivo = "fim de contrato"
-            else:
-                destino = self.world.players[pid].club_id
-                motivo = (f"foi para o {self.world.clubs[destino].name}"
-                          if destino in self.world.clubs else "saiu do clube")
-            saidas_do_clube.append({"nome": nome, "overall": ovr, "idade": idade,
-                                    "posicao": posicao, "motivo": motivo})
-        destaques = sorted(
-            ((p.name, antes[pid][1], p.overall, p.age(self.temporada + 1))
-             for pid, p in agora.items()
-             if pid in antes and p.overall > antes[pid][1]),
-            key=lambda d: d[1] - d[2])[:6]
-        # quem chegou comprado nao e da base -- a tela listava Alex Telles, 35 anos,
-        # entre os garotos que subiram
-        comprados = {t.jogador for t in transferencias if t.para == self.clube_id}
-        base = sorted(
-            ((p.name, p.overall, p.potential, p.age(self.temporada + 1))
-             for pid, p in agora.items() if pid not in antes and pid not in comprados),
-            key=lambda d: -d[2])[:6]
+        def resumo_do_humano(ano: dict) -> dict:
+            """O fim de ano do humano da vez: e isto que a tela de fim de ano mostra."""
+            antes, ficha_antes = ano["antes"], ano["ficha_antes"]
+            minha_posicao = ano["posicao"]
+            agora = {p.id: p for p in self.world.squad(self.clube_id)}
+            saidas = [nome for pid, (nome, _) in antes.items() if pid not in agora]
+            # O motivo de cada saida. Antes a tela so dizia "N aposentadorias no mundo", e o
+            # veterano do usuario sumia do elenco sem explicacao.
+            meus_contratos = [x for x in contratos
+                              if x["do_usuario"] and x["clube"] == self.clube_id]
+            fim_de_contrato = {x["jogador"] for x in meus_contratos}
+            saidas_do_clube = []
+            for pid, (nome, ovr) in antes.items():
+                if pid in agora:
+                    continue
+                idade, posicao = ficha_antes[pid]
+                if pid not in self.world.players:
+                    motivo = "aposentou-se"
+                elif pid in fim_de_contrato:
+                    motivo = "fim de contrato"
+                else:
+                    destino = self.world.players[pid].club_id
+                    motivo = (f"foi para o {self.world.clubs[destino].name}"
+                              if destino in self.world.clubs else "saiu do clube")
+                saidas_do_clube.append({"nome": nome, "overall": ovr, "idade": idade,
+                                        "posicao": posicao, "motivo": motivo})
+            destaques = sorted(
+                ((p.name, antes[pid][1], p.overall, p.age(self.temporada + 1))
+                 for pid, p in agora.items()
+                 if pid in antes and p.overall > antes[pid][1]),
+                key=lambda d: d[1] - d[2])[:6]
+            # quem chegou comprado nao e da base -- a tela listava Alex Telles, 35 anos,
+            # entre os garotos que subiram
+            comprados = {t.jogador for t in transferencias if t.para == self.clube_id}
+            base = sorted(
+                ((p.name, p.overall, p.potential, p.age(self.temporada + 1))
+                 for pid, p in agora.items() if pid not in antes and pid not in comprados),
+                key=lambda d: -d[2])[:6]
 
-        minha = next((m for m in mudancas if m.clube == self.clube_id), None)
-        # a régua do ano: a diretoria cobra a meta que ela mesma deu em marco
-        clima_final = {
-            "torcida": round(self.aprovacao.torcida, 1),
-            "diretoria": round(self.aprovacao.diretoria, 1),
-            "meta": self.aprovacao.meta.texto if self.aprovacao.meta else "",
-            "bateu_a_meta": bool(self.aprovacao.meta
-                                 and minha_posicao <= self.aprovacao.meta.posicao),
-        }
-        resumo = {
-            "temporada": self.temporada,
-            "campeoes": campeoes,
-            "minha_liga": minha_liga,
-            "minha_posicao": minha_posicao,
-            "meus_numeros": meus_numeros,
-            "clube": self.world.clubs[self.clube_id].name,
-            "subi": bool(minha and minha.subiu),
-            "cai": bool(minha and not minha.subiu),
-            "promovidos": [self.world.clubs[m.clube].name for m in mudancas if m.subiu],
-            "rebaixados": [self.world.clubs[m.clube].name for m in mudancas if not m.subiu],
-            **envelhecimento, "revelados": novos,
-            "balanco": balancos.get(self.clube_id),
-            "transferencias": len(transferencias),
-            "compras_do_clube": [t for t in transferencias if t.para == self.clube_id],
-            "vendas_do_clube": [t for t in transferencias if t.de == self.clube_id],
-            "maiores_transferencias": sorted(transferencias, key=lambda t: -t.preco)[:6],
-            "copas": {n: (self.world.clubs[a.campeao].name if a.campeao else None)
-                      for n, a in self.copas.items()},
-            "minhas_copas": [n for n, a in self.copas.items()
-                             if a.campeao == self.clube_id],
-            "minha_campanha": {
-                n: ("campeao" if a.campeao == self.clube_id else
-                    "vice" if a.vice == self.clube_id else
-                    f"{a.etapas_vividas.get(self.clube_id, 0)} de "
-                    f"{a.etapas_totais} etapas")
-                for n, a in self.copas.items()
-                if self.clube_id in a.etapas_vividas},
-            "premios_de_copa": premios_de_copa.get(self.clube_id, 0),
-            "clima": clima_final,
-            "emprestimos_encerrados": [v for v in voltas
-                                       if self.clube_id in (v["de"], v["para"])],
-            "demitido": False,       # preenchido logo abaixo, depois da regua do ano
-            "motivo_da_demissao": "",
-            "aposentadorias_do_clube": saidas,
-            "saidas_do_clube": saidas_do_clube,
-            "destaques_do_clube": destaques,
-            "contratos_encerrados": [x for x in contratos if x["do_usuario"]],
-            "livres_aposentados": len(aposentados_livres),
-            "movimentos": list(self.movimentos),
-            # os artilheiros de cada competicao do ano ficam guardados: e o que a tela de
-            # artilharia mostra das temporadas passadas
-            "artilharia": self.artilharia_do_ano(),
-            "base_do_clube": base,
-        }
-        self.historico.append(resumo)
+            minha = next((m for m in mudancas if m.clube == self.clube_id), None)
+            ano["mudanca"] = minha
+            # a régua do ano: a diretoria cobra a meta que ela mesma deu em marco
+            clima_final = {
+                "torcida": round(self.aprovacao.torcida, 1),
+                "diretoria": round(self.aprovacao.diretoria, 1),
+                "meta": self.aprovacao.meta.texto if self.aprovacao.meta else "",
+                "bateu_a_meta": bool(self.aprovacao.meta
+                                     and minha_posicao <= self.aprovacao.meta.posicao),
+            }
+            return {
+                "temporada": self.temporada,
+                "campeoes": campeoes,
+                "minha_liga": ano["liga"],
+                "minha_posicao": minha_posicao,
+                "meus_numeros": ano["numeros"],
+                "clube": self.world.clubs[self.clube_id].name,
+                "subi": bool(minha and minha.subiu),
+                "cai": bool(minha and not minha.subiu),
+                "promovidos": [self.world.clubs[m.clube].name for m in mudancas if m.subiu],
+                "rebaixados": [self.world.clubs[m.clube].name for m in mudancas
+                               if not m.subiu],
+                **envelhecimento, "revelados": novos,
+                "balanco": balancos.get(self.clube_id),
+                "transferencias": len(transferencias),
+                "compras_do_clube": [t for t in transferencias if t.para == self.clube_id],
+                "vendas_do_clube": [t for t in transferencias if t.de == self.clube_id],
+                "maiores_transferencias": sorted(transferencias, key=lambda t: -t.preco)[:6],
+                "copas": {n: (self.world.clubs[a.campeao].name if a.campeao else None)
+                          for n, a in self.copas.items()},
+                "minhas_copas": [n for n, a in self.copas.items()
+                                 if a.campeao == self.clube_id],
+                "minha_campanha": {
+                    n: ("campeao" if a.campeao == self.clube_id else
+                        "vice" if a.vice == self.clube_id else
+                        f"{a.etapas_vividas.get(self.clube_id, 0)} de "
+                        f"{a.etapas_totais} etapas")
+                    for n, a in self.copas.items()
+                    if self.clube_id in a.etapas_vividas},
+                "premios_de_copa": premios_de_copa.get(self.clube_id, 0),
+                "clima": clima_final,
+                "emprestimos_encerrados": [v for v in voltas
+                                           if self.clube_id in (v["de"], v["para"])],
+                "demitido": False,       # preenchido logo abaixo, depois da regua do ano
+                "motivo_da_demissao": "",
+                "aposentadorias_do_clube": saidas,
+                "saidas_do_clube": saidas_do_clube,
+                "destaques_do_clube": destaques,
+                "contratos_encerrados": meus_contratos,
+                "livres_aposentados": len(aposentados_livres),
+                "movimentos": list(self.movimentos),
+                # os artilheiros de cada competicao do ano ficam guardados: e o que a tela
+                # de artilharia mostra das temporadas passadas
+                "artilharia": self.artilharia_do_ano(),
+                "base_do_clube": base,
+            }
+
+        resumos = []
+        for i in humanos:
+            with self._como(i):
+                resumos.append(resumo_do_humano(do_ano[i]))
+                self.historico.append(resumos[-1])
 
         self.temporada += 1
         self.world.season_year = self.temporada
@@ -2154,27 +2478,34 @@ class Carreira:
         for p in self.world.players.values():
             p.condition = 100
         from fm.diretoria import decidir_demissao
-        motivo = decidir_demissao(
-            self.aprovacao, rodada=self.rodada, fim_da_temporada=True,
-            posicao=minha_posicao, clubes=len(tabelas[minha_liga]),
-            rebaixado=bool(minha and not minha.subiu))
-        if motivo and not self.aprovacao.demitido:
-            self.aprovacao.demitido = True
-            self.aprovacao.motivo = motivo
-        resumo["demitido"] = self.aprovacao.demitido
-        resumo["motivo_da_demissao"] = self.aprovacao.motivo
-        resumo["premios"] = premios_do_ano
+        for i in humanos:
+            with self._como(i):
+                ano, resumo = do_ano[i], resumos[i]
+                minha = ano["mudanca"]
+                motivo = decidir_demissao(
+                    self.aprovacao, rodada=self.rodada, fim_da_temporada=True,
+                    posicao=ano["posicao"], clubes=len(tabelas[ano["liga"]]),
+                    rebaixado=bool(minha and not minha.subiu))
+                if motivo and not self.aprovacao.demitido:
+                    self.aprovacao.demitido = True
+                    self.aprovacao.motivo = motivo
+                resumo["demitido"] = self.aprovacao.demitido
+                resumo["motivo_da_demissao"] = self.aprovacao.motivo
+                resumo["premios"] = premios_do_ano
         self._mercado_de_tecnicos(dados)
-        resumo["convites"] = list(self.convites)
-        self.convidar_para_selecao()
-        resumo["convite_selecao"] = self.convite_selecao
+        for i in humanos:
+            resumos[i]["convites"] = list(self.humanos[i].convites)
+        for i in humanos:
+            with self._como(i):
+                self.convidar_para_selecao()
+                resumos[i]["convite_selecao"] = self.convite_selecao
 
         self.tabelas_do_ano_anterior = self._tabelas_para_classificacao(
             {**tabelas, **tabelas_de_fora}, titulos)
         self.exportados = {}
         self._novo_calendario()
         self.retrato = self._fotografar()
-        return resumo
+        return resumos[self.ativo]
 
     def _fotografar(self) -> bytes:
         """O estado inteiro, inclusive o ponto de cada gerador aleatorio: e o que faz o ano
@@ -2190,21 +2521,24 @@ class Carreira:
         SAVES_DIR.mkdir(parents=True, exist_ok=True)
         destino = SAVES_DIR / f"{nome}.json"
         _arquivo_do_ponto(nome).unlink(missing_ok=True)   # o ponto antigo nao vale mais
-        destino.write_text(json.dumps({
-            "seed": self.seed, "ligas": self.ligas, "clube_id": self.clube_id,
-            "clube_inicial": self.clube_inicial,
-            "temporada_inicial": self.temporada - len(self.historico),
+        primeiro, *outros = self.humanos
+        conteudo = {
+            "seed": self.seed, "ligas": self.ligas,
+            **_humano_no_save(primeiro),
+            "temporada_inicial": self.temporada - len(primeiro.historico),
             # `data`, nao `rodada`: a temporada anda por datas, e uma delas pode ser
             # copa. Guardar a rodada da liga perderia os jogos de copa no replay.
             "temporada": self.temporada, "data": self.data,
-            "decisoes": {k: asdict(v) for k, v in self.decisoes.items()},
-            "na_partida": self.na_partida,
-            "treinador": self.treinador,
-            "funcoes": self.funcoes,
-            "observados": self.observados,
-            "tatica_persistente": self.tatica_persistente,
+            "tatica_persistente": primeiro.tatica_persistente,
             "acoes": self.acoes,
-        }, indent=2, ensure_ascii=False), encoding="utf-8")
+        }
+        if outros:
+            # os outros tecnicos humanos (o online), com as decisoes de cada um; as acoes
+            # deles estao em `acoes`, marcadas com o numero do humano
+            conteudo["outros_humanos"] = [_humano_no_save(h) for h in outros]
+            conteudo["ativo"] = self.ativo
+        destino.write_text(json.dumps(conteudo, indent=2, ensure_ascii=False),
+                           encoding="utf-8")
         if self.retrato is not None:
             _gravar_retrato(nome, self.temporada, self.retrato,
                             json.loads(destino.read_text(encoding="utf-8")))
@@ -2222,36 +2556,34 @@ class Carreira:
         if pronta is not None:
             return pronta
         d = _atualizar_save(json.loads(texto))
+        no_save = [d, *d.get("outros_humanos", [])]
         atalho = _do_retrato(nome, d)
         if atalho is not None:
             # as decisoes do ano em curso vem do save; as de antes ja estao no retrato
-            atalho.decisoes = {k: Decisao(**v) for k, v in d["decisoes"].items()}
-            atalho.na_partida = d.get("na_partida", {})
-            atalho.treinador = d.get("treinador", atalho.treinador)
-            atalho.funcoes = d.get("funcoes", {})
-            atalho.observados = d.get("observados", [])
+            for h, x in zip(atalho.humanos, no_save, strict=True):
+                _decisoes_do_save(h, x)
             atalho._refazer_ate(d)
+            atalho.ativo = min(int(d.get("ativo", 0)), len(atalho.humanos) - 1)
             return atalho
         cfgs = [load_league(n) for n in d["ligas"]]
         world, streams = build_world(cfgs, seed=d["seed"])
-        if d["clube_id"] not in world.clubs:
+        if any(x["clube_id"] not in world.clubs for x in no_save):
             # os packs foram refeitos depois do save: o mesmo seed gera outro mundo
             raise ValueError("o save e de uma versao antiga do jogo e o clube dele nao "
                              "existe mais neste mundo -- comece uma carreira nova")
         # o replay parte do clube em que a carreira comecou; as trocas vem nas acoes
-        c = cls(seed=d["seed"], ligas=list(d["ligas"]),
-                clube_id=d.get("clube_inicial") or d["clube_id"],
-                temporada=d["temporada_inicial"])
-        c.decisoes = {k: Decisao(**v) for k, v in d["decisoes"].items()}
-        c.na_partida = d.get("na_partida", {})
-        c.treinador = d.get("treinador", c.treinador)
-        c.clube_inicial = c.clube_id
-        c.funcoes = d.get("funcoes", {})
-        c.observados = d.get("observados", [])
-        # save sem a marca e de antes da regra: a rodada sem decisao joga no padrao
-        c.tatica_persistente = bool(d.get("tatica_persistente", False))
+        humanos = [Humano(clube_id=x.get("clube_inicial") or x["clube_id"], tecnico_id=i)
+                   for i, x in enumerate(no_save)]
+        c = cls(seed=d["seed"], ligas=list(d["ligas"]), temporada=d["temporada_inicial"],
+                humanos=humanos)
+        for h, x in zip(humanos, no_save, strict=True):
+            _decisoes_do_save(h, x)
+            h.clube_inicial = h.clube_id
+            # save sem a marca e de antes da regra: a rodada sem decisao joga no padrao
+            h.tatica_persistente = bool(d.get("tatica_persistente", False))
         c._montar(world, streams)
         c._refazer_ate(d)
+        c.ativo = min(int(d.get("ativo", 0)), len(humanos) - 1)
         _gravar_retrato(nome, c.temporada, c.retrato, d)
         return c
 
@@ -2271,6 +2603,47 @@ class Carreira:
             self._aplicar_acoes_do_save(acoes)
             self.avancar()
         self._aplicar_acoes_do_save(acoes)
+
+def _atalho(nome: str) -> property:
+    def ler(self):
+        return getattr(self.humanos[_vez(self)], nome)
+
+    def escrever(self, valor):
+        setattr(self.humanos[_vez(self)], nome, valor)
+    return property(ler, escrever, doc=f"{nome} do tecnico humano da vez (Humano.{nome})")
+
+
+CAMPOS_DO_HUMANO = tuple(f.name for f in fields(Humano) if f.name != "tecnico_id")
+for _nome in CAMPOS_DO_HUMANO:
+    setattr(Carreira, _nome, _atalho(_nome))
+
+
+def _cobradores_de(h: Humano) -> list[int]:
+    """A ordem de batedores de penalti que o tecnico deixou."""
+    return [h.funcoes[k] for k in ("penaltis", "penaltis2", "penaltis3") if k in h.funcoes]
+
+
+def _por_jogo(detalhadas) -> dict[tuple[int, int], Partida]:
+    """{(mandante, visitante): partida} das partidas do motor de eventos da data."""
+    return {(d.casa, d.fora): d for d in detalhadas or ()}
+
+
+def _humano_no_save(h: Humano) -> dict:
+    """O que o save guarda de cada tecnico humano: o clube e as decisoes. O resto o
+    replay refaz."""
+    return {"clube_id": h.clube_id, "clube_inicial": h.clube_inicial,
+            "decisoes": {k: asdict(v) for k, v in h.decisoes.items()},
+            "na_partida": h.na_partida, "treinador": h.treinador,
+            "funcoes": h.funcoes, "observados": h.observados}
+
+
+def _decisoes_do_save(h: Humano, x: dict) -> None:
+    h.decisoes = {k: Decisao(**v) for k, v in x.get("decisoes", {}).items()}
+    h.na_partida = x.get("na_partida", {})
+    h.treinador = x.get("treinador", h.treinador)
+    h.funcoes = x.get("funcoes", {})
+    h.observados = x.get("observados", [])
+
 
 
 # ---------------------------------------------------------------- o retrato do save
@@ -2327,6 +2700,14 @@ def _chave_do_retrato(d: dict, temporada: int) -> str:
         "na_partida": {k: v for k, v in d.get("na_partida", {}).items() if antes(k)},
         "acoes": [a for a in d.get("acoes", []) if a.get("temporada", 0) < temporada],
     }
+    if d.get("outros_humanos"):
+        # os outros tecnicos tambem decidem o mundo; sem eles, a chave e a de sempre
+        base["outros_humanos"] = [
+            {"clube_inicial": x.get("clube_inicial") or x["clube_id"],
+             "treinador": x.get("treinador"),
+             "decisoes": {k: v for k, v in x.get("decisoes", {}).items() if antes(k)},
+             "na_partida": {k: v for k, v in x.get("na_partida", {}).items() if antes(k)}}
+            for x in d["outros_humanos"]]
     return hashlib.sha256(json.dumps(base, sort_keys=True, default=str).encode()).hexdigest()
 
 

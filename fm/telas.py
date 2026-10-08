@@ -646,8 +646,6 @@ def sala_de_trofeus(c: Carreira) -> dict:
     """Os titulos, os premios dos seus jogadores, os recordes da sua carreira e as lendas
     de cada clube que voce dirigiu. Tudo do historico das temporadas (c.historico) e do que
     a carreira anota jogo a jogo (c.recordes, c.lendas) -- nada inventado aqui."""
-    from fm import tecnicos as tec
-
     tacas, premios = [], []
     for r in c.historico:
         clube, ano = r.get("clube", ""), r["temporada"]
@@ -674,7 +672,7 @@ def sala_de_trofeus(c: Carreira) -> dict:
                 if x and x.get("clube_nome") == clube:
                     premios.append({"premio": f"{rotulo} da {liga['nome']}",
                                     "nome": x["nome"], "temporada": ano, "clube": clube})
-            if liga.get("tecnico") == tec.USUARIO:
+            if liga.get("tecnico") == c.humano.tecnico_id:
                 premios.append({"premio": f"Técnico do ano da {liga['nome']}",
                                 "nome": c.treinador, "temporada": ano, "clube": clube})
 

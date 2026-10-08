@@ -43,6 +43,10 @@ FAIXA_DE_CONTRAPROPOSTA = 0.85  # oferta entre 85% e 100% do pedido: o clube con
 RUIDO_DE_PRECO = 0.08         # cada clube pede um pouco diferente pelo mesmo jogador
 TOLERANCIA_DE_SALARIO = 0.97  # o jogador aceita ate 3% abaixo do que pediu
 PASSO = 50_000                # os valores anunciados sao redondos
+# Clube de outro tecnico humano nao vende nem empresta pela conta da IA: quem decide e o
+# tecnico dele. A negociacao entre humanos e a etapa 3 do online.
+_COM_OUTRO_HUMANO = ("O {} tem outro técnico humano: a negociação entre técnicos ainda "
+                     "não existe.")
 
 # Premio por tirar um TITULAR do clube dono. O PREMIO_POR_TITULAR do mercado (1.45) e o da
 # IA arrancando titular de outro patamar; no balcao do usuario ele fazia o Kaio Jorge, de
@@ -124,6 +128,9 @@ def avaliar_oferta(c, pid: int, valor: int) -> dict:
                 "mensagem": f"{p.name} esta emprestado ao {c.world.clubs[p.club_id].name} "
                             "e volta ao clube dono no fim da temporada."}
     dono = c.world.clubs[p.club_id]
+    if p.club_id in c.clubes_humanos():
+        return {"resultado": "recusada", "valor": None, "definitiva": True,
+                "mensagem": _COM_OUTRO_HUMANO.format(dono.name)}
     if len(dono.player_ids) <= ELENCO_MINIMO_PARA_VENDER:
         return {"resultado": "recusada", "valor": None,
                 "mensagem": f"O {dono.name} nao pretende vender: o elenco ja esta curto."}
@@ -280,8 +287,10 @@ def gerar_propostas(c, rng: np.random.Generator) -> list[Proposta]:
     nivel = c.world.team_rating(c.clube_id)
     # clube menor so entra na disputa se o jogador topa descer neste ano
     piso = -99.0 if topa_descer(alvo, c.temporada) else nivel - 2
+    # so a IA faz proposta: clube de outro tecnico humano negocia por ele (etapa 3 do online)
+    humanos = c.clubes_humanos()
     candidatos = [k for k in c.world.clubs.values()
-                  if k.id != c.clube_id and k.balance >= base
+                  if k.id not in humanos and k.balance >= base
                   and c.world.team_rating(k.id) >= piso]
     if not candidatos:
         return []
@@ -333,6 +342,8 @@ def avaliar_emprestimo(c, pid: int) -> dict:
     if p.loan_from is not None:
         return {"resultado": "recusada",
                 "mensagem": f"{p.name} ja esta emprestado ao {dono.name}."}
+    if p.club_id in c.clubes_humanos():
+        return {"resultado": "recusada", "mensagem": _COM_OUTRO_HUMANO.format(dono.name)}
     if len(dono.player_ids) <= ELENCO_MINIMO_PARA_VENDER:
         return {"resultado": "recusada",
                 "mensagem": f"O {dono.name} nao libera ninguem: o elenco ja esta curto."}
@@ -359,8 +370,9 @@ def interessados_no_emprestimo(c, pid: int) -> list[int]:
     para o garoto."""
     w = c.world
     p = w.players[pid]
+    humanos = c.clubes_humanos()
     candidatos = [k.id for k in w.clubs.values()
-                  if k.id != c.clube_id and len(k.player_ids) < ELENCO_MAXIMO
+                  if k.id not in humanos and len(k.player_ids) < ELENCO_MAXIMO
                   and _jogaria(w, p, k.id)]
     candidatos.sort(key=lambda k: (-w.team_rating(k), k))
     return candidatos[:INTERESSADOS_MOSTRADOS]
@@ -395,18 +407,20 @@ def devolver_emprestimos(world: World) -> list[dict]:
 IDADE_QUE_A_IA_NAO_RENOVA = 34
 
 
-def vencer_contratos(world: World, temporada_nova: int, clube_usuario: int,
+def vencer_contratos(world: World, temporada_nova: int, clube_usuario: int | set[int],
                      rng: np.random.Generator) -> list[dict]:
     """Na virada: contrato vencido acaba. A IA renova quase todos (o veterano de 34 ou mais
     sai); do usuario sai quem ele nao renovou. Quem sai fica SEM CLUBE, disponivel no
-    mercado; quem passar um ano sem clube se aposenta na virada seguinte."""
+    mercado; quem passar um ano sem clube se aposenta na virada seguinte.
+    `clube_usuario` pode ser o conjunto dos clubes de tecnico humano."""
+    humanos = {clube_usuario} if isinstance(clube_usuario, int) else set(clube_usuario)
     saidas: list[dict] = []
     for p in list(world.players.values()):
         if p.club_id is None:
             continue
         if p.contract_until >= temporada_nova:
             continue
-        do_usuario = p.club_id == clube_usuario
+        do_usuario = p.club_id in humanos
         if not do_usuario and p.age(temporada_nova) < IDADE_QUE_A_IA_NAO_RENOVA:
             p.contract_until = temporada_nova + int(rng.integers(1, 4))
             continue

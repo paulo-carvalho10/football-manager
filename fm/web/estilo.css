@@ -494,6 +494,14 @@ input:focus, select:focus { border-color: var(--ouro); }
 .barra-topo .jogar-bloco .prox { text-align: right; line-height: 1.25; max-width: 17rem; }
 .barra-topo .jogar-bloco .prox small { display: block; color: var(--texto-3); font-size: .66rem; text-transform: uppercase; letter-spacing: .06em; }
 .barra-topo .jogar-bloco .prox b { font-size: .88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+/* varios tecnicos no mesmo computador: quem esta com a vez */
+.barra-topo .btn.vez { gap: .55rem; padding: .35em .8em; text-align: left; line-height: 1.2; }
+.barra-topo .btn.vez small { display: block; color: var(--texto-3); font-size: .62rem; text-transform: uppercase; letter-spacing: .06em; }
+.barra-topo .btn.vez b { font-size: .85rem; max-width: 9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.lista-vez .item { width: 100%; color: var(--texto); font: inherit; text-align: left; cursor: pointer; }
+.lista-vez .item:hover:not(:disabled) { border-color: var(--gramado); }
+.lista-vez .item.sel { border-color: var(--ouro); cursor: default; }
+.lista-vez .item .dica { display: block; }
 
 .miolo { display: grid; grid-template-columns: 19rem minmax(0, 1fr); gap: .8rem; padding: .8rem; min-height: 0; }
 .lateral { display: flex; flex-direction: column; gap: .8rem; min-height: 0; overflow: auto; }

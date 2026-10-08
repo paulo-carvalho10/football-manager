@@ -21,16 +21,22 @@ FORMACAO = "4-3-3"
 
 def selecao_da_rodada(world: World, resultados: list, caderno: Estatisticas,
                       detalhada=None) -> dict:
-    """{"onze": [...11 na ordem das vagas do 4-3-3...], "craque": id} da rodada."""
+    """{"onze": [...11 na ordem das vagas do 4-3-3...], "craque": id} da rodada.
+
+    `detalhada` e a partida do motor de eventos da rodada -- ou a lista delas, quando ha
+    mais de um tecnico humano."""
+    detalhadas = (list(detalhada) if isinstance(detalhada, (list, tuple))
+                  else [detalhada] if detalhada is not None else [])
     notas: dict[int, float] = {}
     clube_de: dict[int, int] = {}
-    if detalhada is not None:
-        notas.update(notas_da_partida(world, detalhada))
-        for pid in detalhada.entrada:
+    for d in detalhadas:
+        notas.update(notas_da_partida(world, d))
+        for pid in d.entrada:
             clube_de[pid] = world.players[pid].club_id
+    pares = {(d.casa, d.fora) for d in detalhadas}
 
     for r in resultados:
-        if detalhada is not None and (r.home, r.away) == (detalhada.casa, detalhada.fora):
+        if (r.home, r.away) in pares:
             continue
         for clube, meus, deles in ((r.home, r.goals_home, r.goals_away),
                                    (r.away, r.goals_away, r.goals_home)):

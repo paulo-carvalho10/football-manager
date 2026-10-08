@@ -133,8 +133,11 @@ registrarModo("menu", {
 
 /* ================================================================== NOVA CARREIRA */
 
+// `outros`: os nomes dos outros tecnicos que jogam neste computador (ate 8 ao todo); cada
+// um escolhe o clube dele na tela seguinte, um depois do outro
 const NOVA = {catalogo: null, paises: new Set(["BRA"]), treinador: "", seed: 2027,
-              formacao: "4-3-3", clubes: null, ms: 0};
+              formacao: "4-3-3", clubes: null, ms: 0, outros: []};
+const MAX_TECNICOS = 8;
 
 async function abrirNova() {
   $$(".logo-p-slot").forEach((el) => { el.innerHTML = logo(true); });
@@ -213,6 +216,9 @@ function desenharConfig() {
     <label class="campo"><span>Nome do treinador</span>
       <input type="text" id="in-treinador" maxlength="40" placeholder="Como a imprensa vai te chamar"
         value="${escapar(NOVA.treinador)}"></label>
+    <div class="campo"><span>Outros técnicos neste computador</span>
+      <div class="lista-simples" id="lista-tecnicos"></div>
+      <button class="btn pequeno" id="mais-tecnico" type="button">+ Outro técnico</button></div>
     <label class="campo"><span>Formação preferida</span>
       <select id="in-formacao">${["4-3-3", "4-4-2", "4-2-3-1", "4-5-1", "3-5-2", "3-4-3", "5-3-2"].map((f) =>
         `<option ${f === NOVA.formacao ? "selected" : ""}>${f}</option>`).join("")}</select></label>
@@ -231,6 +237,35 @@ function desenharConfig() {
     NOVA.seed = Math.max(1, parseInt(e.target.value, 10) || 2027);
     await atualizarDesempenho();
   });
+  $("#mais-tecnico").addEventListener("click", () => {
+    NOVA.outros.push("");
+    desenharOutrosTecnicos();
+    $$("#lista-tecnicos input").at(-1)?.focus();
+  });
+  desenharOutrosTecnicos();
+}
+
+function desenharOutrosTecnicos() {
+  $("#lista-tecnicos").innerHTML = NOVA.outros.map((nome, i) => `
+    <div class="item"><b>${i + 2}</b>
+      <input type="text" data-outro="${i}" maxlength="40" placeholder="Treinador ${i + 2}"
+        value="${escapar(nome)}" style="flex:1">
+      <button class="btn fantasma pequeno" data-tirar="${i}" type="button" title="Tirar">×</button></div>`).join("")
+    || `<span class="dica">Só você. Para jogar com amigos no mesmo computador, cada um com o seu clube, adicione mais técnicos.</span>`;
+  $("#mais-tecnico").disabled = NOVA.outros.length + 1 >= MAX_TECNICOS;
+  $$("[data-outro]").forEach((el) => el.addEventListener("input", () => {
+    NOVA.outros[+el.dataset.outro] = el.value;
+  }));
+  $$("[data-tirar]").forEach((el) => el.addEventListener("click", () => {
+    NOVA.outros.splice(+el.dataset.tirar, 1);
+    desenharOutrosTecnicos();
+  }));
+}
+
+/* Os tecnicos na ordem em que escolhem o clube: o principal e os outros. */
+function tecnicosDaNova() {
+  return [NOVA.treinador.trim() || "Treinador",
+          ...NOVA.outros.map((n, i) => n.trim() || `Treinador ${i + 2}`)];
 }
 
 async function atualizarDesempenho() {
@@ -265,8 +300,19 @@ registrarModo("nova", {
 
 /* ================================================================== ESCOLHA DO CLUBE */
 
+// `escolhidos`: os clubes ja escolhidos pelos tecnicos anteriores, na ordem de tecnicosDaNova()
 const ESCOLHA = {filtro: {liga: "", busca: "", perfil: ""}, ordem: {coluna: "forca", desc: true},
-                 selecionado: null};
+                 selecionado: null, escolhidos: []};
+
+function desenharVezDaEscolha() {
+  const nomes = tecnicosDaNova();
+  const k = ESCOLHA.escolhidos.length;
+  $("#titulo-escolha").textContent = nomes.length < 2 ? "Escolha o seu clube"
+    : `Clube de ${nomes[k]} · ${k + 1} de ${nomes.length}`;
+  $("#assumir").textContent = k + 1 < nomes.length ? "Escolher e passar ›" : "Assumir o comando ›";
+  $("#aviso-clube").textContent = k ? `Já escolhidos: ${ESCOLHA.escolhidos.map((c, i) =>
+    `${nomes[i]} (${c})`).join(", ")}` : "";
+}
 
 function perfilDoClube(c) {
   const f = c.ranking / c.de;
@@ -302,6 +348,8 @@ async function abrirEscolha() {
     ESCOLHA.ordem = {coluna: e.target.value, desc: e.target.value !== "nome"};
     desenharClubes();
   });
+  ESCOLHA.escolhidos = [];
+  desenharVezDaEscolha();
   $$("#tabela-clubes th[data-ord]").forEach((th) => th.onclick = () => {
     const col = th.dataset.ord;
     ESCOLHA.ordem = ESCOLHA.ordem.coluna === col
@@ -348,7 +396,9 @@ function desenharClubes() {
       <td class="n">${c.reputacao}</td>
       <td class="n ${c.caixa < 0 ? "ruim" : ""}">${dinheiro(c.caixa, c.moeda || MOEDA)}</td>
       <td class="n">${euros(c.valor_do_elenco)}</td>
-      <td><span class="chip ${perfilDoClube(c) === "favorito" ? "ouro" : ""}">${PERFIS_CLUBE[perfilDoClube(c)]}</span></td>
+      <td>${ESCOLHA.escolhidos.includes(c.nome)
+        ? `<span class="chip">de ${escapar(tecnicosDaNova()[ESCOLHA.escolhidos.indexOf(c.nome)])}</span>`
+        : `<span class="chip ${perfilDoClube(c) === "favorito" ? "ouro" : ""}">${PERFIS_CLUBE[perfilDoClube(c)]}</span>`}</td>
     </tr>`).join("") || `<tr><td colspan="8" class="vazio">Nenhum clube com esses filtros.</td></tr>`;
   $$("#tabela-clubes tbody tr[data-nome]").forEach((tr) => {
     tr.addEventListener("click", () => { ESCOLHA.selecionado = tr.dataset.nome; desenharClubes(); });
@@ -360,7 +410,8 @@ function desenharClubes() {
 function desenharDetalheDoClube() {
   const c = NOVA.clubes.clubes.find((x) => x.nome === ESCOLHA.selecionado);
   const alvo = $("#detalhe-clube");
-  $("#assumir").disabled = !c;
+  // um clube por tecnico: o que outro ja escolheu nao pode ser escolhido de novo
+  $("#assumir").disabled = !c || ESCOLHA.escolhidos.includes(c.nome);
   if (!c) { alvo.innerHTML = `<div class="vazio">Escolha um clube.</div>`; return; }
   alvo.style.setProperty("--cor-detalhe", corDeAcento(c.cor));
   alvo.innerHTML = `
@@ -388,14 +439,24 @@ function desenharDetalheDoClube() {
 
 async function assumir() {
   const c = NOVA.clubes.clubes.find((x) => x.nome === ESCOLHA.selecionado);
-  if (!c) return;
+  if (!c || ESCOLHA.escolhidos.includes(c.nome)) return;
+  const nomes = tecnicosDaNova();
+  if (ESCOLHA.escolhidos.length + 1 < nomes.length) {
+    // ainda falta tecnico: este fica com o clube, e a vez de escolher passa
+    ESCOLHA.escolhidos.push(c.nome);
+    desenharVezDaEscolha();
+    desenharClubes();
+    return;
+  }
+  const [clube, ...outros] = [...ESCOLHA.escolhidos, c.nome];
   const botao = $("#assumir");
   botao.disabled = true;
   botao.textContent = "Preparando a temporada…";
-  const r = await api.post("/api/nova", {ligas: ligasSelecionadas(), clube: c.nome,
-                                         treinador: NOVA.treinador, seed: NOVA.seed});
-  botao.textContent = "Assumir o comando ›";
+  const r = await api.post("/api/nova", {
+    ligas: ligasSelecionadas(), clube, treinador: NOVA.treinador, seed: NOVA.seed,
+    outros: outros.map((nome, i) => ({clube: nome, treinador: nomes[i + 1]}))});
   botao.disabled = false;
+  desenharVezDaEscolha();
   if (r.erro) { avisar(r.erro); return; }
   if (NOVA.formacao !== "4-3-3") {
     await api.post("/api/escalar", {formacao: NOVA.formacao});

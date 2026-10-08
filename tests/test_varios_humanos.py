@@ -1,0 +1,313 @@
+"""Online, etapa 2: varios tecnicos humanos na mesma carreira, no mesmo computador.
+
+Cada humano tem o seu clube, as suas decisoes, propostas, convites e diretoria; a partida
+de cada um sai do motor de eventos com o que ELE decidiu. So o ativo tem a tela ao vivo;
+os outros jogam com as instrucoes que deixaram. O save guarda as decisoes de todos, e o
+replay refaz o mesmo mundo seja quem for que estava com o controle em cada data.
+"""
+
+from __future__ import annotations
+
+import re
+import threading
+
+import numpy as np
+import pytest
+
+from fm import tecnicos as tec
+from fm.carreira import Carreira
+from fm.tatica import Tatica
+
+LIGAS = ["brasil_real", "brasil_b_real"]
+
+
+def _dois(seed: int = 8) -> Carreira:
+    return Carreira.nova(LIGAS, "Santos", seed=seed, outros=["Palmeiras"],
+                         treinadores=["Ana", "Beto"])
+
+
+def _foto(c):
+    w = c.world
+    return (c.temporada, c.data,
+            [h.clube_id for h in c.humanos],
+            sorted((r.home, r.away, r.goals_home, r.goals_away) for n in c.ligas
+                   for r in c.jogos(n)),
+            sorted((p.id, p.club_id, p.overall, p.morale, p.condition)
+                   for p in w.players.values()),
+            sorted((k, cl.balance, cl.reputation) for k, cl in w.clubs.items()),
+            [sorted((k, r.goals_home, r.goals_away) for k, r in h.jogos_do_usuario.items())
+             for h in c.humanos])
+
+
+def _ate_a_liga(c, **kw):
+    while not c.acabou and c.compromisso[0] != "liga":
+        c.avancar()
+    return c.avancar(**kw)
+
+
+def test_cada_humano_tem_o_seu_clube_e_o_seu_tecnico():
+    c = _dois()
+    santos, palmeiras = (h.clube_id for h in c.humanos)
+    assert c.world.clubs[santos].name == "Santos"
+    assert c.world.clubs[palmeiras].name == "Palmeiras"
+    assert [h.tecnico_id for h in c.humanos] == [0, 1]
+    assert c.tecnicos[0].clube == santos and c.tecnicos[0].nome == "Ana"
+    assert c.tecnicos[1].clube == palmeiras and c.tecnicos[1].nome == "Beto"
+    assert [t.id for t in c.tecnicos.values() if t.usuario] == [0, 1]
+    # cada clube tem um tecnico so: o da IA do Palmeiras nao foi gerado
+    assert sum(1 for t in c.tecnicos.values() if t.clube == palmeiras) == 1
+    # os atalhos sao do ativo
+    assert c.clube_id == santos
+    c.ativo = 1
+    assert c.clube_id == palmeiras and c.treinador == "Beto"
+    assert c.clubes_humanos() == {santos, palmeiras}
+
+
+def test_nao_cabem_dois_no_mesmo_clube_nem_mais_de_oito():
+    with pytest.raises(ValueError, match="dois tecnicos"):
+        Carreira.nova(LIGAS, "Santos", seed=8, outros=["santos"])
+    with pytest.raises(ValueError, match="no maximo"):
+        Carreira.nova(LIGAS, "Santos", seed=8, outros=["x"] * 8)
+
+
+def test_a_vez_e_da_thread():
+    """Ao jogar a data, a carreira faz a conta como cada humano. A tela le a carreira de
+    outra thread enquanto a partida ao vivo esta pausada -- e tem de ver o ativo."""
+    c = _dois()
+    vistos = []
+    with c._como(1):
+        assert c.clube_id == c.humanos[1].clube_id
+        t = threading.Thread(target=lambda: vistos.append(c.clube_id))
+        t.start()
+        t.join()
+    assert vistos == [c.humanos[0].clube_id]
+    assert c.clube_id == c.humanos[0].clube_id
+
+
+def test_a_partida_de_cada_humano_usa_as_decisoes_dele():
+    c = _dois()
+    c.ativo = 1
+    reservas = sorted(c.world.squad(c.clube_id), key=lambda p: p.overall)
+    goleiro = next(p for p in reservas if p.position == "GK")
+    linha = [p for p in reservas if p.position != "GK"][:10]
+    onze = [goleiro.id] + [p.id for p in linha]
+    c.escalar(onze, Tatica(formacao="4-4-2", estilo="defensivo"))
+    c.ativo = 0
+    _ate_a_liga(c)
+    ana, beto = c.humanos
+    assert ana.partida_da_data is not None and beto.partida_da_data is not None
+    assert c.data - 1 in ana.jogos_do_usuario and c.data - 1 in beto.jogos_do_usuario
+    entrou = set(beto.partida_da_data.entrada)
+    assert set(onze) <= entrou, "o Palmeiras jogou sem o onze que o tecnico dele escolheu"
+    # a tatica do Beto continua valendo nos proximos jogos dele, e so nos dele
+    c.ativo = 1
+    assert c.tatica_atual().formacao == "4-4-2"
+    c.ativo = 0
+    assert c.tatica_atual().formacao == "4-3-3"
+
+
+def test_humano_contra_humano_e_uma_partida_so():
+    c = _dois()
+    for _ in range(80):
+        _ate_a_liga(c)
+        ana, beto = c.humanos
+        if ana.partida_da_data is not None and ana.partida_da_data is beto.partida_da_data:
+            break
+    else:
+        pytest.fail("Santos e Palmeiras nao se enfrentaram")
+    p = ana.partida_da_data
+    assert {p.casa, p.fora} == {ana.clube_id, beto.clube_id}
+    assert ana.jogos_do_usuario[c.data - 1] is beto.jogos_do_usuario[c.data - 1]
+    # o jogo entrou uma vez so na tabela
+    duplicados = [r for r in c.jogos("brasil_real")
+                  if {r.home, r.away} == {ana.clube_id, beto.clube_id}]
+    assert len(duplicados) == len({(r.home, r.away) for r in duplicados})
+
+
+def test_so_o_ativo_tem_a_tela_ao_vivo():
+    c = _dois()
+    c.ativo = 1
+    chamadas = []
+
+    def trocas(partida, minuto):
+        chamadas.append(partida)
+        return []
+
+    _ate_a_liga(c, substituicoes=trocas)
+    assert chamadas, "a partida do ativo nao passou pela tela"
+    assert all(p is c.humanos[1].partida_da_data for p in chamadas)
+
+
+@pytest.mark.xfail(strict=True, reason=(
+    "DEFEITO CONHECIDO, anterior ao online: a decisao e guardada por RODADA da liga, e as "
+    "datas de copa entre duas rodadas usam a mesma chave. Reescalar (ou trocar de clube, "
+    "ou vender um titular) entre um jogo de copa e a rodada seguinte apaga o que valeu na "
+    "copa, e o replay joga aquela data diferente. Conserto: guardar a decisao por data."))
+def test_o_save_refaz_o_mundo_seja_quem_for_que_estava_com_o_controle(tmp_path,
+                                                                       monkeypatch):
+    """O controle passa de mao em mao, os dois decidem e um deles pede demissao e troca de
+    clube. O save guarda tudo isso e o replay -- que nao sabe quem estava com o controle
+    em cada data -- refaz o mesmo mundo."""
+    import fm.carreira as mod
+    monkeypatch.setattr(mod, "SAVES_DIR", tmp_path)
+    c = _dois()
+    for k in range(14):
+        c.ativo = k % 2
+        c.escalar(c.escalacao_atual(),
+                  Tatica(estilo="ofensivo" if k % 2 else "defensivo"))
+        if k == 7:
+            assert c.executar({"tipo": "pedir_demissao"}).get("ok")
+            assert c.humanos[1].convites
+        if k == 9:
+            assert c.ativo == 1
+            assert c.executar({"tipo": "assumir", "clube": c.convites[0]}).get("ok")
+        c.avancar()
+    assert any(a.get("humano") == 1 for a in c.acoes)
+    assert c.humanos[1].clube_id != c.humanos[1].clube_inicial
+    c.salvar("dois")
+    (tmp_path / "dois.ponto").unlink()
+
+    for ativo in (0, 1):
+        texto = (tmp_path / "dois.json").read_text(encoding="utf-8")
+        (tmp_path / "dois.json").write_text(
+            re.sub(r'"ativo": \d', f'"ativo": {ativo}', texto), encoding="utf-8")
+        d = Carreira.carregar("dois")
+        assert d.ativo == ativo
+        assert _foto(d) == _foto(c)
+        assert d.acoes == c.acoes
+        assert [h.decisoes for h in d.humanos] == [h.decisoes for h in c.humanos]
+
+
+def test_o_retrato_vale_com_dois_humanos(tmp_path, monkeypatch):
+    """Carregar pelo retrato do comeco do ano da o mesmo mundo, com as decisoes do ano em
+    curso de cada humano vindas do save."""
+    import fm.carreira as mod
+    monkeypatch.setattr(mod, "SAVES_DIR", tmp_path)
+    c = _dois()
+    while not c.acabou:
+        c.avancar()
+    c.virar_o_ano()
+    c.ativo = 1
+    c.escalar(c.escalacao_atual(), Tatica(formacao="3-5-2"))
+    for _ in range(5):
+        c.avancar()
+    c.salvar("r")
+    (tmp_path / "r.ponto").unlink()
+    chamadas = []
+    original = mod.build_world
+    monkeypatch.setattr(mod, "build_world", lambda *a, **k: chamadas.append(1) or original(*a, **k))
+    d = Carreira.carregar("r")
+    assert not chamadas, "com retrato valido o mundo nao e montado do zero"
+    assert _foto(d) == _foto(c)
+    assert d.humanos[1].decisoes == c.humanos[1].decisoes
+
+
+def test_proposta_compra_e_convite_nunca_envolvem_o_clube_de_outro_humano():
+    c = _dois()
+    santos, palmeiras = (h.clube_id for h in c.humanos)
+    # a IA nao faz proposta em nome do Palmeiras, e o Santos nao compra do Palmeiras
+    for _ in range(40):
+        c.avancar()
+    for h in c.humanos:
+        assert all(p.clube not in (santos, palmeiras) for p in h.propostas)
+    craque = max(c.world.squad(palmeiras), key=lambda p: p.overall)
+    r = c.executar({"tipo": "compra", "jogador": craque.id, "preco": 10**9,
+                    "salario": craque.wage * 3, "anos": 3})
+    assert "erro" in r and "humano" in r["erro"]
+    # o clube de outro humano nao chama ninguem
+    candidatos = [palmeiras] + [k for k in c.world.clubs if k not in (santos, palmeiras)][:5]
+    c.tecnicos[0].reputacao = 99
+    for rng_seed in range(5):
+        chamam = tec.convites(c.world, c.tecnicos, candidatos, None, True, [],
+                              np.random.default_rng(rng_seed), usuario=0)
+        assert palmeiras not in chamam
+
+
+def test_ninguem_assume_o_clube_de_outro_humano_nem_demitido():
+    """O demitido continua com o clube dele ate assumir outro: o clube nao vira convite
+    de outro humano, e mesmo um convite forjado e recusado."""
+    c = _dois()
+    c.ativo = 1
+    assert c.executar({"tipo": "pedir_demissao"}).get("ok")
+    palmeiras = c.humanos[1].clube_id
+    c.ativo = 0
+    assert c._clubes_de_outros() == {palmeiras}
+    c.convites = [palmeiras]
+    assert "erro" in c.executar({"tipo": "assumir", "clube": palmeiras})
+    assert c.clube_id != palmeiras
+
+
+def test_a_virada_fecha_o_ano_de_cada_humano():
+    c = _dois()
+    c.ativo = 1
+    while not c.acabou:
+        c.avancar()
+    resumo = c.virar_o_ano()
+    ana, beto = c.humanos
+    assert len(ana.historico) == len(beto.historico) == 1
+    assert resumo is beto.historico[-1]
+    assert ana.historico[-1]["clube"] == "Santos"
+    assert beto.historico[-1]["clube"] == "Palmeiras"
+    assert ana.historico[-1]["minha_posicao"] != beto.historico[-1]["minha_posicao"] or (
+        ana.historico[-1]["minha_liga"] != beto.historico[-1]["minha_liga"])
+    # a janela da IA nao mexe no elenco de nenhum humano
+    for r in (ana.historico[-1], beto.historico[-1]):
+        assert not r["compras_do_clube"] and not r["vendas_do_clube"]
+
+
+def test_duas_selecoes_de_humanos_na_mesma_data():
+    """Cada humano pode treinar uma selecao; quando as duas jogam no mesmo dia, cada uma
+    sai do motor de eventos com o tecnico dela."""
+    c = _dois()
+    ana, beto = c.humanos
+    ana.selecao_do_usuario, beto.selecao_do_usuario = "Brasil", "Argentina"
+    classico = []
+    for _ in range(2):              # as eliminatorias poem os dois frente a frente em 2028
+        while not c.acabou:
+            c.avancar()
+            p = ana.partida_da_data
+            if p is not None and p is beto.partida_da_data:
+                classico.append(c.data - 1)
+        assert ana.jogos_da_selecao and beto.jogos_da_selecao
+        for data in set(ana.jogos_da_selecao) & set(beto.jogos_da_selecao):
+            a, b = ana.jogos_da_selecao[data], beto.jogos_da_selecao[data]
+            assert a is b or {a.home, a.away}.isdisjoint({b.home, b.away})
+        c.virar_o_ano()
+    assert classico, "Brasil x Argentina nao saiu como uma partida dos dois tecnicos"
+
+
+# ---------------------------------------------------------------- a tela (fm.servidor)
+
+def test_o_servidor_cria_a_carreira_de_varios_e_passa_a_vez():
+    from fm.servidor import Jogo, estado, nova, passar_a_vez
+    jogo = Jogo()
+    r = nova(jogo, {"ligas": LIGAS, "clube": "Santos", "treinador": "Ana", "seed": 8,
+                    "outros": [{"clube": "Palmeiras", "treinador": "Beto"},
+                               {"clube": "Sport Recife", "treinador": ""}]})
+    assert r.get("ok"), r
+    e = r["estado"]
+    assert [h["treinador"] for h in e["humanos"]] == ["Ana", "Beto", "Treinador 3"]
+    assert [h["ativo"] for h in e["humanos"]] == [True, False, False]
+    assert e["clube"]["nome"] == "Santos"
+
+    jogo.lidas.add("msg-da-ana")
+    r = passar_a_vez(jogo, {"humano": 1})
+    assert r.get("ok")
+    assert r["estado"]["clube"]["nome"] == "Palmeiras" and r["estado"]["treinador"] == "Beto"
+    assert jogo.lidas == set(), "as mensagens lidas sao de cada tecnico"
+    passar_a_vez(jogo, {"humano": 0})
+    assert jogo.lidas == {"msg-da-ana"}
+    assert "erro" in passar_a_vez(jogo, {"humano": 7})
+
+    class AoVivo:
+        acabou = False
+    jogo.ao_vivo = AoVivo()
+    assert "erro" in passar_a_vez(jogo, {"humano": 1}), "a vez nao passa no meio do jogo"
+    assert estado(jogo)["treinador"] == "Ana"
+
+
+def test_o_ranking_de_tecnicos_mostra_o_nome_de_cada_humano():
+    from fm.servidor import Jogo, tecnicos
+    jogo = Jogo(_dois())
+    nomes = {x["nome"] for x in tecnicos(jogo)["ranking"]}
+    assert {"Ana", "Beto"} <= nomes

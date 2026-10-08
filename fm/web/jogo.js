@@ -99,7 +99,40 @@ function desenharTopo(e) {
   $("#jogar").innerHTML = t.botao;
   const badge = $("#badge-msg");
   if (badge) { badge.hidden = !e.nao_lidas; badge.textContent = e.nao_lidas; }
+  // varios tecnicos no mesmo computador: quem esta com a vez, e o botao de passar
+  const vez = $("#vez");
+  const humanos = e.humanos || [];
+  vez.hidden = humanos.length < 2;
+  if (!vez.hidden) {
+    vez.innerHTML = `${escudo(e.clube, "1.5rem")}<span><small>Vez de</small><b>${escapar(e.treinador)}</b></span>`;
+    vez.onclick = () => janelaDaVez(e);
+  }
 }
+
+function janelaDaVez(e) {
+  // o clique num tecnico e tratado abaixo (data-humano): ele fecha a janela e troca a vez
+  abrirJanela({titulo: "Passar a vez", estreita: true, corpo: `
+    <p class="dica" style="margin-top:0">Quem estiver com a vez joga a próxima partida ao vivo.
+      Os outros técnicos jogam com a escalação e a tática que deixaram.</p>
+    <div class="lista-simples lista-vez">${e.humanos.map((h) => `
+      <button class="item clicavel ${h.ativo ? "sel" : ""}" data-humano="${h.indice}" ${h.ativo ? "disabled" : ""}>
+        ${escudo(h.clube, "1.6rem")}<span><b>${escapar(h.treinador)}</b>
+          <span class="dica">${escapar(h.clube.nome)}${h.demitido ? " · sem clube" : ""}</span></span>
+        <span class="espaco"></span>${h.ativo ? '<span class="chip">com a vez</span>' : ""}
+      </button>`).join("")}</div>`,
+    botoes: [{rotulo: "Cancelar"}]});
+}
+
+document.addEventListener("click", async (ev) => {
+  const b = ev.target.closest("[data-humano]");
+  if (!b || b.disabled) return;
+  const r = await api.post("/api/vez", {humano: +b.dataset.humano});
+  fecharJanela();
+  if (r.erro) { avisar(r.erro); return; }
+  aplicarEstado(r.estado);
+  await irPara(telaAtual);
+  avisar(`Vez de ${r.estado.treinador} · ${r.estado.clube.nome}`);
+});
 
 /* ------------------------------------------------------------------ lateral */
 

@@ -111,24 +111,32 @@ def _novo(tid: int, rng: np.random.Generator, pais: str, temporada: int,
 
 
 def gerar(world: World, ligas: set[str], rng: np.random.Generator, temporada: int,
-          clube_usuario: int, nome_usuario: str) -> dict[int, Tecnico]:
-    """Um tecnico por clube das ligas da carreira, mais alguns desempregados."""
-    tecnicos = {USUARIO: Tecnico(id=USUARIO, nome=nome_usuario, nascimento=temporada - 40,
-                                 reputacao=REPUTACAO_INICIAL_DO_USUARIO
-                                 + PESO_DO_PRIMEIRO_CLUBE * world.clubs[clube_usuario].reputation,
-                                 clube=clube_usuario,
-                                 usuario=True,
-                                 passagens=[[temporada, world.clubs[clube_usuario].name]])}
-    proximo = 1
+          clube_usuario: int | list[int], nome_usuario: str | list[str]
+          ) -> dict[int, Tecnico]:
+    """Um tecnico por clube das ligas da carreira, mais alguns desempregados.
+
+    Os tecnicos humanos sao os primeiros ids (0, 1...), um por clube de `clube_usuario`.
+    Com um humano so, o mundo e o de sempre: os da IA comecam logo depois dele."""
+    clubes = [clube_usuario] if isinstance(clube_usuario, int) else list(clube_usuario)
+    nomes = ([nome_usuario] * len(clubes) if isinstance(nome_usuario, str)
+             else list(nome_usuario))
+    tecnicos = {}
+    for tid, (clube, nome) in enumerate(zip(clubes, nomes, strict=True)):
+        tecnicos[tid] = Tecnico(id=tid, nome=nome, nascimento=temporada - 40,
+                                reputacao=REPUTACAO_INICIAL_DO_USUARIO
+                                + PESO_DO_PRIMEIRO_CLUBE * world.clubs[clube].reputation,
+                                clube=clube, usuario=True,
+                                passagens=[[temporada, world.clubs[clube].name]])
+    proximo = len(clubes)
     for clube in sorted(world.clubs.values(), key=lambda k: k.id):
-        if clube.league_id not in ligas or clube.id == clube_usuario:
+        if clube.league_id not in ligas or clube.id in clubes:
             continue
         rep = clube.reputation * 0.75 + 12 + rng.normal(0, 7)
         t = _novo(proximo, rng, clube.country, temporada, rep, clube.id)
         t.passagens.append([temporada, clube.name])
         tecnicos[proximo] = t
         proximo += 1
-    pais = world.clubs[clube_usuario].country
+    pais = world.clubs[clubes[0]].country
     for _ in range(DESEMPREGADOS_INICIAIS):
         tecnicos[proximo] = _novo(proximo, rng, pais, temporada, rng.uniform(15, 55), None)
         proximo += 1
@@ -279,10 +287,10 @@ def preencher_vagas(world: World, tecnicos: dict[int, Tecnico], vagas: list[int]
 
 
 def assediam(world: World, tecnicos: dict[int, Tecnico], dados: dict[int, Desempenho],
-             clube_atual: int | None) -> list[int]:
+             clube_atual: int | None, usuario: int = USUARIO) -> list[int]:
     """Os clubes maiores que o do usuario, com tecnico da IA abaixo do esperado, que podem
     troca-lo pelo usuario em alta. Vazio se ele nao vem de temporada forte."""
-    eu = tecnicos[USUARIO]
+    eu = tecnicos[usuario]
     if clube_atual is None or eu.variacao < ALTA_PARA_ASSEDIO:
         return []
     meu = world.clubs[clube_atual].reputation
@@ -301,25 +309,26 @@ def margem_do_convite(t: Tecnico) -> float:
 
 def convites(world: World, tecnicos: dict[int, Tecnico], candidatos: list[int],
              clube_atual: int | None, precisa: bool, reserva: list[int],
-             rng: np.random.Generator) -> list[int]:
-    """Os clubes que chamam o usuario.
+             rng: np.random.Generator, usuario: int = USUARIO) -> list[int]:
+    """Os clubes que chamam o usuario (`usuario` e o id dele em `tecnicos`).
 
     `candidatos`: clubes com vaga (ou em crise, no meio do ano), que so chamam se a
     reputacao do usuario couber. Demitido (`precisa`), todos os que cabem chamam, ate
     CONVITES_MOSTRADOS, e se ninguem couber o menor clube de `reserva` chama mesmo assim
     -- a carreira nao acaba por falta de porta. Empregado, clube maior chama quase
     sempre e menor de vez em quando, ate CONVITES_EMPREGADO: e o usuario que decide se
-    descer compensa.
+    descer compensa. Clube de outro tecnico humano nunca chama: a vaga nao e da IA.
     """
-    eu = tecnicos[USUARIO]
+    eu = tecnicos[usuario]
+    de_humano = {t.clube for t in tecnicos.values() if t.usuario and t.clube is not None}
     atual = world.clubs[clube_atual].reputation if clube_atual in world.clubs else -1
-    cabem = sorted((k for k in set(candidatos) if k != clube_atual
+    cabem = sorted((k for k in set(candidatos) if k != clube_atual and k not in de_humano
                     and world.clubs[k].reputation <= eu.reputacao + margem_do_convite(eu)),
                    key=lambda k: (-world.clubs[k].reputation, k))
     if precisa:
         fora = cabem[:CONVITES_MOSTRADOS]
         if not fora:
-            sobra = [k for k in reserva if k != clube_atual]
+            sobra = [k for k in reserva if k != clube_atual and k not in de_humano]
             if sobra:
                 fora = [min(sobra, key=lambda k: (world.clubs[k].reputation, k))]
         return fora

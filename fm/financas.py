@@ -266,12 +266,15 @@ def fechar_o_ano(world: World, tabelas: dict[str, list[Row]],
                  extras: dict[int, int] | None = None,
                  jogos_extras: dict[int, int] | None = None,
                  valores: dict[int, int] | None = None,
-                 clube_usuario: int | None = None) -> dict[int, Balanco]:
+                 clube_usuario: int | set[int] | None = None) -> dict[int, Balanco]:
     """Credita e debita o ano de cada clube. Chamado uma vez, na virada.
 
     Roda ANTES do acesso e do rebaixamento: o ano que acabou foi jogado na divisao antiga,
-    e e ela que paga.
+    e e ela que paga. `clube_usuario` e o clube (ou os clubes) de tecnico humano: o caixa
+    deles nao vira investimento da IA.
     """
+    humanos = ({clube_usuario} if isinstance(clube_usuario, int)
+               else set(clube_usuario or ()))
     balancos: dict[int, Balanco] = {}
     for liga, tabela in tabelas.items():
         tier = int(cfgs[liga].get("tier", 1))
@@ -292,7 +295,7 @@ def fechar_o_ano(world: World, tabelas: dict[str, list[Row]],
             # do mundo inteiro subia sem parar
             b.operacao = int((b.receita + b.premiacao) * CUSTO_DE_OPERACAO
                              + (jogos_extras or {}).get(cid, 0) * CUSTO_POR_JOGO_EXTRA)
-            if cid != clube_usuario:
+            if cid not in humanos:
                 b.investimento = investimento(world.clubs[cid].balance + b.saldo, receita)
             world.clubs[cid].balance += b.saldo
             balancos[cid] = b

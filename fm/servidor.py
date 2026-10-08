@@ -40,20 +40,28 @@ class Jogo:
     existir ainda: o jogo abre no menu, e ela nasce em "novo jogo" ou "jogos salvos".
     """
 
+    # o que e de cada tecnico na tela, guardado quando ele passa a vez (passar_a_vez)
+    DA_TELA = ("ultima_partida", "ultimos_resultados", "ultimo_resumo", "pos_jogo",
+               "lidas", "negociacoes")
+
     def __init__(self, carreira: Carreira | None = None) -> None:
         self.c = carreira
-        self.ultima_partida = None
-        self.ultimos_resultados: list = []
-        self.ultimo_resumo: dict | None = None
         self.ao_vivo = None                 # fm.ao_vivo.PartidaAoVivo, durante o jogo
         self.posicao_antes: int | None = None   # na tabela, antes da partida ao vivo
         self.competicao_ao_vivo = ("", "")
-        self.pos_jogo: dict | None = None
-        self.lidas: set[str] = set()
-        # as ofertas que o usuario fez nesta sessao e a resposta de cada uma: a aba
-        # "Negociacoes". Nao vai para o save -- o save guarda so o que virou negocio.
-        self.negociacoes: list[dict] = []
+        for k, v in self.tela_vazia().items():
+            setattr(self, k, v)
+        # {humano: o estado da tela dele} dos tecnicos que nao estao com a vez
+        self.por_humano: dict[int, dict] = {}
         self.trava = threading.Lock()
+
+    @staticmethod
+    def tela_vazia() -> dict:
+        return {"ultima_partida": None, "ultimos_resultados": [], "ultimo_resumo": None,
+                "pos_jogo": None, "lidas": set(),
+                # as ofertas que o usuario fez nesta sessao e a resposta de cada uma: a aba
+                # "Negociacoes". Nao vai para o save -- o save guarda so o que virou negocio.
+                "negociacoes": []}
 
 
 # ------------------------------------------------------------------ escudos
@@ -372,6 +380,12 @@ def estado(jogo: Jogo) -> dict:
         "selecao": _selecao_json(c, c.selecao_do_usuario),
         "convite_selecao": _selecao_json(c, c.convite_selecao),
         "pediu_demissao": c.pediu_demissao,
+        # os tecnicos deste computador e quem esta com a vez (o jogo de varios, etapa 2
+        # do online); com um so, a lista tem um e a tela nao mostra nada
+        "humanos": [{"indice": i, "treinador": h.treinador, "clube": _clube(c, h.clube_id),
+                     "ativo": i == c.ativo,
+                     "demitido": bool(h.aprovacao and h.aprovacao.demitido)}
+                    for i, h in enumerate(c.humanos)],
         "copas": [
             {"id": nome, "nome": a.torneio.nome, "fase": a.nome_da_fase,
              "vivo": a.esta_vivo(c.clube_id), "acabou": a.acabou,
@@ -826,13 +840,44 @@ def nova(jogo: Jogo, corpo: dict) -> dict:
     ligas = [x for x in corpo.get("ligas", []) if x in livres]
     if not ligas:
         return {"erro": "escolha pelo menos uma liga"}
+    # os outros tecnicos deste computador: [{clube, treinador}], cada um no seu clube
+    outros = [x for x in corpo.get("outros") or [] if isinstance(x, dict)]
+    nomes = [_nome_de_treinador(corpo.get("treinador"), "Treinador")]
+    nomes += [_nome_de_treinador(x.get("treinador"), f"Treinador {i}")
+              for i, x in enumerate(outros, 2)]
     try:
         seed = int(corpo.get("seed") or 2027)
-        c = Carreira.nova(ligas, str(corpo.get("clube", "")), seed=seed)
+        c = Carreira.nova(ligas, str(corpo.get("clube", "")), seed=seed,
+                          outros=[str(x.get("clube", "")) for x in outros],
+                          treinadores=nomes)
     except (ValueError, KeyError) as e:
         return {"erro": str(e)}
-    c.treinador = (str(corpo.get("treinador") or "").strip() or "Treinador")[:40]
     _trocar_de_carreira(jogo, c)
+    return {"ok": True, "estado": estado(jogo)}
+
+
+def _nome_de_treinador(nome, padrao: str) -> str:
+    return (str(nome or "").strip() or padrao)[:40]
+
+
+def passar_a_vez(jogo: Jogo, corpo: dict) -> dict:
+    """O controle vai para outro tecnico deste computador. Nao no meio de uma partida: a
+    tela ao vivo e do ativo."""
+    c = jogo.c
+    if jogo.ao_vivo is not None and not jogo.ao_vivo.acabou:
+        return {"erro": "termine a partida antes de passar a vez"}
+    try:
+        i = int(corpo.get("humano", -1))
+    except (TypeError, ValueError):
+        i = -1
+    if not 0 <= i < len(c.humanos):
+        return {"erro": "esse tecnico nao existe nesta carreira"}
+    # o que e so da tela (mensagens lidas, ofertas da sessao, o ultimo pos-jogo) fica
+    # guardado com cada tecnico
+    jogo.por_humano[c.ativo] = {k: getattr(jogo, k) for k in Jogo.DA_TELA}
+    c.ativo = i
+    for k, v in jogo.por_humano.get(i, Jogo.tela_vazia()).items():
+        setattr(jogo, k, v)
     return {"ok": True, "estado": estado(jogo)}
 
 
@@ -854,6 +899,7 @@ def _trocar_de_carreira(jogo: Jogo, c: Carreira) -> None:
     jogo.ao_vivo = None
     jogo.pos_jogo = None
     jogo.lidas = set()
+    jogo.por_humano = {}
 
 
 # ------------------------------------------------------------------ partida ao vivo
@@ -1166,12 +1212,15 @@ def tabela_da_competicao(jogo: Jogo, q: dict) -> dict:
 # ------------------------------------------------------------------ tecnicos e premios
 
 def _nome_do_tecnico(c: Carreira, t) -> str:
-    return c.treinador if t.usuario else t.nome     # o nome do usuario e o do menu
+    if not t.usuario:
+        return t.nome
+    # o nome de cada tecnico humano e o do menu
+    return next((h.treinador for h in c.humanos if h.tecnico_id == t.id), t.nome)
 
 
 def _reputacao(c: Carreira) -> dict:
     from fm import tecnicos as tec
-    eu = c.tecnicos.get(tec.USUARIO)
+    eu = c.tecnicos.get(c.humano.tecnico_id)
     if eu is None:
         return {}
     ordem = tec.ranking(c.tecnicos)
@@ -1203,11 +1252,13 @@ def tecnicos(jogo: Jogo) -> dict:
     for i, t in enumerate(ordem, 1):
         if i > 40 and not t.usuario:
             continue
-        linhas.append({"posicao": i, "nome": _nome_do_tecnico(c, t), "usuario": t.usuario,
+        # "usuario" e quem esta com a vez (a linha em destaque); "humano", qualquer um
+        linhas.append({"posicao": i, "nome": _nome_do_tecnico(c, t),
+                       "usuario": t.id == c.humano.tecnico_id, "humano": t.usuario,
                        "clube": _clube(c, t.clube) if t.clube in c.world.clubs else None,
                        "reputacao": round(t.reputacao, 1), "variacao": t.variacao,
                        "titulos": len(t.titulos), "idade": t.idade(c.temporada)})
-    eu = c.tecnicos.get(tec.USUARIO)
+    eu = c.tecnicos.get(c.humano.tecnico_id)
     return {"ranking": linhas, "meus_titulos": eu.titulos if eu else [],
             "passagens": eu.passagens if eu else [], "reputacao": _reputacao(c)}
 
@@ -1221,7 +1272,7 @@ def _premios_json(c: Carreira, p: dict | None) -> dict | None:
     for chave, d in p["ligas"].items():
         t = c.tecnicos.get(d["tecnico"]) if d.get("tecnico") is not None else None
         ligas[chave] = {**d, "tecnico": None if t is None else {
-            "nome": _nome_do_tecnico(c, t), "usuario": t.usuario}}
+            "nome": _nome_do_tecnico(c, t), "usuario": t.id == c.humano.tecnico_id}}
     return {"temporada": p["temporada"], "bola_de_ouro": p["bola_de_ouro"], "ligas": ligas,
             "meu_clube": c.clube_id}
 
@@ -1306,6 +1357,7 @@ ROTAS_POST = {
     "/api/partida/seguir": partida_seguir,
     "/api/avancar": lambda jogo, corpo: avancar(jogo),
     "/api/escalar": escalar,
+    "/api/vez": passar_a_vez,
     "/api/selecao_nacional": lambda jogo, corpo: _acao_da_selecao(jogo, corpo),
     "/api/demissao": lambda jogo, corpo: {**jogo.c.executar({"tipo": "pedir_demissao"}),
                                           "estado": estado(jogo)},
