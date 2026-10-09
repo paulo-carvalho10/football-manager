@@ -1549,14 +1549,30 @@ def fotografar_a_tela() -> dict[str, bytes]:
             for a in WEB.rglob("*") if a.is_file()}
 
 
-def _enderecos_na_rede() -> list[str]:
-    """Os IPs deste computador na rede local, para mostrar aos amigos."""
+def _enderecos_na_rede() -> list[tuple[str, str]]:
+    """(endereco, para quem) de cada IP deste computador, para mostrar aos amigos. A ordem
+    e a do que mais serve: o Wi-Fi de casa, o Tailscale (amigos em outra casa) e, por
+    ultimo, as redes virtuais (WSL, Docker), que nenhum outro aparelho alcanca."""
+    import ipaddress
     import socket
     try:
         ips = {i[4][0] for i in socket.getaddrinfo(socket.gethostname(), None, socket.AF_INET)}
     except OSError:
         return []
-    return sorted(ip for ip in ips if not ip.startswith("127."))
+    tailscale = ipaddress.ip_network("100.64.0.0/10")
+    virtual = ipaddress.ip_network("172.16.0.0/12")
+    fora = []
+    for ip in ips:
+        endereco = ipaddress.ip_address(ip)
+        if endereco.is_loopback:
+            continue
+        if endereco in tailscale:
+            fora.append((1, ip, "amigos em outra casa, pelo Tailscale"))
+        elif endereco in virtual:
+            fora.append((2, ip, "rede virtual do WSL/Docker: ignore"))
+        else:
+            fora.append((0, ip, "quem esta no mesmo Wi-Fi"))
+    return [(ip, quem) for _, ip, quem in sorted(fora)]
 
 
 class ServidorDoJogo(ThreadingHTTPServer):
@@ -1704,8 +1720,8 @@ def servir(carreira: Carreira | None = None, porta: int = 8000,
     print(f"  PRANCHETA 11 -- {url}"
           + (f"  ({carreira.clube.name})" if carreira else ""))
     if rede:
-        for ip in _enderecos_na_rede():
-            print(f"  Na rede: http://{ip}:{porta}/  (os amigos abrem este no navegador)")
+        for ip, quem in _enderecos_na_rede():
+            print(f"  Na rede: http://{ip}:{porta}/  ({quem})")
     print("  Ctrl+C para encerrar")
     try:
         servidor.serve_forever()
