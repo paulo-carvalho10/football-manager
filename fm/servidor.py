@@ -29,6 +29,9 @@ from fm.moral import rotulo_da_moral
 from fm.tatica import DESENHOS, ESTILOS, FORMACOES, MARCACOES, PONTOS, Tatica, arrumar_no_campo
 
 WEB = Path(__file__).resolve().parent / "web"
+# Por quanto tempo um tecnico continua "em uso" depois que o navegador dele some (a tela
+# avisa que esta aberta a cada 2,5 s). Passado isso, outro aparelho pode escolhe-lo.
+TEMPO_DE_POSSE = 45.0
 POSICAO_ORDEM = {"GK": 0, "DF": 1, "MF": 2, "FW": 3}
 
 
@@ -65,6 +68,10 @@ class Jogo:
         self.rodadas = 0                    # quantas vezes a data rodou pelo "Pronto"
         self.ultima = ""                    # o que rodou por ultimo: "data" ou "virada"
         self.sessao = secrets.token_hex(4)
+        # {tecnico: (navegador, quando ele apareceu por ultimo)}: quem esta usando cada
+        # tecnico. Outro navegador nao pode escolher um tecnico em uso -- a trava contra o
+        # engano de dois aparelhos virarem o mesmo tecnico.
+        self.donos: dict[int, tuple[str, float]] = {}
 
     @staticmethod
     def tela_vazia() -> dict:
@@ -90,22 +97,36 @@ class Jogo:
 
     def como_quem_pediu(self, cookie: str | None):
         """O pedido roda como o tecnico do cookie do navegador. Com um tecnico so, como
-        sempre."""
+        sempre. Cada pedido renova a posse do navegador sobre o tecnico dele; se outro
+        navegador tomou o tecnico (o dono sumiu por mais de TEMPO_DE_POSSE), este volta a
+        nao ser ninguem e a tela pergunta de novo quem ele e."""
+        import time
         from contextlib import nullcontext
-        self._local.i = None
+        self._local.i, self._local.nav = None, None
         if not self.varios:
             return nullcontext()
         from http.cookies import SimpleCookie
         try:
             valor = SimpleCookie(cookie or "").get("tecnico")
-            sessao, i = (valor.value if valor else "").split(":")
+            sessao, i, nav = (valor.value if valor else "").split(":")
             i = int(i)
         except ValueError:
             return nullcontext()
+        self._local.nav = nav
         if sessao != self.sessao or not 0 <= i < len(self.c.humanos):
             return nullcontext()
+        if self.em_uso_por_outro(i, nav):
+            return nullcontext()
+        self.donos[i] = (nav, time.monotonic())
         self._local.i = i
         return self.c._como(i)
+
+    def em_uso_por_outro(self, i: int, nav: str | None) -> bool:
+        """O tecnico `i` esta com outro navegador, aberto ha pouco?"""
+        import time
+        dono = self.donos.get(i)
+        return bool(dono and dono[0] != nav
+                    and time.monotonic() - dono[1] < TEMPO_DE_POSSE)
 
 
 def _campo_da_tela(nome: str) -> property:
@@ -441,6 +462,7 @@ def estado(jogo: Jogo) -> dict:
         # do online); com um so, a lista tem um e a tela nao mostra nada
         "humanos": [{"indice": i, "treinador": h.treinador, "clube": _clube(c, h.clube_id),
                      "pronto": i in jogo.prontos,
+                     "em_uso": jogo.em_uso_por_outro(i, getattr(jogo._local, "nav", None)),
                      "demitido": bool(h.aprovacao and h.aprovacao.demitido)}
                     for i, h in enumerate(c.humanos)],
         # quem este navegador e (None: ainda nao escolheu) e quantas vezes a data ja rodou
@@ -947,10 +969,21 @@ def sou(jogo: Jogo, corpo: dict) -> dict:
         i = -1
     if not 0 <= i < len(c.humanos):
         return {"erro": "esse tecnico nao existe nesta carreira"}
-    jogo._local.i = i
+    import secrets
+    import time
+    nav = getattr(jogo._local, "nav", None) or secrets.token_hex(4)
+    if jogo.em_uso_por_outro(i, nav):
+        return {"erro": f"{c.humanos[i].treinador} ja esta sendo usado em outro aparelho"}
+    # quem troca de tecnico solta o antigo na hora
+    for j, (dono, _) in list(jogo.donos.items()):
+        if dono == nav and j != i:
+            del jogo.donos[j]
+            jogo.prontos.discard(j)
+    jogo.donos[i] = (nav, time.monotonic())
+    jogo._local.i, jogo._local.nav = i, nav
     with c._como(i):
         return {"ok": True, "estado": estado(jogo),
-                "_cookie": f"tecnico={jogo.sessao}:{i}; Path=/; SameSite=Lax"}
+                "_cookie": f"tecnico={jogo.sessao}:{i}:{nav}; Path=/; SameSite=Lax"}
 
 
 def pronto(jogo: Jogo, corpo: dict) -> dict:

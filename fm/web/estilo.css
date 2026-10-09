@@ -502,6 +502,9 @@ input:focus, select:focus { border-color: var(--ouro); }
 .lista-vez .item:hover:not(:disabled) { border-color: var(--gramado); }
 .lista-vez .item.sel { border-color: var(--ouro); cursor: default; }
 .lista-vez .item .dica { display: block; }
+/* varios tecnicos: o navegador que ainda nao escolheu quem e nao ve o clube de ninguem */
+#jogo.sem-tecnico .miolo, #jogo.sem-tecnico .jogar-bloco > :not(#vez),
+#jogo.sem-tecnico #rodape { filter: blur(9px); pointer-events: none; user-select: none; }
 
 .miolo { display: grid; grid-template-columns: 19rem minmax(0, 1fr); gap: .8rem; padding: .8rem; min-height: 0; }
 .lateral { display: flex; flex-direction: column; gap: .8rem; min-height: 0; overflow: auto; }

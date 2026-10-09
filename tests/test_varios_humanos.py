@@ -381,3 +381,32 @@ def test_o_novo_jogo_cria_a_carreira_de_varios():
     assert [h["treinador"] for h in r["estado"]["humanos"]] == ["Ana", "Beto", "Treinador 3"]
     assert [h["clube"]["nome"] for h in r["estado"]["humanos"]] == [
         "Santos", "Palmeiras", "Sport Recife"]
+
+
+def test_um_tecnico_em_uso_nao_pode_ser_escolhido_em_outro_aparelho(servidor_de_dois):
+    """A trava contra o engano: dois aparelhos virarem o mesmo tecnico."""
+    import time
+    jogo, porta = servidor_de_dois
+    ana, outro = _Navegador(porta), _Navegador(porta)
+    assert ana.pedir("/api/sou", {"humano": 0})["ok"]
+    r = outro.pedir("/api/sou", {"humano": 0})
+    assert "erro" in r and "outro aparelho" in r["erro"]
+    e = outro.pedir("/api/estado")
+    assert e["sou"] is None
+    assert [h["em_uso"] for h in e["humanos"]] == [True, False]
+    # para a propria Ana o tecnico dela nao aparece como "em uso", e recarregar a pagina
+    # (o mesmo cookie) continua sendo ela
+    e = ana.pedir("/api/estado")
+    assert e["sou"] == 0 and not e["humanos"][0]["em_uso"]
+
+    # trocar de tecnico solta o antigo na hora
+    assert ana.pedir("/api/sou", {"humano": 1})["ok"]
+    assert outro.pedir("/api/sou", {"humano": 0})["ok"]
+
+    # o aparelho que sumiu perde o tecnico depois do prazo; quando volta, nao e mais ninguem
+    nav_da_ana, _ = jogo.donos[1]
+    jogo.donos[1] = (nav_da_ana, time.monotonic() - 1000)
+    terceiro = _Navegador(porta)
+    assert terceiro.pedir("/api/sou", {"humano": 1})["ok"]
+    assert ana.pedir("/api/estado")["sou"] is None
+    assert ana.pedir("/api/prontos")["sou"] is None

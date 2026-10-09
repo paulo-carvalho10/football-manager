@@ -57,6 +57,8 @@ function aplicarEstado(e) {
   // proposta nova por um jogador do clube abre a janela sozinha (transferencias.js)
   if (typeof verificarPropostas === "function") setTimeout(() => verificarPropostas(e), 0);
   if (varios(e)) verificarRodada(e);
+  // varios tecnicos: quem ainda nao disse quem e nao ve o clube de ninguem
+  $("#jogo").classList.toggle("sem-tecnico", varios(e) && e.sou === null);
 }
 
 async function irPara(nome) {
@@ -107,7 +109,9 @@ function desenharTopo(e) {
   const vez = $("#vez");
   vez.hidden = !varios(e);
   if (!vez.hidden) {
-    vez.innerHTML = `${escudo(e.clube, "1.5rem")}<span><small>Você é</small><b>${escapar(e.treinador)}</b></span>`;
+    vez.innerHTML = e.sou === null
+      ? `<span><small>Quem é você?</small><b>Escolher técnico</b></span>`
+      : `${escudo(e.clube, "1.5rem")}<span><small>Você é</small><b>${escapar(e.treinador)}</b></span>`;
     vez.onclick = () => janelaQuemSou(e);
     const eu = e.humanos.find((h) => h.indice === e.sou);
     if (eu && eu.pronto) {
@@ -126,17 +130,25 @@ function desenharTopo(e) {
 function varios(e) { return (e?.humanos || []).length > 1; }
 
 function janelaQuemSou(e) {
-  // o clique num tecnico e tratado abaixo (data-humano): ele fecha a janela e troca
+  // o clique num tecnico e tratado abaixo (data-humano): ele fecha a janela e troca. Quem
+  // ainda nao escolheu nao fecha a janela sem escolher: o fundo e o clube de outro tecnico
   abrirJanela({titulo: "Quem é você?", estreita: true, corpo: `
     <p class="dica" style="margin-top:0">Cada técnico joga no seu navegador e só vê o próprio clube.
       Quando todos apertam <b>Pronto</b>, a data é jogada para todo mundo.</p>
-    <div class="lista-simples lista-vez">${e.humanos.map((h) => `
-      <button class="item clicavel ${h.indice === e.sou ? "sel" : ""}" data-humano="${h.indice}" ${h.indice === e.sou ? "disabled" : ""}>
+    <div class="lista-simples lista-vez">${e.humanos.map((h) => {
+      // o tecnico aberto em outro aparelho nao pode ser escolhido: e a trava contra o
+      // engano de dois navegadores virarem o mesmo tecnico
+      const bloqueado = h.indice === e.sou || h.em_uso;
+      const chip = h.indice === e.sou ? "você" : h.em_uso ? "em uso" : h.pronto ? "pronto" : "";
+      return `<button class="item clicavel ${h.indice === e.sou ? "sel" : ""}" data-humano="${h.indice}" ${bloqueado ? "disabled" : ""}>
         ${escudo(h.clube, "1.6rem")}<span><b>${escapar(h.treinador)}</b>
           <span class="dica">${escapar(h.clube.nome)}${h.demitido ? " · sem clube" : ""}</span></span>
-        <span class="espaco"></span>${h.indice === e.sou ? '<span class="chip">você</span>' : h.pronto ? '<span class="chip">pronto</span>' : ""}
-      </button>`).join("")}</div>`,
-    botoes: [{rotulo: "Fechar"}]});
+        <span class="espaco"></span>${chip ? `<span class="chip">${chip}</span>` : ""}
+      </button>`;
+    }).join("")}</div>`,
+    botoes: [{rotulo: "Fechar"}]}).then(() => {
+    if (varios(ESTADO) && ESTADO.sou === null) setTimeout(() => janelaQuemSou(ESTADO), 0);
+  });
 }
 
 document.addEventListener("click", async (ev) => {
@@ -156,9 +168,16 @@ document.addEventListener("click", async (ev) => {
 let RODADAS_VISTAS = null;
 let PRONTOS_VISTOS = "";
 setInterval(async () => {
-  if (modoAtual !== "jogo" || !varios(ESTADO) || !$("#cortina").hidden) return;
+  if (!varios(ESTADO)) return;
+  // a consulta vai sempre, com janela aberta ou no pos-jogo: e ela que diz ao servidor
+  // que este navegador continua com o tecnico (fm.servidor.TEMPO_DE_POSSE)
   const p = await api.get("/api/prontos");
-  if (p.erro) return;
+  if (p.erro || modoAtual !== "jogo" || !$("#cortina").hidden) return;
+  if (p.sou === null && ESTADO.sou !== null) {
+    // outro aparelho ficou com o meu tecnico enquanto este estava fechado
+    aplicarEstado(await api.get("/api/estado"));
+    return janelaQuemSou(ESTADO);
+  }
   if (p.rodadas !== RODADAS_VISTAS || p.prontos.join() !== PRONTOS_VISTOS) {
     aplicarEstado(await api.get("/api/estado"));
   }
