@@ -42,14 +42,14 @@ crível**.
 
 | | |
 |---|---|
-| 🏟️ **Partida ao vivo** | O relógio para a cada 5 minutos. Dá para fazer substituições, mudar a tática e escolher quem bate o pênalti. Os outros jogos da rodada aparecem em paralelo. |
+| 🏟️ **Partida ao vivo** | O relógio para a cada 5 minutos. Dá para fazer substituições, mudar a tática e escolher quem bate o pênalti. Você define o capitão e os cobradores de falta e escanteio, e o especialista faz diferença. Os outros jogos da rodada aparecem em paralelo. |
 | 🏆 **Competições reais** | Série A e B, Copa do Brasil, Libertadores e Sul-Americana no formato da Conmebol: grupos sorteados por potes e chave fixa das oitavas à final. Tem ainda a Champions, a Liga Europa e a Conference League com fase de liga, as copas nacionais (FA Cup, Copa del Rey, Coppa Italia, DFB-Pokal, Coupe de France, Taça de Portugal, Copa Argentina) e as supercopas (do Brasil, Recopa e da UEFA). Os mata-matas são em ida e volta, em datas separadas, e o empate no agregado vai para os pênaltis, cobrança a cobrança. |
 | 🌎 **Seleções e Copa do Mundo** | Cada jogador tem a nacionalidade real, e as seleções são feitas de quem joga no mundo inteiro. Nas datas FIFA as ligas param: eliminatórias sul-americanas e europeias, e a Copa do Mundo de 48 seleções a cada quatro anos, a partir de 2030. Pela reputação, uma seleção pode te convidar: você convoca, escala e comanda os jogos dela ao vivo, sem largar o clube. |
 | 📅 **Calendário real** | A temporada vai de fevereiro a dezembro. As ligas jogam aos domingos e as copas no meio de semana, cada fase na janela de verdade: a pré-Libertadores em fevereiro, os grupos em abril e maio, a final em novembro. |
-| 💸 **Mercado** | Propostas, contrapropostas, contrato, renovação e empréstimo. A IA também negocia entre si, e os clubes grandes às vezes perdem jogador para um menor. |
+| 💸 **Mercado** | Propostas, contrapropostas, contrato, renovação e empréstimo. A IA também negocia entre si, e os clubes grandes às vezes perdem jogador para um menor. O olheiro indica reforços e promessas, e jogador insatisfeito sai mais barato. |
 | 📊 **Finanças reais** | Receita, folha e prêmios na escala dos balanços de verdade. O valor de mercado aparece em **euro**. O caixa e os salários aparecem na **moeda do clube**: R$, £, US$ ou €. |
-| 🩹 **Elenco vivo** | O desgaste vem dos minutos jogados. Tem lesão contada em dias, cartões e suspensões, evolução por idade e potencial, e revelação da base. |
-| 🧑‍💼 **Carreira de técnico** | Diretoria e torcida avaliam você e podem demitir. Há reputação, ranking mundial de técnicos e convites de outros clubes. No fim da temporada saem a Bola de Ouro e os prêmios de cada liga. |
+| 🩹 **Elenco vivo** | O desgaste vem dos minutos jogados. Tem lesão contada em dias, cartões e suspensões, evolução por idade e potencial, e revelação da base. Cada jogador tem moral, que sobe e desce com os resultados e com o tempo no banco, e o vestiário tem química. |
+| 🧑‍💼 **Carreira de técnico** | Diretoria e torcida avaliam você e podem demitir. Há reputação, ranking mundial de técnicos e convites de outros clubes, e dá para pedir demissão. No fim da temporada saem a Bola de Ouro e os prêmios de cada liga. A sala de troféus guarda os títulos, os recordes e as lendas de cada clube que você dirigiu. |
 | 👥 **Com amigos** | Até 8 técnicos na mesma carreira, cada um no seu aparelho e com o seu clube. Cada um vê só o próprio time; quando todos apertam **Pronto**, a rodada é jogada para todo mundo. |
 | 🎲 **Determinístico** | O save guarda a semente e as suas decisões. A mesma semente gera exatamente o mesmo mundo, em qualquer máquina. |
 
@@ -61,7 +61,7 @@ crível**.
 <td width="50%"><img src="docs/prints/classificacao.png" alt="Classificação"><br><sub><b>Tabela</b>: classificação, artilharia, defesas e copas</sub></td>
 </tr>
 <tr>
-<td><img src="docs/prints/transferencias.png" alt="Mercado de transferências"><br><sub><b>Mercado</b>: 13 mil jogadores com filtros, valor em € e salário na moeda do clube</sub></td>
+<td><img src="docs/prints/transferencias.png" alt="Mercado de transferências"><br><sub><b>Mercado</b>: quase 21 mil jogadores com filtros, valor em € e salário na moeda do clube</sub></td>
 <td><img src="docs/prints/elenco.png" alt="Elenco"><br><sub><b>Elenco</b>: energia, cartões, perfil e contrato de cada jogador</sub></td>
 </tr>
 <tr>
@@ -149,9 +149,9 @@ A medição abaixo usa 760 mil partidas numa liga de referência de 20 clubes, e
 
 | métrica | medido | alvo |
 |---|---|---|
-| gols por jogo | 2,60 | 2,55 – 2,80 |
+| gols por jogo | 2,60 | 2,50 – 2,80 |
 | 0 × 0 | 7,5% | 6,5 – 9,5% |
-| casa / empate / fora | 46,1 / 24,7 / 29,2 | 43–47 / 23–27 / 28–31 |
+| casa / empate / fora | 46,1 / 24,7 / 29,2 | 43–47,5 / 23,5–26,5 / 27,5–31 |
 | margem de 3+ gols | 14,3% | 11,5 – 15,5% |
 | margem de 4+ gols | 4,8% | 3,5 – 6,0% |
 | pontos do campeão | 76,1 | 74 – 81 |
@@ -203,6 +203,9 @@ fm/
 ├── mercado.py, negocios.py  a janela da IA e as negociações do usuário
 ├── financas.py, moeda.py    receita, folha, prêmios; euro no motor, moeda local na tela
 ├── temporada.py             envelhecimento, evolução, aposentadoria, base
+├── fifa.py, selecoes.py     seleções, datas FIFA, eliminatórias e Copa do Mundo
+├── moral.py, lesoes.py      moral e química do elenco, lesões, e disciplina.py para os cartões
+├── tecnicos.py, diretoria.py  reputação e mercado de técnicos, meta, torcida e demissão
 ├── calibration.py           o portão de qualidade
 ├── servidor.py              servidor HTTP da biblioteca padrão, sem framework
 ├── web/                     a interface: HTML, CSS e JavaScript puros
