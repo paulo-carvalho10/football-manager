@@ -6,7 +6,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
 ![NumPy](https://img.shields.io/badge/depend%C3%AAncia-s%C3%B3%20NumPy-013243?logo=numpy&logoColor=white)
-![Testes](https://img.shields.io/badge/testes-320%2B-2ea44f)
+![Testes](https://img.shields.io/badge/testes-400%2B-2ea44f)
 ![Interface](https://img.shields.io/badge/interface-HTML%20%2B%20JS%20puro-f7df1e)
 
 <img src="docs/prints/escalacao.png" alt="Tela de escalação com o campo, as reservas e a tática" width="100%">
@@ -31,6 +31,7 @@ crível**.
 - [O que tem no jogo](#o-que-tem-no-jogo)
 - [Telas](#telas)
 - [Como rodar](#como-rodar)
+- [Jogar com amigos](#jogar-com-amigos)
 - [O motor](#o-motor)
 - [Arquitetura](#arquitetura)
 - [Dados](#dados)
@@ -49,6 +50,7 @@ crível**.
 | 📊 **Finanças reais** | Receita, folha e prêmios na escala dos balanços de verdade. O valor de mercado aparece em **euro**. O caixa e os salários aparecem na **moeda do clube**: R$, £, US$ ou €. |
 | 🩹 **Elenco vivo** | O desgaste vem dos minutos jogados. Tem lesão contada em dias, cartões e suspensões, evolução por idade e potencial, e revelação da base. |
 | 🧑‍💼 **Carreira de técnico** | Diretoria e torcida avaliam você e podem demitir. Há reputação, ranking mundial de técnicos e convites de outros clubes. No fim da temporada saem a Bola de Ouro e os prêmios de cada liga. |
+| 👥 **Com amigos** | Até 8 técnicos na mesma carreira, cada um no seu aparelho e com o seu clube. Cada um vê só o próprio time; quando todos apertam **Pronto**, a rodada é jogada para todo mundo. |
 | 🎲 **Determinístico** | O save guarda a semente e as suas decisões. A mesma semente gera exatamente o mesmo mundo, em qualquer máquina. |
 
 ## Telas
@@ -108,6 +110,30 @@ python -m fm.cli calibrar-overall                     # recalibra o overall da t
 Testes: `python -m pytest` · Lint: `ruff check .`
 
 </details>
+
+## Jogar com amigos
+
+<img src="docs/prints/amigos.png" alt="A tela de um técnico que já apertou Pronto e espera o outro" width="100%">
+
+O jogo roda num computador e os amigos entram pelo navegador, do celular ou do PC. Ninguém
+precisa instalar nada além de quem hospeda.
+
+```bash
+python -m fm.cli servir --rede   # mostra o endereço para os amigos abrirem
+```
+
+1. Em **Novo jogo**, adicione os outros técnicos e cada um escolhe o seu clube.
+2. Cada amigo abre o endereço mostrado no terminal e responde **"Quem é você?"**. Daí em diante
+   ele só vê o próprio clube: elenco, escalação, mercado, mensagens e propostas.
+3. Cada um monta o time e aperta **Pronto**. Quando todos estão prontos, a data é jogada e cada
+   um vê o resultado do seu jogo.
+
+Funciona na mesma rede Wi-Fi. Para jogar de casas diferentes, uma VPN como o Tailscale põe os
+aparelhos na mesma rede. Sem `--rede`, o jogo só aceita conexões do próprio computador. Trocar
+de carreira, salvar e encerrar ficam sempre com quem hospeda.
+
+Com vários técnicos, as partidas ainda não passam ao vivo: saem com a escalação e a tática
+que cada um deixou.
 
 Também existe uma [demonstração do motor no navegador](https://paulo-carvalho10.github.io/football-manager/),
 que simula temporadas e roda o portão de calibração sem instalar nada.
@@ -181,7 +207,7 @@ fm/
 ├── servidor.py              servidor HTTP da biblioteca padrão, sem framework
 ├── web/                     a interface: HTML, CSS e JavaScript puros
 └── importer/                a importação de dados (fica fora do motor)
-tests/                       mais de 300 testes, incluindo determinismo entre processos
+tests/                       mais de 400 testes, incluindo determinismo entre processos
 ```
 
 Decisões que valem mencionar:
@@ -193,6 +219,9 @@ Decisões que valem mencionar:
   gerado em dois processos diferentes.
 - **Nenhuma regra de jogo mora no navegador.** A tela pede estado ao servidor, desenha e devolve
   o que o usuário decidiu.
+- **Vários técnicos sem quebrar o replay.** Cada técnico humano tem o seu clube e as suas
+  decisões, e o save guarda as de todos. Nenhum resultado depende de quem apertou o botão: o
+  replay refaz o mesmo mundo, e um teste confere isso com o controle passando de mão em mão.
 
 ## Dados
 
